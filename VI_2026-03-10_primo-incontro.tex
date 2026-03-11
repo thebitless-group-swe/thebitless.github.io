@@ -1,0 +1,172 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+
+\usepackage[a-1b]{pdfx}
+
+\usepackage[italian]{babel} % Language
+
+\usepackage{comment}      
+\usepackage{graphicx} % Required for inserting images
+\usepackage{multirow}
+\usepackage{minted} 
+
+\usepackage{graphicx}
+\usepackage{geometry}
+
+\usepackage{float} % Required for the [H] option
+
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{Verbale \tipoverbale \ \dataverbale}
+
+% --- CONFIGURAZIONE HYPERREF (Sempre per ultimo) ---
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,           % Falso: usa le decorazioni (linee) invece di colorare il testo
+    pdfborderstyle={/S/U/W 1},  % Stile della linea: (S)tyle (U)nderline (W)idth 1pt
+    linkbordercolor=0 0 0,      % Colore linea Link interni: Nero (RGB)
+    urlbordercolor=0 0 0,       % Colore linea URL web: Nero (RGB)
+    citebordercolor=0 0 0,      % Colore linea Citazioni: Nero (RGB)
+    filebordercolor=0 0 0,      % Colore linea File: Nero (RGB)
+    breaklinks=true,            % Permette ai link di andare a capo
+}
+
+
+\begin{document}
+% ---------------------------------------------------
+%          IMPOSTAZIONI DEL FRONTESPIZIO
+\newcommand{\tipoverbale}{interno}
+\newcommand{\dataverbale}{10/03/2026}
+\newcommand{\dataversione}{11/03/2026}
+\newcommand{\stato}{Stesura}
+\newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+
+% ---------------------------------------------------
+
+\pagenumbering{roman}
+
+\input{./templates/frontespizio.tex}
+\newpage
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|}
+                    \hline
+                    \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
+                    \hline
+                    \textbf{Versione} & \textbf{Data} & \textbf{Autore}  & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione breve} \\
+                    \hline 
+                    0.1.0 & \dataversione & S. Zecchinato &  -  & - & Prima stesura \\
+                    \hline
+                \end{tabular}
+\end{center}
+
+\newpage
+
+\tableofcontents % Table of contents
+
+\pagenumbering{arabic}
+
+\newpage
+\section{Informazioni sulla riunione}
+Il presente documento riporta la verbalizzazione della riunione interna al gruppo \textbf{The Bitless} avvenuta il \dataverbale in modalità telematica. La riunione si è aperta alle ore 16:00 e si è conclusa alle ore 18:30.
+
+\section{Presenze}
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
+        \hline
+        Lorenzo & Battistella & Presente \\
+        \hline
+        Edoardo & De Piccoli & Presente \\
+        \hline
+        Davide & Facco & Presente \\
+        \hline
+        Anna & Marini & Presente \\
+        \hline
+        Andrea & Menegaldo & Presente \\
+        \hline
+        Samuele & Vendramin & Presente \\
+        \hline
+        Simone & Zecchinato & Presente \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\section{Ordine del giorno}
+\begin{enumerate}
+    \item Prima presentazione dei componenti del gruppo
+    \item Visione collettiva dei capitolati ed espressione preferenze
+    \item Creazione indirizzo di posta elettronica
+    \item Stesura mail per richiesta colloquio alle aziende
+    \item Prima definizione di \textit{Way of Working}
+    \item Assegnazione attività singole
+    \item Stesura del prossimo ODG
+\end{enumerate}
+
+\section{Discussione e decisioni}
+\subsection{Prima presentazione dei componenti del gruppo}
+Essendo questa la prima riunione, ogni componente del gruppo si presenta agli altri. 
+
+\subsection{Visione collettiva dei capitolati ed espressione preferenze}
+Il gruppo prende visione collettivamente dei capitolati e, ad uno ad uno, viene espressa una preferenza. Il gruppo, dopo varie discussioni, decide di dedicarsi ai capitolati (in ordine di preferenza):
+\begin{enumerate}
+    \item \textbf{C6}: Second Brain - Zucchetti S.p.A.
+    \item \textbf{C5}: NEXUM - Eggon
+    \item \textbf{C2}: Code Guardian - Var Group S.p.A.
+\end{enumerate}
+Si rimanda la decisione sul capitolato \textbf{C4} e si decide di contattare l'azienda per delucidazioni sul progetto.
+
+\subsection{Creazione indirizzo di posta elettronica}
+Il gruppo crea l'indidirizzo di posta elettronica \textit{thebitless.swe@gmail.com} con cui contattare le aziende e i docenti.
+
+\subsection{Stesura mail per richiesta colloquio alle aziende}
+Vengono redatte e spedite le email per richiesta di colloquio alle aziende: Zucchetti (per capitolato C6), Miriade (per capitolato C4) ed Eggon (per capitolato C5).
+In vista degli incontri con le aziende, ogni membro del gruppo prepara delle domande sul capitolato.
+
+\subsection{Prima definizione di \textit{Way of Working}}
+Il gruppo comincia la discussione del \textit{Way of Working}, ed in particolare:
+\begin{itemize}
+    \item Scelta dei tool per versionamento e gestione del progetto
+    \item Bozza delle linee guida sulla gestione delle repository e del naming
+\end{itemize}
+Per il primo punto si è scelto di usare Git (per il versionamento) e GitHub (per la creazione e condivisione delle repository). Per la gestione del progetto si è deciso di affidarsi a Github Projects che offre un ottimo sistema Kanban integrato con le repository e le issues.
+A questo proposito si è creata l'organizzazione \textbf{The Bitless Group SWE} su GitHub in cui tutto il team è stato inserito.
+
+Per il secondo punto invece è stata scritta una bozza di Wiki con le linee guida sulla corretta gestione delle repository e del naming dei file.
+
+\subsection{Assegnazione attività singole}
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Attività} & \textbf{Assegnazione} \\
+        \hline
+        Stesura verbale & S. Zecchinato \\
+        \hline
+        Controllo corrispondenza & A. Marini \\
+        \hline
+        Sistemazione linee guida & E. De Piccoli \\
+        \hline
+        Stesura domande per le aziende & Gruppo \\
+        \hline        
+    \end{tabular}
+\end{center}
+
+\subsection{Stesura del prossimo ODG}
+\begin{itemize}
+    \item Conclusione discussione e scelta capitolato 
+    \item Continuazione della discussione sul \textit{Way of Working}
+    \item Divisione compiti primari (Lettera di presentazione, valutazione capitolati)
+    \item Discussione per preventivo costi 
+    \item Definizione dei ruoli e delle rotazioni
+\end{itemize}
+
+\appendix
+
+
+
+\end{document}
