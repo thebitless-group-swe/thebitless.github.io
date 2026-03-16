@@ -1,0 +1,175 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+
+\usepackage[a-1b]{pdfx}
+
+\usepackage[italian]{babel} 
+
+\usepackage{comment}      
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{minted} 
+
+\usepackage{graphicx}
+\usepackage{geometry}
+
+\usepackage{float} 
+
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{Verbale \tipoverbale \ \dataverbale}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,           
+    pdfborderstyle={/S/U/W 1},
+    linkbordercolor=0 0 0,      
+    urlbordercolor=0 0 0,      
+    citebordercolor=0 0 0,     
+    filebordercolor=0 0 0,     
+    breaklinks=true,            
+}
+
+
+\begin{document}
+% ---------------------------------------------------
+%          IMPOSTAZIONI DEL FRONTESPIZIO
+\newcommand{\tipoverbale}{esterno}
+\newcommand{\dataverbale}{12/03/2026}
+\newcommand{\dataversione}{16/03/2026}
+\newcommand{\stato}{Stesura}
+\newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+
+\pagenumbering{roman}
+
+
+\begin{titlepage} 
+      \begin{center}
+            \thispagestyle{empty}
+            \includegraphics[width=15cm]{logo_gruppo.png}
+            \begin{spacing}{1.2}
+                \Huge{\textbf{Verbale \tipoverbale \ \dataverbale}}
+            \end{spacing}
+
+            \vspace{2cm}
+
+
+            \begin{center}
+            \textbf{The Bitless} (Gruppo 18): \\
+            Lorenzo Battistella (2103116), Edoardo De Piccoli (2101055), Davide Facco (2087852), \\ Anna Marini (2110986), Andrea Menegaldo (2116426), Samuele Vendramin (2111934),\\ Simone Zecchinato (2113189)
+            \end{center}
+
+            \vspace{1cm}
+
+            \begin{center}
+                \begin{tabular}{|c|c|c|c|}
+                    \hline
+                    \multicolumn{4}{|c|}{\textbf{Informazioni documento}} \\
+                    \hline
+                    \textbf{Versione} & \textbf{Data} & \textbf{Stato}  & \textbf{Destinatari} \\
+                    \hline
+                    0.1.0 & \dataversione & \stato & \destinatari \\
+                    \hline
+                \end{tabular}
+            \end{center}
+
+            \vfill
+            
+            \begin{center}
+                Contatti: thebitless.swe@gmail.com
+            \end{center}
+            
+        \end{center}
+    \end{titlepage}
+
+\newpage
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|}
+                    \hline
+                    \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
+                    \hline
+                    \textbf{Versione} & \textbf{Data} & \textbf{Autore}  & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione breve} \\
+                    \hline 
+                    0.1.0 & \dataversione & A. Marini &  -  & - & Prima stesura \\
+                    \hline
+                \end{tabular}
+\end{center}
+
+\newpage
+
+\tableofcontents
+
+\pagenumbering{arabic}
+
+\newpage
+\section{Informazioni sulla riunione}
+Il \textbf{12/03/2026} si è svolta una riunione con Gregorio Piccoli in merito ad alcune domande relative al capitolato C6 \textbf{Second Brain} proposto da Zucchetti. La riunione si è tenuta tramite \textbf{Google Meet}, con inizio alle ore 16:00 e conclusione alle ore 16:30.
+
+\section{Partecipanti}
+
+\subsection{Interni}
+
+\begin{center}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
+\hline
+Lorenzo & Battistella & Presente \\
+Edoardo & De Piccoli & Presente \\
+Davide & Facco & Presente \\
+Anna & Marini & Presente \\
+Andrea & Menegaldo & Presente \\
+Samuele & Vendramin & Presente \\
+Simone & Zecchinato & Presente \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Esterni}
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Nome} & \textbf{Azienda} \\
+\hline
+Gregorio Piccoli & Zucchetti \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ordine del giorno}
+
+\subsection{Organizzazione degli incontri di avanzamento}
+È stato chiarito che gli incontri verranno concordati in base alle esigenze del gruppo e alle diverse fasi di sviluppo. L'idea generale è quella di svolgere uno o due incontri per ciascun passaggio rilevante, con la possibilità di aumentarne il numero in caso di necessità. Gli incontri potranno svolgersi sia in presenza sia da remoto.
+
+\subsection{Funzione dei ``sei cappelli per pensare''}
+Tale funzionalità potrà essere attivata a scelta dell'utente. In particolare, l'utente potrà selezionare una porzione di testo e applicare uno specifico cappello tramite un apposito pulsante; in assenza di selezione, l'azione verrà applicata all'intero testo.
+
+\subsection{Accesso agli LLM}
+Zucchetti fornirà al gruppo l'accesso ai modelli LLM necessari per lo sviluppo del progetto tramite la propria infrastruttura. In particolare, è stato specificato che saranno messi a disposizione modelli come Gemini, ChatGPT e Claude, messi a disposizione dall'azienda.
+
+\subsection{Criteri di valutazione delle funzionalità obbligatorie}
+Per quanto riguarda le funzionalità di riassunto, riscrittura, traduzione, critica e generazione da prompt, è stato chiarito che non sono previsti criteri di valutazione particolarmente rigidi: durante la revisione sarà soprattutto verificato che la funzionalità sia effettivamente operativa.
+
+\subsection{Test automatici su funzionalità basate su LLM}
+In merito alla copertura tramite test automatici, è stato specificato che l'aspetto principale da verificare è il raggiungimento di una risposta da parte del sistema, più che la qualità o la determinazione perfetta dell'output prodotto.
+
+\subsection{Componente server}
+Durante la riunione è emerso che, pur essendo il server indicato come componente opzionale nel capitolato, sarebbe opportuno prevederne uno per gestire le chiamate alle API. Sono state considerate due possibili soluzioni: da un lato, la realizzazione dell'applicazione interamente in HTML; dall'altro, lo sviluppo di una componente server a cui affidare le chiamate ai modelli LLM. Anche un server molto semplice risulterebbe sufficiente per questo scopo. È stato inoltre precisato che, in questo contesto, il tema della sicurezza legato all'esposizione diretta delle chiavi API non costituisce un aspetto centrale.
+
+\subsection{Hosting del server}
+Per quanto riguarda la parte opzionale relativa al server, l'hosting avverrà localmente da parte del gruppo e non verrà fornito un server da Zucchetti. L'applicazione potrà essere eseguita anche tramite container Docker in locale, senza particolari requisiti di risorse.
+
+\subsection{Supporto a più modelli}
+È stato chiarito che, per PoC e MVP, è sufficiente fare riferimento a un solo modello. L'eventuale supporto a più modelli intercambiabili è considerato come requisito opzionale.
+
+\subsection{Possibile estensione con input vocale}
+Come possibile funzionalità aggiuntiva, è stata proposta l'introduzione dell'input vocale. Tale estensione permetterebbe all'utente di dettare contenuti in forma libera, lasciando poi al sistema il compito di riorganizzarli e riscriverli in forma più strutturata.
+
+\end{document}
