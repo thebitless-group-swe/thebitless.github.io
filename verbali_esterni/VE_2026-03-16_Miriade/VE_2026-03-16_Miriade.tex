@@ -1,0 +1,167 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+
+\usepackage[a-1b]{pdfx}
+
+\usepackage[italian]{babel}
+
+\usepackage{comment}      
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{minted} 
+
+\usepackage{graphicx}
+\usepackage{geometry}
+
+\usepackage{float} 
+
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{Verbale \tipoverbale \ \dataverbale}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,           
+    pdfborderstyle={/S/U/W 1},
+    linkbordercolor=0 0 0,      
+    urlbordercolor=0 0 0,      
+    citebordercolor=0 0 0,     
+    filebordercolor=0 0 0,     
+    breaklinks=true,            
+}
+
+
+\begin{document}
+\newcommand{\tipoverbale}{esterno}
+\newcommand{\dataverbale}{2026-03-16}
+\newcommand{\dataversione}{2026-03-20}
+\newcommand{\versione}{0.1.0}
+\newcommand{\stato}{Stesura}
+\newcommand{\destinatari}{The Bitless, prof. T. Vardanega, prof. R. Cardin, Miriade}
+
+\pagenumbering{roman}
+
+\input{../../templates/frontespizio.tex}
+
+\newpage
+
+\begin{center}
+    \thispagestyle{empty}
+    \begin{tabular}{|c|c|c|c|c|c|}
+                    \hline
+                    \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
+                    \hline
+                    \textbf{Versione} & \textbf{Data} & \textbf{Autore}  & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione breve} \\
+                    \hline 
+                    0.1.0 & 2026-03-20 & S. Zecchinato &  -  & - & Prima stesura \\
+                    \hline
+                \end{tabular}
+\end{center}
+
+\newpage
+
+\tableofcontents
+
+\pagenumbering{arabic}
+
+\newpage
+\section{Informazioni sulla riunione}
+Il \textbf{2026-03-16} si è svolta una riunione con Arianna Bellino ed Emanuele Righetto in merito ad alcune domande relative al capitolato C4 \textbf{L'app che protegge e trasforma} proposto da Miriade. La riunione si è tenuta tramite \textbf{Google Meet}, con inizio alle ore 15:00 e conclusione alle ore 15:45.
+
+\section{Partecipanti}
+
+\subsection{Interni}
+
+\begin{center}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
+\hline
+Lorenzo & Battistella & Presente \\
+Edoardo & De Piccoli & Presente \\
+Davide & Facco & Presente \\
+Anna & Marini & Presente \\
+Andrea & Menegaldo & Presente \\
+Samuele & Vendramin & Presente \\
+Simone & Zecchinato & Presente \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Esterni}
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Nome} & \textbf{Azienda} \\
+\hline
+Arianna Bellino & Miriade \\
+\hline
+Emanuele Righetto & Miriade \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ordine del giorno}
+
+\subsection{Organizzazione degli incontri di avanzamento}
+È stato chiarito che gli incontri verranno concordati in base alle esigenze del gruppo e alle diverse fasi di sviluppo. Internamente a Miriade optano per incontri bisettimanali ma questo non è vincolante. Raccomandano sempre un preavviso congruo per poter incastrare i loro impegni e quelli del gruppo.
+
+\subsection{Perimetro minimo della MVP e funzionalità minime}
+Questa domanda si è resa necessaria in quanto il capitolato proposto da Miriade è molto vasto e ricco di spunti e questo potrebbe portare ad una sovrastima del progetto in fase di candidatura. L'azianda dal canto suo punta su una proposta ampia per dare più spazio al gruppo. Le funzionalità minime che secondo la proponente sono da prendere maggiormente in considerazione in fase di scelta sono:
+\begin{itemize}
+    \item Rilevamento alert
+    \item Richiesta e gestione dell'emergenza
+    \item \textit{"Specchio intelligente"}
+    \item \textit{"Guardiano silenzioso"}
+\end{itemize}
+Per facilitare la scelta delle funionalità minime da parte del gruppo, l'azienda propone un \textbf{design sprint} iniziale affiancato da un esperto di UI e UX.
+
+\subsection{Difficoltà riscontrate dai gruppi del primo lotto}
+Le difficoltà riscontrate dai gruppi del primo lotto approcciatisi al capitolato C4 sono state:
+\begin{itemize}
+    \item Capire quali parti dell'applicazione necessitino di autenticazione e quali siano libere
+    \item Escogitare dei metodi per evitare \textit{"boomerang"}, ovvero che l'uso dell'applicazione si ritorca contro alle persone in difficoltà che la utilizzano (e.g. scoperta dell'applicazione da parte di un compagno violento che potrebbe aggravare la situazione).
+    \item Capire come e dove integrare i sistemi di AI
+    \item Studio dell'infrastruttura serverless e flussi tra i servizi di AWS messa a disposizione dalla proponente
+    \item Problemi di comunicazione iniziale con l'azienda da parte dei gruppi che mantenevano la comunicazione più statica (e.g. comunicazioni solo durante gli incontri)
+\end{itemize}
+
+\subsection{Come funziona l'affiancamento dell'esperto UI/UX}
+L'azienda spiega come questa figura specializzata in usabilità, accessibilità ed esperienza utente guidi il gruppo durante il design sprint. Dal design sprint il gruppo esce con le idee più chiare sul design, grazie alla creazione di mockup, sulle funzionalità e sulla navigazione tra le funzioni. In generale l'azienda affianca il gruppo con vari esperti di settore (UI, IT, ecc.) per risolvere al meglio i dubbi.
+
+\subsection{Funzionamento dell'analisi del linguaggio per rilevare segnali di abuso in messaggi o conversazioni}
+Il recupero di queste indormazioni (messaggi o conversazioni) può essere svolto in maniera autimatica (e.g. presa direttamente dalle app come Whatsapp) oppure manuale (e.g. caricata dall'utente tramite screenshot). La scelta della modalità è completamente lasciata al gruppo.
+
+\subsection{Scelta del modello da impiegare nelle funzioni AI}
+La scelta del modello non è importante. Quello che l'azienda si aspetta è che il gruppo impari come interrogare il modello e gestire le informazioni ricevute.
+
+\subsection{Delucidazioni in merito al supporto post lancio}
+La proponente si aspetta dal gruppo lo sviluppo di un piano che gestisca il post lancio, ad esempio la gestione delle compliance, F.A.Q. e formazione degli utenti. Questo piano deve riportare il tipo di servizio (e.g. portale per apertura ticket), le caratteristiche e la gestione del servizio (e.g. AI o persona che risponde all'utente).
+
+\subsection{Delucidazioni sulle modalità "Stealth" e "allarme silenzioso"}
+Le funzionalità delle modalità sopra riportate vengono scelte dal gruppo durante il design sprint su suggerimento della proponente.
+
+\subsection{Delucidazioni sul recupero delle informazioni statiche}
+Il gruppo pone la questione delle informazioni statiche che l'applicazione dovrà mostrare (e.g. apertura di unovi centri antiviolenza, posti sicuri) e se l'applicazione debba integrare un agente automatico che reperisce queste informazioni. L'azienda spiega che le informazioni vengono fornite manualmente nella gestione dell'applicazione. Questo per rendere le informazioni più affidabili.
+
+\section{Attività da svolgere}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
+\hline
+\textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
+\hline
+S. Zecchinato & Redigere il verbale del 2026-03-16 & \centering \#3 \tabularnewline
+\hline
+Tutti i componenti & Valutare l'interesse verso il capitolato C4 e la fattibilità tecnica dei requisiti & \centering -- \tabularnewline
+\hline
+\end{tabular}
+\end{center}
+
+\end{document}
