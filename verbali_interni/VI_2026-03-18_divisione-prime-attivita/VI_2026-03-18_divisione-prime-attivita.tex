@@ -1,0 +1,132 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+
+\usepackage[a-1b]{pdfx}
+
+\usepackage[italian]{babel}
+
+\usepackage{comment}      
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{minted} 
+
+\usepackage{graphicx}
+\usepackage{geometry}
+
+\usepackage{float} 
+
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{Verbale \tipoverbale \ \dataverbale}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,           
+    pdfborderstyle={/S/U/W 1},
+    linkbordercolor=0 0 0,      
+    urlbordercolor=0 0 0,      
+    citebordercolor=0 0 0,     
+    filebordercolor=0 0 0,     
+    breaklinks=true,            
+}
+
+\begin{document}
+
+\newcommand{\tipoverbale}{interno}
+\newcommand{\dataverbale}{2026-03-18}
+\newcommand{\dataversione}{2026-03-20}
+\newcommand{\versione}{0.1.0}
+\newcommand{\stato}{Revisione}
+\newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+\input{../../templates/frontespizio.tex}
+\end{titlepage}
+
+\newpage
+\pagenumbering{arabic}
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
+        \hline
+        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione breve} \\
+        \hline 
+        0.1.0 & 2026-03-20 & L. Battistella & - & - & Prima stesura \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\newpage
+\tableofcontents 
+
+\newpage
+\section{Informazioni sulla riunione}
+Il presente documento riporta la verbalizzazione della riunione interna al gruppo \textbf{The Bitless} avvenuta il \dataverbale{}. L'incontro si è svolto in modalità telematica tramite la piattaforma Discord. La riunione si è aperta alle ore 15:30 e si è conclusa alle ore 16:00.
+
+\section{Presenze}
+\begin{center}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
+\hline
+Lorenzo & Battistella & Presente \\
+Edoardo & De Piccoli & Assente \\
+Davide & Facco & Presente \\
+Anna & Marini & Presente \\
+Andrea & Menegaldo & Presente \\
+Samuele & Vendramin & Assente \\
+Simone & Zecchinato & Presente \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ordine del giorno}
+\begin{enumerate}
+    \item Discussione sui Capitolati
+    \item Stesura mail per richiesta colloquio all'azienda Bluewind S.r.l.
+    \item Discussione sulla Dichiarazione degli impegni
+    \item Assegnazione attività singole
+\end{enumerate}
+
+\section{Discussione e decisioni}
+\subsection{Discussione sui Capitolati}
+Il gruppo continua la discussione in merito alla scelta del capitolato per il quale fare la lettera di candidatura.
+
+\subsection{Stesura mail per richiesta colloquio all'azienda Bluewind S.r.l.}
+Viene redatta e spedita la email per richiesta di colloquio all' azienda Bluewind S.r.l (per capitolato C1). In vista dell'incontro, ogni membro del gruppo si impegna a preparare delle domande specifiche sul capitolato C1.
+
+\subsection{Discussione sulla Dichiarazione degli impegni}
+Il gruppo discute su come redigere la Dichiarazione degli impegni, in particolare sulla divisione nei diversi ruoli del monte ore e sulla possibile scadenza finale.
+
+\subsection{Assegnazione attività singole}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
+\hline
+\textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
+\hline
+L. Battistella & Redigere il verbale interno del 2026-03-18 & \centering \#5 \tabularnewline
+\hline
+E. De Piccoli & Sviluppare il sito web del gruppo & \centering  \#6 \tabularnewline
+\hline
+A. Marini, A. Menegaldo & Iniziare la stesura dell'Analisi dei capitolati & \centering \#10 \tabularnewline
+\hline
+A. Marini & Iniziare la stesura della Dichiarazione degli impegni & \centering \#8 \tabularnewline
+\hline
+Tutti i componenti & Stesura domande per il colloquio con Bluewind S.r.l. & \centering -- \tabularnewline
+\hline
+\end{tabular}
+\end{center}
+
+
+\appendix
+
+\end{document}
