@@ -1,0 +1,117 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+
+\usepackage[a-1b]{pdfx}
+
+\usepackage[italian]{babel}
+
+\usepackage{comment}      
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{minted} 
+
+\usepackage{graphicx}
+\usepackage{geometry}
+
+\usepackage{float} 
+
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{Verbale \tipoverbale \ \dataverbale}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,           
+    pdfborderstyle={/S/U/W 1},
+    linkbordercolor=0 0 0,      
+    urlbordercolor=0 0 0,      
+    citebordercolor=0 0 0,     
+    filebordercolor=0 0 0,     
+    breaklinks=true,            
+}
+
+\begin{document}
+
+\newcommand{\tipoverbale}{interno}
+\newcommand{\dataverbale}{2026-03-20}
+\newcommand{\dataversione}{2026-03-21}
+\newcommand{\versione}{0.1.0}
+\newcommand{\stato}{Revisione}
+\newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+\input{../../templates/frontespizio.tex}
+\end{titlepage}
+
+\newpage
+\pagenumbering{arabic}
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
+        \hline
+        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione breve} \\
+        \hline 
+        0.1.0 & 2026-03-21 & A. Marini & - & - & Prima stesura \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\newpage
+\tableofcontents 
+
+\newpage
+\section{Informazioni sulla riunione}
+Il presente documento riporta la verbalizzazione della riunione interna al gruppo \textbf{The Bitless} avvenuta il \dataverbale{}. L'incontro si è svolto in modalità telematica tramite la piattaforma Discord. La riunione si è aperta alle ore 18 e si è conclusa alle ore 19:30.
+
+\section{Presenze}
+\begin{center}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
+\hline
+Lorenzo & Battistella & Assente \\
+Edoardo & De Piccoli & Assente \\
+Davide & Facco & Assente \\
+Anna & Marini & Presente \\
+Andrea & Menegaldo & Presente \\
+Samuele & Vendramin & Presente \\
+Simone & Zecchinato & Presente \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ordine del giorno}
+\subsection{Discussione sull'Analisi dei Capitolati}
+Nel corso della riunione sono state formulate diverse considerazioni da integrare nell'Analisi dei Capitolati. In particolare, è stata effettuata una valutazione dei punti di forza e delle criticità relativi ai capitolati non selezionati come prima scelta, considerando anche le informazioni raccolte durante gli incontri con le aziende proponenti.
+
+\subsection{Discussione sulla Dichiarazione degli Impegni}
+Il gruppo ha continuato la discussione sulla Dichiarazione degli Impegni e in particolare questi sono stati i principali punti trattati:
+\begin{itemize}
+    \item \textbf{Divisione delle ore per ciascun ruolo}: L'obiettivo è quello di garantire una copertura ottimale di tutte le fasi del ciclo di vita del software.
+    \item \textbf{Rotazione dei ruoli:} Si è discusso sulla frequenza della rotazione dei ruoli all'interno del gruppo.
+\end{itemize}
+
+\subsection{Assegnazione attività singole}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
+\hline
+\textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
+\hline
+A. Marini & Redigere il verbale interno del 2026-03-20 & \centering \#13 \tabularnewline
+\hline
+\end{tabular}
+\end{center}
+
+
+\appendix
+
+\end{document}
