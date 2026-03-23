@@ -41,7 +41,7 @@
 \newcommand{\dataverbale}{2026-03-12}
 \newcommand{\dataversione}{2026-03-18}
 \newcommand{\versione}{0.1.1}
-\newcommand{\stato}{Revisione}
+\newcommand{\stato}{Approvazione}
 \newcommand{\destinatari}{The Bitless, prof. T. Vardanega, prof. R. Cardin, Zucchetti}
 
 \pagenumbering{roman}
@@ -58,9 +58,9 @@
                     \hline
                     \textbf{Versione} & \textbf{Data} & \textbf{Autore}  & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione breve} \\
                     \hline 
-                    0.1.1 & \dataversione & S.Zecchinato & - & - & Prima revisione \\
+                    0.1.1 & \dataversione & S. Zecchinato & D. Facco & D. Facco & Correzione Refusi \\
                     \hline
-                    0.1.0 & 2026-03-11 & A. Marini &  S. Zecchinato  & - & Prima stesura \\
+                    0.1.0 & 2026-03-11 & A. Marini &  S. Zecchinato  & D. Facco & Prima stesura \\
                     \hline
                 \end{tabular}
 \end{center}
@@ -73,7 +73,7 @@
 
 \newpage
 \section{Informazioni sulla riunione}
-Il \textbf{2026-03-12} si è svolta una riunione con Gregorio Piccoli in merito ad alcune domande relative al capitolato C6 \textbf{Second Brain} proposto da Zucchetti. La riunione si è tenuta tramite \textbf{Google Meet}, con inizio alle ore 16:00 e conclusione alle ore 16:30.
+Il \textbf{2026-03-12} si è svolta una riunione con Gregorio Piccoli in merito ad alcune domande relative al capitolato C6, proposto da Zucchetti \textbf{Second Brain}. La riunione si è tenuta tramite \textbf{Google Meet}, con inizio alle ore 16:00 e conclusione alle ore 16:30.
 
 \section{Partecipanti}
 
@@ -116,7 +116,7 @@ Gregorio Piccoli & Zucchetti \\
 Tale funzionalità potrà essere attivata a scelta dell'utente. In particolare, l'utente potrà selezionare una porzione di testo e applicare uno specifico cappello tramite un apposito pulsante; in assenza di selezione, l'azione verrà applicata all'intero testo.
 
 \subsection{Accesso agli LLM}
-Zucchetti fornirà al gruppo l'accesso ai modelli LLM necessari per lo sviluppo del progetto tramite la propria infrastruttura. In particolare, è stato specificato che saranno messi a disposizione modelli come Gemini, ChatGPT e Claude, messi a disposizione dall'azienda.
+Zucchetti fornirà al gruppo l'accesso ai modelli LLM necessari per lo sviluppo del progetto tramite la propria infrastruttura. In particolare, è stato specificato che saranno messi a disposizione modelli come Gemini, ChatGPT e Claude.
 
 \subsection{Criteri di valutazione delle funzionalità obbligatorie}
 Per quanto riguarda le funzionalità di riassunto, riscrittura, traduzione, critica e generazione da prompt, è stato chiarito che non sono previsti criteri di valutazione particolarmente rigidi: durante la revisione sarà soprattutto verificato che la funzionalità sia effettivamente operativa.
@@ -125,7 +125,12 @@ Per quanto riguarda le funzionalità di riassunto, riscrittura, traduzione, crit
 In merito alla copertura tramite test automatici, è stato specificato che l'aspetto principale da verificare è il raggiungimento di una risposta da parte del sistema, più che la qualità o la determinazione perfetta dell'output prodotto.
 
 \subsection{Componente server}
-Durante la riunione è emerso che, pur essendo il server indicato come componente opzionale nel capitolato, sarebbe opportuno prevederne uno per gestire le chiamate alle API. Sono state considerate due possibili soluzioni: da un lato, la realizzazione dell'applicazione interamente in HTML; dall'altro, lo sviluppo di una componente server a cui affidare le chiamate ai modelli LLM. È stato inoltre precisato che, in questo contesto, il tema della sicurezza legato all'esposizione diretta delle chiavi API non costituisce un aspetto centrale.
+Durante la riunione è emerso che, pur essendo il server indicato come componente opzionale nel capitolato, sarebbe opportuno prevederne uno per gestire le chiamate alle API. Sono state considerate due possibili soluzioni:
+\begin{enumerate}
+    \item Realizzare l'applicazione interamente in HTML
+    \item Sviluppare una componente server a cui affidare le chiamate ai modelli LLM
+\end{enumerate}
+È stato inoltre precisato che, in questo contesto, il tema della sicurezza legato all'esposizione diretta delle chiavi API non costituisce un aspetto centrale.
 
 \subsection{Hosting del server}
 Per quanto riguarda la parte opzionale relativa al server, l'hosting avverrà localmente da parte del gruppo e non verrà fornito un server da Zucchetti. L'applicazione potrà essere eseguita anche tramite container Docker in locale, senza particolari requisiti di risorse.
