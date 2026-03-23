@@ -41,7 +41,7 @@
 \newcommand{\dataverbale}{2026-03-16}
 \newcommand{\dataversione}{2026-03-20}
 \newcommand{\versione}{0.1.0}
-\newcommand{\stato}{Stesura}
+\newcommand{\stato}{Approvazione}
 \newcommand{\destinatari}{The Bitless, prof. T. Vardanega, prof. R. Cardin, Miriade}
 
 \pagenumbering{roman}
@@ -58,7 +58,9 @@
                     \hline
                     \textbf{Versione} & \textbf{Data} & \textbf{Autore}  & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione breve} \\
                     \hline 
-                    0.1.0 & 2026-03-20 & S. Zecchinato &  -  & - & Prima stesura \\
+                    0.1.1 & \dataversione & S. Zecchinato & D. Facco & D. Facco & Correzione Refusi \\
+                    \hline 
+                    0.1.0 & 2026-03-20 & S. Zecchinato &  D. Facco  & D. Facco & Prima stesura \\
                     \hline
                 \end{tabular}
 \end{center}
@@ -71,7 +73,7 @@
 
 \newpage
 \section{Informazioni sulla riunione}
-Il \textbf{2026-03-16} si è svolta una riunione con Arianna Bellino ed Emanuele Righetto in merito ad alcune domande relative al capitolato C4 \textbf{L'app che protegge e trasforma} proposto da Miriade. La riunione si è tenuta tramite \textbf{Google Meet}, con inizio alle ore 15:00 e conclusione alle ore 15:45.
+Il \textbf{2026-03-16} si è svolta una riunione con Arianna Bellino ed Emanuele Righetto in merito ad alcune domande relative al capitolato C4, proposto da Miriade: \textbf{L'app che protegge e trasforma}. La riunione si è tenuta tramite \textbf{Google Meet}, con inizio alle ore 15:00 e conclusione alle ore 15:45.
 
 \section{Partecipanti}
 
@@ -113,14 +115,14 @@ Emanuele Righetto & Miriade \\
 È stato chiarito che gli incontri verranno concordati in base alle esigenze del gruppo e alle diverse fasi di sviluppo. Internamente a Miriade optano per incontri bisettimanali ma questo non è vincolante. Raccomandano sempre un preavviso congruo per poter incastrare i loro impegni e quelli del gruppo.
 
 \subsection{Perimetro minimo della MVP e funzionalità minime}
-Questa domanda si è resa necessaria in quanto il capitolato proposto da Miriade è molto vasto e ricco di spunti e questo potrebbe portare ad una sovrastima del progetto in fase di candidatura. L'azianda dal canto suo punta su una proposta ampia per dare più spazio al gruppo. Le funzionalità minime che secondo la proponente sono da prendere maggiormente in considerazione in fase di scelta sono:
+Questa domanda si è resa necessaria in quanto il capitolato proposto da Miriade è molto vasto e ricco di spunti: questo potrebbe portare ad una sovrastima del progetto in fase di candidatura. L'azienda, dal canto suo, punta su una proposta ampia per dare più spazio di manovra al gruppo. Le funzionalità minime che secondo la proponente sono da prendere maggiormente in considerazione in fase di scelta sono:
 \begin{itemize}
     \item Rilevamento alert
     \item Richiesta e gestione dell'emergenza
     \item \textit{"Specchio intelligente"}
     \item \textit{"Guardiano silenzioso"}
 \end{itemize}
-Per facilitare la scelta delle funionalità minime da parte del gruppo, l'azienda propone un \textbf{design sprint} iniziale affiancato da un esperto di UI e UX.
+Per facilitare la scelta delle funzionalità minime da parte del gruppo, l'azienda propone un \textbf{design sprint} iniziale dove saremo affiancati da un esperto di UI (User Interface) e UX (User eXperience).
 
 \subsection{Difficoltà riscontrate dai gruppi del primo lotto}
 Le difficoltà riscontrate dai gruppi del primo lotto approcciatisi al capitolato C4 sono state:
@@ -128,27 +130,27 @@ Le difficoltà riscontrate dai gruppi del primo lotto approcciatisi al capitolat
     \item Capire quali parti dell'applicazione necessitino di autenticazione e quali siano libere
     \item Escogitare dei metodi per evitare \textit{"boomerang"}, ovvero che l'uso dell'applicazione si ritorca contro alle persone in difficoltà che la utilizzano (e.g. scoperta dell'applicazione da parte di un compagno violento che potrebbe aggravare la situazione).
     \item Capire come e dove integrare i sistemi di AI
-    \item Studio dell'infrastruttura serverless e flussi tra i servizi di AWS messa a disposizione dalla proponente
-    \item Problemi di comunicazione iniziale con l'azienda da parte dei gruppi che mantenevano la comunicazione più statica (e.g. comunicazioni solo durante gli incontri)
+    \item Studio dell'infrastruttura serverless e flussi tra i servizi di AWS messi a disposizione dalla proponente
+    \item Problemi di comunicazione iniziale con l'azienda da parte dei gruppi, i quali mantenevano lo scambio di informazioni statico (e.g. comunicazioni esclusive agli incontri, non utilizzando gli altri canali più veloci messi a disposizione da Miriade)
 \end{itemize}
 
 \subsection{Come funziona l'affiancamento dell'esperto UI/UX}
 L'azienda spiega come questa figura specializzata in usabilità, accessibilità ed esperienza utente guidi il gruppo durante il design sprint. Dal design sprint il gruppo esce con le idee più chiare sul design, grazie alla creazione di mockup, sulle funzionalità e sulla navigazione tra le funzioni. In generale l'azienda affianca il gruppo con vari esperti di settore (UI, IT, ecc.) per risolvere al meglio i dubbi.
 
 \subsection{Funzionamento dell'analisi del linguaggio per rilevare segnali di abuso in messaggi o conversazioni}
-Il recupero di queste indormazioni (messaggi o conversazioni) può essere svolto in maniera autimatica (e.g. presa direttamente dalle app come Whatsapp) oppure manuale (e.g. caricata dall'utente tramite screenshot). La scelta della modalità è completamente lasciata al gruppo.
+Il recupero di queste informazioni (messaggi o conversazioni) può essere svolto in maniera automatica (e.g. presa direttamente dalle app come Whatsapp) oppure manuale (e.g. caricata dall'utente tramite screenshot). La scelta della modalità è completamente lasciata al gruppo.
 
 \subsection{Scelta del modello da impiegare nelle funzioni AI}
 La scelta del modello non è importante. Quello che l'azienda si aspetta è che il gruppo impari come interrogare il modello e gestire le informazioni ricevute.
 
 \subsection{Delucidazioni in merito al supporto post lancio}
-La proponente si aspetta dal gruppo lo sviluppo di un piano che gestisca il post lancio, ad esempio la gestione delle compliance, F.A.Q. e formazione degli utenti. Questo piano deve riportare il tipo di servizio (e.g. portale per apertura ticket), le caratteristiche e la gestione del servizio (e.g. AI o persona che risponde all'utente).
+La proponente si aspetta dal gruppo lo sviluppo di un piano di gestione post lancio, ad esempio la gestione delle compliance, "F.A.Q." e formazione degli utenti. Questo piano deve riportare il tipo di servizio (e.g. portale per apertura ticket), le caratteristiche e la gestione del servizio (e.g. AI o persona che risponda all'utente).
 
-\subsection{Delucidazioni sulle modalità "Stealth" e "allarme silenzioso"}
-Le funzionalità delle modalità sopra riportate vengono scelte dal gruppo durante il design sprint su suggerimento della proponente.
+\subsection{Delucidazioni sulle modalità "Stealth" e "Allarme Silenzioso"}
+Le funzionalità delle modalità in oggetto vengono scelte dal gruppo durante il design sprint su suggerimento della proponente.
 
 \subsection{Delucidazioni sul recupero delle informazioni statiche}
-Il gruppo pone la questione delle informazioni statiche che l'applicazione dovrà mostrare (e.g. apertura di unovi centri antiviolenza, posti sicuri) e se l'applicazione debba integrare un agente automatico che reperisce queste informazioni. L'azienda spiega che le informazioni vengono fornite manualmente nella gestione dell'applicazione. Questo per rendere le informazioni più affidabili.
+Il gruppo pone la questione delle informazioni statiche che l'applicazione dovrà mostrare (e.g. apertura di nuovi centri antiviolenza, posti sicuri) e se l'applicazione debba integrare un agente automatico per il reperimento di suddette informazioni. L'azienda spiega che le informazioni vengono fornite manualmente nella gestione dell'applicazione da terze parti specializzate. Questo per rendere le informazioni più affidabili.
 
 \section{Attività da svolgere}
 \begin{center}
