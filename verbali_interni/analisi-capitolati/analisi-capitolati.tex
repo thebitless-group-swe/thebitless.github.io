@@ -83,19 +83,34 @@
 \subsection{Capitolato C1 - Automated EN18031 Compliance Verification (Bluewind S.r.l.)}
 
 \subsubsection{Obiettivo}
-
+Il progetto mira a sviluppare uno strumento software che assista i produttori di dispositivi radio a verificare che siano conformi alla norma EN 18031, recentemente divenuta obbligatoria per il mercato europeo. L’applicazione dovrà automatizzare l’esecuzione dei decision tree previsti dalla norma, consentendo di ottenere per ciascun requisito un verdetto chiaro (Pass, Fail, Not Applicable). Il sistema si propone di ridurre i tempi e la complessità del processo di valutazione, che di solito è fatto a mano e può contenere errori, fornendo al contempo una tracciabilità completa delle decisioni prese. Particolare attenzione è richiesta per i requisiti relativi al controllo degli accessi (ACM) e all’autenticazione (AUM) della parte EN 18031 1. Viene inoltre richiesta una dashboard interattiva per il monitoraggio dello stato di tutti i requisiti e un editor per la modifica dei decision tree e dei documenti associati, in modo da rendere il sistema facile da adattare a future revisioni normative.
 \subsubsection{Tecnologie}
+\begin{itemize}
+    \item Python 3.x per il backend, con gestione tramite pyproject.toml.
+    \item Formati standard per import/export: JSON, XML, CSV.
+    \item Libertà di scelta per frontend e architettura (web o desktop).
+    \item Editor grafico per i decision tree (libreria a scelta).
+\end{itemize}
 
 \subsubsection{Considerazioni}
-
+Il progetto presenta una complessità normativa elevata che richiederebbe un investimento iniziale significativo per comprendere a fondo la norma EN 18031. L’interesse del gruppo verso tematiche di conformità normativa è limitato, portando a preferire altri capitolati con una maggiore creazione di nuove funzionalità software.
 \subsection{Capitolato C2 - Code Guardian (Var Group S.p.A.)}
 
 \subsubsection{Obiettivo}
-
+Il progetto prevede la realizzazione di una piattaforma web basata su un’architettura multi-agente, capace di analizzare automaticamente repository GitHub per valutare qualità del codice, sicurezza e livello di manutenzione. Un orchestratore centrale gestirà agenti specializzati in diversi ambiti: analisi dei test unitari, verifica della documentazione, audit di sicurezza basato sulle linee guida OWASP e generazione di report. A seguito dell’analisi, il sistema dovrà produrre report automatici sullo stato del progetto e proporre remediation mirate per correggere vulnerabilità o lacune individuate, come per esempio una query SQL non parametrizzate o test assenti. I risultati saranno visualizzati tramite una dashboard interattiva sviluppata in React, che mostrerà in modo sintetico lo stato complessivo di ciascun repository analizzato.
 \subsubsection{Tecnologie}
+\begin{itemize}
+    \item Backend e orchestratore: Node.js, Python.
+    \item Frontend: React.js.
+    \item Database: MongoDB o PostgreSQL.
+    \item CI/CD e integrazioni: GitHub Actions.
+    \item Cloud: AWS.
+    \item Sicurezza: OWASP Top 10 come standard di riferimento.
+    \item Framework agenti: a scelta tra Amazon Bedrock, Google ADK o Strands Agents SDK.
+\end{itemize}
 
 \subsubsection{Considerazioni}
-
+Il progetto risulta concreto e ben strutturato grazie ad un’architettura multi-agente tecnicamente complessa che non ha suscitato particolare interesse nel gruppo.
 \subsection{Capitolato C4 - L'app che Protegge e Trasforma (Miriade S.r.l.)}
 
 \subsubsection{Obiettivo}
