@@ -46,7 +46,7 @@
 \newcommand{\destinatari}{Prof. Tullio Vardanega, prof. Riccardo Cardin, The Bitless}
 
 \pagenumbering{roman}
-\input{frontespizio.tex}
+\input{../../templates/frontespizio.tex}
 \newpage
 
 \section*{Registro delle modifiche}
