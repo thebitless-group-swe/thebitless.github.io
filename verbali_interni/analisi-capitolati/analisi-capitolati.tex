@@ -1,0 +1,129 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+\usepackage[italian]{babel} 
+\usepackage{comment}      
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{geometry}
+\usepackage{float} 
+\usepackage{setspace}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{Analisi dei Capitolati}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    pdfborderstyle={/S/U/W 1},
+    linkbordercolor=0 0 0,
+    urlbordercolor=0 0 0,
+    citebordercolor=0 0 0,
+    filebordercolor=0 0 0,
+    breaklinks=true,
+}
+
+\begin{document}
+
+\newcommand{\tipoverbale}{- Analisi dei Capitolati}
+\newcommand{\dataverbale}{}
+\newcommand{\dataversione}{\today}
+\newcommand{\versione}{0.1.0}
+\newcommand{\stato}{Stesura}
+\newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+\input{../../templates/frontespizio.tex}
+\end{titlepage}
+
+\newpage
+\pagenumbering{arabic}
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \multicolumn{5}{|c|}{\textbf{Registro delle modifiche}} \\
+        \hline
+        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Descrizione} \\
+        \hline
+        0.1.0 & \today & Samuele Vendramin & Simone Zecchinato     & Stesura struttura documento \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\newpage
+\tableofcontents 
+
+\newpage
+
+\section{Introduzione}
+
+\subsection{Scopo e Finalità del documento}
+
+\subsection{Glossario e Riferimenti}
+
+\section{Fattori considerati nella selezione del progetto}
+
+\section{Valutazione del capitolato scelto}
+
+\subsection{Capitolato C6 - Second Brain (Zucchetti S.p.A.)}
+
+\subsubsection{Obiettivo}
+
+\subsubsection{Tecnologie}
+
+\subsubsection{Considerazioni}
+
+\section{Valutazione dei capitolati rimanenti}
+
+\subsection{Capitolato C1 - Automated EN18031 Compliance Verification (Bluewind S.r.l.)}
+
+\subsubsection{Obiettivo}
+
+\subsubsection{Tecnologie}
+
+\subsubsection{Considerazioni}
+
+\subsection{Capitolato C2 - Code Guardian (Var Group S.p.A.)}
+
+\subsubsection{Obiettivo}
+
+\subsubsection{Tecnologie}
+
+\subsubsection{Considerazioni}
+
+\subsection{Capitolato C4 - L'app che Protegge e Trasforma (Miriade S.r.l.)}
+
+\subsubsection{Obiettivo}
+
+\subsubsection{Tecnologie}
+
+\subsubsection{Considerazioni}
+
+\subsection{Capitolato C5 - Nexum (Eggon S.r.l.)}
+
+\subsubsection{Obiettivo}
+
+\subsubsection{Tecnologie}
+
+\subsubsection{Considerazioni}
+
+\newpage
+
+\section{Assegnazione attività singole}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
+\hline
+\textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
+\hline
+[Samuele Vendramin] & Prima creazione della struttura dell'analisi del capitolato & \centering \#12 \tabularnewline
+\hline
+\end{tabular}
+\end{center}
+
+\end{document}
