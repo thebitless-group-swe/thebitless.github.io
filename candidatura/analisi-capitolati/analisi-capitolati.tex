@@ -31,7 +31,7 @@
 \newcommand{\tipoverbale}{- Analisi dei Capitolati}
 \newcommand{\dataverbale}{}
 \newcommand{\dataversione}{\today}
-\newcommand{\versione}{0.1.0}
+\newcommand{\versione}{0.8.0}
 \newcommand{\stato}{Stesura}
 \newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
 
@@ -44,14 +44,21 @@
 \pagenumbering{arabic}
 
 \begin{center}
-    \begin{tabular}{|c|c|c|c|c|}
+    \begin{tabular}{|c|c|c|c|c|c|}
         \hline
-        \multicolumn{5}{|c|}{\textbf{Registro delle modifiche}} \\
+        \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
         \hline
-        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Descrizione} \\
+        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore}& \textbf{Approvatore} & \textbf{Descrizione} \\
         \hline
-        0.1.0 & \today & Samuele Vendramin & Simone Zecchinato     & Stesura struttura documento \\
+          0.8.0  & 2026-03-24 & S. Vendramin  & S. Zecchinato & -& introduzione e capitolati C6 \\
         \hline
+         0.6.0 & 2026-03-24 & A. Marini  & S. Zecchinato & -& capitolati C4 e C5 \\
+        \hline
+         0.4.0  & 2026-03-23 &  A. Menegaldo & S. Zecchinato & -& capitolati C1 e C2 \\
+        \hline 
+        0.1.0 & 2026-03-21 & S. Vendramin & S. Zecchinato & -   &  struttura documento \\
+        \hline
+       
     \end{tabular}
 \end{center}
 
@@ -63,23 +70,28 @@
 \section{Introduzione}
 
 \subsection{Scopo e Finalità del documento}
+Il presente documento descrive in dettaglio l'analisi dei capitolati d'appalto condotta dal gruppo The Bitless. Lo scopo principale è illustrare le motivazioni e le valutazioni che hanno portato il team alla scelta di intraprendere il progetto descritto nel capitolato C6 - Second Brain. Al fine di fornire una panoramica completa del processo decisionale, il documento espone i criteri utilizzati per confrontare in modo oggettivo e realistico le varie opzioni e presenta un'analisi delle alternative non selezionate, evidenziandone i punti di forza e le criticità rispetto alle inclinazioni e alle competenze del gruppo.
+\section{Valutazione del capitolato scelto C6 - Second Brain (Zucchetti S.p.A.)}
 
-\subsection{Glossario e Riferimenti}
 
-\section{Fattori considerati nella selezione del progetto}
+\subsection{Obiettivo}
+Il progetto si prefigge lo scopo di realizzare un'applicazione web innovativa per testare e sfruttare le potenzialità dei Large Language Models nell'assistenza alla creazione, analisi e sviluppo di testi. Il nucleo dell'applicativo consisterà in un editor testuale basato sul linguaggio di markup MarkDown, che permetterà all'utente di scrivere in una casella di testo dedicata e di visualizzare in tempo reale il risultato grafico formattato in una sezione adiacente.
 
-\section{Valutazione del capitolato scelto}
+L'applicativo si interfaccerà con un LLM per consentire operazioni intelligenti su tutto il testo o su selezioni mirate, offrendo funzionalità di base quali la generazione automatica di riassunti, la riscrittura del contenuto per modularne il tono (es. più formale o colloquiale), e la traduzione in lingue diverse dall'originale. Un tratto distintivo del capitolato è l'implementazione di comandi di critica del testo ispirati alla tecnica dei "sei cappelli per pensare" di Edward De Bono, quindi l'Intelligenza Artificiale dovrà analizzare il documento assumendo punti di vista differenti, ad esempio verificandone l'obiettività, l'aspetto emozionale, logico, ottimista o individuandone i rischi. 
 
-\subsection{Capitolato C6 - Second Brain (Zucchetti S.p.A.)}
+\subsection{Tecnologie}
+Il capitolato richiede l'uso di uno stack tecnologico moderno e flessibile per l'integrazione di servizi IA:
+\begin{itemize}
+    \item \textbf{Sviluppo Frontend:} Utilizzo di HTML e tecnologie web standard per la realizzazione della pagina interattiva, affiancate da librerie Open Source per il rendering grafico del codice MarkDown.
+    \item \textbf{Integrazione Intelligenza Artificiale:} Comunicazione con i Large Language Models tramite chiamate API. Il gruppo avrà modo di testare i prompt su modelli di grandi dimensioni Open Source (come Mistral o Gemma) messi a disposizione dall'azienda proponente.
+    \item \textbf{Backend e Database:} Come estensione del progetto (nice-to-have), si prevede lo sviluppo di un server in Java o Python per la gestione delle chiamate HTTP e la comunicazione con un database. Questo abiliterebbe il salvataggio persistente delle note e la creazione di link interni tra documenti, concretizzando appieno il concetto di "secondo cervello" per l'utente.
+\end{itemize}
 
-\subsubsection{Obiettivo}
+\subsection{Considerazioni}
+Lo sviluppo di una web app dotata di Intelligenza Artificiale per la rielaborazione e correzione automatica dei testi conferisce al progetto un carattere fortemente trasversale, unendo in modo concreto competenze di ingegneria del software, prompt engineering applicato al machine learning e concetti di linguistica computazionale. 
 
-\subsubsection{Tecnologie}
-
-\subsubsection{Considerazioni}
-
+Il gruppo ha accolto con forte interesse questo capitolato perché unisce un tema estremamente attuale, come quello degli LLM, a un ambito tecnico in cui possediamo già una buona preparazione. Le nostre competenze pregresse nello sviluppo web e nell'integrazione di API esterne rappresentano infatti un'ottima base di partenza. Poter contare su queste conoscenze, unite alla proposta chiara e al supporto di una realtà consolidata come Zucchetti S.p.A., ci rende fiduciosi di poter condurre il progetto in modo lineare e di rispettare agilmente le scadenze.
 \section{Valutazione dei capitolati rimanenti}
-
 \subsection{Capitolato C1 - Automated EN18031 Compliance Verification (Bluewind S.r.l.)}
 
 \subsubsection{Obiettivo}
