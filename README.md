@@ -13,7 +13,7 @@ La cartella principale è organizzata per facilitare la consultazione dei docume
 - **candidatura/**: Contiene i documenti prodotti per la fase di candidatura.
   - **analisi-capitolati/**: Documento di analisi dei capitolati proposti.
   - **verbali/**: Raccolta dei verbali degli incontri.
-    - **verbali_esterni/**: Trascrizioni degli incontri con le aziende proponenti (Zucchetti, Miriade, Eggon).
+    - **verbali_esterni/**: Trascrizioni degli incontri con le aziende proponenti.
     - **verbali_interni/**: Trascrizioni delle riunioni di coordinamento del team.
 - **templates/**: Contiene le risorse grafiche e i file di stile condivisi per la redazione dei documenti.
 
