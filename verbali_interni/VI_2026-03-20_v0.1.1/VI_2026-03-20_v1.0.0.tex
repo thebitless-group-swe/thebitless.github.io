@@ -27,13 +27,13 @@
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=false,           
-    pdfborderstyle={/S/U/W 1},
     linkbordercolor=0 0 0,      
     urlbordercolor=0 0 0,      
     citebordercolor=0 0 0,     
     filebordercolor=0 0 0,     
     breaklinks=true,            
 }
+\newcommand{\issue}[1]{\href{https://github.com/thebitless-group-swe/thebitless.github.io/issues/#1}{\##1}}
 
 \begin{document}
 
@@ -59,7 +59,9 @@
         \hline
         \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione breve} \\
         \hline
-        1.0.0 & 2026-03-23 & S. Vendramin & S. Zecchinato & A. Marini & Approvazione \\
+        1.0.0 & 2026-03-23 & A. Marini & S. Zecchinato & S. Vendramin & Approvazione \\
+        \hline
+        0.1.0 & 2026-03-23 & A. Marini & S. Zecchinato & -- & Aggiunta link issues \\
         \hline
         0.1.0 & 2026-03-21 & A. Marini & S. Vendramin & -- & Prima stesura \\
         \hline
@@ -108,10 +110,10 @@ Il gruppo ha continuato la discussione sulla Dichiarazione degli Impegni e in pa
 \begin{tabular}{|l|p{8cm}|c|}
 \hline
 \textbf{Persona Incaricata} & \textbf{Task Assegnata} & \textbf{Link Issue} \\ \hline
-A. Marini & Redazione del verbale interno del 2026-03-20 & \#13 \\ \hline
-S. Vendramin & Introduzione e capitolo C6 dell'Analisi capitolati & \#19 \\ \hline
-A. Marini & Analisi capitolati C4 e C5 & \#17 \\ \hline
-A. Menegaldo & Analisi capitolati C1 e C2 & \#18 \\ \hline
+A. Marini & Redazione del verbale interno del 2026-03-20 & \issue{13} \\ \hline
+S. Vendramin & Introduzione e capitolato C6 dell'Analisi capitolati & \issue{19} \\ \hline
+A. Marini & Analisi capitolati C4 e C5 & \issue{17} \\ \hline
+A. Menegaldo & Analisi capitolati C1 e C2 & \issue{18} \\ \hline
 \end{tabular}
 \end{center}
 
