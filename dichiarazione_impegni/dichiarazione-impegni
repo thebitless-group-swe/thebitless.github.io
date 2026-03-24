@@ -1,0 +1,158 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[a-1b]{pdfx}
+\usepackage[italian]{babel}
+\usepackage{comment}      
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{minted} 
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{eurosym}
+\usepackage{tikz}
+\usepackage{pgf-pie}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{Dichiarazione degli Impegni}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    linkbordercolor=0 0 0, 
+    urlbordercolor=0 0 0,
+    citebordercolor=0 0 0,
+    filebordercolor=0 0 0,
+    breaklinks=true,
+}
+
+\begin{document}
+
+\newcommand{\tipoverbale}{Dichiarazione degli Impegni}
+\newcommand{\dataverbale}{2026-03-20}
+\newcommand{\dataversione}{2026-03-24}
+\newcommand{\versione}{1.0.0}
+\newcommand{\stato}{Approvato}
+\newcommand{\destinatari}{Prof. Tullio Vardanega, prof. Riccardo Cardin, The Bitless}
+
+\pagenumbering{roman}
+\input{../../templates/frontespizio.tex}
+\newpage
+
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
+        \hline
+        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione breve} \\
+        \hline
+        1.0.0 & 2026-03-24 & A. Marini & A. Menegaldo & S. Zecchinato & Approvazione \\
+        \hline
+        0.2.0 & 2026-03-21 & A. Marini & L. Battistella & -- & Modifica suddivisione oraria \\
+        \hline
+        0.1.0 & 2026-03-20 & A. Marini & D. Facco & -- & Prima stesura \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\newpage
+\tableofcontents
+\pagenumbering{arabic}
+\newpage
+
+\section{Introduzione}
+Il seguente documento definisce formalmente gli impegni del gruppo \textbf{The Bitless} per la realizzazione del progetto \textit{Second Brain} (Capitolato C6), proposto da \textbf{Zucchetti S.p.A.}.
+
+\section{Descrizione dei Ruoli}
+Per una corretta organizzazione del lavoro e il rispetto degli standard di qualità, il gruppo ha adottato la suddivisione dei ruoli tipica dell'ingegneria del software. Ogni membro del gruppo ruoterà tra queste figure ogni due settimane per acquisire una visione d'insieme del progetto.
+
+\subsection{Responsabile}
+Questa figura funge da guida strategica per l'intero team. Il Responsabile coordina i flussi di lavoro, gestisce le relazioni ufficiali con i docenti e i referenti aziendali (Zucchetti S.p.A.) e si occupa della pianificazione delle scadenze. Tra i suoi compiti principali rientrano il monitoraggio costante dei progressi e l'identificazione preventiva dei rischi.
+
+\subsection{Amministratore}
+L'Amministratore è incaricato di configurare e mantenere attive le piattaforme di supporto, la gestione dei repository su GitHub e l'implementazione dei sistemi di Continuous Integration (CI). Inoltre, cura l'organizzazione della documentazione prodotta. Il suo impegno è distribuito in modo costante per assicurare che gli ambienti di sviluppo siano sempre operativi e conformi alle necessità del team.
+
+\subsection{Analista}
+L'Analista ha il compito di interpretare e definire nel dettaglio i requisiti necessari per lo sviluppo del software. Attraverso l'analisi del capitolato C6 e il confronto diretto con i referenti di Zucchetti S.p.A., trasforma le necessità del proponente in modelli dei casi d'uso e specifiche tecniche chiare. Il suo lavoro è fondamentale nelle fasi iniziali, poiché stabilisce le linee guida teoriche su cui il team costruirà l'intera architettura del progetto.
+
+\subsection{Progettista}
+Il Progettista ha il compito di tradurre i requisiti funzionali in un'architettura software robusta, scalabile e manutenibile. Si occupa di selezionare i pattern architetturali più idonei e di definire i diagrammi di sistema che guideranno lo sviluppo. Il suo lavoro è fondamentale per garantire che i diversi moduli del software funzionino in modo integrato, mantenendo il codice ordinato anche con l'aumentare della complessità del progetto.
+
+\subsection{Programmatore}
+Il Programmatore ha il compito di tradurre le specifiche tecniche in codice sorgente eseguibile, seguendo rigorosamente le best practice dell'ingegneria del software. Si occupa dell'implementazione dei componenti logici e dell'integrazione dei diversi moduli applicativi. Il suo lavoro include la scrittura di test unitari per verificare la correttezza di ogni singola funzione e garantire che l'implementazione finale rispetti quanto definito dal Progettista.
+
+\subsection{Verificatore}
+Il Verificatore è il garante della qualità finale. Attraverso procedure di testing sistematico, \textit{code review} e validazione della documentazione, assicura che ogni output del gruppo rispetti gli standard qualitativi definiti. Esegue test di integrazione e controlla che il materiale prodotto soddisfi pienamente i requisiti del capitolato. La sua funzione di controllo è una costante che attraversa ogni fase del progetto.
+
+\section{Suddivisione Oraria}
+Ogni membro del gruppo si impegna a dedicare al progetto un totale di \textbf{92 ore produttive}, per un totale di \textbf{644 ore}. Il gruppo adotta un modello di rotazione dei ruoli ogni 2 settimane per garantire una formazione trasversale su ogni fase del ciclo di vita del software.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{|X|c|c|c|c|c|c|c|}
+\hline
+\textbf{Membro} & \textbf{RE} & \textbf{AM} & \textbf{AN} & \textbf{PG} & \textbf{PR} & \textbf{VE} & \textbf{Totale} \\
+\hline
+L. Battistella & 7 & 9 & 9 & 22 & 22 & 23 & 92 \\ \hline
+E. De Piccoli  & 7 & 9 & 9 & 22 & 22 & 23 & 92 \\ \hline
+D. Facco       & 7 & 8 & 9 & 22 & 23 & 23 & 92 \\ \hline
+A. Marini      & 7 & 8 & 9 & 22 & 23 & 23 & 92 \\ \hline
+A. Menegaldo   & 7 & 8 & 9 & 23 & 22 & 23 & 92 \\ \hline
+S. Vendramin   & 7 & 9 & 8 & 22 & 24 & 22 & 92 \\ \hline
+S. Zecchinato  & 6 & 9 & 9 & 23 & 22 & 23 & 92 \\ \hline
+\textbf{Totale} & \textbf{48} & \textbf{60} & \textbf{62} & \textbf{156} & \textbf{158} & \textbf{160} & \textbf{644} \\ \hline
+\end{tabularx}
+\caption{Distribuzione delle ore per ruolo (RE: Responsabile, AM: Amministratore, AN: Analista, PG: Progettista, PR: Programmatore, VE: Verificatore).}
+\end{table}
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\linewidth]{grafico_ore.jpg}
+        \caption{Ripartizione percentuale delle ore totali per ruolo}
+        \label{fig:placeholder}
+    \end{figure}
+
+
+\subsection{Motivazioni sulla ripartizione delle ore}
+La pianificazione oraria riflette la scelta del gruppo di affiancare costantemente lo sviluppo alla fase di test:
+\begin{itemize}
+    \item \textbf{Sviluppo e Qualità}: Il Programmatore (158 h) e il Verificatore (160 h) hanno un carico orario molto simile. Abbiamo fatto questa scelta per garantire che ogni funzionalità di \textit{Second Brain} venga testata subito dopo essere stata scritta, evitando che si accumulino bug difficili da risolvere in seguito.
+\item \textbf{Progettazione e Architettura}: Il Progettista (156 h) mantiene un ruolo centrale nella definizione dei pattern necessari per l'integrazione degli LLM, fornendo al Programmatore indicazioni chiare che riducono i tempi di implementazione.
+    \item \textbf{Gestione e Analisi}: I ruoli di Responsabile, Amministratore e Analista ((in totale 170 h) coprono le necessità organizzative e di definizione dei requisiti, assicurando che il team lavori sempre in modo coordinato e conforme agli obiettivi aziendali.
+\end{itemize}
+
+\section{Preventivo Economico}
+Il costo complessivo stimato per la realizzazione del progetto è il seguente:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|r|c|r|}
+\hline
+\textbf{Ruolo} & \textbf{Costo Orario} & \textbf{Ore Totali} & \textbf{Costo Totale} \\
+\hline
+Responsabile   & \euro{} 30,00 & 48  & \euro{} 1.440,00 \\ \hline
+Amministratore & \euro{} 20,00 & 60  & \euro{} 1.200,00 \\ \hline
+Analista       & \euro{} 25,00 & 62  & \euro{} 1.550,00 \\ \hline
+Progettista    & \euro{} 25,00 & 156 & \euro{} 3.900,00 \\ \hline
+Programmatore  & \euro{} 15,00 & 158 & \euro{} 2.370,00 \\ \hline
+Verificatore   & \euro{} 15,00 & 160 & \euro{} 2.400,00 \\ \hline
+\textbf{Totale} & -- & \textbf{644} & \textbf{\euro{} 12.860,00} \\
+\hline
+\end{tabular}
+\caption{Quadro economico sintetico basato sulla ripartizione oraria.}
+\end{table}
+
+\section{Consegna}
+La data ultima per la consegna del progetto è fissata al giorno \textbf{13 Settembre 2026}.
+
+\end{document}
