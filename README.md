@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Logo del gruppo TheBitLess" src="./templates/logo_gruppo.png" width="50%">
+  <img alt="Logo del gruppo TheBitLess" src="./templates/logo_gruppo_senza_background.png" width="50%">
 </p>
 
 # Repository Documentazione - Gruppo TheBitLess
