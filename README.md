@@ -33,5 +33,5 @@ La cartella principale è organizzata per facilitare la consultazione dei docume
 
 ## Contatti e Link Utili
 
-- **Sito Web (GitHub Pages):** [https://thebitless.github.io/](https://thebitless.github.io/)
+- **Sito Web:** [https://thebitless.github.io/](https://thebitless.github.io/)
 - **E-mail di gruppo:** [thebitless.swe@gmail.com](mailto:thebitless.swe@gmail.com)
