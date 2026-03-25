@@ -10,6 +10,8 @@
 \usepackage{minted} 
 \usepackage{geometry}
 \usepackage{float}
+\usepackage{array}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
 \usepackage{setspace}
 \usepackage{fancyhdr}
 \usepackage{tabularx}
@@ -49,19 +51,23 @@
 
 
 \begin{center}
-    \begin{tabular}{|c|c|c|c|c|c|}
+    \begin{tabularx}{\textwidth}{|c|c|c|c|c|>{\raggedright\arraybackslash}X|}
         \hline
         \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
         \hline
-        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione breve} \\
+        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
         \hline
-        1.0.0 & 2026-03-24 & A. Marini & A. Menegaldo & S. Zecchinato & Approvazione \\
+        1.0.0 & 2026-03-25 & A. Marini & A. Menegaldo & S. Zecchinato & Approvazione \\
         \hline
-        0.2.0 & 2026-03-21 & A. Marini & L. Battistella & -- & Modifica suddivisione oraria \\
+        0.3.0 & 2026-03-24 & A. Marini & A. Menegaldo & -- & Aggiunta sezione rischi previsti \\
+        \hline
+        0.2.1 & 2026-03-21 & S. Zecchinato & L. Battistella & -- & Correzione refusi \\
+        \hline
+        0.2.0 & 2026-03-21 & A. Marini & L. Battistella & -- & Suddivisione ore \\
         \hline
         0.1.0 & 2026-03-20 & A. Marini & D. Facco & -- & Prima stesura \\
         \hline
-    \end{tabular}
+    \end{tabularx}
 \end{center}
 
 \newpage
@@ -153,6 +159,26 @@ Verificatore   & \euro{} 15,00 & 160 & \euro{} 2.400,00 \\ \hline
 \end{table}
 
 \section{Consegna}
-La data ultima per la consegna del progetto è fissata al giorno \textbf{30 Agosto 2026}.
+La data ultima per la consegna del progetto è fissata al giorno \textbf{30 agosto 2026}.
+
+\section{Rischi previsti e mitigazione}
+
+\subsection{Periodi di rallentamento}
+Alcuni periodi possono presentare riduzioni della produttività dovute a impegni accademici o personali:
+\begin{itemize}
+    \item \textbf{Sessione d'esami estiva:} dal 15/06/2026 al 18/07/2026;
+    \item \textbf{Assenze pianificate:} durante il mese di agosto 2026. La turnazione delle assenze individuali potrebbe causare una discontinuità operativa nel gruppo.
+\end{itemize}
+
+\subsection{Mitigazione dei rischi}
+
+\subsubsection{Gestione delle assenze estive}
+Per garantire la continuità dei lavori nel periodo estivo, i membri comunicheranno con adeguato anticipo i propri periodi di assenza. Questo permetterà una pianificazione precisa delle attività, garantendo che le scadenze non vengano compromesse.
+
+\subsubsection{Competenze non omogenee e supporto interno}
+I membri con maggiore esperienza in specifici ambiti forniranno supporto e formazione ai colleghi meno esperti. Tale approccio favorisce l'apprendimento reciproco e previene rallentamenti.
+
+\subsubsection{Impegno individuale e visione d'insieme}
+Ogni componente del gruppo si impegna a fornire il massimo contributo per il raggiungimento degli obiettivi. Per mantenere la qualità del progetto, verranno svolti incontri periodici di monitoraggio per mantenere una visione d'insieme sullo stato d'avanzamento, verificando costantemente il rispetto della tabella di marcia.
 
 \end{document}
