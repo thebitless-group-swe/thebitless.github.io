@@ -1,0 +1,164 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+
+\usepackage[a-1b]{pdfx}
+
+\usepackage[italian]{babel}
+
+\usepackage{comment}      
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{minted} 
+
+\usepackage{graphicx}
+\usepackage{geometry}
+
+\usepackage{float} 
+
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{Verbale \tipoverbale \ \dataverbale}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,           
+    pdfborderstyle={/S/U/W 1},
+    linkbordercolor=0 0 0,      
+    urlbordercolor=0 0 0,      
+    citebordercolor=0 0 0,     
+    filebordercolor=0 0 0,     
+    breaklinks=true,            
+}
+\newcommand{\issue}[1]{\href{https://github.com/thebitless-group-swe/thebitless.github.io/issues/#1}{\##1}
+
+\begin{document}
+\newcommand{\tipoverbale}{esterno}
+\newcommand{\dataverbale}{2026-03-25}
+\newcommand{\dataversione}{2026-03-25}
+\newcommand{\versione}{0.1.0}
+\newcommand{\stato}{Revisionato}
+\newcommand{\destinatari}{The Bitless, prof. T. Vardanega, prof. R. Cardin, Bluewind}
+
+\pagenumbering{roman}
+
+\input{../../../../templates/frontespizio.tex}
+
+\newpage
+
+\begin{center}
+    \thispagestyle{empty}
+                \begin{tabular}{|c|c|c|c|c|c|}
+                    \hline
+                    \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
+                    \hline
+                    \textbf{Versione} & \textbf{Data} & \textbf{Autore}  & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione breve} \\
+                    \hline
+                    0.1.1 & 2026-03-25 & L. Battistella & D. Facco & - & Correzione Refusi \\
+                    \hline
+                    0.1.0 & 2026-03-25 & L. Battistella &  D. Facco  & - & Prima stesura \\
+                    \hline
+                \end{tabular}
+\end{center}
+
+\newpage
+
+\tableofcontents
+
+\pagenumbering{arabic}
+
+\newpage
+\section{Informazioni sulla riunione}
+Il \textbf{2026-03-25} si è svolta una riunione con Tobia Fiorese e Alessandro Zappia in merito ad alcune domande relative al capitolato C1, proposto da Bluewind \textbf{Automated EN18031 Compliance Verification}. La riunione si è tenuta tramite \textbf{Zoom}, con inizio alle ore 15:00 e conclusione alle ore 15:30.
+
+\section{Partecipanti}
+
+\subsection{Interni}
+
+\begin{center}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
+\hline
+Lorenzo & Battistella & Presente \\
+Edoardo & De Piccoli & Assente \\
+Davide & Facco & Assente \\
+Anna & Marini & Presente \\
+Andrea & Menegaldo & Assente \\
+Samuele & Vendramin & Presente \\
+Simone & Zecchinato & Presente \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Esterni}
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Nome} & \textbf{Azienda} \\
+\hline
+Tobia Fiorese & Bluewind \\
+\hline
+Alessandro Zappia & Bluewind \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ordine del giorno}
+
+\subsection{Organizzazione degli incontri di avanzamento}
+È stato chiarito che gli incontri verranno concordati in base alle esigenze del gruppo e alle diverse fasi di sviluppo. In generale, i referenti di progetto hanno suggerito di organizzare incontri meno frequenti nella prima fase di studio della norma EN18031, per poi successivamente aumentare la frequenza degli incontri durante la fase di sviluppo del PoC e dell'MVP.
+
+\subsection{Difficoltà riscontrate dai gruppi del primo lotto}
+Le principali difficoltà riscontrate dai gruppi del primo lotto riguardano principalmente la parte iniziale del progetto, in particolare nello studio della norma EN18031 e nella fase di realizzazione dei \textit{decision tree}. Tuttavia Bluewind ha specificato che, in caso di bisogno, è disponibile a chiarimenti in merito.
+
+\subsection{Livello competenze utente finale}
+È stato spiegato che l'utente finale è una figura tecnica all'interno di Bluewind, e che quindi possiede una conoscenza approfondita dell'argomento. Nonostante ciò, il workflow dovrà comunque semplificare la comprensione della norma.
+
+\subsection{Funzionalità opzionali più rilevanti}
+Per quanto riguarda le funzionalità opzionali, è stato specificato che la più rilevante tra le funzioni è quella relativa alla possibilità di esportare i report in formato PDF, possibilmente utilizzando un template aziendale.
+
+\subsection{Esperienza utente ideale}
+L'esperienza utente ideale, secondo Bluewind, è quella di un'applicazione che, partendo dalla documentazione relativa ad un dispositivo importata da un utente, generi una serie di domande basate sui \textit{decision tree}, alle quali l'utente dovrà rispondere fino ad arrivare ad un esito ("Pass", "Fail" o "Not Applicable").
+
+\subsection{Affiancamento tecnico di Bluewind}
+Bluewind resta disponibile nell'affiancare una figura tecnica che si occupa, in particolare, di queste certificazioni per poter comprendere a fondo la norma e la realizzazione dei \textit{decision tree}. 
+
+\section{Attività da svolgere}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
+\hline
+\textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
+\hline
+L. Battistella & Redigere il verbale del 2026-03-25 & \centering \issue{38} \tabularnewline
+\hline
+Tutti i componenti & Valutare l'interesse verso il capitolato C1 e la fattibilità tecnica dei requisiti & \centering -- \tabularnewline
+\hline
+\end{tabular}
+\end{center}
+
+\vfill % Spinge il blocco verso il basso
+\enlargethispage{3.5cm} % Forza LaTeX a usare il margine inferiore per le firme
+
+\noindent
+\begin{minipage}[t]{0.45\textwidth}
+  \textbf{Luogo e data} \\
+  \vspace{0.5cm}
+  Padova, 25 marzo 2026
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+  \raggedleft
+  \textbf{Bluewind S.r.l.} \\
+  \vspace{1.2cm}
+  \rule{6cm}{0.4pt} \\
+  \textit{Firma}
+\end{minipage}
+
+\end{document}
