@@ -5,6 +5,7 @@ const MEMBERS = [
   { firstName: "Samuele", lastName: "Vendramin",  avatar: "https://avatars.githubusercontent.com/u/192120628?v=4", github: "https://github.com/SamueleVendra" },
   { firstName: "Lorenzo", lastName: "Battistella",avatar: "https://avatars.githubusercontent.com/u/242595604?v=4", github: "https://github.com/lorenzo-battistella" },
   { firstName: "Andrea",  lastName: "Menegaldo",  avatar: "https://avatars.githubusercontent.com/u/249091043?v=4", github: "https://github.com/andreamenenegaldo" },
+  { firstName: "Davide",  lastName: "Facco",       avatar: "https://avatars.githubusercontent.com/u/50549691?v=4",   github: "https://github.com/faccuzz" },
 ];
 
 const SECTIONS = [
