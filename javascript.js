@@ -17,15 +17,15 @@ const SECTIONS = [
       { name: "Analisi dei capitolati",      href: "candidatura/analisi-dei-capitolati/analisi-dei-capitolati.pdf" },
     ],
     verbaliEsterni: [
-      { name: "Verbale esterno 2026-03-18 — Chiamata Conoscitiva Bluewind",  href: "candidatura/verbali/verbali_esterni/VE_2026-03-25_Bluewind/VE_2026-03-25_Bluewind.pdf"},
+      { name: "Verbale esterno 2026-03-25 — Chiamata Conoscitiva Bluewind",  href: "candidatura/verbali/verbali_esterni/VE_2026-03-25_Bluewind/VE_2026-03-25_Bluewind.pdf"},
       { name: "Verbale esterno 2026-03-18 — Chiamata Conoscitiva Eggon",     href: "candidatura/verbali/verbali_esterni/VE_2026-03-18_Eggon/VE_2026-03-18_Eggon.pdf" },
-      { name: "Verbale esterno 2026-03-16 — Chiamata Conoscitiva Miriade",   href: "candidatura/verbali/verbali_esterni/VE_2026-03-16_Miriade/VE_2026-03-6_Miriade.pdf" },
+      { name: "Verbale esterno 2026-03-16 — Chiamata Conoscitiva Miriade",   href: "candidatura/verbali/verbali_esterni/VE_2026-03-16_Miriade/VE_2026-03-16_Miriade.pdf" },
       { name: "Verbale esterno 2026-03-12 — Chiamata Conoscitiva Zucchetti", href: "candidatura/verbali/verbali_esterni/VE_2026-03-12_Zucchetti/VE_2026-03-12_Zucchetti.pdf" },
     ],
     verbaliInterni: [
       { name: "Verbale interno 2026-03-20 — Dichiarazione Impegni",   href: "candidatura/verbali/verbali_interni/VI_2026-03-20_dichiarazione-impegni/VI_2026-03-20_dichiarazione-impegni.pdf" },
       { name: "Verbale interno 2026-03-18 — Discussione Capitolati",  href: "candidatura/verbali/verbali_interni/VI_2026-03-18_discussione-capitolati/VI_2026-03-18_discussione-capitolati.pdf" },
-      { name: "Verbale interno 2026-03-10 — Avvio Progetto",          href: "candidatura/verbali/verbali_interni/VI_2026-03-10_avvio-progetto/VI_2026_03_10_primo_incontro.pdf" },
+      { name: "Verbale interno 2026-03-10 — Avvio Progetto",          href: "candidatura/verbali/verbali_interni/VI_2026-03-10_avvio-progetto/VI_2026-03-10_avvio-progetto.pdf" },
     ],
   },
   {
