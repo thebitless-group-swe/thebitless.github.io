@@ -10,14 +10,20 @@ const MEMBERS = [
 const SECTIONS = [
   {
     id: "candidatura",
+    docs: [
+      { name: "Lettera di presentazione",    href: "../candidatura/lettera-di-presentazione/lettera-di-presentazione.pdf" },
+      { name: "Dichiarazione degli impegni", href: "../candidatura/dichiarazione-degli-impegni/dichiarazione-degli-impegni.pdf" },
+      { name: "Analisi dei capitolati",      href: "../candidatura/analisi-dei-capitolati/analisi-dei-capitolati.pdf" },
+    ],
     verbaliEsterni: [
-      { name: "Verbale esterno 2026-03-12 — Chiamata Conoscitiva Zucchetti", href: "../verbali_esterni/VE_2026-03-12_Zucchetti/VE_2026-03-12_zucchetti.pdf" },
-      { name: "Verbale esterno 2026-03-16 — Chiamata Conoscitiva Miriade",   href: "../verbali_esterni/VE_2026-03-16_Miriade/VE_2026-03-16_Miriade.pdf" },
-      { name: "Verbale esterno 2026-03-18 — Chiamata Conoscitiva Eggon",     href: "../verbali_esterni/VE_2026-03-18_Eggon/VE_2026_03_18_Eggon_firmato.pdf" },
+      { name: "Verbale esterno 2026-03-12 — Chiamata Conoscitiva Zucchetti", href: "../candidatura/verbali/verbali_esterni/VE_2026-03-12_Zucchetti/VE_2026-03-12_Zucchetti.pdf" },
+      { name: "Verbale esterno 2026-03-16 — Chiamata Conoscitiva Miriade",   href: "../candidatura/verbali/verbali_esterni/VE_2026-03-16_Miriade/VE_2026-03-6_Miriade.pdf" },
+      { name: "Verbale esterno 2026-03-18 — Chiamata Conoscitiva Eggon",     href: "../candidatura/verbali/verbali_esterni/VE_2026-03-18_Eggon/VE_2026-03-18_Eggon.pdf" },
     ],
     verbaliInterni: [
-      { name: "Verbale interno 2026-03-10 — Primo Incontro",         href: "../verbali_interni/VI_2026-03-10_primo-incontro/VI_2026_03_10_primo_incontro.pdf" },
-      { name: "Verbale interno 2026-03-18 — Discussione Capitolati", href: "../verbali_interni/VI_2026-03-18/VI_2026-03-18_discussione-capitolati.pdf" },
+      { name: "Verbale interno 2026-03-10 — Avvio Progetto",          href: "../candidatura/verbali/verbali_interni/VI_2026-03-10_avvio-progetto/VI_2026_03_10_primo_incontro.pdf" },
+      { name: "Verbale interno 2026-03-18 — Discussione Capitolati",  href: "../candidatura/verbali/verbali_interni/VI_2026-03-18_discussione-capitolati/VI_2026-03-18_discussione-capitolati.pdf" },
+      { name: "Verbale interno 2026-03-20 — Dichiarazione Impegni",   href: "../candidatura/verbali/verbali_interni/VI_2026-03-20_dichiarazione-impegni/VI_2026-03-20_dichiarazione-impegni.pdf" },
     ],
   },
   {
@@ -80,6 +86,9 @@ function renderDocs() {
     body.innerHTML = "";
 
     if ("verbaliEsterni" in section) {
+      if (section.docs?.length) {
+        body.appendChild(makeSubSection("Documenti", section.docs));
+      }
       body.appendChild(makeSubSection("Verbali Esterni", section.verbaliEsterni));
       body.appendChild(makeSubSection("Verbali Interni", section.verbaliInterni));
     } else {
