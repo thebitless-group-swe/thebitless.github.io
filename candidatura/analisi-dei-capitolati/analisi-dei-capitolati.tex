@@ -7,6 +7,8 @@
 \usepackage{geometry}
 \usepackage{float} 
 \usepackage{setspace}
+\usepackage{tabularx}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
 \usepackage{fancyhdr}
 
 \pagestyle{fancy}
@@ -28,38 +30,40 @@
 
 \begin{document}
 
-\newcommand{\tipoverbale}{- Analisi dei Capitolati}
+\newcommand{\tipoverbale}{Analisi dei Capitolati}
 \newcommand{\dataverbale}{}
-\newcommand{\dataversione}{\today}
-\newcommand{\versione}{0.8.0}
-\newcommand{\stato}{Stesura}
+\newcommand{\dataversione}{2026-03-25}
+\newcommand{\versione}{1.0.0}
+\newcommand{\stato}{Approvato}
 \newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
 
 \begin{titlepage}
 \pagenumbering{gobble}
-\input{../../templates/frontespizio.tex}
+\input{frontespizio.tex}
 \end{titlepage}
 
 \newpage
 \pagenumbering{arabic}
 
 \begin{center}
-    \begin{tabular}{|c|c|c|c|c|c|}
+    \small
+    \begin{tabularx}{\textwidth}{|c|c|L|c|c|L|}
         \hline
-        \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
+        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
         \hline
-        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore}& \textbf{Approvatore} & \textbf{Descrizione} \\
+        1.0.0 & 2026-03-25 & A. Marini & S. Vendramin & S. Vendramin & Approvazione \\
         \hline
-          0.8.0  & 2026-03-24 & S. Vendramin  & S. Zecchinato & -& introduzione e capitolati C6 \\
+        0.4.1 & 2026-03-25 & A. Marini & S. Vendramin & - & Aggiunta considerazioni capitolato C1 \\
         \hline
-         0.6.0 & 2026-03-24 & A. Marini  & S. Zecchinato & -& capitolati C4 e C5 \\
+        0.4.0 & 2026-03-24 & S. Vendramin & D. Facco & - & Introduzione e capitolato C6 \\
         \hline
-         0.4.0  & 2026-03-23 &  A. Menegaldo & S. Zecchinato & -& capitolati C1 e C2 \\
+        0.3.0 & 2026-03-24 & A. Marini & S. Zecchinato & - & Capitolati C4 e C5 \\
+        \hline
+        0.2.0 & 2026-03-23 & A. Menegaldo &  S. Zecchinato & - & Capitolati C1 e C2 \\
         \hline 
-        0.1.0 & 2026-03-21 & S. Vendramin & S. Zecchinato & -   &  struttura documento \\
+        0.1.0 & 2026-03-21 & S. Vendramin & S. Zecchinato & - & Struttura documento \\
         \hline
-       
-    \end{tabular}
+    \end{tabularx}
 \end{center}
 
 \newpage
@@ -68,68 +72,151 @@
 \newpage
 
 \section{Introduzione}
+Il presente documento descrive in dettaglio l'analisi dei capitolati d'appalto condotta dal gruppo \textbf{The Bitless}. 
 
-\subsection{Scopo e Finalità del documento}
-Il presente documento descrive in dettaglio l'analisi dei capitolati d'appalto condotta dal gruppo The Bitless. Lo scopo principale è illustrare le motivazioni e le valutazioni che hanno portato il team alla scelta di intraprendere il progetto descritto nel capitolato C6 - Second Brain. Al fine di fornire una panoramica completa del processo decisionale, il documento espone i criteri utilizzati per confrontare in modo oggettivo e realistico le varie opzioni e presenta un'analisi delle alternative non selezionate, evidenziandone i punti di forza e le criticità rispetto alle inclinazioni e alle competenze del gruppo.
-\section{Valutazione del capitolato scelto C6 - Second Brain (Zucchetti S.p.A.)}
+Lo scopo principale è illustrare le motivazioni e le valutazioni che hanno portato il team alla scelta di intraprendere il progetto descritto nel capitolato \textbf{C6 - Second Brain}. 
 
+Al fine di fornire una panoramica completa del processo decisionale, il documento espone i criteri utilizzati per confrontare in modo oggettivo e realistico le varie opzioni e presenta un'analisi delle alternative non selezionate, evidenziandone i punti di forza e le criticità rispetto alle inclinazioni e alle competenze del gruppo.
 
-\subsection{Obiettivo}
-Il progetto si prefigge lo scopo di realizzare un'applicazione web innovativa per testare e sfruttare le potenzialità dei Large Language Models nell'assistenza alla creazione, analisi e sviluppo di testi. Il nucleo dell'applicativo consisterà in un editor testuale basato sul linguaggio di markup MarkDown, che permetterà all'utente di scrivere in una casella di testo dedicata e di visualizzare in tempo reale il risultato grafico formattato in una sezione adiacente.
+\section{Fattori considerati nella selezione del capitolato}
 
-L'applicativo si interfaccerà con un LLM per consentire operazioni intelligenti su tutto il testo o su selezioni mirate, offrendo funzionalità di base quali la generazione automatica di riassunti, la riscrittura del contenuto per modularne il tono (es. più formale o colloquiale), e la traduzione in lingue diverse dall'originale. Un tratto distintivo del capitolato è l'implementazione di comandi di critica del testo ispirati alla tecnica dei "sei cappelli per pensare" di Edward De Bono, quindi l'Intelligenza Artificiale dovrà analizzare il documento assumendo punti di vista differenti, ad esempio verificandone l'obiettività, l'aspetto emozionale, logico, ottimista o individuandone i rischi. 
+La scelta del capitolato è scaturita da una valutazione analitica basata su parametri definiti dal team. L'obiettivo è stato individuare la proposta che garantisse il miglior equilibrio tra questi fattori:
 
-\subsection{Tecnologie}
-Il capitolato richiede l'uso di uno stack tecnologico moderno e flessibile per l'integrazione di servizi IA:
 \begin{itemize}
-    \item \textbf{Sviluppo Frontend:} Utilizzo di HTML e tecnologie web standard per la realizzazione della pagina interattiva, affiancate da librerie Open Source per il rendering grafico del codice MarkDown.
-    \item \textbf{Integrazione Intelligenza Artificiale:} Comunicazione con i Large Language Models tramite chiamate API. Il gruppo avrà modo di testare i prompt su modelli di grandi dimensioni Open Source (come Mistral o Gemma) messi a disposizione dall'azienda proponente.
-    \item \textbf{Backend e Database:} Come estensione del progetto (nice-to-have), si prevede lo sviluppo di un server in Java o Python per la gestione delle chiamate HTTP e la comunicazione con un database. Questo abiliterebbe il salvataggio persistente delle note e la creazione di link interni tra documenti, concretizzando appieno il concetto di "secondo cervello" per l'utente.
+\item \textbf{Complessità tecnica:} Rappresenta il livello di difficoltà del progetto in termini di architettura software e integrazione di sistemi. Un'elevata complessità, sebbene offra una sfida stimolante, aumenta il rischio di superare il monte ore massimo disponibile per ogni componente del gruppo. Una sottovalutazione di questo parametro comprometterebbe la qualità del prodotto finale a causa della riduzione dei tempi di verifica e rifinitura.
+
+    \item \textbf{Potenziale di crescita professionale:} Rappresenta il valore didattico del progetto e la sua capacità di favorire la crescita professionale dei membri del gruppo. L'obiettivo è acquisire competenze spendibili nel mercato del lavoro attuale.
+    
+    \item \textbf{Formalizzazione dei requisiti:} La precisione della documentazione iniziale è stata considerata determinante. Requisiti ben delineati riducono l'ambiguità e permettono una ripartizione dei compiti più equa ed efficiente tra i membri del gruppo.
+
+    \item \textbf{Supporto da parte del proponente:} Una comunicazione fluida con l'azienda proponente permette di risolvere rapidamente i blocchi produttivi, riducendo il rischio di deviazioni rispetto agli obiettivi concordati.
+    
+    \item \textbf{Affinità con il dominio applicativo:} L'interesse verso il settore specifico del progetto è un fattore determinante per la selezione. Una visione condivisa garantisce una collaborazione e un impegno costante durante tutte le fasi di sviluppo.
 \end{itemize}
 
-\subsection{Considerazioni}
-Lo sviluppo di una web app dotata di Intelligenza Artificiale per la rielaborazione e correzione automatica dei testi conferisce al progetto un carattere fortemente trasversale, unendo in modo concreto competenze di ingegneria del software, prompt engineering applicato al machine learning e concetti di linguistica computazionale. 
+\section{Valutazione del capitolato scelto C6 - Second Brain (Zucchetti S.p.A.)}
 
-Il gruppo ha accolto con forte interesse questo capitolato perché unisce un tema estremamente attuale, come quello degli LLM, a un ambito tecnico in cui possediamo già una buona preparazione. Le nostre competenze pregresse nello sviluppo web e nell'integrazione di API esterne rappresentano infatti un'ottima base di partenza. Poter contare su queste conoscenze, unite alla proposta chiara e al supporto di una realtà consolidata come Zucchetti S.p.A., ci rende fiduciosi di poter condurre il progetto in modo lineare e di rispettare agilmente le scadenze.
+\subsection{Obiettivo}
+
+Il progetto si prefigge lo scopo di realizzare un'applicazione web innovativa per testare e sfruttare le potenzialità dei \textbf{Large Language Models} nell'assistenza alla creazione, analisi e sviluppo di testi. 
+
+Il nucleo dell'applicativo consisterà in un editor testuale basato sul linguaggio di markup \textbf{Markdown}, che permetterà all'utente di scrivere in una casella di testo dedicata e di visualizzare in tempo reale il risultato grafico formattato in una sezione adiacente. L'obiettivo è evolvere il concetto di "note taking" verso il paradigma del \textbf{Distant Writing}, in cui l'autore progetta la struttura e l'AI genera i contenuti in modo iterativo.
+
+L'applicativo si interfaccerà con un LLM per consentire operazioni intelligenti su tutto il testo o su selezioni mirate, offrendo funzionalità come la generazione di riassunti, la riscrittura per migliorare forma e scorrevolezza, l'estrazione di punti rilevanti e la traduzione in altre lingue. 
+
+Un tratto distintivo del capitolato è l'implementazione di comandi di critica del testo ispirati al metodo dei \textbf{"Sei Cappelli per Pensare" di Edward De Bono}. L'AI dovrà analizzare il documento assumendo prospettive differenti: verifica di dati oggettivi, creatività, analisi dei rischi e aspetti negativi, espressione di emozioni, controllo organizzativo e individuazione di opportunità positive.
+
+Infine, il progetto prevede il requisito opzionale di implementare un \textbf{database} per la memorizzazione delle note. Questo permette di gestire le relazioni tra i testi descrivendo il \textbf{grafo} che collega le varie note, facilitando l'analisi delle connessioni logiche tra i contenuti creati dall'utente.
+
+\subsection{Tecnologie}
+Il capitolato richiede l'uso di uno stack tecnologico moderno e flessibile per l'integrazione di servizi AI:
+\begin{itemize}
+    \item \textbf{Sviluppo frontend:} Utilizzo di HTML e tecnologie web standard per la realizzazione della pagina interattiva, affiancate da librerie Open Source per il rendering grafico del codice MarkDown.
+    \item \textbf{Integrazione Intelligenza Artificiale:} Comunicazione con i Large Language Models tramite chiamate API. Il gruppo avrà modo di testare i prompt su modelli di grandi dimensioni Open Source (come Mistral o Gemma) messi a disposizione dall'azienda proponente.
+    \item \textbf{Esecuzione e risorse locali:} Per facilitare lo sviluppo e i test, è suggerito l'utilizzo di strumenti che permettono di eseguire modelli LLM localmente mantenendo API compatibili con lo standard OpenAI, come llama.cpp o LM Studio. Per quanto riguarda l'hosting, il gruppo opererà esclusivamente in locale; durante l'incontro avvenuto con Gregorio Piccoli, referente dell'azienda Zucchetti\footnote{\href{https://github.com/thebitless-group-swe/thebitless.github.io/blob/main/candidatura/verbali/verbali_esterni/VE_2026-03-12_Zucchetti/VE_2026-03-12_Zucchetti.pdf}{Verbale esterno Zucchetti del 2026-03-12}}, è stato suggerito l'impiego di container Docker per semplificare le operazioni di deployment.
+    \item \textbf{Backend e database:} Come estensione del progetto, si prevede lo sviluppo di un server in Java o Python per la gestione delle chiamate HTTP e la comunicazione con un database. Questo abiliterebbe il salvataggio persistente delle note e la creazione di link interni tra documenti, concretizzando a pieno il concetto di "secondo cervello" per l'utente.
+\end{itemize}
+
+
+\subsection{Considerazioni}
+
+Il gruppo \textbf{The Bitless} ha identificato nel capitolato \textbf{C6 - Second Brain} la scelta ottimale.  Le motivazioni principali che hanno guidato questa scelta sono le seguenti:
+
+\begin{itemize}
+
+    \item \textbf{Interdisciplinarità:} Lo sviluppo di una web app dotata di Intelligenza Artificiale per la rielaborazione e correzione automatica dei testi permette di unire in modo concreto competenze di Ingegneria del Software, Prompt Engineering applicato al Machine Learning e concetti di linguistica computazionale. 
+
+    \item \textbf{Equilibrio tra flessibilità e vincoli:} A differenza di altri capitolati esaminati, il progetto \textbf{Second Brain} ci è apparso meno rigido, lasciando al gruppo un buon margine di manovra nelle scelte architetturali e implementative; questo approccio favorisce la nostra creatività e ci permette di proporre soluzioni originali. Nonostante ciò, il capitolato definisce con chiarezza alcuni punti fermi fondamentali, come l'uso del linguaggio \textbf{Markdown}  e l'integrazione di funzioni di analisi basate sugli \textbf{LLM}, che forniscono una guida precisa per lo sviluppo dei contenuti.
+
+    \item \textbf{Attualità del tema:} Il gruppo ha accolto con entusiasmo la possibilità di lavorare su tecnologie come gli \textbf{LLM} e il paradigma del \textbf{Distant Writing}. Confrontarsi con un tema così attuale rappresenta una sfida stimolante che rispecchia i nostri interessi personali e le ambizioni di crescita professionale.
+    
+    \item \textbf{Disponibilità del proponente:} L'incontro con il referente dell'azienda proponente ha evidenziato un'apertura verso le proposte del gruppo, mostrandosi disponibile al confronto. Ci ha colpito positivamente la flessibilità nel confrontarsi su possibili estensioni del progetto, come l'input vocale o l'architettura server, garantendo un ambiente di lavoro collaborativo, elemento che riteniamo fondamentale per la riuscita del progetto.
+\end{itemize}
+
+In sintesi, il capitolato C6 è stato ritenuto il più adatto a stimolare la crescita professionale del gruppo. La chiarezza del proponente e la pertinenza tecnologica del tema garantiscono un contesto ideale per l'applicazione delle pratiche di Ingegneria del Software previste dal corso.
+
 \section{Valutazione dei capitolati rimanenti}
 \subsection{Capitolato C1 - Automated EN18031 Compliance Verification (Bluewind S.r.l.)}
 
 \subsubsection{Obiettivo}
-Il progetto mira a sviluppare uno strumento software che assista i produttori di dispositivi radio a verificare che siano conformi alla norma EN 18031, recentemente divenuta obbligatoria per il mercato europeo. L’applicazione dovrà automatizzare l’esecuzione dei decision tree previsti dalla norma, consentendo di ottenere per ciascun requisito un verdetto chiaro (Pass, Fail, Not Applicable). Il sistema si propone di ridurre i tempi e la complessità del processo di valutazione, che di solito è fatto a mano e può contenere errori, fornendo al contempo una tracciabilità completa delle decisioni prese. Particolare attenzione è richiesta per i requisiti relativi al controllo degli accessi (ACM) e all’autenticazione (AUM) della parte EN 18031 1. Viene inoltre richiesta una dashboard interattiva per il monitoraggio dello stato di tutti i requisiti e un editor per la modifica dei decision tree e dei documenti associati, in modo da rendere il sistema facile da adattare a future revisioni normative.
+
+Il progetto mira allo sviluppo di uno strumento software avanzato per assistere i produttori di dispositivi radio nella verifica di conformità alla norma \textbf{EN 18031}. Tale normativa è diventata un requisito obbligatorio per l'accesso al mercato europeo, rendendo indispensabile un processo di validazione rigoroso e certificabile.
+
+L’applicazione ha l'obiettivo di automatizzare l’esecuzione dei \textbf{Decision Tree} (alberi decisionali) previsti dallo standard. Attraverso un percorso guidato di domande e risposte, il sistema permette di ottenere per ciascun requisito un verdetto univoco: \textbf{Pass} (conforme), \textbf{Fail} (non conforme) o \textbf{Not Applicable} (non pertinente).
+
+Questo approccio si propone di ridurre i tempi e la complessità della valutazione, che tradizionalmente viene eseguita manualmente con un elevato rischio di errore umano. Il software garantisce inoltre una \textbf{tracciabilità completa} delle decisioni prese, fornendo le evidenze necessarie per la documentazione tecnica ufficiale.
+
+Particolare attenzione è richiesta per i requisiti relativi al controllo degli accessi (ACM) e all’autenticazione (AUM) della parte EN 18031-1.
+
 \subsubsection{Tecnologie}
+
+Per la realizzazione del sistema sono state individuate le seguenti direttive tecnologiche:
+
 \begin{itemize}
-    \item Python 3.x per il backend, con gestione tramite pyproject.toml.
-    \item Formati standard per import/export: JSON, XML, CSV.
-    \item Libertà di scelta per frontend e architettura (web o desktop).
-    \item Editor grafico per i decision tree (libreria a scelta).
+    \item \textbf{Backend}: La logica applicativa sarà sviluppata in \textbf{Python 3.x}. Per la gestione delle dipendenze e della configurazione del progetto verrà utilizzato lo standard \textbf{pyproject.toml}.
+    
+    \item \textbf{Gestione Dati}: Il sistema supporterà formati standard per l'importazione e l'esportazione dei dati, tra cui \textbf{JSON}, \textbf{XML} e \textbf{CSV}.
+    
+    \item \textbf{Architettura e Frontend}: Viene lasciata libertà di scelta riguardo alla natura dell'applicazione (Web-based o Desktop). L'interfaccia dovrà comunque garantire un'esperienza utente fluida per la navigazione dei requisiti complessi.
+    
+    \item \textbf{Editor Grafico}: Per la gestione dei Decision Tree verrà implementata una libreria grafica dedicata. Questo componente permetterà ai "Compliance Manager" di mappare visivamente i nodi decisionali, facilitando la comprensione della logica normativa.
 \end{itemize}
 
 \subsubsection{Considerazioni}
-Il progetto presenta una complessità normativa elevata che richiederebbe un investimento iniziale significativo per comprendere a fondo la norma EN 18031. L’interesse del gruppo verso tematiche di conformità normativa è limitato, portando a preferire altri capitolati con una maggiore creazione di nuove funzionalità software.
+
+Dall'analisi del capitolato sono emerse alcune considerazioni:
+
+\begin{itemize}
+    \item \textbf{Valore Formativo}: Il progetto offre delle opportunità di apprendimento nella \textit{Cybersecurity Compliance}, un settore in forte espansione. Lo sviluppo di un editor grafico per manipolare i \textit{Decision Tree} e di una dashboard interattiva rappresenta un esercizio stimolante di progettazione dell'interfaccia utente (UI/UX).
+    \item \textbf{Complessità del Dominio Normativo:} La necessità di interpretare correttamente le tre parti della norma EN 18031 (Sicurezza, Privacy e Finanze) richiede un investimento iniziale molto alto in termini di studio teorico. Durante l'incontro con i referenti di Bluewind\footnote{\href{https://github.com/thebitless-group-swe/thebitless.github.io/blob/main/candidatura/verbali/verbali_esterni/VE_2026-03-25_Bluewind/VE_2026-03-25_Bluewind.pdf}{Verbale esterno Bluewind del 2026-03-25}} è emerso che la difficoltà principale riscontrata dai gruppi del lotto precedente è stata proprio la comprensione della norma, che ha sottratto tempo all'implementazione tecnica.
+    \item \textbf{Vincoli alla Creatività Software}: Gran parte della logica applicativa è dettata da percorsi decisionali rigidi già stabiliti dalla norma (come i requisiti ACM e AUM). Questo limita la possibilità per il gruppo di ideare architetture software originali.
+\end{itemize}
+
+In sintesi, la rigidità della norma EN 18031 ci ha portato a preferire progetti che offrano maggiore libertà di scelta e sfide tecnologiche meno legate a vincoli normativi complessi.
+
 \subsection{Capitolato C2 - Code Guardian (Var Group S.p.A.)}
 
 \subsubsection{Obiettivo}
-Il progetto prevede la realizzazione di una piattaforma web basata su un’architettura multi-agente, capace di analizzare automaticamente repository GitHub per valutare qualità del codice, sicurezza e livello di manutenzione. Un orchestratore centrale gestirà agenti specializzati in diversi ambiti: analisi dei test unitari, verifica della documentazione, audit di sicurezza basato sulle linee guida OWASP e generazione di report. A seguito dell’analisi, il sistema dovrà produrre report automatici sullo stato del progetto e proporre remediation mirate per correggere vulnerabilità o lacune individuate, come per esempio una query SQL non parametrizzate o test assenti. I risultati saranno visualizzati tramite una dashboard interattiva sviluppata in React, che mostrerà in modo sintetico lo stato complessivo di ciascun repository analizzato.
+Il progetto prevede la realizzazione di una piattaforma web basata su \textbf{un’architettura multi-agente}, capace di analizzare automaticamente repository GitHub per valutare qualità del codice, sicurezza e livello di manutenzione.
+
+Un motore di gestione centrale gestirà agenti specializzati in diversi ambiti: analisi dei test unitari, verifica della documentazione, audit di sicurezza basato sulle linee guida OWASP e generazione di report.
+
+A seguito dell’analisi, il sistema dovrà produrre report automatici sullo stato del progetto e proporre remediation mirate per correggere vulnerabilità o lacune individuate, come per esempio query SQL non parametrizzate o test assenti. I risultati saranno visualizzati tramite una dashboard interattiva sviluppata in React, che mostrerà in modo sintetico lo stato complessivo di ciascun repository analizzato.
+
 \subsubsection{Tecnologie}
+Il sistema prevede le seguenti tecnologie:
 \begin{itemize}
-    \item Backend e orchestratore: Node.js, Python.
-    \item Frontend: React.js.
-    \item Database: MongoDB o PostgreSQL.
-    \item CI/CD e integrazioni: GitHub Actions.
-    \item Cloud: AWS.
-    \item Sicurezza: OWASP Top 10 come standard di riferimento.
-    \item Framework agenti: a scelta tra Amazon Bedrock, Google ADK o Strands Agents SDK.
+    \item \textbf{Backend e Sviluppo Agenti}: Utilizzo combinato di \textbf{Node.js} e \textbf{Python}.
+    \item \textbf{Framework per Agenti IA}: Adozione di strumenti avanzati per il ragionamento autonomo, come \textbf{Amazon Bedrock}, \textbf{Google ADK} o \textbf{Strands Agents SDK}.
+    \item \textbf{Frontend}: Interfaccia utente sviluppata in \textbf{React.js} per garantire una dashboard reattiva e una gestione fluida dei report.
+    \item \textbf{Database}: Utilizzo di \textbf{PostgreSQL} per la gestione dei dati relazionali e degli utenti, o \textbf{MongoDB} per l'archiviazione flessibile dei risultati delle analisi in formato documentale.
+    \item \textbf{Cloud e Infrastructure}: Distribuzione su \textbf{AWS} con integrazione di pipeline \textbf{GitHub Actions} per abilitare l'analisi automatica ad ogni operazione di \textit{push} o \textit{merge request}.
+    \item \textbf{Sicurezza}: Implementazione degli standard \textbf{OWASP Top 10} come base logica per l'identificazione delle vulnerabilità.
 \end{itemize}
 
 \subsubsection{Considerazioni}
-Il progetto risulta concreto e ben strutturato grazie ad un’architettura multi-agente tecnicamente complessa che non ha suscitato particolare interesse nel gruppo.
+Dopo un'analisi approfondita delle specifiche fornite da Var Group, il gruppo ha delineato la propria posizione:
+
+\begin{itemize}
+    \item \textbf{Valore tecnico dell'architettura:} L'architettura proposta ci permetterebbe di misurarci con lo sviluppo di sistemi multi-agente e l'automazione su larga scala. Riteniamo che l'integrazione tra Node.js, Python e AWS rappresenti un percorso di apprendimento molto valido per le tecnologie cloud moderne.
+    \item \textbf{Supporto da parte dell'azienda:} Abbiamo valutato molto positivamente l'offerta di un percorso di mentoring dedicato, che include sessioni tecniche su Node.js, React e sicurezza. La possibilità di partecipare a sessioni di \textit{Design Thinking} e ricevere \textit{code review} da esperti di Var Group rappresenta un'opportunità preziosa per apprendere come gestire un progetto software in un contesto aziendale reale.
+    \item \textbf{Natura del software}: Una delle perplessità principali risiede nel fatto che il prodotto abbia una logica vincolata a compiti tecnici come il controllo della documentazione o della copertura dei test. Sebbene si tema che, una volta consolidata l’architettura dei primi agenti, lo sviluppo possa presentare sfide meno varie, riconosciamo il valore di questo progetto; riteniamo che l’analisi e la gestione automatizzata dei repository rappresentino un’opportunità per confrontarsi con gli standard di qualità e sicurezza del codice richiesti oggi in ogni contesto professionale.
+
+In conclusione, il gruppo ha scelto di inserire Code Guardian tra i propri preferiti per il forte interesse verso l'architettura a più agenti coordinati da un orchestratore centrale.
+
 \subsection{Capitolato C4 - L'app che Protegge e Trasforma (Miriade S.r.l.)}
 
 \subsubsection{Obiettivo}
-Il progetto proposto da Miriade S.r.l. mira allo sviluppo di un'applicazione mobile per sistemi iOS e Android finalizzata alla prevenzione della violenza di genere. Il software deve agire come uno strumento attivo e sicuro, capace di riconoscere segnali di pericolo e offrire risorse concrete per l'autonomia degli utenti. Le macro-funzionalità includono il \textit{Detective delle Relazioni} per l'analisi dei comportamenti, lo \textit{Specchio Intelligente} per il feedback in tempo reale e il \textit{Guardiano Silenzioso} per l'invio di allarmi discreti.
+Il progetto proposto da Miriade mira allo sviluppo di un'applicazione mobile cross-platform (iOS e Android) dedicata alla prevenzione della violenza di genere. L'obiettivo è creare uno strumento sicuro e discreto che accompagni l'utente in un percorso di consapevolezza e protezione. Le funzionalità principali si dividono in tre moduli:
+
+\begin{itemize}
+    \item \textbf{Detective delle Relazioni}: Un sistema di analisi basato su intelligenza artificiale che aiuta l'utente a riconoscere segnali di tossicità o manipolazione nelle proprie interazioni quotidiane.
+    \item \textbf{Specchio Intelligente}: Questa funzione agisce come un diario interattivo evoluto. Grazie all'elaborazione del linguaggio naturale (NLP), l'app analizza le riflessioni caricate dall'utente per restituire un feedback emotivo in tempo reale.
+    \item \textbf{Guardiano Silenzioso}: Un modulo di emergenza progettato per attivare allarmi o richieste di aiuto in modo invisibile, utilizzando gesti rapidi o comandi vocali predefiniti, garantendo la massima sicurezza in situazioni di pericolo.
+\end{itemize}
 
 \subsubsection{Tecnologie}
-Il capitolato definisce uno stack tecnologico di alto profilo basato sull'ecosistema AWS:
+Lo stack tecnologico è basato sull'ecosistema AWS per garantire scalabilità e sicurezza:
 \begin{itemize}
     \item \textbf{Sviluppo Mobile:} Utilizzo fortemente incoraggiato del framework Flutter per garantire la natura cross-platform con un'unica base di codice.
     \item \textbf{Infrastruttura Backend:} Architettura serverless basata su AWS Lambda, Amazon API Gateway per la gestione sicura delle richieste e AWS Step Functions per l'orchestrazione dei flussi di lavoro complessi.
@@ -138,18 +225,21 @@ Il capitolato definisce uno stack tecnologico di alto profilo basato sull'ecosis
 \end{itemize}
 
 \subsubsection{Considerazioni}
-Il gruppo ha valutato questo capitolato come non interessante per la selezione a causa di diversi fattori di rischio:
+L'analisi del capitolato ha portato il gruppo a valutare i seguenti punti di forza e criticità:
 \begin{itemize}
-    \item \textbf{Complessità UX e Lean UX:} Il capitolato richiede l'adozione del paradigma Lean UX per creare interfacce che devono restare "rassicuranti e intuitive" anche in momenti di forte stress. Progettare un'esperienza simile senza competenze specialistiche in UI/UX Research comporta il rischio di fallire l'obiettivo primario dell'app, facendo lievitare i tempi di analisi.
-    \item \textbf{Vincoli dei Sistemi Operativi:} La funzione \textit{Guardiano Silenzioso} prevede l'attivazione di allarmi tramite gesti o comandi vocali. Tecnicamente, mantenere l'ascolto dei sensori o del microfono mentre l'app è in background o il telefono è bloccato è estremamente complesso e spesso ostacolato dalle policy di risparmio energetico e privacy di iOS e Android.
-    \item \textbf{Responsabilità e Privacy:} Trattandosi di un'app per vittime di violenza, il margine di errore deve essere nullo. L'obbligo di una \textit{Privacy by Design} totale e la gestione di dati sensibili (come il diario criptato) espongono il team a una pressione realizzativa sproporzionata rispetto alle tempistiche accademiche.
-    \item \textbf{Feedback Gruppi Precedenti:} Ciò che è stato comunicato dall'azienda riguardo alle problematiche affrontate dai gruppi del primo lotto ha confermato che la mole di requisiti non funzionali e la delicatezza del tema rendono il progetto più oneroso di quanto appaia inizialmente.
+    \item \textbf{Tecnologie Cloud Avanzate}: L'opportunità di utilizzare strumenti di AI generativa (Bedrock) e architetture serverless su AWS rappresenta una buona occasione di formazione tecnica su servizi molto richiesti dal mercato.
+    \item \textbf{Autonomia Decisionale:} Durante l'incontro conoscitivo con l'azienda, è emersa una natura dei requisiti generica e volutamente aperta per stimolare la capacità propositiva del gruppo. Da un lato questa flessibilità favorisce autonomia decisionale, dall'altro impone un maggiore investimento di tempo nell’analisi del contesto di riferimento e nella definizione accurata delle caratteristiche del prodotto.
+    \item \textbf{Complessità UX}: Il capitolato richiede l'adozione del paradigma Lean UX per creare interfacce che devono restare rassicuranti e intuitive anche in momenti di forte stress. Progettare un'esperienza simile senza competenze specialistiche in UI/UX Research comporta il rischio di fallire l'obiettivo primario dell'app, allungando i tempi di analisi.
+    \item \textbf{Responsabilità e Privacy}: Trattandosi di dati estremamente sensibili, il margine di errore deve essere nullo. L'obbligo di garantire una protezione dei dati totale espone il gruppo a una pressione realizzativa elevata rispetto alle tempistiche del corso.
+    \item \textbf{Carico di requisiti non funzionali}: I feedback ricevuti dall'azienda riguardo alle difficoltà incontrate dai gruppi precedenti \footnote{\href{https://github.com/thebitless-group-swe/thebitless.github.io/blob/main/candidatura/verbali/verbali_esterni/VE_2026-03-16_Miriade/VE_2026-03-16_Miriade.pdf}{Verbale esterno Miriade del 2026-03-16}} confermano che la gestione dei requisiti di sicurezza e la delicatezza del tema rendono il progetto più oneroso di quanto appaia inizialmente.
 \end{itemize}
+
+In conclusione, nonostante l'interesse per le tecnologie AWS, abbiamo considerato il progetto non idoneo alla scelta a causa della sensibilità dei dati e della natura generica dei requisiti, i quali richiederebbero una fase di analisi e progettazione molto lunga, sottraendo tempo allo sviluppo effettivo del software.
 
 \subsection{Capitolato C5 - Nexum (Eggon S.r.l.)}
 
 \subsubsection{Obiettivo}
-Il progetto \textit{Nexum} punta a potenziare una piattaforma HR esistente per PMI attraverso moduli di Intelligenza Artificiale. Gli ambiti funzionali riguardano l'integrazione di un \textit{AI Assistant Generativo} per la creazione di contenuti aziendali (titoli, testi e immagini) e un \textit{AI Co-Pilot} dedicato ai Consulenti del Lavoro (CdL) per l'automazione del riconoscimento, dello split e del dispaccio di documenti e cedolini massivi.
+Il progetto \textit{Nexum} punta a potenziare una piattaforma HR esistente attraverso moduli di Intelligenza Artificiale. Gli ambiti funzionali riguardano l'integrazione di un \textbf{AI Assistant Generativo} per la creazione di contenuti aziendali (titoli, testi e immagini) e un \textbf{AI Co-Pilot} dedicato ai Consulenti del Lavoro (CdL) per l'automazione del riconoscimento, dello split e del dispaccio di documenti e cedolini massivi.
 
 \subsubsection{Tecnologie}
 L'architettura proposta segue standard industriali consolidati e orientati alla scalabilità:
@@ -157,17 +247,18 @@ L'architettura proposta segue standard industriali consolidati e orientati alla 
     \item \textbf{Frontend Stack:} Dashboard amministrativa sviluppata in Angular e Progressive Web App (PWA) per i dipendenti realizzata con Next.js.
     \item \textbf{Backend Core:} Logica applicativa basata su Ruby on Rails (API-first) gestita tramite AWS ECS Fargate per un ambiente containerizzato e stateless.
     \item \textbf{Document Processing:} Pipeline di analisi documentale che integra tecnologie OCR per l'estrazione del testo e algoritmi di \textit{Entity Resolution} per l'associazione automatica dei documenti ai dipendenti.
-    \item \textbf{Gestione Asincrona:} Utilizzo di Sidekiq e code AWS SQS per gestire i carichi di lavoro pesanti senza impattare sulla
+    \item \textbf{Gestione Asincrona:} Utilizzo di Sidekiq e code AWS SQS per gestire i carichi di lavoro pesanti.
 \end{itemize}
 
 \subsubsection{Considerazioni}
 L'analisi del capitolato ha portato alle seguenti conclusioni:
 \begin{itemize}
     \item \textbf{Valore Formativo e Metodologico:} Lo stack tecnologico (RoR, Angular, Next.js) è molto richiesto dal mercato. L'adozione obbligatoria del modello SCRUM con sprint di 10 giorni offre un'ottima esperienza professionale.
-    \item \textbf{Solidità dei Requisiti:} I casi d'uso, come lo split dei documenti massivi e il sistema di rating dell'AI, sono definiti in modo granulare, permettendo una pianificazione dei task molto chiara.
-    \item \textbf{Eccessiva Rigidità:} Dalla spiegazione fornita dal proponente, il progetto è apparso rigido nella sua impostazione. La struttura sembra lasciare poco spazio alla creatività del gruppo o alla possibilità di proporre soluzioni originali.
-    \item \textbf{Valutazione Finale:} Il capitolato è considerato interessante per la sua fattibilità tecnica, ma la rigidità dell'impostazione lo colloca in una posizione secondaria rispetto alla prima scelta del team.
-\end{itemize}
+    \item \textbf{Solidità dei requisiti:} La documentazione è estremamente dettagliata e priva di ambiguità. Ogni funzionalità è descritta tramite scenari principali, attori coinvolti, pre-condizioni e post-condizioni. Sono esplicitati compiti specifici come lo \textbf{split dei documenti massivi} per destinatario e il sistema di \textbf{rating} per valutare la qualità dei contenuti generati dall'AI. Tale precisione, confermata anche per quanto riguarda la disponibilità tecnica durante l'incontro con i referenti aziendali\footnote{\href{https://github.com/thebitless-group-swe/thebitless.github.io/blob/main/candidatura/verbali/verbali_esterni/VE_2026-03-18_Eggon/VE_2026-03-18_Eggon.pdf}{Verbale esterno Eggon del 2026-03-18}}, permette una pianificazione dei task e delle tempistiche molto accurata.
+    \item \textbf{Rigidità:} Dall'analisi del capitolato, il progetto è apparso rigido nella sua impostazione. La struttura sembra lasciare poco spazio alla creatività del gruppo o alla possibilità di proporre soluzioni originali.    
+    \end{itemize}
 
+ In sintesi, abbiamo apprezzato il progetto Nexum inserendolo tra i preferiti per l'interesse verso l'integrazione di soluzioni innovative di intelligenza artificiale in casi d'uso reali e per la chiarezza degli obiettivi da loro delineati.
+ 
 
 \end{document}
