@@ -1,9 +1,13 @@
 \begin{titlepage} 
       \begin{center}
             \thispagestyle{empty}
-            \includegraphics[width=15cm]{../../../../templates/logo_gruppo.png}
+            \includegraphics[width=15cm]{../templates/logo_gruppo.png}
             \begin{spacing}{1.2}
-                \Huge{\textbf{Verbale \tipoverbale \ \dataverbale}}
+                \ifdefined\titolodocumento
+                    \Huge{\textbf{\titolodocumento}}
+                \else
+                    \Huge{\textbf{Verbale \tipoverbale \ \dataverbale}}
+                \fi
             \end{spacing}
 
             \vspace{2cm}

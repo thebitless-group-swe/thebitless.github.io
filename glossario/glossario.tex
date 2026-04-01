@@ -1,0 +1,112 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage[a-1b]{pdfx}
+\usepackage[italian]{babel}
+\usepackage{comment}      
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{minted} 
+\usepackage{geometry}
+\usepackage{array}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{eurosym}
+\usepackage{tikz}
+\usepackage{pgf-pie}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{Glossario}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    linkbordercolor=0 0 0, 
+    urlbordercolor=0 0 0,
+    citebordercolor=0 0 0,
+    filebordercolor=0 0 0,
+    breaklinks=true,
+}
+
+% Comando per i termini del glossario
+\newcommand{\glossaryterm}[2]{
+    \paragraph{#1 \label{term:#1}} \mbox{} \\
+    #2
+    \vspace{0.5em}
+}
+
+\begin{document}
+
+\newcommand{\titolodocumento}{Glossario}
+\newcommand{\dataversione}{2026-04-01}
+\newcommand{\versione}{0.0.1}
+\newcommand{\stato}{Stesura}
+\newcommand{\destinatari}{Prof. Tullio Vardanega, prof. Riccardo Cardin, The Bitless}
+
+\pagenumbering{roman}
+\input{../templates/frontespizio.tex}
+\newpage
+
+\begin{center}
+    \begin{tabularx}{\textwidth}{|c|c|c|c|c|>{\raggedright\arraybackslash}X|}
+        \hline
+        \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
+        \hline
+        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
+        \hline
+        0.0.1 & 2026-04-01 & Davide Facco & -- & -- & Prima stesura e aggiunta termini base \\
+        \hline
+    \end{tabularx}
+\end{center}
+
+\newpage
+
+\tableofcontents
+\newpage
+
+\pagenumbering{arabic}
+
+\section{Introduzione}
+Questo documento ha lo scopo di garantire chiarezza e uniformità nella terminologia utilizzata all'interno dei documenti del progetto \textit{Second Brain}, evitando ambiguità o fraintendimenti. A tal fine, vengono fornite descrizioni dettagliate dei termini tecnici e/o potenzialmente ambigui, organizzate in ordine alfabetico per agevolare la consultazione.
+
+Per indicare che un termine è presente nel Glossario si evidenzierà la parola stessa tramite l'aggiunta di una \textbf{G} al pedice (es. Termine\textsubscript{G}). Il Glossario rappresenta quindi uno strumento fondamentale per la standardizzazione del linguaggio e per favorire una comunicazione chiara ed efficace.
+
+\newpage
+
+\section*{A}
+\addcontentsline{toc}{section}{A}
+
+\glossaryterm{AC}{Acronimo di Actual Cost. Per la definizione di Actual Cost, cercare la parola nel glossario.}
+
+\glossaryterm{Actual Cost}{Metrica che rappresenta il costo effettivo sostenuto per completare il lavoro in un determinato periodo. Utilizzata per monitorare l'andamento economico del progetto e valutare se i costi sono allineati con le previsioni iniziali.}
+
+\glossaryterm{API}{Acronimo di Application Programming Interface. È un insieme di definizioni, protocolli e strumenti che permettono la comunicazione e l'interazione tra software differenti, facilitando l'integrazione di servizi o componenti esterni.}
+
+\vspace{1cm}
+
+\section*{B}
+\addcontentsline{toc}{section}{B}
+
+\glossaryterm{Backend}{Il Backend rappresenta la parte server di un'applicazione software, responsabile della logica di business, della gestione dei dati, dell'elaborazione delle richieste e dell'interazione con i database. Opera in background senza essere direttamente visibile all'utente finale.}
+
+\glossaryterm{Baseline}{Una Baseline è una versione approvata e congelata di un insieme di elementi di progetto, che funge da riferimento stabile per il controllo e la gestione delle modifiche.}
+
+\vspace{1cm}
+
+\section*{C}
+\addcontentsline{toc}{section}{C}
+
+\glossaryterm{Capitolato}{Il Capitolato è un documento formale che descrive in dettaglio le caratteristiche, i requisiti e le condizioni di un progetto proposto da un'azienda o ente. Include gli obiettivi, le tecnologie consigliate, i vincoli e le aspettative relative al prodotto da realizzare.}
+
+\glossaryterm{Caso d'Uso}{Descrizione di un insieme di scenari o sequenze di azioni che condividono un obiettivo comune, volto al raggiungimento di uno scopo specifico da parte di un attore (utente o sistema esterno) che interagisce con il sistema.}
+
+\end{document}
