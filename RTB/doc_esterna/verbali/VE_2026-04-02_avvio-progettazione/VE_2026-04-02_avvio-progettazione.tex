@@ -1,0 +1,160 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+
+\usepackage[a-1b]{pdfx}
+
+\usepackage[italian]{babel}
+
+\usepackage{comment}      
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{minted} 
+
+\usepackage{graphicx}
+\usepackage{geometry}
+
+\usepackage{float} 
+
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{Verbale \tipoverbale \ \dataverbale}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,           
+    linkbordercolor=0 0 0,      
+    urlbordercolor=0 0 0,      
+    citebordercolor=0 0 0,     
+    filebordercolor=0 0 0,     
+    breaklinks=true,           
+}
+\newcommand{\issue}[1]{\href{https://github.com/thebitless-group-swe/thebitless.github.io/issues/#1}{\##1}}
+
+\begin{document}
+\newcommand{\tipoverbale}{esterno}
+\newcommand{\dataverbale}{2026-04-02}
+\newcommand{\dataversione}{2026-04-02}
+\newcommand{\versione}{1.0.0}
+\newcommand{\stato}{Approvato}
+\newcommand{\destinatari}{The Bitless, prof. T. Vardanega, prof. R. Cardin, Zucchetti}
+
+\pagenumbering{roman}
+
+\input{../../../../templates/frontespizio.tex}
+
+\newpage
+
+\begin{center}
+    \thispagestyle{empty}
+    \begin{tabular}{|c|c|c|c|c|c|}
+                    \hline
+                    \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
+                    \hline
+                    \textbf{Versione} & \textbf{Data} & \textbf{Autore}  & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione breve} \\
+                    \hline 
+                    1.0.0 & \dataversione & A. Marini &  S. Vendramin  & S. Vendramin & Approvazione \\
+                    0.1.0 & \dataverbale & A. Marini &  S. Vendramin  & - & Prima stesura \\
+                    \hline
+                \end{tabular}
+\end{center}
+
+\newpage
+
+\tableofcontents
+
+\pagenumbering{arabic}
+
+\newpage
+\section{Informazioni sulla riunione}
+In data \textbf{\dataverbale}, a seguito dell'aggiudicazione del capitolato C6 \textbf{''Second Brain''} si è svolta una riunione con il referente aziendale di Zucchetti \textbf{Gregorio Piccoli}. L'incontro è stato finalizzato a definire i passi operativi per la progettazione dell'applicativo, con un focus particolare sulla corretta stesura dei casi d'uso, la definizione dell'architettura tecnica e le modalità di integrazione degli LLM. La riunione si è tenuta in modalità telematica tramite \textbf{Google Meet}, con inizio alle ore 11:00 e conclusione alle 11:30.
+\section{Partecipanti}
+
+\subsection{Interni}
+\begin{center}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
+\hline
+Lorenzo & Battistella & Presente \\
+Edoardo & De Piccoli & Presente \\
+Davide & Facco & Presente \\
+Anna & Marini & Presente \\
+Andrea & Menegaldo & Presente \\
+Samuele & Vendramin & Presente \\
+Simone & Zecchinato & Presente \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Esterni}
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Nome} & \textbf{Azienda} \\
+\hline
+Gregorio Piccoli & Zucchetti S.p.A. \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ordine del giorno}
+
+\subsection{Analisi e redazione dei casi d'uso}
+Il referente ha sottolineato la necessità di esplorare tutte le caratteristiche del sistema. L'analisi deve coprire principalmente:
+\begin{itemize}
+    \item \textbf{Editing base:} Formattazione (grassetti, corsivi, titoli), gestione Markdown, ricerca/sostituzione e operazioni di clipboard (copia, taglia, incolla).
+    \item \textbf{Funzionalità AI:} Correzione grammaticale, traduzione e analisi critica basata sulla metodologia dei "Sei Cappelli per Pensare".
+    \item \textbf{Salvataggio e Persistenza:} Gestione del ciclo di vita dei documenti, includendo il salvataggio, il caricamento di file esistenti e l'esportazione in diversi formati.
+\end{itemize}
+È stata richiesta una documentazione strutturata che identifichi chiaramente attori e confini del sistema, seguendo le direttive per la gestione degli errori e delle eccezioni tramite relazioni di \textit{include} ed \textit{extend}.
+
+\subsection{Architettura e Proof of Concept (PoC)}
+A seguito della stesura dell'Analisi dei Requisiti, il gruppo dovrà delineare un'architettura di massima che evidenzi i blocchi logici e le interazioni tecnologiche. Il PoC non dovrà essere una serie di test isolati, ma dovrà fungere da dimostrazione concreta che i punti critici individuati siano risolvibili tecnicamente. Solo dopo il superamento del PoC si procederà allo sviluppo dell'MVP, focalizzandosi su test coverage e aspetti estetici.
+
+\subsection{Scelte tecnologiche}
+Per lo sviluppo client, il team ha libertà di scelta, si consigliano i framework React e Angular. Per il backend sono stati suggeriti Java o Python per l'interazione con gli LLM. 
+In merito alla persistenza, è stato concordato di iniziare con una gestione basata su file; l'introduzione di un database è facoltativa e basata sulla volontà del team di approfondire tale tecnologia.
+
+\subsection{Pianificazione e comunicazione}
+Si è concordato di mantenere un canale di comunicazione aperto via email per la risoluzione di eventuali dubbi che dovessero emergere durante la stesura dei casi d'uso. Una volta completata la redazione dell'Analisi dei Requisiti, il gruppo provvederà all'invio della documentazione al referente Zucchetti. Seguirà un incontro di revisione per valutare l'adeguatezza del lavoro svolto e la rispondenza alle aspettative aziendali prima di procedere alle fasi successive.
+
+\section{Attività da svolgere}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
+\hline
+\textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
+\hline
+A. Marini & Redigere il verbale del \dataverbale & \centering \issue{63} \tabularnewline
+\hline
+S. Vendramin & Redigere struttura Analisi dei Requisiti & \centering \issue{65} \tabularnewline
+\hline
+Tutti i componenti & Stesura dei possibili casi d'uso in vista della prossima riunione interna & \centering -- \tabularnewline
+\hline
+Tutti i componenti & Valutazione preliminare di framework e librerie Markdown per verificarne la compatibilità con i requisiti & \centering -- \tabularnewline
+\hline
+\end{tabular}
+\end{center}
+
+\vfill
+
+\noindent
+\begin{minipage}[t]{0.45\textwidth}
+  \textbf{Luogo e data} \\
+  \vspace{0.5cm}
+  Padova, 2 aprile 2026
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+  \raggedleft
+  \textbf{Zucchetti S.p.A.} \\
+  \vspace{1.8cm} 
+  \rule{6cm}{0.4pt} \\ % Riga continua
+\end{minipage}
+
+\end{document}
