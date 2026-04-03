@@ -1,0 +1,113 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+\usepackage[italian]{babel} 
+\usepackage{comment}      
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{geometry}
+\usepackage{float} 
+\usepackage{setspace}
+\usepackage{tabularx}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{Analisi dei Capitolati}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    pdfborderstyle={/S/U/W 1},
+    linkbordercolor=0 0 0,
+    urlbordercolor=0 0 0,
+    citebordercolor=0 0 0,
+    filebordercolor=0 0 0,
+    breaklinks=true,
+}
+
+\begin{document}
+
+\newcommand{\tipoverbale}{Analisi dei Requisiti}
+\newcommand{\dataverbale}{}
+\newcommand{\dataversione}{2026-04-03}
+\newcommand{\versione}{0.1.0}
+\newcommand{\stato}{Stesura}
+\newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+\def\templatedir{../../../templates}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+\input{../../../templates/frontespizio.tex}
+\end{titlepage}
+
+\newpage
+\pagenumbering{arabic}
+
+\begin{center}
+    \small
+    \begin{tabularx}{\textwidth}{|c|c|L|c|c|L|}
+        \hline
+        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
+        \hline
+        0.1.0 & 2026-03-21 & S. Vendramin & A. Menegaldo & - & Struttura documento \\
+        \hline
+    \end{tabularx}
+\end{center}
+
+\newpage
+
+\section{Introduzione}
+
+\subsection{Finalità del documento}
+
+\subsection{Sviluppo del documento}
+
+\subsection{Riferimenti}
+
+\subsubsection{Riferimenti Normativi}
+
+\subsubsection{Riferimenti Informativi}
+
+\newpage
+
+\section{Descrizione del prodotto}
+
+\subsection{Prospettiva del prodotto}
+
+\subsection{Obiettivi del prodotto}
+
+\subsection{Funzionalità del prodotto}
+
+\subsection{Utenza di riferimento}
+
+\newpage
+
+\section{Casi d'uso}
+\subsection{Introduzione}
+
+\subsection{Attori principali}
+
+\subsection{Attori secondari}
+
+\subsection{Lista dei casi d'uso}
+
+\subsubsection{Editing di base}
+
+\subsubsection{Funzionalità AI}
+
+\subsubsection{Salvataggio e Persistenza}
+
+\newpage
+
+\section{Requisiti}
+
+\subsection{Requisiti Funzionali}
+
+\subsection{Requisiti di Qualità}
+
+\subsection{Requisiti di Vincolo}
+
+\end{document}
