@@ -45,7 +45,6 @@ function makeDocList(docs) {
   ul.className = "doc-list";
   docs.forEach(({ name, href }, i) => {
     const li = document.createElement("li");
-    li.style.setProperty("--i", i);
     const a = document.createElement("a");
     a.href = href;
     a.className = "doc-link";
@@ -165,24 +164,10 @@ function initTheme() {
   applyTheme(saved ?? (prefersDark ? "dark" : "light"));
 }
 
-function animateEntrance() {
-  const logo = document.querySelector(".logo-wrap");
-  if (logo) logo.classList.add("anim-pop");
-
-  document.querySelectorAll(".section").forEach((el, i) => {
-    el.style.setProperty("--i", i);
-    el.classList.add("anim-slide-up");
-  });
-
-  const footer = document.querySelector("footer");
-  if (footer) footer.classList.add("anim-fade");
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   initTheme();
   renderDocs();
   renderTeam();
-  animateEntrance();
 
   document.getElementById("theme-toggle")?.addEventListener("click", () => {
     const current = document.documentElement.getAttribute("data-theme");

@@ -220,20 +220,6 @@ details[open] .chevron {
   flex-direction: column;
 }
 
-.doc-list li {
-  opacity: 0;
-  transform: translateX(-8px);
-  animation: doc-enter 0.38s var(--ease-out-expo) forwards;
-  animation-delay: calc(var(--i, 0) * 50ms + 80ms);
-}
-
-@keyframes doc-enter {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
 .doc-link {
   display: inline-flex;
   align-items: center;
@@ -541,45 +527,3 @@ footer {
   padding: 56px 0;
 }
 
-/* ── ENTRANCE ANIMATIONS ── */
-
-.anim-pop {
-  animation: pop-in 0.6s var(--ease-out-expo) both;
-}
-
-@keyframes pop-in {
-  from {
-    opacity: 0;
-    transform: scale(0.7);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.anim-slide-up {
-  animation: slide-up 0.5s var(--ease-out-expo) both;
-  animation-delay: calc(var(--i, 0) * 80ms + 200ms);
-}
-
-@keyframes slide-up {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.anim-fade {
-  animation: fade-in 0.6s ease both;
-  animation-delay: 500ms;
-}
-
-@keyframes fade-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
