@@ -7,6 +7,7 @@
 \usepackage{geometry}
 \usepackage{float} 
 \usepackage{setspace}
+\definecolor{bluBitless}{HTML}{3A75C4}
 \usepackage{tabularx}
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
 \usepackage{fancyhdr}
@@ -14,18 +15,18 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{The Bitless}
-\fancyhead[R]{Analisi dei Capitolati}
+\fancyhead[R]{Analisi dei Requisiti}
 \fancyfoot[C]{\thepage}
 
 \usepackage{hyperref}
 \hypersetup{
-    colorlinks=false,
-    pdfborderstyle={/S/U/W 1},
-    linkbordercolor=0 0 0,
-    urlbordercolor=0 0 0,
-    citebordercolor=0 0 0,
-    filebordercolor=0 0 0,
+    colorlinks=true,
+    linkcolor=0 0 0 0, 
+    urlcolor=bluBitless,     
+    citecolor=0 0 0 0,  
+    filecolor=0 0 0 0,
     breaklinks=true,
+    pdfpagemode=UseNone    
 }
 
 \begin{document}
@@ -52,6 +53,8 @@
         \hline
         \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
         \hline
+        0.2.0 & 2026-04-08 & A. Marini & S. Vendramin & - & Stesura Introduzione \\
+        \hline
         0.1.0 & 2026-03-21 & S. Vendramin & A. Menegaldo & - & Struttura documento \\
         \hline
     \end{tabularx}
@@ -62,14 +65,46 @@
 \section{Introduzione}
 
 \subsection{Finalità del documento}
+Il presente documento rappresenta il fondamento metodologico su cui poggia l'intero sviluppo del software, agendo come interprete tra le visioni della Proponente \textbf{Zucchetti S.p.A.} e la loro traduzione in specifiche tecniche concrete. Esso ha il ruolo cruciale di definire un perimetro di sviluppo certo, garantendo che ogni funzionalità sia verificabile e che il prodotto finale risponda esattamente alle attese di qualità e affidabilità prefissate.
+
+Nello specifico, il documento persegue i seguenti obiettivi:
+
+\begin{itemize}
+    \item \textbf{Definizione del perimetro funzionale:} Identifica con precisione \textit{cosa} il Sistema$_G$ debba realizzare (requisiti funzionali) e quali standard qualitativi debba rispettare (requisiti non funzionali, quali usabilità, sicurezza e performance), tracciando i confini operativi e i vincoli$_G$ tecnologici del progetto.
+    
+    \item \textbf{Sincronizzazione degli Stakeholder$_G$:} Agisce come un "contratto tecnico" tra il team di sviluppo e il committente$_G$. L'utilizzo di un linguaggio condiviso permette di allineare le aspettative di analisti, progettisti e tester$_G$, eliminando ambiguità che potrebbero compromettere la validità del prodotto finale.
+    
+    \item \textbf{Fondamento per la Progettazione e Verifica:} Fornisce l'input$_G$ necessario per le fasi di architettura e codifica, costituendo al contempo la base oggettiva per le attività di verifica e convalida. Senza questi parametri, non sarebbe possibile attestare la conformità del software alle richieste originali.
+    
+    \item \textbf{Governo del Cambiamento e dei Rischi:} Il documento funge da strumento di controllo preventivo, permettendo di intercettare criticità tecnologiche, incongruenze logiche o requisiti irrealizzabili prima dell'inizio della fase di codifica.
+\end{itemize}
 
 \subsection{Sviluppo del documento}
+La stesura del presente documento segue un approccio di tipo \textbf{incrementale$_G$}. Tale scelta metodologica è finalizzata a garantire un'elevata manutenibilità$_G$ del testo, permettendo l'integrazione di modifiche o integrazioni derivanti dal confronto continuo tra il gruppo The Bitless e i committenti$_G$. 
+
+Il documento è dunque da considerarsi dinamico, soggetto a un processo di raffinamento e miglioramento costante lungo tutto il ciclo di vita del progetto.
 
 \subsection{Riferimenti}
 
 \subsubsection{Riferimenti Normativi}
+\begin{itemize}
+    \item \textbf{Capitolato C6 - Second Brain}: \\
+    \url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C6.pdf}
+    \item \textbf{Regolamento del Progetto Didattico}: \\
+    \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf}
+    \item \textbf{Norme di Progetto}: \\
+    \url{https://thebitless.github.io/RTB/doc_interna/norme-di-progetto/norme-di-progetto.pdf}
+\end{itemize}
 
 \subsubsection{Riferimenti Informativi}
+\begin{itemize}
+    \item \textbf{Glossario di Progetto}: \\
+    \url{https://thebitless.github.io/RTB/doc_interna/glossario/glossario.pdf}
+    \item \textbf{Dispense Analisi dei requisiti}: \\
+    \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf}
+    \item \textbf{Dispense Casi d'uso}: \\
+    \url{https://www.math.unipd.it/~rcardin/swea/2022/Diagrammi%20Use%20Case.pdf}
+\end{itemize}
 
 \newpage
 
