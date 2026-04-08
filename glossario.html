@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TheBitless</title>
+  <title>Glossario — TheBitless</title>
   <link rel="stylesheet" href="website/styles.css">
   <script>
     (function(){var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();
@@ -15,42 +15,30 @@
     <div class="navbar-inner">
       <a href="index.html" class="navbar-brand">TheBitless</a>
       <div class="navbar-links">
-        <a href="index.html" class="nav-link active">Home</a>
-        <a href="glossario.html" class="nav-link">Glossario</a>
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="glossario.html" class="nav-link active">Glossario</a>
       </div>
     </div>
   </nav>
 
   <main>
-
-    <div class="logo-wrap">
-      <img src="website/assets/logo.png" alt="TheBitless">
+    <div class="glossary-header">
+      <h1 class="glossary-title">Glossario</h1>
+      <p class="glossary-subtitle">Definizioni dei termini tecnici e metodologici usati nel progetto.</p>
     </div>
 
-    <details id="candidatura" data-section="candidatura" class="section" open>
-      <summary class="section-head">
-        <span class="section-title">Candidatura</span>
-        <span class="chevron" aria-hidden="true">+</span>
-      </summary>
-      <div class="section-body"></div>
-    </details>
+    <div class="search-wrap">
+      <input
+        type="search"
+        id="search-input"
+        class="search-input"
+        placeholder="Cerca un termine..."
+        aria-label="Cerca nel glossario"
+        autocomplete="off"
+      >
+    </div>
 
-    <details id="rtb" data-section="rtb" class="section" open>
-      <summary class="section-head">
-        <span class="section-title">RTB</span>
-        <span class="chevron" aria-hidden="true">+</span>
-      </summary>
-      <div class="section-body"></div>
-    </details>
-
-    <details id="diapositive" data-section="diapositive" class="section" open>
-      <summary class="section-head">
-        <span class="section-title">Diapositive</span>
-        <span class="chevron" aria-hidden="true">+</span>
-      </summary>
-      <div class="section-body"></div>
-    </details>
-
+    <div class="glossary-grid" id="glossary-grid"></div>
   </main>
 
   <footer>
@@ -64,9 +52,9 @@
         <span class="theme-icon theme-icon--dark">☽</span>
       </button>
     </div>
-    <div class="team-grid" id="team-grid"></div>
   </footer>
 
   <script src="website/javascript.js"></script>
+  <script src="website/glossario.js"></script>
 </body>
 </html>
