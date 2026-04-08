@@ -513,6 +513,21 @@ footer {
   line-height: 1.65;
 }
 
+.glossary-divider {
+  grid-column: 1 / -1;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 28px 0 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.glossary-divider:first-child {
+  padding-top: 0;
+}
+
 .glossary-empty {
   grid-column: 1 / -1;
   text-align: center;

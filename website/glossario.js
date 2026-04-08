@@ -211,10 +211,19 @@ function renderGlossario(filter) {
     return;
   }
 
-  items.forEach(({ term, desc }, i) => {
+  let currentLetter = null;
+  items.forEach(({ term, desc }) => {
+    const letter = term[0].toUpperCase();
+    if (letter !== currentLetter) {
+      currentLetter = letter;
+      const divider = document.createElement("div");
+      divider.className = "glossary-divider";
+      divider.textContent = letter;
+      grid.appendChild(divider);
+    }
+
     const card = document.createElement("div");
-    card.className = "glossary-card anim-slide-up";
-    card.style.setProperty("--i", i);
+    card.className = "glossary-card";
 
     const title = document.createElement("p");
     title.className = "card-term";
