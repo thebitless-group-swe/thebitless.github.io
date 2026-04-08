@@ -45,6 +45,66 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
+/* ── NAVBAR ── */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.navbar-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 52px;
+  gap: 24px;
+}
+
+.navbar-brand {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--fg);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  transition: color 0.15s;
+}
+
+.navbar-brand:hover {
+  color: var(--accent);
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-link {
+  font-size: 14px;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.nav-link:hover {
+  color: var(--fg);
+  background: var(--accent-light);
+}
+
+.nav-link.active {
+  color: var(--accent);
+  font-weight: 500;
+}
+
 /* ── LOGO ── */
 
 .logo-wrap {
@@ -371,6 +431,95 @@ footer {
   color: var(--muted);
   text-align: center;
   line-height: 1.3;
+}
+
+/* ── GLOSSARY PAGE ── */
+
+.glossary-header {
+  padding: 40px 0 8px;
+}
+
+.glossary-title {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--fg);
+  margin-bottom: 6px;
+}
+
+.glossary-subtitle {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.search-wrap {
+  padding: 20px 0 4px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 11px 16px;
+  font-size: 15px;
+  font-family: var(--font);
+  background: var(--card-bg);
+  color: var(--fg);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-input::placeholder {
+  color: var(--muted);
+}
+
+.search-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+
+.glossary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+  padding: 20px 0 56px;
+}
+
+.glossary-card {
+  background: var(--card-bg);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s var(--ease-out-expo);
+}
+
+.glossary-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 16px rgba(48, 101, 152, 0.1);
+  transform: translateY(-2px);
+}
+
+.card-term {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.card-desc {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.glossary-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--muted);
+  font-size: 15px;
+  font-style: italic;
+  padding: 56px 0;
 }
 
 /* ── ENTRANCE ANIMATIONS ── */
