@@ -1,0 +1,231 @@
+\documentclass[a4paper, 10pt]{article} 
+
+\usepackage[italian]{babel} 
+\usepackage{xcolor} 
+\usepackage{comment}      
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{geometry}
+\usepackage{float} 
+\usepackage{setspace}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+
+\definecolor{bluBitless}{HTML}{3A75C4}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=0 0 0 0, 
+    urlcolor=bluBitless,     
+    citecolor=0 0 0 0,  
+    filecolor=0 0 0 0,
+    breaklinks=true,
+    pdfpagemode=UseNone    
+}
+\urlstyle{same} 
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{Norme di Progetto}
+\fancyfoot[C]{\thepage}
+
+\begin{document}
+
+\newcommand{\tipoverbale}{Norme di Progetto}
+\newcommand{\dataverbale}{}
+\newcommand{\dataversione}{2026-04-03}
+\newcommand{\versione}{0.1.0}
+\newcommand{\stato}{In stesura}
+\newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+\input{../../../../templates/frontespizio.tex}
+\end{titlepage}
+
+\newpage
+\pagenumbering{arabic}
+
+\begin{center}
+    \small
+    \begin{tabularx}{\textwidth}{|c|c|L|c|c|L|}
+        \hline
+        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
+        \hline 
+        0.1.0 & 2026-04-03 & A. Marini & S. Zecchinato & - & Introduzione e Processi primari \\
+        \hline
+    \end{tabularx}
+\end{center}
+
+\newpage
+\tableofcontents 
+
+\newpage
+
+\section{Introduzione}
+
+\subsection{Scopo del documento}
+Questo documento delinea le modalità operative, denominate \textit{Way of Working$_G$}, adottate dal team \textbf{The Bitless}. Il suo scopo è stabilire un protocollo comune di lavoro: una serie di norme e best practice che ogni componente del gruppo deve rispettare. Questo garantisce che lo sviluppo proceda in modo fluido, ordinato e con uno standard qualitativo elevato.
+
+Il documento recepisce le direttive del \textit{Regolamento del Progetto Didattico} e si ispira allo standard internazionale \textbf{ISO/IEC 12207:1995}. Tale norma individua tre principali tipologie di processi:
+\begin{itemize}
+    \item \textbf{Processi Primari}: tutto ciò che serve a creare il prodotto, dalla raccolta dei requisiti fino alla manutenzione finale;
+    \item \textbf{Processi di Supporto}: attività trasversali che garantiscono la solidità del lavoro, come la gestione della configurazione e le attività di test;
+    \item \textbf{Processi Organizzativi}: compiti dedicati alla gestione delle risorse, alla formazione interna e al costante miglioramento dell'infrastruttura di squadra.
+\end{itemize}
+
+In linea con lo standard, è stato applicato un processo di \textbf{personalizzazione (tailoring$_G$)}, selezionando esclusivamente gli elementi necessari al nostro contesto specifico, evitando sovraccarichi burocratici. Il documento seguirà un approccio \textbf{incrementale}, venendo aggiornato e perfezionato man mano che il team acquisisce nuove competenze e feedback.
+
+\subsection{Finalità del prodotto}
+In sinergia con la proponente \textbf{Zucchetti S.p.A.}, il gruppo sta realizzando \textbf{Second Brain}, una piattaforma digitale per la gestione della conoscenza basata sul formato \textbf{Markdown$_G$}. L'applicativo offre una doppia visualizzazione: un'area di scrittura pulita e un'anteprima immediata del risultato finale.
+
+Il valore aggiunto del progetto risiede nell'integrazione di \textbf{LLM$_G$} per abilitare il concetto di \textbf{``Distant Writing''$_G$}. In questo modello, l'utente assume il ruolo di progettista del testo e coordinatore del ``plot'', mentre l'intelligenza artificiale interviene iterativamente nella stesura dei contenuti, supportando operazioni di riscrittura, riassunto, traduzione ed estrazione di concetti rilevanti.
+
+Il sistema non si limita a scrivere, ma analizza: sfruttando la tecnica dei \textbf{``Sei Cappelli per Pensare''}, l'assistente virtuale è capace di esaminare i testi da diverse prospettive, offrendo un supporto decisionale strutturato.
+
+Il termine ultimo per la consegna è fissato per il \textbf{20 marzo 2026}, con un budget operativo previsto di \textbf{12.865,00 €}.
+
+\subsection{Glossario e chiarezza terminologica}
+La progettazione di un software è un'attività complessa che richiede un linguaggio comune per evitare fraintendimenti. Per questo motivo, abbiamo redatto un \textbf{Glossario} dedicato. Ogni termine tecnico o specifico del dominio che richiede un approfondimento è contrassegnato da una "G" a pedice, segnalando che la sua definizione completa è consultabile nel documento esterno. Ad esempio: \textit{parola$_G$}.
+
+\subsection{Riferimenti}
+
+\subsubsection{Riferimenti normativi}
+\begin{itemize}
+    \item \textbf{Capitolato C6 - Second Brain}: \\
+    \url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C6.pdf}
+    \item \textbf{Regolamento del Progetto Didattico}: \\
+    \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf}
+    \item \textbf{Standard ISO/IEC 12207:1995}: \\
+    \url{www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf}
+\end{itemize}
+
+\subsubsection{Riferimenti informativi}
+\begin{itemize}
+    \item \textbf{Glossario di Progetto}: \\
+    \url{https://thebitless.github.io/documents/documenti_interni/glossario.pdf} (DA METTERE IL LINK GIUSTO)
+\end{itemize}
+
+\section{Processi Primari}
+In conformità allo standard \textbf{ISO/IEC 12207:1995}, i processi primari costituiscono le attività essenziali che coprono l'intero ciclo di vita del software. Essi definiscono le responsabilità operative e gestionali delle figure coinvolte nella realizzazione del progetto.
+
+Il gruppo \textbf{The Bitless} ha selezionato i seguenti processi come cardini del proprio \textit{Way of Working$_G$}:
+\begin{itemize}
+    \item \textbf{Fornitura} (Supply Process);
+    \item \textbf{Sviluppo} (Development Process).
+\end{itemize}
+
+\subsection{Fornitura}
+Il processo di fornitura regolamenta il rapporto tra il gruppo (fornitore) e il committente (docenti e azienda). In questa fase, la priorità è la gestione delle aspettative e il rispetto dei vincoli economici e temporali.
+
+\subsubsection{Gestione della comunicazione}
+Per garantire un coordinamento efficace delle attività di fornitura, sono stati selezionati i seguenti strumenti:
+\begin{itemize}
+    \item \textbf{GitHub$_G$}: utilizzato per la gestione del \textit{Backlog$_G$} e del sistema di \textit{ticketing$_G$}, fondamentali per monitorare l'avanzamento dei lavori e la pianificazione tramite Diagrammi di Gantt$_G$;
+    \item \textbf{Discord e WhatsApp}: canali dedicati rispettivamente alle riunioni sincrone e alle comunicazioni rapide asincrone tra i membri;
+    \item \textbf{Google Mail}: canale ufficiale per la corrispondenza formale. Viene impiegato esclusivamente per le comunicazioni scritte verso i referenti esterni e le istituzioni, garantendo tracciabilità;
+    \item \textbf{Google Meet}: piattaforma scelta per le conferenze da remoto con l'azienda proponente. Questo strumento permette di svolgere revisioni periodiche e presentazioni dello stato di avanzamento in un ambiente stabile e condiviso.3
+\end{itemize}
+
+\subsubsection{Attività previste}
+In linea con lo standard, il processo di fornitura si articola in sette attività principali:
+\begin{enumerate}
+    \item \textbf{Initiation}: rappresenta il punto di partenza in cui il gruppo compie un'analisi approfondita delle richieste avanzate dal proponente (\textbf{RFP$_G$}). Gli studenti valutano i requisiti per determinare la fattibilità$_G$ del progetto e verificare che il team possieda le competenze tecniche necessarie per procedere.
+    
+    \item \textbf{Preparation of response}: fase dedicata alla redazione della proposta progettuale. In questo stadio viene definito il \textbf{Tailoring$_G$} dello standard, selezionando esclusivamente i processi e i compiti realmente funzionali agli obiettivi del gruppo, mantenendo il rigore metodologico richiesto.
+    
+    \item \textbf{Contract}: accordo formale tra il gruppo, il docente e il tutor aziendale. Vengono definiti con precisione i \textbf{deliverable$_G$}, le scadenze temporali e i criteri di accettazione per pervenire alla formalizzazione del contratto sui requisiti e alla stipula definitiva.
+    
+    \item \textbf{Planning}: fase in cui il team organizza il lavoro internamente definendo il \textbf{framework$_G$} di gestione. Si sceglie il modello di sviluppo, si distribuiscono i compiti, si allocano le risorse e si effettua un'analisi preventiva dei rischi tecnici e temporali.
+    
+    \item \textbf{Execution and control}: attuazione operativa dei piani definiti e produzione vera e propria di codice e documentazione. Il gruppo monitora costantemente lo stato di avanzamento del lavoro, il rispetto del budget$_G$ e delle tempistiche, gestendo le criticità in itinere per garantire la stabilità del progetto.
+    
+    \item \textbf{Review and evaluation}: consiste negli incontri periodici con il tutor aziendale per mostrare avanzamenti e ricevere feedback. Vengono applicati processi di \textbf{Verifica$_G$} e \textbf{Validazione$_G$} per dimostrare che il software soddisfi i requisiti e sia pronto per l'accettazione finale.
+    
+    \item \textbf{Delivery and completion}: fase conclusiva di consegna del prodotto e della documentazione. Include il supporto durante i test di accettazione e l'eventuale formazione del personale aziendale per l'installazione e l'utilizzo del software, secondo i termini contrattuali stabiliti.
+\end{enumerate}
+
+\subsubsection{Documentazione fornita}
+Il gruppo The Bitless si impegna nella redazione e nel costante aggiornamento della documentazione di progetto. Tali documenti sono essenziali per garantire la continuità operativa del team e una comunicazione trasparente con i soggetti esterni.
+
+\paragraph{Documenti ad Uso Esterno}
+Questi artefatti sono destinati al committente$_G$ e ai proponenti per formalizzare accordi, piani e risultati tecnici:
+\begin{itemize}
+    \item \textbf{Lettera di Candidatura}: istanza formale con cui il gruppo manifesta l'interesse per il capitolato C6 proposto da \textbf{Zucchetti S.p.A.}. Illustra le ragioni della scelta e fornisce le coordinate per accedere ai \textit{repository$_G$} ufficiali del progetto.
+    \item \textbf{Analisi dei Capitolati}: documento di analisi comparativa che espone le motivazioni tecniche e logistiche che hanno portato alla selezione del progetto \textbf{Second Brain} rispetto alle altre proposte disponibili. Contiene l'analisi in dettaglio di ogni capitolato, descrivendone l'obiettivo, le tecnologie adottate e le considerazioni emerse durante il confronto nel gruppo.
+    \item \textbf{Preventivo costi e assunzione impegni}: documento che ufficializza l'impegno operativo dei membri del team, stabilito in un monte ore produttivo di 93 ore per ciascun componente. Include il piano economico e la strategia di rotazione dei ruoli$_G$ ogni 2 settimane, volta a garantire un'esperienza formativa completa e un carico di lavoro bilanciato tra i componenti.
+    \item \textbf{Analisi dei Requisiti}: descrive in modo dettagliato le funzionalità e i vincoli del sistema \textbf{Second Brain} (Capitolato C6). L'identificazione delle necessità avviene tramite lo studio dei \textbf{Casi d'Uso$_G$}, corredati da diagrammi illustrativi e matrici di tracciamento$_G$ per assicurare la totale copertura dei requisiti concordati.
+    \item \textbf{Piano di Progetto}: elaborato di pianificazione strategica gestito con metodologia incrementale$_G$. Analizza la ripartizione temporale delle attività, la gestione delle risorse e dei rischi, fornendo un monitoraggio costante dell'avanzamento e del bilancio dei costi$_G$ sostenuti.
+    \item \textbf{Piano di Qualifica}: specifica i protocolli di \textbf{Verifica} e \textbf{Validazione} adottati. Contiene il dettaglio dei test eseguiti sul prodotto, le metriche di qualità applicate e i resoconti dei risultati ottenuti per garantire la conformità agli standard.
+    \item \textbf{Verbale Esterno}: resoconto formale delle riunioni tenutesi con soggetti esterni al team, atto a cristallizzare decisioni, feedback e scadenze concordate con il committente$_G$.
+\end{itemize}
+
+\paragraph{Documenti ad Uso Interno}
+Si tratta di strumenti operativi riservati ai membri del gruppo, fondamentali per mantenere la coerenza metodologica:
+\begin{itemize}
+    \item \textbf{Norme di Progetto}: documento cardine che definisce il \textit{Way of Working$_G$} del gruppo sulla base dello standard \textbf{ISO/IEC 12207:1995}. Al suo interno sono fissate le procedure per ogni attività, le convenzioni per scrivere il codice, gli strumenti da utilizzare e le tecniche per migliorare costantemente la qualità del lavoro prodotto.
+    \item \textbf{Glossario}: dizionario condiviso creato per raccogliere e spiegare i termini tecnici legati allo specifico dominio$_G$ del progetto. Il suo scopo è evitare malintesi, assicurando che ogni parola abbia un unico significato per tutti i membri; i termini presenti in questa lista sono contrassegnati nei documenti dal pedice ''$_G$''.
+    \item \textbf{Verbale Interno}: contiene il riassunto delle discussioni e l'elenco delle decisioni prese durante le riunioni tra i componenti di \textbf{The Bitless}, permettendo di tenere traccia dell'evoluzione del progetto e delle responsabilità assegnate a ciascuno.
+\end{itemize}
+
+\subsection{Sviluppo}
+Il processo di sviluppo definisce le attività tecniche necessarie per la progettazione, codifica, installazione e accettazione del software.
+
+\subsubsection{Attività previste}
+In conformità alla subclause 5.3 dello standard, il team esegue le seguenti 13 attività:
+\begin{enumerate}
+    \item \textbf{Process implementation}: in questa fase vengono stabiliti i piani operativi, gli strumenti di sviluppo e i linguaggi di programmazione da adottare.
+    
+    \item \textbf{System requirements analysis}: analisi degli usi previsti per definire i \textbf{requisiti funzionali$_G$}, di capacità e di sicurezza, traducendo le richieste in specifiche tecniche documentate e realizzabili.
+    
+    \item \textbf{System architectural design}: definizione dell'architettura di alto livello, individuando le componenti software, hardware e le interfacce esterne. In questo stadio si stabilisce come i diversi moduli interagiranno tra loro per soddisfare l'architettura complessiva.
+    
+    \item \textbf{Software requirements analysis}: si definiscono le specifiche di ogni componente, comprese le interfacce utente e i \textbf{requisiti di qualificazione$_G$} necessari per validare il corretto funzionamento di ogni parte del sistema.
+    
+    \item \textbf{Software architectural design}: trasformazione dei requisiti in una struttura software gerarchica. Si definisce il design preliminare delle interfacce e dello schema del \textbf{database$_G$}.
+    
+    \item \textbf{Software detailed design}: raffinamento dei componenti in \textbf{unità software$_G$} elementari. Viene completato il design di dettaglio per permettere la successiva fase di codifica individuale.
+    
+    \item \textbf{Software coding and testing}: realizzazione effettiva del codice e delle basi di dati. Lo sviluppatore esegue i \textbf{test unitari$_G$} per verificare che ogni singola unità rispetti le specifiche.
+    
+    \item \textbf{Software integration}: si procede all'assemblaggio dei moduli sviluppati individualmente dai membri del team. I componenti vengono aggregati e verificati collettivamente seguendo un piano di Integrazione$_G$, con l'obiettivo di accertare che il flusso di dati e le interfacce tra le varie parti del sistema operino in modo armonico e senza conflitti.
+    
+    \item \textbf{Software qualification testing}: esecuzione di test$_G$ formali per dimostrare la conformità del software integrato ai requisiti stabiliti.
+    
+    \item \textbf{System integration}: il software viene unito all'hardware e agli altri sistemi esterni. Il sistema complessivo viene testato durante l'assemblaggio per garantirne la coerenza globale.
+    
+    \item \textbf{System qualification testing}: collaudo finale del sistema integrato per verificare la piena conformità ai requisiti originali e la prontezza per la consegna definitiva.
+    
+    \item \textbf{Software installation}: installazione del prodotto nell'ambiente di destinazione. Si verifica che il codice e il database siano inizializzati correttamente e operino come previsto.
+    
+    \item \textbf{Software acceptance support}: assistenza al committente durante i test$_G$ di accettazione formale, fornendo il supporto tecnico necessario per l'utilizzo del sistema.
+\end{enumerate}
+
+\subsubsection{Analisi dei Requisiti}
+L'attività di analisi è fondamentale per supportare il lavoro di progettisti e programmatori, fornendo le basi per l'architettura e la codifica. \\
+La redazione di questo documento è affidata agli Analisti$_G$, i quali hanno il compito di individuare, classificare e garantire la tracciabilità$_G$ dei requisiti che l'applicativo deve soddisfare. Il processo segue un approccio analitico che deriva i requisiti direttamente dai Casi d'Uso$_G$: scenari d'interazione tra un utente e il sistema, finalizzati al raggiungimento di uno scopo specifico. L'individuazione di tali scenari avviene attraverso sessioni di Brainstorming$_G$ interno al gruppo e viene perfezionata grazie ai Feedback$_G$ costanti ricevuti dall'azienda proponente. \\
+Per garantire chiarezza e completezza, il documento è organizzato nelle seguenti sezioni:
+
+\begin{enumerate}
+\item \textbf{Introduzione}: definisce lo scopo del prodotto, il glossario specifico e i riferimenti (normativi e informativi) seguiti durante l'analisi.
+\item \textbf{Descrizione generale}: offre una panoramica del sistema, descrivendo il contesto d'uso, le caratteristiche degli utenti previsti e gli eventuali vincoli tecnologici o logistici.
+\item \textbf{Casi d'Uso$_G$}: l'elenco gerarchico degli scenari d'uso, corredati da diagrammi UML$_G$ e descrizioni testuali che specificano pre-condizioni, post-condizioni e flussi degli eventi (principali e alternativi).
+\item \textbf{Requisiti$_G$}: classificazione dettagliata dei requisiti emersi, suddivisi per tipologia:
+\begin{itemize}
+\item \textbf{Obbligatori, Desiderabili e Opzionali} (per priorità);
+\item \textbf{Funzionali, Qualitativi e di Vincolo} (per natura tecnica).
+\end{itemize}
+\item \textbf{Tabelle di Tracciamento$_G$}: matrici che collegano univocamente i requisiti alle loro fonti e viceversa, assicurando che ogni richiesta del committente sia stata presa in carico.
+\end{enumerate}
+
+
+\paragraph{Casi d'Uso}
+Viene utilizzata la nomenclatura: \textbf{UC[Principale].[Secondario]}. Ogni caso è accompagnato da un identificativo univoco, un titolo esplicativo e una descrizione del flusso di eventi.
+
+\paragraph{Requisiti}
+Ogni requisito è tracciato con il formato: \textbf{R[Tipologia]-[Numero]}. Le tipologie si dividono in \textbf{F} (Funzionale), \textbf{Q} (Qualità) e \textbf{V} (Vincolo).
+\end{document}
