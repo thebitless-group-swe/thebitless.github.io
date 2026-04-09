@@ -18,10 +18,10 @@
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
-    linkcolor=0 0 0 0, 
+    linkcolor=black, 
     urlcolor=bluBitless,     
-    citecolor=0 0 0 0,  
-    filecolor=0 0 0 0,
+    citecolor=black,  
+    filecolor=black,
     breaklinks=true,
     pdfpagemode=UseNone    
 }
@@ -37,14 +37,15 @@
 
 \newcommand{\tipoverbale}{Norme di Progetto}
 \newcommand{\dataverbale}{}
-\newcommand{\dataversione}{2026-04-03}
-\newcommand{\versione}{0.1.0}
+\newcommand{\dataversione}{2026-04-09}
+\newcommand{\versione}{0.2.0}
 \newcommand{\stato}{In stesura}
 \newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+\newcommand{\dir}{../../..}
 
 \begin{titlepage}
 \pagenumbering{gobble}
-\input{../../../../templates/frontespizio.tex}
+\input{\dir/templates/frontespizio.tex}
 \end{titlepage}
 
 \newpage
@@ -55,6 +56,8 @@
     \begin{tabularx}{\textwidth}{|c|c|L|c|c|L|}
         \hline
         \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
+        \hline
+        0.2.0 & 2026-04-09 & S. Zecchinato & A. Marini & - & Processi di supporto \\
         \hline 
         0.1.0 & 2026-04-03 & A. Marini & S. Zecchinato & - & Introduzione e Processi primari \\
         \hline
@@ -122,6 +125,7 @@ Il gruppo \textbf{The Bitless} ha selezionato i seguenti processi come cardini d
 \subsection{Fornitura}
 Il processo di fornitura regolamenta il rapporto tra il gruppo (fornitore) e il committente (docenti e azienda). In questa fase, la priorità è la gestione delle aspettative e il rispetto dei vincoli economici e temporali.
 
+\label{subsubsec:gestione-com}
 \subsubsection{Gestione della comunicazione}
 Per garantire un coordinamento efficace delle attività di fornitura, sono stati selezionati i seguenti strumenti:
 \begin{itemize}
@@ -228,4 +232,17 @@ Viene utilizzata la nomenclatura: \textbf{UC[Principale].[Secondario]}. Ogni cas
 
 \paragraph{Requisiti}
 Ogni requisito è tracciato con il formato: \textbf{R[Tipologia]-[Numero]}. Le tipologie si dividono in \textbf{F} (Funzionale), \textbf{Q} (Qualità) e \textbf{V} (Vincolo).
+
+
+\section{Processi di supporto}
+\subsection{Documentazione}
+La documentazione risulta fondamentale per supportare qualsiasi processo primario per il quale è necessario avere nota delle decisioni prese dal gruppo circa gli aspetti del progetto. 
+
+\subsubsection{Strumenti scelti}
+\paragraph{Redazione} Per la redazione dei documenti lo strumento scelto è \LaTeX$_G$. Si tratta di un linguaggio di markup molto utilizzato in ambito accademico per redigere documenti formali in maniera efficiente. Esso permette infatti di integrare librerie, templates e di creare comandi che semplificano di molto la scrittura dei documenti. 
+Tutti i sorgenti dei documenti sono reperibili nella repository GitHub$_G$ affiancati dalla compilazione in PDF.
+\paragraph{Organizzazione e distribuzione} Come già citato brevemente nel sottoparagrafo denominato \textit{Gestione della comunicazione} §\ref{subsubsec:gestione-com}, lo strumento scelto per l'organizzazione e la distribuzione dei documenti è la piattaforma GitHub$_G$ tramite la creazione di una Repository$_G$ denominata \href{https://github.com/thebitless-group-swe/thebitless.github.io}{thebitless.github.io}.
+GitHub$_G$ permette di gestire e di tenere traccia delle versioni dei documenti e permette poi di renderli pubblici, garantendo semplicità nella condivisione degli stessi.
+
+
 \end{document}
