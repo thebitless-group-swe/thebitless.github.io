@@ -1,0 +1,135 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+\usepackage[a-1b]{pdfx}
+\usepackage[italian]{babel}
+\usepackage{comment}      
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{geometry}
+\usepackage{float} 
+\usepackage{setspace}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{Verbale \tipoverbale \ \dataverbale}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,           
+    pdfborderstyle={/S/U/W 1},
+    linkbordercolor=0 0 0,      
+    urlbordercolor=0 0 0,      
+    citebordercolor=0 0 0,     
+    filebordercolor=0 0 0,     
+    breaklinks=true,            
+}
+\newcommand{\issue}[1]{\href{https://github.com/thebitless-group-swe/thebitless.github.io/issues/#1}{\##1}}
+
+\begin{document}
+
+\newcommand{\tipoverbale}{Interno}
+\newcommand{\dataverbale}{2026-04-08}
+\newcommand{\dataversione}{2026-04-08}
+\newcommand{\versione}{1.0.0}
+\newcommand{\stato}{Approvato}
+\newcommand{\destinatari}{The Bitless, Prof. Tullio Vardanega, Prof. Riccardo Cardin}
+\def\templatedir{../../../templates}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+\input{../../../templates/frontespizio.tex}
+\end{titlepage}
+
+\newpage
+\pagenumbering{arabic}
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|p{3.5cm}|}
+        \hline
+        \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
+        \hline
+        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
+        \hline 
+        1.0.0 & 2026-04-08 & A. Marini & S. Vendramin & S. Vendramin & Approvazione \\
+        \hline
+        0.1.0 & 2026-04-08 & A. Marini & S. Vendramin & - & Prima stesura \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\newpage
+\tableofcontents 
+
+\newpage
+\section{Informazioni sulla riunione}
+In data \dataverbale, il gruppo \textbf{The Bitless} si è riunito in modalità telematica attraverso la piattaforma Discord. L'incontro ha avuto inizio alle ore 10:00 e si è concluso alle ore 11:15, con l'obiettivo di definire i passi operativi per la redazione della documentazione tecnica.
+
+\section{Presenze}
+\begin{center}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
+\hline
+Lorenzo & Battistella & Presente \\
+Edoardo & De Piccoli & Presente \\
+Davide & Facco & Presente \\
+Anna & Marini & Presente \\
+Andrea & Menegaldo & Assente \\
+Samuele & Vendramin & Presente \\
+Simone & Zecchinato & Presente \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ordine del giorno e Discussione}
+
+\subsection{Brainstorming e definizione dei Casi d'Uso}
+La riunione è iniziata con una sessione di brainstorming$_G$ focalizzata sull'identificazione dei Casi d'Uso$_G$ necessari per lo sviluppo dell'applicativo$_G$. Il gruppo ha analizzato le proposte individuali relative alle funzionalità di editing di base e all'integrazione dell'Intelligenza Artificiale.
+
+Il lavoro è partito dal confronto dei casi d'uso che ogni componente aveva già segnato e preparato in precedenza in autonomia. Il gruppo ha deciso di suddividere i casi d'uso in tre macro-categorie principali:
+\begin{itemize}
+    \item \textbf{Editing di base:} comprendente le funzioni di formattazione e gestione del testo Markdown$_G$;
+    \item \textbf{Funzionalità AI:} relativa agli strumenti di supporto intelligente alla redazione dei contenuti;
+    \item \textbf{Persistenza$_G$:} riguardante il salvataggio dei dati e la gestione dei file.
+\end{itemize}
+
+\subsection{Struttura dell'Analisi dei Requisiti e Priorità}
+In merito al documento di \textbf{Analisi dei Requisiti}, il gruppo ha deciso di adottare una struttura suddivisa in tre sezioni principali:
+\begin{itemize}
+    \item \textbf{Introduzione:} volta a definire lo scopo del documento e gli obiettivi del software;
+    \item \textbf{Descrizione del prodotto:} per fornire una panoramica generale del sistema e dei suoi vincoli;
+    \item \textbf{Casi d'uso:} la sezione tecnica in cui vengono formalizzati i flussi di interazione utente-macchina secondo le categorie sopra citate.
+\end{itemize}
+È stata ribadita la priorità assoluta di questa attività, in quanto necessaria per poter successivamente avviare lo sviluppo del PoC$_G$ in modo mirato.
+
+\subsection{Pianificazione Scadenze e Sprint}
+Per quanto riguarda la gestione del workflow, è stata confermata la prossima riunione interna per martedì 14 aprile. In tale data si procederà alla rotazione dei ruoli come previsto dal piano di progetto, assicurando l'alternanza delle responsabilità tra i membri.
+
+Il gruppo ha fissato come scadenza per la prima stesura completa dell'Analisi dei Requisiti la \textbf{settimana del 4 maggio 2026}. Questo termine è stato stabilito per consentire un confronto con l'azienda committente$_G$, ricevere i feedback necessari e procedere con la fase di progettazione e sviluppo del PoC$_G$.
+
+\section{Attività da svolgere}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
+\hline
+\textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
+\hline
+Anna Marini & Redazione del verbale del 2026-04-08 & \centering \issue{73} \tabularnewline
+\hline
+Anna Marini & Stesura Introduzione Analisi Requisiti & \centering \issue{71} \tabularnewline
+\hline
+Davide Facco & Stesura Descrizione del prodotto & \centering \issue{70} \tabularnewline
+\hline
+Edoardo De Piccoli & Stesura Casi d'Uso Editing di Base & \centering \issue{74} \tabularnewline
+\hline
+Lorenzo Battistella & Stesura Casi d'Uso Funzionalità AI & \centering \issue{75} \tabularnewline
+\hline
+Simone Zecchinato & Stesura Casi d'Uso Persistenza & \centering \issue{76} \tabularnewline
+\hline
+\end{tabular}
+\end{center}
+
+\end{document}
