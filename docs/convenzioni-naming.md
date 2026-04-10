@@ -2,13 +2,13 @@
 
 ## Branch
 
-### Schema
+#### Schema
 
 ```
 [tipo]/[descrizione-breve]
 ```
 
-### Tipi ammessi
+#### Tipi ammessi
 
 | Tipo | Quando usarlo |
 | --- | --- |
@@ -19,7 +19,7 @@
 | `test/` | Aggiunta o modifica di test |
 | `chore/` | Manutenzione, aggiornamento dipendenze, configurazione |
 
-### Esempi
+##### Esempi
 
 ```
 feat/markdown-editor
@@ -31,15 +31,15 @@ test/unit-editor-component
 chore/aggiornamento-dipendenze
 ```
 
-### Regole
+#### Regole
 
 - Tutto **minuscolo**
 - Parole separate da **trattino** (`-`)
-- Niente numeri di issue senza contesto (`fix/123`) — la descrizione deve essere leggibile
-- I branch **non si creano mai su `main` direttamente** — tutto passa da Pull Request
+- Niente numeri di issue senza contesto (`fix/123`), la descrizione deve essere leggibile
+- I branch **non si creano mai su `main` direttamente**, tutto passa da Pull Request
 - Dopo il merge, il branch viene **eliminato**
 
-### Branch permanenti
+#### Branch permanenti
 
 ```
 main   ← codice stabile, solo da PR approvate
@@ -49,13 +49,13 @@ main   ← codice stabile, solo da PR approvate
 
 ## Commit
 
-### Schema (Conventional Commits)
+#### Schema (Conventional Commits)
 
 ```
 [tipo]([scope opzionale]): [descrizione breve in minuscolo]
 ```
 
-### Tipi ammessi
+#### Tipi ammessi
 
 | Tipo | Quando usarlo |
 | --- | --- |
@@ -65,11 +65,11 @@ main   ← codice stabile, solo da PR approvate
 | `refactor` | Riscrittura senza cambiare comportamento esterno |
 | `test` | Aggiunta o modifica di test |
 | `chore` | Manutenzione, configurazione, dipendenze |
-| `style` | Formattazione, spazi, punto e virgola — nessuna logica |
+| `style` | Formattazione, spazi, punto e virgola; nessuna logica |
 
 Lo **scope** (opzionale) identifica il modulo o la sezione toccata dal commit.
 
-### Esempi corretti
+##### Esempi corretti
 
 ```
 feat(editor): aggiunge rendering markdown in tempo reale
@@ -91,7 +91,7 @@ docs(verbali): aggiunge verbale esterno zucchetti 2026-03-12
 chore: aggiorna struttura cartelle candidatura
 ```
 
-### Esempi sbagliati
+##### Esempi sbagliati
 
 ```
 fix cose
@@ -102,13 +102,13 @@ modifiche varie
 feat: Aggiunge Editor Markdown
 ```
 
-### Regole
+#### Regole
 
-- La descrizione è in **minuscolo**, al **presente indicativo** (`aggiunge`, `corregge` — non `aggiunto`, `ho corretto`)
+- La descrizione è in **minuscolo**, al **presente indicativo** (`aggiunge`, `corregge`, non `aggiunto`, `ho corretto`)
 - Massimo **72 caratteri** nella prima riga
 - Se servono dettagli, aggiungere una riga vuota seguita dal corpo del messaggio
 - **Un commit = una cosa sola**
-- Non committare su `main` direttamente — solo tramite Pull Request
+- Non committare su `main` direttamente, solo tramite Pull Request
 
 ### Titoli Pull Request
 
