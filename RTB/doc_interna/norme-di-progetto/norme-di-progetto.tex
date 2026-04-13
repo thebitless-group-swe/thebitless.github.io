@@ -244,5 +244,28 @@ Tutti i sorgenti dei documenti sono reperibili nella repository GitHub$_G$ affia
 \paragraph{Organizzazione e distribuzione} Come già citato brevemente nel sottoparagrafo denominato \textit{Gestione della comunicazione} §\ref{subsubsec:gestione-com}, lo strumento scelto per l'organizzazione e la distribuzione dei documenti è la piattaforma GitHub$_G$ tramite la creazione di una Repository$_G$ denominata \href{https://github.com/thebitless-group-swe/thebitless.github.io}{thebitless.github.io}.
 GitHub$_G$ permette di gestire e di tenere traccia delle versioni dei documenti e permette poi di renderli pubblici, garantendo semplicità nella condivisione degli stessi.
 
+\subsubsection{Versionamento}
+Per il versionamento della documentazione lo strumento scelto è stato Git$_G$ a cui applicheremo le seguenti norme per un corretto ed uniforme versionamento.
+
+\paragraph{Branch} Ogni membro del gruppo che lavora su un documento, o su una parte di esso, lavora su un branch$_G$ dedicato. Quando il documento è inteso dall'autore come pronto per essere unito al \texttt{main branch}$_G$ l'autore apre una pull request$_G$ indirizzata ai verificatori che provvederanno a verificare le modifiche. Se la verifica ha esito positivo la pull request viene approvata e il branch viene chiuso, altrimenti il documento rimane nel branch per le ulteriori modifiche. \\
+Ogni branch segue lo schema di naming$_G$ definito nelle \textit{Convenzioni di Naming}\footnote{Disponibili all'indirizzo \url{https://github.com/thebitless-group-swe/thebitless.github.io/blob/main/docs/convenzioni-naming.md}}.
+
+\paragraph{Date} Ogni documento riporta varie date che segnano le modifiche che il documento ha subito. Si è deciso di utilizzare per le date la convenzione americana definita come \textsc{YYYY-MM-DD}.
+
+\paragraph{Stato} Ogni documento riporta nel frontespizio lo stato in cui lo stesso si trova:
+\begin{itemize}
+    \item \textbf{Stesura:} il documento è in fase di stesura, non è ritenuto valido come \textit{ground truth}$_G$.
+    \item \textbf{Revisione:} il documento è in fase di revisione, non è consentita la modifica a meno che il documento non ritorni in \textbf{Stesura}. Non è considerabile come \textit{ground truth}.
+    \item \textbf{Approvato:} il documento è stato approvato, non è consentita la modifica per nessun motivo e viene ritenuto \textit{ground truth} per il progetto.
+\end{itemize}
+
+\paragraph{Nome} Ogni documento deve riportare un nome significativo che permetta a chiunque consulti la repository di capire immediatamente di cosa parla il documento senza doverlo aprire. 
+\begin{itemize}
+    \item Verbali interni: VI\_YYYY-MM-DD\_descrizione-breve 
+    \item Verbali esterni: VE\_YYYY-MM-DD\_descrizione-breve o, se redatto prima della candidatura, VE\_YYYY-MM-DD\_azienda
+    \item Documenti vari: nei nomi composti da più parole lo spazio viene sostituito con il trattino (-). \textit{E.g. norme-di-progetto.pdf}
+\end{itemize}
+
+\paragraph{Commit e Pull Request} Ogni Commit$_G$ e ogni Pull Request$_G$ devono apportare modifiche significative e devono quindi essere fatti in maniera accorta. Ogni titolo e descrizione segue le \textit{Convenzioni di naming}\footnote[1]{} sopracitate. Le descrizioni ai commit e alle pull request devono avere carattere significativo, s'intende quindi che il commento deve poter essere letto e compreso da qualunque mebro del team senza dover andare ad osservare il contenuto dell'azione.
 
 \end{document}
