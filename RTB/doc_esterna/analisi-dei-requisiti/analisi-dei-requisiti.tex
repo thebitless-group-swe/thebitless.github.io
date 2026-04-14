@@ -34,7 +34,7 @@
 \newcommand{\tipoverbale}{Analisi dei Requisiti}
 \newcommand{\dataverbale}{}
 \newcommand{\dataversione}{2026-04-03}
-\newcommand{\versione}{0.1.0}
+\newcommand{\versione}{0.3.0}
 \newcommand{\stato}{Stesura}
 \newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
 \def\templatedir{../../../templates}
@@ -52,6 +52,8 @@
     \begin{tabularx}{\textwidth}{|c|c|L|c|c|L|}
         \hline
         \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
+        \hline
+        0.3.0 & 2026-04-13 & D. Facco & S. Vendramin & - & Stesura Analisi del Prodotto \\
         \hline
         0.2.0 & 2026-04-08 & A. Marini & S. Vendramin & - & Stesura Introduzione \\
         \hline
@@ -111,12 +113,54 @@ Il documento è dunque da considerarsi dinamico, soggetto a un processo di raffi
 \section{Descrizione del prodotto}
 
 \subsection{Prospettiva del prodotto}
+L'idea per la quale nasce questo prodotto è di fornire un nuovo sistema per prendere appunti che estenda le capacità umane, implementando l'utilizzo degli LLM$_G$ (da qui il nome Second Brain - Secondo Cervello) non solo per aiutare l'utente ad archiviare informazioni, ma a rielaborarle, criticarle e generarle in maniera intelligente.
+Il sistema, a differenza dei classici chatbot$_G$, dovrà agire come un editor attivo che si basa sulle conoscenze specifiche dell'utente.
 
 \subsection{Obiettivi del prodotto}
+L'obiettivo principale sta nel sviluppare un'applicazione che verifichi le potenzialità degli LLM$_G$ nel supportare una persona in compiti legati alla creazione di testi, creazione di idee e brainstorming$_G$.
+Più nello specifico, il prodotto mira a:
+\begin{itemize}
+    \item Dimostrare la fatibilità di tali strumenti utilizzando Tecnologie Web$_G$
+    \item Esplorare l'efficacia del Prompt Engeneering$_G$ per ottenere analisi critiche e trasformazioni testuali speciali e specifiche
+    \item Sperimentare le modalità di interazione tra uomo e macchina come il Distant Writing$_G$ ed il brainstorming assistito
+\end{itemize}
 
 \subsection{Funzionalità del prodotto}
+Le funzionalità, sia requisiti obbligatori che opzionali, del prodotto sono i seguenti:
+\textbf{Funzionalità minime (o oblligatorie)}:
+\begin{itemize}
+    \item Editor Markdown: Il prodotto deve implementare un'area di inserimento testo che supporti il linguaggio di Markdown$_G$
+    \item Rendering Grafico: Visualizzazione del testo formattato in tempo reale, fianco a fianco con l'editor
+    \item Integrazione LLM: Accesso tramite API$_G$ ai modelli linguistici di intelligenza artificiale per operare sul testo (su una parte o sull'intero documento)
+    \item Comandi di Base: Implementazione dei comandi di base quali la riscrittura (cambio tono, espansione del testo, correzione grammaticale), il riassunto e la traduzione multilingua
+    \item Analisi Critica: Implementazione del modello dei sei cappelli per analizzare e/o riscrivere il testo da diverse prospettive
+    \begin{itemize}
+        \item[Bianco: ] Testo neutro ed imparziale, che risponde ai fatti
+        \item[Rosso: ] Testo emozionale, che cattura emozioni
+        \item[Giallo: ] Testo ottimista, che guarda agli aspetti positivi e alle opportunità
+        \item[Nero: ] Testo di critica, sotto l'occhio dell'avvocato del diavolo
+        \item[Verde: ] Testo originale, creativo e provocante
+        \item[Blu: ] Testo logico e strutturato, che prioritizza controllo e organizzazione    
+    \end{itemize} 
+    \item Generazione da prompt: Anche detto Distant Writing$_G$, crea un'intero testo partendo da un input generale dell'utente
+    \item Gestione file: Salvataggio e lettura delle note in file locali 
+\end{itemize}
+
+\textbf{Funzionalita secondarie (o opzionali)}
+\begin{itemize}
+    \item Archivio Server-Side: Memorizzazione delle note all'interno di un database$_G$
+    \item Linking tra Note: Opzione per collegare, tramite un link, una nota all'interno di un'altra
+    \item RAG (Retrieval Augmented Generation): Indica l'utilizzo di note selezionate come contesto all'LLM$_G$ per generare risposte più precise, informate e contestualizzate
+\end{itemize}
 
 \subsection{Utenza di riferimento}
+il capitolato identifica diverse tipologie di utenti, essendo che punta ad essere un prodotto duttile a qualsiasi tipologia di nota:
+\begin{itemize}
+    \item Studenti: Per lo studio, lo svolgimento dei compiti e la sintesi delle lezioni
+    \item Professionisti in ambito aziendale: Per la stesura di testi di marketing e la creazione di presentazioni
+    \item Creatori di contenuti e Scrittori: Chiunque necessiti di supporto nel brainstorming o nella revisione critica di bozze testuali
+    \item Chiunque altro abbia bisogno di prendere appunti e/o scrivere testi anche partendo da zero e lasciare fare alla macchina il duro lavoro
+\end{itemize}
 
 \newpage
 
