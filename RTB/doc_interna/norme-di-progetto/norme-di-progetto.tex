@@ -57,9 +57,11 @@
         \hline
         \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
         \hline
-        0.2.0 & 2026-04-09 & S. Zecchinato & A. Marini & - & Processi di supporto \\
+        0.3.0 & 2026-04-14 & A. Marini & S. Vendramin & - & Processi organizzativi \\
+        \hline
+        0.2.0 & 2026-04-09 & S. Zecchinato & S. Vendramin & - & Inizio Processi di supporto \\
         \hline 
-        0.1.0 & 2026-04-03 & A. Marini & S. Zecchinato & - & Introduzione e Processi primari \\
+        0.1.0 & 2026-04-03 & A. Marini & S. Vendramin & - & Introduzione e Processi primari \\
         \hline
     \end{tabularx}
 \end{center}
@@ -233,16 +235,17 @@ Viene utilizzata la nomenclatura: \textbf{UC[Principale].[Secondario]}. Ogni cas
 \paragraph{Requisiti}
 Ogni requisito è tracciato con il formato: \textbf{R[Tipologia]-[Numero]}. Le tipologie si dividono in \textbf{F} (Funzionale), \textbf{Q} (Qualità) e \textbf{V} (Vincolo).
 
-
 \section{Processi di supporto}
+I processi di supporto comprendono le attività trasversali necessarie a garantire il corretto svolgimento dei processi primari e organizzativi, assicurando che ogni artefatto prodotto sia conforme agli standard di qualità prefissati.
+
 \subsection{Documentazione}
 La documentazione risulta fondamentale per supportare qualsiasi processo primario per il quale è necessario avere nota delle decisioni prese dal gruppo circa gli aspetti del progetto. 
 
+Il processo di documentazione definisce le regole per la redazione, la revisione e la manutenzione di tutti i documenti prodotti dal gruppo \textit{The Bitless}.
+
 \subsubsection{Strumenti scelti}
-\paragraph{Redazione} Per la redazione dei documenti lo strumento scelto è \LaTeX$_G$. Si tratta di un linguaggio di markup molto utilizzato in ambito accademico per redigere documenti formali in maniera efficiente. Esso permette infatti di integrare librerie, templates e di creare comandi che semplificano di molto la scrittura dei documenti. 
+Per la redazione dei documenti lo strumento scelto è \LaTeX$_G$. Si tratta di un linguaggio di markup molto utilizzato in ambito accademico per redigere documenti formali in maniera efficiente. Esso permette infatti di integrare librerie, templates e di creare comandi che semplificano di molto la scrittura dei documenti. 
 Tutti i sorgenti dei documenti sono reperibili nella repository GitHub$_G$ affiancati dalla compilazione in PDF.
-\paragraph{Organizzazione e distribuzione} Come già citato brevemente nel sottoparagrafo denominato \textit{Gestione della comunicazione} §\ref{subsubsec:gestione-com}, lo strumento scelto per l'organizzazione e la distribuzione dei documenti è la piattaforma GitHub$_G$ tramite la creazione di una Repository$_G$ denominata \href{https://github.com/thebitless-group-swe/thebitless.github.io}{thebitless.github.io}.
-GitHub$_G$ permette di gestire e di tenere traccia delle versioni dei documenti e permette poi di renderli pubblici, garantendo semplicità nella condivisione degli stessi.
 
 \subsubsection{Versionamento}
 Per il versionamento della documentazione lo strumento scelto è stato Git$_G$ a cui applicheremo le seguenti norme per un corretto ed uniforme versionamento.
@@ -267,5 +270,323 @@ Ogni branch segue lo schema di naming$_G$ definito nelle \textit{Convenzioni di 
 \end{itemize}
 
 \paragraph{Commit e Pull Request} Ogni Commit$_G$ e ogni Pull Request$_G$ devono apportare modifiche significative e devono quindi essere fatti in maniera accorta. Ogni titolo e descrizione segue le \textit{Convenzioni di naming}\footnote[1]{} sopracitate. Le descrizioni ai commit e alle pull request devono avere carattere significativo, s'intende quindi che il commento deve poter essere letto e compreso da qualunque mebro del team senza dover andare ad osservare il contenuto dell'azione.
+
+\subsubsection{Struttura generale dei documenti}
+\label{subsubsec:strutturagenerale}
+\begin{itemize}
+    \item \textbf{Prima pagina (Frontespizio):} Costituisce la copertina del documento e deve riportare, in ordine di posizionamento:
+    \begin{itemize}
+        \item Logo ufficiale del gruppo \textbf{The Bitless}; 
+        \item Titolo identificativo del documento;
+        \item Nome del gruppo e relativo numero identificativo;
+        \item Elenco completo dei componenti del team, comprensivo di Nome, Cognome e numero di matricola UniPd;
+        \item Informazioni di controllo: versione corrente, data di rilascio della versione, stato del documento e destinatari;
+        \item Recapito e-mail ufficiale del gruppo.
+    \end{itemize}
+
+    \item \textbf{Registro delle modifiche:} Collocato a partire dalla seconda pagina, consiste in una tabella organizzata secondo una logica \textbf{LIFO$_G$}, in cui la versione più recente appare in cima. Per ogni revisione devono essere indicati: versione, data, autore, verificatore$_G$ e una descrizione sintetica delle variazioni apportate rispetto alla release$_G$ precedente.
+
+    \item \textbf{Indice:} Presenta l'organizzazione gerarchica$_G$ del documento, elencando tutte le sezioni e sottosezioni. Ogni voce deve essere configurata come collegamento ipertestuale$_G$ per permettere la navigazione diretta verso la parte del documento associata.
+
+    \item \textbf{Intestazione:} Ciascuna pagina deve presentare un'intestazione costante che riporti il nome del gruppo \textbf{The Bitless} e il titolo del documento in oggetto.
+\end{itemize}
+
+\paragraph{3.1.2.1 Struttura dei verbali} \mbox{} \\
+I verbali, sia interni che esterni, oltre a rispettare i criteri generali descritti nella sezione §\ref{subsubsec:strutturagenerale}, devono presentare una struttura fissa composta dalle seguenti sezioni:
+
+\begin{itemize}
+    \item \textbf{Informazioni sulla riunione:} Paragrafo descrittivo contenente i dati logistici dell'incontro:
+    \begin{itemize}
+        \item Data di svolgimento; 
+        \item Ora di inizio e ora di conclusione; 
+        \item Modalità di svolgimento. 
+    \end{itemize}
+
+    \item \textbf{Presenze:} Tabella riassuntiva riportante lo stato dei componenti del gruppo:
+    \begin{itemize}
+        \item Nome e Cognome di tutti i membri del team; 
+        \item Stato di presenza alla riunione (Presente/Assente). 
+    \end{itemize}
+
+    \item \textbf{Ordine del giorno:} Elenco puntato dei punti di discussione previsti per la sessione. 
+
+    \item \textbf{Discussione e sintesi:} Sezione discorsiva dedicata all'approfondimento degli argomenti trattati e al resoconto del brainstorming$_G$ effettuato.  
+
+    \item \textbf{Attività da svolgere:} Tabella dedicata alla pianificazione e assegnazione$_G$ dei nuovi task emersi, con relativi riferimenti alle Issue$_G$ di GitHub$_G$. 
+\end{itemize}
+
+\subsubsection{Ciclo di vita dei documenti}
+
+\paragraph{3.1.3.1 Redazione dei documenti} \mbox{} \\
+La stesura e l'aggiornamento sistematico dei documenti è affidata al membro del gruppo che ricopre, nel periodo di riferimento, il ruolo di \textit{Amministratore$_G$}. Le informazioni necessarie alla redazione vengono estrapolate dai verbali delle riunioni e dalle comunicazioni intercorse tra i componenti del team.
+
+\paragraph{3.1.3.2 Redazione dei verbali} \mbox{} \\
+La responsabilità della stesura dei verbali, sia interni (VI) che esterni (VE), spetta a chi ricopre il ruolo di \textit{Responsabile$_G$}. I contenuti vengono sintetizzati a partire dalle discussioni avvenute durante i meeting interni o dagli incontri con l'azienda Proponente.
+
+\paragraph{3.1.3.3 Redazione dell'Analisi dei Requisiti} \mbox{} \\
+A differenza degli altri artefatti$_G$, la redazione del documento di \textit{Analisi dei Requisiti$_G$} è affidata esclusivamente all'\textit{Analista$_G$}.
+
+\subsubsection{Verifica dei documenti}
+Ogni documento, a seguito della stesura o di un aggiornamento, deve essere sottoposto a verifica per accertare la correttezza e la coerenza delle informazioni riportate. Tale attività è svolta dal componente incaricato del ruolo di \textit{Verificatore$_G$}.
+
+\paragraph{3.1.4.1 Processo di verifica tramite Pull Request$_G$} \mbox{} \\
+Il gruppo adotta il meccanismo delle \textit{Pull Request$_G$} (PR) tramite la piattaforma GitHub$_G$ per garantire che nessuna modifica venga integrata nei branch$_G$ principali senza un controllo preventivo. Il workflow$_G$ operativo è così definito:
+
+\begin{enumerate}
+    \item \textbf{Esecuzione modifiche:} Il redattore crea un branch$_G$ locale. Le modifiche su documenti diversi devono essere gestite in branch$_G$ separati.
+    \item \textbf{Apertura della Richiesta:} Completato il lavoro, il redattore esegue il \texttt{push} del branch e apre una PR, assegnando il \textit{Verificatore$_G$} come reviewer e collegando la relativa \textit{Issue$_G$}.
+    \item \textbf{Verifica:} Il verificatore$_G$ esamina le modifiche:
+    \begin{itemize}
+        \item \textbf{Esito Positivo:} Il verificatore approva la PR e procede al \textit{merge$_G$}. Il branch$_G$ viene eliminato.
+        \item \textbf{Esito Negativo:} Vengono inseriti commenti$_G$ inline e lo stato viene impostato su \textit{"Request changes"}.
+    \end{itemize}
+    \item \textbf{Risoluzione:} Il redattore applica le correzioni e richiede una nuova revisione fino all'approvazione.
+\end{enumerate}
+
+\subsubsection{Approvazione dei documenti}
+L'approvazione$_G$ è l'atto formale che permette il rilascio di un documento come ufficiale nel branch \texttt{main}. Tale compito spetta al \textit{Responsabile$_G$}.
+
+\paragraph{3.1.5.1 Processo di approvazione tramite Pull Request$_G$} \mbox{} \\
+Al fine di evitare carichi eccessivi, i documenti vengono approvati progressivamente verso il raggiungimento di una \textit{baseline$_G$}.
+\begin{enumerate}
+    \item \textbf{Aggiornamento versione:} Il redattore crea un branch$_G$ \texttt{chore/approvazione-<nome-documento>} modificando la versione nel frontespizio$_G$ (incrementando l'indice Major X.0.0).
+    \item \textbf{Apertura Richiesta:} Si apre una PR assegnando il \textit{Responsabile$_G$} come unico reviewer$_G$.
+    \item \textbf{Approvazione:} In caso di esito positivo, il responsabile approva il merge$_G$ su \texttt{develop}. Successivamente, tutti i documenti approvati verranno uniti al branch \texttt{main}.
+\end{enumerate}
+
+\subsubsection{Nomenclatura dei documenti}
+\paragraph{3.1.6.1 Acronimi}  \mbox{} \\
+Il gruppo adotta i seguenti acronimi standardizzati:
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{l p{10cm}}
+        \textbf{Acronimo} & \textbf{Significato} \\
+        \hline
+        \textbf{VI} & Verbale Interno \\
+        \textbf{VE} & Verbale Esterno \\
+        \textbf{NdP} & Norme di Progetto$_G$ \\
+        \textbf{AdR} & Analisi dei Requisiti$_G$ \\
+        \textbf{RTB} & Requirements and Technology Baseline$_G$ \\
+        \textbf{PB} & Product Baseline$_G$ \\
+        \hline
+    \end{tabular}
+    \caption{Tabella degli acronimi utilizzati nella documentazione.}
+\end{table}
+
+\paragraph{3.1.6.2 Nomenclatura} 
+\begin{itemize}
+    \item \textbf{Verbali Interni:} \texttt{VI\_AAAA-MM-GG\_descrizione-breve.pdf}
+    \item \textbf{Verbali Esterni:} \texttt{VE\_AAAA-MM-GG\_descrizione-breve.pdf} o, se redatto prima della candida-
+tura, \texttt{VE\_AAAA-MM-GG\_azienda.pdf}
+    \item \textbf{Documenti Generali:} \texttt{nome-documento\_vX.Y.Z.pdf} 
+\end{itemize}
+
+\subsection{Gestione della configurazione}
+
+\paragraph{3.2.1 Numeri di versione documenti} \mbox{} \\
+
+\subsubsection{Repository}
+
+\paragraph{3.2.2.1 Strumenti} \mbox{} \\
+
+\subsection{Verifica}
+
+\paragraph{3.3.1.1 Attività previste} \mbox{} \\
+
+\paragraph{3.3.1.2 Implementazione del processo} \mbox{} \\
+
+\paragraph{3.3.1.3 Verifica} \mbox{} \\
+
+\paragraph{3.3.1.4 Analisi Statica} \mbox{} \\
+
+\paragraph{3.3.1.5 Analisi Dinamica} \mbox{} \\
+
+\paragraph{3.3.1.6 Test di Unità} \mbox{} \\
+
+\paragraph{3.3.1.7 Test di Integrazione} \mbox{} \\
+
+\subsection{Validazione}
+
+\paragraph{3.3.2.1 Attività previste} \mbox{} \\
+
+\paragraph{3.3.2.2 Implementazione del processo} \mbox{} \\
+
+\paragraph{3.3.2.3 Esecuzione dei test} \mbox{} \\
+
+\paragraph{3.3.2.4 Raccolta dei risultati} \mbox{} \\
+
+\section{Processi organizzativi}
+
+\subsection{Processo di gestione}
+Il processo gestionale delinea le procedure e le mansioni comuni che ogni membro del gruppo deve adottare per assicurare il corretto avanzamento delle attività progettuali.
+
+\subsubsection{Pianificazione}
+
+\paragraph{4.1.1.1 Assegnazione delle responsabilità}
+\mbox{}\\
+Al fine di garantire una crescita professionale completa ed eterogenea, il team \textit{The Bitless} ha adottato una politica di rotazione periodica. La riassegnazione dei ruoli avviene ogni \textbf{due settimane}, in corrispondenza dell'apertura di ogni nuovo $sprint_G$.
+
+Di seguito l'elenco dei profili operativi previsti:
+
+\begin{itemize}
+    \item \textbf{Responsabile} (\hyperlink{sec:responsabile}{Sezione §4.1.1.2})
+    \item \textbf{Amministratore} (\hyperlink{sec:amministratore}{Sezione §4.1.1.3})
+    \item \textbf{Progettista} (\hyperlink{sec:progettista}{Sezione §4.1.1.4})
+    \item \textbf{Analista} (\hyperlink{sec:analista}{Sezione §4.1.1.5})
+    \item \textbf{Verificatore} (\hyperlink{sec:verificatore}{Sezione §4.1.1.6})
+    \item \textbf{Programmatore} (\hyperlink{sec:programmatore}{Sezione §4.1.1.7})
+\end{itemize}
+
+\paragraph{4.1.1.2 Responsabile} \hypertarget{sec:responsabile}{}
+\mbox{}\\
+Il \textit{Project Manager$_G$} ha il compito di guidare il gruppo e fungere da interfaccia ufficiale verso i committenti. Deve possedere una visione d'insieme per valutare criticità e orientare le scelte strategiche.
+\begin{itemize}
+    \item \textbf{Composizione:} È prevista la presenza di \textbf{un solo Responsabile} per ogni periodo.
+    \item \textbf{Mansioni:}
+    \begin{itemize}
+        \item Operare scelte decisionali a beneficio del team;
+        \item Validare i risultati prodotti dagli altri componenti;
+        \item Organizzare il calendario delle attività e allocare le risorse;
+        \item Gestire le relazioni e la comunicazione esterna.
+    \end{itemize}
+\end{itemize}
+
+\paragraph{4.1.1.3 Amministratore} \hypertarget{sec:amministratore}{}
+\mbox{}\\
+Il \textit{Sysadmin$_G$} è incaricato della configurazione e del mantenimento dell'ecosistema digitale (server, strumenti di lavoro, repository).
+\begin{itemize}
+    \item \textbf{Composizione:} È prevista la presenza di al massimo due Amministratori per ogni periodo.
+    \item \textbf{Mansioni:}
+    \begin{itemize}
+        \item Individuare e implementare gli strumenti software necessari al rispetto delle \textit{Norme di Progetto};
+        \item Risolvere i malfunzionamenti tecnici segnalati tramite \textit{ticket} (richieste di assistenza).
+    \end{itemize}
+\end{itemize}
+
+\paragraph{4.1.1.4 Progettista} \hypertarget{sec:progettista}{}
+\mbox{}\\
+Questa figura definisce l'architettura e le tecnologie del prodotto. Segue attivamente la fase di sviluppo, pur non essendo coinvolto direttamente nella manutenzione ordinaria.
+\begin{itemize}
+    \item \textbf{Composizione:} Il ruolo può essere ricoperto da più membri simultaneamente.
+    \item \textbf{Mansioni:}
+    \begin{itemize}
+        \item Disegnare l'architettura di sistema per massimizzare prestazioni e scalabilità;
+        \item Monitorare l'implementazione del codice fornendo supporto tecnico ai programmatori.
+    \end{itemize}
+\end{itemize}
+
+\paragraph{4.1.1.5 Analista} \hypertarget{sec:analista}{}
+\mbox{}\\
+L'Analista detiene la comprensione profonda del dominio applicativo e dei requisiti. Traduce le necessità del cliente in specifiche tecniche.
+\begin{itemize}
+    \item \textbf{Composizione:} Per l'importanza strategica, questo ruolo coinvolge solitamente \textbf{più persone} nello stesso periodo.
+    \item \textbf{Mansioni:}
+    \begin{itemize}
+        \item Esaminare i bisogni dell'utente e il contesto del progetto;
+        \item Stabilire i traguardi operativi e la fattibilità delle richieste;
+        \item Redigere il documento di \textit{Analisi dei Requisiti}.
+    \end{itemize}
+\end{itemize}
+
+\paragraph{4.1.1.6 Verificatore} \hypertarget{sec:verificatore}{}
+\mbox{}\\
+Si accerta che ogni prodotto, sia esso codice o documentazione, sia conforme agli standard qualitativi e agli obiettivi prefissati.
+\begin{itemize}
+    \item \textbf{Composizione:} È un ruolo che può essere svolto da più membri contemporaneamente.
+    \item \textbf{Mansioni:}
+    \begin{itemize}
+        \item Controllare la coerenza degli \textit{artefatti} (documenti e codice) rispetto alle \textit{Norme di Progetto};
+        \item Individuare e segnalare anomalie o refusi;
+        \item Elaborare test di validazione e di conformità ai requisiti.
+    \end{itemize}
+\end{itemize}
+
+\paragraph{4.1.1.7 Programmatore} \hypertarget{sec:programmatore}{}
+\mbox{}\\
+È il profilo dedicato alla traduzione pratica dei requisiti in codice sorgente e alla successiva manutenzione.
+\begin{itemize}
+    \item \textbf{Composizione:} Trattandosi della fase più onerosa in termini di tempo, è il ruolo che occupa solitamente il \textbf{maggior numero di componenti}.
+    \item \textbf{Mansioni:}
+    \begin{itemize}
+        \item Sviluppare il software seguendo le direttive dell'analista e l'architettura del progettista;
+        \item Produrre la documentazione tecnica (\textit{Manuale}) del software.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Coordinamento}
+
+\paragraph{4.1.2.1 Riunioni interne periodiche}
+\mbox{}\\
+Il team \textit{The Bitless} ha stabilito un incontro settimanale fisso (in presenza o telematico) per il confronto interno. Sebbene la partecipazione sia caldamente raccomandata, non è vincolante; tuttavia, in assenza della maggioranza, la sessione viene rinviata. L'incontro ordinario è fissato il martedì pomeriggio, a partire dalle ore 16:00. Ulteriori meeting straordinari possono essere concordati via chat.
+
+\paragraph{4.1.2.2 Canali di comunicazione interna}
+\mbox{}\\
+Per lo scambio quotidiano di informazioni, documenti e comunicazioni rapide, il gruppo utilizza le seguenti piattaforme:
+\begin{itemize}
+    \item \textbf{$Discord_G$}: Utilizzata come hub principale per la comunicazione asincrona e sincrona, sfruttando sia i canali testuali per la suddivisione tematica degli argomenti, sia i canali vocali per le sessioni di lavoro collaborativo;
+    \item \textbf{$WhatsApp_G$}: Utilizzata per comunicazioni di carattere urgente o notifiche istantanee;
+\end{itemize}
+
+\paragraph{4.1.2.3 Comunicazione verso l'esterno}
+\mbox{}\\
+I rapporti con soggetti esterni avvengono tramite:
+\begin{itemize}
+    \item \textbf{Email}: Utilizzando esclusivamente l'account ufficiale \textit{thebitless.swe@gmail.com} per comunicazioni asincrone;
+    \item \textbf{Google Meet}: Per meeting, presentazioni e videoconferenze in tempo reale.
+\end{itemize}
+
+\subsubsection{Controllo e monitoraggio}
+
+\paragraph{4.1.3.1 Gestione dell'avanzamento}
+\mbox{}\\
+Questo processo vigila sulla coerenza tra l'esecuzione reale e la pianificazione, puntando all'ottimizzazione delle risorse. Il team monitora costantemente i progressi e l'impiego orario tramite strumenti dedicati. Le \textit{Issue$_G$} (ovvero le singole unità di lavoro o problemi da risolvere) vengono organizzate all'interno di una \textit{dashboard$_G$} di progetto che visualizza lo stato di avanzamento attraverso le seguenti colonne:
+\begin{itemize}
+    \item \textbf{Backlog}: attività identificate ma non ancora pianificate per lo sprint corrente;
+    \item \textbf{Ready}: attività pianificate e pronte per essere iniziate;
+    \item \textbf{In Progress}: attività attualmente in corso di svolgimento;
+    \item \textbf{In Review}: attività completate che necessitano di una verifica da parte del Verificatore;
+    \item \textbf{Done}: attività verificate con successo e considerate concluse.
+\end{itemize}
+
+\paragraph{4.1.3.2 Gestione dei cicli di lavoro (Sprint)}
+\mbox{}\\
+Viene adottato un approccio \textit{Agile} con $sprint_G$ di quattordici giorni, articolati in quattro fasi fondamentali:
+\begin{itemize}
+    \item \textbf{Sprint Planning}: Definizione dei target, scelta dei compiti dal backlog e stima dei tempi necessari;
+    \item \textbf{Sviluppo}: Esecuzione operativa delle task (compiti) assegnate ai vari componenti;
+    \item \textbf{Sprint Review}: Analisi dei risultati ottenuti alla fine delle due settimane e raccolta dei feedback;
+    \item \textbf{Sprint Retrospective}: Esame critico dei processi interni per identificare e correggere eventuali inefficienze nel modo di lavorare del team.
+\end{itemize}
+
+\paragraph{4.1.3.3 Monitoraggio dei task}
+\mbox{}\\
+L'avanzamento dei lavori è gestito tramite lo strumento \textit{GitHub Projects$_G$}. Ogni attività è censita come \textit{Issue$_G$} e categorizzata in modo univoco tramite titolo, responsabile assegnato, etichette (\textit{label$_G$}), \textit{Milestone$_G$} e data di consegna prevista. Le fasi del flusso di lavoro sono visualizzate in una \textit{dashboard$_G$} organizzata in: \textit{Backlog, Ready, In Progress, In Review, Done}.
+
+\paragraph{4.1.3.4 Rilevazione delle ore}
+\mbox{}\\
+L'allocazione dei ruoli e il tempo effettivamente speso sono tracciati con precisione per garantire la trasparenza dei costi:
+\begin{itemize}
+    \item \textbf{Piano di pianificazione}: Documento che riporta le ore previste e i ruoli assegnati a ogni membro del gruppo per ogni singolo sprint;
+    \item \textbf{Registro consuntivo}: Documentazione delle ore realmente prestate da ogni membro durante ogni sprint, dato fondamentale per calcolare le metriche di progetto e l'efficienza del team.
+\end{itemize}
+
+\paragraph{4.1.3.5 Strumenti}
+\mbox{}\\
+Gli strumenti adottati per il controllo e il monitoraggio delle attività di progetto sono:
+\begin{itemize}
+    \item \textbf{GitHub Projects}: piattaforma integrata con $GitHub_G$ per la gestione delle Issue e la visualizzazione dell’avanzamento del progetto attraverso board personalizzabili;
+    \item \textbf{Google Sheets}: strumento di fogli di calcolo condivisi per la pianificazione dei ruoli e il tracciamento delle ore lavorate da ciascun membro del gruppo.
+\end{itemize}
+
+\subsubsection{Gestione dei rischi}
+
+\paragraph{4.1.4.1 Strategia di monitoraggio e contenimento}
+\mbox{}\\
+L'attività di \textbf{gestione dei rischi} è orientata all'individuazione precoce e alla neutralizzazione di quegli eventi incerti che potrebbero ostacolare il lineare avanzamento del progetto. Il gruppo \textit{The Bitless} adotta una politica di \textbf{sorveglianza attiva}, mantenendo un presidio costante sulle criticità lungo l'intero ciclo di vita del prodotto.
+
+La pianificazione operativa di tale processo è formalizzata all'interno del \textit{Piano di Progetto}. Per ciascun rischio individuato, il documento analizza la probabilità di occorrenza e l'entità dell'impatto potenziale, definendo al contempo le procedure di prevenzione e le tattiche di mitigazione necessarie. Lo stato di salute dei rischi viene monitorato e aggiornato dinamicamente durante lo svolgimento degli $sprint_G$.
+
+In fase di chiusura di ogni ciclo, durante la \textbf{\textit{Sprint Retrospective}}, il team esegue un'analisi retrospettiva degli eventi manifestatisi per validare l'efficacia delle soluzioni adottate. Questo confronto critico permette di introdurre tempestivamente \textbf{azioni correttive} e di perfezionare le strategie di difesa.
 
 \end{document}
