@@ -37,8 +37,8 @@
 
 \newcommand{\tipoverbale}{Norme di Progetto}
 \newcommand{\dataverbale}{}
-\newcommand{\dataversione}{2026-04-09}
-\newcommand{\versione}{0.2.0}
+\newcommand{\dataversione}{2026-04-18}
+\newcommand{\versione}{0.4.0}
 \newcommand{\stato}{In stesura}
 \newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
 \newcommand{\dir}{../../..}
@@ -56,6 +56,8 @@
     \begin{tabularx}{\textwidth}{|c|c|L|c|c|L|}
         \hline
         \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
+        \hline
+        0.4.0 & 2026-04-18 & S. Zecchinato & E. De Piccoli & - & Gestione delle configurazioni e inizio verifica \\
         \hline
         0.3.0 & 2026-04-14 & A. Marini & S. Vendramin & - & Processi organizzativi \\
         \hline
@@ -155,6 +157,7 @@ In linea con lo standard, il processo di fornitura si articola in sette attivit�
     \item \textbf{Delivery and completion}: fase conclusiva di consegna del prodotto e della documentazione. Include il supporto durante i test di accettazione e l'eventuale formazione del personale aziendale per l'installazione e l'utilizzo del software, secondo i termini contrattuali stabiliti.
 \end{enumerate}
 
+\label{subsubsec:doc-fornita}
 \subsubsection{Documentazione fornita}
 Il gruppo The Bitless si impegna nella redazione e nel costante aggiornamento della documentazione di progetto. Tali documenti sono essenziali per garantire la continuità operativa del team e una comunicazione trasparente con i soggetti esterni.
 
@@ -305,6 +308,7 @@ A differenza degli altri artefatti$_G$, la redazione del documento di \textit{An
 \subsubsection{Verifica dei documenti}
 Ogni documento, a seguito della stesura o di un aggiornamento, deve essere sottoposto a verifica per accertare la correttezza e la coerenza delle informazioni riportate. Tale attività è svolta dal componente incaricato del ruolo di \textit{Verificatore$_G$}.
 
+\label{paragraph:verifica-doc}
 \paragraph{3.1.4.1 Processo di verifica tramite Pull Request$_G$} \mbox{} \\
 Il gruppo adotta il meccanismo delle \textit{Pull Request$_G$} (PR) tramite la piattaforma GitHub$_G$ per garantire che nessuna modifica venga integrata nei branch$_G$ principali senza un controllo preventivo. Il workflow$_G$ operativo è così definito:
 
@@ -359,14 +363,39 @@ tura, \texttt{VE\_AAAA-MM-GG\_azienda.pdf}
 \end{itemize}
 
 \subsection{Gestione della configurazione}
-
+Questo processo di supporto si occupa dell'identificazione, attuazione e registrazione delle versioni di tutti gli elementi che, nel progetto, sono soggetti a modifiche che devono essere tracciate.
 \paragraph{3.2.1 Numeri di versione documenti} \mbox{} \\
-
+La convenzione scelta dal gruppo per il numero di versione dei documenti è lo standard \textit{Semantic Versioning} \textsc{major.minor.patch}, \textsc{x.y.z} dove \textsc{x} rappresenta un'approvazione, \textsc{y} rappresenta una modifica maggiore e \textsc{z} rappresenta una modifica minore; in cui
+\begin{itemize}
+    \item per \textbf{modifica minore} intendiamo l'aggiunta, la rimozione o la modifica di informazioni ritenute non significative (e.g. errori di battitura, di grammatica, sistemazione struttura sintattica dei periodi);
+    \item per \textbf{modifica maggiore} intendiamo l'aggiunta, la rimozione o la modifica di informazioni ritenute significative (e.g. aggiunta di sezioni o paragrafi);
+    \item per \textbf{approvazione} intendiamo far avanzare la cifra \textsc{x} solo e solamente quando il documento passa l'approvazione da parte del responsabile di sprint.
+\end{itemize}
+Ogni documento nasce con versione 0.1.0 e viene aggiunto, tramite \textit{merge}$_G$, nel main branch con versione \textsc{x.y.z} tale che \textsc{x}$\ >0$ e \textsc{y,z}$\ =0$.
 \subsubsection{Repository}
+Di seguito le \textit{repository}$_G$ create per la gestone della configurazione:
+\begin{itemize}
+    \item \textbf{thebitless.github.io}: contiene tutta la documentazione di progetto e il sito web;
+    \item \textbf{PoC}: contiene il sorgente del \textit{Proof of Concept}$_G$ del progetto;
+    \item \textbf{MVP}: contiene il sorgente del \textit{Minimum Viable Product}$_G$ del progetto.
+\end{itemize}
 
 \paragraph{3.2.2.1 Strumenti} \mbox{} \\
+Di seguito gli strumenti adottati per la gestione della configurazione e del versionamento dei file di progetto:
+\begin{itemize}
+    \item \textbf{Git}$_G$: sistema OpenSource di \textit{VCS (Version Control System)} distribuito;
+    \item \textbf{GitHub}$_G$: servizio connesso a Git che permette la condivisione di progetti software e l'hosting del sito web relativo al progetto.
+\end{itemize}
 
 \subsection{Verifica}
+L'obiettivo della fase di verifica è accertare che gli output prodotti rispettino i criteri qualitativi e le specifiche delineate nel Piano di Qualifica (sezione §\ref{subsubsec:doc-fornita}), validando l'accuratezza e l'integrità di ogni consegna. Tali compiti sono affidati al componente del team che, nello sprint, svolge la funzione di verificatore. 
+Quest'ultimo ha l'onere di documentare gli esiti delle analisi e, in presenza di difformità rispetto ai parametri prefissati, di sollecitare i necessari interventi correttivi. Se il carico di lavoro nello sprint lo richiede, il gruppo può aver assegnato più membri alla verifica.
+
+Il gruppo applica ai seguenti prodotti il processo di verifica:
+\begin{itemize}
+    \item \textbf{Documentazione}: ogni documento è sottoposto a verifica (si veda per dettagli §\ref{paragraph:verifica-doc}) per verificare correttezza sintattica e semantica;
+    \item \textbf{Codice sorgente}: una volta raggiunta la Requirements and Technology Baseline e resi disponibili i componenti software, si procederà a strutturare ed eseguire il piano di verifica. Questo iter comprenderà test basati su analisi statica e dinamica, le cui specifiche sono illustrate nelle sezioni che seguono.
+\end{itemize}
 
 \paragraph{3.3.1.1 Attività previste} \mbox{} \\
 
