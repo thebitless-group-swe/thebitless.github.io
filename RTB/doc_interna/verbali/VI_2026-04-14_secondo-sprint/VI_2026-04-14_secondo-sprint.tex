@@ -33,14 +33,15 @@
 
 \newcommand{\tipoverbale}{interno}
 \newcommand{\dataverbale}{2026-04-14}
-\newcommand{\dataversione}{2026-04-16}
-\newcommand{\versione}{0.1.0}
+\newcommand{\dataversione}{2026-04-19}
+\newcommand{\versione}{1.0.0}
 \newcommand{\stato}{Stesura}
 \newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+\def\templatedir{../../../templates}
 
 \begin{titlepage}
 \pagenumbering{gobble}
-\input{../../../../templates/frontespizio.tex}
+\input{../../../templates/frontespizio.tex}
 \end{titlepage}
 
 \newpage
@@ -52,6 +53,8 @@
         \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
         \hline
         \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione breve} \\
+        \hline
+        1.0.0 & 2026-04-19 & L. Battistella & E. De Piccoli & L. Battistella & Approvazione \\
         \hline
         0.1.0 & 2026-04-16 & L. Battistella & E. De Piccoli & - & Prima stesura \\
         \hline
@@ -85,7 +88,8 @@ Simone & Zecchinato & Presente \\
 \section{Ordine del giorno}
 \begin{enumerate}
     \item Rotazione dei ruoli
-    \item Definizione compiti dei ruoli    
+    \item Definizione ruoli e responsabilità 
+    \item Raffinamento dei Casi d'uso
     \item Definizione delle prossime attività
 \end{enumerate}
 
@@ -98,13 +102,13 @@ Il gruppo decide di riassegnare i ruoli in maniera casuale ai componenti mantene
         \hline
         \textbf{Nome} & \textbf{Cognome} & \textbf{Ruolo} \\
         \hline
-        Lorenzo & Battistella & Responsabile, Verificatore \\
+        Lorenzo & Battistella & Responsabile \\
         \hline
-        Edoardo & De Piccoli & Amministratore, Verificatore \\
+        Edoardo & De Piccoli & Verificatore \\
         \hline
-        Davide & Facco & Amministratore, Analista \\ 
+        Andrea & Menegaldo & Amministratore \\
         \hline
-        Andrea & Menegaldo & Analista \\
+        Davide & Facco & Analista \\ 
         \hline
         Simone & Zecchinato & Analista \\
         \hline
@@ -115,8 +119,14 @@ Il gruppo decide di riassegnare i ruoli in maniera casuale ai componenti mantene
     \end{tabular}
 \end{center}
 
-\subsection{Definizione compiti dei ruoli}
-Il gruppo discute sui compiti per ogni ruolo. In particolare si decide che il responsabile si occupa di scrivere i verbali, sia interni che esterni, di approvare eventuali documenti e di assegnare le varie attività ai componenti. Viene discusso, poi, il ruolo di verificatore, che si dovrà occupare di verificare i documenti prodotti e di chiudere accettando o rifiutando le pull request$_G$. 
+\subsection{Definizione ruoli e responsabilità}
+
+Durante l'incontro, il gruppo ha ribadito le responsabilità associate ai diversi ruoli operativi. Il gruppo ha consolidato la definizione dei compiti del Responsabile, il quale garantisce la coerenza del progetto attraverso il coordinamento delle attività. Tra i suoi compiti principali sono stati riaffermati la redazione dei verbali (interni ed esterni), l'approvazione formale della documentazione e l'assegnazione dei task ai membri del team, assicurando così il rispetto delle scadenze e degli obiettivi prefissati.
+
+
+\subsection{Raffinamento dei Casi d'Uso}
+
+Durante la riunione abbiamo analizzato nuovamente la bozza della gerarchia dei casi d'uso, revisionandola per assicurarci che rispetti tutti i requisiti di progetto. Il confronto si è focalizzato sul perfezionamento delle descrizioni degli scenari più specifici, con l'obiettivo di eliminare ogni ambiguità e fornire una guida chiara per la fase di implementazione.
 
 
 \subsection{Definizione delle prossime attività}
@@ -130,8 +140,6 @@ Si decide di inziare la stesura dei casi d'uso$_G$ da parte degli analisti, ment
         \textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
         \hline
         L. Battistella & Stesura verbale interno & \issue{87} \\
-        \hline
-        Marini - Zecchinato - Vendramin - Menegaldo & Stesura casi d'uso (editing di base) & \issue{74} \\
         \hline
     \end{tabular}
 \end{center}
