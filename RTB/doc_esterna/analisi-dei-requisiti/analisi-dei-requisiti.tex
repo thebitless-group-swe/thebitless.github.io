@@ -166,18 +166,44 @@ il capitolato identifica diverse tipologie di utenti, essendo che punta ad esser
 
 \section{Casi d'uso}
 \subsection{Introduzione}
+Questa sezione descrive in dettaglio i casi d'uso del sistema \textbf{Second Brain}. Ciascun caso d'uso è definito mediante un diagramma UML$_{G}$ e da una specifica descrizione testuale. 
 
-\subsection{Attori principali}
+Per garantire completezza e rigore metodologico, ogni caso d'uso segue la struttura definita nella tabella seguente:
 
-\subsection{Attori secondari}
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{Campo} & \textbf{Descrizione} \\ \hline
+\textbf{Descrizione} & Breve riassunto che spiega l'obiettivo del caso d'uso e il valore che apporta all'utente. \\ \hline
+\textbf{Attori Principali} & Persone o entità che interagiscono attivamente con il sistema per raggiungere un obiettivo, avviando l'operazione. \\ \hline
+\textbf{Attori Secondari} & Entità esterne (come l'LLM$_{G}$) che interagiscono con il sistema in modo passivo o forniscono servizi necessari al completamento del compito. \\ \hline
+\textbf{Precondizioni} & Stato in cui deve trovarsi il sistema affinché il caso d'uso possa essere avviato con successo. \\ \hline
+\textbf{Postcondizioni} & Stato del sistema al termine dell'esecuzione del caso d'uso, garantendo che l'obiettivo sia stato raggiunto. \\ \hline
+\textbf{Scenario Principale} & Sequenza ordinata di passi che l'attore e il sistema compiono per completare l'operazione. \\ \hline
+\textbf{Estensioni} & Casi d'uso aggiuntivi o varianti che possono attivarsi in base a specifiche condizioni durante il flusso principale. \\ \hline
+\textbf{Inclusioni} & Funzionalità comuni o moduli esterni che vengono obbligatoriamente richiamati per il corretto funzionamento del caso d'uso. \\ \hline
+\end{tabular}
+\caption{Struttura della documentazione dei Casi d'Uso}
+\end{table}
 
-\subsection{Lista dei casi d'uso}
+\subsection{Attori del Sistema}
 
-\subsubsection{Editing di base}
+All'interno del sistema Second Brain, abbiamo identificato tre tipologie principali di attori$_{G}$:
 
-\subsubsection{Funzionalità AI}
+\begin{itemize}
+    \item \textbf{Utente:} La persona fisica che interagisce con l'interfaccia del sistema per gestire le proprie note, organizzare la conoscenza e consultare le informazioni. È l'attore primario$_{G}$ che genera gli input.
+    \item \textbf{LLM$_{G}$:} Il modello di intelligenza artificiale integrato nel sistema. Agisce come attore secondario$_{G}$, fornendo le funzionalità avanzate di elaborazione del linguaggio naturale, sintesi e generazione di contenuti su richiesta del sistema.
+    \item \textbf{Sistema di Persistenza$_{G}$:} Componente responsabile del salvataggio e del recupero dei dati. Agisce come attore secondario$_{G}$ garantendo che le informazioni siano memorizzate in modo permanente e siano accessibili nelle sessioni successive.
+\end{itemize}
 
-\subsubsection{Salvataggio e Persistenza}
+\subsection{Macroarea 1: Editing di base}
+
+\subsection{Macroarea 2: Funzionalità AI}
+
+\subsubsection{Macroarea 3: Salvataggio e Persistenza}
 
 \newpage
 
