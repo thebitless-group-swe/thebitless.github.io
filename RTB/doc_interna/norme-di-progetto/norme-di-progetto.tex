@@ -405,18 +405,41 @@ Come già citato brevemente nella sezione §\ref{paragraph:verifica-implementazi
 
 
 \paragraph{3.3.1.4 Test di Unità} \mbox{} \\
+I test di unità, in inglese \textit{unit test}$_G$, sono quei test che valutano il corretto funzionamento della parte più piccola del software definita per il linguaggio di programmazione in cui quel software è stato codificato (e.g. funzioni, classi o metodi). Essi si dividono in:
+\begin{itemize}
+    \item \textbf{Funzionali}: anche detti \textit{black-box}, verificano solo l'output dell'unità senza indagare la logica interna;
+    \item \textbf{Strutturali}: anche detti \textit{white-box}, valutano anche la corretta esecuzione della logica interna senza concentrarsi solamente sull'output e si assicura che tutti gli statements rilevanti del codice vengano eseguiti almeno una volta.
+\end{itemize}
 
 \paragraph{3.3.1.5 Test di Integrazione} \mbox{} \\
+I test di integrazione, in inglese \textit{integration test}$_G$, sono quei testi che valutano l'interazione tra le varie componenti software e si usano primariamente per l'assemblaggio incrementale, ovvero in tutti quei momenti in cui si vuole integrare una nuova parte al sistema. Questo garantisce quello che in gergo si chiama \textit{Continuous Integration}$_G$.
+I test di integrazione possono essere implementati con strategia \textbf{bottom-up} in cui si va ad integrare prima le componenti con minori dipendenze d'uso, oppure con strategia \textbf{top-down}, in cui si vanno ad integrare prima le componenti con maggiori dipendenze d'uso.
 
+\label{subsec:validazione}
 \subsection{Validazione}
+Nella parte di validazione l'obiettivo è quello di controllare che il prodotto, sia esso software o documentale, corrisponda ai bisogni della proponente o, in fase avanzata, dell'utente. Questa fase viene svolta in presenza della proponente sfruttando i casi d'uso raccolti nell'\textit{Analisi dei Requisiti}$_G$ e conducendo test rappresentativi delle esigenze reali.
 
 \paragraph{3.3.2.1 Attività previste} \mbox{} \\
+Le attività che prevediamo in questo processo sono:
+\begin{itemize}
+    \item \textbf{Implementazione del processo};
+    \item \textbf{Esecuzione dei test};
+    \item \textbf{Raccolta dei risultati}.
+\end{itemize}
 
 \paragraph{3.3.2.2 Implementazione del processo} \mbox{} \\
+Come citati brevemente nella sezione §\ref{subsec:validazione}, nel documento denominato \textit{Analisi dei Requisiti}$_G$ il gruppo ha delineato i requisiti che il prodotto deve rispettare.
+ Andiamo quindi ad effettuare i seguenti test per controllare se i requisiti sono stati rispettati e se il prodotto risponde correttamente ai \textit{Casi d'uso}$_G$ definiti:
+ \begin{itemize}
+    \item \textbf{Test di sistema}: test funzionali sull'intero sistema;
+    \item \textbf{Test di accettazione}: servono per accertare che i requisiti imposti dalla proponente siano rispettati.
+ \end{itemize} 
 
 \paragraph{3.3.2.3 Esecuzione dei test} \mbox{} \\
+L'implementazione dei test è guidata dai requisiti e dai casi d'uso cercando di immedesimarsi il più possibile nell'utente.
 
 \paragraph{3.3.2.4 Raccolta dei risultati} \mbox{} \\
+I risultati dei test definiti qui sopra vengono raccolti nel documento denominato \textit{Piano di Qualifica}$_G$, questo permette un'analisi dettagliata a confronto con i requisiti espressi.
 
 \section{Processi organizzativi}
 
