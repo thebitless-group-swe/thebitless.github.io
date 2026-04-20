@@ -1,0 +1,150 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+\usepackage[a-1b]{pdfx}
+\usepackage[italian]{babel} 
+\usepackage{comment}      
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{minted} 
+\usepackage{geometry}
+\usepackage{float} 
+\usepackage{setspace}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{Verbale \tipoverbale \ \dataverbale}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    pdfborderstyle={/S/U/W 1},
+    linkbordercolor=0 0 0,
+    urlbordercolor=0 0 0,
+    citebordercolor=0 0 0,
+    filebordercolor=0 0 0,
+    breaklinks=true,
+}
+\newcommand{\issue}[1]{\href{https://github.com/thebitless-group-swe/thebitless.github.io/issues/#1}{\##1}}
+
+\begin{document}
+
+\newcommand{\tipoverbale}{interno}
+\newcommand{\dataverbale}{2026-04-14}
+\newcommand{\dataversione}{2026-04-19}
+\newcommand{\versione}{1.0.0}
+\newcommand{\stato}{Stesura}
+\newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+\def\templatedir{../../../templates}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+\input{../../../templates/frontespizio.tex}
+\end{titlepage}
+
+\newpage
+\pagenumbering{arabic}
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
+        \hline
+        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione breve} \\
+        \hline
+        1.0.0 & 2026-04-19 & L. Battistella & E. De Piccoli & L. Battistella & Approvazione \\
+        \hline
+        0.1.0 & 2026-04-16 & L. Battistella & E. De Piccoli & - & Prima stesura \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\newpage
+\tableofcontents 
+
+\newpage
+\section{Informazioni sulla riunione}
+Il presente documento riporta la verbalizzazione della riunione interna al gruppo \textbf{The Bitless} avvenuta il \dataverbale{}. L'incontro si è svolto in modalità telematica tramite la piattaforma Discord$_G$. La riunione si è aperta alle ore 17:00 e si è conclusa alle ore 18:00.
+
+\section{Presenze}
+\begin{center}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
+\hline
+Lorenzo & Battistella & Presente \\
+Edoardo & De Piccoli & Assente \\
+Davide & Facco & Assente \\
+Anna & Marini & Presente \\
+Andrea & Menegaldo & Presente \\
+Samuele & Vendramin & Presente \\
+Simone & Zecchinato & Presente \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ordine del giorno}
+\begin{enumerate}
+    \item Rotazione dei ruoli
+    \item Definizione ruoli e responsabilità 
+    \item Raffinamento dei Casi d'uso
+    \item Definizione delle prossime attività
+\end{enumerate}
+
+\section{Discussione e decisioni}
+Di seguito le discussioni e le decisioni prese dal gruppo durante la riunione.
+\subsection{Rotazione dei ruoli}
+Il gruppo decide di riassegnare i ruoli in maniera casuale ai componenti mantenendo lo stesso numero di persone per ogni ruolo dello sprint precendente. I ruoli vengono assegnati come segue:
+\begin{center}
+    \begin{tabular}{|l|l|c|}
+        \hline
+        \textbf{Nome} & \textbf{Cognome} & \textbf{Ruolo} \\
+        \hline
+        Lorenzo & Battistella & Responsabile \\
+        \hline
+        Edoardo & De Piccoli & Verificatore \\
+        \hline
+        Andrea & Menegaldo & Amministratore \\
+        \hline
+        Davide & Facco & Analista \\ 
+        \hline
+        Simone & Zecchinato & Analista \\
+        \hline
+        Anna & Marini & Analista \\
+        \hline
+        Samuele & Vendramin & Analista \\       
+        \hline  
+    \end{tabular}
+\end{center}
+
+\subsection{Definizione ruoli e responsabilità}
+
+Durante l'incontro, il gruppo ha ribadito le responsabilità associate ai diversi ruoli operativi. Il gruppo ha consolidato la definizione dei compiti del Responsabile, il quale garantisce la coerenza del progetto attraverso il coordinamento delle attività. Tra i suoi compiti principali sono stati riaffermati la redazione dei verbali (interni ed esterni), l'approvazione formale della documentazione e l'assegnazione dei task ai membri del team, assicurando così il rispetto delle scadenze e degli obiettivi prefissati.
+
+
+\subsection{Raffinamento dei Casi d'Uso}
+
+Durante la riunione abbiamo analizzato nuovamente la bozza della gerarchia dei casi d'uso, revisionandola per assicurarci che rispetti tutti i requisiti di progetto. Il confronto si è focalizzato sul perfezionamento delle descrizioni degli scenari più specifici, con l'obiettivo di eliminare ogni ambiguità e fornire una guida chiara per la fase di implementazione.
+
+
+\subsection{Definizione delle prossime attività}
+Si decide di inziare la stesura dei casi d'uso$_G$ da parte degli analisti, mentre il responsabile si occuperà di scrivere il verbale interno.
+
+\section{Assegnazione attività singole}
+\begin{center}
+    \renewcommand{\arraystretch}{1.4}
+        \begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
+        \hline
+        \textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
+        \hline
+        L. Battistella & Stesura verbale interno & \issue{87} \\
+        \hline
+    \end{tabular}
+\end{center}
+
+
+\appendix
+
+\end{document}
