@@ -40,6 +40,10 @@
 \newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
 \def\templatedir{../../../templates}
 
+%Comandi per includere i paragrafi e i sottoparagrafi nell'indice e numerarli
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5}
+
 \begin{titlepage}
 \pagenumbering{gobble}
 \input{../../../templates/frontespizio.tex}
@@ -47,6 +51,9 @@
 
 \newpage
 \pagenumbering{arabic}
+
+\tableofcontents
+\newpage
 
 \begin{center}
     \small
@@ -204,7 +211,7 @@ All'interno del sistema Second Brain, abbiamo identificato tre tipologie princip
 
 \subsection{Macroarea 2: Funzionalità AI}
 
-\subsubsection{Macroarea 3: Salvataggio e Persistenza}
+\subsection{Macroarea 3: Salvataggio e Persistenza}
 
 \newpage
 
