@@ -5,6 +5,8 @@
 \usepackage{graphicx} 
 \usepackage{multirow}
 \usepackage{geometry}
+\newcommand{\ucref}[1]{UC \ref{#1}}
+\usepackage[table]{xcolor}
 \usepackage{float} 
 \usepackage{setspace}
 \definecolor{bluBitless}{HTML}{3A75C4}
@@ -21,7 +23,7 @@
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
-    linkcolor=0 0 0 0, 
+    linkcolor=black, 
     urlcolor=bluBitless,     
     citecolor=0 0 0 0,  
     filecolor=0 0 0 0,
@@ -41,7 +43,7 @@
 
 \begin{titlepage}
 \pagenumbering{gobble}
-\input{../../../templates/frontespizio.tex}
+\input{\templatedir/frontespizio.tex}
 \end{titlepage}
 
 \newpage
@@ -52,6 +54,10 @@
     \begin{tabularx}{\textwidth}{|c|c|L|c|c|L|}
         \hline
         \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
+        \hline 
+        0.4.1 & 2026-04-21 & D. Facco & - & - & Stesura casi d'uso 26, 27 e 28 \\
+        \hline
+        0.4.0 & 2026-04-16 & A. Marini & L. Batttistella & - & Introduzione casi d'uso \\
         \hline
         0.3.0 & 2026-04-13 & D. Facco & S. Vendramin & - & Stesura Analisi del Prodotto \\
         \hline
@@ -126,8 +132,9 @@ Più nello specifico, il prodotto mira a:
 \end{itemize}
 
 \subsection{Funzionalità del prodotto}
-Le funzionalità, sia requisiti obbligatori che opzionali, del prodotto sono i seguenti:
-\textbf{Funzionalità minime (o oblligatorie)}:
+Le funzionalità, sia requisiti obbligatori che opzionali, del prodotto sono i seguenti: \\
+\\
+\textbf{Funzionalità minime (o obbligatorie)}
 \begin{itemize}
     \item Editor Markdown: Il prodotto deve implementare un'area di inserimento testo che supporti il linguaggio di Markdown$_G$
     \item Rendering Grafico: Visualizzazione del testo formattato in tempo reale, fianco a fianco con l'editor
@@ -166,18 +173,369 @@ il capitolato identifica diverse tipologie di utenti, essendo che punta ad esser
 
 \section{Casi d'uso}
 \subsection{Introduzione}
+Questa sezione descrive in dettaglio i casi d'uso del sistema \textbf{Second Brain}. Ciascun caso d'uso è definito mediante un diagramma UML$_{G}$ e da una specifica descrizione testuale. 
 
-\subsection{Attori principali}
+Per garantire completezza e rigore metodologico, ogni caso d'uso segue la struttura definita nella tabella seguente:
 
-\subsection{Attori secondari}
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{Campo} & \textbf{Descrizione} \\ \hline
+\textbf{Descrizione} & Breve riassunto che spiega l'obiettivo del caso d'uso e il valore che apporta all'utente. \\ \hline
+\textbf{Attori Principali} & Persone o entità che interagiscono attivamente con il sistema per raggiungere un obiettivo, avviando l'operazione. \\ \hline
+\textbf{Attori Secondari} & Entità esterne (come l'LLM$_{G}$) che interagiscono con il sistema in modo passivo o forniscono servizi necessari al completamento del compito. \\ \hline
+\textbf{Precondizioni} & Stato in cui deve trovarsi il sistema affinché il caso d'uso possa essere avviato con successo. \\ \hline
+\textbf{Postcondizioni} & Stato del sistema al termine dell'esecuzione del caso d'uso, garantendo che l'obiettivo sia stato raggiunto. \\ \hline
+\textbf{Scenario Principale} & Sequenza ordinata di passi che l'attore e il sistema compiono per completare l'operazione. \\ \hline
+\textbf{Estensioni} & Casi d'uso aggiuntivi o varianti che possono attivarsi in base a specifiche condizioni durante il flusso principale. \\ \hline
+\textbf{Inclusioni} & Funzionalità comuni o moduli esterni che vengono obbligatoriamente richiamati per il corretto funzionamento del caso d'uso. \\ \hline
+\end{tabular}
+\caption{Struttura della documentazione dei Casi d'Uso}
+\end{table}
 
-\subsection{Lista dei casi d'uso}
+\subsection{Attori del Sistema}
 
-\subsubsection{Editing di base}
+All'interno del sistema Second Brain, abbiamo identificato tre tipologie principali di attori$_{G}$:
 
-\subsubsection{Funzionalità AI}
+\begin{itemize}
+    \item \textbf{Utente:} La persona fisica che interagisce con l'interfaccia del sistema per gestire le proprie note, organizzare la conoscenza e consultare le informazioni. È l'attore primario$_{G}$ che genera gli input.
+    \item \textbf{LLM$_{G}$:} Il modello di intelligenza artificiale integrato nel sistema. Agisce come attore secondario$_{G}$, fornendo le funzionalità avanzate di elaborazione del linguaggio naturale, sintesi e generazione di contenuti su richiesta del sistema.
+    \item \textbf{Sistema di Persistenza$_{G}$:} Componente responsabile del salvataggio e del recupero dei dati. Agisce come attore secondario$_{G}$ garantendo che le informazioni siano memorizzate in modo permanente e siano accessibili nelle sessioni successive.
+\end{itemize}
 
-\subsubsection{Salvataggio e Persistenza}
+\subsection{Macroarea 1: Editing di Base}
+
+\section{Macroarea 2: Funzionalità AI}
+
+% --- UC 26 ---
+\hypertarget{uc:26}{}
+\subsection{UC 26 - Generazione Automatica di testo (Distant Writing)}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente richiede al sistema di generare un testo originale o espandere un'idea tramite l'integrazione con un LLM.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  LLM$_G$.
+    \item \textbf{Precondizioni:} L'utente ha inserito un prompt$_G$ nell'apposita area e il sistema è connesso all'LLM$_G$
+    \item \textbf{Postcondizioni:} Il sistema mostra il testo generato dall'AI$_G$ pronto per la validazione.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente avvia la funzione di generazione
+        \item L'utente imposta i parametri ed il contesto desiderato (\hyperlink{uc:26.1}{UC 26.1}, \hyperlink{uc:26.2}{UC 26.2}, \hyperlink{uc:26.3}{UC 26.3}).
+        \item Il sistema invia la richiesta all'attore secondario LLM.
+        \item Il sistema riceve il testo elaborato e lo visualizza.
+    \end{enumerate}
+    
+    \item \textbf{Sottocasi:}
+    \begin{itemize}
+        \item \hyperlink{uc:26.1}{UC 26.1 - Inserimento o riutilizzo del prompt}
+        \item \hyperlink{uc:26.2}{UC 26.2 - Selezione della lunghezza desiderata del testo}
+        \item \hyperlink{uc:26.3}{UC 26.3 - Selezione manuale delle note per il contesto della LLM}
+        \item \hyperlink{uc:26.4}{UC 26.4 - Anteprima e conferma del contesto inviato}
+        \item \hyperlink{uc:26.5}{UC 26.5 - Errore LLM non raggiungibile}
+    \end{itemize}
+\end{itemize}
+
+% --- 26.1 ---
+\hypertarget{uc:26.1}{}
+\subsection{UC 26.1 - Inserimento o riutilizzo del prompt}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente inserisce una nuova istruzione testuale o ne seleziona una usata in precedenza.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  Sistema di persistenza.
+    \item \textbf{Precondizioni:} Il sistema è in modalità di configurazione del prompt$_G$.
+    \item \textbf{Postcondizioni:} Un prompt$_G$ è selezionato e pronto all'invio.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente apre il menu prompt$_G$.
+        \item L'utente sceglie se scrivere un nuovo prompt o scorrere la cronologia.
+        \item L'utente conferma la selezione.
+    \end{enumerate}
+\end{itemize}
+
+% --- 26.2 ---
+\hypertarget{uc:26.2}{}
+\subsection{UC 26.2 - Selezione della lunghezza del testo}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} Definizione del vincolo sulla quantità del testo generato (corto, medio, lungo).
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:} Nessuno.
+    \item \textbf{Precondizioni:} Il sistema è in modalità configurazione prompt$_G$.
+    \item \textbf{Postcondizioni:} Il parametro answer\_length è impostato per la richiesta.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente ha scritto il prompt da inviare.
+        \item L'utente seleziona la lunghezza desiderata della risposta dell'LLM$_G$.
+        \item Il sistema aggiorna i parametri della richiesta.
+    \end{enumerate}
+\end{itemize}
+
+% --- 26.3 ---
+\hypertarget{uc:26.3}{}
+\subsection{UC 26.3 - Selezione manuale delle note da inviare come contesto}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente sceglie una o più note esistenti per fornire base documentale all'AI
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  Sistema di persistenza.
+    \item \textbf{Precondizioni:} Esistono note salvate nel sistema.
+    \item \textbf{Postcondizioni:} Il contenuto delle note selezionate viene aggiunto al buffer del contesto.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente avvia la funzione di generazione.
+        \item L'utente apre il selettore note.
+        \item Il sistema elenca le note disponibili.
+        \item L'utente marca le note desiderate.
+        \item Il sistema le aggrega per l'invio della richiesta.
+    \end{enumerate}
+\end{itemize}
+
+% --- 26.4 ---
+\hypertarget{uc:26.4}{}
+\subsection{Anteprima e conferma del contesto inviato all'LLM}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} Visualizzazione di riepilogo di tutte le informazioni (prompt + note + parametri) prima dell'invio.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  Nessuno.
+    \item \textbf{Precondizioni:} L'utente ha definito prompt, contesto e/o parametri.
+    \item \textbf{Postcondizioni:} La richiesta viene inviata all'LLM$_G$
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item Il sistema mostra il riepilogo.
+        \item L'utente revisiona il riepilogo.
+        \item L'utente preme invia.
+    \end{enumerate}
+\end{itemize}
+
+% --- 26.5 ---
+\hypertarget{uc:26.5}{}
+\subsection{Errore LLM non raggiungibile}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} Gestione della mancanza di risposta da parte del servizio di Intelligenza Artificiale
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  LLM$_G$.
+    \item \textbf{Precondizioni:} Una richiesta è stata inviata.
+    \item \textbf{Postcondizioni:} Il sistema torna allo stato precedente all'invio senza perdita di dati locali.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item Il sistema rileva un timeout o un errore dall'API$_G$ LLM$_G$
+        \item Il sistema mostra un messaggio di avviso.
+        \item L'utente può tentare un nuovo invio con lo stato precedente all'errore.
+    \end{enumerate}
+\end{itemize}
+
+% --- UC 27 ---
+
+\hypertarget{uc:27}{}
+\subsection{UC 27 - Elaborazione vocale}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} Conversione di un input audio in testo strutturato e formattato.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  LLM$_G$.
+    \item \textbf{Precondizioni:} Microfono attivo ed autorizzato.
+    \item \textbf{Postcondizioni:} L'audio è stato trasformato in testo nell'interfaccia
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente avvia la registrazione.
+        \item Termina il parlato.
+        \item Il sistema processa l'audio e mostra il testo.
+    \end{enumerate}
+    
+    \item \textbf{Sottocasi:}
+    \begin{itemize}
+        \item \hyperlink{uc:27.1}{UC 27.1 - Trascrizione e formattazione automatica}
+        \item \hyperlink{uc:27.2}{UC 27.2 - Gestione audio incomprensibile}
+    \end{itemize}
+\end{itemize}
+
+% --- 27.1 ---
+\hypertarget{uc:27.1}{}
+\subsection{UC 27.1 - Trascrizione e formattazione automatica}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} Pulizia del testo trascritto (punteggiatura, paragrafi) tramite AI.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  LLM$_G$.
+    \item \textbf{Precondizioni:} Esiste una trascrizione grezza.
+    \item \textbf{Postcondizioni:} Il testo è reso leggibile e stilisticamente corretto.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item Il sistema riceve il testo grezzo.
+        \item Lo invia all'LLM$_G$ per la formattazione.
+        \item L'output pulito viene presentato all'utente.
+    \end{enumerate}
+\end{itemize}
+
+% --- 27.2 ---
+\hypertarget{uc:27.2}{}
+\subsection{UC 27.2 - Gestione audio incomprensibile}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} Segnalazione all'utente che la qualità audio non permette la trascrizione.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  Nessuno.
+    \item \textbf{Precondizioni:} Input audio ricevuto troppo basso o disturbato.
+    \item \textbf{Postcondizioni:} Richiesta di ripetizione dell'input.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item Il sistema analizza l'audio.
+        \item Il sistema rileva un livello di confidenza troppo basso.
+        \item Interrompe il processo e notifica l'utente.
+    \end{enumerate}
+\end{itemize}
+
+% --- UC 28 ---
+
+\hypertarget{uc:28}{}
+\subsection{UC 28 - Validazione output AI}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} Fase decisionale dell'utente sulla qualità del testo ricevuto dall'AI.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  Nessuno.
+    \item \textbf{Precondizioni:} L'LLM ha restituito l'output.
+    \item \textbf{Postcondizioni:} L'output viene accettato, modificato o scartato.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente legge l'output.
+        \item L'utente valuta la pertinenza.
+        \item Seleziona l'azione successiva tra le opzioni disponibili.
+    \end{enumerate}
+    
+    \item \textbf{Sottocasi:}
+    \begin{itemize}
+        \item \hyperlink{uc:27.1}{UC 27.1 - Trascrizione e formattazione automatica}
+        \item \hyperlink{uc:27.2}{UC 27.2 - Gestione audio incomprensibile}
+    \end{itemize}
+\end{itemize}
+
+% --- 28.1 ---
+
+\hypertarget{uc:28.1}{}
+\subsection{UC 28.1 - Accettazione output}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente esamina il testo prodotto dall'AI e lo giudica idoneo, accettando di utilizzarlo nel sistema.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  Sistema di persistenza.
+    \item \textbf{Precondizioni:} L'output dell'LLM è stato visualizzato correttamente a schermo (\hypertarget{uc:28}{UC 28}) e l'utente ha terminato la revisione.
+    \item \textbf{Postcondizioni:} L'output è marcato come validato. Il sistema sblocca le funzioni di persistenza definitiva (\hypertarget{uc:28.1.1}{UC 28.1.1}, \hypertarget{uc:28.1.2}{UC 28.1.2}).
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente visualizza il testo generato dall'AI nell'area di anteprima.
+        \item L'utente seleziona il comando Conferma.
+        \item Il sistema registra il feedback positivo.
+    \end{enumerate}
+    
+    \item \textbf{Sottocasi:}
+    \begin{itemize}
+        \item \hyperlink{uc:28.1.1}{UC 28.1.1 - Sostituzione del testo nell'editor}
+        \item \hyperlink{uc:28.1.2}{UC 28.1.2 - Salvataggio dell'output come una nuova nota}
+    \end{itemize}
+\end{itemize}
+
+% --- 28.1.1 ---
+
+\hypertarget{uc:28.1.1}{}
+\subsection{UC 28.1.1 - Sostituzione del testo nell'editor}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} L'output AI sostituisce il contenuto corrente di una nota aperta.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  Sistema di persistenza.
+    \item \textbf{Precondizioni:} \hypertarget{uc:28.1}{UC 28.1} attivato.
+    \item \textbf{Postcondizioni:} Il testo originale della nota aperta è sovrascritto.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente sceglie "Sostituisci".
+        \item Il sistema aggiorna il buffere dell'editor.
+        \item Il sistema salva le modifiche.
+    \end{enumerate}
+\end{itemize}
+
+% --- 28.1.2 ---
+
+\hypertarget{uc:28.1.2}{}
+\subsection{UC 28.1.2 - Salvataggio dell'output come nuova nota}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} L'output AI viene archiviato come un documento indipendente.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  Sistema di persistenza.
+    \item \textbf{Precondizioni:} \hypertarget{uc:28.1}{UC 28.1} attivato.
+    \item \textbf{Postcondizioni:} L'output è salvato in una nuova nota e presente nel database.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente sceglie "Salva come nuova".
+        \item Il sistema crea una nuova nota vuota.
+        \item Il sistema scrive l'output nella nuova nota.
+        \item Il sistema salva il testo generato.
+    \end{enumerate}
+\end{itemize}
+
+% --- 28.2 ---
+
+\hypertarget{uc:28.2}{}
+\subsection{UC 28.2 - Rifiuto dell'output AI}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente scarta il testo generato perchè valutato non soddisfacente.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  Nessuno.
+    \item \textbf{Precondizioni:} L'output dell'LLM è stato visualizzato correttamente a schermo (\hypertarget{uc:28}{UC 28}) e l'utente ha terminato la revisione.
+    \item \textbf{Postcondizioni:} Il testo generato viene rimosso dalla memoria temporanea.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente preme "Scarta"
+        \item Il sistema chiude l'anteprima e torna alla schermata di configurazione.
+    \end{enumerate}
+\end{itemize}
+
+% --- 28.3 ---
+
+\hypertarget{uc:28.3}{}
+\subsection{UC 28.3 - Rigenerazione dell'output}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} Richiesta di una nuova versione del testo mantenendo gli stessi parametri.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  LLM$_G$.
+    \item \textbf{Precondizioni:} L'output dell'LLM è stato visualizzato correttamente a schermo (\hypertarget{uc:28}{UC 28}) e l'utente ha terminato la revisione.
+    \item \textbf{Postcondizioni:} Un nuovo output sostituisce il precedente nella schermata di anteprima.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente preme "Rigenera".
+        \item Il sistema reinvia la richiesta all'LLM$_G$.
+        \item L'utente visualizza il nuovo risultato.
+    \end{enumerate}
+\end{itemize}
+
+% --- 28.4 ---
+
+\hypertarget{uc:28.4}{}
+\subsection{UC 28.4 - Tracciamento delle note sorgente usate per un output AI}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} Memorizzazione dei metadati relativi a quali note (interne ed esterne) hanno contribuito alla generazione.
+    \item \textbf{Attori Principali:} Sistema.
+    \item \textbf{Attori Secondari:}  Sistema di persistenza.
+    \item \textbf{Precondizioni:} \hypertarget{uc:26}{UC 26} eseguito.
+    \item \textbf{Postcondizioni:} La nota generata contiene riferimenti alle note sorgente.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item Al salvataggio della nota, il sistema crea una relazione nel database tra la nuova nota e gli ID delle note selezionate al passo \hypertarget{uc:26.3}{26.3}.
+        \item Se vengono menzionate note esterne, verranno salvati i link delle pagine utilizzate.
+    \end{enumerate}
+\end{itemize}
+
+\subsection{Salvataggio e Persistenza}
 
 \newpage
 
