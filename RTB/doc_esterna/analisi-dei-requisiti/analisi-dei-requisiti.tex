@@ -61,6 +61,8 @@
         \hline
         \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
         \hline
+        0.5.0 & 2026-04-22 & A. Menegaldo & E. De Piccoli & -  & Struttura salvataggio e persistenza \\
+        \hline
         0.4.0 & 2026-04-20 & S. Zecchinato & E. De Piccoli & -  & Prima struttura salvataggio e persistenza \\
         \hline
         0.3.0 & 2026-04-13 & D. Facco & S. Vendramin & - & Stesura Analisi del Prodotto \\
@@ -84,17 +86,17 @@ Il presente documento rappresenta il fondamento metodologico su cui poggia l'int
 Nello specifico, il documento persegue i seguenti obiettivi:
 
 \begin{itemize}
-    \item \textbf{Definizione del perimetro funzionale:} Identifica con precisione \textit{cosa} il Sistema$_G$ debba realizzare (requisiti funzionali) e quali standard qualitativi debba rispettare (requisiti non funzionali, quali usabilità, sicurezza e performance), tracciando i confini operativi e i vincoli$_G$ tecnologici del progetto.
+    \item \textbf{Definizione del perimetro funzionale:} Identifica con precisione \textit{cosa} il Sistema$_G$ debba realizzare (requisiti funzionali$_G$) e quali standard qualitativi debba rispettare (requisiti non funzionali, quali usabilità, sicurezza e performance), tracciando i confini operativi e i vincoli$_G$ tecnologici del progetto.
     
     \item \textbf{Sincronizzazione degli Stakeholder$_G$:} Agisce come un "contratto tecnico" tra il team di sviluppo e il committente$_G$. L'utilizzo di un linguaggio condiviso permette di allineare le aspettative di analisti, progettisti e tester$_G$, eliminando ambiguità che potrebbero compromettere la validità del prodotto finale.
     
-    \item \textbf{Fondamento per la Progettazione e Verifica:} Fornisce l'input$_G$ necessario per le fasi di architettura e codifica, costituendo al contempo la base oggettiva per le attività di verifica e convalida. Senza questi parametri, non sarebbe possibile attestare la conformità del software alle richieste originali.
+    \item \textbf{Fondamento per la Progettazione e Verifica$_G$:} Fornisce l'input$_G$ necessario per le fasi di architettura e codifica, costituendo al contempo la base oggettiva per le attività di verifica$_G$ e convalida. Senza questi parametri, non sarebbe possibile attestare la conformità del software alle richieste originali.
     
-    \item \textbf{Governo del Cambiamento e dei Rischi:} Il documento funge da strumento di controllo preventivo, permettendo di intercettare criticità tecnologiche, incongruenze logiche o requisiti irrealizzabili prima dell'inizio della fase di codifica.
+    \item \textbf{Governo del Cambiamento e dei Rischi:} Il documento funge da strumento di controllo preventivo, permettendo di intercettare criticità tecnologiche, incongruenze logiche o requisiti$_G$ irrealizzabili prima dell'inizio della fase di codifica.
 \end{itemize}
 
 \subsection{Sviluppo del documento}
-La stesura del presente documento segue un approccio di tipo \textbf{incrementale$_G$}. Tale scelta metodologica è finalizzata a garantire un'elevata manutenibilità$_G$ del testo, permettendo l'integrazione di modifiche o integrazioni derivanti dal confronto continuo tra il gruppo The Bitless e i committenti$_G$. 
+La stesura del presente documento segue un approccio di tipo \textbf{incrementale$_G$}. Tale scelta metodologica è finalizzata a garantire un'elevata manutenibilità$_G$ del testo, permettendo l'integrazione$_G$ di modifiche o integrazioni derivanti dal confronto continuo tra il gruppo The Bitless e i committenti$_G$. 
 
 Il documento è dunque da considerarsi dinamico, soggetto a un processo di raffinamento e miglioramento costante lungo tutto il ciclo di vita del progetto.
 
@@ -107,7 +109,7 @@ Il documento è dunque da considerarsi dinamico, soggetto a un processo di raffi
     \item \textbf{Regolamento del Progetto Didattico}: \\
     \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf}
     \item \textbf{Norme di Progetto}: \\
-    \url{https://thebitless.github.io/RTB/doc_interna/norme-di-progetto/norme-di-progetto.pdf}
+     \scriptsize\url{https://thebitless.github.io/RTB/doc_interna/norme-di-progetto/norme-di-progetto.pdf}
 \end{itemize}
 
 \subsubsection{Riferimenti Informativi}
@@ -125,27 +127,27 @@ Il documento è dunque da considerarsi dinamico, soggetto a un processo di raffi
 \section{Descrizione del prodotto}
 
 \subsection{Prospettiva del prodotto}
-L'idea per la quale nasce questo prodotto è di fornire un nuovo sistema per prendere appunti che estenda le capacità umane, implementando l'utilizzo degli LLM$_G$ (da qui il nome Second Brain - Secondo Cervello) non solo per aiutare l'utente ad archiviare informazioni, ma a rielaborarle, criticarle e generarle in maniera intelligente.
-Il sistema, a differenza dei classici chatbot$_G$, dovrà agire come un editor attivo che si basa sulle conoscenze specifiche dell'utente.
+L'idea per la quale nasce questo prodotto è di fornire un nuovo sistema$_G$ per prendere appunti che estenda le capacità umane, implementando l'utilizzo degli LLM$_G$ (da qui il nome Second Brain - Secondo Cervello) non solo per aiutare l'utente ad archiviare informazioni, ma a rielaborarle, criticarle e generarle in maniera intelligente.
+Il sistema$_G$, a differenza dei classici chatbot$_G$, dovrà agire come un editor attivo che si basa sulle conoscenze specifiche dell'utente.
 
 \subsection{Obiettivi del prodotto}
-L'obiettivo principale sta nel sviluppare un'applicazione che verifichi le potenzialità degli LLM$_G$ nel supportare una persona in compiti legati alla creazione di testi, creazione di idee e brainstorming$_G$.
+L'obiettivo principale è sviluppare un'applicazione che verifichi le potenzialità degli LLM$_G$ nel supportare una persona nella creazione di testi, idee e brainstorming$_G$.
 Più nello specifico, il prodotto mira a:
 \begin{itemize}
     \item Dimostrare la fatibilità di tali strumenti utilizzando Tecnologie Web$_G$
     \item Esplorare l'efficacia del Prompt Engeneering$_G$ per ottenere analisi critiche e trasformazioni testuali speciali e specifiche
-    \item Sperimentare le modalità di interazione tra uomo e macchina come il Distant Writing$_G$ ed il brainstorming assistito
+    \item Sperimentare le modalità di interazione tra uomo e macchina come il Distant Writing$_G$ ed il brainstorming$_G$ assistito
 \end{itemize}
 
 \subsection{Funzionalità del prodotto}
-Le funzionalità, sia requisiti obbligatori che opzionali, del prodotto sono i seguenti:
+Le funzionalità, sia requisiti$_G$ obbligatori che opzionali, del prodotto sono i seguenti:
 \textbf{Funzionalità minime (o oblligatorie)}:
 \begin{itemize}
     \item Editor Markdown: Il prodotto deve implementare un'area di inserimento testo che supporti il linguaggio di Markdown$_G$
     \item Rendering Grafico: Visualizzazione del testo formattato in tempo reale, fianco a fianco con l'editor
-    \item Integrazione LLM: Accesso tramite API$_G$ ai modelli linguistici di intelligenza artificiale per operare sul testo (su una parte o sull'intero documento)
+    \item Integrazione$_G$ LLM: Accesso tramite API$_G$ ai modelli linguistici di intelligenza artificiale per operare sul testo (su una parte o sull'intero documento)
     \item Comandi di Base: Implementazione dei comandi di base quali la riscrittura (cambio tono, espansione del testo, correzione grammaticale), il riassunto e la traduzione multilingua
-    \item Analisi Critica: Implementazione del modello dei sei cappelli per analizzare e/o riscrivere il testo da diverse prospettive
+    \item Analisi Critica: Implementazione del modello dei sei cappelli$_G$ per analizzare e/o riscrivere il testo da diverse prospettive
     \begin{itemize}
         \item[Bianco: ] Testo neutro ed imparziale, che risponde ai fatti
         \item[Rosso: ] Testo emozionale, che cattura emozioni
@@ -154,7 +156,7 @@ Le funzionalità, sia requisiti obbligatori che opzionali, del prodotto sono i s
         \item[Verde: ] Testo originale, creativo e provocante
         \item[Blu: ] Testo logico e strutturato, che prioritizza controllo e organizzazione    
     \end{itemize} 
-    \item Generazione da prompt: Anche detto Distant Writing$_G$, crea un'intero testo partendo da un input generale dell'utente
+    \item Generazione da prompt: Anche detto Distant Writing$_G$, crea un'intero testo partendo da un input$_G$ generale dell'utente
     \item Gestione file: Salvataggio e lettura delle note in file locali 
 \end{itemize}
 
@@ -166,11 +168,11 @@ Le funzionalità, sia requisiti obbligatori che opzionali, del prodotto sono i s
 \end{itemize}
 
 \subsection{Utenza di riferimento}
-il capitolato identifica diverse tipologie di utenti, essendo che punta ad essere un prodotto duttile a qualsiasi tipologia di nota:
+il capitolato$_G$ identifica diverse tipologie di utenti, essendo che punta ad essere un prodotto duttile a qualsiasi tipologia di nota:
 \begin{itemize}
     \item Studenti: Per lo studio, lo svolgimento dei compiti e la sintesi delle lezioni
     \item Professionisti in ambito aziendale: Per la stesura di testi di marketing e la creazione di presentazioni
-    \item Creatori di contenuti e Scrittori: Chiunque necessiti di supporto nel brainstorming o nella revisione critica di bozze testuali
+    \item Creatori di contenuti e Scrittori: Chiunque necessiti di supporto nel brainstorming$_G$ o nella revisione critica di bozze testuali
     \item Chiunque altro abbia bisogno di prendere appunti e/o scrivere testi anche partendo da zero e lasciare fare alla macchina il duro lavoro
 \end{itemize}
 
@@ -178,7 +180,7 @@ il capitolato identifica diverse tipologie di utenti, essendo che punta ad esser
 
 \section{Casi d'uso}
 \subsection{Introduzione}
-Questa sezione descrive in dettaglio i casi d'uso del sistema \textbf{Second Brain}. Ciascun caso d'uso è definito mediante un diagramma UML$_{G}$ e da una specifica descrizione testuale. 
+Questa sezione descrive in dettaglio i casi d'uso$_G$ del sistema$_G$ \textbf{Second Brain}. Ciascun caso d'uso è definito mediante un diagramma UML$_{G}$ e da una specifica descrizione testuale. 
 
 Per garantire completezza e rigore metodologico, ogni caso d'uso segue la struttura definita nella tabella seguente:
 
@@ -190,77 +192,1100 @@ Per garantire completezza e rigore metodologico, ogni caso d'uso segue la strutt
 \rowcolor[HTML]{EFEFEF} 
 \textbf{Campo} & \textbf{Descrizione} \\ \hline
 \textbf{Descrizione} & Breve riassunto che spiega l'obiettivo del caso d'uso e il valore che apporta all'utente. \\ \hline
-\textbf{Attori Principali} & Persone o entità che interagiscono attivamente con il sistema per raggiungere un obiettivo, avviando l'operazione. \\ \hline
-\textbf{Attori Secondari} & Entità esterne (come l'LLM$_{G}$) che interagiscono con il sistema in modo passivo o forniscono servizi necessari al completamento del compito. \\ \hline
-\textbf{Precondizioni} & Stato in cui deve trovarsi il sistema affinché il caso d'uso possa essere avviato con successo. \\ \hline
-\textbf{Postcondizioni} & Stato del sistema al termine dell'esecuzione del caso d'uso, garantendo che l'obiettivo sia stato raggiunto. \\ \hline
-\textbf{Scenario Principale} & Sequenza ordinata di passi che l'attore e il sistema compiono per completare l'operazione. \\ \hline
-\textbf{Estensioni} & Casi d'uso aggiuntivi o varianti che possono attivarsi in base a specifiche condizioni durante il flusso principale. \\ \hline
+\textbf{Attori Principali} & Persone o entità che interagiscono attivamente con il sistema$_G$ per raggiungere un obiettivo, avviando l'operazione. \\ \hline
+\textbf{Attori Secondari} & Entità esterne (come l'LLM$_{G}$) che interagiscono con il sistema$_G$ in modo passivo o forniscono servizi necessari al completamento del compito. \\ \hline
+\textbf{Precondizioni} & Stato in cui deve trovarsi il sistema$_G$ affinché il caso d'uso possa essere avviato con successo. \\ \hline
+\textbf{Postcondizioni} & Stato del sistema$_G$ al termine dell'esecuzione del caso d'uso, garantendo che l'obiettivo sia stato raggiunto. \\ \hline
+\textbf{Scenario Principale} & Sequenza ordinata di passi che l'attore e il sistema$_G$ compiono per completare l'operazione. \\ \hline
+\textbf{Estensioni} & Casi d'uso$_G$ aggiuntivi o varianti che possono attivarsi in base a specifiche condizioni durante il flusso principale. \\ \hline
 \textbf{Inclusioni} & Funzionalità comuni o moduli esterni che vengono obbligatoriamente richiamati per il corretto funzionamento del caso d'uso. \\ \hline
 \end{tabular}
-\caption{Struttura della documentazione dei Casi d'Uso}
+\caption{Struttura della documentazione dei Casi d'Uso$_G$}
 \end{table}
 
 \subsection{Attori del Sistema}
 
-All'interno del sistema Second Brain, abbiamo identificato tre tipologie principali di attori$_{G}$:
+All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie principali di attori$_{G}$:
 
 \begin{itemize}
-    \item \textbf{Utente:} La persona fisica che interagisce con l'interfaccia del sistema per gestire le proprie note, organizzare la conoscenza e consultare le informazioni. È l'attore primario$_{G}$ che genera gli input.
-    \item \textbf{LLM$_{G}$:} Il modello di intelligenza artificiale integrato nel sistema. Agisce come attore secondario$_{G}$, fornendo le funzionalità avanzate di elaborazione del linguaggio naturale, sintesi e generazione di contenuti su richiesta del sistema.
+    \item \textbf{Utente:} La persona fisica che interagisce con l'interfaccia del sistema$_G$ per gestire le proprie note, organizzare la conoscenza e consultare le informazioni. È l'attore primario$_{G}$ che genera gli input$_{G}$.
+    \item \textbf{LLM$_{G}$:} Il modello di intelligenza artificiale integrato nel sistema$_G$. Agisce come attore secondario$_{G}$, fornendo le funzionalità avanzate di elaborazione del linguaggio naturale, sintesi e generazione di contenuti su richiesta del sistema$_G$.
     \item \textbf{Sistema di Persistenza$_{G}$:} Componente responsabile del salvataggio e del recupero dei dati. Agisce come attore secondario$_{G}$ garantendo che le informazioni siano memorizzate in modo permanente e siano accessibili nelle sessioni successive.
 \end{itemize}
 
-\subsection{Editing di base}
-\subsection{Funzionalità AI}
+\subsection{Lista dei casi d'uso}
+
+\subsubsection{Editing di base}
+
+\subsubsection{Funzionalità AI}
+
 \subsection{Salvataggio e Persistenza}
-In questa sezione ci occuperemo di dei casi d'uso riguardanti il salvataggio e la persistenza dei dati.
+In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e la persistenza dei dati.
 
-\paragraph{UC 30 - Creazione nuova nota}
-\subparagraph{UC 30.1 - Inizializzazione editor vuoto}
-\subparagraph{UC 30.2 - Creazione nota nel Database Browser}
+\paragraph{3.6.1 UC 30 - Creazione nuova nota}
+\label{uc30}
 
-\paragraph{UC 31 - Caricamento nota}
-\subparagraph{UC 31.1 - Caricamento da File Locale}
-\subparagraph{UC 31.2 - Caricamento da Database Browser}
-\subparagraph{UC 31.3 - Gestione errore di caricamento}
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
 
-\paragraph{UC 32 - Salvataggio nota}
-\subparagraph{UC 32.1 - Salvataggio su FileSystem}
-\subparagraph{UC 32.2 - Salvataggio da Database Browser}
-\subparagraph{UC 32.3 - Gestione errore di salvataggio}
-\subparagraph{UC 32.4 - Salvataggio automatico}
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item L'editor di testo è disponibile a schermo.
+    \end{itemize}
 
-\paragraph{UC 33 - Manutenzione nota}
-\subparagraph{UC 33.1 - Eliminazione nota dal Database}
-\begin{description}
-    \item[UC 33.1.1 - Gestione errore eliminazione] 
-\end{description}
-\subparagraph{UC 33.2 - Rinominazione nota nel Database}
-\begin{description}
-    \item[UC 33.2.1 - Gestione errore rinominazione] 
-\end{description}
-\subparagraph{UC 33.3 - Visualizzazione informazioni e metadati della nota}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'utente ha avviato la scrittura di una nuova nota.
+    \end{itemize}
 
-\paragraph{UC 34 - Ricerca e Navigazione}
-\subparagraph{UC 34.1 - Ricerca mirata per titolo}
-\subparagraph{UC 34.2 - Ricerca Full-Text}
-\subparagraph{UC 34.3 - Filtro per data}
-\begin{description}
-    \item[UC 34.3.1 - Filtro per data di creazione] 
-    \item[UC 34.3.2 - Filtro per data di ultima modifica] 
-\end{description}
-\subparagraph{UC 34.4 - Visualizzazione lista note salvate nel Database}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione per creare una nuova nota.
+        \item Il sistema$_G$ esegue l'azione scelta tra le generalizzazioni disponibili.
+    \end{enumerate}
 
-\paragraph{UC 35 - Login}
-\subparagraph{UC 35.1 - Gestione errore di login}
+    \item \textbf{Trigger:} L'utente vuole iniziare la stesura di una nuova nota.
 
-\paragraph{UC 36 - Registrazione}
-\subparagraph{UC 36.1 - Gestione username già esistente}
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item UC 30.1 - Inizializzazione editor vuoto
+        \item UC 30.2 - Creazione nota nel Database$_G$ Browser
+    \end{itemize}
+\end{itemize}
 
-\paragraph{UC 37 - Eliminazione dell'account}
+\paragraph{3.6.1.1 UC 30.1 - Inizializzazione editor vuoto}
+\label{uc30.1}
 
-\paragraph{UC 38 - Logout}
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item L'editor di testo è disponibile a schermo.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'editor di testo è stato azzerato ed è pronto per la scrittura di una nuova nota vuota.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione ``Nuova nota''.
+        \item Il sistema$_G$ svuota l'area di editing$_G$, rimuovendo qualsiasi contenuto precedente.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} L'utente vuole iniziare la scrittura di una nota completamente vuota senza
+    interazione con il database$_G$.
+\end{itemize}
+
+\paragraph{3.6.1.2 UC 30.2 - Creazione nota nel Database$_G$ Browser}
+\label{uc30.2}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Una nuova nota vuota è stata creata e registrata nel database$_G$.
+        \item L'editor di testo visualizza la nuova nota vuota, pronta per la scrittura.
+        \item La nuova nota compare nella lista delle note nel Database$_G$ Browser.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione ``Nuova nota nel database$_G$'' tramite il Database$_G$ Browser.
+        \item Il sistema$_G$ richiede all'utente un nome per la nuova nota.
+        \item L'utente inserisce il nome desiderato per la nota.
+        \item Il sistema$_G$ crea un record vuoto nel database$_G$ associato all'account$_G$ dell'utente.
+        \item Il sistema$_G$ apre la nota nell'editor di testo.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} L'utente vuole creare una nuova nota persistente nel database$_G$ dell'applicazione.
+\end{itemize}
+
+\paragraph{3.6.2 UC 31 - Caricamento nota}
+\label{uc31}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Una nota esistente è stata caricata correttamente nell'editor di testo.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente accede al menù di caricamento note.
+        \item L'utente sceglie la modalità di caricamento.
+    \end{enumerate}
+
+    \item \textbf{Scenari alternativi:}
+    \begin{enumerate}
+        \item Il sistema$_G$ non riesce a caricare correttamente la nota $\rightarrow$ Vedi
+        [UC 31.3, \ref{uc31.3}].
+    \end{enumerate}
+
+    \item \textbf{Trigger:} L'utente desidera modificare e/o visualizzare una nota già esistente.
+
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item UC 31.1 - Caricamento da File Locale
+        \item UC 31.2 - Caricamento da Database$_G$ Browser
+    \end{itemize}
+
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item UC 31.3 - Gestione errore di caricamento
+    \end{itemize}
+\end{itemize}
+
+\paragraph{3.6.2.1 UC 31.1 - Caricamento da File Locale}
+\label{uc31.1}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item L'utente possiede un file di testo in formato Markdown$_G$ nel proprio file system.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il contenuto del file selezionato è stato caricato correttamente nell'editor di testo.
+        \item Il render Markdown$_G$ aggiorna la visualizzazione con il contenuto caricato.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente clicca il pulsante ``File''.
+        \item L'utente seleziona l'opzione ``Importa da file''.
+        \item Il sistema$_G$ apre una finestra di dialogo per la selezione del file.
+        \item L'utente seleziona il file Markdown$_G$ desiderato dal proprio file system.
+        \item Il sistema$_G$ legge il contenuto del file e lo carica nell'editor di testo.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} L'utente desidera aprire una nota presente in un file locale.
+\end{itemize}
+
+\paragraph{3.6.2.2 UC 31.2 - Caricamento da Database$_G$ Browser}
+\label{uc31.2}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+        \item L'utente dispone di almeno una nota salvata nel database$_G$.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item La nota selezionata è stata caricata correttamente nell'editor di testo.
+        \item Il render Markdown$_G$ aggiorna la visualizzazione con il contenuto caricato.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente accede al Database$_G$ Browser.
+        \item Il sistema$_G$ mostra la lista delle note salvate nel database$_G$.
+        \item L'utente seleziona la nota desiderata dalla lista.
+        \item Il sistema$_G$ recupera il contenuto della nota dal database$_G$ e lo carica nell'editor
+        di testo.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} L'utente desidera aprire una nota salvata nel database$_G$.
+\end{itemize}
+
+\paragraph{3.6.2.3 UC 31.3 - Gestione errore di caricamento}
+\label{uc31.3}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item L'utente ha richiesto il caricamento di una nota da file locale o dal database$_G$.
+        \item Il sistema$_G$ non è riuscito a importare correttamente la nota.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item La nota non è stata caricata nell'editor.
+        \item Il sistema$_G$ notifica all'utente l'impossibilità di completare l'operazione.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona la nota che vuole importare nel sistema$_G$.
+        \item Si verifica$_G$ un errore durante il caricamento della nota (es.\ file non valido, nota
+        inesistente, errore di lettura, errore di connessione al database$_G$).
+        \item Il sistema$_G$ mostra un messaggio di errore adeguato a schermo.
+        \item L'utente può scegliere se riprovare o annullare l'operazione.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} Il sistema$_G$ rileva un errore nel processo di caricamento della nota.
+\end{itemize}
+
+\paragraph{3.6.3 UC 32 - Salvataggio nota}
+\label{uc32}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item La nota da salvare è aperta nell'editor di testo.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'utente ha salvato correttamente la nota tramite la modalità scelta.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione di salvataggio della nota.
+        \item L'utente sceglie la modalità di salvataggio.
+    \end{enumerate}
+
+    \item \textbf{Scenari alternativi:}
+    \begin{enumerate}
+        \item Il sistema$_G$ non riesce a salvare correttamente la nota $\rightarrow$ Vedi
+        [UC 32.3, \ref{uc32.3}].
+    \end{enumerate}
+
+    \item \textbf{Trigger:} L'utente vuole salvare la nota attualmente aperta nell'editor di testo.
+
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item UC 32.1 - Salvataggio su FileSystem
+        \item UC 32.2 - Salvataggio da Database$_G$ Browser
+    \end{itemize}
+
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item UC 32.3 - Gestione errore di salvataggio
+        \item UC 32.4 - Salvataggio automatico
+    \end{itemize}
+\end{itemize}
+
+\paragraph{3.6.3.1 UC 32.1 - Salvataggio su FileSystem}
+\label{uc32.1}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item La nota da salvare è aperta nell'editor di testo.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'utente ha salvato correttamente la nota nel file system sotto forma di file
+        Markdown$_G$ (\texttt{.md}).
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione ``Salva su file''.
+        \item Il sistema$_G$ apre una finestra di dialogo per la selezione della destinazione.
+        \item L'utente sceglie la directory di destinazione e il nome del file.
+        \item Il sistema$_G$ salva il contenuto dell'editor nel percorso selezionato.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} L'utente vuole esportare la nota corrente come file nel file system.
+\end{itemize}
+
+\paragraph{3.6.3.2 UC 32.2 - Salvataggio da Database$_G$ Browser}
+\label{uc32.2}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item La nota da salvare è aperta nell'editor di testo.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il contenuto della nota è stato aggiornato o inserito correttamente nel database$_G$.
+        \item Il Database$_G$ Browser aggiorna la lista delle note per riflettere le modifiche.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione ``Salva nel database$_G$''.
+        \item Se la nota è nuova, il sistema$_G$ richiede un nome per la nota.
+        \item L'utente inserisce o conferma il nome della nota.
+        \item Il sistema$_G$ salva il contenuto dell'editor nel database$_G$ associandolo all'account$_G$
+        dell'utente.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} L'utente vuole salvare la nota nel database$_G$ dell'applicazione.
+\end{itemize}
+
+\paragraph{3.6.3.3 UC 32.3 - Gestione errore di salvataggio}
+\label{uc32.3}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item La nota da salvare è aperta nell'editor di testo.
+        \item L'utente ha richiesto il salvataggio della nota.
+        \item Il sistema$_G$ ha rilevato un errore durante il salvataggio.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item La nota non è stata salvata.
+        \item Il sistema$_G$ notifica l'errore all'utente.
+        \item L'utente può scegliere se riprovare o annullare l'operazione.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Si verifica un errore durante il salvataggio (es.\ percorso non valido, nome già
+        utilizzato, spazio insufficiente, errore di connessione al database$_G$).
+        \item Il sistema$_G$ mostra un messaggio di errore descrittivo a schermo.
+        \item L'utente decide se riprovare il salvataggio o annullare l'operazione.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} Il sistema$_G$ rileva un errore nel processo di salvataggio della nota.
+\end{itemize}
+
+\paragraph{3.6.3.4 UC 32.4 - Salvataggio automatico}
+\label{uc32.4}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Sistema$_G$
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item La nota è aperta nell'editor di testo.
+        \item La nota è associata a un file nel file system o a un record nel database$_G$.
+        \item La funzionalità di salvataggio automatico è attiva.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item La nota è stata salvata automaticamente senza interruzione del flusso$_G$ di lavoro
+        dell'utente.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema$_G$ rileva che l'utente ha apportato modifiche alla nota.
+        \item Allo scadere di un intervallo di tempo predefinito (o al verificarsi di un trigger$_G$
+        configurato), il sistema$_G$ avvia automaticamente il salvataggio.
+        \item Il sistema$_G$ sovrascrive il file o il record esistente con il contenuto aggiornato.
+        \item Il sistema$_G$ mostra un breve indicatore visivo di avvenuto salvataggio.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} È trascorso l'intervallo di tempo configurato per il salvataggio automatico
+    oppure si è verificato un evento di perdita di focus$_G$ sull'editor.
+\end{itemize}
+
+\paragraph{3.6.4 UC 33 - Manutenzione nota}
+\label{uc33}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+        \item Esiste almeno una nota salvata nel database$_G$.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'utente ha completato l'operazione di manutenzione$_G$ desiderata sulla nota selezionata.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente accede al Database$_G$ Browser.
+        \item L'utente seleziona la nota su cui intende operare.
+        \item L'utente sceglie l'operazione di manutenzione$_G$ desiderata tra quelle disponibili.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} L'utente vuole gestire le note salvate nel database$_G$ (eliminazione,
+    rinominazione o consultazione dei metadati$_G$).
+
+    \item \textbf{Sottocasi:}
+    \begin{itemize}
+        \item UC 33.1 - Eliminazione nota dal Database$_G$
+        \item UC 33.2 - Rinominazione nota nel Database$_G$
+        \item UC 33.3 - Visualizzazione informazioni e metadati della nota
+    \end{itemize}
+\end{itemize}
+
+\paragraph{3.6.4.1 UC 33.1 - Eliminazione nota dal Database$_G$}
+\label{uc33.1}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+        \item Esiste almeno una nota salvata nel database$_G$.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item La nota selezionata è stata rimossa permanentemente dal database$_G$.
+        \item Il Database$_G$ Browser aggiorna la lista delle note escludendo la nota eliminata.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona la nota da eliminare nel Database Browser.
+        \item L'utente seleziona l'opzione ``Elimina nota''.
+        \item Il sistema$_G$ mostra una richiesta di conferma all'utente.
+        \item L'utente conferma l'eliminazione.
+        \item Il sistema$_G$ rimuove il record della nota dal database$_G$.
+    \end{enumerate}
+
+    \item \textbf{Scenari alternativi:}
+    \begin{enumerate}
+        \item Il sistema$_G$ non riesce a eliminare la nota $\rightarrow$ Vedi
+        [UC 33.1.1, \ref{uc33.1.1}].
+    \end{enumerate}
+
+    \item \textbf{Trigger:} L'utente vuole eliminare definitivamente una nota dal database$_G$.
+
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item UC 33.1.1 - Gestione errore eliminazione
+    \end{itemize}
+\end{itemize}
+
+\paragraph{3.6.4.1.1 UC 33.1.1 - Gestione errore eliminazione}
+\label{uc33.1.1}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item L'utente ha richiesto l'eliminazione di una nota dal database$_G$.
+        \item Il sistema$_G$ ha rilevato un errore durante il tentativo di eliminazione.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item La nota non è stata eliminata.
+        \item Il sistema$_G$ notifica all'utente il fallimento dell'operazione.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Si verifica$_G$ un errore durante l'eliminazione della nota (es.\ errore di connessione
+        al database$_G$, permessi insufficienti).
+        \item Il sistema$_G$ mostra un messaggio di errore descrittivo a schermo.
+        \item L'utente può scegliere se riprovare o annullare l'operazione.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} Il sistema$_G$ rileva un errore nel processo di eliminazione della nota.
+\end{itemize}
+
+\paragraph{3.6.4.2 UC 33.2 - Rinominazione nota nel Database$_G$}
+\label{uc33.2}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+        \item Esiste almeno una nota salvata nel database$_G$.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il titolo della nota selezionata è stato aggiornato nel database$_G$.
+        \item Il Database$_G$ Browser mostra il nuovo nome della nota nella lista.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona la nota da rinominare nel Database Browser.
+        \item L'utente seleziona l'opzione ``Rinomina nota''.
+        \item Il sistema$_G$ mostra un campo di input$_G$ con il nome corrente della nota.
+        \item L'utente modifica il nome della nota.
+        \item L'utente conferma la modifica.
+        \item Il sistema$_G$ aggiorna il titolo della nota nel database$_G$.
+    \end{enumerate}
+
+    \item \textbf{Scenari alternativi:}
+    \begin{enumerate}
+        \item Il sistema$_G$ non riesce a rinominare la nota $\rightarrow$ Vedi
+        [UC 33.2.1, \ref{uc33.2.1}].
+    \end{enumerate}
+
+    \item \textbf{Trigger:} L'utente vuole assegnare un nuovo nome a una nota già salvata nel
+    database$_G$.
+
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item UC 33.2.1 - Gestione errore rinominazione
+    \end{itemize}
+\end{itemize}
+
+\paragraph{3.6.4.2.1 UC 33.2.1 - Gestione errore rinominazione}
+\label{uc33.2.1}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item L'utente ha richiesto la rinominazione di una nota nel database$_G$.
+        \item Il sistema$_G$ ha rilevato un errore durante il tentativo di rinominazione.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il nome della nota non è stato modificato.
+        \item Il sistema$_G$ notifica all'utente il fallimento dell'operazione.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Si verifica$_G$ un errore durante la rinominazione (es.\ nome già esistente nel database$_G$,
+        nome vuoto o non valido, errore di connessione al database$_G$).
+        \item Il sistema$_G$ mostra un messaggio di errore descrittivo a schermo.
+        \item L'utente può scegliere se riprovare con un nome diverso o annullare l'operazione.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} Il sistema$_G$ rileva un errore nel processo di rinominazione della nota.
+\end{itemize}
+
+\paragraph{3.6.4.3 UC 33.3 - Visualizzazione informazioni e metadati della nota}
+\label{uc33.3}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+        \item Esiste almeno una nota salvata nel database$_G$.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ ha mostrato all'utente le informazioni e i metadati$_G$ della nota
+        selezionata.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona una nota nel Database$_G$ Browser.
+        \item L'utente seleziona l'opzione ``Visualizza informazioni''.
+        \item Il sistema$_G$ mostra un pannello con i metadati$_G$ della nota, tra cui: titolo, data di
+        creazione, data dell'ultima modifica, dimensione del contenuto.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} L'utente vuole consultare i metadati$_G$ e le informazioni di una nota
+    salvata nel database$_G$.
+\end{itemize}
+
+\paragraph{3.6.5 UC 34 - Ricerca e Navigazione}
+\label{uc34}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+        \item Esiste almeno una nota salvata nel database$_G$.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ ha mostrato i risultati della ricerca coerenti con i criteri inseriti
+        dall'utente.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente accede alla funzione di ricerca nel Database$_G$ Browser.
+        \item L'utente inserisce i criteri di ricerca.
+        \item Il sistema$_G$ esegue la ricerca e mostra i risultati.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} L'utente vuole trovare una o più note nel database$_G$ tramite criteri di
+    ricerca.
+
+    \item \textbf{Sottocasi:}
+    \begin{itemize}
+        \item UC 34.1 - Ricerca mirata per titolo
+        \item UC 34.2 - Ricerca Full-Text
+        \item UC 34.3 - Filtro per data
+        \item UC 34.4 - Visualizzazione lista note salvate nel Database$_G$
+    \end{itemize}
+\end{itemize}
+
+\paragraph{3.6.5.1 UC 34.1 - Ricerca mirata per titolo}
+\label{uc34.1}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+        \item Esiste almeno una nota salvata nel database$_G$.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ mostra la lista delle note il cui titolo contiene la stringa di ricerca
+        inserita dall'utente.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente accede al campo di ricerca nel Database$_G$ Browser.
+        \item L'utente inserisce una stringa di testo nel campo di ricerca per titolo.
+        \item Il sistema$_G$ filtra le note il cui titolo corrisponde (anche parzialmente) alla
+        stringa inserita.
+        \item Il sistema$_G$ visualizza i risultati filtrati nella lista delle note.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} L'utente vuole cercare una nota conoscendone (parte del) titolo.
+\end{itemize}
+
+\paragraph{3.6.5.2 UC 34.2 - Ricerca Full-Text}
+\label{uc34.2}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+        \item Esiste almeno una nota salvata nel database$_G$.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ mostra la lista delle note il cui contenuto include la stringa di ricerca
+        inserita dall'utente.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente accede al campo di ricerca nel Database$_G$ Browser.
+        \item L'utente inserisce una stringa di testo nel campo di ricerca full-text.
+        \item Il sistema$_G$ esegue una ricerca sul contenuto di tutte le note dell'utente nel
+        database$_G$.
+        \item Il sistema$_G$ visualizza i risultati che contengono la stringa cercata, evidenziandone
+        le occorrenze.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} L'utente vuole trovare tutte le note che contengono una parola o frase
+    specifica nel loro contenuto.
+\end{itemize}
+
+\paragraph{3.6.5.3 UC 34.3 - Filtro per data}
+\label{uc34.3}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+        \item Esiste almeno una nota salvata nel database$_G$.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ mostra la lista delle note filtrate in base al criterio di data
+        selezionato.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente accede alla sezione di filtro per data nel Database$_G$ Browser.
+        \item L'utente sceglie il tipo di filtro temporale da applicare.
+        \item Il sistema$_G$ applica il filtro e aggiorna la lista delle note.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} L'utente vuole filtrare le note in base a un criterio temporale.
+
+    \item \textbf{Sottocasi:}
+    \begin{itemize}
+        \item UC 34.3.1 - Filtro per data di creazione
+        \item UC 34.3.2 - Filtro per data di ultima modifica
+    \end{itemize}
+\end{itemize}
+
+\paragraph{3.6.5.3.1 UC 34.3.1 - Filtro per data di creazione}
+\label{uc34.3.1}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+        \item Esiste almeno una nota salvata nel database$_G$.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ mostra le note create nell'intervallo di date specificato dall'utente.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona il filtro ``Data di creazione''.
+        \item Il sistema$_G$ mostra un selettore di intervallo di date.
+        \item L'utente inserisce la data di inizio e/o di fine dell'intervallo desiderato.
+        \item Il sistema$_G$ filtra e mostra le note create nell'intervallo specificato.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} L'utente vuole visualizzare le note create in un determinato periodo.
+\end{itemize}
+
+\paragraph{3.6.5.3.2 UC 34.3.2 - Filtro per data di ultima modifica}
+\label{uc34.3.2}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+        \item Esiste almeno una nota salvata nel database$_G$.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ mostra le note la cui ultima modifica rientra nell'intervallo di date
+        specificato dall'utente.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona il filtro ``Data ultima modifica''.
+        \item Il sistema$_G$ mostra un selettore di intervallo di date.
+        \item L'utente inserisce la data di inizio e/o di fine dell'intervallo desiderato.
+        \item Il sistema$_G$ filtra e mostra le note modificate l'ultima volta nell'intervallo
+        specificato.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} L'utente vuole visualizzare le note aggiornate in un determinato periodo.
+\end{itemize}
+
+\paragraph{3.6.5.4 UC 34.4 - Visualizzazione lista note salvate nel Database$_G$}
+\label{uc34.4}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ mostra all'utente la lista completa (o filtrata) delle note presenti nel
+        database$_G$.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente accede al Database$_G$ Browser.
+        \item Il sistema$_G$ recupera dal database$_G$ la lista delle note associate all'account$_G$
+        dell'utente.
+        \item Il sistema$_G$ visualizza la lista delle note, mostrando per ciascuna almeno il titolo
+        e la data dell'ultima modifica.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} L'utente vuole visualizzare tutte le note salvate nel proprio account$_G$.
+\end{itemize}
+
+\paragraph{3.6.6 UC 35 - Login}
+\label{uc35}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente dispone di un account$_G$ registrato nel sistema$_G$.
+        \item L'utente non ha ancora eseguito il login$_G$.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'utente ha effettuato l'accesso al sistema$_G$ ed è autenticato.
+        \item Il sistema$_G$ rende disponibili le funzionalità legate al database$_G$.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente accede alla schermata di login$_G$.
+        \item L'utente inserisce le proprie credenziali (username e password).
+        \item L'utente conferma l'accesso.
+        \item Il sistema$_G$ verifica$_G$ le credenziali con il database$_G$.
+        \item Il sistema$_G$ autentica l'utente e mostra l'interfaccia principale con le
+        funzionalità del database$_G$ abilitate.
+    \end{enumerate}
+
+    \item \textbf{Scenari alternativi:}
+    \begin{enumerate}
+        \item Le credenziali inserite non sono corrette o si verifica$_G$ un errore $\rightarrow$ Vedi
+        [UC 35.1, \ref{uc35.1}].
+    \end{enumerate}
+
+    \item \textbf{Trigger:} L'utente vuole accedere alle funzionalità del database$_G$ dell'applicazione.
+
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item UC 35.1 - Gestione errore di login$_G$
+    \end{itemize}
+\end{itemize}
+
+\paragraph{3.6.6.1 UC 35.1 - Gestione errore di login}
+\label{uc35.1}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item L'utente ha tentato di eseguire il login$_G$.
+        \item Il sistema$_G$ ha rilevato credenziali errate o un errore durante il processo di
+        autenticazione.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'utente non è stato autenticato.
+        \item Il sistema$_G$ notifica all'utente il fallimento del login$_G$ senza specificare se
+        l'errore riguarda lo username o la password (per ragioni di sicurezza$_G$).
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente inserisce credenziali errate o si $_G$ un errore di connessione al
+        database$_G$.
+        \item Il sistema$_G$ mostra un messaggio di errore generico (es.\ ``Credenziali non valide''
+        o ``Errore di connessione al server'').
+        \item L'utente può riprovare a inserire le credenziali o annullare l'operazione.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} Il sistema$_G$ rileva un errore nel processo di autenticazione dell'utente.
+\end{itemize}
+
+\paragraph{3.6.7 UC 36 - Registrazione}
+\label{uc36}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente non possiede un account$_G$ registrato nel sistema$_G$.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Un nuovo account$_G$ è stato creato e registrato nel database$_G$.
+        \item L'utente è autenticato nel sistema$_G$ con il nuovo account$_G$.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente accede alla schermata di registrazione$_G$.
+        \item L'utente inserisce uno username e una password.
+        \item L'utente conferma la password.
+        \item L'utente invia il modulo di registrazione$_G$.
+        \item Il sistema$_G$ verifica$_G$ che lo username non sia già in uso nel database$_G$.
+        \item Il sistema$_G$ crea il nuovo account$_G$ nel database$_G$.
+        \item Il sistema$_G$ autentica automaticamente l'utente con il nuovo account$_G$.
+    \end{enumerate}
+
+    \item \textbf{Scenari alternativi:}
+    \begin{enumerate}
+        \item Lo username scelto è già utilizzato da un altro account$_G$ $\rightarrow$ Vedi
+        [UC 36.1, \ref{uc36.1}].
+    \end{enumerate}
+
+    \item \textbf{Trigger:} L'utente vuole creare un nuovo account$_G$ per accedere alle funzionalità
+    del database$_G$ dell'applicazione.
+
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item UC 36.1 - Gestione username già esistente
+    \end{itemize}
+\end{itemize}
+
+\paragraph{3.6.7.1 UC 36.1 - Gestione username già esistente}
+\label{uc36.1}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item L'utente ha tentato di registrarsi con uno username già presente nel database$_G$.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'account$_G$ non è stato creato.
+        \item Il sistema$_G$ notifica all'utente che lo username scelto non è disponibile.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente inserisce uno username già presente nel database$_G$.
+        \item Il sistema$_G$ rileva il conflitto durante la verifica$_G$.
+        \item Il sistema$_G$ mostra un messaggio di errore che informa l'utente che lo username è
+        già in uso.
+        \item L'utente può scegliere un username diverso e riprovare.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} Il sistema$_G$ rileva che lo username inserito dall'utente è già associato
+    a un account$_G$ esistente nel database$_G$.
+\end{itemize}
+
+\paragraph{3.6.8 UC 37 - Eliminazione dell'account}
+\label{uc37}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'account$_G$ dell'utente è stato eliminato permanentemente dal database$_G$.
+        \item Tutte le note associate all'account$_G$ dell'utente sono state rimosse dal database$_G$.
+        \item L'utente è stato disconnesso dal sistema$_G$.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente accede alle impostazioni dell'account$_G$.
+        \item L'utente seleziona l'opzione ``Elimina account$_G$''.
+        \item Il sistema$_G$ mostra un avviso che informa l'utente che l'operazione è irreversibile
+        e che tutti i dati associati verranno eliminati.
+        \item L'utente conferma l'eliminazione dell'account$_G$.
+        \item Il sistema$_G$ elimina l'account$_G$ e tutti i dati associati dal database$_G$.
+        \item Il sistema$_G$ effettua il logout$_G$ dell'utente e lo reindirizza alla schermata
+        di login$_G$.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} L'utente vuole eliminare definitivamente il proprio account$_G$ e tutti i
+    dati ad esso associati.
+\end{itemize}
+
+\paragraph{3.6.9 UC 38 - Logout}
+\label{uc38}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'utente è stato disconnesso dal sistema$_G$.
+        \item Le funzionalità legate al database$_G$ non sono più accessibili fino al prossimo
+        login$_G$.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione ``Logout$_G$''.
+        \item Il sistema$_G$ termina la sessione dell'utente.
+        \item Il sistema$_G$ reindirizza l'utente alla schermata di login$_G$.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} L'utente vuole terminare la propria sessione autenticata nel sistema$_G$.
+\end{itemize}
 
 \newpage
 
