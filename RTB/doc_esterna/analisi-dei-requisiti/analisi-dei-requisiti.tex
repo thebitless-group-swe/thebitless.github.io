@@ -34,8 +34,8 @@
 
 \newcommand{\tipoverbale}{Analisi dei Requisiti}
 \newcommand{\dataverbale}{}
-\newcommand{\dataversione}{2026-04-03}
-\newcommand{\versione}{0.4.0}
+\newcommand{\dataversione}{2026-04-22}
+\newcommand{\versione}{0.5.0}
 \newcommand{\stato}{Stesura}
 \newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
 \def\templatedir{../../../templates}
@@ -74,8 +74,6 @@
     \end{tabularx}
 \end{center}
 
-\newpage
-\tableofcontents
 \newpage
 
 \section{Introduzione}
@@ -219,10 +217,10 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \subsubsection{Funzionalità AI}
 
-\subsection{Salvataggio e Persistenza}
+\subsubsection{Salvataggio e Persistenza}
 In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e la persistenza dei dati.
 
-\paragraph{3.6.1 UC 30 - Creazione nuova nota}
+\paragraph{UC 30 - Creazione nuova nota}
 \label{uc30}
 
 \begin{itemize}
@@ -254,7 +252,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{itemize}
 \end{itemize}
 
-\paragraph{3.6.1.1 UC 30.1 - Inizializzazione editor vuoto}
+\subparagraph{UC 30.1 - Inizializzazione editor vuoto}
 \label{uc30.1}
 
 \begin{itemize}
@@ -281,7 +279,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     interazione con il database$_G$.
 \end{itemize}
 
-\paragraph{3.6.1.2 UC 30.2 - Creazione nota nel Database$_G$ Browser}
+\subparagraph{UC 30.2 - Creazione nota nel Database$_G$ Browser}
 \label{uc30.2}
 
 \begin{itemize}
@@ -313,7 +311,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} L'utente vuole creare una nuova nota persistente nel database$_G$ dell'applicazione.
 \end{itemize}
 
-\paragraph{3.6.2 UC 31 - Caricamento nota}
+\paragraph{UC 31 - Caricamento nota}
 \label{uc31}
 
 \begin{itemize}
@@ -355,7 +353,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{itemize}
 \end{itemize}
 
-\paragraph{3.6.2.1 UC 31.1 - Caricamento da File Locale}
+\subparagraph{UC 31.1 - Caricamento da File Locale}
 \label{uc31.1}
 
 \begin{itemize}
@@ -385,7 +383,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} L'utente desidera aprire una nota presente in un file locale.
 \end{itemize}
 
-\paragraph{3.6.2.2 UC 31.2 - Caricamento da Database$_G$ Browser}
+\subparagraph{UC 31.2 - Caricamento da Database$_G$ Browser}
 \label{uc31.2}
 
 \begin{itemize}
@@ -417,7 +415,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} L'utente desidera aprire una nota salvata nel database$_G$.
 \end{itemize}
 
-\paragraph{3.6.2.3 UC 31.3 - Gestione errore di caricamento}
+\subparagraph{UC 31.3 - Gestione errore di caricamento}
 \label{uc31.3}
 
 \begin{itemize}
@@ -448,7 +446,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} Il sistema$_G$ rileva un errore nel processo di caricamento della nota.
 \end{itemize}
 
-\paragraph{3.6.3 UC 32 - Salvataggio nota}
+\paragraph{UC 32 - Salvataggio nota}
 \label{uc32}
 
 \begin{itemize}
@@ -492,7 +490,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{itemize}
 \end{itemize}
 
-\paragraph{3.6.3.1 UC 32.1 - Salvataggio su FileSystem}
+\subparagraph{UC 32.1 - Salvataggio su FileSystem}
 \label{uc32.1}
 
 \begin{itemize}
@@ -521,7 +519,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} L'utente vuole esportare la nota corrente come file nel file system.
 \end{itemize}
 
-\paragraph{3.6.3.2 UC 32.2 - Salvataggio da Database$_G$ Browser}
+\subparagraph{UC 32.2 - Salvataggio da Database$_G$ Browser}
 \label{uc32.2}
 
 \begin{itemize}
@@ -553,7 +551,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} L'utente vuole salvare la nota nel database$_G$ dell'applicazione.
 \end{itemize}
 
-\paragraph{3.6.3.3 UC 32.3 - Gestione errore di salvataggio}
+\subparagraph{UC 32.3 - Gestione errore di salvataggio}
 \label{uc32.3}
 
 \begin{itemize}
@@ -585,7 +583,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} Il sistema$_G$ rileva un errore nel processo di salvataggio della nota.
 \end{itemize}
 
-\paragraph{3.6.3.4 UC 32.4 - Salvataggio automatico}
+\subparagraph{UC 32.4 - Salvataggio automatico}
 \label{uc32.4}
 
 \begin{itemize}
@@ -618,7 +616,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     oppure si è verificato un evento di perdita di focus$_G$ sull'editor.
 \end{itemize}
 
-\paragraph{3.6.4 UC 33 - Manutenzione nota}
+\paragraph{UC 33 - Manutenzione nota}
 \label{uc33}
 
 \begin{itemize}
@@ -655,7 +653,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{itemize}
 \end{itemize}
 
-\paragraph{3.6.4.1 UC 33.1 - Eliminazione nota dal Database$_G$}
+\subparagraph{UC 33.1 - Eliminazione nota dal Database$_G$}
 \label{uc33.1}
 
 \begin{itemize}
@@ -698,7 +696,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{itemize}
 \end{itemize}
 
-\paragraph{3.6.4.1.1 UC 33.1.1 - Gestione errore eliminazione}
+\subparagraph{UC 33.1.1 - Gestione errore eliminazione}
 \label{uc33.1.1}
 
 \begin{itemize}
@@ -728,7 +726,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} Il sistema$_G$ rileva un errore nel processo di eliminazione della nota.
 \end{itemize}
 
-\paragraph{3.6.4.2 UC 33.2 - Rinominazione nota nel Database$_G$}
+\subparagraph{UC 33.2 - Rinominazione nota nel Database$_G$}
 \label{uc33.2}
 
 \begin{itemize}
@@ -773,7 +771,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{itemize}
 \end{itemize}
 
-\paragraph{3.6.4.2.1 UC 33.2.1 - Gestione errore rinominazione}
+\subparagraph{UC 33.2.1 - Gestione errore rinominazione}
 \label{uc33.2.1}
 
 \begin{itemize}
@@ -803,7 +801,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} Il sistema$_G$ rileva un errore nel processo di rinominazione della nota.
 \end{itemize}
 
-\paragraph{3.6.4.3 UC 33.3 - Visualizzazione informazioni e metadati della nota}
+\subparagraph{UC 33.3 - Visualizzazione informazioni e metadati della nota}
 \label{uc33.3}
 
 \begin{itemize}
@@ -835,7 +833,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     salvata nel database$_G$.
 \end{itemize}
 
-\paragraph{3.6.5 UC 34 - Ricerca e Navigazione}
+\paragraph{UC 34 - Ricerca e Navigazione}
 \label{uc34}
 
 \begin{itemize}
@@ -874,7 +872,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{itemize}
 \end{itemize}
 
-\paragraph{3.6.5.1 UC 34.1 - Ricerca mirata per titolo}
+\subparagraph{UC 34.1 - Ricerca mirata per titolo}
 \label{uc34.1}
 
 \begin{itemize}
@@ -906,7 +904,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} L'utente vuole cercare una nota conoscendone (parte del) titolo.
 \end{itemize}
 
-\paragraph{3.6.5.2 UC 34.2 - Ricerca Full-Text}
+\subparagraph{UC 34.2 - Ricerca Full-Text}
 \label{uc34.2}
 
 \begin{itemize}
@@ -940,7 +938,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     specifica nel loro contenuto.
 \end{itemize}
 
-\paragraph{3.6.5.3 UC 34.3 - Filtro per data}
+\subparagraph{UC 34.3 - Filtro per data}
 \label{uc34.3}
 
 \begin{itemize}
@@ -976,7 +974,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{itemize}
 \end{itemize}
 
-\paragraph{3.6.5.3.1 UC 34.3.1 - Filtro per data di creazione}
+\subparagraph{UC 34.3.1 - Filtro per data di creazione}
 \label{uc34.3.1}
 
 \begin{itemize}
@@ -1006,7 +1004,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} L'utente vuole visualizzare le note create in un determinato periodo.
 \end{itemize}
 
-\paragraph{3.6.5.3.2 UC 34.3.2 - Filtro per data di ultima modifica}
+\subparagraph{UC 34.3.2 - Filtro per data di ultima modifica}
 \label{uc34.3.2}
 
 \begin{itemize}
@@ -1038,7 +1036,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} L'utente vuole visualizzare le note aggiornate in un determinato periodo.
 \end{itemize}
 
-\paragraph{3.6.5.4 UC 34.4 - Visualizzazione lista note salvate nel Database$_G$}
+\subparagraph{UC 34.4 - Visualizzazione lista note salvate nel Database$_G$}
 \label{uc34.4}
 
 \begin{itemize}
@@ -1069,7 +1067,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} L'utente vuole visualizzare tutte le note salvate nel proprio account$_G$.
 \end{itemize}
 
-\paragraph{3.6.6 UC 35 - Login}
+\paragraph{UC 35 - Login}
 \label{uc35}
 
 \begin{itemize}
@@ -1113,7 +1111,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{itemize}
 \end{itemize}
 
-\paragraph{3.6.6.1 UC 35.1 - Gestione errore di login}
+\subparagraph{UC 35.1 - Gestione errore di login}
 \label{uc35.1}
 
 \begin{itemize}
@@ -1146,7 +1144,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} Il sistema$_G$ rileva un errore nel processo di autenticazione dell'utente.
 \end{itemize}
 
-\paragraph{3.6.7 UC 36 - Registrazione}
+\paragraph{UC 36 - Registrazione}
 \label{uc36}
 
 \begin{itemize}
@@ -1191,7 +1189,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{itemize}
 \end{itemize}
 
-\paragraph{3.6.7.1 UC 36.1 - Gestione username già esistente}
+\subparagraph{UC 36.1 - Gestione username già esistente}
 \label{uc36.1}
 
 \begin{itemize}
@@ -1222,7 +1220,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     a un account$_G$ esistente nel database$_G$.
 \end{itemize}
 
-\paragraph{3.6.8 UC 37 - Eliminazione dell'account}
+\paragraph{UC 37 - Eliminazione dell'account}
 \label{uc37}
 
 \begin{itemize}
@@ -1258,7 +1256,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     dati ad esso associati.
 \end{itemize}
 
-\paragraph{3.6.9 UC 38 - Logout}
+\paragraph{UC 38 - Logout}
 \label{uc38}
 
 \begin{itemize}
