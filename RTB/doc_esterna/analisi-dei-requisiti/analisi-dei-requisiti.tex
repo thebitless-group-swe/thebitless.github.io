@@ -3,7 +3,7 @@
 \usepackage[italian]{babel} 
 \usepackage{comment}      
 \usepackage{graphicx} 
-\graphicspath{{./assets/}}
+\graphicspath{{./assets/img/}}
 \usepackage{multirow}
 \usepackage{geometry}
 \usepackage{float} 
@@ -35,7 +35,7 @@
 \newcommand{\tipoverbale}{Analisi dei Requisiti}
 \newcommand{\dataverbale}{}
 \newcommand{\dataversione}{2026-04-22}
-\newcommand{\versione}{0.5.0}
+\newcommand{\versione}{0.5.1}
 \newcommand{\stato}{Stesura}
 \newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
 \def\templatedir{../../../templates}
@@ -61,9 +61,11 @@
         \hline
         \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
         \hline
-        0.5.0 & 2026-04-22 & A. Menegaldo & E. De Piccoli & -  & Struttura salvataggio e persistenza \\
+        0.5.1 & 2026-04-23 & S. Zecchinato & E. De Piccoli & - & Inclusione immagini UML \\
         \hline
-        0.4.0 & 2026-04-20 & S. Zecchinato & E. De Piccoli & -  & Prima struttura salvataggio e persistenza \\
+        0.5.0 & 2026-04-22 & A. Menegaldo & E. De Piccoli & - & Struttura salvataggio e persistenza \\
+        \hline
+        0.4.0 & 2026-04-20 & S. Zecchinato & E. De Piccoli & - & Prima struttura salvataggio e persistenza \\
         \hline
         0.3.0 & 2026-04-13 & D. Facco & S. Vendramin & - & Stesura Analisi del Prodotto \\
         \hline
@@ -222,7 +224,11 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{UC 30 - Creazione nuova nota}
 \label{uc30}
-
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{UC30.pdf}
+    \caption{UC 30 - Creazione nuova nota}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore primario:} Utente
 
@@ -250,10 +256,20 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
         \item UC 30.1 - Inizializzazione editor vuoto
         \item UC 30.2 - Creazione nota nel Database$_G$ Browser
     \end{itemize}
+
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item UC 30.3 - Errore creazione nota nel Database$_G$
+    \end{itemize}
 \end{itemize}
 
 \subparagraph{UC 30.1 - Inizializzazione editor vuoto}
 \label{uc30.1}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{UC30.1.pdf}
+    \caption{UC 30.1 - Inizializzazione editor vuoto}
+\end{figure}
 
 \begin{itemize}
     \item \textbf{Attore primario:} Utente
@@ -281,6 +297,11 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \subparagraph{UC 30.2 - Creazione nota nel Database$_G$ Browser}
 \label{uc30.2}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{UC30.2.pdf}
+    \caption{UC 30.2 - Creazione nota nel Database$_G$ Browser}
+\end{figure}
 
 \begin{itemize}
     \item \textbf{Attore primario:} Utente
@@ -311,8 +332,48 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} L'utente vuole creare una nuova nota persistente nel database$_G$ dell'applicazione.
 \end{itemize}
 
+\subparagraph{UC 30.3 - Errore creazione nota nel Database$_G$}
+\label{uc30.3}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{UC30.3.pdf}
+    \caption{UC 30.3 - Errore creazione nota nel Database$_G$}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+    \end{itemize}
+
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item La nuova nota vuota non è stata creata nel database$_G$.
+        \item Il sistema$_G$ notifica all'utente l'impossibilità di completare l'operazione.
+    \end{itemize}
+
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione ``Nuova nota nel database$_G$'' tramite il Database$_G$ Browser.
+        \item Si verifica$_G$ un errore durante la creazione della nota (es. esiste già una nota con quel nome, errore di connessione al database$_G$).
+        \item Il sistema$_G$ mostra un messaggio di errore adeguato a schermo.
+        \item L'utente può scegliere se riprovare o annullare l'operazione.
+    \end{enumerate}
+
+    \item \textbf{Trigger:} L'utente vuole creare una nuova nota persistente nel database$_G$ dell'applicazione.
+\end{itemize}
+
 \paragraph{UC 31 - Caricamento nota}
 \label{uc31}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{UC31.pdf}
+    \caption{UC 31 - Caricamento nota}
+\end{figure}
 
 \begin{itemize}
     \item \textbf{Attore primario:} Utente
@@ -355,6 +416,11 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \subparagraph{UC 31.1 - Caricamento da File Locale}
 \label{uc31.1}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{UC31.1.pdf}
+    \caption{UC 31.1 - Caricamento da File Locale}
+\end{figure}
 
 \begin{itemize}
     \item \textbf{Attore primario:} Utente
@@ -385,6 +451,11 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \subparagraph{UC 31.2 - Caricamento da Database$_G$ Browser}
 \label{uc31.2}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{UC31.2.pdf}
+    \caption{UC 31.2 - Caricamento da Database$_G$ Browser}
+\end{figure}
 
 \begin{itemize}
     \item \textbf{Attore primario:} Utente
@@ -417,6 +488,11 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \subparagraph{UC 31.3 - Gestione errore di caricamento}
 \label{uc31.3}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{UC31.3.pdf}
+    \caption{UC 31.3 - Gestione errore di caricamento}
+\end{figure}
 
 \begin{itemize}
     \item \textbf{Attore primario:} Utente
