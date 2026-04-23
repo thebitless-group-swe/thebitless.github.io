@@ -203,6 +203,389 @@ All'interno del sistema Second Brain, abbiamo identificato tre tipologie princip
 
 \subsection{Macroarea 2: Funzionalità AI}
 
+\hypertarget{uc:22}{}
+\subsection{UC 22 - Riassunto contenuto con LLM}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente richiede la generazione di un riassunto del testo presente nell'editor tramite un modello di linguaggio esterno.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  LLM$_G$.
+    \item \textbf{Precondizioni:} L'utente ha inserito del testo nell'editor e il dispositivo è connesso a Internet.
+    \item \textbf{Postcondizioni:} Il sistema mostra il riassunto generato in un componente dedicato dell'interfaccia.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona la porzione di testo da elaborare.
+        \item L'utente imposta i parametri desiderati (\hyperlink{uc:22.1}{UC 22.1}).
+        \item Il sistema invia la richiesta all'attore secondario LLM.
+        \item Il sistema riceve il testo elaborato e lo visualizza.
+    \end{enumerate}
+    
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:22.1}{UC 22.1 - Selezione percentuale di riassunto}
+        \item \hyperlink{uc:22.2}{UC 22.2 - Gestione testo insufficiente}
+        \item \hyperlink{uc:22.3}{UC 22.3 - Errore LLM Non Raggiungibile}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:22.1}{}
+\subsection{UC 22.1 - Selezione percentuale di riassunto}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente definisce la lunghezza relativa del riassunto rispetto al testo originale.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} L'interfaccia di riassunto è attiva.
+    \item \textbf{Postcondizioni:} Il parametro di concisione viene passato alla richiesta API.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente agisce su un selettore numerico o slider.
+        \item Il sistema aggiorna il valore della variabile di configurazione per l'invio dati.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:22.2}{}
+\subsection{UC 22.2 - Gestione testo insufficiente per riassunto}{}
+\begin{itemize}
+    \item \textbf{Descrizione:} Validazione della lunghezza del testo prima dell'invio.
+    \item \textbf{Attori Principali:} Sistema.
+    \item \textbf{Precondizioni:} L'utente richiede l'esecuzione del riassunto.
+    \item \textbf{Postcondizioni:} La richiesta viene bloccata se i criteri minimi non sono soddisfatti.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item Il sistema effettua il conteggio dei termini nel testo selezionato.
+        \item Il sistema rileva che il testo è al di sotto della soglia minima funzionale.
+        \item Il sistema inibisce l'invio e avvisa l'utente.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:22.3}{}
+\subsection{UC 22.3 - Errore LLM Non Raggiungibile}{}
+\begin{itemize}
+    \item \textbf{Descrizione:} Gestione della mancata risposta del servizio IA.
+    \item \textbf{Attori Principali:} Sistema.
+    \item \textbf{Attori Secondari:} LLM$_G$.
+    \item \textbf{Precondizioni:} Il sistema ha inoltrato una richiesta di riassunto.
+    \item \textbf{Postcondizioni:} Il sistema notifica l'errore senza compromettere la sessione di lavoro.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item Il sistema rileva un timeout o un errore di rete.
+        \item Il sistema interrompe la comunicazione.
+        \item Il sistema mostra un messaggio di errore all'utente.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:23}{}
+\subsection{UC 23 - Traduzione contenuto con LLM}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente richiede la traduzione automatica del testo in una lingua specifica tramite il servizio LLM.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  LLM$_G$.
+    \item \textbf{Precondizioni:} L'editor contiene testo e la connessione Internet è attiva.
+    \item \textbf{Postcondizioni:} Il sistema sostituisce o affianca il testo originale con la traduzione ottenuta.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona la porzione di testo o l'intero documento.
+        \item L'utente seleziona la lingua di destinazione (\hyperlink{uc:23.1}{UC 23.1}).
+        \item Il sistema inoltra la richiesta di traduzione all'attore secondario LLM.
+        \item Il sistema riceve il testo tradotto e aggiorna l'interfaccia.
+    \end{enumerate}
+    
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:23.1}{UC 23.1 - Selezione lingua di destinazione}
+        \item \hyperlink{uc:23.2}{UC 23.2 - Errore LLM Non Raggiungibile}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:23.1}{}
+\subsection{UC 23.1 - Selezione lingua di destinazione}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente sceglie la lingua in cui desidera tradurre il contenuto tra quelle disponibili.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} L'interfaccia di traduzione è attiva.
+    \item \textbf{Postcondizioni:} Il sistema imposta il flag della lingua per la chiamata API.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona una delle opzioni disponibili.
+        \item Il sistema conferma la selezione e abilita il tasto di invio.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:23.2}{}
+\subsection{UC 23.2 - Errore LLM Non Raggiungibile}
+\begin{itemize}
+    \item \textbf{Descrizione:} Gestione del fallimento della comunicazione con il servizio di traduzione.
+    \item \textbf{Attori Principali:} Sistema.
+    \item \textbf{Attori Secondari:} LLM (Servizio Esterno).
+    \item \textbf{Precondizioni:} È stata inviata una richiesta di traduzione.
+    \item \textbf{Postcondizioni:} L'utente viene avvisato del problema tecnico; lo stato dell'editor rimane invariato.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item Il sistema rileva un timeout o un errore dal servizio LLM.
+        \item Il sistema interrompe il processo di traduzione.
+        \item Il sistema visualizza un feedback di errore all'utente.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:24}{}
+\subsection{UC 24 - Riscrittura contenuto Markdown}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente richiede la rielaborazione di un testo per migliorarne la forma o adattarlo a nuove esigenze.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:} $LLM_G$.
+    \item \textbf{Precondizioni:} Il sistema è operativo e l'utente ha inserito o selezionato del testo nell'area di editing.
+    \item \textbf{Postcondizioni:} Il sistema visualizza la versione rielaborata nell'interfaccia.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona la porzione di testo.
+        \item L'utente attiva la funzione di riscrittura.
+        \item Il sistema permette di scegliere tra variazione stilistica (\hyperlink{uc:24.1}{UC 24.1}) o correzione grammaticale (\hyperlink{uc:24.2}{UC 24.2}).
+        \item Il sistema invia la richiesta al $LLM_G$.
+        \item Il sistema visualizza la versione rielaborata.
+    \end{enumerate}
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:24.1}{UC 24.1 - Selezione Variazione Stilistica}
+        \item \hyperlink{uc:24.2}{UC 24.2 - Correzione Grammaticale}
+        \item \hyperlink{uc:24.3}{UC 24.3 - Errore LLM Non Raggiungibile}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:24.1}{}
+\subsection{UC 24.1 - Selezione Variazione Stilistica}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente sceglie un registro stilistico specifico (es. informale, colloquiale) per la rielaborazione.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:} $LLM_G$.
+    \item \textbf{Precondizioni:} È stata invocata la funzione di riscrittura (\hyperlink{uc:24}{UC 24}).
+    \item \textbf{Postcondizioni:} Il sistema visualizza la versione rielaborata secondo lo stile scelto.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente visualizza le opzioni stilistiche disponibili.
+        \item L'utente seleziona lo stile desiderato.
+        \item Il sistema inoltra il testo e il parametro stilistico al $LLM_G$.
+        \item Il sistema visualizza la versione rielaborata.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:24.2}{}
+\subsection{UC 24.2 - Correzione Grammaticale}
+\begin{itemize}
+    \item \textbf{Descrizione:} Il sistema analizza il testo per correggere errori ortografici e sintattici.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:} $LLM_G$.
+    \item \textbf{Precondizioni:} E' stata invocata la funzione di riscrittura e il testo è presente nell'area di editing.
+    \item \textbf{Postcondizioni:} Il sistema visualizza la versione corretta del testo.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente richiede la verifica grammaticale.
+        \item Il sistema analizza il testo tramite $LLM_G$.
+        \item Il sistema visualizza la versione rielaborata con le correzioni.
+    \end{enumerate}
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:24.2.1}{UC 24.2.1 - Scenario: Nessun errore rilevato}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:24.2.1}{}
+\subsection{UC 24.2.1 - Nessun errore rilevato}
+\begin{itemize}
+    \item \textbf{Descrizione:} Gestione del caso in cui il testo sia già grammaticalmente corretto.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:} $LLM_G$.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item Il $LLM_G$ analizza il testo e non rileva errori.
+        \item Il sistema notifica l'utente che non sono necessarie correzioni.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:24.3}{}
+\subsection{UC 24.3 - Errore LLM Non Raggiungibile}
+\begin{itemize}
+    \item \textbf{Descrizione:} Gestione del fallimento di comunicazione con l'intelligenza artificiale.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:} $LLM_G$.
+    \item \textbf{Precondizioni:} L'utente ha avviato una richiesta che coinvolge il $LLM_G$.
+    \item \textbf{Postcondizioni:} Il sistema informa l'utente dell'errore senza modificare lo stato del documento.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item Il sistema tenta la connessione con il servizio $LLM_G$.
+        \item Il servizio non risponde entro i limiti di tempo o restituisce un errore di rete.
+        \item Il sistema visualizza un messaggio di errore indicando l'indisponibilità del servizio.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:25}{}
+\subsection{UC 25 - Analisi critica del contenuto}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente richiede un'analisi del testo basata sulla metodologia dei "Sei Cappelli per Pensare", per ottenere diverse prospettive (obiettiva, emotiva, critica, ecc.).
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:} $LLM_G$.
+    \item \textbf{Precondizioni:} Il sistema è operativo e l'utente ha inserito o selezionato del testo nell'area di editing.
+    \item \textbf{Postcondizioni:} Il sistema visualizza i risultati dell'analisi critica per i cappelli selezionati.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona la porzione di testo da analizzare.
+        \item L'utente attiva la funzione "Analisi Critica".
+        \item L'utente seleziona uno o più cappelli specifici.
+        \item Il sistema invia il testo e la configurazione dei cappelli al $LLM_G$.
+        \item Il sistema visualizza l'output analitico suddiviso per tipologia di cappello.
+    \end{enumerate}
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:25.1}{UC 25.1 - Selezione (uno o più cappelli)}
+        \item \hyperlink{uc:25.2}{UC 25.2 - Gestione testo insufficiente per l'analisi}
+        \item \hyperlink{uc:25.3}{UC 25.3 - Errore LLM Non Raggiungibile}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:25.1}{}
+\subsection{UC 25.1 - Selezione (uno o più cappelli)}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente definisce quali prospettive di analisi attivare.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} È stata invocata la funzione di analisi critica e il testo è presente nell'area di editing.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item Il sistema mostra i sei cappelli selezionabili:
+        \begin{itemize}
+            \item \textbf{Bianco:} Analisi basata su dati oggettivi e fatti.
+            \item \textbf{Rosso:} Espressione di emozioni, intuizioni e sensazioni.
+            \item \textbf{Giallo:} Identificazione di benefici, valore e opportunità.
+            \item \textbf{Nero:} Valutazione dei rischi, criticità e potenziali problemi.
+            \item \textbf{Verde:} Generazione di idee creative e soluzioni alternative.
+            \item \textbf{Blu:} Organizzazione del pensiero, sintesi e controllo del processo.
+        \end{itemize}
+        \item L'utente seleziona la combinazione desiderata e conferma l'invio.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:25.1.1}{}
+\subsection{UC 25.1.1 - Analisi Cappello Bianco (Obiettività e Fatti)}
+\begin{itemize}
+    \item \textbf{Descrizione:} Il sistema produce una critica basata esclusivamente sulla verifica dei fatti e sull'assenza di dati oggettivi nel testo.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:} $LLM_G$.
+    \item \textbf{Precondizioni:} È stata invocata la funzione di analisi critica e il testo è presente nell'area di editing.
+    \item \textbf{Postcondizioni:} Il sistema visualizza una critica analitica focalizzata sulla neutralità e sulle evidenze.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona il "Cappello Bianco".
+        \item Il sistema richiede al $LLM_G$ di criticare il testo identificando quali fatti mancano o quali dati sono riportati in modo imparziale.
+        \item Il sistema visualizza la critica oggettiva.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:25.1.2}{}
+\subsection{UC 25.1.2 - Analisi Cappello Rosso (Emotività e Sensazioni)}
+\begin{itemize}
+    \item \textbf{Descrizione:} Il sistema produce una critica basata sull'impatto viscerale e sulle reazioni emotive che il testo suscita.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:} $LLM_G$.
+    \item \textbf{Precondizioni:} È stata invocata la funzione di analisi critica e il testo è presente nell'area di editing.
+    \item \textbf{Postcondizioni:} Il sistema visualizza una valutazione basata sul "sentimento" e sull'intuizione.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona il "Cappello Rosso".
+        \item Il sistema richiede al $LLM_G$ di criticare il testo in base alle passioni e alle emozioni (paura, gioia, rabbia) che trasmette.
+        \item Il sistema visualizza la critica emotiva.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:25.1.3}{}
+\subsection{UC 25.1.3 - Analisi Cappello Giallo (Ottimismo e Opportunità)}
+\begin{itemize}
+    \item \textbf{Descrizione:} Il sistema produce una critica costruttiva, cercando il valore e i motivi per cui l'idea espressa nel testo potrebbe funzionare.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:} $LLM_G$.
+    \item \textbf{Precondizioni:} È stata invocata la funzione di analisi critica e il testo è presente nell'area di editing.
+    \item \textbf{Postcondizioni:} Il sistema visualizza una critica positiva focalizzata sui benefici.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona il "Cappello Giallo".
+        \item Il sistema richiede al $LLM_G$ di individuare i vantaggi e le potenzialità latenti nel contenuto.
+        \item Il sistema visualizza la critica ottimistica.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:25.1.4}{}
+\subsection{UC 25.1.4 - Analisi Cappello Nero (Critica e Rischi)}
+\begin{itemize}
+    \item \textbf{Descrizione:} Il sistema produce una critica negativa e cautelativa, evidenziando perché il contenuto potrebbe fallire o essere pericoloso.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:} $LLM_G$.
+    \item \textbf{Precondizioni:} È stata invocata la funzione di analisi critica e il testo è presente nell'area di editing.
+    \item \textbf{Postcondizioni:} Il sistema visualizza una critica focalizzata su difetti, rischi e mancanze logiche.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona il "Cappello Nero".
+        \item Il sistema richiede al $LLM_G$ di agire come "avvocato del diavolo" contro il testo inserito.
+        \item Il sistema visualizza la critica pessimistica/logica.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:25.1.5}{}
+\subsection{UC 25.1.5 - Analisi Cappello Verde (Creatività e Alternativa)}
+\begin{itemize}
+    \item \textbf{Descrizione:} Il sistema produce una critica basata sulla crescita, proponendo come il testo potrebbe essere trasformato in qualcosa di nuovo o diverso.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:} $LLM_G$.
+    \item \textbf{Precondizioni:} È stata invocata la funzione di analisi critica e il testo è presente nell'area di editing.
+    \item \textbf{Postcondizioni:} Il sistema visualizza una critica creativa orientata al superamento dei limiti attuali.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona il "Cappello Verde".
+        \item Il sistema richiede al $LLM_G$ di criticare il testo proponendo alternative "fuori dagli schemi".
+        \item Il sistema visualizza la critica creativa.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:25.1.6}{}
+\subsection{UC 25.1.6 - Analisi Cappello Blu (Logica e Struttura)}
+\begin{itemize}
+    \item \textbf{Descrizione:} Il sistema produce una critica sul metodo, valutando se il testo è ben organizzato e se il processo di pensiero è coerente.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:} $LLM_G$.
+    \item \textbf{Precondizioni:} È stata invocata la funzione di analisi critica e il testo è presente nell'area di editing.
+    \item \textbf{Postcondizioni:} Il sistema visualizza una critica sulla gestione e sulla sintesi del contenuto.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona il "Cappello Blu".
+        \item Il sistema richiede al $LLM_G$ di giudicare l'architettura del discorso e la sua conclusione logica.
+        \item Il sistema visualizza la critica strutturale.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:25.2}{}
+\subsection{UC 25.2 - Gestione testo insufficiente per l'analisi}
+\begin{itemize}
+    \item \textbf{Descrizione:} Gestione del caso in cui il testo fornito sia troppo breve o privo di contenuto semantico per un'analisi critica sensata.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:} $LLM_G$.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item Il sistema (o il $LLM_G$) rileva che il testo non raggiunge la soglia minima di comprensibilità o lunghezza.
+        \item Il sistema interrompe l'analisi.
+        \item Viene mostrato un messaggio di avviso: "Testo insufficiente per generare un'analisi critica accurata".
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:25.3}{}
+\subsection{UC 25.3 - Errore LLM Non Raggiungibile}
+\begin{itemize}
+    \item \textbf{Descrizione:} Fallimento della connessione con l'IA durante il processo di analisi critica.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:} $LLM_G$.
+    \item \textbf{Precondizioni:} L'utente ha confermato la selezione dei cappelli.
+    \item \textbf{Postcondizioni:} Il sistema segnala il problema tecnico senza alterare il contenuto originale.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item Il sistema fallisce la chiamata API al servizio $LLM_G$.
+        \item Il sistema cattura l'eccezione di timeout o errore di rete.
+        \item Viene visualizzato un messaggio di errore: "Impossibile contattare il servizio di analisi. Riprova più tardi."
+    \end{enumerate}
+\end{itemize}
+
 \subsubsection{Macroarea 3: Salvataggio e Persistenza}
 
 \newpage
