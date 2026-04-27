@@ -37,7 +37,6 @@
     breaklinks=true,
 }
 
-% Comando per i termini del glossario
 \newcommand{\glossaryterm}[2]{
     \paragraph{#1 \label{term:#1}} \mbox{} \\
     #2
@@ -46,9 +45,9 @@
 
 \begin{document}
 
-\newcommand{\titolodocumento}{Glossario}
-\newcommand{\dataversione}{2026-04-16}
-\newcommand{\versione}{0.3.1}
+\newcommand{\tipoverbale}{Glossario}
+\newcommand{\dataversione}{2026-04-27}
+\newcommand{\versione}{0.4.0}
 \newcommand{\stato}{Stesura}
 \newcommand{\destinatari}{Prof. Tullio Vardanega, prof. Riccardo Cardin, The Bitless}
 
@@ -63,13 +62,15 @@
         \hline
         \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
         \hline
-        0.3.1 & 2026-04-16 & L. Battistella & -- & -- & Correzione errori di battitura \\
+        0.4.0 & 2026-04-27 &  A. Marini & E. De Piccoli & -- & Aggiunta termini \\
         \hline
-        0.3.0 & 2026-04-13 & D. Facco & -- & -- & Aggiunta termini dall'Analisi Requisiti (Introduzione e Descrizione Prodotto) \\
+        0.3.1 & 2026-04-16 & L. Battistella & E. De Piccoli & -- & Correzione errori di battitura \\
         \hline
-        0.2.0 & 2026-04-10 & L. Battistella & -- & -- & Aggiunta termini \\
+        0.3.0 & 2026-04-13 & D. Facco & A. Menegaldo & -- & Aggiunta termini \\
         \hline
-        0.1.0 & 2026-04-01 & D. Facco & -- & -- & Prima stesura e aggiunta termini base \\
+        0.2.0 & 2026-04-10 & L. Battistella & A. Menegaldo & -- & Aggiunta termini \\
+        \hline
+        0.1.0 & 2026-04-01 & D. Facco & A. Menegaldo & -- & Struttura documento e aggiunta termini base \\
         \hline
     \end{tabularx}
 \end{center}
@@ -96,13 +97,27 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 
 \glossaryterm{Actual Cost}{Metrica che rappresenta il costo effettivo sostenuto per completare il lavoro in un determinato periodo. Utilizzata per monitorare l'andamento economico del progetto e valutare se i costi sono allineati con le previsioni iniziali.}
 
+\glossaryterm{Agile}{Filosofia di sviluppo software basata su un approccio iterativo e incrementale. Si contrappone ai modelli tradizionali "a cascata", privilegiando la flessibilità ai cambiamenti, la consegna frequente di software funzionante e la collaborazione costante tra sviluppatori e stakeholder per massimizzare il valore del prodotto.}
+
+\glossaryterm{Analisi dei Rischi}{Attività continua che consiste nell'identificazione preventiva di eventi incerti che potrebbero influenzare negativamente il progetto. Per ogni rischio vengono valutate probabilità di occorrenza e impatto (gravità), definendo strategie di mitigazione per ridurne la pericolosità.}
+
+\glossaryterm{Analista}{Ruolo incaricato di fare da ponte tra le necessità del proponente e le specifiche tecniche. Si occupa di redigere i casi d'uso e di scomporre il problema in requisiti atomici, garantendo che la visione del prodotto sia coerente e realizzabile.}
+
+\glossaryterm{Approccio Incrementale}{Strategia di sviluppo che prevede la realizzazione del sistema attraverso una serie di rilasci successivi (incrementi). Ogni incremento aggiunge nuove funzionalità o migliora quelle esistenti, permettendo una validazione precoce delle scelte fatte e una gestione migliore della complessità.}
+
+\glossaryterm{Approvazione}{Atto formale compiuto dal Responsabile che conclude il ciclo di vita di un documento o di un prodotto software, rendendolo ufficiale e permettendone il rilascio nella baseline corrente.}
+
+\glossaryterm{Amministratore}{Ruolo tecnico focalizzato sulla gestione dell'infrastruttura tecnologica del team. Si occupa della configurazione delle repository, della manutenzione dei server, del sito web e della risoluzione di problemi sistemistici che potrebbero ostacolare il lavoro degli altri membri.}
+
+\glossaryterm{Assegnazione}{Operazione con cui una specifica unità di lavoro o un ruolo operativo viene attribuito a uno o più membri del team, definendo la responsabilità diretta per l'esecuzione del compito entro i termini stabiliti.}
+
+\glossaryterm{Artefatto}{Qualsiasi prodotto tangibile e documentabile derivante dal processo di sviluppo. Include file di codice sorgente, documenti PDF, diagrammi UML, verbali di riunione e prototipi software.}
+
 \glossaryterm{Analisi dei Requisiti}{Fase del processo di sviluppo software in cui vengono raccolti, documentati e analizzati i requisiti funzionali e non funzionali del sistema da realizzare, al fine di definire chiaramente le aspettative e le specifiche del progetto.}
 
-\glossaryterm{Analista}{Figura che studia e comprende i bisogni di utente e sistema, si occupa di raccogliere e definire i requisiti del software.}
+\glossaryterm{API}{Acronimo di Application Programming Interface. Insieme di definizioni, protocolli e strumenti standardizzati che permettono a diverse applicazioni software di comunicare e interagire tra loro. Agendo come uno strato di astrazione, l'API espone specifiche funzionalità o dati di un sistema senza rivelarne la logica interna o il codice sorgente, facilitando così l'integrazione di servizi esterni all'interno del prodotto.}
 
-\glossaryterm{API}{Acronimo di Application Programming Interface. È un insieme di definizioni, protocolli e strumenti che permettono la comunicazione e l'interazione tra software differenti, facilitando l'integrazione di servizi o componenti esterni.}
-
-\vspace{1cm}
+\newpage
 
 % --- SEZIONE B ---
 \section*{B}
@@ -110,13 +125,17 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 
 \glossaryterm{Backlog}{Lista ordinata di attività, requisiti o funzionalità che devono essere completati durante lo sviluppo di un progetto. Viene continuamente aggiornata e prioritizzata in base alle esigenze del progetto e alle decisioni del team di sviluppo.}
 
+\glossaryterm{Baseline}{Punto di riferimento stabile e approvato nel ciclo di vita del progetto. Rappresenta uno stato della documentazione o del software che ha superato i processi di verifica e funge da base per le attività di sviluppo successive.}
+
 \glossaryterm{Brainstorming}{Tecnica di gruppo utilizzata per generare idee e soluzioni in modo libero e creativo senza giudizi o critiche, al fine di stimolare la creatività.}
 
-\glossaryterm{Budget}{Stima delle risorse economiche necessarie per completare un progetto.}
+\glossaryterm{Branch}{Ramo parallelo di sviluppo all'interno di Git. Permette ai membri del team di lavorare su nuove funzionalità o documenti in isolamento, senza modificare il ramo principale (main) finché il lavoro non è verificato e approvato.}
+
+\glossaryterm{Budget}{Somma totale delle risorse economiche allocate per il progetto. Viene calcolato in base alle ore di lavoro preventivate per ogni ruolo nei singoli sprint. Il suo monitoraggio avviene tramite il confronto costante tra costi preventivati e consuntivi, permettendo di verificare la sostenibilità finanziaria attraverso metriche dedicate.}
 
 \glossaryterm{Bug}{Un errore, un difetto o un guasto nel codice di un programma o nel design di un sistema che ne causa un comportamento imprevisto, errato o non conforme ai requisiti specificati}
 
-\vspace{1cm}
+\newpage
 
 % --- SEZIONE C ---
 \section*{C}
@@ -126,13 +145,15 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 
 \glossaryterm{Casi d'Uso}{Descrivono come l'utente interagisce con il sistema per raggiungere un obiettivo specifico. Servono a chiarire le funzionalità dal punto di vista dell'utente.}
 
+\glossaryterm{Collegamento ipertestuale}{Elemento digitale inserito nei documenti che permette il salto immediato a un'altra sezione dello stesso file o a una risorsa esterna (URL), facilitando la navigazione e il riferimento incrociato tra le informazioni.}
+
 \glossaryterm{Committente}{Persona o organizzazione che richiede e finanzia il progetto, definendo obiettivi ed esigenze.}
 
 \glossaryterm{Continuous Integration}{Pratica di sviluppo software in cui il codice viene integrato e testato frequentemente in modo automatico, al fine di identificare e risolvere rapidamente eventuali problemi.}
 
 \glossaryterm{Chatbot}{Agente software progettato per simulare una conversazione con utenti umani, interagendo attraverso un'interfaccia testuale o vocale}
 
-\vspace{1cm}
+\newpage
 
 % --- SEZIONE D ---
 \section*{D}
@@ -140,23 +161,21 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 
 \glossaryterm{Database}{Sistema utilizzato per archiviare e gestire grandi quantità di dati in modo organizzato e accessibile.}
 
+\glossaryterm{Dashboard}{Interfaccia grafica personalizzabile che raccoglie e visualizza in modo aggregato i dati, le metriche e gli indicatori chiave di prestazione relativi a un sistema o a un processo.}
+
+\glossaryterm{Debugging}{Processo sistematico volto all'individuazione, all'analisi e alla risoluzione di errori logici o sintattici individuati all'interno del codice sorgente.}
+
 \glossaryterm{Deliverable}{Risultato concreto e misurabile prodotto durante il corso di un progetto, che può essere un documento, un software o qualsiasi altro output richiesto.}
 
-\glossaryterm{Diagrammi di Gantt}{Strumenti grafici per pianificare le attività di un progetto nel tempo, mostrando la durata e la sequenza delle fasi di lavoro.}
+\glossaryterm{Diagrammi di Gantt}{Strumento grafico di supporto alla gestione dei progetti che permette di visualizzare la pianificazione temporale delle attività. Ogni barra rappresenta un task o una fase di lavoro, posizionata lungo una scala temporale, permettendo di identificare la durata delle singole operazioni, le loro dipendenze logiche e la sequenza temporale necessaria per completare il progetto nei tempi previsti.}
 
-\glossaryterm{Discord}{Piattaforma di comunicazione online che consente la creazione di server, canali e chat per facilitare la collaborazione e la comunicazione tra membri di un team.}
+\glossaryterm{Discord}{Piattaforma di comunicazione online che consente la creazione di server strutturati in canali testuali, vocali e video per facilitare la collaborazione e la comunicazione tra membri di un team.}
 
 \glossaryterm{Distant Writing}{Modalità di scrittura in cui il contenuto viene generato o modificato con l'aiuto di strumenti digitali o intelligenza artificiale.}
 
 \glossaryterm{Dominio}{Ambito o contesto in cui opera il sistema software. Include le regole, i concetti e i problemi specifici del settore di applicazione del progetto.}
 
-\vspace{1cm}
-
-% --- SEZIONE E ---
-\section*{E}
-\addcontentsline{toc}{section}{E}
-
-\vspace{1cm}
+\newpage
 
 % --- SEZIONE F ---
 \section*{F}
@@ -166,23 +185,25 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 
 \glossaryterm{Feedback}{Ritorno di informazioni o opinioni da parte di utenti o membri del team sul prodotto o processo, utilizzato per migliorare e ottimizzare il lavoro.}
 
-\glossaryterm{Framework}{Struttura di supporto predefinita che fornisce strumenti, librerie e convenzioni per facilitare lo sviluppo di software.}
+\glossaryterm{Framework}{In informatica, indica una struttura software di supporto predefinita e astratta che fornisce un insieme di librerie, convenzioni e strumenti pronti all'uso per facilitare lo sviluppo di applicazioni.}
 
-\glossaryterm{Frontend}{Il frontend rappresenta la parte di un'applicazione con cui l'utente interagisce direttamente. Comprende l'interfaccia grafica, i pulsanti di interazione e tutti gli elementi visualizzati a schermo che permettono all'utente di comunicare con il sistema.}
+\glossaryterm{Frontend}{Il frontend rappresenta la parte di un'applicazione con cui l'utente interagisce direttamente. Comprende l'interfaccia grafica, i pulsanti di interazione e tutti gli elementi visualizzati a schermo che permettono l'utente di comunicare con il sistema.}
 
-\vspace{1cm}
+\glossaryterm{Frontespizio}{Pagina iniziale e identificativa di un documento ufficiale. Contiene dati essenziali quali il titolo, il logo del gruppo, la versione corrente, la data di rilascio, lo stato del documento e i nomi dei componenti del team.}
+
+\newpage
 
 % --- SEZIONE G ---
 \section*{G}
 \addcontentsline{toc}{section}{G}
 
-\vspace{1cm}
+\glossaryterm{Git}{Sistema di controllo di versione distribuito che permette di tracciare la cronologia delle modifiche ai file del progetto. È fondamentale per il lavoro collaborativo, consentendo a più membri del team di lavorare contemporaneamente su diversi branch senza sovrascrivere accidentalmente il lavoro altrui.}
 
-% --- SEZIONE H ---
-\section*{H}
-\addcontentsline{toc}{section}{H}
+\glossaryterm{GitHub}{Piattaforma di hosting per lo sviluppo software basata sul sistema di controllo di versione Git. Oltre a permettere l'archiviazione del codice sorgente in repository remote, offre strumenti avanzati per la collaborazione, come la gestione delle Pull Request, la revisione del codice e l'automazione dei flussi di lavoro tramite GitHub Actions.}
 
-\vspace{1cm}
+\glossaryterm{GitHub Projects}{Strumento di gestione dei progetti integrato in GitHub che permette di organizzare e pianificare il lavoro in modo visuale. Attraverso l'uso di tabelle e tabelle Kanban, consente al team di tracciare l'avanzamento dei task, assegnare priorità e collegare direttamente le attività alle issue o alle Pull Request, facilitando il monitoraggio dello stato degli sprint in tempo reale.}
+
+\newpage
 
 % --- SEZIONE I ---
 \section*{I}
@@ -194,16 +215,21 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 
 \glossaryterm{Input}{Insieme dei dati, dei segnali o delle istruzioni che vengono inviati dall'esterno verso l'interno di un sistema di elaborazione}
 
-\vspace{1cm}
+\glossaryterm{Issue}{All'interno di piattaforme di collaborazione come GitHub, rappresenta un'unità di lavoro utilizzata per tracciare attività all'interno del progetto. Può essere utilizzata per documentare un bug da risolvere, richiedere una nuova funzionalità o elencare task documentali da completare. Ogni issue può essere assegnata a uno o più membri del team, etichettata per priorità o categoria e collegata a specifici sprint tramite GitHub Projects, fungendo da punto di discussione e monitoraggio fino alla sua risoluzione.}
+
+\newpage
 
 % --- SEZIONE L ---
 \section*{L}
 \addcontentsline{toc}{section}{L}
 
-\glossaryterm{Large Language Model}{Indica una tipologia di modello di intelligenza artificiale basato su reti neurali di grandi dimensioni, addestrato su ampi insiemi di testi per comprendere e generare linguaggio naturale}
-\glossaryterm{LLM}{Acronimo di Large Language Model, per la definizione di Large Language Model cercare la parola nel glossario}
+\glossaryterm{Large Language Model (LLM)}{Tipologia avanzata di intelligenza artificiale addestrata su vastissimi dataset testuali. Questi modelli sono in grado di comprendere, generare e sintetizzare linguaggio naturale, e rappresentano la tecnologia core per lo sviluppo del progetto "Second Brain".}
 
-\vspace{1cm}
+\glossaryterm{LaTeX}{Linguaggio di composizione tipografica ad alto livello utilizzato per la produzione di documentazione tecnica. Permette di separare il contenuto dalla formattazione grafica, garantendo un output professionale e una gestione automatica dei riferimenti.}
+
+\glossaryterm{LIFO (Last In, First Out)}{Criterio di gestione delle strutture dati in cui l'ultimo elemento inserito è il primo a essere estratto.}
+
+\newpage
 
 % --- SEZIONE M ---
 \section*{M}
@@ -215,15 +241,23 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 
 \glossaryterm{Linguaggio Markdown}{Linguaggio di marcatura leggero progettato per formattare il testo semplice utilizzando una sintassi intuitiva, con l’obiettivo di essere convertito facilmente in HTML o altri formati strutturati}
 
-\glossaryterm{Mantenibilità}{Capacità di un sistema software di essere modificato in modo efficace ed efficiente}
+\glossaryterm{Manutenibilità}{Caratteristica del software che rappresenta la facilità con cui esso può essere modificato al fine di correggere difetti, migliorare le prestazioni o adattarlo a un mutato ambiente operativo o a nuovi requisiti. Un sistema con alta manutenibilità è caratterizzato da un codice modulare, ben documentato e leggibile, che permette di minimizzare il tempo medio di riparazione e ridurre il rischio che l'introduzione di modifiche causi regressioni o nuovi bug in parti non correlate del sistema.}
 
-\vspace{1cm}
+\glossaryterm{Merge}{Operazione di fusione di due branch distinti. Solitamente consiste nell'integrare le modifiche verificate di un ramo secondario nel ramo principale del progetto dopo l'approvazione di una Pull Request.}
+
+\glossaryterm{Milestone}{Pietra miliare o traguardo intermedio significativo lungo la cronologia del progetto. Serve a scandire le fasi principali e a monitorare l'andamento macroscopico del lavoro rispetto alle scadenze finali.}
+
+\glossaryterm{Minimum Viable Product (MVP)}{Versione del prodotto dotata esclusivamente delle funzionalità essenziali per permetterne l'utilizzo da parte dei primi utenti, utile per raccogliere feedback precoci e validare la direzione dello sviluppo.}
+
+\newpage
 
 % --- SEZIONE N ---
 \section*{N}
 \addcontentsline{toc}{section}{N}
 
-\vspace{1cm}
+\glossaryterm{Norme di Progetto}{Documento interno che stabilisce il "Way of Working" del gruppo. Contiene le regole operative, le convenzioni di codifica, le procedure di verifica e gli standard documentali che ogni membro deve rigorosamente seguire per garantire l'uniformità e la qualità del lavoro.}
+
+\newpage
 
 % --- SEZIONE O ---
 \section*{O}
@@ -233,7 +267,7 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 
 \glossaryterm{Output}{Risultato del processo di elaborazione dei dati che il sistema restituisce verso l'ambiente esterno}
 
-\vspace{1cm}
+\newpage
 
 % --- SEZIONE P ---
 \section*{P}
@@ -241,17 +275,25 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 
 \glossaryterm{Prompt Engineering}{Pratica di progettare e ottimizzare le istruzioni fornite ai modelli di intelligenza artificiale, al fine di ottenere risposte più accurate.}
 
-\glossaryterm{Progettista}{Figura tecnica responsabile della traduzione dei requisiti (cosa deve fare il software) in una struttura logica e tecnica dettagliata (come deve essere fatto)}
+\glossaryterm{Progettista}{Ruolo tecnico incaricato di definire l'architettura logica e strutturale del sistema software. Il suo compito principale è tradurre i requisiti funzionali e non funzionali in specifiche tecniche dettagliate che guideranno la fase di codifica.}
 
-\glossaryterm{Pull Request}{Richiesta formale di integrazione di modifiche a un progetto software che permette di revisionare, discutere e approvare il codice prima di incorporarlo.}
+\glossaryterm{Programmatore}{Figura operativa responsabile della produzione del codice sorgente eseguibile. Il suo compito comprende la scelta di algoritmi efficienti, l'integrazione di librerie esterne e la gestione del versionamento tramite Git. È inoltre incaricato di garantire la qualità del codice prodotto attraverso l'implementazione di test unitari e di collaborare alla risoluzione delle issue individuate durante le fasi di verifica.}
 
-\vspace{1cm}
+\glossaryterm{Project Manager}{Figura professionale responsabile della pianificazione, dell'esecuzione e del monitoraggio di un progetto. Il suo obiettivo primario è garantire che gli obiettivi prefissati siano raggiunti rispettando i vincoli di tempo, budget e qualità concordati con gli stakeholder. Funge inoltre da principale punto di contatto per la comunicazione esterna, assicurando che le aspettative del proponente siano allineate con l'avanzamento effettivo dei lavori.}
 
-% --- SEZIONE Q ---
-\section*{Q}
-\addcontentsline{toc}{section}{Q}
+\glossaryterm{Piano di Progetto}{Documento interno che definisce la strategia operativa del team. Include la ripartizione dei ruoli, l'analisi dei rischi, la pianificazione temporale degli sprint, il preventivo economico e il consuntivo orario, fungendo da guida per il monitoraggio dell'avanzamento dei lavori.}
 
-\vspace{1cm}
+\glossaryterm{Piano di Qualifica}{Documento strategico che definisce gli obiettivi di qualità del progetto. Descrive nel dettaglio le metriche, i test e le procedure di verifica e validazione necessarie per garantire la conformità del prodotto.}
+
+\glossaryterm{Product Baseline (PB)}{Traguardo finale del ciclo di sviluppo che rappresenta il sistema software completo, verificato, validato e corredato di tutta la documentazione, pronto per la consegna ufficiale al committente.}
+
+\glossaryterm{Proof of Concept (PoC)}{Realizzazione pratica, rapida e spesso parziale di un'idea progettuale. Il suo scopo è dimostrare la fattibilità tecnica di una soluzione e mitigare i rischi tecnologici più critici prima della fase di sviluppo massivo.}
+
+\glossaryterm{Pull Request (PR)}{Richiesta formale di integrazione di modifiche proposte da un membro del team. Avvia un processo di revisione tra pari che deve essere superato prima che il codice o il testo vengano uniti al branch principale.}
+
+\glossaryterm{Proponente}{L'organizzazione o l'azienda esterna che propone il problema da risolvere (capitolato) e agisce come stakeholder principale durante le revisioni di avanzamento, fornendo feedback e chiarimenti sui requisiti.}
+
+\newpage
 
 % --- SEZIONE R ---
 \section*{R}
@@ -269,23 +311,41 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 
 \glossaryterm{RFP}{Acronimo di Request for Proposal. Per la definizione di Request for Proposal, cercare la parola nel glossario.}
 
+\glossaryterm{Release}{Versione specifica e stabile di un artefatto(documento o software) che viene resa disponibile per la consultazione o l'uso, segnando il completamento di una fase di lavoro.}
+
+\glossaryterm{Responsabile}{Membro del team incaricato della gestione dello sprint, del coordinamento delle risorse e della comunicazione esterna. Ha l'autorità finale sull'approvazione dei documenti.}
+
+\glossaryterm{Reviewer}{Membro del team incaricato di esaminare il lavoro dei colleghi, segnalare errori e approvare l'integrazione finale.}
+
 \glossaryterm{Rotazione dei ruoli}{Pratica in cui i membri di un team assumono ruoli diversi durante un progetto al fine di acquisire nuove competenze e migliorare la collaborazione.}
 
-\vspace{1cm}
+\glossaryterm{REST (Representational State Transfer)}{Stile architettonico per la creazione di servizi web che operano su HTTP. Si basa sull'uso di metodi standard (GET, POST, PUT, DELETE) e sull'identificazione delle risorse tramite URL, garantendo scalabilità e semplicità di integrazione tra frontend e backend.}
+
+\glossaryterm{Requirements and Technology Baseline (RTB)}{Primo traguardo fondamentale del progetto che sancisce il consolidamento dell'Analisi dei Requisiti e la validazione delle scelte tecnologiche. Rappresenta il punto di controllo in cui vengono approvate le fondamenta documentali e tecniche necessarie per avviare la fase di sviluppo del prodotto finale.}
+
+\glossaryterm{Rischio}{Evento incerto la cui occorrenza può influenzare negativamente il raggiungimento degli obiettivi del progetto in termini di tempi, costi o qualità.}
+
+\newpage
 
 % --- SEZIONE S ---
 \section*{S}
 \addcontentsline{toc}{section}{S}
 
-\glossaryterm{SCRUM}{Metodologia di sviluppo software agile che si basa su cicli brevi detti sprint, separati da momenti di pianificazione e revisione.}
+\glossaryterm{Scrum}{Metodologia di sviluppo software agile adottato dal team per organizzare il lavoro. Si basa su ruoli definiti (Scrum Master, Product Owner, Team), eventi cadenzati (Sprint, Daily, Review) e artefatti trasparenti (Backlog) per gestire progetti complessi.}
+
+\glossaryterm{Sprint}{Periodo di tempo prefissato e limitato durante il quale il team si impegna a completare una serie di task definiti nel Backlog. Ogni sprint si conclude con un incremento funzionale del prodotto pronto per essere revisionato.}
 
 \glossaryterm{Sei Cappelli per Pensare}{Tecnica sviluppata da Edward de Bono che analizza un problema da sei prospettive diverse, rappresentate da sei cappelli di colori differenti.}
 
 \glossaryterm{Sistema}{In informatica, un insieme di componenti interconnessi e interagenti (hardware, software e dati) che operano in modo coordinato per raggiungere un obiettivo comune: l'elaborazione di informazioni}
 
+\glossaryterm{Sysadmin}{Abbreviazione di System Administrator. È la figura tecnica responsabile della configurazione, della manutenzione e del corretto funzionamento dell'infrastruttura informatica e dei sistemi operativi utilizzati dal team. Garantisce inoltre l'integrità dei dati e la sicurezza degli accessi alle risorse digitali del gruppo.}
+
 \glossaryterm{Stakeholder}{Un qualsiasi individuo, gruppo o organizzazione che può influenzare o essere influenzato — direttamente o indirettamente — dalla realizzazione, dall'utilizzo o dal successo di un sistema software}
 
-\vspace{1cm}
+\glossaryterm{Sviluppo}{Insieme delle attività tecniche e gestionali finalizzate alla realizzazione del prodotto software, partendo dall'analisi dei requisiti fino al rilascio finale.}
+
+\newpage
 
 % --- SEZIONE T ---
 \section*{T}
@@ -303,21 +363,23 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 
 \glossaryterm{Tecnologie Web}{Insieme dei protocolli, dei linguaggi, dei software e degli standard tecnici che permettono la creazione, la trasmissione e la fruizione di contenuti e servizi attraverso il World Wide Web}
 
+\glossaryterm{Task}{La più piccola unità di lavoro in cui può essere scomposto un requisito o un'attività documentale. Ogni task viene assegnato a un membro del team e monitorato per verificarne lo stato di avanzamento (To Do, In Progress, Done).}
+
 \glossaryterm{Tester}{Figura incaricata di valutare in modo sistematico il software per identificare discrepanze tra il comportamento atteso e quello effettivo (bug, per definizione di "bug" guardare la voce nel glossario)}
 
-\vspace{1cm}
+\newpage
 
 % --- SEZIONE U ---
 \section*{U}
 \addcontentsline{toc}{section}{U}
 
-\glossaryterm{UML}{Linguaggio grafico utilizzato per modellare e visualizzare la struttura, il comportamento e l'architettura di un sistema software attraverso diagrammi standardizzati.}
+\glossaryterm{UML}{Acronimo di Unified Modeling Language. È un linguaggio di modellazione grafico standardizzato, ampiamente utilizzato nell'ingegneria del software per specificare, visualizzare, costruire e documentare gli artefatti di un sistema. Attraverso una serie di diagrammi, l'UML permette di rappresentare l'architettura logica, le interazioni tra i componenti e i flussi di lavoro.}
 
 \glossaryterm{Unità Software}{Singola componente o modulo di un sistema software che può essere sviluppato, testato e mantenuto in modo indipendente.}
 
 \glossaryterm{UX}{Acronimo di User Experience, si riferisce all'esperienza complessiva dell'utente durante l'utilizzo di un prodotto o servizio.}
 
-\vspace{1cm}
+\newpage
 
 % --- SEZIONE V ---
 \section*{V}
@@ -325,11 +387,13 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 
 \glossaryterm{Validazione}{Processo di verifica che un sistema soddisfa i requisiti e le aspettative degli utenti, garantendo che il prodotto finale sia conforme alle specifiche e funzioni correttamente.}
 
-\glossaryterm{Verifica}{Processo di controllo che un sistema o un componente soddisfa i requisiti specificati, identificando eventuali discrepanze.}
+\glossaryterm{Verifica}{Insieme di attività volte ad accertare che il software e la documentazione siano stati costruiti correttamente seguendo le Norme di Progetto e le specifiche tecniche.}
+
+\glossaryterm{Verificatore}{Ruolo operativo incaricato di eseguire l'analisi statica e dinamica sui prodotti del team. Accerta che ogni artefatto rispetti le Norme di Progetto e i criteri di qualità stabiliti.}
 
 \glossaryterm{Vincolo}{In informatica, un vincolo è una condizione logica, una regola o una limitazione imposta su un sistema, un insieme di dati o un processo}
 
-\vspace{1cm}
+\newpage
 
 % --- SEZIONE W ---
 \section*{W}
@@ -337,24 +401,8 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 
 \glossaryterm{Way of Working}{Insieme di pratiche, regole e metodi adottati da un team per organizzare e gestire il lavoro in modo efficiente e collaborativo.}
 
-\vspace{1cm}
+\glossaryterm{WhatsApp}{Piattaforma di messaggistica istantanea centralizzata che permette lo scambio di messaggi testuali, file multimediali e chiamate vocali/video tramite connessione Internet.}
 
-% --- SEZIONE X ---
-\section*{X}
-\addcontentsline{toc}{section}{X}
-
-\vspace{1cm}
-
-% --- SEZIONE Y ---
-\section*{Y}
-\addcontentsline{toc}{section}{Y}
-
-\vspace{1cm}
-
-% --- SEZIONE Z ---
-\section*{Z}
-\addcontentsline{toc}{section}{Z}
-
-\vspace{1cm}
+\glossaryterm{Workflow}{Flusso di lavoro strutturato che definisce la sequenza di passaggi necessari per completare un'attività, garantendo ordine e tracciabilità del processo.}
 
 \end{document}
