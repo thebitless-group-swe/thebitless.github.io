@@ -32,15 +32,16 @@
 \begin{document}
 
 \newcommand{\tipoverbale}{interno}
-\newcommand{\dataverbale}{2026-03-31}
-\newcommand{\dataversione}{2026-04-02}
+\newcommand{\dataverbale}{2026-04-14}
+\newcommand{\dataversione}{2026-04-19}
 \newcommand{\versione}{1.0.0}
-\newcommand{\stato}{Approvato}
+\newcommand{\stato}{Stesura}
 \newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+\def\templatedir{../../../templates}
 
 \begin{titlepage}
 \pagenumbering{gobble}
-\input{../../../../templates/frontespizio.tex}
+\input{../../../templates/frontespizio.tex}
 \end{titlepage}
 
 \newpage
@@ -53,9 +54,9 @@
         \hline
         \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione breve} \\
         \hline
-        1.0.0 & 2026-04-02 & S. Vendramin &  L. Battistella &  L. Battistella & Approvazione \\
-        0.8.0 & 2026-04-02 & S. Zecchinato & S. Vendramin & - & Scrittura sezioni \\
-        0.1.0 & 2026-03-31 & S. Zecchinato & A. Menegaldo & - & Prima stesura \\
+        1.0.0 & 2026-04-19 & L. Battistella & E. De Piccoli & L. Battistella & Approvazione \\
+        \hline
+        0.1.0 & 2026-04-16 & L. Battistella & E. De Piccoli & - & Prima stesura \\
         \hline
     \end{tabular}
 \end{center}
@@ -65,7 +66,7 @@
 
 \newpage
 \section{Informazioni sulla riunione}
-Il presente documento riporta la verbalizzazione della riunione interna al gruppo \textbf{The Bitless} avvenuta il \dataverbale{}. L'incontro si è svolto in modalità telematica tramite la piattaforma Discord. La riunione si è aperta alle ore 10:00 e si è conclusa alle ore 11:00.
+Il presente documento riporta la verbalizzazione della riunione interna al gruppo \textbf{The Bitless} avvenuta il \dataverbale{}. L'incontro si è svolto in modalità telematica tramite la piattaforma Discord$_G$. La riunione si è aperta alle ore 17:00 e si è conclusa alle ore 18:00.
 
 \section{Presenze}
 \begin{center}
@@ -74,8 +75,8 @@ Il presente documento riporta la verbalizzazione della riunione interna al grupp
 \textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
 \hline
 Lorenzo & Battistella & Presente \\
-Edoardo & De Piccoli & Presente \\
-Davide & Facco & Presente \\
+Edoardo & De Piccoli & Assente \\
+Davide & Facco & Assente \\
 Anna & Marini & Presente \\
 Andrea & Menegaldo & Presente \\
 Samuele & Vendramin & Presente \\
@@ -86,66 +87,59 @@ Simone & Zecchinato & Presente \\
 
 \section{Ordine del giorno}
 \begin{enumerate}
-    \item Contatto con Zucchetti post aggiudicazione capitolato
-    \item Assegnazione dei ruoli
+    \item Rotazione dei ruoli
+    \item Definizione ruoli e responsabilità 
+    \item Raffinamento dei Casi d'uso
     \item Definizione delle prossime attività
 \end{enumerate}
 
 \section{Discussione e decisioni}
 Di seguito le discussioni e le decisioni prese dal gruppo durante la riunione.
-\subsection{Contatto con Zucchetti post aggiudicazione capitolato}
-Come prima azione da intraprendere dopo l'aggiudicazione del capitolato, il gruppo decide di contattare Zucchetti per informarla dell'avvenuta aggiudicazione al gruppo del capitolato e per decidere i prossimi passi.
-Viene quindi inviata una mail al referente aziendale \textit{Gregorio Piccoli} per fissare un colloquio.
-
-\subsection{Assegnazione dei ruoli}
-Il gruppo decide di assegnare in maniera casuale ai componenti i ruoli di responsabile, amministratore, analista e verificatore come segue:
+\subsection{Rotazione dei ruoli}
+Il gruppo decide di riassegnare i ruoli in maniera casuale ai componenti mantenendo lo stesso numero di persone per ogni ruolo dello sprint precendente. I ruoli vengono assegnati come segue:
 \begin{center}
     \begin{tabular}{|l|l|c|}
         \hline
         \textbf{Nome} & \textbf{Cognome} & \textbf{Ruolo} \\
         \hline
-        Samuele & Vendramin & Responsabile \\
+        Lorenzo & Battistella & Responsabile \\
         \hline
-        Andrea & Menegaldo & Verificatore \\
+        Edoardo & De Piccoli & Verificatore \\
         \hline
-        Anna & Marini & Analista \\ 
+        Andrea & Menegaldo & Amministratore \\
         \hline
-        Edoardo & De Piccoli & Amministratore \\
+        Davide & Facco & Analista \\ 
         \hline
         Simone & Zecchinato & Analista \\
         \hline
-        Lorenzo & Battistella & Analista \\
+        Anna & Marini & Analista \\
         \hline
-        Davide & Facco & Analista \\       
+        Samuele & Vendramin & Analista \\       
         \hline  
     \end{tabular}
 \end{center}
-Si decide poi di ruotare i ruoli ogni due settimane.
+
+\subsection{Definizione ruoli e responsabilità}
+
+Durante l'incontro, il gruppo ha ribadito le responsabilità associate ai diversi ruoli operativi. Il gruppo ha consolidato la definizione dei compiti del Responsabile, il quale garantisce la coerenza del progetto attraverso il coordinamento delle attività. Tra i suoi compiti principali sono stati riaffermati la redazione dei verbali (interni ed esterni), l'approvazione formale della documentazione e l'assegnazione dei task ai membri del team, assicurando così il rispetto delle scadenze e degli obiettivi prefissati.
+
+
+\subsection{Raffinamento dei Casi d'Uso}
+
+Durante la riunione abbiamo analizzato nuovamente la bozza della gerarchia dei casi d'uso, revisionandola per assicurarci che rispetti tutti i requisiti di progetto. Il confronto si è focalizzato sul perfezionamento delle descrizioni degli scenari più specifici, con l'obiettivo di eliminare ogni ambiguità e fornire una guida chiara per la fase di implementazione.
+
 
 \subsection{Definizione delle prossime attività}
-Si discute sulle prossime attività da intraprendere:
-\begin{enumerate}
-    \item Inizio stesura del glossario
-    \item Inizio stesura delle norme di progetto
-    \item Sistemazione del sito web
-\end{enumerate}
-Innanzitutto si decide di iniziare la stesura dei due documenti denominati \textit{Glossario}, che raccoglie tutti i vocaboli di progetto che risultano di difficile comprensione, e \textit{Norme di Progetto} che raccoglie le varie normative da seguire nel corso del progetto.
-Vengono assegnate le attività di stesura e, per accogliere questi due nuovi documenti, vene decisa la modifica del sito.
+Si decide di inziare la stesura dei casi d'uso$_G$ da parte degli analisti, mentre il responsabile si occuperà di scrivere il verbale interno.
 
-\subsection{Assegnazione attività singole}
+\section{Assegnazione attività singole}
 \begin{center}
     \renewcommand{\arraystretch}{1.4}
         \begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
         \hline
         \textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
         \hline
-        S. Zecchinato & Stesura verbale interno & \issue{58} \\
-        \hline
-        Facco - Battistella & Stesura \textit{Glossario} & \issue{59} \\
-        \hline
-        Marini - Zecchinato & Stesura \textit{Norme di Progetto} & \issue{60} \\
-        \hline
-        E. De Piccoli & Modiche sito web & \issue{61} \\
+        L. Battistella & Stesura verbale interno & \issue{87} \\
         \hline
     \end{tabular}
 \end{center}
