@@ -67,11 +67,11 @@
         \hline
         0.4.0 & 2026-04-16 & A. Marini & L. Batttistella & - & Introduzione casi d'uso \\
         \hline
-        0.5.1 & 2026-04-23 & S. Zecchinato & E. De Piccoli & - & Inclusione immagini UML \\
+        0.6.0 & 2026-04-22 & A. Menegaldo & E. De Piccoli & - & Struttura salvataggio e persistenza \\
         \hline
-        0.5.0 & 2026-04-22 & A. Menegaldo & E. De Piccoli & - & Struttura salvataggio e persistenza \\
+        0.5.0 & 2026-04-20 & S. Zecchinato & E. De Piccoli & - & Prima struttura salvataggio e persistenza \\
         \hline
-        0.4.0 & 2026-04-20 & S. Zecchinato & E. De Piccoli & - & Prima struttura salvataggio e persistenza \\
+        0.4.0 & 2026-04-24 & S. Vendramin & D. Edoardo & - & Stesura Casi d'uso \\
         \hline
         0.3.0 & 2026-04-13 & D. Facco & S. Vendramin & - & Stesura Analisi del Prodotto \\
         \hline
@@ -307,246 +307,578 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \end{enumerate}
 \end{itemize}
 
-% --- 26.4 ---
-\hypertarget{uc:26.4}{}
-\subsection{Anteprima e conferma del contesto inviato all'LLM}
-
+\subsubsection{Editing di base}
+\hypertarget{uc:11}{}
+\paragraph{UC 11 - Gestione Codice}
 \begin{itemize}
-    \item \textbf{Descrizione:} Visualizzazione di riepilogo di tutte le informazioni (prompt + note + parametri) prima dell'invio.
+    \item \textbf{Descrizione:} L'utente interagisce con l'editor per gestire la formattazione e l'inserimento di sezioni di codice sorgente all'interno del documento Markdown.
     \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:}  Nessuno.
-    \item \textbf{Precondizioni:} L'utente ha definito prompt, contesto e/o parametri.
-    \item \textbf{Postcondizioni:} La richiesta viene inviata all'LLM$_G$
+    \item \textbf{Precondizioni:} Il sistema è operativo e l'utente si trova nell'area di editing.
+    \item \textbf{Postcondizioni:} Il documento viene aggiornato con l'aggiunta o la rimozione della sezione di codice, riflettendo le modifiche nel render grafico.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item Il sistema mostra il riepilogo.
-        \item L'utente revisiona il riepilogo.
-        \item L'utente preme invia.
+        \item L'utente seleziona un'area di testo o posiziona il cursore nel punto desiderato.
+        \item L'utente richiama il comando per la gestione del blocco di codice.
+        \item Il sistema applica le modifiche richieste e aggiorna l'interfaccia.
     \end{enumerate}
-\end{itemize}
-
-% --- 26.5 ---
-\hypertarget{uc:26.5}{}
-\subsection{Errore LLM non raggiungibile}
-
-\begin{itemize}
-    \item \textbf{Descrizione:} Gestione della mancanza di risposta da parte del servizio di Intelligenza Artificiale
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:}  LLM$_G$.
-    \item \textbf{Precondizioni:} Una richiesta è stata inviata.
-    \item \textbf{Postcondizioni:} Il sistema torna allo stato precedente all'invio senza perdita di dati locali.
-    \item \textbf{Scenario Principale:}
-    \begin{enumerate}
-        \item Il sistema rileva un timeout o un errore dall'API$_G$ LLM$_G$
-        \item Il sistema mostra un messaggio di avviso.
-        \item L'utente può tentare un nuovo invio con lo stato precedente all'errore.
-    \end{enumerate}
-\end{itemize}
-
-% --- UC 27 ---
-
-\hypertarget{uc:27}{}
-\subsection{UC 27 - Elaborazione vocale}
-
-\begin{itemize}
-    \item \textbf{Descrizione:} Conversione di un input audio in testo strutturato e formattato.
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:}  LLM$_G$.
-    \item \textbf{Precondizioni:} Microfono attivo ed autorizzato.
-    \item \textbf{Postcondizioni:} L'audio è stato trasformato in testo nell'interfaccia
-    \item \textbf{Scenario Principale:}
-    \begin{enumerate}
-        \item L'utente avvia la registrazione.
-        \item Termina il parlato.
-        \item Il sistema processa l'audio e mostra il testo.
-    \end{enumerate}
-    
-    \item \textbf{Sottocasi:}
+    \item \textbf{Estensioni:}
     \begin{itemize}
-        \item \hyperlink{uc:27.1}{UC 27.1 - Trascrizione e formattazione automatica}
-        \item \hyperlink{uc:27.2}{UC 27.2 - Gestione audio incomprensibile}
+        \item \hyperlink{uc:11.1}{UC 11.1 - Inserimento sezione di codice}
+        \item \hyperlink{uc:11.2}{UC 11.2 - Eliminazione sezione di codice}
     \end{itemize}
 \end{itemize}
 
-% --- 27.1 ---
-\hypertarget{uc:27.1}{}
-\subsection{UC 27.1 - Trascrizione e formattazione automatica}
-
+\hypertarget{uc:11.1}{}
+\subparagraph{UC 11.1 - Inserimento sezione di codice}
 \begin{itemize}
-    \item \textbf{Descrizione:} Pulizia del testo trascritto (punteggiatura, paragrafi) tramite AI.
+    \item \textbf{Descrizione:} L'utente inserisce la formattazione necessaria per rappresentare un blocco di codice (es. tramite backtick multipli).
     \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:}  LLM$_G$.
-    \item \textbf{Precondizioni:} Esiste una trascrizione grezza.
-    \item \textbf{Postcondizioni:} Il testo è reso leggibile e stilisticamente corretto.
+    \item \textbf{Precondizioni:} Il sistema è operativo e il cursore è posizionato nell'editor.
+    \item \textbf{Postcondizioni:} Il sistema inserisce i marcatori Markdown per il blocco di codice e il render lo visualizza formattato correttamente.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item Il sistema riceve il testo grezzo.
-        \item Lo invia all'LLM$_G$ per la formattazione.
-        \item L'output pulito viene presentato all'utente.
+        \item L'utente attiva il comando di inserimento codice (tramite scorciatoia da tastiera o interfaccia).
+        \item Il sistema inserisce i marcatori di apertura e chiusura per il codice.
+        \item Il cursore viene posizionato all'interno dei marcatori pronti per la digitazione.
     \end{enumerate}
 \end{itemize}
 
-% --- 27.2 ---
-\hypertarget{uc:27.2}{}
-\subsection{UC 27.2 - Gestione audio incomprensibile}
-
+\hypertarget{uc:11.2}{}
+\subparagraph{UC 11.2 - Eliminazione sezione di codice}
 \begin{itemize}
-    \item \textbf{Descrizione:} Segnalazione all'utente che la qualità audio non permette la trascrizione.
+    \item \textbf{Descrizione:} L'utente rimuove la formattazione di codice da una sezione precedentemente definita.
     \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:}  Nessuno.
-    \item \textbf{Precondizioni:} Input audio ricevuto troppo basso o disturbato.
-    \item \textbf{Postcondizioni:} Richiesta di ripetizione dell'input.
+    \item \textbf{Precondizioni:} È presente una sezione di codice nell'editor.
+    \item \textbf{Postcondizioni:} Il sistema rimuove i marcatori del codice, mantenendo il testo al suo interno in formato normale.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item Il sistema analizza l'audio.
-        \item Il sistema rileva un livello di confidenza troppo basso.
-        \item Interrompe il processo e notifica l'utente.
+        \item L'utente seleziona i marcatori del blocco di codice.
+        \item L'utente esegue il comando di eliminazione.
+        \item Il sistema rimuove la formattazione Markdown relativa al codice.
     \end{enumerate}
 \end{itemize}
 
-% --- UC 28 ---
-
-\hypertarget{uc:28}{}
-\subsection{UC 28 - Validazione output AI}
-
+\hypertarget{uc:12}{}
+\paragraph{UC 12 - Gestione Formule Scientifiche}
 \begin{itemize}
-    \item \textbf{Descrizione:} Fase decisionale dell'utente sulla qualità del testo ricevuto dall'AI.
+    \item \textbf{Descrizione:} L'utente gestisce l'inserimento e la rimozione di espressioni matematiche o formule scientifiche formattate.
     \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:}  Nessuno.
-    \item \textbf{Precondizioni:} L'LLM ha restituito l'output.
-    \item \textbf{Postcondizioni:} L'output viene accettato, modificato o scartato.
+    \item \textbf{Precondizioni:} Il sistema è operativo e l'utente si trova nell'area di editing.
+    \item \textbf{Postcondizioni:} Il documento riflette la presenza o l'assenza della formula scientifica con relativo rendering (es. LaTeX/KaTeX in Markdown).
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item L'utente legge l'output.
-        \item L'utente valuta la pertinenza.
-        \item Seleziona l'azione successiva tra le opzioni disponibili.
+        \item L'utente identifica la posizione per la formula.
+        \item L'utente applica il comando per inserire o rimuovere la sintassi matematica.
+        \item Il sistema aggiorna l'editor e il pannello di render.
     \end{enumerate}
-    
-    \item \textbf{Sottocasi:}
+    \item \textbf{Estensioni:}
     \begin{itemize}
-        \item \hyperlink{uc:27.1}{UC 27.1 - Trascrizione e formattazione automatica}
-        \item \hyperlink{uc:27.2}{UC 27.2 - Gestione audio incomprensibile}
+        \item \hyperlink{uc:12.1}{UC 12.1 - Inserimento formula scientifica}
+        \item \hyperlink{uc:12.2}{UC 12.2 - Eliminazione formula scientifica}
     \end{itemize}
 \end{itemize}
 
-% --- 28.1 ---
-
-\hypertarget{uc:28.1}{}
-\subsection{UC 28.1 - Accettazione output}
-
+\hypertarget{uc:12.1}{}
+\subparagraph{UC 12.1 - Inserimento formula scientifica}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente esamina il testo prodotto dall'AI e lo giudica idoneo, accettando di utilizzarlo nel sistema.
+    \item \textbf{Descrizione:} L'utente inserisce la sintassi specifica per il rendering di una formula matematica.
     \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:}  Sistema di persistenza.
-    \item \textbf{Precondizioni:} L'output dell'LLM è stato visualizzato correttamente a schermo (\hypertarget{uc:28}{UC 28}) e l'utente ha terminato la revisione.
-    \item \textbf{Postcondizioni:} L'output è marcato come validato. Il sistema sblocca le funzioni di persistenza definitiva (\hypertarget{uc:28.1.1}{UC 28.1.1}, \hypertarget{uc:28.1.2}{UC 28.1.2}).
+    \item \textbf{Precondizioni:} Il sistema è in attesa di input nell'editor di testo.
+    \item \textbf{Postcondizioni:} I marcatori per la formula vengono aggiunti e la vista renderizzata mostra l'espressione formattata.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item L'utente visualizza il testo generato dall'AI nell'area di anteprima.
-        \item L'utente seleziona il comando Conferma.
-        \item Il sistema registra il feedback positivo.
+        \item L'utente seleziona il comando di inserimento formula.
+        \item Il sistema inserisce i delimitatori matematici (es. \$\$).
+        \item L'utente digita l'espressione all'interno dei delimitatori.
     \end{enumerate}
-    
-    \item \textbf{Sottocasi:}
+\end{itemize}
+
+\hypertarget{uc:12.2}{}
+\subparagraph{UC 12.2 - Eliminazione formula scientifica}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente rimuove una formula scientifica esistente o i suoi delimitatori.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Una formula scientifica è presente nel testo.
+    \item \textbf{Postcondizioni:} La formula o la sua sintassi viene rimossa dall'editor e dal render.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona la formula o i suoi delimitatori.
+        \item L'utente preme il tasto di cancellazione.
+        \item Il sistema rimuove il blocco selezionato dal documento.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:13}{}
+\paragraph{UC 13 - Gestione Immagini}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente amministra le immagini all'interno della nota Markdown, potendole inserire, sostituire o eliminare.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema è operativo e la nota è aperta nell'editor.
+    \item \textbf{Postcondizioni:} Il markup per le immagini viene modificato di conseguenza e il rendering visivo si aggiorna.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente sceglie l'operazione da effettuare su un'immagine (inserimento, sostituzione, eliminazione).
+        \item Il sistema richiede eventuali parametri (es. URL o percorso) se necessari.
+        \item Il sistema applica la modifica al testo Markdown.
+    \end{enumerate}
+    \item \textbf{Estensioni:}
     \begin{itemize}
-        \item \hyperlink{uc:28.1.1}{UC 28.1.1 - Sostituzione del testo nell'editor}
-        \item \hyperlink{uc:28.1.2}{UC 28.1.2 - Salvataggio dell'output come una nuova nota}
+        \item \hyperlink{uc:13.1}{UC 13.1 - Inserimento immagine}
+        \item \hyperlink{uc:13.2}{UC 13.2 - Sostituzione immagine}
+        \item \hyperlink{uc:13.3}{UC 13.3 - Eliminazione immagine}
     \end{itemize}
 \end{itemize}
 
-% --- 28.1.1 ---
-
-\hypertarget{uc:28.1.1}{}
-\subsection{UC 28.1.1 - Sostituzione del testo nell'editor}
-
+\hypertarget{uc:13.1}{}
+\subparagraph{UC 13.1 - Inserimento immagine}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'output AI sostituisce il contenuto corrente di una nota aperta.
+    \item \textbf{Descrizione:} L'utente aggiunge un'immagine alla nota fornendo un URL o un percorso file.
     \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:}  Sistema di persistenza.
-    \item \textbf{Precondizioni:} \hypertarget{uc:28.1}{UC 28.1} attivato.
-    \item \textbf{Postcondizioni:} Il testo originale della nota aperta è sovrascritto.
+    \item \textbf{Precondizioni:} Il cursore è posizionato nell'editor.
+    \item \textbf{Postcondizioni:} La sintassi Markdown per l'immagine viene inserita nell'editor e l'immagine è visibile nel render.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item L'utente sceglie "Sostituisci".
-        \item Il sistema aggiorna il buffere dell'editor.
-        \item Il sistema salva le modifiche.
+        \item L'utente invoca l'azione di inserimento immagine.
+        \item Il sistema richiede la specificazione della fonte (URL/percorso) e, opzionalmente, il testo alternativo.
+        \item L'utente conferma i dati.
+        \item Il sistema genera il markup Markdown relativo all'immagine.
     \end{enumerate}
 \end{itemize}
 
-% --- 28.1.2 ---
-
-\hypertarget{uc:28.1.2}{}
-\subsection{UC 28.1.2 - Salvataggio dell'output come nuova nota}
-
+\hypertarget{uc:13.2}{}
+\subparagraph{UC 13.2 - Sostituzione immagine}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'output AI viene archiviato come un documento indipendente.
+    \item \textbf{Descrizione:} L'utente modifica l'origine o i parametri di un'immagine precedentemente inserita.
     \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:}  Sistema di persistenza.
-    \item \textbf{Precondizioni:} \hypertarget{uc:28.1}{UC 28.1} attivato.
-    \item \textbf{Postcondizioni:} L'output è salvato in una nuova nota e presente nel database.
+    \item \textbf{Precondizioni:} Un marcatore di immagine è presente nel documento.
+    \item \textbf{Postcondizioni:} L'origine dell'immagine viene aggiornata nel testo sorgente.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item L'utente sceglie "Salva come nuova".
-        \item Il sistema crea una nuova nota vuota.
-        \item Il sistema scrive l'output nella nuova nota.
-        \item Il sistema salva il testo generato.
+        \item L'utente seleziona la sintassi dell'immagine da modificare.
+        \item L'utente altera il link o il testo alternativo presente tra i marcatori.
+        \item Il sistema aggiorna dinamicamente la risorsa visualizzata nel render.
     \end{enumerate}
 \end{itemize}
 
-% --- 28.2 ---
-
-\hypertarget{uc:28.2}{}
-\subsection{UC 28.2 - Rifiuto dell'output AI}
-
+\hypertarget{uc:13.3}{}
+\subparagraph{UC 13.3 - Eliminazione immagine}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente scarta il testo generato perchè valutato non soddisfacente.
+    \item \textbf{Descrizione:} L'utente rimuove il riferimento a un'immagine dalla nota.
     \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:}  Nessuno.
-    \item \textbf{Precondizioni:} L'output dell'LLM è stato visualizzato correttamente a schermo (\hypertarget{uc:28}{UC 28}) e l'utente ha terminato la revisione.
-    \item \textbf{Postcondizioni:} Il testo generato viene rimosso dalla memoria temporanea.
+    \item \textbf{Precondizioni:} Il documento contiene almeno un'immagine inserita.
+    \item \textbf{Postcondizioni:} La stringa di markup dell'immagine è rimossa dal testo e il render non la visualizza più.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item L'utente preme "Scarta"
-        \item Il sistema chiude l'anteprima e torna alla schermata di configurazione.
+        \item L'utente seleziona la stringa Markdown corrispondente all'immagine.
+        \item L'utente effettua la cancellazione.
+        \item Il sistema aggiorna l'editor.
     \end{enumerate}
 \end{itemize}
 
-% --- 28.3 ---
-
-\hypertarget{uc:28.3}{}
-\subsection{UC 28.3 - Rigenerazione dell'output}
-
+\hypertarget{uc:14}{}
+\paragraph{UC 14 - Gestione Link}
 \begin{itemize}
-    \item \textbf{Descrizione:} Richiesta di una nuova versione del testo mantenendo gli stessi parametri.
+    \item \textbf{Descrizione:} L'utente gestisce i collegamenti ipertestuali nel documento, per riferimenti esterni o interni.
     \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:}  LLM$_G$.
-    \item \textbf{Precondizioni:} L'output dell'LLM è stato visualizzato correttamente a schermo (\hypertarget{uc:28}{UC 28}) e l'utente ha terminato la revisione.
-    \item \textbf{Postcondizioni:} Un nuovo output sostituisce il precedente nella schermata di anteprima.
+    \item \textbf{Precondizioni:} L'utente interagisce con l'area di testo dell'editor.
+    \item \textbf{Postcondizioni:} La sintassi per il link viene aggiunta o rimossa.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item L'utente preme "Rigenera".
-        \item Il sistema reinvia la richiesta all'LLM$_G$.
-        \item L'utente visualizza il nuovo risultato.
+        \item L'utente decide di manipolare un link.
+        \item L'utente applica il comando di inserimento o eliminazione.
+        \item Il sistema riflette i cambiamenti.
     \end{enumerate}
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:14.1}{UC 14.1 - Inserimento link}
+        \item \hyperlink{uc:14.2}{UC 14.2 - Eliminazione link}
+    \end{itemize}
 \end{itemize}
 
-% --- 28.4 ---
-
-\hypertarget{uc:28.4}{}
-\subsection{UC 28.4 - Tracciamento delle note sorgente usate per un output AI}
-
+\hypertarget{uc:14.1}{}
+\subparagraph{UC 14.1 - Inserimento link}
 \begin{itemize}
-    \item \textbf{Descrizione:} Memorizzazione dei metadati relativi a quali note (interne ed esterne) hanno contribuito alla generazione.
-    \item \textbf{Attori Principali:} Sistema.
-    \item \textbf{Attori Secondari:}  Sistema di persistenza.
-    \item \textbf{Precondizioni:} \hypertarget{uc:26}{UC 26} eseguito.
-    \item \textbf{Postcondizioni:} La nota generata contiene riferimenti alle note sorgente.
+    \item \textbf{Descrizione:} L'utente trasforma una porzione di testo in un collegamento cliccabile fornendo un URL.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema è operativo.
+    \item \textbf{Postcondizioni:} Il testo viene racchiuso nei marcatori Markdown per i link e risulta navigabile nel render.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item Al salvataggio della nota, il sistema crea una relazione nel database tra la nuova nota e gli ID delle note selezionate al passo \hypertarget{uc:26.3}{26.3}.
-        \item Se vengono menzionate note esterne, verranno salvati i link delle pagine utilizzate.
+        \item L'utente seleziona il testo da rendere link o posiziona il cursore.
+        \item L'utente esegue il comando di inserimento link.
+        \item Il sistema formatta il testo e attende l'inserimento dell'indirizzo di destinazione (URL).
+        \item L'utente inserisce l'URL e conferma.
     \end{enumerate}
 \end{itemize}
+
+\hypertarget{uc:14.2}{}
+\subparagraph{UC 14.2 - Eliminazione link}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente rimuove un collegamento ipertestuale mantenendo, ove desiderato, il testo originale.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Un link Markdown è presente nell'editor.
+    \item \textbf{Postcondizioni:} I delimitatori e l'URL vengono cancellati, il link scompare dal render.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona la sintassi del link da rimuovere.
+        \item L'utente cancella la formattazione.
+        \item Il sistema ripristina il testo semplice.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:15}{}
+\paragraph{UC 15 - Gestione Ancore}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente inserisce o rimuove riferimenti interni (ancore) per la navigazione rapida all'interno dello stesso documento.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} L'utente si trova nell'editor di testo.
+    \item \textbf{Postcondizioni:} L'ancora viene posizionata o rimossa e la struttura di navigazione si adegua.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente avvia l'operazione di gestione ancora.
+        \item Il sistema inserisce o elimina il marcatore HTML/Markdown necessario.
+    \end{enumerate}
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:15.1}{UC 15.1 - Inserimento ancora}
+        \item \hyperlink{uc:15.2}{UC 15.2 - Eliminazione ancora}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:15.1}{}
+\subparagraph{UC 15.1 - Inserimento ancora}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente definisce un punto di destinazione nel documento assegnandogli un identificativo.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il cursore è nella posizione desiderata.
+    \item \textbf{Postcondizioni:} Viene generato il markup per l'ancora, utilizzabile da link interni.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona il comando per creare un'ancora.
+        \item Il sistema inserisce la sintassi appropriata (es. attributo id) chiedendo l'identificativo.
+        \item L'utente conferma il nome dell'ancora.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:15.2}{}
+\subparagraph{UC 15.2 - Eliminazione ancora}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente rimuove un'ancora di navigazione interna precedentemente creata.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Un'ancora è definita nel testo.
+    \item \textbf{Postcondizioni:} Il markup dell'ancora viene rimosso dal documento.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente individua il marcatore dell'ancora nell'editor.
+        \item L'utente provvede alla sua cancellazione.
+        \item Il sistema aggiorna l'editor.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:16}{}
+\paragraph{UC 16 - Apertura e chiusura automatica simboli}
+\begin{itemize}
+    \item \textbf{Descrizione:} Il sistema offre un'assistenza alla digitazione che inserisce automaticamente il carattere di chiusura (es. parentesi, virgolette) all'apertura del corrispondente.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} L'interfaccia dell'applicazione è caricata.
+    \item \textbf{Postcondizioni:} L'impostazione di autocompletamento dei simboli viene aggiornata.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente naviga nelle impostazioni dell'editor o usa una scorciatoia rapida.
+        \item L'utente commuta lo stato della funzionalità.
+        \item Il sistema salva e applica il comportamento di digitazione aggiornato.
+    \end{enumerate}
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:16.1}{UC 16.1 - Attivazione aiuto simboli}
+        \item \hyperlink{uc:16.2}{UC 16.2 - Disattivazione aiuto simboli}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:16.1}{}
+\subparagraph{UC 16.1 - Attivazione aiuto simboli}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente abilita l'inserimento automatico del carattere di chiusura.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} La funzionalità di auto-chiusura è disattiva.
+    \item \textbf{Postcondizioni:} Il sistema posiziona automaticamente il simbolo di chiusura quando l'utente digita un carattere di apertura valido.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione per attivare l'aiuto simboli.
+        \item Il sistema registra l'impostazione.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:16.2}{}
+\subparagraph{UC 16.2 - Disattivazione aiuto simboli}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente disabilita l'inserimento automatico per avere un controllo manuale su ogni carattere digitato.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} La funzionalità di auto-chiusura è attiva.
+    \item \textbf{Postcondizioni:} Il sistema cessa di generare i caratteri di chiusura automatici.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione per disattivare l'aiuto simboli.
+        \item Il sistema disabilita il comportamento per i futuri input.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:17}{}
+\paragraph{UC 17 - Gestione Sidebar}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente modifica lo stato della barra laterale (sidebar) dell'applicazione per massimizzare l'area di lavoro o accedere agli strumenti e all'elenco delle note.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} L'interfaccia principale è visibile.
+    \item \textbf{Postcondizioni:} L'ingombro e lo stato della sidebar vengono modificati nell'interfaccia utente.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente interagisce con i controlli della sidebar (pulsanti o trascinamento).
+        \item Il sistema esegue l'aggiornamento visivo (apertura, chiusura o ridimensionamento).
+    \end{enumerate}
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:17.1}{UC 17.1 - Apertura Sidebar}
+        \item \hyperlink{uc:17.2}{UC 17.2 - Chiusura Sidebar}
+        \item \hyperlink{uc:17.3}{UC 17.3 - Ridimensionamento Sidebar}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:17.1}{}
+\subparagraph{UC 17.1 - Apertura Sidebar}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente rende visibile la barra laterale.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} La sidebar è attualmente nascosta.
+    \item \textbf{Postcondizioni:} La sidebar viene espansa e i suoi contenuti sono accessibili.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente clicca sull'icona di attivazione della sidebar.
+        \item Il sistema anima l'apertura del componente e sposta l'area di editing.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:17.2}{}
+\subparagraph{UC 17.2 - Chiusura Sidebar}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente nasconde la barra laterale per concentrarsi sul testo.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} La sidebar è attualmente visibile.
+    \item \textbf{Postcondizioni:} La sidebar viene nascosta, estendendo la larghezza dell'editor e del render.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente clicca sul comando di chiusura della sidebar.
+        \item Il sistema comprime il componente liberando spazio visivo.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:17.3}{}
+\subparagraph{UC 17.3 - Ridimensionamento Sidebar}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente modifica la larghezza della barra laterale trascinandone il bordo.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} La sidebar è aperta.
+    \item \textbf{Postcondizioni:} La sidebar assume la nuova larghezza impostata dall'utente.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente clicca e tiene premuto sul bordo della sidebar.
+        \item L'utente trascina il mouse verso sinistra o destra.
+        \item Il sistema adatta dinamicamente le dimensioni dei componenti adiacenti.
+        \item L'utente rilascia il mouse confermando la dimensione.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:18}{}
+\paragraph{UC 18 - Gestione Tema Visivo}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente modifica la combinazione di colori dell'interfaccia utente (tema scuro o chiaro).
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} L'applicazione è avviata.
+    \item \textbf{Postcondizioni:} Il sistema applica la palette di colori corrispondente al tema scelto su tutta l'interfaccia.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente accede alle opzioni di aspetto visivo.
+        \item L'utente seleziona il tema preferito.
+        \item Il sistema renderizza l'interfaccia con il nuovo tema.
+    \end{enumerate}
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:18.1}{UC 18.1 - Attivazione Dark Mode}
+        \item \hyperlink{uc:18.2}{UC 18.2 - Attivazione Light Mode}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:18.1}{}
+\subparagraph{UC 18.1 - Attivazione Dark Mode}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente imposta il tema dell'applicazione su colori scuri per ridurre l'affaticamento visivo.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il tema attuale è Light Mode o impostato sul sistema operativo.
+    \item \textbf{Postcondizioni:} L'interfaccia assume sfondi scuri e testo chiaro.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente attiva il selettore per la Dark Mode.
+        \item Il sistema carica i fogli di stile corrispondenti.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:18.2}{}
+\subparagraph{UC 18.2 - Attivazione Light Mode}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente imposta il tema dell'applicazione su colori chiari.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il tema attuale è Dark Mode.
+    \item \textbf{Postcondizioni:} L'interfaccia assume sfondi chiari e testo scuro.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente attiva il selettore per la Light Mode.
+        \item Il sistema carica i fogli di stile corrispondenti.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:19}{}
+\paragraph{UC 19 - Gestione Sincronizzazione Scorrimento}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente attiva o disattiva il "Sync Scroll", ovvero la funzione che permette all'editor e alla finestra di rendering di scorrere verticalmente in modo simultaneo.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema si trova in modalità di visualizzazione combinata (editor e render affiancati).
+    \item \textbf{Postcondizioni:} Il comportamento della barra di scorrimento viene modificato per allineare o rendere indipendenti le due viste.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente invoca il controllo per la sincronizzazione dello scorrimento.
+        \item Il sistema attiva o disattiva il listener per l'allineamento degli assi di scorrimento.
+    \end{enumerate}
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:19.1}{UC 19.1 - Attivazione Sync Scroll}
+        \item \hyperlink{uc:19.2}{UC 19.2 - Disattivazione Sync Scroll}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:19.1}{}
+\subparagraph{UC 19.1 - Attivazione Sync Scroll}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente abilita lo scorrimento vincolato in modo che l'anteprima corrisponda in tempo reale al testo inquadrato nell'editor.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il Sync Scroll è disabilitato.
+    \item \textbf{Postcondizioni:} Lo scorrimento di uno dei due pannelli causa lo scorrimento proporzionale dell'altro.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione per vincolare lo scorrimento.
+        \item Il sistema calcola il rapporto di altezza e allinea le due viste alla posizione corrente.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:19.2}{}
+\subparagraph{UC 19.2 - Disattivazione Sync Scroll}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente disabilita lo scorrimento sincronizzato per ispezionare due punti differenti del documento contemporaneamente.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il Sync Scroll è abilitato.
+    \item \textbf{Postcondizioni:} L'editor e il render scorrono in modo del tutto indipendente.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione per svincolare lo scorrimento.
+        \item Il sistema scollega l'evento di scorrimento condiviso dai due pannelli.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:20}{}
+\paragraph{UC 20 - Visualizzazione nota Markdown}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente sceglie il layout di visualizzazione preferito per l'area di lavoro, alternando o affiancando l'editor testuale nudo e il render grafico.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Un documento è caricato nell'applicazione.
+    \item \textbf{Postcondizioni:} L'interfaccia modifica la visibilità e le proporzioni dei pannelli di editing e rendering.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente interagisce con i controlli di visualizzazione dell'area di lavoro.
+        \item Il sistema applica la visualizzazione richiesta nascondendo o mostrando i pannelli pertinenti.
+    \end{enumerate}
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:20.1}{UC 20.1 - Visualizzazione esclusiva editor Markdown}
+        \item \hyperlink{uc:20.2}{UC 20.2 - Visualizzazione esclusiva render Markdown}
+        \item \hyperlink{uc:20.3}{UC 20.3 - Visualizzazione combinata editor e render}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:20.1}{}
+\subparagraph{UC 20.1 - Visualizzazione esclusiva editor Markdown}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente nasconde il render grafico per dedicare l'intero spazio visibile alla scrittura pura.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema si trova in visualizzazione combinata o solo render.
+    \item \textbf{Postcondizioni:} L'editor Markdown occupa il 100\% dell'area disponibile e il render è nascosto.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente clicca sul pulsante per la visualizzazione solo editor.
+        \item Il sistema chiude la finestra di renderizzazione ed estende l'area di testo.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:20.2}{}
+\subparagraph{UC 20.2 - Visualizzazione esclusiva render Markdown}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente nasconde l'editor di testo per leggere o presentare il documento formattato come prodotto finito.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema si trova in visualizzazione combinata o solo editor.
+    \item \textbf{Postcondizioni:} Il render occupa il 100\% dell'area disponibile e l'editor di testo è nascosto.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente clicca sul pulsante per la visualizzazione solo render.
+        \item Il sistema nasconde l'editor Markdown ed estende la finestra di presentazione grafica.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:20.3}{}
+\subparagraph{UC 20.3 - Visualizzazione combinata editor e render}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente sceglie di mantenere visibili in modalità affiancata sia l'editor sorgente sia l'anteprima formattata.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema si trova in una modalità di visualizzazione esclusiva.
+    \item \textbf{Postcondizioni:} Lo schermo viene suddiviso per mostrare simultaneamente sorgente e anteprima.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente clicca sul pulsante per la visualizzazione combinata (split view).
+        \item Il sistema ridimensiona i pannelli, rendendoli entrambi visibili e operativi.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:21}{}
+\paragraph{UC 21 - Gestione Input Vocale}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente interagisce con il sistema avviando una registrazione vocale (dettatura) per l'inserimento o l'elaborazione del testo tramite voce.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:} Microfono (Dispositivo HW).
+    \item \textbf{Precondizioni:} L'utente ha concesso al browser i permessi di accesso al microfono.
+    \item \textbf{Postcondizioni:} Il sistema cattura l'audio per instradarlo al motore di trascrizione/LLM o annulla l'operazione.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente avvia l'interfaccia di registrazione vocale.
+        \item Il sistema acquisisce l'audio in input.
+        \item L'utente gestisce il flusso (stop, pausa o annullamento).
+    \end{enumerate}
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:21.1}{UC 21.1 - Annullamento registrazione senza elaborazione dati}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:21.1}{}
+\subparagraph{UC 21.1 - Annullamento registrazione senza elaborazione dati}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente interrompe attivamente una registrazione vocale in corso scartando l'audio catturato senza inviarlo al sistema di trascrizione o di elaborazione.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Una registrazione audio tramite microfono è attualmente in corso.
+    \item \textbf{Postcondizioni:} L'audio acquisito viene eliminato dalla memoria temporanea e nessuna chiamata all'API viene effettuata. L'editor rimane inalterato.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente clicca sul pulsante di scarto o annullamento della registrazione.
+        \item Il sistema cessa la cattura dell'audio dal microfono.
+        \item Il sistema distrugge i dati vocali memorizzati in sessione e chiude l'interfaccia di dettatura.
+    \end{enumerate}
+\end{itemize}
+\subsubsection{Funzionalità AI}
 
 \subsubsection{Salvataggio e Persistenza}
 In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e la persistenza dei dati.
