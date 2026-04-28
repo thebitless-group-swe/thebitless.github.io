@@ -7,6 +7,7 @@
 \usepackage{geometry}
 \usepackage{float} 
 \usepackage{setspace}
+\definecolor{bluBitless}{HTML}{3A75C4}
 \usepackage{tabularx}
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
 \usepackage{fancyhdr}
@@ -14,18 +15,18 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{The Bitless}
-\fancyhead[R]{Analisi dei Capitolati}
+\fancyhead[R]{Analisi dei Requisiti}
 \fancyfoot[C]{\thepage}
 
 \usepackage{hyperref}
 \hypersetup{
-    colorlinks=false,
-    pdfborderstyle={/S/U/W 1},
-    linkbordercolor=0 0 0,
-    urlbordercolor=0 0 0,
-    citebordercolor=0 0 0,
-    filebordercolor=0 0 0,
+    colorlinks=true,
+    linkcolor=0 0 0 0, 
+    urlcolor=bluBitless,     
+    citecolor=0 0 0 0,  
+    filecolor=0 0 0 0,
     breaklinks=true,
+    pdfpagemode=UseNone    
 }
 
 \begin{document}
@@ -33,7 +34,7 @@
 \newcommand{\tipoverbale}{Analisi dei Requisiti}
 \newcommand{\dataverbale}{}
 \newcommand{\dataversione}{2026-04-03}
-\newcommand{\versione}{0.1.0}
+\newcommand{\versione}{0.3.0}
 \newcommand{\stato}{Stesura}
 \newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
 \def\templatedir{../../../templates}
@@ -52,6 +53,10 @@
         \hline
         \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
         \hline
+        0.3.0 & 2026-04-13 & D. Facco & S. Vendramin & - & Stesura Analisi del Prodotto \\
+        \hline
+        0.2.0 & 2026-04-08 & A. Marini & S. Vendramin & - & Stesura Introduzione \\
+        \hline
         0.1.0 & 2026-03-21 & S. Vendramin & A. Menegaldo & - & Struttura documento \\
         \hline
     \end{tabularx}
@@ -62,30 +67,138 @@
 \section{Introduzione}
 
 \subsection{Finalità del documento}
+Il presente documento rappresenta il fondamento metodologico su cui poggia l'intero sviluppo del software, agendo come interprete tra le visioni della Proponente \textbf{Zucchetti S.p.A.} e la loro traduzione in specifiche tecniche concrete. Esso ha il ruolo cruciale di definire un perimetro di sviluppo certo, garantendo che ogni funzionalità sia verificabile e che il prodotto finale risponda esattamente alle attese di qualità e affidabilità prefissate.
+
+Nello specifico, il documento persegue i seguenti obiettivi:
+
+\begin{itemize}
+    \item \textbf{Definizione del perimetro funzionale:} Identifica con precisione \textit{cosa} il Sistema$_G$ debba realizzare (requisiti funzionali) e quali standard qualitativi debba rispettare (requisiti non funzionali, quali usabilità, sicurezza e performance), tracciando i confini operativi e i vincoli$_G$ tecnologici del progetto.
+    
+    \item \textbf{Sincronizzazione degli Stakeholder$_G$:} Agisce come un "contratto tecnico" tra il team di sviluppo e il committente$_G$. L'utilizzo di un linguaggio condiviso permette di allineare le aspettative di analisti, progettisti e tester$_G$, eliminando ambiguità che potrebbero compromettere la validità del prodotto finale.
+    
+    \item \textbf{Fondamento per la Progettazione e Verifica:} Fornisce l'input$_G$ necessario per le fasi di architettura e codifica, costituendo al contempo la base oggettiva per le attività di verifica e convalida. Senza questi parametri, non sarebbe possibile attestare la conformità del software alle richieste originali.
+    
+    \item \textbf{Governo del Cambiamento e dei Rischi:} Il documento funge da strumento di controllo preventivo, permettendo di intercettare criticità tecnologiche, incongruenze logiche o requisiti irrealizzabili prima dell'inizio della fase di codifica.
+\end{itemize}
 
 \subsection{Sviluppo del documento}
+La stesura del presente documento segue un approccio di tipo \textbf{incrementale$_G$}. Tale scelta metodologica è finalizzata a garantire un'elevata manutenibilità$_G$ del testo, permettendo l'integrazione di modifiche o integrazioni derivanti dal confronto continuo tra il gruppo The Bitless e i committenti$_G$. 
+
+Il documento è dunque da considerarsi dinamico, soggetto a un processo di raffinamento e miglioramento costante lungo tutto il ciclo di vita del progetto.
 
 \subsection{Riferimenti}
 
 \subsubsection{Riferimenti Normativi}
+\begin{itemize}
+    \item \textbf{Capitolato C6 - Second Brain}: \\
+    \url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C6.pdf}
+    \item \textbf{Regolamento del Progetto Didattico}: \\
+    \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf}
+    \item \textbf{Norme di Progetto}: \\
+    \url{https://thebitless.github.io/RTB/doc_interna/norme-di-progetto/norme-di-progetto.pdf}
+\end{itemize}
 
 \subsubsection{Riferimenti Informativi}
+\begin{itemize}
+    \item \textbf{Glossario di Progetto}: \\
+    \url{https://thebitless.github.io/RTB/doc_interna/glossario/glossario.pdf}
+    \item \textbf{Dispense Analisi dei requisiti}: \\
+    \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf}
+    \item \textbf{Dispense Casi d'uso}: \\
+    \url{https://www.math.unipd.it/~rcardin/swea/2022/Diagrammi%20Use%20Case.pdf}
+\end{itemize}
 
 \newpage
 
 \section{Descrizione del prodotto}
 
 \subsection{Prospettiva del prodotto}
+L'idea per la quale nasce questo prodotto è di fornire un nuovo sistema per prendere appunti che estenda le capacità umane, implementando l'utilizzo degli LLM$_G$ (da qui il nome Second Brain - Secondo Cervello) non solo per aiutare l'utente ad archiviare informazioni, ma a rielaborarle, criticarle e generarle in maniera intelligente.
+Il sistema, a differenza dei classici chatbot$_G$, dovrà agire come un editor attivo che si basa sulle conoscenze specifiche dell'utente.
 
 \subsection{Obiettivi del prodotto}
+L'obiettivo principale sta nel sviluppare un'applicazione che verifichi le potenzialità degli LLM$_G$ nel supportare una persona in compiti legati alla creazione di testi, creazione di idee e brainstorming$_G$.
+Più nello specifico, il prodotto mira a:
+\begin{itemize}
+    \item Dimostrare la fatibilità di tali strumenti utilizzando Tecnologie Web$_G$
+    \item Esplorare l'efficacia del Prompt Engeneering$_G$ per ottenere analisi critiche e trasformazioni testuali speciali e specifiche
+    \item Sperimentare le modalità di interazione tra uomo e macchina come il Distant Writing$_G$ ed il brainstorming assistito
+\end{itemize}
 
 \subsection{Funzionalità del prodotto}
+Le funzionalità, sia requisiti obbligatori che opzionali, del prodotto sono i seguenti:
+\textbf{Funzionalità minime (o oblligatorie)}:
+\begin{itemize}
+    \item Editor Markdown: Il prodotto deve implementare un'area di inserimento testo che supporti il linguaggio di Markdown$_G$
+    \item Rendering Grafico: Visualizzazione del testo formattato in tempo reale, fianco a fianco con l'editor
+    \item Integrazione LLM: Accesso tramite API$_G$ ai modelli linguistici di intelligenza artificiale per operare sul testo (su una parte o sull'intero documento)
+    \item Comandi di Base: Implementazione dei comandi di base quali la riscrittura (cambio tono, espansione del testo, correzione grammaticale), il riassunto e la traduzione multilingua
+    \item Analisi Critica: Implementazione del modello dei sei cappelli per analizzare e/o riscrivere il testo da diverse prospettive
+    \begin{itemize}
+        \item[Bianco: ] Testo neutro ed imparziale, che risponde ai fatti
+        \item[Rosso: ] Testo emozionale, che cattura emozioni
+        \item[Giallo: ] Testo ottimista, che guarda agli aspetti positivi e alle opportunità
+        \item[Nero: ] Testo di critica, sotto l'occhio dell'avvocato del diavolo
+        \item[Verde: ] Testo originale, creativo e provocante
+        \item[Blu: ] Testo logico e strutturato, che prioritizza controllo e organizzazione    
+    \end{itemize} 
+    \item Generazione da prompt: Anche detto Distant Writing$_G$, crea un'intero testo partendo da un input generale dell'utente
+    \item Gestione file: Salvataggio e lettura delle note in file locali 
+\end{itemize}
+
+\textbf{Funzionalita secondarie (o opzionali)}
+\begin{itemize}
+    \item Archivio Server-Side: Memorizzazione delle note all'interno di un database$_G$
+    \item Linking tra Note: Opzione per collegare, tramite un link, una nota all'interno di un'altra
+    \item RAG (Retrieval Augmented Generation): Indica l'utilizzo di note selezionate come contesto all'LLM$_G$ per generare risposte più precise, informate e contestualizzate
+\end{itemize}
 
 \subsection{Utenza di riferimento}
+il capitolato identifica diverse tipologie di utenti, essendo che punta ad essere un prodotto duttile a qualsiasi tipologia di nota:
+\begin{itemize}
+    \item Studenti: Per lo studio, lo svolgimento dei compiti e la sintesi delle lezioni
+    \item Professionisti in ambito aziendale: Per la stesura di testi di marketing e la creazione di presentazioni
+    \item Creatori di contenuti e Scrittori: Chiunque necessiti di supporto nel brainstorming o nella revisione critica di bozze testuali
+    \item Chiunque altro abbia bisogno di prendere appunti e/o scrivere testi anche partendo da zero e lasciare fare alla macchina il duro lavoro
+\end{itemize}
 
 \newpage
 
 \section{Casi d'uso}
+\subsection{Introduzione}
+Questa sezione descrive in dettaglio i casi d'uso del sistema \textbf{Second Brain}. Ciascun caso d'uso è definito mediante un diagramma UML$_{G}$ e da una specifica descrizione testuale. 
+
+Per garantire completezza e rigore metodologico, ogni caso d'uso segue la struttura definita nella tabella seguente:
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{Campo} & \textbf{Descrizione} \\ \hline
+\textbf{Descrizione} & Breve riassunto che spiega l'obiettivo del caso d'uso e il valore che apporta all'utente. \\ \hline
+\textbf{Attori Principali} & Persone o entità che interagiscono attivamente con il sistema per raggiungere un obiettivo, avviando l'operazione. \\ \hline
+\textbf{Attori Secondari} & Entità esterne (come l'LLM$_{G}$) che interagiscono con il sistema in modo passivo o forniscono servizi necessari al completamento del compito. \\ \hline
+\textbf{Precondizioni} & Stato in cui deve trovarsi il sistema affinché il caso d'uso possa essere avviato con successo. \\ \hline
+\textbf{Postcondizioni} & Stato del sistema al termine dell'esecuzione del caso d'uso, garantendo che l'obiettivo sia stato raggiunto. \\ \hline
+\textbf{Scenario Principale} & Sequenza ordinata di passi che l'attore e il sistema compiono per completare l'operazione. \\ \hline
+\textbf{Estensioni} & Casi d'uso aggiuntivi o varianti che possono attivarsi in base a specifiche condizioni durante il flusso principale. \\ \hline
+\textbf{Inclusioni} & Funzionalità comuni o moduli esterni che vengono obbligatoriamente richiamati per il corretto funzionamento del caso d'uso. \\ \hline
+\end{tabular}
+\caption{Struttura della documentazione dei Casi d'Uso}
+\end{table}
+
+\subsection{Attori del Sistema}
+
+All'interno del sistema Second Brain, abbiamo identificato tre tipologie principali di attori$_{G}$:
+
+\begin{itemize}
+    \item \textbf{Utente:} La persona fisica che interagisce con l'interfaccia del sistema per gestire le proprie note, organizzare la conoscenza e consultare le informazioni. È l'attore primario$_{G}$ che genera gli input.
+    \item \textbf{LLM$_{G}$:} Il modello di intelligenza artificiale integrato nel sistema. Agisce come attore secondario$_{G}$, fornendo le funzionalità avanzate di elaborazione del linguaggio naturale, sintesi e generazione di contenuti su richiesta del sistema.
+    \item \textbf{Sistema di Persistenza$_{G}$:} Componente responsabile del salvataggio e del recupero dei dati. Agisce come attore secondario$_{G}$ garantendo che le informazioni siano memorizzate in modo permanente e siano accessibili nelle sessioni successive.
+\end{itemize}
+
 \subsection{Introduzione}
 
 \subsection{Attori principali}
