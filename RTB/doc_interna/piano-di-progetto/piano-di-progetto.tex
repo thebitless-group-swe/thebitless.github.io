@@ -1,0 +1,760 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+\definecolor{verdeBitless}{HTML}{2E8B57}
+\usepackage[italian]{babel} 
+\usepackage{comment}      
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{geometry}
+\newcommand{\ucref}[1]{UC \ref{#1}}
+\usepackage[table]{xcolor}
+\usepackage{float} 
+\usepackage{setspace}
+\definecolor{bluBitless}{HTML}{3A75C4}
+\usepackage{tabularx}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{Piano di Progetto}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black, 
+    urlcolor=bluBitless,     
+    citecolor=0 0 0 0,  
+    filecolor=0 0 0 0,
+    breaklinks=true,
+    pdfpagemode=UseNone    
+}
+
+\begin{document}
+
+\newcommand{\tipoverbale}{Piano di Progetto}
+\newcommand{\dataverbale}{}
+\newcommand{\dataversione}{2026-04-27}
+\newcommand{\versione}{0.4.0}
+\newcommand{\stato}{Stesura}
+\newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+\def\templatedir{../../../templates}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+\input{../../../templates/frontespizio.tex}
+\end{titlepage}
+
+\pagenumbering{arabic}
+
+\begin{center}
+    \small
+    \begin{tabularx}{\textwidth}{|c|c|L|c|c|L|}
+        \hline
+        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
+        \hline
+        0.4.0 & 2026-04-27 & A. Marini & E. De Piccoli & - & Stesura Sprint \#2 \\
+        \hline
+        0.3.0 & 2026-04-21 & A. Marini & E. De Piccoli & - & Stesura Sprint \#1 \\
+        \hline
+        0.2.0 & 2026-04-16 & A. Marini & A. Menegaldo & - & Stesura Analisi e Gestione dei Rischi \\
+        \hline
+        0.1.0 & 2026-04-13 & A. Marini & A. Menegaldo & - & Struttura documento e introduzione \\
+        \hline
+    \end{tabularx}
+\end{center}
+
+
+\newpage
+\pagenumbering{roman} % Numerazione romana per le pagine iniziali (opzionale)
+\tableofcontents
+\newpage
+\newpage
+
+\pagenumbering{arabic}
+
+
+\newpage
+
+\section{Introduzione}
+
+\subsection{Obiettivo del documento}
+Il presente documento, denominato \textbf{Piano di Progetto\textsubscript{G}}, ha lo scopo di esporre analiticamente le attività svolte e quelle previste per il futuro durante la realizzazione del progetto di Ingegneria del Software. Questo documento riveste un ruolo fondamentale per una corretta pianificazione\textsubscript{G}, agendo come guida strategica per il gruppo \textbf{The Bitless}. \\
+Nello specifico, il documento si occupa di:
+\begin{itemize}
+    \item \textbf{Gestione dei ruoli}: descrive la suddivisione delle responsabilità e dei compiti tra i membri del team;
+    \item \textbf{Monitoraggio temporale}: confronta i tempi previsti in fase di preventivo con i tempi effettivamente impiegati per ogni attività;
+    \item \textbf{Gestione dell'incertezza}: individua l'analisi dei rischi\textsubscript{G} e definisce le relative contromisure;
+    \item \textbf{Strategia di sviluppo}: illustra il modello di sviluppo\textsubscript{G} adottato e la stima dei costi.
+\end{itemize}
+
+Le attività vengono pianificate e verificate di volta in volta; per questo motivo, il Piano di Progetto\textsubscript{G} è un documento \textbf{dinamico}. Esso viene aggiornato con un \textbf{approccio incrementale\textsubscript{G}}, integrando nuove informazioni e affinando le stime man mano che il progetto avanza, garantendo così una fotografia sempre fedele dello stato dei lavori.
+
+\subsection{Riferimenti}
+
+\subsubsection{Riferimenti Normativi}
+\begin{itemize}
+    \item \textbf{Capitolato C6 - Second Brain}: \\
+    \url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C6.pdf}
+    \item \textbf{Regolamento del Progetto Didattico}: \\
+    \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf}
+    \item \textbf{Norme di Progetto}: \\
+    \url{https://thebitless.github.io/RTB/doc_interna/norme-di-progetto/norme-di-progetto.pdf}
+\end{itemize}
+
+\subsubsection{Riferimenti Informativi}
+\begin{itemize}
+    \item \textbf{I processi di ciclo di vita del software}: \\
+    \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T02.pdf}
+    \item \textbf{Gestione di Progetto}: \\
+    \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T04.pdf}
+    \item \textbf{Glossario di Progetto}: \\
+    \url{https://thebitless.github.io/RTB/doc_interna/glossario/glossario.pdf}
+\end{itemize}
+
+\newpage
+
+\section{Analisi e Gestione dei Rischi}
+
+\subsection{Introduzione}
+
+L'attività di analisi dei rischi\textsubscript{G} ha l'obiettivo di identificare, valutare e gestire preventivamente quegli eventi che potrebbero compromettere il corretto svolgimento dei task\textsubscript{G} e il raggiungimento degli obiettivi prestabiliti. 
+Per ogni rischio individuato, il gruppo ne valuta la \textbf{probabilità} di occorrenza e la \textbf{gravità} dell'impatto, definendo specifiche contromisure per mitigarli.
+
+I rischi sono identificati tramite una sigla univoca così composta: \\
+\centerline{\textbf{R[Tipo]-[Numero]}}
+\begin{itemize}
+    \item \textbf{R}: indica che si tratta di un Rischio\textsubscript{G};
+    \item \textbf{Tipo}: rappresenta la categoria del rischio:
+    \begin{itemize}
+        \item \textbf{T}: Tecnologico;
+        \item \textbf{O}: Organizzativo;
+        \item \textbf{P}: Relativo al Prodotto.
+    \end{itemize}
+    \item \textbf{Numero}: identificativo numerico progressivo all'interno della categoria.
+\end{itemize}
+
+
+\subsection{Rischi tecnologici}
+
+\subsubsection{RT-1 Rischio legato all'utilizzo delle tecnologie}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!8}\bfseries}l|X|}
+        \hline
+        Codice & RT-1 \\
+        \hline
+        Nome & Rischio legato all'utilizzo delle tecnologie \\
+        \hline
+        Descrizione & Inesperienza o conoscenza limitata riguardo a tecnologie specifiche necessarie al progetto, quali API\textsubscript{G} degli LLM\textsubscript{G}, architetture REST\textsubscript{G} o framework web. \\
+        \hline
+        Mitigazione & Prevedere fin dalle prime fasi del ciclo di vita del software un piano di studio individuale approfondito sui componenti meno noti. Organizzare sessioni di formazione interna prima dell'inizio dei task\textsubscript{G} operativi, al fine di prevenire rallentamenti dovuti a lacune tecniche. \\
+        \hline
+        Probabilità & Media \\
+        \hline
+        Pericolosità & Alta \\
+        \hline
+    \end{tabularx}
+    \caption{Descrizione del rischio RT-1}
+\end{table}
+
+\subsubsection{RT-2 Rischio legato all'utilizzo degli strumenti di sviluppo}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!8}\bfseries}l|X|}
+        \hline
+        Codice & RT-2 \\
+        \hline
+        Nome & Rischio legato all'utilizzo degli strumenti di sviluppo \\
+        \hline
+        Descrizione & Scarsa esperienza nell'utilizzo dei tool a supporto dello sviluppo e della gestione del prodotto software. \\
+        \hline
+        Mitigazione & Definizione di procedure chiare all'interno delle \textbf{Norme di Progetto\textsubscript{G}} (Way of Working\textsubscript{G}). Organizzazione di sessioni di formazione interna e utilizzo di template o configurazioni standard. Impegno dei membri del team nell'apprendimento autonomo degli strumenti necessari. \\
+        \hline
+        Probabilità & Bassa \\
+        \hline
+        Pericolosità & Media \\
+        \hline
+    \end{tabularx}
+    \caption{Descrizione del rischio RT-2}
+\end{table}
+
+\subsubsection{RT-3 Rischio legato agli errori nel codice}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!8}\bfseries}l|X|}
+        \hline
+        Codice & RT-3 \\
+        \hline
+        Nome & Rischio legato agli errori nel codice \\
+        \hline
+        Descrizione & Possibilità che il software presenti malfunzionamenti non identificati durante la fase di scrittura iniziale. Difetti latenti potrebbero emergere solo in fasi avanzate di test\textsubscript{G}, richiedendo cicli aggiuntivi di analisi e correzione che impattano sulle tempistiche. \\
+        \hline
+        Mitigazione & Il programmatore\textsubscript{G} responsabile cercherà inizialmente di risolvere l'anomalia in autonomia. Qualora la risoluzione risultasse complessa, verrà richiesto il supporto dei membri più esperti del team. In caso di criticità elevate, la pianificazione verrà rimodulata posticipando task\textsubscript{G} secondari per dare priorità al debugging\textsubscript{G}. \\
+        \hline
+        Probabilità & Alta \\
+        \hline
+        Pericolosità & Media \\
+        \hline
+    \end{tabularx}
+    \caption{Descrizione del rischio RT-3}
+\end{table}
+
+\subsection{Rischi organizzativi}
+
+\subsubsection{RO-1 Rischio legato agli impegni accademici}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!8}\bfseries}l|X|}
+        \hline
+        Codice & RO-1 \\
+        \hline
+        Nome & Rischio legato agli impegni accademici \\
+        \hline
+        Descrizione & I componenti del gruppo sono studenti impegnati in altri corsi di insegnamento. È probabile che si verifichino periodi di disponibilità ridotta a causa di esami, scadenze di altri progetti o impegni universitari concomitanti. \\
+        \hline
+        Mitigazione & Ogni membro deve comunicare con tempestività eventuali periodi di indisponibilità. In tali casi, il team provvederà a una ridistribuzione dei task\textsubscript{G} per non rallentare l'avanzamento. Il membro interessato si impegna a recuperare le attività non appena le circostanze lo permettano. \\
+        \hline
+        Probabilità & Media \\
+        \hline
+        Pericolosità & Media \\
+        \hline
+    \end{tabularx}
+    \caption{Descrizione del rischio RO-1}
+\end{table}
+
+\subsubsection{RO-2 Rischio legato alle contingenze personali}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!8}\bfseries}l|X|}
+        \hline
+        Codice & RO-2 \\
+        \hline
+        Nome & Rischio legato alle contingenze personali \\
+        \hline
+        Descrizione & Possibilità che insorgano eventi di natura privata che impediscano temporaneamente a uno o più membri di partecipare attivamente al progetto. \\
+        \hline
+        Mitigazione & Il componente coinvolto è tenuto a segnalare la propria assenza attraverso i canali di comunicazione stabiliti. Il gruppo effettuerà una revisione del carico di lavoro, procedendo alla ridistribuzione dei task\textsubscript{G} a priorità elevata. Per minimizzare l'impatto, il team favorisce la condivisione delle competenze, affinché i compiti urgenti possano essere presi in carico da altri membri in caso di necessità. \\
+        \hline
+        Probabilità & Bassa \\
+        \hline
+        Pericolosità & Media \\
+        \hline
+    \end{tabularx}
+    \caption{Descrizione del rischio RO-2}
+\end{table}
+
+\subsubsection{RO-3 Rischio legato alle incomprensioni comunicative}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!8}\bfseries}l|X|}
+        \hline
+        Codice & RO-3 \\
+        \hline
+        Nome & Rischio legato alle incomprensioni comunicative \\
+        \hline
+        Descrizione & Possibilità che si verifichino scambi di informazioni poco chiari o incompleti tra i membri del team, portando a una visione non uniforme degli obiettivi o a errori nell'esecuzione dei task\textsubscript{G}. \\
+        \hline
+        Mitigazione & Utilizzo sistematico dei canali di comunicazione ufficiali e stesura di verbali accurati per ogni riunione. Ogni decisione tecnica o organizzativa deve essere documentata. In caso di dubbi, i membri sono incoraggiati a richiedere chiarimenti immediati al Responsabile\textsubscript{G} o al proponente durante i ricevimenti. \\
+        \hline
+        Probabilità & Bassa \\
+        \hline
+        Pericolosità & Media \\
+        \hline
+    \end{tabularx}
+    \caption{Descrizione del rischio RO-3}
+\end{table}
+
+\subsubsection{RO-4 Rischio legato ai contrasti interni}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!8}\bfseries}l|X|}
+        \hline
+        Codice & RO-4 \\
+        \hline
+        Nome & Rischio legato ai contrasti interni \\
+        \hline
+        Descrizione & Insorgenza di divergenze di opinione o tensioni tra i componenti del gruppo riguardo a scelte tecniche, metodologiche o gestionali, con potenziale impatto sul clima lavorativo e sulla produttività. \\
+        \hline
+        Mitigazione & Promozione di un ambiente basato sul rispetto reciproco e sul confronto costruttivo. Le decisioni vengono prese, dove possibile, collegialmente; in caso di stallo, il Responsabile\textsubscript{G} di turno esercita il proprio ruolo di mediatore per giungere a una sintesi condivisa nel minor tempo possibile. \\
+        \hline
+        Probabilità & Bassa \\
+        \hline
+        Pericolosità & Bassa \\
+        \hline
+    \end{tabularx}
+    \caption{Descrizione del rischio RO-4}
+\end{table}
+
+\subsubsection{RO-5 Rischio legato alla scarsa esperienza nel lavoro di gruppo}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!8}\bfseries}l|X|}
+        \hline
+        Codice & RO-5 \\
+        \hline
+        Nome & Rischio legato alla scarsa esperienza nel lavoro di gruppo \\
+        \hline
+        Descrizione & Possibile mancanza di dimestichezza nella gestione di progetti software complessi che richiedono un alto livello di coordinamento, suddivisione dei task\textsubscript{G} e integrazione del lavoro svolto da più persone. \\
+        \hline
+        Mitigazione & Definizione rigorosa del workflow\textsubscript{G} nelle \textbf{Norme di Progetto\textsubscript{G}}. Utilizzo di strumenti di versionamento come Git\textsubscript{G} per gestire i contributi simultanei e organizzazione di riunioni periodiche per sincronizzare lo stato dell'avanzamento. Ogni membro si impegna a seguire gli standard concordati per facilitare l'integrazione del codice. \\
+        \hline
+        Probabilità & Media \\
+        \hline
+        Pericolosità & Media \\
+        \hline
+    \end{tabularx}
+    \caption{Descrizione del rischio RO-5}
+\end{table}
+
+\subsubsection{RO-6 Rischio legato agli errori di pianificazione}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!8}\bfseries}l|X|}
+        \hline
+        Codice & RO-6 \\
+        \hline
+        Nome & Rischio legato agli errori di pianificazione \\
+        \hline
+        Descrizione & Rischio che una suddivisione dei task\textsubscript{G} non ottimale o una sottostima della complessità delle attività porti a ritardi operativi. Questo può essere aggravato da imprevisti o da una gestione inefficiente delle dipendenze tra le varie parti del progetto. \\
+        \hline
+        Mitigazione & Riesame costante della pianificazione temporale\textsubscript{G} per ricalibrare eventuali stime troppo ottimistiche emerse durante il lavoro. Introduzione di margini di flessibilità per gestire sia le criticità impreviste che gli scostamenti di valutazione. Il Responsabile\textsubscript{G} supervisiona l'avanzamento dei task\textsubscript{G} per individuare tempestivamente eventuali blocchi operativi e rimodulare le priorità di consegna. \\
+        \hline
+        Probabilità & Bassa \\
+        \hline
+        Pericolosità & Alta \\
+        \hline
+    \end{tabularx}
+    \caption{Descrizione del rischio RO-6}
+\end{table}
+
+\subsection{Rischi relativi al prodotto}
+
+\subsubsection{RP-1 Rischio legato alla malcomprensione del capitolato}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!8}\bfseries}l|X|}
+        \hline
+        Codice & RP-1 \\
+        \hline
+        Nome & Rischio legato alla malcomprensione del capitolato \\
+        \hline
+        Descrizione & È possibile che alcuni requisiti\textsubscript{G} non vengano individuati o analizzati correttamente dal gruppo a causa di una cattiva comprensione del capitolato\textsubscript{G}. Ciò comporterebbe lo sviluppo di un prodotto non conforme alle attese del proponente. \\
+        \hline
+        Mitigazione & Il gruppo si impegna a consultare il proponente per chiarire eventuali dubbi o incertezze sui requisiti\textsubscript{G}. Inoltre, si farà riferimento al capitolato\textsubscript{G} e alle dispense del corso per una corretta analisi. \\
+        \hline
+        Probabilità & Bassa \\
+        \hline
+        Pericolosità & Alta \\
+        \hline
+    \end{tabularx}
+    \caption{Descrizione del rischio RP-1}
+\end{table}
+
+\subsubsection{RP-2 Rischio legato alla sottostima o sovrastima delle attività}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!8}\bfseries}l|X|}
+        \hline
+        Codice & RP-2 \\
+        \hline
+        Nome & Rischio legato alla sottostima o sovrastima delle attività \\
+        \hline
+        Descrizione & È possibile che la complessità di alcune attività venga valutata in modo errato (per eccesso o per difetto), portando a una gestione inefficiente delle risorse e a potenziali ritardi nelle consegne. \\
+        \hline
+        Mitigazione & Il gruppo si impegna a monitorare costantemente l'avanzamento dei task\textsubscript{G} e a ricalibrare le stime temporali in base all'esperienza acquisita durante lo svolgimento del progetto. In caso di forti scostamenti, verranno ridistribuite le risorse. \\
+        \hline
+        Probabilità & Media \\
+        \hline
+        Pericolosità & Media \\
+        \hline
+    \end{tabularx}
+    \caption{Descrizione del rischio RP-2}
+\end{table}
+
+\subsubsection{RP-3 Rischio legato alla mancanza di supporto esecutivo}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!8}\bfseries}l|X|}
+        \hline
+        Codice & RP-3 \\
+        \hline
+        Nome & Rischio legato alla mancanza di supporto esecutivo \\
+        \hline
+        Descrizione & Possibilità che il proponente non sia disponibile per chiarimenti o approvazioni necessarie al proseguimento delle attività, causando una situazione di stallo decisionale che impedisce l'avanzamento del progetto. \\
+        \hline
+        Mitigazione & Pianificazione anticipata delle domande e dei dubbi da sottoporre durante i ricevimenti ufficiali. In caso di prolungata assenza di feedback\textsubscript{G}, il gruppo procederà prendendo decisioni motivate e documentate, pronto a discuterle e rettificarle non appena il supporto tornerà disponibile. \\
+        \hline
+        Probabilità & Bassa \\
+        \hline
+        Pericolosità & Media \\
+        \hline
+    \end{tabularx}
+    \caption{Descrizione del rischio RP-3}
+\end{table}
+
+\subsection{Tabella riassuntiva dei rischi}
+Nella seguente tabella vengono riepilogati tutti i rischi individuati, indicando per ciascuno il codice, il nome, la probabilità di occorrenza e la pericolosità.
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{|c|L|c|c|}
+        \hline
+        \rowcolor{bluBitless!8}
+        \textbf{Codice} & \textbf{Nome del Rischio} & \textbf{Probabilità} & \textbf{Pericolosità} \\
+        \hline
+        \textbf{RT-1} & Rischio legato all'utilizzo delle tecnologie & Media & Alta \\
+        \hline
+        \textbf{RT-2} & Rischio legato all'utilizzo degli strumenti di sviluppo & Bassa & Media \\
+        \hline
+        \textbf{RT-3} & Rischio legato agli errori nel codice & Alta & Media \\
+        \hline
+        \textbf{RO-1} & Rischio legato agli impegni accademici & Media & Media \\
+        \hline
+        \textbf{RO-2} & Rischio legato alle contingenze personali & Bassa & Media \\
+        \hline
+        \textbf{RO-3} & Rischio legato alle incomprensioni comunicative & Bassa & Media \\
+        \hline
+        \textbf{RO-4} & Rischio legato ai contrasti interni & Bassa & Bassa \\
+        \hline
+        \textbf{RO-5} & Rischio legato alla scarsa esperienza nel lavoro di gruppo & Media & Media \\
+        \hline
+        \textbf{RO-6} & Rischio legato agli errori di pianificazione & Bassa & Alta \\
+        \hline
+        \textbf{RP-1} & Rischio legato alla malcomprensione del capitolato & Bassa & Alta \\
+        \hline
+        \textbf{RP-2} & Rischio legato alla sottostima o sovrastima delle attività & Media & Media \\
+        \hline
+        \textbf{RP-3} & Rischio legato alla mancanza di supporto esecutivo & Bassa & Media \\
+        \hline
+    \end{tabularx}
+    \caption{Tabella riassuntiva dei rischi individuati}
+\end{table}
+
+\section{Modello di sviluppo}
+
+\subsection{Modello agile}
+Il modello di sviluppo\textsubscript{G} scelto dal gruppo \textbf{The Bitless} è quello \textbf{Agile\textsubscript{G}}, e in particolare il framework\textsubscript{G} \textbf{Scrum\textsubscript{G}}. Come esplicitato nelle \textbf{Norme di Progetto\textsubscript{G}}, questo approccio permette di gestire lo sviluppo in modo iterativo e incrementale, adattandosi rapidamente ai cambiamenti dei requisiti e garantendo una consegna continua di valore al proponente.
+
+In questo modello si punta ai seguenti obiettivi:
+\begin{itemize}
+    \item \textbf{Iterazioni}: lo sviluppo\textsubscript{G} avviene secondo cicli temporali definiti detti "sprint", ciascuno dei quali produce un incremento significativo e funzionale del prodotto;
+    \item \textbf{Adattabilità}: lo sviluppo\textsubscript{G} tiene conto dei possibili cambiamenti di requisiti e delle variazioni nelle priorità del progetto\textsubscript{G};
+    \item \textbf{Gestione dei rischi}: i problemi vengono individuati e risolti tempestivamente, grazie anche alla breve durata degli sprint;
+    \item \textbf{Collaborazione con il proponente}: durante l'intero processo di sviluppo\textsubscript{G} viene favorito il coinvolgimento del proponente\textsubscript{G}, garantendo che il prodotto finale risponda pienamente alle sue esigenze.
+\end{itemize}
+
+\subsubsection{Vantaggi dell'adozione di Scrum\textsubscript{G}}
+L'adozione di questo framework\textsubscript{G} offre benefici concreti alla gestione del progetto:
+\begin{itemize}
+    \item \textbf{Flessibilità}: possibilità di adattare il piano di lavoro in base ai feedback\textsubscript{G} ricevuti alla fine di ogni ciclo;
+    \item \textbf{Trasparenza}: i meeting periodici (Daily Scrum, Sprint Review\textsubscript{G}, Retrospective) garantiscono al team e agli stakeholder una visibilità costante sull'avanzamento dei lavori;
+    \item \textbf{Qualità}: le revisioni frequenti e le attività di testing\textsubscript{G} continuo migliorano sensibilmente la qualità del prodotto finale;
+    \item \textbf{Motivazione del team}: la responsabilità condivisa e l'autonomia decisionale dei membri favoriscono un maggiore coinvolgimento e proattività.
+\end{itemize}
+\section{Pianificazione}
+In questa sezione verranno descritti analiticamente i vari periodi di pianificazione\textsubscript{G} e i relativi sprint\textsubscript{G} che scandiscono lo sviluppo del progetto. La pianificazione complessiva è suddivisa in tre macro-fasi:
+\begin{itemize}
+    \item \textbf{Studio dei capitolati e assegnazione dell'appalto};
+    \item \textbf{Requirements and Technology Baseline (RTB)};
+    \item \textbf{Product Baseline (PB)}.
+\end{itemize}
+
+\subsection{Studio dei capitolati e assegnazione dell'appalto}
+In questa fase iniziale, il gruppo si è attivato per l'analisi delle diverse proposte e la successiva candidatura per uno dei capitolati\textsubscript{G}. Una volta aggiudicato l'appalto, il processo prosegue verso la fase successiva denominata RTB.
+
+\subsubsection{Informazioni generali}
+\begin{itemize}
+    \item \textbf{Data inizio}: 2026-03-05;
+    \item \textbf{Data fine prevista}: 2026-03-27;
+    \item \textbf{Data assegnazione appalto}: 2026-03-28.
+\end{itemize}
+
+\subsubsection{Attività svolte}
+Durante questo periodo, il gruppo \textbf{The Bitless} ha portato a termine le seguenti attività operative:
+\begin{itemize}
+    \item \textbf{Individuazione e analisi}: sono stati inizialmente individuati i capitolati\textsubscript{G} di maggiore interesse per il team. È stata svolta un'analisi approfondita che ha portato alla decisione di presentare la candidatura per il progetto \textbf{C6 - Second Brain};
+    \item \textbf{Configurazione strumenti}: a supporto delle attività, sono stati creati i canali di comunicazione ufficiali, la repository\textsubscript{G} su GitHub e gli ambienti di lavoro condivisi;
+    \item \textbf{Incontro con il proponente}: è stato organizzato un incontro conoscitivo su Google Meet con il referente di \textbf{Zucchetti}, proponente del capitolato C6, con lo scopo di chiarire i requisiti\textsubscript{G} e comprendere meglio le aspettative sul prodotto finale;
+    \item \textbf{Redazione documenti di candidatura}: sono stati redatti i documenti necessari per la partecipazione alla gara d'appalto, seguendo le indicazioni fornite:
+    \begin{itemize}
+        \item Analisi dei Capitolati;
+        \item Dichiarazione degli Impegni;
+        \item Lettera di Presentazione.
+    \end{itemize}
+    \item \textbf{Verbalizzazione}: sono stati redatti diversi verbali, sia interni che esterni, per documentare ogni decisione e incontro avvenuto in questa fase.
+\end{itemize}
+
+\subsubsection{Esito}
+La candidatura è stata valutata dal prof. Tullio Vardanega ed è stata ufficialmente accettata. Con l'ottenimento dell'appalto, il gruppo ha concluso questa fase propedeutica per passare alla Requirements and Technology Baseline (RTB).
+
+\subsection{Verso la Requirements and Technology Baseline (RTB)}
+Questa fase rappresenta il consolidamento tecnologico e normativo del gruppo. L'obiettivo principale è dimostrare la fattibilità del progetto e definire con precisione cosa verrà realizzato.
+
+\subsubsection{Obiettivi}
+Il periodo della RTB si pone i seguenti traguardi fondamentali:
+\begin{itemize}
+    \item \textbf{Analisi dei Requisiti}: identificare e definire i casi d'uso per redigere il documento di \textit{Analisi dei Requisiti};
+    \item \textbf{Proof of Concept (PoC)}: dimostrare l'adeguatezza, la compatibilità e la fattibilità delle tecnologie e delle librerie scelte, con particolare focus sull'integrazione con i \textit{Large Language Models} (LLM);
+    \item \textbf{Norme di Progetto}: redigere le regole operative e tecniche che il gruppo dovrà rispettare durante l'intero ciclo di vita del progetto;
+    \item \textbf{Documentazione dinamica}: iniziare e continuare la stesura del \textit{Piano di Progetto} e del \textit{Piano di Qualifica}, documenti che verranno aggiornati incrementalmente;
+    \item \textbf{Glossario}: avviare la redazione del \textit{Glossario} per abbattere le ambiguità terminologiche;
+    \item \textbf{Verbalizzazione}: documentare ogni decisione tramite verbali interni ed esterni.
+\end{itemize}
+
+\subsubsection{Informazioni generali}
+\begin{itemize}
+    \item \textbf{Periodo}: Aprile 2026 - Giugno 2026 (previsto);
+\end{itemize}
+
+\subsubsection{Sprint \#1}
+
+\noindent\textbf{Informazioni generali}
+\begin{itemize}
+    \item \textbf{Inizio}: 2026-03-31;
+    \item \textbf{Fine prevista}: 2026-04-14;
+    \item \textbf{Fine effettiva}: 2026-04-14;
+    \item \textbf{Ritardo}: 0 giorni.
+\end{itemize}
+
+\noindent\textbf{Attività da svolgere} \\
+Durante questo primo sprint, è prevista l'attivazione delle fondamenta documentali e dell'infrastruttura di progetto. Nello specifico, il team si impegnerà a:
+\begin{itemize}
+    \item Iniziare la stesura dell'\textit{Analisi dei Requisiti} con l'individuazione dei casi d'uso;
+    \item Avviare la redazione delle \textit{Norme di Progetto} e del \textit{Piano di Progetto};
+    \item Predisporre la prima bozza del \textit{Glossario} per la definizione della terminologia tecnica;
+    \item Provvedere all'aggiornamento del sito web del gruppo;
+    \item Tenere un incontro di allineamento con l'azienda proponente \textit{Zucchetti S.p.A.} a seguito dell'aggiudicazione dell'appalto per chiarire i dettagli operativi.
+\end{itemize}
+
+\noindent\textbf{Rischi attesi} \\
+Il team ha individuato come probabili i seguenti rischi:
+
+\begin{itemize}
+
+    \item \textbf{RO-5 (Rischio legato alla scarsa esperienza nel lavoro di gruppo)}: essendo il primo sprint operativo, il coordinamento richiede rodaggio.
+
+\end{itemize}
+
+\noindent\textbf{Preventivo} 
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabular}{l|c|c|c|c|c|c|}
+        \cline{2-7}
+        & \cellcolor{bluBitless!15}\rotatebox{45}{\textbf{Responsabile}} 
+        & \cellcolor{bluBitless!15}\rotatebox{45}{\textbf{Amministratore}} 
+        & \cellcolor{bluBitless!15}\rotatebox{45}{\textbf{Analista}} 
+        & \cellcolor{bluBitless!15}\rotatebox{45}{\textbf{Progettista}} 
+        & \cellcolor{bluBitless!15}\rotatebox{45}{\textbf{Programmatore}} 
+        & \cellcolor{bluBitless!15}\rotatebox{45}{\textbf{Verificatore}} \\
+        \hline
+        \multicolumn{1}{|l|}{L. Battistella} & - & - & 3 & - & - & - \\ \hline
+        \multicolumn{1}{|l|}{E. De Piccoli} & - & 5 & - & - & - & - \\ \hline
+        \multicolumn{1}{|l|}{D. Facco} & - & - & 3 & - & - & - \\ \hline
+        \multicolumn{1}{|l|}{A. Marini} & - & - & 3 & - & - & - \\ \hline
+        \multicolumn{1}{|l|}{A. Menegaldo} & - & - & - & - & - & 9 \\ \hline
+        \multicolumn{1}{|l|}{S. Vendramin} & 5 & - & - & - & - & - \\ \hline
+        \multicolumn{1}{|l|}{S. Zecchinato} & - & - & 3 & - & - & - \\ \hline
+    \end{tabular}
+    \caption{\textit{Ripartizione oraria prevista dello Sprint \#1}}
+\end{table}
+
+\vspace{0.4cm}
+
+\noindent\textbf{Consuntivo} 
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabular}{l|c|c|c|c|c|c|}
+        \cline{2-7}
+        & \cellcolor{bluBitless!15}\rotatebox{45}{\textbf{Responsabile}} 
+        & \cellcolor{bluBitless!15}\rotatebox{45}{\textbf{Amministratore}} 
+        & \cellcolor{bluBitless!15}\rotatebox{45}{\textbf{Analista}} 
+        & \cellcolor{bluBitless!15}\rotatebox{45}{\textbf{Progettista}} 
+        & \cellcolor{bluBitless!15}\rotatebox{45}{\textbf{Programmatore}} 
+        & \cellcolor{bluBitless!15}\rotatebox{45}{\textbf{Verificatore}} \\
+        \hline
+        \multicolumn{1}{|l|}{L. Battistella} & - & - & 3 & - & - & - \\ \hline
+        \multicolumn{1}{|l|}{E. De Piccoli} & - & 5 & - & - & - & - \\ \hline
+        \multicolumn{1}{|l|}{D. Facco} & - & - & 3 & - & - & - \\ \hline
+        \multicolumn{1}{|l|}{A. Marini} & - & - & 3 & - & - & - \\ \hline
+        \multicolumn{1}{|l|}{A. Menegaldo} & - & - & - & - & - & 8 \textcolor{verdeBitless}{(-1)} \\ \hline
+        \multicolumn{1}{|l|}{S. Vendramin} & 6 \textcolor{red}{(+1)} & - & - & - & - & - \\ \hline
+        \multicolumn{1}{|l|}{S. Zecchinato} & - & - & 3 & - & - & - \\ \hline
+    \end{tabular}
+    \caption{\textit{Ripartizione oraria effettiva dello Sprint \#1}}
+\end{table}
+
+\vspace{0.4cm}
+
+\noindent\textbf{Aggiornamento delle risorse rimanenti} 
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabular}{|l|c|c|c|c|c|}
+        \hline
+        \rowcolor{bluBitless!15}
+        \textbf{Ruolo} & \textbf{Costo (€/h)} & \textbf{Ore} & \textbf{Costo} & \textbf{Ore rimanenti} & \textbf{Budget rimanente} \\
+        \hline
+        Responsabile\textsubscript{G} & 30 & 6 & 180 & 42 & 1.260 \\ \hline
+        Amministratore\textsubscript{G} & 20 & 5 & 100 & 55 & 1.100 \\ \hline
+        Analista\textsubscript{G} & 25 & 12 & 300 & 50 & 1.250 \\ \hline
+        Progettista\textsubscript{G} & 25 & - & - & 140 & 3.500 \\ \hline
+        Programmatore\textsubscript{G} & 15 & - & - & 168 & 2.520 \\ \hline
+        Verificatore\textsubscript{G} & 15 & 8 & 120 & 152 & 2.280 \\ \hline
+        \rowcolor{bluBitless!5}
+        \textbf{Totale} & - & \textbf{31} & \textbf{700} & \textbf{607} & \textbf{11.910} \\ \hline
+    \end{tabular}
+    \caption{\textit{Aggiornamento risorse e budget dopo lo Sprint \#1}}
+\end{table}
+
+\noindent\textbf{Retrospettiva} \\
+Al termine dello Sprint \#1, il gruppo ha analizzato l'allocazione delle risorse traendo le seguenti conclusioni:
+
+\begin{itemize}
+    \item \textbf{Investimento in Formazione e Studio:} Il ridotto monte ore assegnato al ruolo di \textbf{Analista} in questa fase è frutto di una scelta strategica; il team ha volontariamente limitato le ore di effettiva produzione documentale per dare priorità a una fase di studio individuale dei fondamenti teorici dei casi d'uso e della loro gerarchia. Tale attività, non inclusa nelle ore rendicontate, ha gettato le basi per una modellazione dei flussi più accurata e conforme agli standard qualitativi prefissati.
+    
+    \item \textbf{Preparazione allo Sprint \#2:} Questa ``palestra metodologica'' ha permesso di costruire solide fondamenta. Di conseguenza, il team prevede che il prossimo Sprint vedrà una stesura della documentazione più accurata, rapida e conforme agli standard di qualità prefissati, capitalizzando lo studio svolto in questa prima fase.
+    
+    \item \textbf{Avvio delle attività:} In questo primo periodo sono stati avviati con successo tutti i documenti previsti dalla pianificazione. Dopo una fase iniziale necessaria per definire con precisione responsabilità e mansioni, il gruppo ha raggiunto una buona coesione. Il lavoro nel complesso è risultato fluido e ben coordinato. 
+\end{itemize}
+
+\subsubsection{Sprint \#2}
+
+\noindent\textbf{Informazioni generali}
+\begin{itemize}
+    \item \textbf{Inizio}: 2026-04-14;
+    \item \textbf{Fine prevista}: 2026-04-28;
+    \item \textbf{Fine effettiva}: 2026-04-28;
+    \item \textbf{Ritardo}: 0 giorni.
+\end{itemize}
+
+\noindent\textbf{Attività da svolgere} \\
+L'obiettivo di questo secondo sprint è la capitalizzazione dello studio teorico pregresso per la produzione di contenuti formali e il consolidamento normativo.
+\begin{itemize}
+    \item \textbf{Analisi dei Requisiti}: avvio della stesura formale dei casi d'uso$_G$ precedentemente studiati e modellati;
+    \item \textbf{Norme di Progetto}: completamento del documento per stabilire lo standard operativo definitivo del gruppo;
+    \item \textbf{Piano di Progetto}: stesura del consuntivo dello Sprint \#1 e avanzamento nella pianificazione dei periodi successivi;
+    \item \textbf{Design Preliminare (UX/UI)}: attività di brainstorming finalizzata alla definizione dell'interfaccia grafica. Tale fase funge da raccordo tra l'Analisi dei Requisiti e la realizzazione del mock up prevista per lo Sprint \#3;
+\end{itemize}
+
+\noindent\textbf{Rischi attesi} \\
+Il rischio principale identificato per il periodo corrente è il \textbf{R0-2 (Rischio legato a contingenze personali)}. \\
+
+\noindent\textbf{Preventivo} 
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabular}{l|c|c|c|c|c|c|}
+        \cline{2-7}
+        & \cellcolor{bluBitless!15}\rotatebox{45}{\textbf{Responsabile}} 
+        & \cellcolor{bluBitless!15}\rotatebox{45}{\textbf{Amministratore}} 
+        & \cellcolor{bluBitless!15}\rotatebox{45}{\textbf{Analista}} 
+        & \cellcolor{bluBitless!15}\rotatebox{45}{\textbf{Progettista}} 
+        & \cellcolor{bluBitless!15}\rotatebox{45}{\textbf{Programmatore}} 
+        & \cellcolor{bluBitless!15}\rotatebox{45}{\textbf{Verificatore}} \\
+        \hline
+        \multicolumn{1}{|l|}{L. Battistella} & 4 & - & - & - & - & - \\ \hline
+        \multicolumn{1}{|l|}{E. De Piccoli}  & - & - & - & - & - & 7 \\ \hline
+        \multicolumn{1}{|l|}{D. Facco}       & - & - & 6 & - & - & - \\ \hline
+        \multicolumn{1}{|l|}{A. Marini}      & - & - & 6 & - & - & - \\ \hline
+        \multicolumn{1}{|l|}{A. Menegaldo}   & - & 6 & - & - & - & - \\ \hline
+        \multicolumn{1}{|l|}{S. Vendramin}   & - & - & 6 & - & - & - \\ \hline
+        \multicolumn{1}{|l|}{S. Zecchinato}  & - & - & 6 & - & - & - \\ \hline
+    \end{tabular}
+    \caption{\textit{Ripartizione oraria prevista dello Sprint \#2}}
+\end{table}
+
+\vspace{0.4cm}
+
+\noindent\textbf{Consuntivo} 
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabular}{l|c|c|c|c|c|c|}
+        \cline{2-7}
+        & \cellcolor{bluBitless!15}\rotatebox{45}{\textbf{Responsabile}} 
+        & \cellcolor{bluBitless!15}\rotatebox{45}{\textbf{Amministratore}} 
+        & \cellcolor{bluBitless!15}\rotatebox{45}{\textbf{Analista}} 
+        & \cellcolor{bluBitless!15}\rotatebox{45}{\textbf{Progettista}} 
+        & \cellcolor{bluBitless!15}\rotatebox{45}{\textbf{Programmatore}} 
+        & \cellcolor{bluBitless!15}\rotatebox{45}{\textbf{Verificatore}} \\
+        \hline
+        \multicolumn{1}{|l|}{L. Battistella} & 4 & - & - & - & - & - \\ \hline
+        \multicolumn{1}{|l|}{E. De Piccoli}  & - & - & - & - & - & 7 \\ \hline
+        \multicolumn{1}{|l|}{D. Facco}       & - & - & 6 & - & - & - \\ \hline
+        \multicolumn{1}{|l|}{A. Marini}      & - & - & 6 & - & - & - \\ \hline
+        \multicolumn{1}{|l|}{A. Menegaldo}   & - & 6 & - & - & - & - \\ \hline
+        \multicolumn{1}{|l|}{S. Vendramin}   & - & - & 7 \textcolor{red}{(+1)} & - & - & - \\ \hline
+        \multicolumn{1}{|l|}{S. Zecchinato}  & - & - & 7 \textcolor{red}{(+1)} & - & - & - \\ \hline
+    \end{tabular}
+    \caption{\textit{Ripartizione oraria effettiva dello Sprint \#2}}
+\end{table}
+
+\vspace{0.4cm}
+
+\noindent\textbf{Aggiornamento delle risorse rimanenti} 
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabular}{|l|c|c|c|c|c|}
+        \hline
+        \rowcolor{bluBitless!15}
+        \textbf{Ruolo} & \textbf{Costo (€/h)} & \textbf{Ore} & \textbf{Costo} & \textbf{Ore rimanenti} & \textbf{Budget rimanente} \\
+        \hline
+        Responsabile\textsubscript{G}   & 30 & 4  & 120   & 36  & 1.080 \\ \hline
+        Amministratore\textsubscript{G} & 20 & 6  & 120   & 42  & 840   \\ \hline
+        Analista\textsubscript{G}       & 25 & 26 & 650   & 16  & 400   \\ \hline
+        Progettista\textsubscript{G}    & 25 & -  & -     & 140 & 3.500 \\ \hline
+        Programmatore\textsubscript{G}  & 15 & -  & -     & 168 & 2.520 \\ \hline
+        Verificatore\textsubscript{G}   & 15 & 7  & 105   & 140 & 2.100 \\ \hline
+        \rowcolor{bluBitless!5}
+        \textbf{Totale} & - & \textbf{43} & \textbf{995} & \textbf{542} & \textbf{10.440} \\ \hline
+    \end{tabular}
+    \caption{\textit{Aggiornamento risorse e budget dopo lo Sprint \#2}}
+\end{table}
+
+
+\noindent\textbf{Retrospettiva} \\
+Al termine del secondo Sprint, il gruppo ha tratto le seguenti conclusioni:
+
+\begin{itemize}
+    \item \textbf{Produzione dell'Analisi:} Grazie alla fase di studio teorico dello scorso sprint, il team ha completato con successo la stesura dei casi d'uso previsti. Per il prossimo sprint è previsto un incontro con il proponente finalizzato alla revisione e alla conferma formale dei casi d'uso.
+
+    
+\end{itemize}
+
+\subsection{Verso la PB}
+
+
+\end{document}
