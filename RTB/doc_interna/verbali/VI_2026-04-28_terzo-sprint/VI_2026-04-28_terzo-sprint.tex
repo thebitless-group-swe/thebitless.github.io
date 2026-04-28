@@ -1,0 +1,158 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+\usepackage[a-1b]{pdfx}
+\usepackage[italian]{babel} 
+\usepackage{comment}      
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{minted} 
+\usepackage{geometry}
+\usepackage{float} 
+\usepackage{setspace}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{Verbale \tipoverbale \ \dataverbale}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    pdfborderstyle={/S/U/W 1},
+    linkbordercolor=0 0 0,
+    urlbordercolor=0 0 0,
+    citebordercolor=0 0 0,
+    filebordercolor=0 0 0,
+    breaklinks=true,
+}
+\newcommand{\issue}[1]{\href{https://github.com/thebitless-group-swe/thebitless.github.io/issues/#1}{\##1}}
+
+\begin{document}
+
+\newcommand{\tipoverbale}{interno}
+\newcommand{\dataverbale}{2026-04-28}
+\newcommand{\dataversione}{2026-04-28}
+\newcommand{\versione}{1.0.0}
+\newcommand{\stato}{Stesura}
+\newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+\def\templatedir{../../../../templates}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+\input{../../../../templates/frontespizio.tex}
+\end{titlepage}
+
+\newpage
+\pagenumbering{arabic}
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
+        \hline
+        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione breve} \\
+        \hline
+        1.0.0 & 2026-04-28 & A. Marini & S. Zecchinato & A. Marini & Approvazione \\
+        \hline
+        0.1.0 & 2026-04-28 & A. Marini & S. Zecchinato & - & Prima stesura \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\newpage
+\tableofcontents 
+
+\newpage
+\section{Informazioni sulla riunione}
+Il presente documento riporta la verbalizzazione della riunione interna al gruppo \textbf{The Bitless} avvenuta il \dataverbale{}. L'incontro si è svolto in modalità telematica tramite la piattaforma Discord. La riunione si è aperta alle ore 09:30 e si è conclusa alle ore 11:00.
+
+\section{Presenze}
+\begin{center}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
+\hline
+Lorenzo & Battistella & Presente \\
+Edoardo & De Piccoli & Assente \\
+Davide & Facco & Presente \\
+Anna & Marini & Presente \\
+Andrea & Menegaldo & Presente \\
+Samuele & Vendramin & Presente \\
+Simone & Zecchinato & Presente \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ordine del giorno}
+\begin{enumerate}
+    \item Rotazione dei ruoli 
+    \item Revisione bozza Analisi dei Requisiti
+    \item Richiesta incontro con il proponente
+    \item Resoconto Sprint 2 e rendicontazione ore
+    \item Pianificazione diagrammi UML e compiti futuri
+\end{enumerate}
+
+\section{Discussione e decisioni}
+
+\subsection{Rotazione dei ruoli}
+Il gruppo ha stabilito i nuovi ruoli operativi per l'inizio del terzo sprint. La ripartizione è stata definita come segue:
+\begin{center}
+    \begin{tabular}{|l|l|c|}
+        \hline
+        \textbf{Nome} & \textbf{Cognome} & \textbf{Ruolo} \\
+        \hline
+        Lorenzo & Battistella & Amministratore \\
+        \hline
+        Edoardo & De Piccoli & Analista \\
+        \hline
+        Davide & Facco & Analista \\ 
+        \hline
+        Anna & Marini & Responsabile \\
+        \hline
+        Andrea & Menegaldo & Analista \\
+        \hline
+        Samuele & Vendramin & Analista \\        
+        \hline  
+        Simone & Zecchinato & Verificatore \\
+        \hline  
+    \end{tabular}
+\end{center}
+
+\subsection{Revisione dell'Analisi dei Requisiti}
+Il gruppo ha effettuato una revisione della bozza dell'Analisi dei Requisiti, procedendo a una rilettura sistematica dei casi d'uso individuati. L'attività è servita a verificare la completa copertura delle funzionalità richieste, validando la struttura del documento prima della sua presentazione formale al proponente.
+
+\subsection{Contatto con il proponente}
+È stata redatta e inviata una comunicazione e-mail a Gregorio Piccoli, referente di Zucchetti, per richiedere un incontro; la finalità dell'incontro è sottoporre al proponente la bozza attuale dell'Analisi dei Requisiti per ottenere feedback diretti, identificare eventuali aree di miglioramento e confermare la corretta interpretazione dei requisiti prima di consolidare il documento.
+
+\subsection{Resoconto dello Sprint 2}
+Il team ha analizzato l'andamento del secondo Sprint, confrontando le attività pianificate con quelle effettivamente svolte. Si è proceduto alla verifica delle ore di lavoro rendicontate da ciascun componente, assicurando la precisione dei dati necessari per il monitoraggio dei costi e dell'avanzamento nel Piano di Progetto.
+
+\subsection{Pianificazione diagrammi UML}
+Il gruppo ha deciso di posticipare la creazione dei diagrammi UML dei casi d'uso a valle dell'incontro con il proponente. 
+Tale scelta è stata presa per ottimizzare il carico di lavoro, evitando la necessità di aggiornare o rifare i diagrammi qualora l'incontro portasse a modifiche nella numerazione o nel contenuto dei casi d'uso stessi.
+
+\section{Assegnazione attività singole}
+\begin{center}
+    \renewcommand{\arraystretch}{1.4}
+        \begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
+        \hline
+        \textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
+        \hline
+        D. Facco & Creazione mockup & \issue{106} \\
+        \hline
+        L. Battistella & Script automazione Glossario & \issue{104} \\
+        \hline
+        A. Marini & Slide primo Diario di Bordo & \issue{107} \\
+        \hline
+        A. Marini & Stesura verbale interno 2026-04-28 & \issue{105} \\
+        \hline
+        Analisti & Diagrammi Use Case & \issue{108}  \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\appendix
+
+\end{document}
