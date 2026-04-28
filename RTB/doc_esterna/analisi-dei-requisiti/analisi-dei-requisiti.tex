@@ -6,6 +6,8 @@
 \graphicspath{{./assets/img/}}
 \usepackage{multirow}
 \usepackage{geometry}
+\newcommand{\ucref}[1]{UC \ref{#1}}
+\usepackage[table]{xcolor}
 \usepackage{float} 
 \usepackage{setspace}
 \definecolor{bluBitless}{HTML}{3A75C4}
@@ -46,7 +48,7 @@
 
 \begin{titlepage}
 \pagenumbering{gobble}
-\input{../../../templates/frontespizio.tex}
+\input{\templatedir/frontespizio.tex}
 \end{titlepage}
 
 \newpage
@@ -60,6 +62,10 @@
     \begin{tabularx}{\textwidth}{|c|c|L|c|c|L|}
         \hline
         \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
+        \hline 
+        0.4.1 & 2026-04-21 & D. Facco & - & - & Stesura casi d'uso 26, 27 e 28 \\
+        \hline
+        0.4.0 & 2026-04-16 & A. Marini & L. Batttistella & - & Introduzione casi d'uso \\
         \hline
         0.6.0 & 2026-04-22 & A. Menegaldo & E. De Piccoli & - & Struttura salvataggio e persistenza \\
         \hline
@@ -213,7 +219,93 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Sistema di Persistenza$_{G}$:} Componente responsabile del salvataggio e del recupero dei dati. Agisce come attore secondario$_{G}$ garantendo che le informazioni siano memorizzate in modo permanente e siano accessibili nelle sessioni successive.
 \end{itemize}
 
-\subsection{Lista dei casi d'uso}
+\subsection{Macroarea 1: Editing di Base}
+
+\section{Macroarea 2: Funzionalità AI}
+
+% --- UC 26 ---
+\hypertarget{uc:26}{}
+\subsection{UC 26 - Generazione Automatica di testo (Distant Writing)}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente richiede al sistema di generare un testo originale o espandere un'idea tramite l'integrazione con un LLM.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  LLM$_G$.
+    \item \textbf{Precondizioni:} L'utente ha inserito un prompt$_G$ nell'apposita area e il sistema è connesso all'LLM$_G$
+    \item \textbf{Postcondizioni:} Il sistema mostra il testo generato dall'AI$_G$ pronto per la validazione.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente avvia la funzione di generazione
+        \item L'utente imposta i parametri ed il contesto desiderato (\hyperlink{uc:26.1}{UC 26.1}, \hyperlink{uc:26.2}{UC 26.2}, \hyperlink{uc:26.3}{UC 26.3}).
+        \item Il sistema invia la richiesta all'attore secondario LLM.
+        \item Il sistema riceve il testo elaborato e lo visualizza.
+    \end{enumerate}
+    
+    \item \textbf{Sottocasi:}
+    \begin{itemize}
+        \item \hyperlink{uc:26.1}{UC 26.1 - Inserimento o riutilizzo del prompt}
+        \item \hyperlink{uc:26.2}{UC 26.2 - Selezione della lunghezza desiderata del testo}
+        \item \hyperlink{uc:26.3}{UC 26.3 - Selezione manuale delle note per il contesto della LLM}
+        \item \hyperlink{uc:26.4}{UC 26.4 - Anteprima e conferma del contesto inviato}
+        \item \hyperlink{uc:26.5}{UC 26.5 - Errore LLM non raggiungibile}
+    \end{itemize}
+\end{itemize}
+
+% --- 26.1 ---
+\hypertarget{uc:26.1}{}
+\subsection{UC 26.1 - Inserimento o riutilizzo del prompt}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente inserisce una nuova istruzione testuale o ne seleziona una usata in precedenza.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  Sistema di persistenza.
+    \item \textbf{Precondizioni:} Il sistema è in modalità di configurazione del prompt$_G$.
+    \item \textbf{Postcondizioni:} Un prompt$_G$ è selezionato e pronto all'invio.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente apre il menu prompt$_G$.
+        \item L'utente sceglie se scrivere un nuovo prompt o scorrere la cronologia.
+        \item L'utente conferma la selezione.
+    \end{enumerate}
+\end{itemize}
+
+% --- 26.2 ---
+\hypertarget{uc:26.2}{}
+\subsection{UC 26.2 - Selezione della lunghezza del testo}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} Definizione del vincolo sulla quantità del testo generato (corto, medio, lungo).
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:} Nessuno.
+    \item \textbf{Precondizioni:} Il sistema è in modalità configurazione prompt$_G$.
+    \item \textbf{Postcondizioni:} Il parametro answer\_length è impostato per la richiesta.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente ha scritto il prompt da inviare.
+        \item L'utente seleziona la lunghezza desiderata della risposta dell'LLM$_G$.
+        \item Il sistema aggiorna i parametri della richiesta.
+    \end{enumerate}
+\end{itemize}
+
+% --- 26.3 ---
+\hypertarget{uc:26.3}{}
+\subsection{UC 26.3 - Selezione manuale delle note da inviare come contesto}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente sceglie una o più note esistenti per fornire base documentale all'AI
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  Sistema di persistenza.
+    \item \textbf{Precondizioni:} Esistono note salvate nel sistema.
+    \item \textbf{Postcondizioni:} Il contenuto delle note selezionate viene aggiunto al buffer del contesto.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente avvia la funzione di generazione.
+        \item L'utente apre il selettore note.
+        \item Il sistema elenca le note disponibili.
+        \item L'utente marca le note desiderate.
+        \item Il sistema le aggrega per l'invio della richiesta.
+    \end{enumerate}
+\end{itemize}
 
 \subsubsection{Editing di base}
 \hypertarget{uc:11}{}
