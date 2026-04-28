@@ -38,7 +38,7 @@
 \newcommand{\tipoverbale}{Norme di Progetto}
 \newcommand{\dataverbale}{}
 \newcommand{\dataversione}{2026-04-18}
-\newcommand{\versione}{0.4.0}
+\newcommand{\versione}{0.5.0}
 \newcommand{\stato}{In stesura}
 \newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
 \newcommand{\dir}{../../..}
@@ -56,6 +56,8 @@
     \begin{tabularx}{\textwidth}{|c|c|L|c|c|L|}
         \hline
         \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
+        \hline
+        0.5.0 & 2026-04-20 & S. Zecchinato & E. De Piccoli & - & Verifica \\
         \hline
         0.4.0 & 2026-04-18 & S. Zecchinato & E. De Piccoli & - & Gestione delle configurazioni e inizio verifica \\
         \hline
@@ -421,29 +423,72 @@ Il gruppo applica ai seguenti prodotti il processo di verifica:
     \item \textbf{Codice sorgente}: una volta raggiunta la Requirements and Technology Baseline e resi disponibili i componenti software, si procederà a strutturare ed eseguire il piano di verifica. Questo iter comprenderà test basati su analisi statica e dinamica, le cui specifiche sono illustrate nelle sezioni che seguono.
 \end{itemize}
 
-\paragraph{3.3.1.1 Attività previste} \mbox{} \\
+\label{paragraph:verifica-implementazione}
+\paragraph{3.3.1.1 Attività di verifica e implementazione del processo} \mbox{} \\
+Le attività di verifica agiscono sulle fasi dello sviluppo in modo che la verifica non sia solamente un controllo finale ma sia anzi un contrllo costante della fase. In quest'ottica infatti ci si aspetta che il controllo finale verifichi solamente che il prodotto ottenuto al termine di una fase sia coerente con ciò che quella fase aveva avuto in input, ovvero non devono esser stati introdotti bug (per il codice) o refusi (per il testo). 
 
-\paragraph{3.3.1.2 Implementazione del processo} \mbox{} \\
+Finora il gruppo si è occupato di documentazione e dunque la verifica verteva sulla correttezza sintattica, semantica e grammaticale di ogni documento. Per quanto concerne al codice, la verifica verrà trattata più approfonditamente dopo il raggiungimento della \textit{RTB - Requirements and Technology Baseline}$_G$ e le informazioni verranno riportate nel documento denominato \textbf{Piano di Qualifica}$_G$.
+La verifica è composta da due fasi:
+\begin{itemize}
+    \item \textbf{Analisi Statica}: non richiede l'esecuzione del prodotto bensì verifica il prodotto tramite tecniche di analisi statica (es. controllo sintattico, semantico, grammaticale);
+    \item \textbf{Analisi Dinamica}: richiede l'esecuzione del prodotto software in un ambiente controllato, ciò permette di effettuare dei test per valutare conformità ai requisiti funzionali e non funzionali.
+\end{itemize}
 
-\paragraph{3.3.1.3 Verifica} \mbox{} \\
+\paragraph{3.3.1.2 Analisi Statica} \mbox{} \\
+Come già citato brevemente nella sezione §\ref{paragraph:verifica-implementazione}, l'attività di \textbf{Analisi Statica} non ha bisogno di eseguire l'oggetto in verifica. Questo permette di effettuare l'analisi statica in qualsiasi momento della produzione del codice o di un documento. Per il codice si cercano gli errori sintattici e si cerca di rendere il codice più leggibile, mentre per la documentazione si cercano errori di ortografia, grammaticali o, in generale, una scarsa leggibilità dei periodi.
+I metodi di analisi statica sono differenziati in:
+\begin{itemize}
+    \item \textbf{Walkthrough}: il verificatore legge interamente il documento o le sezioni dove prevede di riscontrare un errore, produce quindi dei \textit{feedback} per l'autore del prodotto in verifica per il miglioramento e, in caso può chiedere delucidazioni all'autore circa le scelte implementative;
+    \item \textbf{Inspection}: il verificatore esamina il prodotto solamente in aree definite in maniera sistematica e successivamente discute con l'implementatore dei difetti riscontrati.
+\end{itemize}
+Per la verifica dei documenti il gruppo ha preferito la procedura \textbf{Walkthrough} che permette al verificatore di controllare interamente un documento e di rilevarne incoerenza tra le sezioni o errori di tipo semantico/sintattico.
 
-\paragraph{3.3.1.4 Analisi Statica} \mbox{} \\
+\paragraph{3.3.1.3 Analisi Dinamica} \mbox{} \\
+Come già citato brevemente nella sezione §\ref{paragraph:verifica-implementazione}, l'attività di \textbf{Analisi Dinamica} richiede l'esecuzione del prodotto software in ambiente controllato. Esso utilizza i test, che devono essere:
+\begin{itemize}
+    \item \textbf{Ripetibili}: per verificare se l'errore è stato corretto il test deve poter essere ripetuto in qualsiasi situazione;
+    \item \textbf{Automatizzabili}: per evitare lo spreco di tempo, i test devono poter essere automatizzabili tramite strumenti che simulano l'ambiente di testing;
+    \item \textbf{Deterministici}: per poter garantire una valutazione oggettiva del risultato, ogni test deve avere un risultato atteso chiaramente definito;
+    \item \textbf{Indipendenti}: per evitare risultati falsati, ogni test deve essere indipendente dall'ambiente di test e non dipendere da altri test.
+\end{itemize}
 
-\paragraph{3.3.1.5 Analisi Dinamica} \mbox{} \\
 
-\paragraph{3.3.1.6 Test di Unità} \mbox{} \\
+\paragraph{3.3.1.4 Test di Unità} \mbox{} \\
+I test di unità, in inglese \textit{unit test}$_G$, sono quei test che valutano il corretto funzionamento della parte più piccola del software definita per il linguaggio di programmazione in cui quel software è stato codificato (e.g. funzioni, classi o metodi). Essi si dividono in:
+\begin{itemize}
+    \item \textbf{Funzionali}: anche detti \textit{black-box}, verificano solo l'output dell'unità senza indagare la logica interna;
+    \item \textbf{Strutturali}: anche detti \textit{white-box}, valutano anche la corretta esecuzione della logica interna senza concentrarsi solamente sull'output e si assicura che tutti gli statements rilevanti del codice vengano eseguiti almeno una volta.
+\end{itemize}
 
-\paragraph{3.3.1.7 Test di Integrazione} \mbox{} \\
+\paragraph{3.3.1.5 Test di Integrazione} \mbox{} \\
+I test di integrazione, in inglese \textit{integration test}$_G$, sono quei testi che valutano l'interazione tra le varie componenti software e si usano primariamente per l'assemblaggio incrementale, ovvero in tutti quei momenti in cui si vuole integrare una nuova parte al sistema. Questo garantisce quello che in gergo si chiama \textit{Continuous Integration}$_G$.
+I test di integrazione possono essere implementati con strategia \textbf{bottom-up} in cui si va ad integrare prima le componenti con minori dipendenze d'uso, oppure con strategia \textbf{top-down}, in cui si vanno ad integrare prima le componenti con maggiori dipendenze d'uso.
 
+\label{subsec:validazione}
 \subsection{Validazione}
+Nella parte di validazione l'obiettivo è quello di controllare che il prodotto, sia esso software o documentale, corrisponda ai bisogni della proponente o, in fase avanzata, dell'utente. Questa fase viene svolta in presenza della proponente sfruttando i casi d'uso raccolti nell'\textit{Analisi dei Requisiti}$_G$ e conducendo test rappresentativi delle esigenze reali.
 
 \paragraph{3.3.2.1 Attività previste} \mbox{} \\
+Le attività che prevediamo in questo processo sono:
+\begin{itemize}
+    \item \textbf{Implementazione del processo};
+    \item \textbf{Esecuzione dei test};
+    \item \textbf{Raccolta dei risultati}.
+\end{itemize}
 
 \paragraph{3.3.2.2 Implementazione del processo} \mbox{} \\
+Come citati brevemente nella sezione §\ref{subsec:validazione}, nel documento denominato \textit{Analisi dei Requisiti}$_G$ il gruppo ha delineato i requisiti che il prodotto deve rispettare.
+ Andiamo quindi ad effettuare i seguenti test per controllare se i requisiti sono stati rispettati e se il prodotto risponde correttamente ai \textit{Casi d'uso}$_G$ definiti:
+ \begin{itemize}
+    \item \textbf{Test di sistema}: test funzionali sull'intero sistema;
+    \item \textbf{Test di accettazione}: servono per accertare che i requisiti imposti dalla proponente siano rispettati.
+ \end{itemize} 
 
 \paragraph{3.3.2.3 Esecuzione dei test} \mbox{} \\
+L'implementazione dei test è guidata dai requisiti e dai casi d'uso cercando di immedesimarsi il più possibile nell'utente.
 
 \paragraph{3.3.2.4 Raccolta dei risultati} \mbox{} \\
+I risultati dei test definiti qui sopra vengono raccolti nel documento denominato \textit{Piano di Qualifica}$_G$, questo permette un'analisi dettagliata a confronto con i requisiti espressi.
 
 \section{Processi organizzativi}
 
