@@ -1428,7 +1428,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 Questa sezione del sistema descrive come l'applicazione interagisce con un modello di linguaggio esterno (attore secondario $LLM_G$) per offrire strumenti avanzati di editing.
 
 \hypertarget{uc:22}{}
-\subsubsection{UC 22 - Riassunto contenuto con LLM}
+\paragraph{UC 22 - Riassunto contenuto con LLM}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente richiede la generazione di un riassunto del testo presente nell'editor tramite un modello di linguaggio esterno.
     \item \textbf{Attori Principali:} Utente.
@@ -1448,13 +1448,17 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \end{itemize}
     \item \textbf{Estensioni:}
     \begin{itemize}
+    
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:22.1}{UC 22.1 - Selezione percentuale di riassunto}
         \item \hyperlink{uc:22.2}{UC 22.2 - Gestione testo insufficiente}
         \item \hyperlink{uc:22.3}{UC 22.3 - Errore LLM Non Raggiungibile}
     \end{itemize}
 \end{itemize}
 
 \hypertarget{uc:22.1}{}
-\paragraph{UC 22.1 - Selezione percentuale di riassunto}
+\subparagraph{UC 22.1 - Selezione percentuale di riassunto}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente definisce la lunghezza relativa del riassunto rispetto al testo originale.
     \item \textbf{Attori Principali:} Utente.
@@ -1468,7 +1472,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:22.2}{}
-\paragraph{UC 22.2 - Gestione testo insufficiente per riassunto}
+\subparagraph{UC 22.2 - Gestione testo insufficiente per riassunto}
 \begin{itemize}
     \item \textbf{Descrizione:} Validazione della lunghezza del testo prima dell'invio.
     \item \textbf{Attori Principali:} Sistema.
@@ -1483,7 +1487,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:22.3}{}
-\paragraph{UC 22.3 - Errore LLM Non Raggiungibile}
+\subparagraph{UC 22.3 - Errore LLM Non Raggiungibile}
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione della mancata risposta del servizio IA.
     \item \textbf{Attori Principali:} Sistema.
@@ -1499,7 +1503,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:23}{}
-\subsubsection{UC 23 - Traduzione contenuto con LLM}
+\paragraph{UC 23 - Traduzione contenuto con LLM}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente richiede la traduzione automatica del testo in una lingua specifica tramite il servizio LLM.
     \item \textbf{Attori Principali:} Utente.
@@ -1516,7 +1520,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \item \textbf{Inclusioni:}
     \begin{enumerate}
         \item \hyperlink{uc:23.1}{UC 23.1 - Selezione lingua di destinazione}
-    \end{enumerate}
+    \end{enumerate}  
     \item \textbf{Estensioni:}
     \begin{itemize}
         \item \hyperlink{uc:23.2}{UC 23.2 - Errore LLM Non Raggiungibile}
@@ -1524,7 +1528,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:23.1}{}
-\paragraph{UC 23.1 - Selezione lingua di destinazione}
+\subparagraph{UC 23.1 - Selezione lingua di destinazione}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente sceglie la lingua in cui desidera tradurre il contenuto tra quelle disponibili.
     \item \textbf{Attori Principali:} Utente.
@@ -1538,7 +1542,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:23.2}{}
-\paragraph{UC 23.2 - Errore LLM Non Raggiungibile}
+\subparagraph{UC 23.2 - Errore LLM Non Raggiungibile}
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione del fallimento della comunicazione con il servizio di traduzione.
     \item \textbf{Attori Principali:} Sistema.
@@ -1554,7 +1558,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:24}{}
-\subsubsection{UC 24 - Riscrittura contenuto Markdown}
+\paragraph{UC 24 - Riscrittura contenuto Markdown}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente richiede la rielaborazione di un testo per migliorarne la forma o adattarlo a nuove esigenze.
     \item \textbf{Attori Principali:} Utente.
@@ -1584,7 +1588,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:24.1}{}
-\paragraph{UC 24.1 - Selezione Variazione Stilistica}
+\subparagraph{UC 24.1 - Selezione Variazione Stilistica}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente sceglie un registro stilistico specifico (es. informale, colloquiale) per la rielaborazione.
     \item \textbf{Attori Principali:} Utente.
@@ -1601,7 +1605,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:24.2}{}
-\paragraph{UC 24.2 - Correzione Grammaticale}
+\subparagraph{UC 24.2 - Correzione Grammaticale}
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema analizza il testo per correggere errori ortografici e sintattici.
     \item \textbf{Attori Principali:} Utente.
@@ -1634,7 +1638,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:24.3}{}
-\paragraph{UC 24.3 - Errore LLM Non Raggiungibile}
+\subparagraph{UC 24.3 - Errore LLM Non Raggiungibile}
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione del fallimento di comunicazione con l'intelligenza artificiale.
     \item \textbf{Attori Principali:} Utente.
@@ -1650,7 +1654,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:25}{}
-\subsubsection{UC 25 - Analisi critica del contenuto}
+\paragraph{UC 25 - Analisi critica del contenuto}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente richiede un'analisi del testo basata sulla metodologia dei "Sei Cappelli per Pensare", per ottenere diverse prospettive (obiettiva, emotiva, critica, ecc.).
     \item \textbf{Attori Principali:} Utente.
@@ -1677,7 +1681,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:25.1}{}
-\paragraph{UC 25.1 - Selezione (uno o più cappelli)}
+\subparagraph{UC 25.1 - Selezione (uno o più cappelli)}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente definisce quali prospettive di analisi attivare.
     \item \textbf{Attori Principali:} Utente.
@@ -1794,7 +1798,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:25.2}{}
-\paragraph{UC 25.2 - Gestione testo insufficiente per l'analisi}
+\subparagraph{UC 25.2 - Gestione testo insufficiente per l'analisi}
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione del caso in cui il testo fornito sia troppo breve o privo di contenuto semantico per un'analisi critica sensata.
     \item \textbf{Attori Principali:} Utente.
@@ -1808,7 +1812,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:25.3}{}
-\paragraph{UC 25.3 - Errore LLM Non Raggiungibile}
+\subparagraph{UC 25.3 - Errore LLM Non Raggiungibile}
 \begin{itemize}
     \item \textbf{Descrizione:} Fallimento della connessione con l'IA durante il processo di analisi critica.
     \item \textbf{Attori Principali:} Utente.
@@ -1840,7 +1844,6 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
         \item Il sistema invia la richiesta all'attore secondario LLM.
         \item Il sistema riceve il testo elaborato e lo visualizza.
     \end{enumerate}
-    
     \item \textbf{Inclusioni:}
     \begin{itemize}
         \item \hyperlink{uc:26.1}{UC 26.1 - Inserimento o riutilizzo del prompt}
