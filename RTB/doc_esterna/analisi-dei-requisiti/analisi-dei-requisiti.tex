@@ -1,10 +1,13 @@
 \documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
-\usepackage{xcolor}
+\usepackage[table]{xcolor}
 \usepackage[italian]{babel} 
 \usepackage{comment}      
 \usepackage{graphicx} 
+\graphicspath{{./assets/img/}}
 \usepackage{multirow}
 \usepackage{geometry}
+\newcommand{\ucref}[1]{UC \ref{#1}}
+\usepackage[table]{xcolor}
 \usepackage{float} 
 \usepackage{setspace}
 \definecolor{bluBitless}{HTML}{3A75C4}
@@ -21,41 +24,60 @@
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
-    linkcolor=0 0 0 0, 
+    linkcolor=black, 
     urlcolor=bluBitless,     
-    citecolor=0 0 0 0,  
-    filecolor=0 0 0 0,
+    citecolor=black,  
+    filecolor=black,
     breaklinks=true,
     pdfpagemode=UseNone    
 }
 
 \begin{document}
 
-\newcommand{\tipoverbale}{Analisi dei Requisiti}
+\newcommand{\titolo}{Analisi dei Requisiti}
 \newcommand{\dataverbale}{}
-\newcommand{\dataversione}{2026-04-03}
-\newcommand{\versione}{0.3.0}
+\newcommand{\dataversione}{2026-04-28}
+\newcommand{\versione}{0.9.0}
 \newcommand{\stato}{Stesura}
 \newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
 \def\templatedir{../../../templates}
 
+%Comandi per includere i paragrafi e i sottoparagrafi nell'indice e numerarli
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5}
+
 \begin{titlepage}
 \pagenumbering{gobble}
-\input{../../../templates/frontespizio.tex}
+\input{\templatedir/frontespizio.tex}
 \end{titlepage}
 
 \newpage
 \pagenumbering{arabic}
 
+\tableofcontents
+\newpage
+
 \begin{center}
     \small
     \begin{tabularx}{\textwidth}{|c|c|L|c|c|L|}
         \hline
-        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
+        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\   
         \hline
-        0.3.0 & 2026-04-13 & D. Facco & S. Vendramin & - & Stesura Analisi del Prodotto \\
+        0.9.0 & 2026-04-28 & A. Marini & S. Zecchinato & - & Sistemazione UC 21 e generalizzazioni \\
         \hline
-        0.2.0 & 2026-04-08 & A. Marini & S. Vendramin & - & Stesura Introduzione \\
+        0.8.0 & 2026-04-28 & S. Vendramin & S. Zecchinato & - & Sezione Requisiti \\
+        \hline
+        0.7.0 & 2026-04-27 & A. Menegaldo & E. De Piccoli & - & Stesura casi d'uso salvataggio e persistenza \\
+        \hline
+        0.6.0 & 2026-04-26 & S. Zecchinato & E. De Piccoli & - & Struttura salvataggio e persistenza \\
+        \hline
+        0.5.0 & 2026-04-22 & D. Facco & E. De Piccoli & - & Stesura casi d'uso funzionalità AI \\
+        \hline
+        0.4.0 & 2026-04-21 & S. Vendramin & D. Edoardo & - & Stesura Casi d'uso editing di base\\
+        \hline
+        0.3.0 & 2026-03-25 & D. Facco & S. Vendramin & - & Stesura Analisi del Prodotto \\
+        \hline
+        0.2.0 & 2026-03-22 & A. Marini & S. Vendramin & - & Stesura Introduzione \\
         \hline
         0.1.0 & 2026-03-21 & S. Vendramin & A. Menegaldo & - & Struttura documento \\
         \hline
@@ -72,17 +94,17 @@ Il presente documento rappresenta il fondamento metodologico su cui poggia l'int
 Nello specifico, il documento persegue i seguenti obiettivi:
 
 \begin{itemize}
-    \item \textbf{Definizione del perimetro funzionale:} Identifica con precisione \textit{cosa} il Sistema$_G$ debba realizzare (requisiti funzionali) e quali standard qualitativi debba rispettare (requisiti non funzionali, quali usabilità, sicurezza e performance), tracciando i confini operativi e i vincoli$_G$ tecnologici del progetto.
+    \item \textbf{Definizione del perimetro funzionale:} Identifica con precisione \textit{cosa} il Sistema$_G$ debba realizzare (requisiti funzionali$_G$) e quali standard qualitativi debba rispettare (requisiti non funzionali, quali usabilità, sicurezza e performance), tracciando i confini operativi e i vincoli$_G$ tecnologici del progetto.
     
     \item \textbf{Sincronizzazione degli Stakeholder$_G$:} Agisce come un "contratto tecnico" tra il team di sviluppo e il committente$_G$. L'utilizzo di un linguaggio condiviso permette di allineare le aspettative di analisti, progettisti e tester$_G$, eliminando ambiguità che potrebbero compromettere la validità del prodotto finale.
     
-    \item \textbf{Fondamento per la Progettazione e Verifica:} Fornisce l'input$_G$ necessario per le fasi di architettura e codifica, costituendo al contempo la base oggettiva per le attività di verifica e convalida. Senza questi parametri, non sarebbe possibile attestare la conformità del software alle richieste originali.
+    \item \textbf{Fondamento per la Progettazione e Verifica$_G$:} Fornisce l'input$_G$ necessario per le fasi di architettura e codifica, costituendo al contempo la base oggettiva per le attività di verifica$_G$ e convalida. Senza questi parametri, non sarebbe possibile attestare la conformità del software alle richieste originali.
     
-    \item \textbf{Governo del Cambiamento e dei Rischi:} Il documento funge da strumento di controllo preventivo, permettendo di intercettare criticità tecnologiche, incongruenze logiche o requisiti irrealizzabili prima dell'inizio della fase di codifica.
+    \item \textbf{Governo del Cambiamento e dei Rischi:} Il documento funge da strumento di controllo preventivo, permettendo di intercettare criticità tecnologiche, incongruenze logiche o requisiti$_G$ irrealizzabili prima dell'inizio della fase di codifica.
 \end{itemize}
 
 \subsection{Sviluppo del documento}
-La stesura del presente documento segue un approccio di tipo \textbf{incrementale$_G$}. Tale scelta metodologica è finalizzata a garantire un'elevata manutenibilità$_G$ del testo, permettendo l'integrazione di modifiche o integrazioni derivanti dal confronto continuo tra il gruppo The Bitless e i committenti$_G$. 
+La stesura del presente documento segue un approccio di tipo \textbf{incrementale$_G$}. Tale scelta metodologica è finalizzata a garantire un'elevata manutenibilità$_G$ del testo, permettendo l'integrazione$_G$ di modifiche o integrazioni derivanti dal confronto continuo tra il gruppo The Bitless e i committenti$_G$. 
 
 Il documento è dunque da considerarsi dinamico, soggetto a un processo di raffinamento e miglioramento costante lungo tutto il ciclo di vita del progetto.
 
@@ -95,7 +117,7 @@ Il documento è dunque da considerarsi dinamico, soggetto a un processo di raffi
     \item \textbf{Regolamento del Progetto Didattico}: \\
     \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf}
     \item \textbf{Norme di Progetto}: \\
-    \url{https://thebitless.github.io/RTB/doc_interna/norme-di-progetto/norme-di-progetto.pdf}
+     \scriptsize\url{https://thebitless.github.io/RTB/doc_interna/norme-di-progetto/norme-di-progetto.pdf}
 \end{itemize}
 
 \subsubsection{Riferimenti Informativi}
@@ -113,27 +135,27 @@ Il documento è dunque da considerarsi dinamico, soggetto a un processo di raffi
 \section{Descrizione del prodotto}
 
 \subsection{Prospettiva del prodotto}
-L'idea per la quale nasce questo prodotto è di fornire un nuovo sistema per prendere appunti che estenda le capacità umane, implementando l'utilizzo degli LLM$_G$ (da qui il nome Second Brain - Secondo Cervello) non solo per aiutare l'utente ad archiviare informazioni, ma a rielaborarle, criticarle e generarle in maniera intelligente.
-Il sistema, a differenza dei classici chatbot$_G$, dovrà agire come un editor attivo che si basa sulle conoscenze specifiche dell'utente.
+L'idea per la quale nasce questo prodotto è di fornire un nuovo sistema$_G$ per prendere appunti che estenda le capacità umane, implementando l'utilizzo degli LLM$_G$ (da qui il nome Second Brain - Secondo Cervello) non solo per aiutare l'utente ad archiviare informazioni, ma a rielaborarle, criticarle e generarle in maniera intelligente.
+Il sistema$_G$, a differenza dei classici chatbot$_G$, dovrà agire come un editor attivo che si basa sulle conoscenze specifiche dell'utente.
 
 \subsection{Obiettivi del prodotto}
-L'obiettivo principale sta nel sviluppare un'applicazione che verifichi le potenzialità degli LLM$_G$ nel supportare una persona in compiti legati alla creazione di testi, creazione di idee e brainstorming$_G$.
+L'obiettivo principale è sviluppare un'applicazione che verifichi le potenzialità degli LLM$_G$ nel supportare una persona nella creazione di testi, idee e brainstorming$_G$.
 Più nello specifico, il prodotto mira a:
 \begin{itemize}
     \item Dimostrare la fatibilità di tali strumenti utilizzando Tecnologie Web$_G$
     \item Esplorare l'efficacia del Prompt Engeneering$_G$ per ottenere analisi critiche e trasformazioni testuali speciali e specifiche
-    \item Sperimentare le modalità di interazione tra uomo e macchina come il Distant Writing$_G$ ed il brainstorming assistito
+    \item Sperimentare le modalità di interazione tra uomo e macchina come il Distant Writing$_G$ ed il brainstorming$_G$ assistito
 \end{itemize}
 
 \subsection{Funzionalità del prodotto}
-Le funzionalità, sia requisiti obbligatori che opzionali, del prodotto sono i seguenti:
+Le funzionalità, sia requisiti$_G$ obbligatori che opzionali, del prodotto sono i seguenti:
 \textbf{Funzionalità minime (o oblligatorie)}:
 \begin{itemize}
     \item Editor Markdown: Il prodotto deve implementare un'area di inserimento testo che supporti il linguaggio di Markdown$_G$
     \item Rendering Grafico: Visualizzazione del testo formattato in tempo reale, fianco a fianco con l'editor
-    \item Integrazione LLM: Accesso tramite API$_G$ ai modelli linguistici di intelligenza artificiale per operare sul testo (su una parte o sull'intero documento)
+    \item Integrazione$_G$ LLM: Accesso tramite API$_G$ ai modelli linguistici di intelligenza artificiale per operare sul testo (su una parte o sull'intero documento)
     \item Comandi di Base: Implementazione dei comandi di base quali la riscrittura (cambio tono, espansione del testo, correzione grammaticale), il riassunto e la traduzione multilingua
-    \item Analisi Critica: Implementazione del modello dei sei cappelli per analizzare e/o riscrivere il testo da diverse prospettive
+    \item Analisi Critica: Implementazione del modello dei sei cappelli$_G$ per analizzare e/o riscrivere il testo da diverse prospettive
     \begin{itemize}
         \item[Bianco: ] Testo neutro ed imparziale, che risponde ai fatti
         \item[Rosso: ] Testo emozionale, che cattura emozioni
@@ -142,7 +164,7 @@ Le funzionalità, sia requisiti obbligatori che opzionali, del prodotto sono i s
         \item[Verde: ] Testo originale, creativo e provocante
         \item[Blu: ] Testo logico e strutturato, che prioritizza controllo e organizzazione    
     \end{itemize} 
-    \item Generazione da prompt: Anche detto Distant Writing$_G$, crea un'intero testo partendo da un input generale dell'utente
+    \item Generazione da prompt: Anche detto Distant Writing$_G$, crea un'intero testo partendo da un input$_G$ generale dell'utente
     \item Gestione file: Salvataggio e lettura delle note in file locali 
 \end{itemize}
 
@@ -154,11 +176,11 @@ Le funzionalità, sia requisiti obbligatori che opzionali, del prodotto sono i s
 \end{itemize}
 
 \subsection{Utenza di riferimento}
-il capitolato identifica diverse tipologie di utenti, essendo che punta ad essere un prodotto duttile a qualsiasi tipologia di nota:
+il capitolato$_G$ identifica diverse tipologie di utenti, essendo che punta ad essere un prodotto duttile a qualsiasi tipologia di nota:
 \begin{itemize}
     \item Studenti: Per lo studio, lo svolgimento dei compiti e la sintesi delle lezioni
     \item Professionisti in ambito aziendale: Per la stesura di testi di marketing e la creazione di presentazioni
-    \item Creatori di contenuti e Scrittori: Chiunque necessiti di supporto nel brainstorming o nella revisione critica di bozze testuali
+    \item Creatori di contenuti e Scrittori: Chiunque necessiti di supporto nel brainstorming$_G$ o nella revisione critica di bozze testuali
     \item Chiunque altro abbia bisogno di prendere appunti e/o scrivere testi anche partendo da zero e lasciare fare alla macchina il duro lavoro
 \end{itemize}
 
@@ -166,7 +188,7 @@ il capitolato identifica diverse tipologie di utenti, essendo che punta ad esser
 
 \section{Casi d'uso}
 \subsection{Introduzione}
-Questa sezione descrive in dettaglio i casi d'uso del sistema \textbf{Second Brain}. Ciascun caso d'uso è definito mediante un diagramma UML$_{G}$ e da una specifica descrizione testuale. 
+Questa sezione descrive in dettaglio i casi d'uso$_G$ del sistema$_G$ \textbf{Second Brain}. Ciascun caso d'uso è definito mediante un diagramma UML$_{G}$ e da una specifica descrizione testuale. 
 
 Per garantire completezza e rigore metodologico, ogni caso d'uso segue la struttura definita nella tabella seguente:
 
@@ -178,32 +200,1231 @@ Per garantire completezza e rigore metodologico, ogni caso d'uso segue la strutt
 \rowcolor[HTML]{EFEFEF} 
 \textbf{Campo} & \textbf{Descrizione} \\ \hline
 \textbf{Descrizione} & Breve riassunto che spiega l'obiettivo del caso d'uso e il valore che apporta all'utente. \\ \hline
-\textbf{Attori Principali} & Persone o entità che interagiscono attivamente con il sistema per raggiungere un obiettivo, avviando l'operazione. \\ \hline
-\textbf{Attori Secondari} & Entità esterne (come l'LLM$_{G}$) che interagiscono con il sistema in modo passivo o forniscono servizi necessari al completamento del compito. \\ \hline
-\textbf{Precondizioni} & Stato in cui deve trovarsi il sistema affinché il caso d'uso possa essere avviato con successo. \\ \hline
-\textbf{Postcondizioni} & Stato del sistema al termine dell'esecuzione del caso d'uso, garantendo che l'obiettivo sia stato raggiunto. \\ \hline
-\textbf{Scenario Principale} & Sequenza ordinata di passi che l'attore e il sistema compiono per completare l'operazione. \\ \hline
-\textbf{Estensioni} & Casi d'uso aggiuntivi o varianti che possono attivarsi in base a specifiche condizioni durante il flusso principale. \\ \hline
+\textbf{Attori Principali} & Persone o entità che interagiscono attivamente con il sistema$_G$ per raggiungere un obiettivo, avviando l'operazione. \\ \hline
+\textbf{Attori Secondari} & Entità esterne (come l'LLM$_{G}$) che interagiscono con il sistema$_G$ in modo passivo o forniscono servizi necessari al completamento del compito. \\ \hline
+\textbf{Precondizioni} & Stato in cui deve trovarsi il sistema$_G$ affinché il caso d'uso possa essere avviato con successo. \\ \hline
+\textbf{Postcondizioni} & Stato del sistema$_G$ al termine dell'esecuzione del caso d'uso, garantendo che l'obiettivo sia stato raggiunto. \\ \hline
+\textbf{Scenario Principale} & Sequenza ordinata di passi che l'attore e il sistema$_G$ compiono per completare l'operazione. \\ \hline
+\textbf{Estensioni} & Casi d'uso$_G$ aggiuntivi o varianti che possono attivarsi in base a specifiche condizioni durante il flusso principale. \\ \hline
 \textbf{Inclusioni} & Funzionalità comuni o moduli esterni che vengono obbligatoriamente richiamati per il corretto funzionamento del caso d'uso. \\ \hline
 \end{tabular}
-\caption{Struttura della documentazione dei Casi d'Uso}
+\caption{Struttura della documentazione dei Casi d'Uso$_G$}
 \end{table}
 
 \subsection{Attori del Sistema}
 
-All'interno del sistema Second Brain, abbiamo identificato tre tipologie principali di attori$_{G}$:
+All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie principali di attori$_{G}$:
 
 \begin{itemize}
-    \item \textbf{Utente:} La persona fisica che interagisce con l'interfaccia del sistema per gestire le proprie note, organizzare la conoscenza e consultare le informazioni. È l'attore primario$_{G}$ che genera gli input.
-    \item \textbf{LLM$_{G}$:} Il modello di intelligenza artificiale integrato nel sistema. Agisce come attore secondario$_{G}$, fornendo le funzionalità avanzate di elaborazione del linguaggio naturale, sintesi e generazione di contenuti su richiesta del sistema.
+    \item \textbf{Utente:} La persona fisica che interagisce con l'interfaccia del sistema$_G$ per gestire le proprie note, organizzare la conoscenza e consultare le informazioni. È l'attore primario$_{G}$ che genera gli input$_{G}$.
+    \item \textbf{LLM$_{G}$:} Il modello di intelligenza artificiale integrato nel sistema$_G$. Agisce come attore secondario$_{G}$, fornendo le funzionalità avanzate di elaborazione del linguaggio naturale, sintesi e generazione di contenuti su richiesta del sistema$_G$.
     \item \textbf{Sistema di Persistenza$_{G}$:} Componente responsabile del salvataggio e del recupero dei dati. Agisce come attore secondario$_{G}$ garantendo che le informazioni siano memorizzate in modo permanente e siano accessibili nelle sessioni successive.
 \end{itemize}
 
-\susection{Lista Casi d'Uso}
-\subsubsection{Editing di base}
+\subsection{Editing di base}
+\hypertarget{uc:1}{}
+\subsubsection{UC 1 - Scrittura testo nell'editor}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente inserisce del testo libero all'interno dell'area di editing del sistema.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema è operativo e l'utente ha il focus sull'area dell'editor Markdown.
+    \item \textbf{Postcondizioni:} Il testo inserito è visibile nell'editor e il sistema aggiorna la vista di rendering grafico.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente digita caratteri alfanumerici o simboli nell'editor.
+        \item Il sistema acquisisce l'input e aggiorna il contenuto del documento in tempo reale.
+    \end{enumerate}
+\end{itemize}
 
-\subsubsection{Funzionalità AI}
+\hypertarget{uc:2}{}
+\subsubsection{UC 2 - Selezione del testo}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente seleziona una porzione di testo o l'intero documento per successive manipolazioni.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} L'editor contiene del testo e il sistema è operativo.
+    \item \textbf{Postcondizioni:} Il testo evidenziato risulta selezionato dal sistema, pronto per essere formattato o elaborato.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente agisce sui controlli di input per evidenziare il testo desiderato.
+        \item Il sistema evidenzia visivamente la porzione selezionata.
+    \end{enumerate}
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:2.1}{UC 2.1 - Selezione di un'area di testo con cursore}
+        \item \hyperlink{uc:2.2}{UC 2.2 - Selezione documento intero}
+    \end{itemize}
+\end{itemize}
 
+\hypertarget{uc:2.1}{}
+\paragraph{UC 2.1 - Selezione di un'area di testo con cursore}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente seleziona una porzione specifica di testo utilizzando il cursore del mouse o la tastiera.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema è operativo e l'editor contiene del testo.
+    \item \textbf{Postcondizioni:} La porzione specifica di testo è evidenziata e registrata dal sistema come selezione corrente.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente posiziona il cursore all'inizio della porzione desiderata.
+        \item L'utente trascina il cursore o utilizza combinazioni di tasti fino alla fine della porzione desiderata.
+        \item Il sistema evidenzia l'area corrispondente.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:2.2}{}
+\paragraph{UC 2.2 - Selezione documento intero}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente seleziona tutto il testo presente nell'editor in una singola operazione.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema è operativo e l'editor contiene del testo.
+    \item \textbf{Postcondizioni:} L'intero contenuto testuale è evidenziato e registrato come selezione corrente.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente utilizza una scorciatoia da tastiera o un comando di menu per selezionare tutto.
+        \item Il sistema evidenzia l'intero documento.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:3}{}
+\subsubsection{UC 3 - Manipolazione del testo}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente applica operazioni di base di manipolazione (taglia, copia, incolla) al testo nell'editor.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema è operativo e, per le operazioni di taglia/copia, una porzione di testo è selezionata.
+    \item \textbf{Postcondizioni:} Il testo viene modificato nell'editor o salvato negli appunti di sistema.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona il testo (se necessario).
+        \item L'utente attiva il comando di manipolazione desiderato.
+        \item Il sistema esegue l'operazione aggiornando l'editor e/o gli appunti.
+    \end{enumerate}
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:3.1}{UC 3.1 - Taglia}
+        \item \hyperlink{uc:3.2}{UC 3.2 - Copia}
+        \item \hyperlink{uc:3.3}{UC 3.3 - Incolla}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:3.1}{}
+\paragraph{UC 3.1 - Taglia}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente rimuove il testo selezionato copiandolo negli appunti.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Una porzione di testo è selezionata.
+    \item \textbf{Postcondizioni:} Il testo scompare dall'editor e viene salvato negli appunti.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente esegue il comando "Taglia".
+        \item Il sistema salva il testo selezionato negli appunti.
+        \item Il sistema rimuove il testo dall'editor.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:3.2}{}
+\paragraph{UC 3.2 - Copia}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente duplica il testo selezionato negli appunti senza rimuoverlo.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Una porzione di testo è selezionata.
+    \item \textbf{Postcondizioni:} Il testo viene salvato negli appunti; l'editor rimane inalterato.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente esegue il comando "Copia".
+        \item Il sistema salva il testo selezionato negli appunti.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:3.3}{}
+\paragraph{UC 3.3 - Incolla}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente inserisce nell'editor il contenuto presente negli appunti.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Gli appunti contengono del testo e il cursore è posizionato nell'editor.
+    \item \textbf{Postcondizioni:} Il testo degli appunti viene inserito nell'editor nella posizione del cursore.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente esegue il comando "Incolla".
+        \item Il sistema recupera il testo dagli appunti e lo inserisce nel documento.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:4}{}
+\subsubsection{UC 4 - Azione di Undo}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente annulla l'ultima operazione effettuata nell'editor.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} È stata effettuata almeno una modifica al testo.
+    \item \textbf{Postcondizioni:} Lo stato dell'editor torna a quello precedente all'ultima modifica.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente attiva il comando "Undo".
+        \item Il sistema annulla l'ultima azione registrata nella cronologia delle modifiche.
+        \item Il sistema aggiorna la visualizzazione dell'editor.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:5}{}
+\subsubsection{UC 5 - Azione di Redo}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente ripristina l'ultima operazione che era stata precedentemente annullata.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} È stata effettuata almeno un'azione di "Undo" e non sono state inserite nuove modifiche.
+    \item \textbf{Postcondizioni:} Lo stato dell'editor avanza ripristinando la modifica annullata.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente attiva il comando "Redo".
+        \item Il sistema ripristina l'azione successiva nella cronologia delle modifiche.
+        \item Il sistema aggiorna la visualizzazione dell'editor.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:6}{}
+\subsubsection{UC 6 - Formattazione del Testo}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente applica o rimuove la formattazione Markdown a una porzione di testo.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema è operativo e il cursore è posizionato o una porzione di testo è selezionata.
+    \item \textbf{Postcondizioni:} I marcatori Markdown corrispondenti vengono aggiunti o rimossi dal testo.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona una stringa di testo o posiziona il cursore.
+        \item L'utente attiva il comando di formattazione desiderato.
+        \item Il sistema applica o rimuove i tag Markdown nell'editor e aggiorna il rendering.
+    \end{enumerate}
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:6.1}{UC 6.1 - Applicazione grassetto}
+        \item \hyperlink{uc:6.2}{UC 6.2 - Applicazione corsivo}
+        \item \hyperlink{uc:6.3}{UC 6.3 - Applicazione sottolineato}
+        \item \hyperlink{uc:6.4}{UC 6.4 - Applicazione barrato}
+        \item \hyperlink{uc:6.5}{UC 6.5 - Applicazione evidenziazione}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:6.1}{}
+\paragraph{UC 6.1 - Applicazione grassetto}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente applica la formattazione in grassetto al testo.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Una porzione di testo è selezionata (non formattata in grassetto).
+    \item \textbf{Postcondizioni:} Il sistema avvolge il testo selezionato con i marcatori Markdown per il grassetto.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente attiva il comando "Grassetto".
+        \item Il sistema inserisce i marcatori corrispondenti attorno al testo.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:6.2}{}
+\paragraph{UC 6.2 - Rimozione grassetto}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente rimuove la formattazione in grassetto.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Una porzione di testo in grassetto è selezionata o il cursore si trova al suo interno.
+    \item \textbf{Postcondizioni:} Il sistema rimuove i marcatori Markdown del grassetto.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente disattiva il comando "Grassetto".
+        \item Il sistema rimuove i marcatori corrispondenti dal testo.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:6.3}{}
+\paragraph{UC 6.3 - Applicazione corsivo}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente applica la formattazione in corsivo al testo.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Una porzione di testo è selezionata.
+    \item \textbf{Postcondizioni:} Il sistema avvolge il testo con i marcatori Markdown per il corsivo.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente attiva il comando "Corsivo".
+        \item Il sistema inserisce i marcatori corrispondenti.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:6.4}{}
+\paragraph{UC 6.4 - Rimozione corsivo}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente rimuove la formattazione in corsivo.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Una porzione di testo in corsivo è selezionata.
+    \item \textbf{Postcondizioni:} Il sistema rimuove i marcatori Markdown del corsivo.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente disattiva il comando "Corsivo".
+        \item Il sistema rimuove i marcatori corrispondenti.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:6.5}{}
+\paragraph{UC 6.5 - Applicazione sottolineato}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente applica la formattazione sottolineata al testo.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Una porzione di testo è selezionata.
+    \item \textbf{Postcondizioni:} Il sistema avvolge il testo con i marcatori per la sottolineatura.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente attiva il comando "Sottolineato".
+        \item Il sistema inserisce i tag HTML o i marcatori supportati per la sottolineatura.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:6.6}{}
+\paragraph{UC 6.6 - Rimozione sottolineato}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente rimuove la formattazione sottolineata.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Una porzione di testo sottolineata è selezionata.
+    \item \textbf{Postcondizioni:} Il sistema rimuove i tag di sottolineatura.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente disattiva il comando "Sottolineato".
+        \item Il sistema rimuove i marcatori corrispondenti.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:6.7}{}
+\paragraph{UC 6.7 - Applicazione barrato}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente applica la formattazione barrata al testo.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Una porzione di testo è selezionata.
+    \item \textbf{Postcondizioni:} Il sistema avvolge il testo con i marcatori Markdown per il barrato.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente attiva il comando "Barrato".
+        \item Il sistema inserisce i marcatori corrispondenti (es. tilde).
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:6.8}{}
+\paragraph{UC 6.8 - Rimozione barrato}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente rimuove la formattazione barrata.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Una porzione di testo barrata è selezionata.
+    \item \textbf{Postcondizioni:} Il sistema rimuove i marcatori del barrato.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente disattiva il comando "Barrato".
+        \item Il sistema rimuove i marcatori corrispondenti.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:6.9}{}
+\paragraph{UC 6.9 - Applicazione evidenziazione}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente applica la formattazione di evidenziazione al testo.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Una porzione di testo è selezionata.
+    \item \textbf{Postcondizioni:} Il sistema avvolge il testo con i marcatori Markdown supportati per l'evidenziazione.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente attiva il comando "Evidenziazione".
+        \item Il sistema inserisce i marcatori corrispondenti.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:6.10}{}
+\subparagraph{UC 6.10 - Rimozione evidenziazione}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente rimuove la formattazione di evidenziazione.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Una porzione di testo evidenziata è selezionata.
+    \item \textbf{Postcondizioni:} Il sistema rimuove i marcatori di evidenziazione.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente disattiva il comando "Evidenziazione".
+        \item Il sistema rimuove i marcatori corrispondenti.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:7}{}
+\subsubsection{UC 7 - Gestione Titoli}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente inserisce o rimuove intestazioni di vari livelli (Titoli e Sottotitoli).
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema è operativo e il cursore è posizionato su una riga.
+    \item \textbf{Postcondizioni:} La riga corrente viene trasformata in un titolo o riportata a testo normale.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona il livello di intestazione desiderato.
+        \item Il sistema aggiunge o rimuove i marcatori Markdown (cancelletti) all'inizio della riga.
+    \end{enumerate}
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:7.1}{UC 7.1 - Inserimento titolo}
+        \item \hyperlink{uc:7.2}{UC 7.2 - Inserimento sottotitolo}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:7.1}{}
+\paragraph{UC 7.1 - Inserimento titolo}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente converte la riga corrente in un'intestazione principale.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il cursore si trova su una riga.
+    \item \textbf{Postcondizioni:} Il sistema inserisce il marcatore di titolo (es. singolo cancelletto).
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente attiva il comando "Titolo".
+        \item Il sistema antepone il marcatore corrispondente alla riga.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:7.2}{}
+\paragraph{UC 7.2 - Rimozione titolo}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente rimuove la formattazione da titolo principale.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il cursore si trova su una riga formattata come titolo.
+    \item \textbf{Postcondizioni:} Il marcatore di titolo viene eliminato.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente disattiva il comando "Titolo".
+        \item Il sistema rimuove il marcatore corrispondente dalla riga.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:7.3}{}
+\paragraph{UC 7.3 - Inserimento sottotitolo}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente converte la riga corrente in un'intestazione secondaria o di livello inferiore.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il cursore si trova su una riga.
+    \item \textbf{Postcondizioni:} Il sistema inserisce i marcatori di sottotitolo (es. cancelletti multipli).
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona il livello di "Sottotitolo" desiderato.
+        \item Il sistema antepone i marcatori corrispondenti alla riga.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:7.4}{}
+\paragraph{UC 7.4 - Rimozione sottotitolo}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente rimuove la formattazione da sottotitolo.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il cursore si trova su una riga formattata come sottotitolo.
+    \item \textbf{Postcondizioni:} I marcatori di sottotitolo vengono eliminati.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente disattiva la formattazione corrente.
+        \item Il sistema rimuove i marcatori dalla riga.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:8}{}
+\subsubsection{UC 8 - Gestione Elenchi}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente gestisce l'inserimento o l'eliminazione di elenchi puntati o numerati.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema è operativo.
+    \item \textbf{Postcondizioni:} Vengono aggiunti o rimossi i marcatori Markdown di elenco alle righe selezionate.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona una o più righe.
+        \item L'utente attiva o disattiva il comando per gli elenchi.
+        \item Il sistema aggiorna i marcatori di riga.
+    \end{enumerate}
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:8.1}{UC 8.1 - Inserimento elenco}
+        \item \hyperlink{uc:8.2}{UC 8.2 - Eliminazione elenco}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:8.1}{}
+\paragraph{UC 8.1 - Inserimento elenco}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente trasforma il testo in un elenco formattato.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il cursore o la selezione copre le righe desiderate.
+    \item \textbf{Postcondizioni:} Il sistema inserisce i marcatori per elenco puntato o numerato.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente attiva il comando per inserire un elenco.
+        \item Il sistema inserisce i rispettivi marcatori all'inizio di ogni riga.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:8.2}{}
+\paragraph{UC 8.2 - Eliminazione elenco}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente rimuove la formattazione di elenco dalle righe correnti.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il testo selezionato è formattato come elenco.
+    \item \textbf{Postcondizioni:} I marcatori di elenco vengono rimossi.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente disattiva il comando di elenco.
+        \item Il sistema rimuove i marcatori di elenco dalle righe interessate.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:9}{}
+\subsubsection{UC 9 - Gestione Citazioni}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente gestisce l'inserimento o la rimozione di blocchi di citazione (blockquotes).
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema è operativo.
+    \item \textbf{Postcondizioni:} Vengono aggiunti o rimossi i marcatori Markdown di citazione.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona il testo.
+        \item L'utente attiva il comando per le citazioni.
+        \item Il sistema applica o rimuove il marcatore di citazione (es. $>$) all'inizio delle righe.
+    \end{enumerate}
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:9.1}{UC 9.1 - Inserimento citazione}
+        \item \hyperlink{uc:9.2}{UC 9.2 - Eliminazione citazione}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:9.1}{}
+\paragraph{UC 9.1 - Inserimento citazione}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente trasforma il testo corrente in un blocco di citazione.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il cursore si trova su una riga.
+    \item \textbf{Postcondizioni:} Il marcatore di citazione è anteposto alla riga.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente esegue il comando di inserimento citazione.
+        \item Il sistema inserisce il carattere $>$ all'inizio del paragrafo.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:9.2}{}
+\paragraph{UC 9.2 - Eliminazione citazione}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente rimuove la formattazione di citazione.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il testo è formattato come citazione.
+    \item \textbf{Postcondizioni:} Il marcatore di citazione viene rimosso.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente esegue il comando di rimozione citazione.
+        \item Il sistema rimuove il carattere $>$ dalla riga.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:10}{}
+\subsubsection{UC 10 - Gestione Tabelle}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente crea e manipola strutture tabellari all'interno dell'editor.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema è operativo e il cursore è posizionato nell'editor.
+    \item \textbf{Postcondizioni:} L'editor riflette le modifiche strutturali o di contenuto apportate alla tabella Markdown.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente attiva un comando per la gestione delle tabelle.
+        \item Il sistema inserisce, modifica o rimuove la sintassi Markdown della tabella.
+        \item Il render grafico si aggiorna mostrando la struttura tabellare corrente.
+    \end{enumerate}
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:10.1}{UC 10.1 - Inserimento tabella}
+        \item \hyperlink{uc:10.2}{UC 10.2 - Modifica contenuto cella}
+        \item \hyperlink{uc:10.3}{UC 10.3 - Aggiunta riga}
+        \item \hyperlink{uc:10.4}{UC 10.4 - Aggiunta colonna}
+        \item \hyperlink{uc:10.5}{UC 10.5 - Rimozione riga}
+        \item \hyperlink{uc:10.6}{UC 10.6 - Rimozione colonna}
+        \item \hyperlink{uc:10.7}{UC 10.7 - Eliminazione tabella}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:10.1}{}
+\paragraph{UC 10.1 - Inserimento tabella}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente inserisce una nuova tabella vuota nell'editor.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il cursore si trova su una riga vuota.
+    \item \textbf{Postcondizioni:} Il sistema genera e inserisce lo scheletro Markdown di una tabella di default.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente richiama la funzione "Inserisci Tabella".
+        \item Il sistema inserisce la sintassi Markdown di base per le righe, le colonne e l'intestazione.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:10.2}{}
+\paragraph{UC 10.2 - Modifica contenuto cella}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente modifica il testo all'interno di una specifica cella della tabella.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Una tabella è presente nell'editor.
+    \item \textbf{Postcondizioni:} Il contenuto della cella viene aggiornato all'interno dei divisori di colonna.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente posiziona il cursore tra i divisori della cella (caratteri $|$).
+        \item L'utente inserisce o elimina testo.
+        \item Il sistema aggiorna la tabella in tempo reale.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:10.3}{}
+\paragraph{UC 10.3 - Aggiunta riga}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente inserisce una nuova riga all'interno di una tabella esistente.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il cursore si trova all'interno di una tabella Markdown valida.
+    \item \textbf{Postcondizioni:} Il sistema inserisce una nuova riga con il numero corretto di celle.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente richiede l'aggiunta di una riga tramite interfaccia o scorciatoia.
+        \item Il sistema genera i caratteri divisori necessari e li inserisce nella posizione indicata.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:10.4}{}
+\paragraph{UC 10.4 - Aggiunta colonna}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente inserisce una nuova colonna nella tabella.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il cursore si trova all'interno di una tabella Markdown valida.
+    \item \textbf{Postcondizioni:} Il sistema aggiorna tutte le righe della tabella aggiungendo una nuova cella.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente richiede l'aggiunta di una colonna.
+        \item Il sistema modifica ogni riga della tabella inserendo un nuovo delimitatore $|$ e spazio vuoto.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:10.5}{}
+\paragraph{UC 10.5 - Rimozione riga}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente elimina una riga specifica dalla tabella.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il cursore si trova all'interno di una riga di tabella valida.
+    \item \textbf{Postcondizioni:} La riga corrente viene rimossa dall'editor.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente richiede l'eliminazione della riga.
+        \item Il sistema identifica i limiti della riga Markdown e la rimuove dal documento.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:10.6}{}
+\paragraph{UC 10.6 - Rimozione colonna}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente elimina un'intera colonna dalla tabella.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il cursore si trova in una colonna di una tabella Markdown valida.
+    \item \textbf{Postcondizioni:} La colonna indicata viene rimossa da tutte le righe della tabella.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente richiede l'eliminazione della colonna corrente.
+        \item Il sistema elabora l'intera struttura tabellare e rimuove i dati e i delimitatori corrispondenti alla colonna selezionata.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:10.7}{}
+\paragraph{UC 10.7 - Eliminazione tabella}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente rimuove interamente la tabella dall'editor.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il cursore o la selezione identificano la struttura di una tabella.
+    \item \textbf{Postcondizioni:} Tutti i marcatori Markdown relativi alla tabella vengono eliminati.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'intera tabella e richiede l'eliminazione.
+        \item Il sistema cancella tutte le righe della struttura tabellare dall'editor.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:11}{}
+\subsubsection{UC 11 - Gestione Codice}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente interagisce con l'editor per gestire la formattazione e l'inserimento di sezioni di codice sorgente all'interno del documento Markdown.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema è operativo e l'utente si trova nell'area di editing.
+    \item \textbf{Postcondizioni:} Il documento viene aggiornato con l'aggiunta o la rimozione della sezione di codice, riflettendo le modifiche nel render grafico.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona un'area di testo o posiziona il cursore nel punto desiderato.
+        \item L'utente richiama il comando per la gestione del blocco di codice.
+        \item Il sistema applica le modifiche richieste e aggiorna l'interfaccia.
+    \end{enumerate}
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:11.1}{UC 11.1 - Inserimento sezione di codice}
+        \item \hyperlink{uc:11.2}{UC 11.2 - Eliminazione sezione di codice}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:11.1}{}
+\paragraph{UC 11.1 - Inserimento sezione di codice}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente inserisce la formattazione necessaria per rappresentare un blocco di codice (es. tramite backtick multipli).
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema è operativo e il cursore è posizionato nell'editor.
+    \item \textbf{Postcondizioni:} Il sistema inserisce i marcatori Markdown per il blocco di codice e il render lo visualizza formattato correttamente.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente attiva il comando di inserimento codice (tramite scorciatoia da tastiera o interfaccia).
+        \item Il sistema inserisce i marcatori di apertura e chiusura per il codice.
+        \item Il cursore viene posizionato all'interno dei marcatori pronti per la digitazione.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:11.2}{}
+\paragraph{UC 11.2 - Eliminazione sezione di codice}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente rimuove la formattazione di codice da una sezione precedentemente definita.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} È presente una sezione di codice nell'editor.
+    \item \textbf{Postcondizioni:} Il sistema rimuove i marcatori del codice, mantenendo il testo al suo interno in formato normale.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona i marcatori del blocco di codice.
+        \item L'utente esegue il comando di eliminazione.
+        \item Il sistema rimuove la formattazione Markdown relativa al codice.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:12}{}
+\subsubsection{UC 12 - Gestione Formule Scientifiche}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente gestisce l'inserimento e la rimozione di espressioni matematiche o formule scientifiche formattate.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema è operativo e l'utente si trova nell'area di editing.
+    \item \textbf{Postcondizioni:} Il documento riflette la presenza o l'assenza della formula scientifica con relativo rendering (es. LaTeX/KaTeX in Markdown).
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente identifica la posizione per la formula.
+        \item L'utente applica il comando per inserire o rimuovere la sintassi matematica.
+        \item Il sistema aggiorna l'editor e il pannello di render.
+    \end{enumerate}
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:12.1}{UC 12.1 - Inserimento formula scientifica}
+        \item \hyperlink{uc:12.2}{UC 12.2 - Eliminazione formula scientifica}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:12.1}{}
+\paragraph{UC 12.1 - Inserimento formula scientifica}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente inserisce la sintassi specifica per il rendering di una formula matematica.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema è in attesa di input nell'editor di testo.
+    \item \textbf{Postcondizioni:} I marcatori per la formula vengono aggiunti e la vista renderizzata mostra l'espressione formattata.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona il comando di inserimento formula.
+        \item Il sistema inserisce i delimitatori matematici (es. \$\$).
+        \item L'utente digita l'espressione all'interno dei delimitatori.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:12.2}{}
+\paragraph{UC 12.2 - Eliminazione formula scientifica}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente rimuove una formula scientifica esistente o i suoi delimitatori.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Una formula scientifica è presente nel testo.
+    \item \textbf{Postcondizioni:} La formula o la sua sintassi viene rimossa dall'editor e dal render.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona la formula o i suoi delimitatori.
+        \item L'utente preme il tasto di cancellazione.
+        \item Il sistema rimuove il blocco selezionato dal documento.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:13}{}
+\subsubsection{UC 13 - Gestione Immagini}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente amministra le immagini all'interno della nota Markdown, potendole inserire, sostituire o eliminare.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema è operativo e la nota è aperta nell'editor.
+    \item \textbf{Postcondizioni:} Il markup per le immagini viene modificato di conseguenza e il rendering visivo si aggiorna.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente sceglie l'operazione da effettuare su un'immagine (inserimento, sostituzione, eliminazione).
+        \item Il sistema richiede eventuali parametri (es. URL o percorso) se necessari.
+        \item Il sistema applica la modifica al testo Markdown.
+    \end{enumerate}
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:13.1}{UC 13.1 - Inserimento immagine}
+        \item \hyperlink{uc:13.2}{UC 13.2 - Sostituzione immagine}
+        \item \hyperlink{uc:13.3}{UC 13.3 - Eliminazione immagine}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:13.1}{}
+\paragraph{UC 13.1 - Inserimento immagine}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente aggiunge un'immagine alla nota fornendo un URL o un percorso file.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il cursore è posizionato nell'editor.
+    \item \textbf{Postcondizioni:} La sintassi Markdown per l'immagine viene inserita nell'editor e l'immagine è visibile nel render.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente invoca l'azione di inserimento immagine.
+        \item Il sistema richiede la specificazione della fonte (URL/percorso) e, opzionalmente, il testo alternativo.
+        \item L'utente conferma i dati.
+        \item Il sistema genera il markup Markdown relativo all'immagine.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:13.2}{}
+\paragraph{UC 13.2 - Sostituzione immagine}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente modifica l'origine o i parametri di un'immagine precedentemente inserita.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Un marcatore di immagine è presente nel documento.
+    \item \textbf{Postcondizioni:} L'origine dell'immagine viene aggiornata nel testo sorgente.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona la sintassi dell'immagine da modificare.
+        \item L'utente altera il link o il testo alternativo presente tra i marcatori.
+        \item Il sistema aggiorna dinamicamente la risorsa visualizzata nel render.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:13.3}{}
+\paragraph{UC 13.3 - Eliminazione immagine}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente rimuove il riferimento a un'immagine dalla nota.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il documento contiene almeno un'immagine inserita.
+    \item \textbf{Postcondizioni:} La stringa di markup dell'immagine è rimossa dal testo e il render non la visualizza più.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona la stringa Markdown corrispondente all'immagine.
+        \item L'utente effettua la cancellazione.
+        \item Il sistema aggiorna l'editor.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:14}{}
+\subsubsection{UC 14 - Gestione Link}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente gestisce i collegamenti ipertestuali nel documento, per riferimenti esterni o interni.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} L'utente interagisce con l'area di testo dell'editor.
+    \item \textbf{Postcondizioni:} La sintassi per il link viene aggiunta o rimossa.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente decide di manipolare un link.
+        \item L'utente applica il comando di inserimento o eliminazione.
+        \item Il sistema riflette i cambiamenti.
+    \end{enumerate}
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:14.1}{UC 14.1 - Inserimento link}
+        \item \hyperlink{uc:14.2}{UC 14.2 - Eliminazione link}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:14.1}{}
+\paragraph{UC 14.1 - Inserimento link}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente trasforma una porzione di testo in un collegamento cliccabile fornendo un URL.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema è operativo.
+    \item \textbf{Postcondizioni:} Il testo viene racchiuso nei marcatori Markdown per i link e risulta navigabile nel render.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona il testo da rendere link o posiziona il cursore.
+        \item L'utente esegue il comando di inserimento link.
+        \item Il sistema formatta il testo e attende l'inserimento dell'indirizzo di destinazione (URL).
+        \item L'utente inserisce l'URL e conferma.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:14.2}{}
+\paragraph{UC 14.2 - Eliminazione link}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente rimuove un collegamento ipertestuale mantenendo, ove desiderato, il testo originale.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Un link Markdown è presente nell'editor.
+    \item \textbf{Postcondizioni:} I delimitatori e l'URL vengono cancellati, il link scompare dal render.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona la sintassi del link da rimuovere.
+        \item L'utente cancella la formattazione.
+        \item Il sistema ripristina il testo semplice.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:15}{}
+\subsubsection{UC 15 - Gestione Ancore}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente inserisce o rimuove riferimenti interni (ancore) per la navigazione rapida all'interno dello stesso documento.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} L'utente si trova nell'editor di testo.
+    \item \textbf{Postcondizioni:} L'ancora viene posizionata o rimossa e la struttura di navigazione si adegua.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente avvia l'operazione di gestione ancora.
+        \item Il sistema inserisce o elimina il marcatore HTML/Markdown necessario.
+    \end{enumerate}
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:15.1}{UC 15.1 - Inserimento ancora}
+        \item \hyperlink{uc:15.2}{UC 15.2 - Eliminazione ancora}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:15.1}{}
+\paragraph{UC 15.1 - Inserimento ancora}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente definisce un punto di destinazione nel documento assegnandogli un identificativo.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il cursore è nella posizione desiderata.
+    \item \textbf{Postcondizioni:} Viene generato il markup per l'ancora, utilizzabile da link interni.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona il comando per creare un'ancora.
+        \item Il sistema inserisce la sintassi appropriata (es. attributo id) chiedendo l'identificativo.
+        \item L'utente conferma il nome dell'ancora.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:15.2}{}
+\paragraph{UC 15.2 - Eliminazione ancora}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente rimuove un'ancora di navigazione interna precedentemente creata.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Un'ancora è definita nel testo.
+    \item \textbf{Postcondizioni:} Il markup dell'ancora viene rimosso dal documento.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente individua il marcatore dell'ancora nell'editor.
+        \item L'utente provvede alla sua cancellazione.
+        \item Il sistema aggiorna l'editor.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:16}{}
+\subsubsection{UC 16 - Apertura e chiusura automatica simboli}
+\begin{itemize}
+    \item \textbf{Descrizione:} Il sistema offre un'assistenza alla digitazione che inserisce automaticamente il carattere di chiusura (es. parentesi, virgolette) all'apertura del corrispondente.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} L'interfaccia dell'applicazione è caricata.
+    \item \textbf{Postcondizioni:} L'impostazione di autocompletamento dei simboli viene aggiornata.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente naviga nelle impostazioni dell'editor o usa una scorciatoia rapida.
+        \item L'utente commuta lo stato della funzionalità.
+        \item Il sistema salva e applica il comportamento di digitazione aggiornato.
+    \end{enumerate}
+    \item \textbf{Generalizzazione:}
+    \begin{itemize}
+        \item \hyperlink{uc:16.1}{UC 16.1 - Attivazione aiuto simboli}
+        \item \hyperlink{uc:16.2}{UC 16.2 - Disattivazione aiuto simboli}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:16.1}{}
+\paragraph{UC 16.1 - Attivazione aiuto simboli}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente abilita l'inserimento automatico del carattere di chiusura.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} La funzionalità di auto-chiusura è disattiva.
+    \item \textbf{Postcondizioni:} Il sistema posiziona automaticamente il simbolo di chiusura quando l'utente digita un carattere di apertura valido.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione per attivare l'aiuto simboli.
+        \item Il sistema registra l'impostazione.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:16.2}{}
+\paragraph{UC 16.2 - Disattivazione aiuto simboli}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente disabilita l'inserimento automatico per avere un controllo manuale su ogni carattere digitato.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} La funzionalità di auto-chiusura è attiva.
+    \item \textbf{Postcondizioni:} Il sistema cessa di generare i caratteri di chiusura automatici.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione per disattivare l'aiuto simboli.
+        \item Il sistema disabilita il comportamento per i futuri input.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:17}{}
+\subsubsection{UC 17 - Gestione Sidebar}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente modifica lo stato della barra laterale (sidebar) dell'applicazione per massimizzare l'area di lavoro o accedere agli strumenti e all'elenco delle note.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} L'interfaccia principale è visibile.
+    \item \textbf{Postcondizioni:} L'ingombro e lo stato della sidebar vengono modificati nell'interfaccia utente.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente interagisce con i controlli della sidebar (pulsanti o trascinamento).
+        \item Il sistema esegue l'aggiornamento visivo (apertura, chiusura o ridimensionamento).
+    \end{enumerate}
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:17.1}{UC 17.1 - Apertura Sidebar}
+        \item \hyperlink{uc:17.2}{UC 17.2 - Chiusura Sidebar}
+        \item \hyperlink{uc:17.3}{UC 17.3 - Ridimensionamento Sidebar}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:17.1}{}
+\paragraph{UC 17.1 - Apertura Sidebar}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente rende visibile la barra laterale.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} La sidebar è attualmente nascosta.
+    \item \textbf{Postcondizioni:} La sidebar viene espansa e i suoi contenuti sono accessibili.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente clicca sull'icona di attivazione della sidebar.
+        \item Il sistema anima l'apertura del componente e sposta l'area di editing.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:17.2}{}
+\paragraph{UC 17.2 - Chiusura Sidebar}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente nasconde la barra laterale per concentrarsi sul testo.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} La sidebar è attualmente visibile.
+    \item \textbf{Postcondizioni:} La sidebar viene nascosta, estendendo la larghezza dell'editor e del render.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente clicca sul comando di chiusura della sidebar.
+        \item Il sistema comprime il componente liberando spazio visivo.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:17.3}{}
+\paragraph{UC 17.3 - Ridimensionamento Sidebar}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente modifica la larghezza della barra laterale trascinandone il bordo.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} La sidebar è aperta.
+    \item \textbf{Postcondizioni:} La sidebar assume la nuova larghezza impostata dall'utente.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente clicca e tiene premuto sul bordo della sidebar.
+        \item L'utente trascina il mouse verso sinistra o destra.
+        \item Il sistema adatta dinamicamente le dimensioni dei componenti adiacenti.
+        \item L'utente rilascia il mouse confermando la dimensione.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:18}{}
+\subsubsection{UC 18 - Gestione Tema Visivo}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente modifica la combinazione di colori dell'interfaccia utente (tema scuro o chiaro).
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} L'applicazione è avviata.
+    \item \textbf{Postcondizioni:} Il sistema applica la palette di colori corrispondente al tema scelto su tutta l'interfaccia.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente accede alle opzioni di aspetto visivo.
+        \item L'utente seleziona il tema preferito.
+        \item Il sistema renderizza l'interfaccia con il nuovo tema.
+    \end{enumerate}
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:18.1}{UC 18.1 - Attivazione Dark Mode}
+        \item \hyperlink{uc:18.2}{UC 18.2 - Attivazione Light Mode}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:18.1}{}
+\paragraph{UC 18.1 - Attivazione Dark Mode}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente imposta il tema dell'applicazione su colori scuri per ridurre l'affaticamento visivo.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il tema attuale è Light Mode o impostato sul sistema operativo.
+    \item \textbf{Postcondizioni:} L'interfaccia assume sfondi scuri e testo chiaro.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente attiva il selettore per la Dark Mode.
+        \item Il sistema carica i fogli di stile corrispondenti.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:18.2}{}
+\paragraph{UC 18.2 - Attivazione Light Mode}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente imposta il tema dell'applicazione su colori chiari.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il tema attuale è Dark Mode.
+    \item \textbf{Postcondizioni:} L'interfaccia assume sfondi chiari e testo scuro.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente attiva il selettore per la Light Mode.
+        \item Il sistema carica i fogli di stile corrispondenti.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:19}{}
+\subsubsection{UC 19 - Gestione Sincronizzazione Scorrimento}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente attiva o disattiva il "Sync Scroll", ovvero la funzione che permette all'editor e alla finestra di rendering di scorrere verticalmente in modo simultaneo.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema si trova in modalità di visualizzazione combinata (editor e render affiancati).
+    \item \textbf{Postcondizioni:} Il comportamento della barra di scorrimento viene modificato per allineare o rendere indipendenti le due viste.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente invoca il controllo per la sincronizzazione dello scorrimento.
+        \item Il sistema attiva o disattiva il listener per l'allineamento degli assi di scorrimento.
+    \end{enumerate}
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:19.1}{UC 19.1 - Attivazione Sync Scroll}
+        \item \hyperlink{uc:19.2}{UC 19.2 - Disattivazione Sync Scroll}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:19.1}{}
+\paragraph{UC 19.1 - Attivazione Sync Scroll}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente abilita lo scorrimento vincolato in modo che l'anteprima corrisponda in tempo reale al testo inquadrato nell'editor.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il Sync Scroll è disabilitato.
+    \item \textbf{Postcondizioni:} Lo scorrimento di uno dei due pannelli causa lo scorrimento proporzionale dell'altro.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione per vincolare lo scorrimento.
+        \item Il sistema calcola il rapporto di altezza e allinea le due viste alla posizione corrente.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:19.2}{}
+\paragraph{UC 19.2 - Disattivazione Sync Scroll}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente disabilita lo scorrimento sincronizzato per ispezionare due punti differenti del documento contemporaneamente.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il Sync Scroll è abilitato.
+    \item \textbf{Postcondizioni:} L'editor e il render scorrono in modo del tutto indipendente.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione per svincolare lo scorrimento.
+        \item Il sistema scollega l'evento di scorrimento condiviso dai due pannelli.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:20}{}
+\subsubsection{UC 20 - Visualizzazione nota Markdown}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente sceglie il layout di visualizzazione preferito per l'area di lavoro, alternando o affiancando l'editor testuale nudo e il render grafico.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Un documento è caricato nell'applicazione.
+    \item \textbf{Postcondizioni:} L'interfaccia modifica la visibilità e le proporzioni dei pannelli di editing e rendering.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente interagisce con i controlli di visualizzazione dell'area di lavoro.
+        \item Il sistema applica la visualizzazione richiesta nascondendo o mostrando i pannelli pertinenti.
+    \end{enumerate}
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:20.1}{UC 20.1 - Visualizzazione esclusiva editor Markdown}
+        \item \hyperlink{uc:20.2}{UC 20.2 - Visualizzazione esclusiva render Markdown}
+        \item \hyperlink{uc:20.3}{UC 20.3 - Visualizzazione combinata editor e render}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:20.1}{}
+\paragraph{UC 20.1 - Visualizzazione esclusiva editor Markdown}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente nasconde il render grafico per dedicare l'intero spazio visibile alla scrittura pura.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema si trova in visualizzazione combinata o solo render.
+    \item \textbf{Postcondizioni:} L'editor Markdown occupa il 100\% dell'area disponibile e il render è nascosto.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente clicca sul pulsante per la visualizzazione solo editor.
+        \item Il sistema chiude la finestra di renderizzazione ed estende l'area di testo.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:20.2}{}
+\paragraph{UC 20.2 - Visualizzazione esclusiva render Markdown}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente nasconde l'editor di testo per leggere o presentare il documento formattato come prodotto finito.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema si trova in visualizzazione combinata o solo editor.
+    \item \textbf{Postcondizioni:} Il render occupa il 100\% dell'area disponibile e l'editor di testo è nascosto.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente clicca sul pulsante per la visualizzazione solo render.
+        \item Il sistema nasconde l'editor Markdown ed estende la finestra di presentazione grafica.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:20.3}{}
+\paragraph{UC 20.3 - Visualizzazione combinata editor e render}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente sceglie di mantenere visibili in modalità affiancata sia l'editor sorgente sia l'anteprima formattata.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema si trova in una modalità di visualizzazione esclusiva.
+    \item \textbf{Postcondizioni:} Lo schermo viene suddiviso per mostrare simultaneamente sorgente e anteprima.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente clicca sul pulsante per la visualizzazione combinata (split view).
+        \item Il sistema ridimensiona i pannelli, rendendoli entrambi visibili e operativi.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:21}{}
+\subsubsection{UC 21 - Gestione Input Vocale}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente interagisce con il sistema avviando una registrazione vocale (dettatura) per l'inserimento o l'elaborazione del testo tramite voce.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:} Microfono (Dispositivo HW).
+    \item \textbf{Precondizioni:} L'utente ha concesso al browser i permessi di accesso al microfono.
+    \item \textbf{Postcondizioni:} Il sistema cattura l'audio per instradarlo al motore di trascrizione/LLM o annulla l'operazione.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente avvia l'interfaccia di registrazione vocale.
+        \item Il sistema acquisisce l'audio in input.
+        \item L'utente gestisce il flusso (stop o annullamento).
+    \end{enumerate}
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:21.1}{UC 21.1 - Interruzione registrazione vocale con elaborazione dati}
+        \item \hyperlink{uc:21.2}{UC 21.2 - Annullamento registrazione senza elaborazione dati}
+    \end{itemize}
+\end{itemize}
+
+\hypertarget{uc:21.1}{}
+\paragraph{UC 21.1 - Interruzione registrazione vocale con elaborazione dati}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente interrompe una registrazione vocale in corso, inviando l'audio catturato al sistema di trascrizione o di elaborazione per la generazione del testo.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Una registrazione audio tramite microfono è attualmente in corso.
+    \item \textbf{Postcondizioni:} L'audio acquisito viene inviato al sistema di trascrizione/LLM e l'interfaccia di dettatura si chiude.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente clicca sul pulsante di stop o conferma della registrazione.
+        \item Il sistema cessa la cattura dell'audio dal microfono.
+        \item Il sistema invia i dati vocali memorizzati in sessione al motore di trascrizione o all'LLM per l'elaborazione.
+        \item L'interfaccia di dettatura si chiude, restituendo il controllo all'editor.
+    \end{enumerate}
+\end{itemize}
+
+\hypertarget{uc:21.2}{}
+\paragraph{UC 21.2 - Annullamento registrazione vocale con elaborazione dati}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente interrompe attivamente una registrazione vocale in corso scartando l'audio catturato senza inviarlo al sistema di trascrizione o di elaborazione.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Una registrazione audio tramite microfono è attualmente in corso.
+    \item \textbf{Postcondizioni:} L'audio acquisito viene eliminato dalla memoria temporanea e nessuna chiamata all'API viene effettuata. L'editor rimane inalterato.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente clicca sul pulsante di scarto o annullamento della registrazione.
+        \item Il sistema cessa la cattura dell'audio dal microfono.
+        \item Il sistema distrugge i dati vocali memorizzati in sessione e chiude l'interfaccia di dettatura.
+    \end{enumerate}
+\end{itemize}
+
+\subsection{Funzionalità AI}
 Questa sezione del sistema descrive come l'applicazione interagisce con un modello di linguaggio esterno (attore secondario $LLM_G$) per offrire strumenti avanzati di editing.
 
 \hypertarget{uc:22}{}
@@ -601,387 +1822,1336 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \begin{enumerate}
         \item L'utente seleziona la porzione di testo da elaborare.
         \item L'utente imposta i parametri desiderati (\hyperlink{uc:22.1}{UC 22.1}).
+    \end{enumerate}
+\end{itemize}
+
+% --- UC 26 ---
+\hypertarget{uc:26}{}
+\subsubsection{UC 26 - Generazione Automatica di testo (Distant Writing)}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente richiede al sistema di generare un testo originale o espandere un'idea tramite l'integrazione con un LLM.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  LLM$_G$.
+    \item \textbf{Precondizioni:} L'utente ha inserito un prompt$_G$ nell'apposita area e il sistema è connesso all'LLM$_G$
+    \item \textbf{Postcondizioni:} Il sistema mostra il testo generato dall'AI$_G$ pronto per la validazione.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente avvia la funzione di generazione
+        \item L'utente imposta i parametri ed il contesto desiderato (\hyperlink{uc:26.1}{UC 26.1}, \hyperlink{uc:26.2}{UC 26.2}, \hyperlink{uc:26.3}{UC 26.3}).
         \item Il sistema invia la richiesta all'attore secondario LLM.
         \item Il sistema riceve il testo elaborato e lo visualizza.
     \end{enumerate}
-    
+    \item \textbf{Inclusioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:26.1}{UC 26.1 - Inserimento o riutilizzo del prompt}
+        \item \hyperlink{uc:26.2}{UC 26.2 - Selezione della lunghezza desiderata del testo}
+        \item \hyperlink{uc:26.3}{UC 26.3 - Selezione manuale delle note per il contesto della LLM}
+        \item \hyperlink{uc:26.4}{UC 26.4 - Anteprima e conferma del contesto inviato}
+    \end{itemize}
     \item \textbf{Estensioni:}
     \begin{itemize}
-        \item \hyperlink{uc:22.1}{UC 22.1 - Selezione percentuale di riassunto}
-        \item \hyperlink{uc:22.2}{UC 22.2 - Gestione testo insufficiente}
-        \item \hyperlink{uc:22.3}{UC 22.3 - Errore LLM Non Raggiungibile}
+        \item \hyperlink{uc:26.5}{UC 26.5 - Errore LLM non raggiungibile}
     \end{itemize}
 \end{itemize}
 
-\hypertarget{uc:22.1}{}
-\subsection{UC 22.1 - Selezione percentuale di riassunto}
+% --- 26.1 ---
+\hypertarget{uc:26.1}{}
+\paragraph{UC 26.1 - Inserimento o riutilizzo del prompt}
+
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente definisce la lunghezza relativa del riassunto rispetto al testo originale.
+    \item \textbf{Descrizione:} L'utente inserisce una nuova istruzione testuale o ne seleziona una usata in precedenza.
     \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Precondizioni:} L'interfaccia di riassunto è attiva.
-    \item \textbf{Postcondizioni:} Il parametro di concisione viene passato alla richiesta API.
+    \item \textbf{Attori Secondari:}  Sistema di persistenza.
+    \item \textbf{Precondizioni:} Il sistema è in modalità di configurazione del prompt$_G$.
+    \item \textbf{Postcondizioni:} Un prompt$_G$ è selezionato e pronto all'invio.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item L'utente agisce su un selettore numerico o slider.
-        \item Il sistema aggiorna il valore della variabile di configurazione per l'invio dati.
+        \item L'utente apre il menu prompt$_G$.
+        \item L'utente sceglie se scrivere un nuovo prompt o scorrere la cronologia.
+        \item L'utente conferma la selezione.
     \end{enumerate}
 \end{itemize}
 
-\hypertarget{uc:22.2}{}
-\subsection{UC 22.2 - Gestione testo insufficiente per riassunto}{}
+% --- 26.2 ---
+\hypertarget{uc:26.2}{}
+\paragraph{UC 26.2 - Selezione della lunghezza del testo}
+
 \begin{itemize}
-    \item \textbf{Descrizione:} Validazione della lunghezza del testo prima dell'invio.
-    \item \textbf{Attori Principali:} Sistema.
-    \item \textbf{Precondizioni:} L'utente richiede l'esecuzione del riassunto.
-    \item \textbf{Postcondizioni:} La richiesta viene bloccata se i criteri minimi non sono soddisfatti.
+    \item \textbf{Descrizione:} Definizione del vincolo sulla quantità del testo generato (corto, medio, lungo).
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:} Nessuno.
+    \item \textbf{Precondizioni:} Il sistema è in modalità configurazione prompt$_G$.
+    \item \textbf{Postcondizioni:} Il parametro answer\_length è impostato per la richiesta.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item Il sistema effettua il conteggio dei termini nel testo selezionato.
-        \item Il sistema rileva che il testo è al di sotto della soglia minima funzionale.
-        \item Il sistema inibisce l'invio e avvisa l'utente.
+        \item L'utente ha scritto il prompt da inviare.
+        \item L'utente seleziona la lunghezza desiderata della risposta dell'LLM$_G$.
+        \item Il sistema aggiorna i parametri della richiesta.
     \end{enumerate}
 \end{itemize}
 
-\hypertarget{uc:22.3}{}
-\subsection{UC 22.3 - Errore LLM Non Raggiungibile}{}
+% --- 26.3 ---
+\hypertarget{uc:26.3}{}
+\paragraph{UC 26.3 - Selezione manuale delle note da inviare come contesto}
+
 \begin{itemize}
-    \item \textbf{Descrizione:} Gestione della mancata risposta del servizio IA.
-    \item \textbf{Attori Principali:} Sistema.
-    \item \textbf{Attori Secondari:} LLM$_G$.
-    \item \textbf{Precondizioni:} Il sistema ha inoltrato una richiesta di riassunto.
-    \item \textbf{Postcondizioni:} Il sistema notifica l'errore senza compromettere la sessione di lavoro.
+    \item \textbf{Descrizione:} L'utente sceglie una o più note esistenti per fornire base documentale all'AI
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  Sistema di persistenza.
+    \item \textbf{Precondizioni:} Esistono note salvate nel sistema.
+    \item \textbf{Postcondizioni:} Il contenuto delle note selezionate viene aggiunto al buffer del contesto.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item Il sistema rileva un timeout o un errore di rete.
-        \item Il sistema interrompe la comunicazione.
-        \item Il sistema mostra un messaggio di errore all'utente.
+        \item L'utente avvia la funzione di generazione.
+        \item L'utente apre il selettore note.
+        \item Il sistema elenca le note disponibili.
+        \item L'utente marca le note desiderate.
+        \item Il sistema le aggrega per l'invio della richiesta.
     \end{enumerate}
 \end{itemize}
 
-\hypertarget{uc:23}{}
-\subsection{UC 23 - Traduzione contenuto con LLM}
+% --- 26.4 ---
+\hypertarget{uc:26.4}{}
+\paragraph{UC 26.4 - Anteprima e conferma del contesto inviato all'LLM}
+
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente richiede la traduzione automatica del testo in una lingua specifica tramite il servizio LLM.
+    \item \textbf{Descrizione:} Visualizzazione di riepilogo di tutte le informazioni (prompt + note + parametri) prima dell'invio.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  Nessuno.
+    \item \textbf{Precondizioni:} L'utente ha definito prompt, contesto e/o parametri.
+    \item \textbf{Postcondizioni:} La richiesta viene inviata all'LLM$_G$
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item Il sistema mostra il riepilogo.
+        \item L'utente revisiona il riepilogo.
+        \item L'utente preme invia.
+    \end{enumerate}
+\end{itemize}
+
+% --- 26.5 ---
+\hypertarget{uc:26.5}{}
+\paragraph{UC 26.5 - Errore LLM non raggiungibile}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} Gestione della mancanza di risposta da parte del servizio di Intelligenza Artificiale
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:}  LLM$_G$.
-    \item \textbf{Precondizioni:} L'editor contiene testo e la connessione Internet è attiva.
-    \item \textbf{Postcondizioni:} Il sistema sostituisce o affianca il testo originale con la traduzione ottenuta.
+    \item \textbf{Precondizioni:} Una richiesta è stata inviata.
+    \item \textbf{Postcondizioni:} Il sistema torna allo stato precedente all'invio senza perdita di dati locali.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item L'utente seleziona la porzione di testo o l'intero documento.
-        \item L'utente seleziona la lingua di destinazione (\hyperlink{uc:23.1}{UC 23.1}).
-        \item Il sistema inoltra la richiesta di traduzione all'attore secondario LLM.
-        \item Il sistema riceve il testo tradotto e aggiorna l'interfaccia.
+        \item Il sistema rileva un timeout o un errore dall'API$_G$ LLM$_G$
+        \item Il sistema mostra un messaggio di avviso.
+        \item L'utente può tentare un nuovo invio con lo stato precedente all'errore.
+    \end{enumerate}
+\end{itemize}
+
+% --- UC 27 ---
+
+\hypertarget{uc:27}{}
+\subsubsection{UC 27 - Elaborazione vocale}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} Conversione di un input audio in testo strutturato e formattato.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  LLM$_G$.
+    \item \textbf{Precondizioni:} Microfono attivo ed autorizzato.
+    \item \textbf{Postcondizioni:} L'audio è stato trasformato in testo nell'interfaccia
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente avvia la registrazione.
+        \item Termina il parlato.
+        \item Il sistema processa l'audio e mostra il testo.
+    \end{enumerate}
+    \item \textbf{Inclusioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:27.1}{UC 27.1 - Trascrizione e formattazione automatica}
+    \end{itemize}
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:27.2}{UC 27.2 - Gestione audio incomprensibile}
+    \end{itemize}
+\end{itemize}
+
+% --- 27.1 ---
+\hypertarget{uc:27.1}{}
+\paragraph{UC 27.1 - Trascrizione e formattazione automatica}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} Pulizia del testo trascritto (punteggiatura, paragrafi) tramite AI.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  LLM$_G$.
+    \item \textbf{Precondizioni:} Esiste una trascrizione grezza.
+    \item \textbf{Postcondizioni:} Il testo è reso leggibile e stilisticamente corretto.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item Il sistema riceve il testo grezzo.
+        \item Lo invia all'LLM$_G$ per la formattazione.
+        \item L'output pulito viene presentato all'utente.
+    \end{enumerate}
+\end{itemize}
+
+% --- 27.2 ---
+\hypertarget{uc:27.2}{}
+\paragraph{UC 27.2 - Gestione audio incomprensibile}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} Segnalazione all'utente che la qualità audio non permette la trascrizione.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  Nessuno.
+    \item \textbf{Precondizioni:} Input audio ricevuto troppo basso o disturbato.
+    \item \textbf{Postcondizioni:} Richiesta di ripetizione dell'input.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item Il sistema analizza l'audio.
+        \item Il sistema rileva un livello di confidenza troppo basso.
+        \item Interrompe il processo e notifica l'utente.
+    \end{enumerate}
+\end{itemize}
+
+% --- UC 28 ---
+
+\hypertarget{uc:28}{}
+\subsubsection{UC 28 - Validazione output AI}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} Fase decisionale dell'utente sulla qualità del testo ricevuto dall'AI.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  Nessuno.
+    \item \textbf{Precondizioni:} L'LLM ha restituito l'output.
+    \item \textbf{Postcondizioni:} L'output viene accettato, modificato o scartato.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente legge l'output.
+        \item L'utente valuta la pertinenza.
+        \item Seleziona l'azione successiva tra le opzioni disponibili.
     \end{enumerate}
     
-    \item \textbf{Estensioni:}
+    \item \textbf{Generalizzazioni:}
     \begin{itemize}
-        \item \hyperlink{uc:23.1}{UC 23.1 - Selezione lingua di destinazione}
-        \item \hyperlink{uc:23.2}{UC 23.2 - Errore LLM Non Raggiungibile}
+        \item \hyperlink{uc:28.1}{UC 28.1 - Accettazione output}
+        \item \hyperlink{uc:28.2}{UC 28.2 - Rifiuto output}
+        \item \hyperlink{uc:28.1}{UC 28.3 - Rigenerazione output}
+    \end{itemize}
+    \item \textbf{Inclusioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:28.4}{UC 28.4 - Tracciamento delle note sorgente usate per un output AI}
     \end{itemize}
 \end{itemize}
 
-\hypertarget{uc:23.1}{}
-\subsection{UC 23.1 - Selezione lingua di destinazione}
+% --- 28.1 ---
+
+\hypertarget{uc:28.1}{}
+\paragraph{UC 28.1 - Accettazione output}
+
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente sceglie la lingua in cui desidera tradurre il contenuto tra quelle disponibili.
+    \item \textbf{Descrizione:} L'utente esamina il testo prodotto dall'AI e lo giudica idoneo, accettando di utilizzarlo nel sistema.
     \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Precondizioni:} L'interfaccia di traduzione è attiva.
-    \item \textbf{Postcondizioni:} Il sistema imposta il flag della lingua per la chiamata API.
+    \item \textbf{Attori Secondari:}  Sistema di persistenza.
+    \item \textbf{Precondizioni:} L'output dell'LLM è stato visualizzato correttamente a schermo (\hypertarget{uc:28}{UC 28}) e l'utente ha terminato la revisione.
+    \item \textbf{Postcondizioni:} L'output è marcato come validato. Il sistema sblocca le funzioni di persistenza definitiva (\hypertarget{uc:28.1.1}{UC 28.1.1}, \hypertarget{uc:28.1.2}{UC 28.1.2}).
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item L'utente seleziona una delle opzioni disponibili.
-        \item Il sistema conferma la selezione e abilita il tasto di invio.
+        \item L'utente visualizza il testo generato dall'AI nell'area di anteprima.
+        \item L'utente seleziona il comando Conferma.
+        \item Il sistema registra il feedback positivo.
+    \end{enumerate}
+    
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:28.1.1}{UC 28.1.1 - Sostituzione del testo nell'editor}
+        \item \hyperlink{uc:28.1.2}{UC 28.1.2 - Salvataggio dell'output come una nuova nota}
+    \end{itemize}
+\end{itemize}
+
+% --- 28.1.1 ---
+
+\hypertarget{uc:28.1.1}{}
+\subparagraph{UC 28.1.1 - Sostituzione del testo nell'editor}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} L'output AI sostituisce il contenuto corrente di una nota aperta.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  Sistema di persistenza.
+    \item \textbf{Precondizioni:} \hypertarget{uc:28.1}{UC 28.1} attivato.
+    \item \textbf{Postcondizioni:} Il testo originale della nota aperta è sovrascritto.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente sceglie "Sostituisci".
+        \item Il sistema aggiorna il buffere dell'editor.
+        \item Il sistema salva le modifiche.
     \end{enumerate}
 \end{itemize}
 
-\hypertarget{uc:23.2}{}
-\subsection{UC 23.2 - Errore LLM Non Raggiungibile}
+% --- 28.1.2 ---
+
+\hypertarget{uc:28.1.2}{}
+\subparagraph{UC 28.1.2 - Salvataggio dell'output come nuova nota}
+
 \begin{itemize}
-    \item \textbf{Descrizione:} Gestione del fallimento della comunicazione con il servizio di traduzione.
+    \item \textbf{Descrizione:} L'output AI viene archiviato come un documento indipendente.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  Sistema di persistenza.
+    \item \textbf{Precondizioni:} \hypertarget{uc:28.1}{UC 28.1} attivato.
+    \item \textbf{Postcondizioni:} L'output è salvato in una nuova nota e presente nel database.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente sceglie "Salva come nuova".
+        \item Il sistema crea una nuova nota vuota.
+        \item Il sistema scrive l'output nella nuova nota.
+        \item Il sistema salva il testo generato.
+    \end{enumerate}
+\end{itemize}
+
+% --- 28.2 ---
+
+\hypertarget{uc:28.2}{}
+\paragraph{UC 28.2 - Rifiuto output}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente scarta il testo generato perchè valutato non soddisfacente.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  Nessuno.
+    \item \textbf{Precondizioni:} L'output dell'LLM è stato visualizzato correttamente a schermo (\hypertarget{uc:28}{UC 28}) e l'utente ha terminato la revisione.
+    \item \textbf{Postcondizioni:} Il testo generato viene rimosso dalla memoria temporanea.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente preme "Scarta"
+        \item Il sistema chiude l'anteprima e torna alla schermata di configurazione.
+    \end{enumerate}
+\end{itemize}
+
+% --- 28.3 ---
+
+\hypertarget{uc:28.3}{}
+\paragraph{UC 28.3 - Rigenerazione output}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} Richiesta di una nuova versione del testo mantenendo gli stessi parametri.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  LLM$_G$.
+    \item \textbf{Precondizioni:} L'output dell'LLM è stato visualizzato correttamente a schermo (\hypertarget{uc:28}{UC 28}) e l'utente ha terminato la revisione.
+    \item \textbf{Postcondizioni:} Un nuovo output sostituisce il precedente nella schermata di anteprima.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente preme "Rigenera".
+        \item Il sistema reinvia la richiesta all'LLM$_G$.
+        \item L'utente visualizza il nuovo risultato.
+    \end{enumerate}
+\end{itemize}
+
+% --- 28.4 ---
+
+\hypertarget{uc:28.4}{}
+\paragraph{UC 28.4 - Tracciamento delle note sorgente usate per un output AI}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} Memorizzazione dei metadati relativi a quali note (interne ed esterne) hanno contribuito alla generazione.
     \item \textbf{Attori Principali:} Sistema.
-    \item \textbf{Attori Secondari:} LLM (Servizio Esterno).
-    \item \textbf{Precondizioni:} È stata inviata una richiesta di traduzione.
-    \item \textbf{Postcondizioni:} L'utente viene avvisato del problema tecnico; lo stato dell'editor rimane invariato.
+    \item \textbf{Attori Secondari:}  Sistema di persistenza.
+    \item \textbf{Precondizioni:} \hypertarget{uc:26}{UC 26} eseguito.
+    \item \textbf{Postcondizioni:} La nota generata contiene riferimenti alle note sorgente.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item Il sistema rileva un timeout o un errore dal servizio LLM.
-        \item Il sistema interrompe il processo di traduzione.
-        \item Il sistema visualizza un feedback di errore all'utente.
+        \item Al salvataggio della nota, il sistema crea una relazione nel database tra la nuova nota e gli ID delle note selezionate al passo \hypertarget{uc:26.3}{26.3}.
+        \item Se vengono menzionate note esterne, verranno salvati i link delle pagine utilizzate.
     \end{enumerate}
 \end{itemize}
 
-\hypertarget{uc:24}{}
-\subsection{UC 24 - Riscrittura contenuto Markdown}
+\hypertarget{uc:29}{}
+\subsubsection{UC 29 - Annullamento richiesta (!)}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente richiede la rielaborazione di un testo per migliorarne la forma o adattarlo a nuove esigenze.
+    \item \textbf{Descrizione:} L'utente interrompe un'operazione di elaborazione testuale in corso, annullando l'attesa della risposta da parte del modello linguistico.
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:} $LLM_G$.
-    \item \textbf{Precondizioni:} Il sistema è operativo e l'utente ha inserito o selezionato del testo nell'area di editing.
-    \item \textbf{Postcondizioni:} Il sistema visualizza la versione rielaborata nell'interfaccia.
+    \item \textbf{Precondizioni:} L'utente ha inoltrato una richiesta di elaborazione all'intelligenza artificiale e il sistema si trova in stato di attesa della risposta.
+    \item \textbf{Postcondizioni:} La richiesta in sospeso verso il servizio esterno viene annullata, l'interfaccia esce dallo stato di caricamento e il contenuto dell'editor rimane inalterato senza produrre alcun output generato.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item L'utente seleziona la porzione di testo.
-        \item L'utente attiva la funzione di riscrittura.
-        \item Il sistema permette di scegliere tra variazione stilistica (\hyperlink{uc:24.1}{UC 24.1}) o correzione grammaticale (\hyperlink{uc:24.2}{UC 24.2}).
-        \item Il sistema invia la richiesta al $LLM_G$.
-        \item Il sistema visualizza la versione rielaborata.
+        \item L'utente attiva il comando di annullamento dell'operazione tramite l'interfaccia grafica.
+        \item Il sistema intercetta la richiesta e interrompe la connessione asincrona con il servizio $LLM_G$.
+        \item Il sistema rimuove gli indicatori visivi di elaborazione in corso.
+        \item Il sistema ripristina lo stato operativo standard dell'editor, restituendo il controllo completo all'utente per continuare l'editing.
     \end{enumerate}
-    \item \textbf{Estensioni:}
+\end{itemize}
+
+
+\subsection{Salvataggio e Persistenza}
+In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e la persistenza dei dati.
+
+\subsubsection{UC 30 - Creazione nuova nota}
+\label{uc30}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente vuole iniziare la stesura di una nuova nota.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
     \begin{itemize}
-        \item \hyperlink{uc:24.1}{UC 24.1 - Selezione Variazione Stilistica}
-        \item \hyperlink{uc:24.2}{UC 24.2 - Correzione Grammaticale}
-        \item \hyperlink{uc:24.3}{UC 24.3 - Errore LLM Non Raggiungibile}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item L'editor di testo è disponibile a schermo.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'utente ha avviato la scrittura di una nuova nota.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione per creare una nuova nota.
+        \item Il sistema$_G$ esegue l'azione scelta tra le generalizzazioni disponibili.
+    \end{enumerate}
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item UC 30.1 - Inizializzazione editor vuoto
+        \item UC 30.2 - Creazione nota nel Database$_G$ Browser
     \end{itemize}
 \end{itemize}
 
-\hypertarget{uc:24.1}{}
-\subsection{UC 24.1 - Selezione Variazione Stilistica}
+\paragraph{UC 30.1 - Inizializzazione editor vuoto}
+\label{uc30.1}
+
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente sceglie un registro stilistico specifico (es. informale, colloquiale) per la rielaborazione.
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:} $LLM_G$.
-    \item \textbf{Precondizioni:} È stata invocata la funzione di riscrittura (\hyperlink{uc:24}{UC 24}).
-    \item \textbf{Postcondizioni:} Il sistema visualizza la versione rielaborata secondo lo stile scelto.
-    \item \textbf{Scenario Principale:}
+    \item \textbf{Descrizione:} L'utente vuole iniziare la scrittura di una nota completamente vuota senza interazione con il database$_G$.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item L'editor di testo è disponibile a schermo.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'editor di testo è stato azzerato ed è pronto per la scrittura di una nuova nota vuota.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item L'utente visualizza le opzioni stilistiche disponibili.
-        \item L'utente seleziona lo stile desiderato.
-        \item Il sistema inoltra il testo e il parametro stilistico al $LLM_G$.
-        \item Il sistema visualizza la versione rielaborata.
+        \item L'utente seleziona l'opzione ``Nuova nota''.
+        \item Il sistema$_G$ svuota l'area di editing$_G$, rimuovendo qualsiasi contenuto precedente.
     \end{enumerate}
 \end{itemize}
 
-\hypertarget{uc:24.2}{}
-\subsection{UC 24.2 - Correzione Grammaticale}
+\paragraph{UC 30.2 - Creazione nota nel Database$_G$ Browser}
+\label{uc30.2}
+
 \begin{itemize}
-    \item \textbf{Descrizione:} Il sistema analizza il testo per correggere errori ortografici e sintattici.
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:} $LLM_G$.
-    \item \textbf{Precondizioni:} E' stata invocata la funzione di riscrittura e il testo è presente nell'area di editing.
-    \item \textbf{Postcondizioni:} Il sistema visualizza la versione corretta del testo.
-    \item \textbf{Scenario Principale:}
+    \item \textbf{Descrizione:} L'utente vuole creare una nuova nota persistente nel database$_G$ dell'applicazione.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Una nuova nota vuota è stata creata e registrata nel database$_G$.
+        \item L'editor di testo visualizza la nuova nota vuota, pronta per la scrittura.
+        \item La nuova nota compare nella lista delle note nel Database$_G$ Browser.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item L'utente richiede la verifica grammaticale.
-        \item Il sistema analizza il testo tramite $LLM_G$.
-        \item Il sistema visualizza la versione rielaborata con le correzioni.
+        \item L'utente seleziona l'opzione ``Nuova nota nel database$_G$'' tramite il Database$_G$ Browser.
+        \item Il sistema$_G$ richiede all'utente un nome per la nuova nota.
+        \item L'utente inserisce il nome desiderato per la nota.
+        \item Il sistema$_G$ crea un record vuoto nel database$_G$ associato all'account$_G$ dell'utente.
+        \item Il sistema$_G$ apre la nota nell'editor di testo.
     \end{enumerate}
     \item \textbf{Estensioni:}
     \begin{itemize}
-        \item \hyperlink{uc:24.2.1}{UC 24.2.1 - Scenario: Nessun errore rilevato}
+        \item UC 30.3.1 - Gestione errore creazione nota nel Database$_G$.
     \end{itemize}
 \end{itemize}
 
-\hypertarget{uc:24.2.1}{}
-\subsection{UC 24.2.1 - Nessun errore rilevato}
+\subparagraph{UC 30.3.1 - Gestione errore creazione nota nel Database$_G$}
+\label{uc30.3.1}
 \begin{itemize}
-    \item \textbf{Descrizione:} Gestione del caso in cui il testo sia già grammaticalmente corretto.
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:} $LLM_G$.
-    \item \textbf{Scenario Principale:}
+    \item \textbf{Descrizione:} L'utente vuole creare una nuova nota persistente nel database$_G$ dell'applicazione.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item La nuova nota vuota non è stata creata nel database$_G$.
+        \item Il sistema$_G$ notifica all'utente l'impossibilità di completare l'operazione.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il $LLM_G$ analizza il testo e non rileva errori.
-        \item Il sistema notifica l'utente che non sono necessarie correzioni.
+        \item L'utente seleziona l'opzione ``Nuova nota nel database$_G$'' tramite il Database$_G$ Browser.
+        \item Si verifica$_G$ un errore durante la creazione della nota (es. esiste già una nota con quel nome, errore di connessione al database$_G$).
+        \item Il sistema$_G$ mostra un messaggio di errore adeguato a schermo.
+        \item L'utente può scegliere se riprovare o annullare l'operazione.
     \end{enumerate}
 \end{itemize}
 
-\hypertarget{uc:24.3}{}
-\subsection{UC 24.3 - Errore LLM Non Raggiungibile}
+\subsubsection{UC 31 - Caricamento nota}
+\label{uc31}
 \begin{itemize}
-    \item \textbf{Descrizione:} Gestione del fallimento di comunicazione con l'intelligenza artificiale.
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:} $LLM_G$.
-    \item \textbf{Precondizioni:} L'utente ha avviato una richiesta che coinvolge il $LLM_G$.
-    \item \textbf{Postcondizioni:} Il sistema informa l'utente dell'errore senza modificare lo stato del documento.
-    \item \textbf{Scenario Principale:}
+    \item \textbf{Descrizione:} L'utente modifica e/o visualizza una nota già esistente.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Una nota esistente è stata caricata correttamente nell'editor di testo.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il sistema tenta la connessione con il servizio $LLM_G$.
-        \item Il servizio non risponde entro i limiti di tempo o restituisce un errore di rete.
-        \item Il sistema visualizza un messaggio di errore indicando l'indisponibilità del servizio.
+        \item L'utente accede al menù di caricamento note.
+        \item L'utente sceglie la modalità di caricamento.
     \end{enumerate}
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item UC 31.1 - Caricamento da File Locale
+        \item UC 31.2 - Caricamento da Database$_G$ Browser
+    \end{itemize}
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item UC 31.3 - Gestione errore di caricamento
+    \end{itemize}
 \end{itemize}
 
-\hypertarget{uc:25}{}
-\subsection{UC 25 - Analisi critica del contenuto}
+\paragraph{UC 31.1 - Caricamento da File Locale}
+\label{uc31.1}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente richiede un'analisi del testo basata sulla metodologia dei "Sei Cappelli per Pensare", per ottenere diverse prospettive (obiettiva, emotiva, critica, ecc.).
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:} $LLM_G$.
-    \item \textbf{Precondizioni:} Il sistema è operativo e l'utente ha inserito o selezionato del testo nell'area di editing.
-    \item \textbf{Postcondizioni:} Il sistema visualizza i risultati dell'analisi critica per i cappelli selezionati.
-    \item \textbf{Scenario Principale:}
+    \item \textbf{Descrizione:} L'utente apre una nota presente in un file locale.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item L'utente possiede un file di testo in formato Markdown$_G$ nel proprio file system.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il contenuto del file selezionato è stato caricato correttamente nell'editor di testo.
+        \item Il render Markdown$_G$ aggiorna la visualizzazione con il contenuto caricato.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item L'utente seleziona la porzione di testo da analizzare.
-        \item L'utente attiva la funzione "Analisi Critica".
-        \item L'utente seleziona uno o più cappelli specifici.
-        \item Il sistema invia il testo e la configurazione dei cappelli al $LLM_G$.
-        \item Il sistema visualizza l'output analitico suddiviso per tipologia di cappello.
+        \item L'utente clicca il pulsante ``File''.
+        \item L'utente seleziona l'opzione ``Importa da file''.
+        \item Il sistema$_G$ apre una finestra di dialogo per la selezione del file.
+        \item L'utente seleziona il file Markdown$_G$ desiderato dal proprio file system.
+        \item Il sistema$_G$ legge il contenuto del file e lo carica nell'editor di testo.
     \end{enumerate}
     \item \textbf{Estensioni:}
     \begin{itemize}
-        \item \hyperlink{uc:25.1}{UC 25.1 - Selezione (uno o più cappelli)}
-        \item \hyperlink{uc:25.2}{UC 25.2 - Gestione testo insufficiente per l'analisi}
-        \item \hyperlink{uc:25.3}{UC 25.3 - Errore LLM Non Raggiungibile}
+        \item UC 31.3 - Gestione errore di caricamento
     \end{itemize}
 \end{itemize}
 
-\hypertarget{uc:25.1}{}
-\subsection{UC 25.1 - Selezione (uno o più cappelli)}
+\paragraph{UC 31.2 - Caricamento da Database$_G$ Browser}
+\label{uc31.2}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente definisce quali prospettive di analisi attivare.
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Precondizioni:} È stata invocata la funzione di analisi critica e il testo è presente nell'area di editing.
-    \item \textbf{Scenario Principale:}
+    \item \textbf{Descrizione:} L'utente apre una nota salvata nel database$_G$.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+        \item L'utente dispone di almeno una nota salvata nel database$_G$.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item La nota selezionata è stata caricata correttamente nell'editor di testo.
+        \item Il render Markdown$_G$ aggiorna la visualizzazione con il contenuto caricato.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il sistema mostra i sei cappelli selezionabili:
-        \begin{itemize}
-            \item \textbf{Bianco:} Analisi basata su dati oggettivi e fatti.
-            \item \textbf{Rosso:} Espressione di emozioni, intuizioni e sensazioni.
-            \item \textbf{Giallo:} Identificazione di benefici, valore e opportunità.
-            \item \textbf{Nero:} Valutazione dei rischi, criticità e potenziali problemi.
-            \item \textbf{Verde:} Generazione di idee creative e soluzioni alternative.
-            \item \textbf{Blu:} Organizzazione del pensiero, sintesi e controllo del processo.
-        \end{itemize}
-        \item L'utente seleziona la combinazione desiderata e conferma l'invio.
+        \item L'utente accede al Database$_G$ Browser.
+        \item Il sistema$_G$ mostra la lista delle note salvate nel database$_G$.
+        \item L'utente seleziona la nota desiderata dalla lista.
+        \item Il sistema$_G$ recupera il contenuto della nota dal database$_G$ e lo carica nell'editor
+        di testo.
+    \end{enumerate}
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item UC 31.3 - Gestione errore di caricamento
+    \end{itemize}
+\end{itemize}
+
+\paragraph{UC 31.3 - Gestione errore di caricamento}
+\label{uc31.3}
+\begin{itemize}
+    \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di caricamento della nota.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item L'utente ha richiesto il caricamento di una nota da file locale o dal database$_G$.
+        \item Il sistema$_G$ non è riuscito a importare correttamente la nota.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item La nota non è stata caricata nell'editor.
+        \item Il sistema$_G$ notifica all'utente l'impossibilità di completare l'operazione.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona la nota che vuole importare nel sistema$_G$.
+        \item Si verifica$_G$ un errore durante il caricamento della nota (es.\ file non valido, nota
+        inesistente, errore di lettura, errore di connessione al database$_G$).
+        \item Il sistema$_G$ mostra un messaggio di errore adeguato a schermo.
+        \item L'utente può scegliere se riprovare o annullare l'operazione.
     \end{enumerate}
 \end{itemize}
 
-\hypertarget{uc:25.1.1}{}
-\subsection{UC 25.1.1 - Analisi Cappello Bianco (Obiettività e Fatti)}
+\subsubsection{UC 32 - Salvataggio nota}
+\label{uc32}
 \begin{itemize}
-    \item \textbf{Descrizione:} Il sistema produce una critica basata esclusivamente sulla verifica dei fatti e sull'assenza di dati oggettivi nel testo.
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:} $LLM_G$.
-    \item \textbf{Precondizioni:} È stata invocata la funzione di analisi critica e il testo è presente nell'area di editing.
-    \item \textbf{Postcondizioni:} Il sistema visualizza una critica analitica focalizzata sulla neutralità e sulle evidenze.
-    \item \textbf{Scenario Principale:}
+    \item \textbf{Descrizione:} L'utente salva la nota attualmente aperta nell'editor di testo.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item La nota da salvare è aperta nell'editor di testo.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'utente ha salvato correttamente la nota tramite la modalità scelta.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item L'utente seleziona il "Cappello Bianco".
-        \item Il sistema richiede al $LLM_G$ di criticare il testo identificando quali fatti mancano o quali dati sono riportati in modo imparziale.
-        \item Il sistema visualizza la critica oggettiva.
+        \item L'utente seleziona l'opzione di salvataggio della nota.
+        \item L'utente sceglie la modalità di salvataggio.
+    \end{enumerate}
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item UC 32.1 - Salvataggio su FileSystem
+        \item UC 32.2 - Salvataggio da Database$_G$ Browser
+    \end{itemize}
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item UC 32.3 - Gestione errore di salvataggio
+    \end{itemize}
+\end{itemize}
+
+\paragraph{UC 32.1 - Salvataggio su FileSystem}
+\label{uc32.1}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente esporta la nota corrente come file nel file system.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item La nota da salvare è aperta nell'editor di testo.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'utente ha salvato correttamente la nota nel file system sotto forma di file
+        Markdown$_G$ (\texttt{.md}).
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione ``Salva su file''.
+        \item Il sistema$_G$ apre una finestra di dialogo per la selezione della destinazione.
+        \item L'utente sceglie la directory di destinazione e il nome del file.
+        \item Il sistema$_G$ salva il contenuto dell'editor nel percorso selezionato.
     \end{enumerate}
 \end{itemize}
 
-\hypertarget{uc:25.1.2}{}
-\subsection{UC 25.1.2 - Analisi Cappello Rosso (Emotività e Sensazioni)}
+\paragraph{UC 32.2 - Salvataggio da Database$_G$ Browser}
+\label{uc32.2}
 \begin{itemize}
-    \item \textbf{Descrizione:} Il sistema produce una critica basata sull'impatto viscerale e sulle reazioni emotive che il testo suscita.
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:} $LLM_G$.
-    \item \textbf{Precondizioni:} È stata invocata la funzione di analisi critica e il testo è presente nell'area di editing.
-    \item \textbf{Postcondizioni:} Il sistema visualizza una valutazione basata sul "sentimento" e sull'intuizione.
-    \item \textbf{Scenario Principale:}
+    \item \textbf{Descrizione:} L'utente salva la nota nel database$_G$ dell'applicazione.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item La nota da salvare è aperta nell'editor di testo.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il contenuto della nota è stato aggiornato o inserito correttamente nel database$_G$.
+        \item Il Database$_G$ Browser aggiorna la lista delle note per riflettere le modifiche.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item L'utente seleziona il "Cappello Rosso".
-        \item Il sistema richiede al $LLM_G$ di criticare il testo in base alle passioni e alle emozioni (paura, gioia, rabbia) che trasmette.
-        \item Il sistema visualizza la critica emotiva.
+        \item L'utente seleziona l'opzione ``Salva nel database$_G$''.
+        \item Se la nota è nuova, il sistema$_G$ richiede un nome per la nota.
+        \item L'utente inserisce o conferma il nome della nota.
+        \item Il sistema$_G$ salva il contenuto dell'editor nel database$_G$ associandolo all'account$_G$
+        dell'utente.
     \end{enumerate}
 \end{itemize}
 
-\hypertarget{uc:25.1.3}{}
-\subsection{UC 25.1.3 - Analisi Cappello Giallo (Ottimismo e Opportunità)}
+\paragraph{UC 32.3 - Gestione errore di salvataggio}
+\label{uc32.3}
 \begin{itemize}
-    \item \textbf{Descrizione:} Il sistema produce una critica costruttiva, cercando il valore e i motivi per cui l'idea espressa nel testo potrebbe funzionare.
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:} $LLM_G$.
-    \item \textbf{Precondizioni:} È stata invocata la funzione di analisi critica e il testo è presente nell'area di editing.
-    \item \textbf{Postcondizioni:} Il sistema visualizza una critica positiva focalizzata sui benefici.
-    \item \textbf{Scenario Principale:}
+    \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di salvataggio della nota.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item La nota da salvare è aperta nell'editor di testo.
+        \item L'utente ha richiesto il salvataggio della nota.
+        \item Il sistema$_G$ ha rilevato un errore durante il salvataggio.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item La nota non è stata salvata.
+        \item Il sistema$_G$ notifica l'errore all'utente.
+        \item L'utente può scegliere se riprovare o annullare l'operazione.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item L'utente seleziona il "Cappello Giallo".
-        \item Il sistema richiede al $LLM_G$ di individuare i vantaggi e le potenzialità latenti nel contenuto.
-        \item Il sistema visualizza la critica ottimistica.
+        \item Si verifica un errore durante il salvataggio (es.\ percorso non valido, nome già
+        utilizzato, spazio insufficiente, errore di connessione al database$_G$).
+        \item Il sistema$_G$ mostra un messaggio di errore descrittivo a schermo.
+        \item L'utente decide se riprovare il salvataggio o annullare l'operazione.
     \end{enumerate}
 \end{itemize}
 
-\hypertarget{uc:25.1.4}{}
-\subsection{UC 25.1.4 - Analisi Cappello Nero (Critica e Rischi)}
+\subsubsection{UC 33 - Gestione nota salvata}
+\label{uc33}
 \begin{itemize}
-    \item \textbf{Descrizione:} Il sistema produce una critica negativa e cautelativa, evidenziando perché il contenuto potrebbe fallire o essere pericoloso.
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:} $LLM_G$.
-    \item \textbf{Precondizioni:} È stata invocata la funzione di analisi critica e il testo è presente nell'area di editing.
-    \item \textbf{Postcondizioni:} Il sistema visualizza una critica focalizzata su difetti, rischi e mancanze logiche.
-    \item \textbf{Scenario Principale:}
+    \item \textbf{Descrizione:} L'utente vuole gestire le note salvate nel database$_G$ (eliminazione, rinominazione o consultazione dei metadati$_G$).
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+        \item Esiste almeno una nota salvata nel database$_G$.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'utente ha completato l'operazione di manutenzione$_G$ desiderata sulla nota selezionata.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item L'utente seleziona il "Cappello Nero".
-        \item Il sistema richiede al $LLM_G$ di agire come "avvocato del diavolo" contro il testo inserito.
-        \item Il sistema visualizza la critica pessimistica/logica.
+        \item L'utente accede al Database$_G$ Browser.
+        \item L'utente seleziona la nota su cui intende operare.
+        \item L'utente sceglie l'operazione di manutenzione$_G$ desiderata tra quelle disponibili.
+    \end{enumerate}
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item UC 33.1 - Eliminazione nota dal Database$_G$
+        \item UC 33.2 - Rinominazione nota nel Database$_G$
+        \item UC 33.3 - Visualizzazione informazioni e metadati della nota
+    \end{itemize}
+\end{itemize}
+
+\paragraph{UC 33.1 - Eliminazione nota dal Database$_G$}
+\label{uc33.1}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente vuole eliminare definitivamente una nota dal database$_G$.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+        \item Esiste almeno una nota salvata nel database$_G$.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item La nota selezionata è stata rimossa permanentemente dal database$_G$.
+        \item Il Database$_G$ Browser aggiorna la lista delle note escludendo la nota eliminata.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona la nota da eliminare nel Database Browser.
+        \item L'utente seleziona l'opzione ``Elimina nota''.
+        \item Il sistema$_G$ mostra una richiesta di conferma all'utente.
+        \item L'utente conferma l'eliminazione.
+        \item Il sistema$_G$ rimuove il record della nota dal database$_G$.
+    \end{enumerate}
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item UC 33.1.1 - Gestione errore eliminazione
+    \end{itemize}
+\end{itemize}
+
+\subparagraph{UC 33.1.1 - Gestione errore eliminazione}
+\label{uc33.1.1}
+\begin{itemize}
+    \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di eliminazione della nota.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item L'utente ha richiesto l'eliminazione di una nota dal database$_G$.
+        \item Il sistema$_G$ ha rilevato un errore durante il tentativo di eliminazione.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item La nota non è stata eliminata.
+        \item Il sistema$_G$ notifica all'utente il fallimento dell'operazione.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Si verifica$_G$ un errore durante l'eliminazione della nota (es.\ errore di connessione
+        al database$_G$, permessi insufficienti).
+        \item Il sistema$_G$ mostra un messaggio di errore descrittivo a schermo.
+        \item L'utente può scegliere se riprovare o annullare l'operazione.
     \end{enumerate}
 \end{itemize}
 
-\hypertarget{uc:25.1.5}{}
-\subsection{UC 25.1.5 - Analisi Cappello Verde (Creatività e Alternativa)}
+\paragraph{UC 33.2 - Rinominazione nota nel Database$_G$}
+\label{uc33.2}
 \begin{itemize}
-    \item \textbf{Descrizione:} Il sistema produce una critica basata sulla crescita, proponendo come il testo potrebbe essere trasformato in qualcosa di nuovo o diverso.
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:} $LLM_G$.
-    \item \textbf{Precondizioni:} È stata invocata la funzione di analisi critica e il testo è presente nell'area di editing.
-    \item \textbf{Postcondizioni:} Il sistema visualizza una critica creativa orientata al superamento dei limiti attuali.
-    \item \textbf{Scenario Principale:}
+    \item \textbf{Descrizione:} L'utente vuole assegnare un nuovo nome a una nota già salvata nel database$_G$.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+        \item Esiste almeno una nota salvata nel database$_G$.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il titolo della nota selezionata è stato aggiornato nel database$_G$.
+        \item Il Database$_G$ Browser mostra il nuovo nome della nota nella lista.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item L'utente seleziona il "Cappello Verde".
-        \item Il sistema richiede al $LLM_G$ di criticare il testo proponendo alternative "fuori dagli schemi".
-        \item Il sistema visualizza la critica creativa.
+        \item L'utente seleziona la nota da rinominare nel Database Browser.
+        \item L'utente seleziona l'opzione ``Rinomina nota''.
+        \item Il sistema$_G$ mostra un campo di input$_G$ con il nome corrente della nota.
+        \item L'utente modifica il nome della nota.
+        \item L'utente conferma la modifica.
+        \item Il sistema$_G$ aggiorna il titolo della nota nel database$_G$.
+    \end{enumerate}
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item UC 33.2.1 - Gestione errore rinominazione
+    \end{itemize}
+\end{itemize}
+
+\subparagraph{UC 33.2.1 - Gestione errore rinominazione}
+\label{uc33.2.1}
+\begin{itemize}
+    \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di rinominazione della nota.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item L'utente ha richiesto la rinominazione di una nota nel database$_G$.
+        \item Il sistema$_G$ ha rilevato un errore durante il tentativo di rinominazione.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il nome della nota non è stato modificato.
+        \item Il sistema$_G$ notifica all'utente il fallimento dell'operazione.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Si verifica$_G$ un errore durante la rinominazione (es.\ nome già esistente nel database$_G$,
+        nome vuoto o non valido, errore di connessione al database$_G$).
+        \item Il sistema$_G$ mostra un messaggio di errore descrittivo a schermo.
+        \item L'utente può scegliere se riprovare con un nome diverso o annullare l'operazione.
     \end{enumerate}
 \end{itemize}
 
-\hypertarget{uc:25.1.6}{}
-\subsection{UC 25.1.6 - Analisi Cappello Blu (Logica e Struttura)}
+\paragraph{UC 33.3 - Visualizzazione informazioni e metadati della nota}
+\label{uc33.3}
 \begin{itemize}
-    \item \textbf{Descrizione:} Il sistema produce una critica sul metodo, valutando se il testo è ben organizzato e se il processo di pensiero è coerente.
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:} $LLM_G$.
-    \item \textbf{Precondizioni:} È stata invocata la funzione di analisi critica e il testo è presente nell'area di editing.
-    \item \textbf{Postcondizioni:} Il sistema visualizza una critica sulla gestione e sulla sintesi del contenuto.
-    \item \textbf{Scenario Principale:}
+    \item \textbf{Descrizione:} L'utente vuole consultare i metadati$_G$ e le informazioni di una nota salvata nel database$_G$.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+        \item Esiste almeno una nota salvata nel database$_G$.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ ha mostrato all'utente le informazioni e i metadati$_G$ della nota
+        selezionata.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item L'utente seleziona il "Cappello Blu".
-        \item Il sistema richiede al $LLM_G$ di giudicare l'architettura del discorso e la sua conclusione logica.
-        \item Il sistema visualizza la critica strutturale.
+        \item L'utente seleziona una nota nel Database$_G$ Browser.
+        \item L'utente seleziona l'opzione ``Visualizza informazioni''.
+        \item Il sistema$_G$ mostra un pannello con i metadati$_G$ della nota, tra cui: titolo, data di
+        creazione, data dell'ultima modifica, dimensione del contenuto.
     \end{enumerate}
 \end{itemize}
 
-\hypertarget{uc:25.2}{}
-\subsection{UC 25.2 - Gestione testo insufficiente per l'analisi}
+\subsubsection{UC 34 - Ricerca e Navigazione}
+\label{uc34}
 \begin{itemize}
-    \item \textbf{Descrizione:} Gestione del caso in cui il testo fornito sia troppo breve o privo di contenuto semantico per un'analisi critica sensata.
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:} $LLM_G$.
-    \item \textbf{Scenario Principale:}
+    \item \textbf{Descrizione:} L'utente vuole trovare una o più note nel database$_G$ tramite criteri di ricerca.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+        \item Esiste almeno una nota salvata nel database$_G$.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ ha mostrato i risultati della ricerca coerenti con i criteri inseriti
+        dall'utente.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il sistema (o il $LLM_G$) rileva che il testo non raggiunge la soglia minima di comprensibilità o lunghezza.
-        \item Il sistema interrompe l'analisi.
-        \item Viene mostrato un messaggio di avviso: "Testo insufficiente per generare un'analisi critica accurata".
+        \item L'utente accede alla funzione di ricerca nel Database$_G$ Browser.
+        \item L'utente inserisce i criteri di ricerca.
+        \item Il sistema$_G$ esegue la ricerca e mostra i risultati.
+    \end{enumerate}
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item UC 34.1 - Ricerca mirata per titolo
+        \item UC 34.2 - Ricerca Full-Text
+        \item UC 34.3 - Filtro per data
+        \item UC 34.4 - Visualizzazione lista note salvate nel Database$_G$
+    \end{itemize}
+\end{itemize}
+
+\paragraph{UC 34.1 - Ricerca mirata per titolo}
+\label{uc34.1}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente vuole cercare una nota conoscendone (parte del) titolo.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+        \item Esiste almeno una nota salvata nel database$_G$.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ mostra la lista delle note il cui titolo contiene la stringa di ricerca
+        inserita dall'utente.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente accede al campo di ricerca nel Database$_G$ Browser.
+        \item L'utente inserisce una stringa di testo nel campo di ricerca per titolo.
+        \item Il sistema$_G$ filtra le note il cui titolo corrisponde (anche parzialmente) alla
+        stringa inserita.
+        \item Il sistema$_G$ visualizza i risultati filtrati nella lista delle note.
     \end{enumerate}
 \end{itemize}
 
-\hypertarget{uc:25.3}{}
-\subsection{UC 25.3 - Errore LLM Non Raggiungibile}
+\paragraph{UC 34.2 - Ricerca Full-Text}
+\label{uc34.2}
 \begin{itemize}
-    \item \textbf{Descrizione:} Fallimento della connessione con l'IA durante il processo di analisi critica.
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:} $LLM_G$.
-    \item \textbf{Precondizioni:} L'utente ha confermato la selezione dei cappelli.
-    \item \textbf{Postcondizioni:} Il sistema segnala il problema tecnico senza alterare il contenuto originale.
-    \item \textbf{Scenario Principale:}
+    \item \textbf{Descrizione:} L'utente vuole trovare tutte le note che contengono una parola o frase specifica nel loro contenuto.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+        \item Esiste almeno una nota salvata nel database$_G$.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ mostra la lista delle note il cui contenuto include la stringa di ricerca
+        inserita dall'utente.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il sistema fallisce la chiamata API al servizio $LLM_G$.
-        \item Il sistema cattura l'eccezione di timeout o errore di rete.
-        \item Viene visualizzato un messaggio di errore: "Impossibile contattare il servizio di analisi. Riprova più tardi."
+        \item L'utente accede al campo di ricerca nel Database$_G$ Browser.
+        \item L'utente inserisce una stringa di testo nel campo di ricerca full-text.
+        \item Il sistema$_G$ esegue una ricerca sul contenuto di tutte le note dell'utente nel
+        database$_G$.
+        \item Il sistema$_G$ visualizza i risultati che contengono la stringa cercata, evidenziandone
+        le occorrenze.
     \end{enumerate}
 \end{itemize}
 
-\subsubsection{Salvataggio e Persistenza}
+\paragraph{UC 34.3 - Filtro per data}
+\label{uc34.3}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente vuole filtrare le note in base a un criterio temporale.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+        \item Esiste almeno una nota salvata nel database$_G$.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ mostra la lista delle note filtrate in base al criterio di data
+        selezionato.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente accede alla sezione di filtro per data nel Database$_G$ Browser.
+        \item L'utente sceglie il tipo di filtro temporale da applicare.
+        \item Il sistema$_G$ applica il filtro e aggiorna la lista delle note.
+    \end{enumerate}
+    \item \textbf{Generalizzazioni:}
+    \begin{itemize}
+        \item UC 34.3.1 - Filtro per data di creazione
+        \item UC 34.3.2 - Filtro per data di ultima modifica
+    \end{itemize}
+\end{itemize}
+
+\subparagraph{UC 34.3.1 - Filtro per data di creazione}
+\label{uc34.3.1}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente vuole visualizzare le note create in un determinato periodo.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+        \item Esiste almeno una nota salvata nel database$_G$.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ mostra le note create nell'intervallo di date specificato dall'utente.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona il filtro ``Data di creazione''.
+        \item Il sistema$_G$ mostra un selettore di intervallo di date.
+        \item L'utente inserisce la data di inizio e/o di fine dell'intervallo desiderato.
+        \item Il sistema$_G$ filtra e mostra le note create nell'intervallo specificato.
+    \end{enumerate}
+\end{itemize}
+
+\subparagraph{UC 34.3.2 - Filtro per data di ultima modifica}
+\label{uc34.3.2}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente vuole visualizzare le note aggiornate in un determinato periodo.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+        \item Esiste almeno una nota salvata nel database$_G$.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ mostra le note la cui ultima modifica rientra nell'intervallo di date
+        specificato dall'utente.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona il filtro ``Data ultima modifica''.
+        \item Il sistema$_G$ mostra un selettore di intervallo di date.
+        \item L'utente inserisce la data di inizio e/o di fine dell'intervallo desiderato.
+        \item Il sistema$_G$ filtra e mostra le note modificate l'ultima volta nell'intervallo
+        specificato.
+    \end{enumerate}
+\end{itemize}
+
+\paragraph{UC 34.4 - Visualizzazione lista note salvate nel Database$_G$}
+\label{uc34.4}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente vuole visualizzare tutte le note salvate nel proprio account$_G$.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ mostra all'utente la lista completa (o filtrata) delle note presenti nel
+        database$_G$.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente accede al Database$_G$ Browser.
+        \item Il sistema$_G$ recupera dal database$_G$ la lista delle note associate all'account$_G$
+        dell'utente.
+        \item Il sistema$_G$ visualizza la lista delle note, mostrando per ciascuna almeno il titolo
+        e la data dell'ultima modifica.
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection{UC 35 - Login}
+\label{uc35}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente vuole accedere alle funzionalità del database$_G$ dell'applicazione.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente dispone di un account$_G$ registrato nel sistema$_G$.
+        \item L'utente non ha ancora eseguito il login$_G$.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'utente ha effettuato l'accesso al sistema$_G$ ed è autenticato.
+        \item Il sistema$_G$ rende disponibili le funzionalità legate al database$_G$.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente accede alla schermata di login$_G$.
+        \item L'utente inserisce le proprie credenziali (username e password).
+        \item L'utente conferma l'accesso.
+        \item Il sistema$_G$ verifica$_G$ le credenziali con il database$_G$.
+        \item Il sistema$_G$ autentica l'utente e mostra l'interfaccia principale con le
+        funzionalità del database$_G$ abilitate.
+    \end{enumerate}
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item UC 35.1 - Gestione errore di login$_G$
+    \end{itemize}
+\end{itemize}
+
+\paragraph{UC 35.1 - Gestione errore di login}
+\label{uc35.1}
+\begin{itemize}
+    \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di autenticazione dell'utente.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item L'utente ha tentato di eseguire il login$_G$.
+        \item Il sistema$_G$ ha rilevato credenziali errate o un errore durante il processo di
+        autenticazione.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'utente non è stato autenticato.
+        \item Il sistema$_G$ notifica all'utente il fallimento del login$_G$ senza specificare se
+        l'errore riguarda lo username o la password (per ragioni di sicurezza$_G$).
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente inserisce credenziali errate o si $_G$ un errore di connessione al
+        database$_G$.
+        \item Il sistema$_G$ mostra un messaggio di errore generico (es.\ ``Credenziali non valide''
+        o ``Errore di connessione al server'').
+        \item L'utente può riprovare a inserire le credenziali o annullare l'operazione.
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection{UC 36 - Registrazione}
+\label{uc36}
+\begin{itemize}
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente non possiede un account$_G$ registrato nel sistema$_G$.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Un nuovo account$_G$ è stato creato e registrato nel database$_G$.
+        \item L'utente è autenticato nel sistema$_G$ con il nuovo account$_G$.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente accede alla schermata di registrazione$_G$.
+        \item L'utente inserisce uno username e una password.
+        \item L'utente conferma la password.
+        \item L'utente invia il modulo di registrazione$_G$.
+        \item Il sistema$_G$ verifica$_G$ che lo username non sia già in uso nel database$_G$.
+        \item Il sistema$_G$ crea il nuovo account$_G$ nel database$_G$.
+        \item Il sistema$_G$ autentica automaticamente l'utente con il nuovo account$_G$.
+    \end{enumerate}
+    \item \textbf{Trigger:} L'utente vuole creare un nuovo account$_G$ per accedere alle funzionalità
+    del database$_G$ dell'applicazione.
+    \item \textbf{Estensioni:}
+    \begin{itemize}
+        \item UC 36.1 - Gestione username già esistente
+    \end{itemize}
+\end{itemize}
+
+\paragraph{UC 36.1 - Gestione username già esistente}
+\label{uc36.1}
+\begin{itemize}
+    \item \textbf{Descrizione:} Il sistema$_G$ rileva che lo username inserito dall'utente è già associato a un account$_G$ esistente nel database$_G$.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item L'utente ha tentato di registrarsi con uno username già presente nel database$_G$.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'account$_G$ non è stato creato.
+        \item Il sistema$_G$ notifica all'utente che lo username scelto non è disponibile.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente inserisce uno username già presente nel database$_G$.
+        \item Il sistema$_G$ rileva il conflitto durante la verifica$_G$.
+        \item Il sistema$_G$ mostra un messaggio di errore che informa l'utente che lo username è
+        già in uso.
+        \item L'utente può scegliere un username diverso e riprovare.
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection{UC 37 - Eliminazione dell'account}
+\label{uc37}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente vuole eliminare definitivamente il proprio account$_G$ e tutti i dati ad esso associati.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item Il sistema$_G$ è correttamente collegato al database$_G$.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'account$_G$ dell'utente è stato eliminato permanentemente dal database$_G$.
+        \item Tutte le note associate all'account$_G$ dell'utente sono state rimosse dal database$_G$.
+        \item L'utente è stato disconnesso dal sistema$_G$.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente accede alle impostazioni dell'account$_G$.
+        \item L'utente seleziona l'opzione ``Elimina account$_G$''.
+        \item Il sistema$_G$ mostra un avviso che informa l'utente che l'operazione è irreversibile
+        e che tutti i dati associati verranno eliminati.
+        \item L'utente conferma l'eliminazione dell'account$_G$.
+        \item Il sistema$_G$ elimina l'account$_G$ e tutti i dati associati dal database$_G$.
+        \item Il sistema$_G$ effettua il logout$_G$ dell'utente e lo reindirizza alla schermata
+        di login$_G$.
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection{UC 38 - Logout}
+\label{uc38}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente vuole terminare la propria sessione autenticata nel sistema$_G$.
+    \item \textbf{Attore primario:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema$_G$ è attivo e accessibile.
+        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'utente è stato disconnesso dal sistema$_G$.
+        \item Le funzionalità legate al database$_G$ non sono più accessibili fino al prossimo
+        login$_G$.
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione ``Logout$_G$''.
+        \item Il sistema$_G$ termina la sessione dell'utente.
+        \item Il sistema$_G$ reindirizza l'utente alla schermata di login$_G$.
+    \end{enumerate}
+\end{itemize}
 
 \newpage
 
 \section{Requisiti}
 
+Il presente capitolo definisce in modo puntuale e tracciabile tutti i requisiti individuati durante l'analisi del capitolato$_G$ e il successivo confronto con la proponente Zucchetti S.p.A. 
+Ogni requisito è stato classificato per tipologia (Funzionale, di Qualità o di Vincolo) e per priorità (Obbligatorio, Desiderabile, Opzionale), seguendo le indicazioni fornite dalle norme di progetto e dai casi d'uso$_G$ precedentemente analizzati.
+
+La classificazione dei requisiti segue la seguente nomenclatura:
+\begin{center}
+    \textbf{R[Tipologia]-[Identificativo]}
+\end{center}
+Dove la \textbf{Tipologia} può assumere i seguenti valori:
+\begin{itemize}
+    \item \textbf{F}: Requisito Funzionale;
+    \item \textbf{Q}: Requisito di Qualità;
+    \item \textbf{V}: Requisito di Vincolo.
+\end{itemize}
+
+La \textbf{Priorità} è definita come:
+\begin{itemize}
+    \item \textbf{Obbligatorio}: requisito indispensabile per l'accettazione del Minimum Viable Product (MVP);
+    \item \textbf{Desiderabile}: requisito che aggiunge valore al prodotto ma non è strettamente necessario per le funzionalità base;
+    \item \textbf{Opzionale}: requisito relativo a funzionalità aggiuntive (es. salvataggio in database$_G$ remoto, RAG).
+\end{itemize}
+
 \subsection{Requisiti Funzionali}
+I requisiti funzionali definiscono le operazioni, i comportamenti e le funzionalità specifiche che il sistema$_G$ \textbf{Second Brain} deve offrire agli utenti, tracciati direttamente a partire dai Casi d'Uso (UC).
+
+\begin{center}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{|c|L|c|c|}
+        \hline
+        \rowcolor[HTML]{EFEFEF}
+        \textbf{Codice} & \textbf{Descrizione} & \textbf{Priorità} & \textbf{Riferimento} \\ \hline
+        
+        RF-1 & Il sistema deve permettere l'inserimento di testo libero nell'area di editing formattata in Markdown$_G$. & Obbligatorio & UC 1 \\ \hline
+        RF-2 & Il sistema deve permettere la selezione del testo (parziale o documento intero). & Obbligatorio & UC 2 \\ \hline
+        RF-3 & Il sistema deve supportare le operazioni base di manipolazione del testo (Taglia, Copia, Incolla). & Obbligatorio & UC 3 \\ \hline
+        RF-4 & Il sistema deve supportare le azioni di annullamento (Undo) e ripristino (Redo) delle modifiche. & Obbligatorio & UC 4, UC 5 \\ \hline
+        RF-5 & Il sistema deve permettere l'applicazione di formattazione testuale (grassetto, corsivo, sottolineato, barrato, evidenziazione). & Obbligatorio & UC 6 \\ \hline
+        RF-6 & Il sistema deve permettere l'inserimento e la gestione di titoli e sottotitoli. & Obbligatorio & UC 7 \\ \hline
+        RF-7 & Il sistema deve gestire l'inserimento e l'eliminazione di elenchi puntati e numerati. & Obbligatorio & UC 8 \\ \hline
+        RF-8 & Il sistema deve permettere la formattazione di blocchi di citazione. & Obbligatorio & UC 9 \\ \hline
+        RF-9 & Il sistema deve permettere la creazione, modifica ed eliminazione di tabelle Markdown$_G$. & Obbligatorio & UC 10 \\ \hline
+        RF-10 & Il sistema deve supportare l'inserimento di blocchi di codice sorgente e formule matematiche (es. LaTeX/KaTeX). & Obbligatorio & UC 11, UC 12 \\ \hline
+        RF-11 & Il sistema deve permettere la gestione di immagini e collegamenti ipertestuali (link). & Obbligatorio & UC 13, UC 14 \\ \hline
+        RF-12 & Il sistema deve fornire il rendering grafico del testo Markdown$_G$ in tempo reale. & Obbligatorio & UC 20, Capitolato \\ \hline
+        RF-13 & Il sistema deve permettere la chiusura e l'apertura automatica dei simboli durante la digitazione. & Desiderabile & UC 16 \\ \hline
+        RF-14 & Il sistema deve permettere il salvataggio e il caricamento delle note in file di testo locali (.md) su FileSystem. & Obbligatorio & UC 31.1, UC 32.1, Capitolato \\ \hline
+        RF-15 & Il sistema deve interfacciarsi con un LLM$_G$ per la generazione automatica del testo (Distant Writing$_G$) partendo da un prompt$_G$. & Obbligatorio & UC 26, Capitolato \\ \hline
+        RF-16 & Il sistema deve implementare comandi base gestiti dall'LLM$_G$: riassunto, riscrittura (cambio tono, espansione, correzione) e traduzione. & Obbligatorio & Capitolato \\ \hline
+        RF-17 & Il sistema deve permettere l'analisi critica del testo applicando il modello dei "sei cappelli per pensare" (Neutro, Emozionale, Ottimista, Critico, Creativo, Logico). & Obbligatorio & Capitolato \\ \hline
+        RF-18 & Il sistema deve permettere all'utente di definire la lunghezza desiderata del testo generato dall'LLM$_G$. & Desiderabile & UC 26.2 \\ \hline
+        RF-19 & Il sistema deve permettere all'utente di validare, accettare, scartare o rigenerare l'output prodotto dall'AI$_G$. & Obbligatorio & UC 28 \\ \hline
+        RF-20 & Il sistema deve permettere di interrompere o annullare una richiesta di elaborazione inviata all'LLM$_G$ in corso. & Desiderabile & UC 29 \\ \hline
+        RF-21 & Il sistema deve acquisire l'input vocale dell'utente e trascriverlo/formattarlo tramite integrazione con LLM$_G$. & Desiderabile & UC 21, UC 27 \\ \hline
+        RF-22 & Il sistema deve permettere il salvataggio, caricamento ed eliminazione delle note in un database$_G$ remoto (Server-Side). & Opzionale & UC 30.2, 31.2, 32.2, Capitolato \\ \hline
+        RF-23 & Il sistema deve permettere il linking tra note e fornire all'LLM$_G$ il contesto di note specifiche (RAG). & Opzionale & UC 26.3, Capitolato \\ \hline
+        RF-24 & Il sistema deve implementare funzionalità di ricerca (per titolo o full-text) e filtri (per data) nel database$_G$. & Opzionale & UC 34 \\ \hline
+        RF-25 & Il sistema deve gestire gli account utente (Registrazione, Login, Logout, Eliminazione Account) per l'accesso al database$_G$. & Opzionale & UC 35, 36, 37, 38 \\ \hline
+        RF-26 & L'interfaccia deve permettere di alternare tra Tema Chiaro (Light Mode) e Tema Scuro (Dark Mode). & Desiderabile & UC 18 \\ \hline
+        RF-27 & L'interfaccia deve permettere lo scorrimento sincronizzato (Sync Scroll) tra editor sorgente e finestra di render. & Desiderabile & UC 19 \\ \hline
+        
+    \end{tabularx}
+\end{center}
 
 \subsection{Requisiti di Qualità}
+I requisiti di qualità stabiliscono i criteri prestazionali, di usabilità, affidabilità e manutenibilità che il software deve rispettare per garantire uno standard ingegneristico elevato.
+
+\begin{center}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{|c|L|c|c|}
+        \hline
+        \rowcolor[HTML]{EFEFEF}
+        \textbf{Codice} & \textbf{Descrizione} & \textbf{Priorità} & \textbf{Riferimento} \\ \hline
+        
+        RQ-1 & Il codice sorgente del prodotto deve essere versionato tramite un repository pubblico su GitHub. & Obbligatorio & Capitolato \\ \hline
+        RQ-2 & Il prodotto deve essere rilasciato con una licenza open-source (es. MIT, Apache 2.0). & Obbligatorio & Capitolato \\ \hline
+        RQ-3 & La codebase deve possedere una copertura di Test di Unità minima del 75\% (consigliata 80\%). & Obbligatorio & Standard PD \\ \hline
+        RQ-4 & Devono essere previsti Test di Integrazione e Test End-to-End con copertura documentata. & Obbligatorio & Standard PD \\ \hline
+        RQ-5 & Il software deve fornire feedback visivi in tempo reale (loading indicators) durante l'attesa di risposta dall'API$_G$ dell'LLM$_G$. & Obbligatorio & Usabilità \\ \hline
+        RQ-6 & Il ritardo nel rendering grafico del testo Markdown$_G$ inserito nell'editor non deve superare 1 secondo. & Desiderabile & Prestazioni \\ \hline
+        RQ-7 & Il codice deve essere adeguatamente commentato e corredato da un file README chiaro per l'installazione e configurazione del progetto. & Obbligatorio & Capitolato \\ \hline
+        RQ-8 & Deve essere redatto un manuale d'uso completo destinato agli utenti finali e uno per gli sviluppatori. & Obbligatorio & Capitolato \\ \hline
+        RQ-9 & I messaggi di errore (es. mancata risposta dell'LLM$_G$, database irraggiungibile) devono essere chiari e non esporre dettagli di sicurezza. & Obbligatorio & Usabilità \\ \hline
+        
+    \end{tabularx}
+\end{center}
 
 \subsection{Requisiti di Vincolo}
+I requisiti di vincolo definiscono le limitazioni tecnologiche e le scelte architetturali imposte dal proponente o derivanti dalla natura intrinseca del progetto.
+
+\begin{center}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{|c|L|c|c|}
+        \hline
+        \rowcolor[HTML]{EFEFEF}
+        \textbf{Codice} & \textbf{Descrizione} & \textbf{Priorità} & \textbf{Riferimento} \\ \hline
+        
+        RV-1 & Il sistema client deve essere sviluppato unicamente utilizzando Tecnologie Web$_G$ (HTML, CSS, JavaScript/TypeScript e framework moderni). & Obbligatorio & Capitolato \\ \hline
+        RV-2 & Il linguaggio di riferimento obbligatorio per l'inserimento formattato dei testi è il Markdown$_G$. & Obbligatorio & Capitolato \\ \hline
+        RV-3 & L'architettura deve prevedere l'interfacciamento tramite API$_G$ con servizi LLM$_G$ esterni (es. OpenAI, Google Gemini, Mistral). & Obbligatorio & Capitolato \\ \hline
+        RV-4 & L'applicazione web deve essere pienamente accessibile, fruibile e "responsive" sui principali web browser moderni (Google Chrome, Mozilla Firefox, Safari, Microsoft Edge). & Obbligatorio & Standard PD \\ \hline
+        RV-5 & Nel caso di sviluppo della funzionalità Opzionale (Database Server-Side), deve essere implementata una componente back-end capace di esporre API (es. tramite Node.js, Python/Flask). & Opzionale & Capitolato \\ \hline
+        RV-6 & Tutte le librerie e i framework di terze parti adottati nello sviluppo devono essere provvisti di licenza open-source compatibile. & Obbligatorio & Standard PD \\ \hline
+
+    \end{tabularx}
+\end{center}
 
 \end{document}
