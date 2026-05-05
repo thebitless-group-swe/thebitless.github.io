@@ -154,7 +154,7 @@ Le funzionalità, sia requisiti$_G$ obbligatori che opzionali, del prodotto sono
     \item Editor Markdown: Il prodotto deve implementare un'area di inserimento testo che supporti il linguaggio di Markdown$_G$
     \item Rendering Grafico: Visualizzazione del testo formattato in tempo reale, fianco a fianco con l'editor
     \item Integrazione$_G$ LLM: Accesso tramite API$_G$ ai modelli linguistici di intelligenza artificiale per operare sul testo (su una parte o sull'intero documento)
-    \item Comandi di Base: Implementazione dei comandi di base quali la riscrittura (cambio tono, espansione del testo, correzione grammaticale), il riassunto e la traduzione multilingua
+    \item Comandi di Base: Implementazione dei comandi di base quali la riscrittura (cambio tono, espansione del testo, correzione grammaticale), il riassunto e la traduzione (Inglese, Francese, Tedesco, Spagnolo)
     \item Analisi Critica: Implementazione del modello dei sei cappelli$_G$ per analizzare e/o riscrivere il testo da diverse prospettive
     \begin{itemize}
         \item[Bianco: ] Testo neutro ed imparziale, che risponde ai fatti
@@ -1373,54 +1373,20 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 \end{itemize}
 
 \hypertarget{uc:21}{}
-\subsubsection{UC 21 - Gestione Input Vocale}
+\subsubsection{UC 21 - Dettatura tramite Microfono}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente interagisce con il sistema avviando una registrazione vocale (dettatura) per l'inserimento o l'elaborazione del testo tramite voce.
+    \item \textbf{Descrizione:} L'utente attiva la funzione di dettatura del browser per inserire testo tramite input vocale. Il browser converte il parlato in testo e lo inserisce direttamente nel campo di input.
     \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:} Microfono (Dispositivo HW).
-    \item \textbf{Precondizioni:} L'utente ha concesso al browser i permessi di accesso al microfono.
-    \item \textbf{Postcondizioni:} Il sistema cattura l'audio per instradarlo al motore di trascrizione/LLM o annulla l'operazione.
+    \item \textbf{Attori Secondari:} Microfono (Dispositivo HW), Browser (Web Speech API).
+    \item \textbf{Precondizioni:} L'utente ha concesso al browser i permessi di accesso al microfono. Il browser supporta la Web Speech API.
+    \item \textbf{Postcondizioni:} Il testo riconosciuto dal microfono è inserito direttamente nel campo di input dell'editor.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item L'utente avvia l'interfaccia di registrazione vocale.
-        \item Il sistema acquisisce l'audio in input.
-        \item L'utente gestisce il flusso (stop o annullamento).
-    \end{enumerate}
-    \item \textbf{Generalizzazioni:}
-    \begin{itemize}
-        \item \hyperlink{uc:21.1}{UC 21.1 - Interruzione registrazione vocale con elaborazione dati}
-        \item \hyperlink{uc:21.2}{UC 21.2 - Annullamento registrazione senza elaborazione dati}
-    \end{itemize}
-\end{itemize}
-
-\hypertarget{uc:21.1}{}
-\paragraph{UC 21.1 - Interruzione registrazione vocale con elaborazione dati}
-\begin{itemize}
-    \item \textbf{Descrizione:} L'utente interrompe una registrazione vocale in corso, inviando l'audio catturato al sistema di trascrizione o di elaborazione per la generazione del testo.
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Precondizioni:} Una registrazione audio tramite microfono è attualmente in corso.
-    \item \textbf{Postcondizioni:} L'audio acquisito viene inviato al sistema di trascrizione/LLM e l'interfaccia di dettatura si chiude.
-    \item \textbf{Scenario Principale:}
-    \begin{enumerate}
-        \item L'utente clicca sul pulsante di stop o conferma della registrazione.
-        \item Il sistema cessa la cattura dell'audio dal microfono.
-        \item Il sistema invia i dati vocali memorizzati in sessione al motore di trascrizione o all'LLM per l'elaborazione.
-        \item L'interfaccia di dettatura si chiude, restituendo il controllo all'editor.
-    \end{enumerate}
-\end{itemize}
-
-\hypertarget{uc:21.2}{}
-\paragraph{UC 21.2 - Annullamento registrazione vocale con elaborazione dati}
-\begin{itemize}
-    \item \textbf{Descrizione:} L'utente interrompe attivamente una registrazione vocale in corso scartando l'audio catturato senza inviarlo al sistema di trascrizione o di elaborazione.
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Precondizioni:} Una registrazione audio tramite microfono è attualmente in corso.
-    \item \textbf{Postcondizioni:} L'audio acquisito viene eliminato dalla memoria temporanea e nessuna chiamata all'API viene effettuata. L'editor rimane inalterato.
-    \item \textbf{Scenario Principale:}
-    \begin{enumerate}
-        \item L'utente clicca sul pulsante di scarto o annullamento della registrazione.
-        \item Il sistema cessa la cattura dell'audio dal microfono.
-        \item Il sistema distrugge i dati vocali memorizzati in sessione e chiude l'interfaccia di dettatura.
+        \item L'utente clicca sul pulsante di dettatura.
+        \item Il sistema avvia l'ascolto tramite Web Speech API del browser.
+        \item L'utente parla e il browser converte il parlato in testo.
+        \item Il testo è inserito automaticamente nel campo di input.
+        \item L'utente può continuare a dettare o terminare la dettatura.
     \end{enumerate}
 \end{itemize}
 
@@ -1449,7 +1415,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \item \textbf{Estensioni:}
     \begin{itemize}
         \item \hyperlink{uc:22.2}{UC 22.2 - Gestione testo insufficiente}
-        \item \hyperlink{uc:22.3}{UC 22.3 - Errore LLM Non Raggiungibile}
+        \item \hyperlink{uc:22.3}{UC 22.3 - Errore LLM}
     \end{itemize}
 \end{itemize}
 
@@ -1483,7 +1449,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:22.3}{}
-\subparagraph{UC 22.3 - Errore LLM Non Raggiungibile}
+\subparagraph{UC 22.3 - Errore LLM}
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione della mancata risposta del servizio IA.
     \item \textbf{Attori Principali:} Sistema.
@@ -1501,7 +1467,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \hypertarget{uc:23}{}
 \paragraph{UC 23 - Traduzione contenuto con LLM}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente richiede la traduzione automatica del testo in una lingua specifica tramite il servizio LLM.
+    \item \textbf{Descrizione:} L'utente richiede la traduzione automatica del testo in una lingua supportata (Inglese, Francese, Tedesco, Spagnolo) tramite il servizio LLM.
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:} LLM$_G$.
     \item \textbf{Precondizioni:} L'editor contiene testo e la connessione Internet è attiva.
@@ -1519,26 +1485,26 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \end{enumerate}  
     \item \textbf{Estensioni:}
     \begin{itemize}
-        \item \hyperlink{uc:23.2}{UC 23.2 - Errore LLM Non Raggiungibile}
+        \item \hyperlink{uc:23.2}{UC 23.2 - Errore LLM}
     \end{itemize}
 \end{itemize}
 
 \hypertarget{uc:23.1}{}
 \subparagraph{UC 23.1 - Selezione lingua di destinazione}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente sceglie la lingua in cui desidera tradurre il contenuto tra quelle disponibili.
+    \item \textbf{Descrizione:} L'utente sceglie la lingua di destinazione tra le opzioni supportate.
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Precondizioni:} L'interfaccia di traduzione è attiva.
     \item \textbf{Postcondizioni:} Il sistema imposta il flag della lingua per la chiamata API.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item L'utente seleziona una delle opzioni disponibili.
+        \item L'utente seleziona una delle opzioni supportate: Inglese, Francese, Tedesco, Spagnolo.
         \item Il sistema conferma la selezione e abilita il tasto di invio.
     \end{enumerate}
 \end{itemize}
 
 \hypertarget{uc:23.2}{}
-\subparagraph{UC 23.2 - Errore LLM Non Raggiungibile}
+\subparagraph{UC 23.2 - Errore LLM}
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione del fallimento della comunicazione con il servizio di traduzione.
     \item \textbf{Attori Principali:} Sistema.
@@ -1579,7 +1545,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \end{itemize}
     \item \textbf{Estensioni:}
     \begin{itemize}
-        \item \hyperlink{uc:24.3}{UC 24.3 - Errore LLM Non Raggiungibile}
+        \item \hyperlink{uc:24.3}{UC 24.3 - Errore LLM}
     \end{itemize}
 \end{itemize}
 
@@ -1634,7 +1600,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:24.3}{}
-\subparagraph{UC 24.3 - Errore LLM Non Raggiungibile}
+\subparagraph{UC 24.3 - Errore LLM}
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione del fallimento di comunicazione con l'intelligenza artificiale.
     \item \textbf{Attori Principali:} Utente.
@@ -1672,7 +1638,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \item \textbf{Estensioni:}
     \begin{itemize}
         \item \hyperlink{uc:25.2}{UC 25.2 - Gestione testo insufficiente per l'analisi}
-        \item \hyperlink{uc:25.3}{UC 25.3 - Errore LLM Non Raggiungibile}
+        \item \hyperlink{uc:25.3}{UC 25.3 - Errore LLM}
     \end{itemize}
 \end{itemize}
 
@@ -1808,7 +1774,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:25.3}{}
-\subparagraph{UC 25.3 - Errore LLM Non Raggiungibile}
+\subparagraph{UC 25.3 - Errore LLM}
 \begin{itemize}
     \item \textbf{Descrizione:} Fallimento della connessione con l'IA durante il processo di analisi critica.
     \item \textbf{Attori Principali:} Utente.
@@ -1846,10 +1812,11 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
         \item \hyperlink{uc:26.2}{UC 26.2 - Selezione della lunghezza desiderata del testo}
         \item \hyperlink{uc:26.3}{UC 26.3 - Selezione manuale delle note per il contesto della LLM}
         \item \hyperlink{uc:26.4}{UC 26.4 - Anteprima e conferma del contesto inviato}
+        \item \hyperlink{uc:26.6}{UC 26.6 - Generazione da link}
     \end{itemize}
     \item \textbf{Estensioni:}
     \begin{itemize}
-        \item \hyperlink{uc:26.5}{UC 26.5 - Errore LLM non raggiungibile}
+        \item \hyperlink{uc:26.5}{UC 26.5 - Errore LLM}
     \end{itemize}
 \end{itemize}
 
@@ -1929,7 +1896,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 % --- 26.5 ---
 \hypertarget{uc:26.5}{}
-\paragraph{UC 26.5 - Errore LLM non raggiungibile}
+\paragraph{UC 26.5 - Errore LLM}
 
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione della mancanza di risposta da parte del servizio di Intelligenza Artificiale
@@ -1945,73 +1912,30 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \end{enumerate}
 \end{itemize}
 
+% --- UC 26.6 ---
+\hypertarget{uc:26.6}{}
+\paragraph{UC 26.6 - Generazione testo a partire da link}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente fornisce un URL di una pagina web; il sistema estrae il testo rilevante dalla risorsa e lo utilizza come contesto per richiedere all'LLM la generazione di un nuovo testo (es. "Scrivi un testo partendo da questo link").
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:} LLM$_G$, Servizio di fetch/estrazione (Browser o Backend Proxy).
+    \item \textbf{Precondizioni:} L'URL fornito è raggiungibile e il contenuto è accessibile (considerare CORS o utilizzo di proxy per fetch server-side).
+    \item \textbf{Postcondizioni:} Il testo estratto dalla pagina viene incluso nel contesto inviato all'LLM e l'output generato viene mostrato per la validazione dell'utente.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente attiva la funzione "Genera da link" e inserisce l'URL.
+        \item Il sistema recupera il contenuto della pagina o invia la richiesta a un proxy server-side che esegue il fetch.
+        \item Il sistema estrae il testo rilevante (rimozione di boilerplate, script, ecc.) e lo prepara come contesto.
+        \item Il sistema invia il prompt comprensivo del contesto all'LLM$_G$.
+        \item L'LLM restituisce il testo generato che viene presentato all'utente per accettazione, modifica o scarto.
+    \end{enumerate}
+\end{itemize}
+
 % --- UC 27 ---
 
 \hypertarget{uc:27}{}
-\subsubsection{UC 27 - Elaborazione vocale}
-
-\begin{itemize}
-    \item \textbf{Descrizione:} Conversione di un input audio in testo strutturato e formattato.
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:}  LLM$_G$.
-    \item \textbf{Precondizioni:} Microfono attivo ed autorizzato.
-    \item \textbf{Postcondizioni:} L'audio è stato trasformato in testo nell'interfaccia
-    \item \textbf{Scenario Principale:}
-    \begin{enumerate}
-        \item L'utente avvia la registrazione.
-        \item Termina il parlato.
-        \item Il sistema processa l'audio e mostra il testo.
-    \end{enumerate}
-    \item \textbf{Inclusioni:}
-    \begin{itemize}
-        \item \hyperlink{uc:27.1}{UC 27.1 - Trascrizione e formattazione automatica}
-    \end{itemize}
-    \item \textbf{Estensioni:}
-    \begin{itemize}
-        \item \hyperlink{uc:27.2}{UC 27.2 - Gestione audio incomprensibile}
-    \end{itemize}
-\end{itemize}
-
-% --- 27.1 ---
-\hypertarget{uc:27.1}{}
-\paragraph{UC 27.1 - Trascrizione e formattazione automatica}
-
-\begin{itemize}
-    \item \textbf{Descrizione:} Pulizia del testo trascritto (punteggiatura, paragrafi) tramite AI.
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:}  LLM$_G$.
-    \item \textbf{Precondizioni:} Esiste una trascrizione grezza.
-    \item \textbf{Postcondizioni:} Il testo è reso leggibile e stilisticamente corretto.
-    \item \textbf{Scenario Principale:}
-    \begin{enumerate}
-        \item Il sistema riceve il testo grezzo.
-        \item Lo invia all'LLM$_G$ per la formattazione.
-        \item L'output pulito viene presentato all'utente.
-    \end{enumerate}
-\end{itemize}
-
-% --- 27.2 ---
-\hypertarget{uc:27.2}{}
-\paragraph{UC 27.2 - Gestione audio incomprensibile}
-
-\begin{itemize}
-    \item \textbf{Descrizione:} Segnalazione all'utente che la qualità audio non permette la trascrizione.
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:}  Nessuno.
-    \item \textbf{Precondizioni:} Input audio ricevuto troppo basso o disturbato.
-    \item \textbf{Postcondizioni:} Richiesta di ripetizione dell'input.
-    \item \textbf{Scenario Principale:}
-    \begin{enumerate}
-        \item Il sistema analizza l'audio.
-        \item Il sistema rileva un livello di confidenza troppo basso.
-        \item Interrompe il processo e notifica l'utente.
-    \end{enumerate}
-\end{itemize}
-
-% --- UC 28 ---
-
-\hypertarget{uc:28}{}
-\subsubsection{UC 28 - Validazione output AI}
+\subsubsection{UC 27 - Validazione output AI}
 
 \begin{itemize}
     \item \textbf{Descrizione:} Fase decisionale dell'utente sulla qualità del testo ricevuto dall'AI.
@@ -2028,27 +1952,27 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     
     \item \textbf{Generalizzazioni:}
     \begin{itemize}
-        \item \hyperlink{uc:28.1}{UC 28.1 - Accettazione output}
-        \item \hyperlink{uc:28.2}{UC 28.2 - Rifiuto output}
-        \item \hyperlink{uc:28.1}{UC 28.3 - Rigenerazione output}
+        \item \hyperlink{uc:27.1}{UC 27.1 - Accettazione output}
+        \item \hyperlink{uc:27.2}{UC 27.2 - Rifiuto output}
+        \item \hyperlink{uc:27.3}{UC 27.3 - Rigenerazione output}
     \end{itemize}
     \item \textbf{Inclusioni:}
     \begin{itemize}
-        \item \hyperlink{uc:28.4}{UC 28.4 - Tracciamento delle note sorgente usate per un output AI}
+        \item \hyperlink{uc:27.4}{UC 27.4 - Tracciamento delle note sorgente usate per un output AI}
     \end{itemize}
 \end{itemize}
 
-% --- 28.1 ---
+% --- 27.1 ---
 
-\hypertarget{uc:28.1}{}
-\paragraph{UC 28.1 - Accettazione output}
+\hypertarget{uc:27.1}{}
+\paragraph{UC 27.1 - Accettazione output}
 
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente esamina il testo prodotto dall'AI e lo giudica idoneo, accettando di utilizzarlo nel sistema.
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:}  Sistema di persistenza.
-    \item \textbf{Precondizioni:} L'output dell'LLM è stato visualizzato correttamente a schermo (\hypertarget{uc:28}{UC 28}) e l'utente ha terminato la revisione.
-    \item \textbf{Postcondizioni:} L'output è marcato come validato. Il sistema sblocca le funzioni di persistenza definitiva (\hypertarget{uc:28.1.1}{UC 28.1.1}, \hypertarget{uc:28.1.2}{UC 28.1.2}).
+    \item \textbf{Precondizioni:} L'output dell'LLM è stato visualizzato correttamente a schermo (\hypertarget{uc:27}{UC 27}) e l'utente ha terminato la revisione.
+    \item \textbf{Postcondizioni:} L'output è marcato come validato. Il sistema sblocca le funzioni di persistenza definitiva (\hypertarget{uc:27.1.1}{UC 27.1.1}, \hypertarget{uc:27.1.2}{UC 27.1.2}).
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
         \item L'utente visualizza il testo generato dall'AI nell'area di anteprima.
@@ -2058,21 +1982,21 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     
     \item \textbf{Generalizzazioni:}
     \begin{itemize}
-        \item \hyperlink{uc:28.1.1}{UC 28.1.1 - Sostituzione del testo nell'editor}
-        \item \hyperlink{uc:28.1.2}{UC 28.1.2 - Salvataggio dell'output come una nuova nota}
+        \item \hyperlink{uc:27.1.1}{UC 27.1.1 - Sostituzione del testo nell'editor}
+        \item \hyperlink{uc:27.1.2}{UC 27.1.2 - Salvataggio dell'output come una nuova nota}
     \end{itemize}
 \end{itemize}
 
-% --- 28.1.1 ---
+% --- 27.1.1 ---
 
-\hypertarget{uc:28.1.1}{}
-\subparagraph{UC 28.1.1 - Sostituzione del testo nell'editor}
+\hypertarget{uc:27.1.1}{}
+\subparagraph{UC 27.1.1 - Sostituzione del testo nell'editor}
 
 \begin{itemize}
     \item \textbf{Descrizione:} L'output AI sostituisce il contenuto corrente di una nota aperta.
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:}  Sistema di persistenza.
-    \item \textbf{Precondizioni:} \hypertarget{uc:28.1}{UC 28.1} attivato.
+    \item \textbf{Precondizioni:} \hypertarget{uc:27.1}{UC 27.1} attivato.
     \item \textbf{Postcondizioni:} Il testo originale della nota aperta è sovrascritto.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
@@ -2082,16 +2006,16 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \end{enumerate}
 \end{itemize}
 
-% --- 28.1.2 ---
+% --- 27.1.2 ---
 
-\hypertarget{uc:28.1.2}{}
-\subparagraph{UC 28.1.2 - Salvataggio dell'output come nuova nota}
+\hypertarget{uc:27.1.2}{}
+\subparagraph{UC 27.1.2 - Salvataggio dell'output come nuova nota}
 
 \begin{itemize}
     \item \textbf{Descrizione:} L'output AI viene archiviato come un documento indipendente.
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:}  Sistema di persistenza.
-    \item \textbf{Precondizioni:} \hypertarget{uc:28.1}{UC 28.1} attivato.
+    \item \textbf{Precondizioni:} \hypertarget{uc:27.1}{UC 27.1} attivato.
     \item \textbf{Postcondizioni:} L'output è salvato in una nuova nota e presente nel database.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
@@ -2102,16 +2026,16 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \end{enumerate}
 \end{itemize}
 
-% --- 28.2 ---
+% --- 27.2 ---
 
-\hypertarget{uc:28.2}{}
-\paragraph{UC 28.2 - Rifiuto output}
+\hypertarget{uc:27.2}{}
+\paragraph{UC 27.2 - Rifiuto output}
 
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente scarta il testo generato perchè valutato non soddisfacente.
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:}  Nessuno.
-    \item \textbf{Precondizioni:} L'output dell'LLM è stato visualizzato correttamente a schermo (\hypertarget{uc:28}{UC 28}) e l'utente ha terminato la revisione.
+    \item \textbf{Precondizioni:} L'output dell'LLM è stato visualizzato correttamente a schermo (\hypertarget{uc:27.2}{UC 27.2}) e l'utente ha terminato la revisione.
     \item \textbf{Postcondizioni:} Il testo generato viene rimosso dalla memoria temporanea.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
@@ -2120,16 +2044,16 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \end{enumerate}
 \end{itemize}
 
-% --- 28.3 ---
+% --- 27.3 ---
 
-\hypertarget{uc:28.3}{}
-\paragraph{UC 28.3 - Rigenerazione output}
+\hypertarget{uc:27.3}{}
+\paragraph{UC 27.3 - Rigenerazione output}
 
 \begin{itemize}
     \item \textbf{Descrizione:} Richiesta di una nuova versione del testo mantenendo gli stessi parametri.
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:}  LLM$_G$.
-    \item \textbf{Precondizioni:} L'output dell'LLM è stato visualizzato correttamente a schermo (\hypertarget{uc:28}{UC 28}) e l'utente ha terminato la revisione.
+    \item \textbf{Precondizioni:} L'output dell'LLM è stato visualizzato correttamente a schermo (\hypertarget{uc:27.3}{UC 27.3}) e l'utente ha terminato la revisione.
     \item \textbf{Postcondizioni:} Un nuovo output sostituisce il precedente nella schermata di anteprima.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
@@ -2139,10 +2063,10 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \end{enumerate}
 \end{itemize}
 
-% --- 28.4 ---
+% --- 27.4 ---
 
-\hypertarget{uc:28.4}{}
-\paragraph{UC 28.4 - Tracciamento delle note sorgente usate per un output AI}
+\hypertarget{uc:27.4}{}
+\paragraph{UC 27.4 - Tracciamento delle note sorgente usate per un output AI}
 
 \begin{itemize}
     \item \textbf{Descrizione:} Memorizzazione dei metadati relativi a quali note (interne ed esterne) hanno contribuito alla generazione.
@@ -2157,8 +2081,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \end{enumerate}
 \end{itemize}
 
-\hypertarget{uc:29}{}
-\subsubsection{UC 29 - Annullamento richiesta (!)}
+\hypertarget{uc:28}{}
+\subsubsection{UC 28 - Annullamento richiesta (!)}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente interrompe un'operazione di elaborazione testuale in corso, annullando l'attesa della risposta da parte del modello linguistico.
     \item \textbf{Attori Principali:} Utente.
@@ -2178,8 +2102,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \subsection{Salvataggio e Persistenza}
 In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e la persistenza dei dati.
 
-\subsubsection{UC 30 - Creazione nuova nota}
-\label{uc30}
+\subsubsection{UC 29 - Creazione nuova nota}
+\label{uc29}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole iniziare la stesura di una nuova nota.
     \item \textbf{Attore primario:} Utente
@@ -2199,13 +2123,13 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
     \item \textbf{Generalizzazioni:}
     \begin{itemize}
-        \item UC 30.1 - Inizializzazione editor vuoto
-        \item UC 30.2 - Creazione nota nel Database$_G$ Browser
+        \item UC 29.1 - Inizializzazione editor vuoto
+        \item UC 29.2 - Creazione nota nel Database$_G$ Browser
     \end{itemize}
 \end{itemize}
 
-\paragraph{UC 30.1 - Inizializzazione editor vuoto}
-\label{uc30.1}
+\paragraph{UC 29.1 - Inizializzazione editor vuoto}
+\label{uc29.1}
 
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole iniziare la scrittura di una nota completamente vuota senza interazione con il database$_G$.
@@ -2226,8 +2150,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
 \end{itemize}
 
-\paragraph{UC 30.2 - Creazione nota nel Database$_G$ Browser}
-\label{uc30.2}
+\paragraph{UC 29.2 - Creazione nota nel Database$_G$ Browser}
+\label{uc29.2}
 
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole creare una nuova nota persistente nel database$_G$ dell'applicazione.
@@ -2254,12 +2178,12 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
     \item \textbf{Estensioni:}
     \begin{itemize}
-        \item UC 30.3.1 - Gestione errore creazione nota nel Database$_G$.
+        \item UC 29.2.1 - Gestione errore creazione nota nel Database$_G$.
     \end{itemize}
 \end{itemize}
 
-\subparagraph{UC 30.3.1 - Gestione errore creazione nota nel Database$_G$}
-\label{uc30.3.1}
+\subparagraph{UC 29.2.1 - Gestione errore creazione nota nel Database$_G$}
+\label{uc29.2.1}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole creare una nuova nota persistente nel database$_G$ dell'applicazione.
     \item \textbf{Attore primario:} Utente
@@ -2283,8 +2207,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
 \end{itemize}
 
-\subsubsection{UC 31 - Caricamento nota}
-\label{uc31}
+\subsubsection{UC 30 - Caricamento nota}
+\label{uc30}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente modifica e/o visualizza una nota già esistente.
     \item \textbf{Attore primario:} Utente
@@ -2303,17 +2227,17 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
     \item \textbf{Generalizzazioni:}
     \begin{itemize}
-        \item UC 31.1 - Caricamento da File Locale
-        \item UC 31.2 - Caricamento da Database$_G$ Browser
+        \item UC 30.1 - Caricamento da File Locale
+        \item UC 30.2 - Caricamento da Database$_G$ Browser
     \end{itemize}
     \item \textbf{Estensioni:}
     \begin{itemize}
-        \item UC 31.3 - Gestione errore di caricamento
+        \item UC 30.3 - Gestione errore di caricamento
     \end{itemize}
 \end{itemize}
 
-\paragraph{UC 31.1 - Caricamento da File Locale}
-\label{uc31.1}
+\paragraph{UC 30.1 - Caricamento da File Locale}
+\label{uc30.1}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente apre una nota presente in un file locale.
     \item \textbf{Attore primario:} Utente
@@ -2341,8 +2265,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{itemize}
 \end{itemize}
 
-\paragraph{UC 31.2 - Caricamento da Database$_G$ Browser}
-\label{uc31.2}
+\paragraph{UC 30.2 - Caricamento da Database$_G$ Browser}
+\label{uc30.2}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente apre una nota salvata nel database$_G$.
     \item \textbf{Attore primario:} Utente
@@ -2368,12 +2292,12 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
     \item \textbf{Estensioni:}
     \begin{itemize}
-        \item UC 31.3 - Gestione errore di caricamento
+        \item UC 30.3 - Gestione errore di caricamento
     \end{itemize}
 \end{itemize}
 
-\paragraph{UC 31.3 - Gestione errore di caricamento}
-\label{uc31.3}
+\paragraph{UC 30.3 - Gestione errore di caricamento}
+\label{uc30.3}
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di caricamento della nota.
     \item \textbf{Attore primario:} Utente
@@ -2398,8 +2322,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
 \end{itemize}
 
-\subsubsection{UC 32 - Salvataggio nota}
-\label{uc32}
+\subsubsection{UC 31 - Salvataggio nota}
+\label{uc31}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente salva la nota attualmente aperta nell'editor di testo.
     \item \textbf{Attore primario:} Utente
@@ -2419,17 +2343,17 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
     \item \textbf{Generalizzazioni:}
     \begin{itemize}
-        \item UC 32.1 - Salvataggio su FileSystem
-        \item UC 32.2 - Salvataggio da Database$_G$ Browser
+        \item UC 31.1 - Salvataggio su FileSystem
+        \item UC 31.2 - Salvataggio da Database$_G$ Browser
     \end{itemize}
     \item \textbf{Estensioni:}
     \begin{itemize}
-        \item UC 32.3 - Gestione errore di salvataggio
+        \item UC 31.3 - Gestione errore di salvataggio
     \end{itemize}
 \end{itemize}
 
-\paragraph{UC 32.1 - Salvataggio su FileSystem}
-\label{uc32.1}
+\paragraph{UC 31.1 - Salvataggio su FileSystem}
+\label{uc31.1}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente esporta la nota corrente come file nel file system.
     \item \textbf{Attore primario:} Utente
@@ -2452,8 +2376,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
 \end{itemize}
 
-\paragraph{UC 32.2 - Salvataggio da Database$_G$ Browser}
-\label{uc32.2}
+\paragraph{UC 31.2 - Salvataggio da Database$_G$ Browser}
+\label{uc31.2}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente salva la nota nel database$_G$ dell'applicazione.
     \item \textbf{Attore primario:} Utente
@@ -2479,8 +2403,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
 \end{itemize}
 
-\paragraph{UC 32.3 - Gestione errore di salvataggio}
-\label{uc32.3}
+\paragraph{UC 31.3 - Gestione errore di salvataggio}
+\label{uc31.3}
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di salvataggio della nota.
     \item \textbf{Attore primario:} Utente
@@ -2506,8 +2430,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
 \end{itemize}
 
-\subsubsection{UC 33 - Gestione nota salvata}
-\label{uc33}
+\subsubsection{UC 32 - Gestione nota salvata}
+\label{uc32}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole gestire le note salvate nel database$_G$ (eliminazione, rinominazione o consultazione dei metadati$_G$).
     \item \textbf{Attore primario:} Utente
@@ -2530,14 +2454,14 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
     \item \textbf{Generalizzazioni:}
     \begin{itemize}
-        \item UC 33.1 - Eliminazione nota dal Database$_G$
-        \item UC 33.2 - Rinominazione nota nel Database$_G$
-        \item UC 33.3 - Visualizzazione informazioni e metadati della nota
+        \item UC 32.1 - Eliminazione nota dal Database$_G$
+        \item UC 32.2 - Rinominazione nota nel Database$_G$
+        \item UC 32.3 - Visualizzazione informazioni e metadati della nota
     \end{itemize}
 \end{itemize}
 
-\paragraph{UC 33.1 - Eliminazione nota dal Database$_G$}
-\label{uc33.1}
+\paragraph{UC 32.1 - Eliminazione nota dal Database$_G$}
+\label{uc32.1}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole eliminare definitivamente una nota dal database$_G$.
     \item \textbf{Attore primario:} Utente
@@ -2563,12 +2487,12 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
     \item \textbf{Estensioni:}
     \begin{itemize}
-        \item UC 33.1.1 - Gestione errore eliminazione
+        \item UC 32.1.1 - Gestione errore eliminazione
     \end{itemize}
 \end{itemize}
 
-\subparagraph{UC 33.1.1 - Gestione errore eliminazione}
-\label{uc33.1.1}
+\subparagraph{UC 32.1.1 - Gestione errore eliminazione}
+\label{uc32.1.1}
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di eliminazione della nota.
     \item \textbf{Attore primario:} Utente
@@ -2592,8 +2516,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
 \end{itemize}
 
-\paragraph{UC 33.2 - Rinominazione nota nel Database$_G$}
-\label{uc33.2}
+\paragraph{UC 32.2 - Rinominazione nota nel Database$_G$}
+\label{uc32.2}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole assegnare un nuovo nome a una nota già salvata nel database$_G$.
     \item \textbf{Attore primario:} Utente
@@ -2620,12 +2544,12 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
     \item \textbf{Estensioni:}
     \begin{itemize}
-        \item UC 33.2.1 - Gestione errore rinominazione
+        \item UC 32.2.1 - Gestione errore rinominazione
     \end{itemize}
 \end{itemize}
 
-\subparagraph{UC 33.2.1 - Gestione errore rinominazione}
-\label{uc33.2.1}
+\subparagraph{UC 32.2.1 - Gestione errore rinominazione}
+\label{uc32.2.1}
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di rinominazione della nota.
     \item \textbf{Attore primario:} Utente
@@ -2649,8 +2573,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
 \end{itemize}
 
-\paragraph{UC 33.3 - Visualizzazione informazioni e metadati della nota}
-\label{uc33.3}
+\paragraph{UC 32.3 - Visualizzazione informazioni e metadati della nota}
+\label{uc32.3}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole consultare i metadati$_G$ e le informazioni di una nota salvata nel database$_G$.
     \item \textbf{Attore primario:} Utente
@@ -2675,8 +2599,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
 \end{itemize}
 
-\subsubsection{UC 34 - Ricerca e Navigazione}
-\label{uc34}
+\subsubsection{UC 33 - Ricerca e Navigazione}
+\label{uc33}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole trovare una o più note nel database$_G$ tramite criteri di ricerca.
     \item \textbf{Attore primario:} Utente
@@ -2700,15 +2624,15 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
     \item \textbf{Generalizzazioni:}
     \begin{itemize}
-        \item UC 34.1 - Ricerca mirata per titolo
-        \item UC 34.2 - Ricerca Full-Text
-        \item UC 34.3 - Filtro per data
-        \item UC 34.4 - Visualizzazione lista note salvate nel Database$_G$
+        \item UC 33.1 - Ricerca mirata per titolo
+        \item UC 33.2 - Ricerca Full-Text
+        \item UC 33.3 - Filtro per data
+        \item UC 33.4 - Visualizzazione lista note salvate nel Database$_G$
     \end{itemize}
 \end{itemize}
 
-\paragraph{UC 34.1 - Ricerca mirata per titolo}
-\label{uc34.1}
+\paragraph{UC 33.1 - Ricerca mirata per titolo}
+\label{uc33.1}
 
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole cercare una nota conoscendone (parte del) titolo.
@@ -2735,8 +2659,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
 \end{itemize}
 
-\paragraph{UC 34.2 - Ricerca Full-Text}
-\label{uc34.2}
+\paragraph{UC 33.2 - Ricerca Full-Text}
+\label{uc33.2}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole trovare tutte le note che contengono una parola o frase specifica nel loro contenuto.
     \item \textbf{Attore primario:} Utente
@@ -2763,8 +2687,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
 \end{itemize}
 
-\paragraph{UC 34.3 - Filtro per data}
-\label{uc34.3}
+\paragraph{UC 33.3 - Filtro per data}
+\label{uc33.3}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole filtrare le note in base a un criterio temporale.
     \item \textbf{Attore primario:} Utente
@@ -2788,13 +2712,13 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
     \item \textbf{Generalizzazioni:}
     \begin{itemize}
-        \item UC 34.3.1 - Filtro per data di creazione
-        \item UC 34.3.2 - Filtro per data di ultima modifica
+        \item UC 33.3.1 - Filtro per data di creazione
+        \item UC 33.3.2 - Filtro per data di ultima modifica
     \end{itemize}
 \end{itemize}
 
-\subparagraph{UC 34.3.1 - Filtro per data di creazione}
-\label{uc34.3.1}
+\subparagraph{UC 33.3.1 - Filtro per data di creazione}
+\label{uc33.3.1}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole visualizzare le note create in un determinato periodo.
     \item \textbf{Attore primario:} Utente
@@ -2818,8 +2742,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
 \end{itemize}
 
-\subparagraph{UC 34.3.2 - Filtro per data di ultima modifica}
-\label{uc34.3.2}
+\subparagraph{UC 33.3.2 - Filtro per data di ultima modifica}
+\label{uc33.3.2}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole visualizzare le note aggiornate in un determinato periodo.
     \item \textbf{Attore primario:} Utente
@@ -2845,8 +2769,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
 \end{itemize}
 
-\paragraph{UC 34.4 - Visualizzazione lista note salvate nel Database$_G$}
-\label{uc34.4}
+\paragraph{UC 33.4 - Visualizzazione lista note salvate nel Database$_G$}
+\label{uc33.4}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole visualizzare tutte le note salvate nel proprio account$_G$.
     \item \textbf{Attore primario:} Utente
@@ -2871,8 +2795,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
 \end{itemize}
 
-\subsubsection{UC 35 - Login}
-\label{uc35}
+\subsubsection{UC 34 - Login}
+\label{uc34}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole accedere alle funzionalità del database$_G$ dell'applicazione.
     \item \textbf{Attore primario:} Utente
@@ -2899,12 +2823,12 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
     \item \textbf{Estensioni:}
     \begin{itemize}
-        \item UC 35.1 - Gestione errore di login$_G$
+        \item UC 34.1 - Gestione errore di login$_G$
     \end{itemize}
 \end{itemize}
 
-\paragraph{UC 35.1 - Gestione errore di login}
-\label{uc35.1}
+\paragraph{UC 34.1 - Gestione errore di login}
+\label{uc34.1}
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di autenticazione dell'utente.
     \item \textbf{Attore primario:} Utente
@@ -2931,8 +2855,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
 \end{itemize}
 
-\subsubsection{UC 36 - Registrazione}
-\label{uc36}
+\subsubsection{UC 35 - Registrazione}
+\label{uc35}
 \begin{itemize}
     \item \textbf{Attore primario:} Utente
     \item \textbf{Precondizioni:}
@@ -2964,8 +2888,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{itemize}
 \end{itemize}
 
-\paragraph{UC 36.1 - Gestione username già esistente}
-\label{uc36.1}
+\paragraph{UC 35.1 - Gestione username già esistente}
+\label{uc35.1}
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema$_G$ rileva che lo username inserito dall'utente è già associato a un account$_G$ esistente nel database$_G$.
     \item \textbf{Attore primario:} Utente
@@ -2989,8 +2913,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
 \end{itemize}
 
-\subsubsection{UC 37 - Eliminazione dell'account}
-\label{uc37}
+\subsubsection{UC 36 - Eliminazione dell'account}
+\label{uc36}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole eliminare definitivamente il proprio account$_G$ e tutti i dati ad esso associati.
     \item \textbf{Attore primario:} Utente
@@ -3019,8 +2943,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
 \end{itemize}
 
-\subsubsection{UC 38 - Logout}
-\label{uc38}
+\subsubsection{UC 37 - Logout}
+\label{uc37}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole terminare la propria sessione autenticata nel sistema$_G$.
     \item \textbf{Attore primario:} Utente
@@ -3091,20 +3015,21 @@ I requisiti funzionali definiscono le operazioni, i comportamenti e le funzional
         RF-11 & Il sistema deve permettere la gestione di immagini e collegamenti ipertestuali (link). & Obbligatorio & UC 13, UC 14 \\ \hline
         RF-12 & Il sistema deve fornire il rendering grafico del testo Markdown$_G$ in tempo reale. & Obbligatorio & UC 20, Capitolato \\ \hline
         RF-13 & Il sistema deve permettere la chiusura e l'apertura automatica dei simboli durante la digitazione. & Desiderabile & UC 16 \\ \hline
-        RF-14 & Il sistema deve permettere il salvataggio e il caricamento delle note in file di testo locali (.md) su FileSystem. & Obbligatorio & UC 31.1, UC 32.1, Capitolato \\ \hline
+        RF-14 & Il sistema deve permettere il salvataggio e il caricamento delle note in file di testo locali (.md) su FileSystem. & Obbligatorio & UC 30.1, UC 31.1, Capitolato \\ \hline
         RF-15 & Il sistema deve interfacciarsi con un LLM$_G$ per la generazione automatica del testo (Distant Writing$_G$) partendo da un prompt$_G$. & Obbligatorio & UC 26, Capitolato \\ \hline
         RF-16 & Il sistema deve implementare comandi base gestiti dall'LLM$_G$: riassunto, riscrittura (cambio tono, espansione, correzione) e traduzione. & Obbligatorio & Capitolato \\ \hline
         RF-17 & Il sistema deve permettere l'analisi critica del testo applicando il modello dei "sei cappelli per pensare" (Neutro, Emozionale, Ottimista, Critico, Creativo, Logico). & Obbligatorio & Capitolato \\ \hline
         RF-18 & Il sistema deve permettere all'utente di definire la lunghezza desiderata del testo generato dall'LLM$_G$. & Desiderabile & UC 26.2 \\ \hline
-        RF-19 & Il sistema deve permettere all'utente di validare, accettare, scartare o rigenerare l'output prodotto dall'AI$_G$. & Obbligatorio & UC 28 \\ \hline
-        RF-20 & Il sistema deve permettere di interrompere o annullare una richiesta di elaborazione inviata all'LLM$_G$ in corso. & Desiderabile & UC 29 \\ \hline
-        RF-21 & Il sistema deve acquisire l'input vocale dell'utente e trascriverlo/formattarlo tramite integrazione con LLM$_G$. & Desiderabile & UC 21, UC 27 \\ \hline
-        RF-22 & Il sistema deve permettere il salvataggio, caricamento ed eliminazione delle note in un database$_G$ remoto (Server-Side). & Opzionale & UC 30.2, 31.2, 32.2, Capitolato \\ \hline
+        RF-19 & Il sistema deve permettere all'utente di validare, accettare, scartare o rigenerare l'output prodotto dall'AI$_G$. & Obbligatorio & UC 27 \\ \hline
+        RF-20 & Il sistema deve permettere di interrompere o annullare una richiesta di elaborazione inviata all'LLM$_G$ in corso. & Desiderabile & UC 28 \\ \hline
+        RF-21 & Il sistema deve fornire una funzione di dettatura tramite la Web Speech API del browser per l'inserimento di testo tramite input vocale. & Desiderabile & UC 21 \\ \hline
+        RF-22 & Il sistema deve permettere il salvataggio, caricamento ed eliminazione delle note in un database$_G$ remoto (Server-Side). & Opzionale & UC 29.2, 30.2, 31.2, Capitolato \\ \hline
         RF-23 & Il sistema deve permettere il linking tra note e fornire all'LLM$_G$ il contesto di note specifiche (RAG). & Opzionale & UC 26.3, Capitolato \\ \hline
-        RF-24 & Il sistema deve implementare funzionalità di ricerca (per titolo o full-text) e filtri (per data) nel database$_G$. & Opzionale & UC 34 \\ \hline
-        RF-25 & Il sistema deve gestire gli account utente (Registrazione, Login, Logout, Eliminazione Account) per l'accesso al database$_G$. & Opzionale & UC 35, 36, 37, 38 \\ \hline
+        RF-24 & Il sistema deve implementare funzionalità di ricerca (per titolo o full-text) e filtri (per data) nel database$_G$. & Opzionale & UC 33 \\ \hline
+        RF-25 & Il sistema deve gestire gli account utente (Registrazione, Login, Logout, Eliminazione Account) per l'accesso al database$_G$. & Opzionale & UC 34, 35, 36, 37 \\ \hline
         RF-26 & L'interfaccia deve permettere di alternare tra Tema Chiaro (Light Mode) e Tema Scuro (Dark Mode). & Desiderabile & UC 18 \\ \hline
         RF-27 & L'interfaccia deve permettere lo scorrimento sincronizzato (Sync Scroll) tra editor sorgente e finestra di render. & Desiderabile & UC 19 \\ \hline
+        RF-28 & Il sistema deve permettere all'utente di fornire un URL come sorgente di contenuto per la generazione automatica di testo; il contenuto della pagina deve essere estratto e fornito all'LLM$_G$ come contesto. & Desiderabile & UC 26.6 \\ \hline
         
     \end{tabularx}
 \end{center}
