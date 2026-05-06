@@ -11,6 +11,9 @@
 \usepackage{tabularx}
 \usepackage{fancyhdr}
 
+% Impostazione per numerare anche i paragraph in automatico
+\setcounter{secnumdepth}{4}
+
 \definecolor{bluBitless}{HTML}{3A75C4}
 
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
@@ -19,7 +22,7 @@
 \hypersetup{
     colorlinks=true,
     linkcolor=black, 
-    urlcolor=bluBitless,     
+    urlcolor=bluBitless,      
     citecolor=black,  
     filecolor=black,
     breaklinks=true,
@@ -37,15 +40,15 @@
 
 \newcommand{\tipoverbale}{Norme di Progetto}
 \newcommand{\dataverbale}{}
-\newcommand{\dataversione}{2026-04-18}
+\newcommand{\dataversione}{2026-04-29}
 \newcommand{\versione}{0.5.0}
 \newcommand{\stato}{In stesura}
 \newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
-\newcommand{\dir}{../../..}
+\def\templatedir{../../../templates}
 
 \begin{titlepage}
 \pagenumbering{gobble}
-\input{\dir/templates/frontespizio.tex}
+\input{../../../templates/frontespizio.tex}
 \end{titlepage}
 
 \newpage
@@ -57,11 +60,11 @@
         \hline
         \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
         \hline
-        0.5.0 & 2026-04-20 & S. Zecchinato & E. De Piccoli & - & Verifica \\
+        0.5.0 & 2026-04-29 & A. Marini & S. Zecchinato & - & Processi organizzativi \\
         \hline
-        0.4.0 & 2026-04-18 & S. Zecchinato & E. De Piccoli & - & Gestione delle configurazioni e inizio verifica \\
+        0.4.0 & 2026-04-20 & S. Zecchinato & E. De Piccoli & - & Verifica \\
         \hline
-        0.3.0 & 2026-04-14 & A. Marini & S. Vendramin & - & Processi organizzativi \\
+        0.3.0 & 2026-04-18 & S. Zecchinato & E. De Piccoli & - & Gestione delle configurazioni e inizio verifica \\
         \hline
         0.2.0 & 2026-04-09 & S. Zecchinato & S. Vendramin & - & Inizio Processi di supporto \\
         \hline 
@@ -96,7 +99,7 @@ Il valore aggiunto del progetto risiede nell'integrazione di \textbf{LLM$_G$} pe
 
 Il sistema non si limita a scrivere, ma analizza: sfruttando la tecnica dei \textbf{``Sei Cappelli per Pensare''}, l'assistente virtuale è capace di esaminare i testi da diverse prospettive, offrendo un supporto decisionale strutturato.
 
-Il termine ultimo per la consegna è fissato per il \textbf{20 marzo 2026}, con un budget operativo previsto di \textbf{12.865,00 €}.
+Il termine ultimo per la consegna è fissato per il \textbf{30 agosto 2026}, con un budget operativo previsto di \textbf{12.860,00 €}.
 
 \subsection{Glossario e chiarezza terminologica}
 La progettazione di un software è un'attività complessa che richiede un linguaggio comune per evitare fraintendimenti. Per questo motivo, abbiamo redatto un \textbf{Glossario} dedicato. Ogni termine tecnico o specifico del dominio che richiede un approfondimento è contrassegnato da una "G" a pedice, segnalando che la sua definizione completa è consultabile nel documento esterno. Ad esempio: \textit{parola$_G$}.
@@ -116,7 +119,7 @@ La progettazione di un software è un'attività complessa che richiede un lingua
 \subsubsection{Riferimenti informativi}
 \begin{itemize}
     \item \textbf{Glossario di Progetto}: \\
-    \url{https://thebitless.github.io/documents/documenti_interni/glossario.pdf} (DA METTERE IL LINK GIUSTO)
+    \url{https://thebitless.github.io/RTB/doc_interna/glossario/glossario.pdf}
 \end{itemize}
 
 \section{Processi Primari}
@@ -138,7 +141,7 @@ Per garantire un coordinamento efficace delle attività di fornitura, sono stati
     \item \textbf{GitHub$_G$}: utilizzato per la gestione del \textit{Backlog$_G$} e del sistema di \textit{ticketing$_G$}, fondamentali per monitorare l'avanzamento dei lavori e la pianificazione tramite Diagrammi di Gantt$_G$;
     \item \textbf{Discord e WhatsApp}: canali dedicati rispettivamente alle riunioni sincrone e alle comunicazioni rapide asincrone tra i membri;
     \item \textbf{Google Mail}: canale ufficiale per la corrispondenza formale. Viene impiegato esclusivamente per le comunicazioni scritte verso i referenti esterni e le istituzioni, garantendo tracciabilità;
-    \item \textbf{Google Meet}: piattaforma scelta per le conferenze da remoto con l'azienda proponente. Questo strumento permette di svolgere revisioni periodiche e presentazioni dello stato di avanzamento in un ambiente stabile e condiviso.3
+    \item \textbf{Google Meet}: piattaforma scelta per le conferenze da remoto con l'azienda proponente. Questo strumento permette di svolgere revisioni periodiche e presentazioni dello stato di avanzamento in un ambiente stabile e condiviso.
 \end{itemize}
 
 \subsubsection{Attività previste}
@@ -168,7 +171,7 @@ Questi artefatti sono destinati al committente$_G$ e ai proponenti per formalizz
 \begin{itemize}
     \item \textbf{Lettera di Candidatura}: istanza formale con cui il gruppo manifesta l'interesse per il capitolato C6 proposto da \textbf{Zucchetti S.p.A.}. Illustra le ragioni della scelta e fornisce le coordinate per accedere ai \textit{repository$_G$} ufficiali del progetto.
     \item \textbf{Analisi dei Capitolati}: documento di analisi comparativa che espone le motivazioni tecniche e logistiche che hanno portato alla selezione del progetto \textbf{Second Brain} rispetto alle altre proposte disponibili. Contiene l'analisi in dettaglio di ogni capitolato, descrivendone l'obiettivo, le tecnologie adottate e le considerazioni emerse durante il confronto nel gruppo.
-    \item \textbf{Preventivo costi e assunzione impegni}: documento che ufficializza l'impegno operativo dei membri del team, stabilito in un monte ore produttivo di 93 ore per ciascun componente. Include il piano economico e la strategia di rotazione dei ruoli$_G$ ogni 2 settimane, volta a garantire un'esperienza formativa completa e un carico di lavoro bilanciato tra i componenti.
+    \item \textbf{Preventivo costi e assunzione impegni}: documento che ufficializza l'impegno operativo dei membri del team, stabilito in un monte ore produttivo di 93 ore per ciascun componente. Include il piano economico e la strategia di rotazione dei ruoli$_G$ ogni due settimane, volta a garantire un'esperienza formativa completa e un carico di lavoro bilanciato tra i componenti.
     \item \textbf{Analisi dei Requisiti}: descrive in modo dettagliato le funzionalità e i vincoli del sistema \textbf{Second Brain} (Capitolato C6). L'identificazione delle necessità avviene tramite lo studio dei \textbf{Casi d'Uso$_G$}, corredati da diagrammi illustrativi e matrici di tracciamento$_G$ per assicurare la totale copertura dei requisiti concordati.
     \item \textbf{Piano di Progetto}: elaborato di pianificazione strategica gestito con metodologia incrementale$_G$. Analizza la ripartizione temporale delle attività, la gestione delle risorse e dei rischi, fornendo un monitoraggio costante dell'avanzamento e del bilancio dei costi$_G$ sostenuti.
     \item \textbf{Piano di Qualifica}: specifica i protocolli di \textbf{Verifica} e \textbf{Validazione} adottati. Contiene il dettaglio dei test eseguiti sul prodotto, le metriche di qualità applicate e i resoconti dei risultati ottenuti per garantire la conformità agli standard.
@@ -248,33 +251,34 @@ La documentazione risulta fondamentale per supportare qualsiasi processo primari
 
 Il processo di documentazione definisce le regole per la redazione, la revisione e la manutenzione di tutti i documenti prodotti dal gruppo \textit{The Bitless}.
 
-\subsubsection{Strumenti scelti}
+\subsubsection{Strumenti scelti} 
 Per la redazione dei documenti lo strumento scelto è \LaTeX$_G$. Si tratta di un linguaggio di markup molto utilizzato in ambito accademico per redigere documenti formali in maniera efficiente. Esso permette infatti di integrare librerie, templates e di creare comandi che semplificano di molto la scrittura dei documenti. 
 Tutti i sorgenti dei documenti sono reperibili nella repository GitHub$_G$ affiancati dalla compilazione in PDF.
 
 \subsubsection{Versionamento}
 Per il versionamento della documentazione lo strumento scelto è stato Git$_G$ a cui applicheremo le seguenti norme per un corretto ed uniforme versionamento.
 
-\paragraph{Branch} Ogni membro del gruppo che lavora su un documento, o su una parte di esso, lavora su un branch$_G$ dedicato. Quando il documento è inteso dall'autore come pronto per essere unito al \texttt{main branch}$_G$ l'autore apre una pull request$_G$ indirizzata ai verificatori che provvederanno a verificare le modifiche. Se la verifica ha esito positivo la pull request viene approvata e il branch viene chiuso, altrimenti il documento rimane nel branch per le ulteriori modifiche. \\
-Ogni branch segue lo schema di naming$_G$ definito nelle \textit{Convenzioni di Naming}\footnote{Disponibili all'indirizzo \url{https://github.com/thebitless-group-swe/thebitless.github.io/blob/main/docs/convenzioni-naming.md}}.
+\paragraph{Branch}  \mbox{} \\
+Ogni membro del gruppo che lavora su un documento, o su una parte di esso, lavora su un branch$_G$ dedicato. Quando il documento è inteso dall'autore come pronto per essere unito al \texttt{main branch}$_G$ l'autore apre una pull request$_G$ indirizzata ai verificatori che provvederanno a verificare le modifiche. Se la verifica ha esito positivo la pull request viene approvata e il branch viene chiuso, altrimenti il documento rimane nel branch per le ulteriori modifiche.
 
-\paragraph{Date} Ogni documento riporta varie date che segnano le modifiche che il documento ha subito. Si è deciso di utilizzare per le date la convenzione americana definita come \textsc{YYYY-MM-DD}.
-
-\paragraph{Stato} Ogni documento riporta nel frontespizio lo stato in cui lo stesso si trova:
+\paragraph{Stato} \mbox{} \\
+Ogni documento riporta nel frontespizio lo stato in cui lo stesso si trova:
 \begin{itemize}
     \item \textbf{Stesura:} il documento è in fase di stesura, non è ritenuto valido come \textit{ground truth}$_G$.
     \item \textbf{Revisione:} il documento è in fase di revisione, non è consentita la modifica a meno che il documento non ritorni in \textbf{Stesura}. Non è considerabile come \textit{ground truth}.
     \item \textbf{Approvato:} il documento è stato approvato, non è consentita la modifica per nessun motivo e viene ritenuto \textit{ground truth} per il progetto.
 \end{itemize}
 
-\paragraph{Nome} Ogni documento deve riportare un nome significativo che permetta a chiunque consulti la repository di capire immediatamente di cosa parla il documento senza doverlo aprire. 
+\paragraph{Nomenclatura} \mbox{} \\
+Ogni documento deve riportare un nome significativo che permetta a chiunque consulti la repository di capire immediatamente di cosa parla il documento senza doverlo aprire. 
 \begin{itemize}
-    \item Verbali interni: VI\_YYYY-MM-DD\_descrizione-breve 
-    \item Verbali esterni: VE\_YYYY-MM-DD\_descrizione-breve o, se redatto prima della candidatura, VE\_YYYY-MM-DD\_azienda
-    \item Documenti vari: nei nomi composti da più parole lo spazio viene sostituito con il trattino (-). \textit{E.g. norme-di-progetto.pdf}
+    \item \textbf{Verbali Interni:} \texttt{VI\_AAAA-MM-GG\_descrizione-breve.pdf}
+    \item \textbf{Verbali Esterni:} \texttt{VE\_AAAA-MM-GG\_descrizione-breve.pdf} o, se redatto prima della candidatura, \texttt{VE\_AAAA-MM-GG\_azienda.pdf}
+    \item \textbf{Documenti Generali:} \texttt{nome-documento\_vX.Y.Z.pdf} 
 \end{itemize}
 
-\paragraph{Commit e Pull Request} Ogni Commit$_G$ e ogni Pull Request$_G$ devono apportare modifiche significative e devono quindi essere fatti in maniera accorta. Ogni titolo e descrizione segue le \textit{Convenzioni di naming}\footnote[1]{} sopracitate. Le descrizioni ai commit e alle pull request devono avere carattere significativo, s'intende quindi che il commento deve poter essere letto e compreso da qualunque mebro del team senza dover andare ad osservare il contenuto dell'azione.
+\paragraph{Commit e Pull Request}  \mbox{} \\
+Ogni Commit$_G$ e ogni Pull Request$_G$ devono apportare modifiche significative e devono quindi essere fatti in maniera accorta. Le descrizioni ai commit e alle pull request devono avere carattere significativo, s'intende quindi che il commento deve poter essere letto e compreso da qualunque mebro del team senza dover andare ad osservare il contenuto dell'azione.
 
 \subsubsection{Struttura generale dei documenti}
 \label{subsubsec:strutturagenerale}
@@ -296,8 +300,9 @@ Ogni branch segue lo schema di naming$_G$ definito nelle \textit{Convenzioni di 
     \item \textbf{Intestazione:} Ciascuna pagina deve presentare un'intestazione costante che riporti il nome del gruppo \textbf{The Bitless} e il titolo del documento in oggetto.
 \end{itemize}
 
-\paragraph{3.1.2.1 Struttura dei verbali} \mbox{} \\
-I verbali, sia interni che esterni, oltre a rispettare i criteri generali descritti nella sezione §\ref{subsubsec:strutturagenerale}, devono presentare una struttura fissa composta dalle seguenti sezioni:
+\paragraph{Struttura dei verbali} \mbox{} \\
+\label{par:strutturaverbali}
+I verbali, sia interni che esterni, oltre a rispettare i criteri generali descritti nella sezione \ref{subsubsec:strutturagenerale}, devono presentare una struttura fissa composta dalle seguenti sezioni:
 
 \begin{itemize}
     \item \textbf{Informazioni sulla riunione:} Paragrafo descrittivo contenente i dati logistici dell'incontro:
@@ -322,20 +327,20 @@ I verbali, sia interni che esterni, oltre a rispettare i criteri generali descri
 
 \subsubsection{Ciclo di vita dei documenti}
 
-\paragraph{3.1.3.1 Redazione dei documenti} \mbox{} \\
+\paragraph{Redazione dei documenti} \mbox{} \\
 La stesura e l'aggiornamento sistematico dei documenti è affidata al membro del gruppo che ricopre, nel periodo di riferimento, il ruolo di \textit{Amministratore$_G$}. Le informazioni necessarie alla redazione vengono estrapolate dai verbali delle riunioni e dalle comunicazioni intercorse tra i componenti del team.
 
-\paragraph{3.1.3.2 Redazione dei verbali} \mbox{} \\
+\paragraph{Redazione dei verbali} \mbox{} \\
 La responsabilità della stesura dei verbali, sia interni (VI) che esterni (VE), spetta a chi ricopre il ruolo di \textit{Responsabile$_G$}. I contenuti vengono sintetizzati a partire dalle discussioni avvenute durante i meeting interni o dagli incontri con l'azienda Proponente.
 
-\paragraph{3.1.3.3 Redazione dell'Analisi dei Requisiti} \mbox{} \\
+\paragraph{Redazione dell'Analisi dei Requisiti} \mbox{} \\
 A differenza degli altri artefatti$_G$, la redazione del documento di \textit{Analisi dei Requisiti$_G$} è affidata esclusivamente all'\textit{Analista$_G$}.
 
 \subsubsection{Verifica dei documenti}
 Ogni documento, a seguito della stesura o di un aggiornamento, deve essere sottoposto a verifica per accertare la correttezza e la coerenza delle informazioni riportate. Tale attività è svolta dal componente incaricato del ruolo di \textit{Verificatore$_G$}.
 
 \label{paragraph:verifica-doc}
-\paragraph{3.1.4.1 Processo di verifica tramite Pull Request$_G$} \mbox{} \\
+\paragraph{Processo di verifica tramite Pull Request$_G$} \mbox{} \\
 Il gruppo adotta il meccanismo delle \textit{Pull Request$_G$} (PR) tramite la piattaforma GitHub$_G$ per garantire che nessuna modifica venga integrata nei branch$_G$ principali senza un controllo preventivo. Il workflow$_G$ operativo è così definito:
 
 \begin{enumerate}
@@ -352,7 +357,7 @@ Il gruppo adotta il meccanismo delle \textit{Pull Request$_G$} (PR) tramite la p
 \subsubsection{Approvazione dei documenti}
 L'approvazione$_G$ è l'atto formale che permette il rilascio di un documento come ufficiale nel branch \texttt{main}. Tale compito spetta al \textit{Responsabile$_G$}.
 
-\paragraph{3.1.5.1 Processo di approvazione tramite Pull Request$_G$} \mbox{} \\
+\paragraph{Processo di approvazione tramite Pull Request$_G$} \mbox{} \\
 Al fine di evitare carichi eccessivi, i documenti vengono approvati progressivamente verso il raggiungimento di una \textit{baseline$_G$}.
 \begin{enumerate}
     \item \textbf{Aggiornamento versione:} Il redattore crea un branch$_G$ \texttt{chore/approvazione-<nome-documento>} modificando la versione nel frontespizio$_G$ (incrementando l'indice Major X.0.0).
@@ -361,7 +366,7 @@ Al fine di evitare carichi eccessivi, i documenti vengono approvati progressivam
 \end{enumerate}
 
 \subsubsection{Nomenclatura dei documenti}
-\paragraph{3.1.6.1 Acronimi}  \mbox{} \\
+\paragraph{Acronimi}  \mbox{} \\
 Il gruppo adotta i seguenti acronimi standardizzati:
 
 \begin{table}[h]
@@ -380,23 +385,17 @@ Il gruppo adotta i seguenti acronimi standardizzati:
     \caption{Tabella degli acronimi utilizzati nella documentazione.}
 \end{table}
 
-\paragraph{3.1.6.2 Nomenclatura} 
-\begin{itemize}
-    \item \textbf{Verbali Interni:} \texttt{VI\_AAAA-MM-GG\_descrizione-breve.pdf}
-    \item \textbf{Verbali Esterni:} \texttt{VE\_AAAA-MM-GG\_descrizione-breve.pdf} o, se redatto prima della candida-
-tura, \texttt{VE\_AAAA-MM-GG\_azienda.pdf}
-    \item \textbf{Documenti Generali:} \texttt{nome-documento\_vX.Y.Z.pdf} 
-\end{itemize}
-
 \subsection{Gestione della configurazione}
 Questo processo di supporto si occupa dell'identificazione, attuazione e registrazione delle versioni di tutti gli elementi che, nel progetto, sono soggetti a modifiche che devono essere tracciate.
-\paragraph{3.2.1 Numeri di versione documenti} \mbox{} \\
+\paragraph{Numeri di versione documenti} \mbox{} \\
 La convenzione scelta dal gruppo per il numero di versione dei documenti è lo standard \textit{Semantic Versioning} \textsc{major.minor.patch}, \textsc{x.y.z} dove \textsc{x} rappresenta un'approvazione, \textsc{y} rappresenta una modifica maggiore e \textsc{z} rappresenta una modifica minore; in cui
 \begin{itemize}
     \item per \textbf{modifica minore} intendiamo l'aggiunta, la rimozione o la modifica di informazioni ritenute non significative (e.g. errori di battitura, di grammatica, sistemazione struttura sintattica dei periodi);
     \item per \textbf{modifica maggiore} intendiamo l'aggiunta, la rimozione o la modifica di informazioni ritenute significative (e.g. aggiunta di sezioni o paragrafi);
     \item per \textbf{approvazione} intendiamo far avanzare la cifra \textsc{x} solo e solamente quando il documento passa l'approvazione da parte del responsabile di sprint.
 \end{itemize}
+In caso di esito negativo della verifica, il documento non avanza di versione nel campo Minor o Major; le correzioni necessarie vengono tracciate tramite commit successivi all'interno del branch di lavoro. L'incremento di versione diventa effettivo e viene registrato nel frontespizio e nel registro delle modifiche solo una volta che il processo di verifica viene superato con successo.
+
 Ogni documento nasce con versione 0.1.0 e viene aggiunto, tramite \textit{merge}$_G$, nel main branch con versione \textsc{x.y.z} tale che \textsc{x}$\ >0$ e \textsc{y,z}$\ =0$.
 \subsubsection{Repository}
 Di seguito le \textit{repository}$_G$ create per la gestone della configurazione:
@@ -406,7 +405,7 @@ Di seguito le \textit{repository}$_G$ create per la gestone della configurazione
     \item \textbf{MVP}: contiene il sorgente del \textit{Minimum Viable Product}$_G$ del progetto.
 \end{itemize}
 
-\paragraph{3.2.2.1 Strumenti} \mbox{} \\
+\paragraph{Strumenti} \mbox{} \\
 Di seguito gli strumenti adottati per la gestione della configurazione e del versionamento dei file di progetto:
 \begin{itemize}
     \item \textbf{Git}$_G$: sistema OpenSource di \textit{VCS (Version Control System)} distribuito;
@@ -414,17 +413,17 @@ Di seguito gli strumenti adottati per la gestione della configurazione e del ver
 \end{itemize}
 
 \subsection{Verifica}
-L'obiettivo della fase di verifica è accertare che gli output prodotti rispettino i criteri qualitativi e le specifiche delineate nel Piano di Qualifica (sezione §\ref{subsubsec:doc-fornita}), validando l'accuratezza e l'integrità di ogni consegna. Tali compiti sono affidati al componente del team che, nello sprint, svolge la funzione di verificatore. 
+L'obiettivo della fase di verifica è accertare che gli output prodotti rispettino i criteri qualitativi e le specifiche delineate nel Piano di Qualifica, validando l'accuratezza e l'integrità di ogni consegna. Tali compiti sono affidati al componente del team che, nello sprint, svolge la funzione di verificatore. 
 Quest'ultimo ha l'onere di documentare gli esiti delle analisi e, in presenza di difformità rispetto ai parametri prefissati, di sollecitare i necessari interventi correttivi. Se il carico di lavoro nello sprint lo richiede, il gruppo può aver assegnato più membri alla verifica.
 
 Il gruppo applica ai seguenti prodotti il processo di verifica:
 \begin{itemize}
-    \item \textbf{Documentazione}: ogni documento è sottoposto a verifica (si veda per dettagli §\ref{paragraph:verifica-doc}) per verificare correttezza sintattica e semantica;
+    \item \textbf{Documentazione}: ogni documento è sottoposto a verifica (si veda per dettagli \ref{paragraph:verifica-doc}) per verificare correttezza sintattica e semantica;
     \item \textbf{Codice sorgente}: una volta raggiunta la Requirements and Technology Baseline e resi disponibili i componenti software, si procederà a strutturare ed eseguire il piano di verifica. Questo iter comprenderà test basati su analisi statica e dinamica, le cui specifiche sono illustrate nelle sezioni che seguono.
 \end{itemize}
 
 \label{paragraph:verifica-implementazione}
-\paragraph{3.3.1.1 Attività di verifica e implementazione del processo} \mbox{} \\
+\subsubsection{Attività di verifica e implementazione del processo} \mbox{}
 Le attività di verifica agiscono sulle fasi dello sviluppo in modo che la verifica non sia solamente un controllo finale ma sia anzi un contrllo costante della fase. In quest'ottica infatti ci si aspetta che il controllo finale verifichi solamente che il prodotto ottenuto al termine di una fase sia coerente con ciò che quella fase aveva avuto in input, ovvero non devono esser stati introdotti bug (per il codice) o refusi (per il testo). 
 
 Finora il gruppo si è occupato di documentazione e dunque la verifica verteva sulla correttezza sintattica, semantica e grammaticale di ogni documento. Per quanto concerne al codice, la verifica verrà trattata più approfonditamente dopo il raggiungimento della \textit{RTB - Requirements and Technology Baseline}$_G$ e le informazioni verranno riportate nel documento denominato \textbf{Piano di Qualifica}$_G$.
@@ -434,33 +433,33 @@ La verifica è composta da due fasi:
     \item \textbf{Analisi Dinamica}: richiede l'esecuzione del prodotto software in un ambiente controllato, ciò permette di effettuare dei test per valutare conformità ai requisiti funzionali e non funzionali.
 \end{itemize}
 
-\paragraph{3.3.1.2 Analisi Statica} \mbox{} \\
-Come già citato brevemente nella sezione §\ref{paragraph:verifica-implementazione}, l'attività di \textbf{Analisi Statica} non ha bisogno di eseguire l'oggetto in verifica. Questo permette di effettuare l'analisi statica in qualsiasi momento della produzione del codice o di un documento. Per il codice si cercano gli errori sintattici e si cerca di rendere il codice più leggibile, mentre per la documentazione si cercano errori di ortografia, grammaticali o, in generale, una scarsa leggibilità dei periodi.
+\paragraph{Analisi Statica} \mbox{} \\
+Come già citato brevemente nella sezione \ref{paragraph:verifica-implementazione}, l'attività di Analisi Statica viene eseguita senza l'esecuzione del codice sorgente. Il suo obiettivo è individuare errori sintattici, violazioni degli standard di codifica e garantire la coerenza stilistica e grammaticale della documentazione. Questo permette di identificare i difetti precocemente nel ciclo di vita dello sviluppo.
 I metodi di analisi statica sono differenziati in:
 \begin{itemize}
-    \item \textbf{Walkthrough}: il verificatore legge interamente il documento o le sezioni dove prevede di riscontrare un errore, produce quindi dei \textit{feedback} per l'autore del prodotto in verifica per il miglioramento e, in caso può chiedere delucidazioni all'autore circa le scelte implementative;
-    \item \textbf{Inspection}: il verificatore esamina il prodotto solamente in aree definite in maniera sistematica e successivamente discute con l'implementatore dei difetti riscontrati.
+    \item \textbf{Walkthrough}: consiste in una lettura informale del prodotto. Il verificatore esamina il documento o il codice alla ricerca di anomalie, producendo feedback per l'autore. È una tecnica orientata alla scoperta dei difetti e al miglioramento della qualità tramite il confronto diretto, utile anche per l'apprendimento tra i membri del team;
+    \item \textbf{Inspection}: è una procedura di verifica formale e rigorosa, basata sull'utilizzo di checklist predefinite. Il verificatore esamina sistematicamente il prodotto per verificare la conformità a standard specifici, annotando ogni deviazione senza necessariamente suggerire una soluzione immediata.
 \end{itemize}
 Per la verifica dei documenti il gruppo ha preferito la procedura \textbf{Walkthrough} che permette al verificatore di controllare interamente un documento e di rilevarne incoerenza tra le sezioni o errori di tipo semantico/sintattico.
 
-\paragraph{3.3.1.3 Analisi Dinamica} \mbox{} \\
-Come già citato brevemente nella sezione §\ref{paragraph:verifica-implementazione}, l'attività di \textbf{Analisi Dinamica} richiede l'esecuzione del prodotto software in ambiente controllato. Esso utilizza i test, che devono essere:
+\paragraph{Analisi Dinamica} \mbox{} \\
+Come già citato brevemente nella sezione \ref{paragraph:verifica-implementazione}, l'attività di \textbf{Analisi Dinamica} richiede l'esecuzione del prodotto software in ambiente controllato. Esso utilizza i test, che devono essere:
 \begin{itemize}
     \item \textbf{Ripetibili}: per verificare se l'errore è stato corretto il test deve poter essere ripetuto in qualsiasi situazione;
     \item \textbf{Automatizzabili}: per evitare lo spreco di tempo, i test devono poter essere automatizzabili tramite strumenti che simulano l'ambiente di testing;
     \item \textbf{Deterministici}: per poter garantire una valutazione oggettiva del risultato, ogni test deve avere un risultato atteso chiaramente definito;
-    \item \textbf{Indipendenti}: per evitare risultati falsati, ogni test deve essere indipendente dall'ambiente di test e non dipendere da altri test.
+    \item \textbf{Indipendenti}: ogni test deve poter essere eseguito in isolamento. L'esito di un test non deve essere influenzato dai risultati o dall'ordine di esecuzione degli altri test, garantendo che un fallimento sia localizzabile con precisione.
 \end{itemize}
 
 
-\paragraph{3.3.1.4 Test di Unità} \mbox{} \\
+\paragraph{Test di Unità} \mbox{} \\
 I test di unità, in inglese \textit{unit test}$_G$, sono quei test che valutano il corretto funzionamento della parte più piccola del software definita per il linguaggio di programmazione in cui quel software è stato codificato (e.g. funzioni, classi o metodi). Essi si dividono in:
 \begin{itemize}
     \item \textbf{Funzionali}: anche detti \textit{black-box}, verificano solo l'output dell'unità senza indagare la logica interna;
     \item \textbf{Strutturali}: anche detti \textit{white-box}, valutano anche la corretta esecuzione della logica interna senza concentrarsi solamente sull'output e si assicura che tutti gli statements rilevanti del codice vengano eseguiti almeno una volta.
 \end{itemize}
 
-\paragraph{3.3.1.5 Test di Integrazione} \mbox{} \\
+\paragraph{Test di Integrazione} \mbox{} \\
 I test di integrazione, in inglese \textit{integration test}$_G$, sono quei testi che valutano l'interazione tra le varie componenti software e si usano primariamente per l'assemblaggio incrementale, ovvero in tutti quei momenti in cui si vuole integrare una nuova parte al sistema. Questo garantisce quello che in gergo si chiama \textit{Continuous Integration}$_G$.
 I test di integrazione possono essere implementati con strategia \textbf{bottom-up} in cui si va ad integrare prima le componenti con minori dipendenze d'uso, oppure con strategia \textbf{top-down}, in cui si vanno ad integrare prima le componenti con maggiori dipendenze d'uso.
 
@@ -468,7 +467,7 @@ I test di integrazione possono essere implementati con strategia \textbf{bottom-
 \subsection{Validazione}
 Nella parte di validazione l'obiettivo è quello di controllare che il prodotto, sia esso software o documentale, corrisponda ai bisogni della proponente o, in fase avanzata, dell'utente. Questa fase viene svolta in presenza della proponente sfruttando i casi d'uso raccolti nell'\textit{Analisi dei Requisiti}$_G$ e conducendo test rappresentativi delle esigenze reali.
 
-\paragraph{3.3.2.1 Attività previste} \mbox{} \\
+\paragraph{Attività previste} \mbox{} \\
 Le attività che prevediamo in questo processo sono:
 \begin{itemize}
     \item \textbf{Implementazione del processo};
@@ -476,19 +475,20 @@ Le attività che prevediamo in questo processo sono:
     \item \textbf{Raccolta dei risultati}.
 \end{itemize}
 
-\paragraph{3.3.2.2 Implementazione del processo} \mbox{} \\
-Come citati brevemente nella sezione §\ref{subsec:validazione}, nel documento denominato \textit{Analisi dei Requisiti}$_G$ il gruppo ha delineato i requisiti che il prodotto deve rispettare.
+\paragraph{Implementazione del processo} \mbox{} \\
+Come citati brevemente nella sezione \ref{subsec:validazione}, nel documento denominato \textit{Analisi dei Requisiti}$_G$ il gruppo ha delineato i requisiti che il prodotto deve rispettare.
  Andiamo quindi ad effettuare i seguenti test per controllare se i requisiti sono stati rispettati e se il prodotto risponde correttamente ai \textit{Casi d'uso}$_G$ definiti:
  \begin{itemize}
     \item \textbf{Test di sistema}: test funzionali sull'intero sistema;
     \item \textbf{Test di accettazione}: servono per accertare che i requisiti imposti dalla proponente siano rispettati.
  \end{itemize} 
 
-\paragraph{3.3.2.3 Esecuzione dei test} \mbox{} \\
+\paragraph{Esecuzione dei test} \mbox{} \\
 L'implementazione dei test è guidata dai requisiti e dai casi d'uso cercando di immedesimarsi il più possibile nell'utente.
 
-\paragraph{3.3.2.4 Raccolta dei risultati} \mbox{} \\
+\paragraph{Raccolta dei risultati} \mbox{} \\
 I risultati dei test definiti qui sopra vengono raccolti nel documento denominato \textit{Piano di Qualifica}$_G$, questo permette un'analisi dettagliata a confronto con i requisiti espressi.
+
 
 \section{Processi organizzativi}
 
@@ -497,22 +497,22 @@ Il processo gestionale delinea le procedure e le mansioni comuni che ogni membro
 
 \subsubsection{Pianificazione}
 
-\paragraph{4.1.1.1 Assegnazione delle responsabilità}
+\paragraph{Assegnazione delle responsabilità}
 \mbox{}\\
 Al fine di garantire una crescita professionale completa ed eterogenea, il team \textit{The Bitless} ha adottato una politica di rotazione periodica. La riassegnazione dei ruoli avviene ogni \textbf{due settimane}, in corrispondenza dell'apertura di ogni nuovo $sprint_G$.
 
 Di seguito l'elenco dei profili operativi previsti:
 
 \begin{itemize}
-    \item \textbf{Responsabile} (\hyperlink{sec:responsabile}{Sezione §4.1.1.2})
-    \item \textbf{Amministratore} (\hyperlink{sec:amministratore}{Sezione §4.1.1.3})
-    \item \textbf{Progettista} (\hyperlink{sec:progettista}{Sezione §4.1.1.4})
-    \item \textbf{Analista} (\hyperlink{sec:analista}{Sezione §4.1.1.5})
-    \item \textbf{Verificatore} (\hyperlink{sec:verificatore}{Sezione §4.1.1.6})
-    \item \textbf{Programmatore} (\hyperlink{sec:programmatore}{Sezione §4.1.1.7})
+    \item \textbf{Responsabile} (Sezione \ref{sec:responsabile})
+    \item \textbf{Amministratore} (Sezione \ref{sec:amministratore})
+    \item \textbf{Progettista} (Sezione \ref{sec:progettista})
+    \item \textbf{Analista} (Sezione \ref{sec:analista})
+    \item \textbf{Verificatore} (Sezione \ref{sec:verificatore})
+    \item \textbf{Programmatore} (Sezione \ref{sec:programmatore})
 \end{itemize}
 
-\paragraph{4.1.1.2 Responsabile} \hypertarget{sec:responsabile}{}
+\paragraph{Responsabile} \label{sec:responsabile}
 \mbox{}\\
 Il \textit{Project Manager$_G$} ha il compito di guidare il gruppo e fungere da interfaccia ufficiale verso i committenti. Deve possedere una visione d'insieme per valutare criticità e orientare le scelte strategiche.
 \begin{itemize}
@@ -526,7 +526,7 @@ Il \textit{Project Manager$_G$} ha il compito di guidare il gruppo e fungere da 
     \end{itemize}
 \end{itemize}
 
-\paragraph{4.1.1.3 Amministratore} \hypertarget{sec:amministratore}{}
+\paragraph{Amministratore} \label{sec:amministratore}
 \mbox{}\\
 Il \textit{Sysadmin$_G$} è incaricato della configurazione e del mantenimento dell'ecosistema digitale (server, strumenti di lavoro, repository).
 \begin{itemize}
@@ -538,7 +538,7 @@ Il \textit{Sysadmin$_G$} è incaricato della configurazione e del mantenimento d
     \end{itemize}
 \end{itemize}
 
-\paragraph{4.1.1.4 Progettista} \hypertarget{sec:progettista}{}
+\paragraph{Progettista} \label{sec:progettista}
 \mbox{}\\
 Questa figura definisce l'architettura e le tecnologie del prodotto. Segue attivamente la fase di sviluppo, pur non essendo coinvolto direttamente nella manutenzione ordinaria.
 \begin{itemize}
@@ -550,7 +550,7 @@ Questa figura definisce l'architettura e le tecnologie del prodotto. Segue attiv
     \end{itemize}
 \end{itemize}
 
-\paragraph{4.1.1.5 Analista} \hypertarget{sec:analista}{}
+\paragraph{Analista} \label{sec:analista}
 \mbox{}\\
 L'Analista detiene la comprensione profonda del dominio applicativo e dei requisiti. Traduce le necessità del cliente in specifiche tecniche.
 \begin{itemize}
@@ -563,9 +563,9 @@ L'Analista detiene la comprensione profonda del dominio applicativo e dei requis
     \end{itemize}
 \end{itemize}
 
-\paragraph{4.1.1.6 Verificatore} \hypertarget{sec:verificatore}{}
+\paragraph{Verificatore} \label{sec:verificatore}
 \mbox{}\\
-Si accerta che ogni prodotto, sia esso codice o documentazione, sia conforme agli standard qualitativi e agli obiettivi prefissati.
+Il Verificatore ha il compito di accertare che ogni prodotto sia conforme agli standard. Per garantire l'oggettività del processo, il membro incaricato della verifica di un'attività non può coincidere con colui che l'ha realizzata.
 \begin{itemize}
     \item \textbf{Composizione:} È un ruolo che può essere svolto da più membri contemporaneamente.
     \item \textbf{Mansioni:}
@@ -576,25 +576,25 @@ Si accerta che ogni prodotto, sia esso codice o documentazione, sia conforme agl
     \end{itemize}
 \end{itemize}
 
-\paragraph{4.1.1.7 Programmatore} \hypertarget{sec:programmatore}{}
+\paragraph{Programmatore} \label{sec:programmatore}
 \mbox{}\\
 È il profilo dedicato alla traduzione pratica dei requisiti in codice sorgente e alla successiva manutenzione.
 \begin{itemize}
     \item \textbf{Composizione:} Trattandosi della fase più onerosa in termini di tempo, è il ruolo che occupa solitamente il \textbf{maggior numero di componenti}.
     \item \textbf{Mansioni:}
     \begin{itemize}
-        \item Sviluppare il software seguendo le direttive dell'analista e l'architettura del progettista;
+        \item Sviluppare le unità software seguendo le direttive dell'analista e l'architettura del progettista;
         \item Produrre la documentazione tecnica (\textit{Manuale}) del software.
     \end{itemize}
 \end{itemize}
 
 \subsubsection{Coordinamento}
 
-\paragraph{4.1.2.1 Riunioni interne periodiche}
+\paragraph{Riunioni interne periodiche}
 \mbox{}\\
-Il team \textit{The Bitless} ha stabilito un incontro settimanale fisso (in presenza o telematico) per il confronto interno. Sebbene la partecipazione sia caldamente raccomandata, non è vincolante; tuttavia, in assenza della maggioranza, la sessione viene rinviata. L'incontro ordinario è fissato il martedì pomeriggio, a partire dalle ore 16:00. Ulteriori meeting straordinari possono essere concordati via chat.
+Il team \textit{The Bitless} ha stabilito un incontro settimanale fisso (in presenza o telematico) per il confronto interno. Sebbene la partecipazione sia raccomandata, non è vincolante; tuttavia, in assenza della maggioranza, la sessione viene rinviata. L'incontro ordinario è fissato il martedì; ulteriori meeting straordinari possono essere concordati via chat.
 
-\paragraph{4.1.2.2 Canali di comunicazione interna}
+\paragraph{Canali di comunicazione interna}
 \mbox{}\\
 Per lo scambio quotidiano di informazioni, documenti e comunicazioni rapide, il gruppo utilizza le seguenti piattaforme:
 \begin{itemize}
@@ -602,7 +602,7 @@ Per lo scambio quotidiano di informazioni, documenti e comunicazioni rapide, il 
     \item \textbf{$WhatsApp_G$}: Utilizzata per comunicazioni di carattere urgente o notifiche istantanee;
 \end{itemize}
 
-\paragraph{4.1.2.3 Comunicazione verso l'esterno}
+\paragraph{Comunicazione verso l'esterno}
 \mbox{}\\
 I rapporti con soggetti esterni avvengono tramite:
 \begin{itemize}
@@ -612,7 +612,7 @@ I rapporti con soggetti esterni avvengono tramite:
 
 \subsubsection{Controllo e monitoraggio}
 
-\paragraph{4.1.3.1 Gestione dell'avanzamento}
+\paragraph{Gestione dell'avanzamento}
 \mbox{}\\
 Questo processo vigila sulla coerenza tra l'esecuzione reale e la pianificazione, puntando all'ottimizzazione delle risorse. Il team monitora costantemente i progressi e l'impiego orario tramite strumenti dedicati. Le \textit{Issue$_G$} (ovvero le singole unità di lavoro o problemi da risolvere) vengono organizzate all'interno di una \textit{dashboard$_G$} di progetto che visualizza lo stato di avanzamento attraverso le seguenti colonne:
 \begin{itemize}
@@ -623,7 +623,7 @@ Questo processo vigila sulla coerenza tra l'esecuzione reale e la pianificazione
     \item \textbf{Done}: attività verificate con successo e considerate concluse.
 \end{itemize}
 
-\paragraph{4.1.3.2 Gestione dei cicli di lavoro (Sprint)}
+\paragraph{Gestione dei cicli di lavoro (Sprint)}
 \mbox{}\\
 Viene adottato un approccio \textit{Agile} con $sprint_G$ di quattordici giorni, articolati in quattro fasi fondamentali:
 \begin{itemize}
@@ -633,11 +633,7 @@ Viene adottato un approccio \textit{Agile} con $sprint_G$ di quattordici giorni,
     \item \textbf{Sprint Retrospective}: Esame critico dei processi interni per identificare e correggere eventuali inefficienze nel modo di lavorare del team.
 \end{itemize}
 
-\paragraph{4.1.3.3 Monitoraggio dei task}
-\mbox{}\\
-L'avanzamento dei lavori è gestito tramite lo strumento \textit{GitHub Projects$_G$}. Ogni attività è censita come \textit{Issue$_G$} e categorizzata in modo univoco tramite titolo, responsabile assegnato, etichette (\textit{label$_G$}), \textit{Milestone$_G$} e data di consegna prevista. Le fasi del flusso di lavoro sono visualizzate in una \textit{dashboard$_G$} organizzata in: \textit{Backlog, Ready, In Progress, In Review, Done}.
-
-\paragraph{4.1.3.4 Rilevazione delle ore}
+\paragraph{Rilevazione delle ore}
 \mbox{}\\
 L'allocazione dei ruoli e il tempo effettivamente speso sono tracciati con precisione per garantire la trasparenza dei costi:
 \begin{itemize}
@@ -645,7 +641,7 @@ L'allocazione dei ruoli e il tempo effettivamente speso sono tracciati con preci
     \item \textbf{Registro consuntivo}: Documentazione delle ore realmente prestate da ogni membro durante ogni sprint, dato fondamentale per calcolare le metriche di progetto e l'efficienza del team.
 \end{itemize}
 
-\paragraph{4.1.3.5 Strumenti}
+\paragraph{Strumenti}
 \mbox{}\\
 Gli strumenti adottati per il controllo e il monitoraggio delle attività di progetto sono:
 \begin{itemize}
@@ -655,7 +651,7 @@ Gli strumenti adottati per il controllo e il monitoraggio delle attività di pro
 
 \subsubsection{Gestione dei rischi}
 
-\paragraph{4.1.4.1 Strategia di monitoraggio e contenimento}
+\paragraph{Strategia di monitoraggio e contenimento}
 \mbox{}\\
 L'attività di \textbf{gestione dei rischi} è orientata all'individuazione precoce e alla neutralizzazione di quegli eventi incerti che potrebbero ostacolare il lineare avanzamento del progetto. Il gruppo \textit{The Bitless} adotta una politica di \textbf{sorveglianza attiva}, mantenendo un presidio costante sulle criticità lungo l'intero ciclo di vita del prodotto.
 
