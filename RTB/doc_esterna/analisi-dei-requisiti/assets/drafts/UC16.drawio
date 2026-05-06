@@ -1,0 +1,37 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="UC 11 - Gestione Codice" id="Kt2Dgr2KxfvWRwyXOeAN">
+    <mxGraphModel dx="964" dy="671" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-130" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente" vertex="1">
+          <mxGeometry height="60" width="30" x="120" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-131" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
+          <mxGeometry height="420" width="420" x="240" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-132" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
+          <mxGeometry height="30" width="60" x="240" y="910" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-133" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 16 - Apertura e chiusura automatica simboli" vertex="1">
+          <mxGeometry height="80" width="180" x="260" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-134" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-130" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-133">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-135" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 16.1 - Attivazione aiuto simboli" vertex="1">
+          <mxGeometry height="80" width="220" x="430" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-136" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 16.2 - Disattivazione aiuto simboli" vertex="1">
+          <mxGeometry height="80" width="220" x="430" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-137" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-135" style="endArrow=block;endFill=0;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.85;entryY=0.15;entryDx=0;entryDy=0;entryPerimeter=0;" target="RaLqJGYHGWQkEpiDzxTo-133">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-138" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-136" style="endArrow=block;endFill=0;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.85;entryY=0.85;entryDx=0;entryDy=0;entryPerimeter=0;" target="RaLqJGYHGWQkEpiDzxTo-133">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
