@@ -135,7 +135,7 @@ Il documento è dunque da considerarsi dinamico, soggetto a un processo di raffi
 \section{Descrizione del prodotto}
 
 \subsection{Prospettiva del prodotto}
-L'idea per la quale nasce questo prodotto è di fornire un nuovo sistema$_G$ per prendere appunti che estenda le capacità umane, implementando l'utilizzo degli LLM$_G$ (da qui il nome Second Brain - Secondo Cervello) non solo per aiutare l'utente ad archiviare informazioni, ma a rielaborarle, criticarle e generarle in maniera intelligente.
+L'idea per la quale nasce questo prodotto è di fornire un nuovo sistema$_G$ per prendere appunti che estenda le capacità umane, implementando l'utilizzo degli LLM$_G$ non solo per aiutare l'utente ad archiviare informazioni, ma a rielaborarle, criticarle e generarle in maniera intelligente.
 Il sistema$_G$, a differenza dei classici chatbot$_G$, dovrà agire come un editor attivo che si basa sulle conoscenze specifiche dell'utente.
 
 \subsection{Obiettivi del prodotto}
@@ -149,7 +149,7 @@ Più nello specifico, il prodotto mira a:
 
 \subsection{Funzionalità del prodotto}
 Le funzionalità, sia requisiti$_G$ obbligatori che opzionali, del prodotto sono i seguenti:
-\textbf{Funzionalità minime (o oblligatorie)}:
+\textbf{Funzionalità minime (o obbligatorie)}:
 \begin{itemize}
     \item Editor Markdown: Il prodotto deve implementare un'area di inserimento testo che supporti il linguaggio di Markdown$_G$
     \item Rendering Grafico: Visualizzazione del testo formattato in tempo reale, fianco a fianco con l'editor
@@ -1377,7 +1377,6 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente attiva la funzione di dettatura del browser per inserire testo tramite input vocale. Il browser converte il parlato in testo e lo inserisce direttamente nel campo di input.
     \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:} Microfono (Dispositivo HW), Browser (Web Speech API).
     \item \textbf{Precondizioni:} L'utente ha concesso al browser i permessi di accesso al microfono. Il browser supporta la Web Speech API.
     \item \textbf{Postcondizioni:} Il testo riconosciuto dal microfono è inserito direttamente nel campo di input dell'editor.
     \item \textbf{Scenario Principale:}
@@ -1810,13 +1809,13 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \begin{itemize}
         \item \hyperlink{uc:26.1}{UC 26.1 - Inserimento o riutilizzo del prompt}
         \item \hyperlink{uc:26.2}{UC 26.2 - Selezione della lunghezza desiderata del testo}
-        \item \hyperlink{uc:26.3}{UC 26.3 - Selezione manuale delle note per il contesto della LLM}
-        \item \hyperlink{uc:26.4}{UC 26.4 - Anteprima e conferma del contesto inviato}
-        \item \hyperlink{uc:26.6}{UC 26.6 - Generazione da link}
+        \item \hyperlink{uc:26.3}{UC 26.3 - Anteprima e conferma del contesto inviato}
     \end{itemize}
     \item \textbf{Estensioni:}
     \begin{itemize}
-        \item \hyperlink{uc:26.5}{UC 26.5 - Errore LLM}
+        \item \hyperlink{uc:26.4}{UC 26.4 - Generazione da link}
+        \item \hyperlink{uc:26.5}{UC 26.5 - Selezione manuale delle note per il contesto della LLM}
+        \item \hyperlink{uc:26.6}{UC 26.6 - Errore LLM}
     \end{itemize}
 \end{itemize}
 
@@ -1856,9 +1855,48 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \end{enumerate}
 \end{itemize}
 
-% --- 26.3 ---
 \hypertarget{uc:26.3}{}
-\paragraph{UC 26.3 - Selezione manuale delle note da inviare come contesto}
+\paragraph{UC 26.3 - Anteprima e conferma del contesto inviato all'LLM}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} Visualizzazione di riepilogo di tutte le informazioni (prompt + note + parametri) prima dell'invio.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:}  Nessuno.
+    \item \textbf{Precondizioni:} L'utente ha definito prompt, contesto e/o parametri.
+    \item \textbf{Postcondizioni:} La richiesta viene inviata all'LLM$_G$
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item Il sistema mostra il riepilogo.
+        \item L'utente revisiona il riepilogo.
+        \item L'utente preme invia.
+    \end{enumerate}
+\end{itemize}
+
+
+% --- UC 26.4 ---
+\hypertarget{uc:26.4}{}
+\paragraph{UC 26.4 - Generazione testo a partire da link}
+
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente fornisce un URL di una pagina web; il sistema estrae il testo rilevante dalla risorsa e lo utilizza come contesto per richiedere all'LLM la generazione di un nuovo testo (es. "Scrivi un testo partendo da questo link").
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:} LLM$_G$, Servizio di fetch/estrazione (Browser o Backend Proxy).
+    \item \textbf{Precondizioni:} L'URL fornito è raggiungibile e il contenuto è accessibile (considerare CORS o utilizzo di proxy per fetch server-side).
+    \item \textbf{Postcondizioni:} Il testo estratto dalla pagina viene incluso nel contesto inviato all'LLM e l'output generato viene mostrato per la validazione dell'utente.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item L'utente attiva la funzione "Genera da link" e inserisce l'URL.
+        \item Il sistema recupera il contenuto della pagina o invia la richiesta a un proxy server-side che esegue il fetch.
+        \item Il sistema estrae il testo rilevante (rimozione di boilerplate, script, ecc.) e lo prepara come contesto.
+        \item Il sistema invia il prompt comprensivo del contesto all'LLM$_G$.
+        \item L'LLM restituisce il testo generato che viene presentato all'utente per accettazione, modifica o scarto.
+    \end{enumerate}
+\end{itemize}
+
+
+% --- 26.5 ---
+\hypertarget{uc:26.5}{}
+\paragraph{UC 26.5 - Selezione manuale delle note da inviare come contesto}
 
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente sceglie una o più note esistenti per fornire base documentale all'AI
@@ -1876,27 +1914,9 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \end{enumerate}
 \end{itemize}
 
-% --- 26.4 ---
-\hypertarget{uc:26.4}{}
-\paragraph{UC 26.4 - Anteprima e conferma del contesto inviato all'LLM}
-
-\begin{itemize}
-    \item \textbf{Descrizione:} Visualizzazione di riepilogo di tutte le informazioni (prompt + note + parametri) prima dell'invio.
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:}  Nessuno.
-    \item \textbf{Precondizioni:} L'utente ha definito prompt, contesto e/o parametri.
-    \item \textbf{Postcondizioni:} La richiesta viene inviata all'LLM$_G$
-    \item \textbf{Scenario Principale:}
-    \begin{enumerate}
-        \item Il sistema mostra il riepilogo.
-        \item L'utente revisiona il riepilogo.
-        \item L'utente preme invia.
-    \end{enumerate}
-\end{itemize}
-
-% --- 26.5 ---
-\hypertarget{uc:26.5}{}
-\paragraph{UC 26.5 - Errore LLM}
+% --- 26.6 ---
+\hypertarget{uc:26.6}{}
+\paragraph{UC 26.6 - Errore LLM}
 
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione della mancanza di risposta da parte del servizio di Intelligenza Artificiale
@@ -1909,26 +1929,6 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
         \item Il sistema rileva un timeout o un errore dall'API$_G$ LLM$_G$
         \item Il sistema mostra un messaggio di avviso.
         \item L'utente può tentare un nuovo invio con lo stato precedente all'errore.
-    \end{enumerate}
-\end{itemize}
-
-% --- UC 26.6 ---
-\hypertarget{uc:26.6}{}
-\paragraph{UC 26.6 - Generazione testo a partire da link}
-
-\begin{itemize}
-    \item \textbf{Descrizione:} L'utente fornisce un URL di una pagina web; il sistema estrae il testo rilevante dalla risorsa e lo utilizza come contesto per richiedere all'LLM la generazione di un nuovo testo (es. "Scrivi un testo partendo da questo link").
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:} LLM$_G$, Servizio di fetch/estrazione (Browser o Backend Proxy).
-    \item \textbf{Precondizioni:} L'URL fornito è raggiungibile e il contenuto è accessibile (considerare CORS o utilizzo di proxy per fetch server-side).
-    \item \textbf{Postcondizioni:} Il testo estratto dalla pagina viene incluso nel contesto inviato all'LLM e l'output generato viene mostrato per la validazione dell'utente.
-    \item \textbf{Scenario Principale:}
-    \begin{enumerate}
-        \item L'utente attiva la funzione "Genera da link" e inserisce l'URL.
-        \item Il sistema recupera il contenuto della pagina o invia la richiesta a un proxy server-side che esegue il fetch.
-        \item Il sistema estrae il testo rilevante (rimozione di boilerplate, script, ecc.) e lo prepara come contesto.
-        \item Il sistema invia il prompt comprensivo del contesto all'LLM$_G$.
-        \item L'LLM restituisce il testo generato che viene presentato all'utente per accettazione, modifica o scarto.
     \end{enumerate}
 \end{itemize}
 
@@ -1971,8 +1971,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \item \textbf{Descrizione:} L'utente esamina il testo prodotto dall'AI e lo giudica idoneo, accettando di utilizzarlo nel sistema.
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:}  Sistema di persistenza.
-    \item \textbf{Precondizioni:} L'output dell'LLM è stato visualizzato correttamente a schermo (\hypertarget{uc:27}{UC 27}) e l'utente ha terminato la revisione.
-    \item \textbf{Postcondizioni:} L'output è marcato come validato. Il sistema sblocca le funzioni di persistenza definitiva (\hypertarget{uc:27.1.1}{UC 27.1.1}, \hypertarget{uc:27.1.2}{UC 27.1.2}).
+    \item \textbf{Precondizioni:} L'output dell'LLM è stato visualizzato correttamente a schermo (\hyperlink{uc:27}{UC 27}) e l'utente ha terminato la revisione.
+    \item \textbf{Postcondizioni:} L'output è marcato come validato. Il sistema sblocca le funzioni di persistenza definitiva (\hyperlink{uc:27.1.1}{UC 27.1.1}, \hyperlink{uc:27.1.2}{UC 27.1.2}).
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
         \item L'utente visualizza il testo generato dall'AI nell'area di anteprima.
@@ -1996,7 +1996,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \item \textbf{Descrizione:} L'output AI sostituisce il contenuto corrente di una nota aperta.
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:}  Sistema di persistenza.
-    \item \textbf{Precondizioni:} \hypertarget{uc:27.1}{UC 27.1} attivato.
+    \item \textbf{Precondizioni:} \hyperlink{uc:27.1}{UC 27.1} attivato.
     \item \textbf{Postcondizioni:} Il testo originale della nota aperta è sovrascritto.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
@@ -2015,7 +2015,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \item \textbf{Descrizione:} L'output AI viene archiviato come un documento indipendente.
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:}  Sistema di persistenza.
-    \item \textbf{Precondizioni:} \hypertarget{uc:27.1}{UC 27.1} attivato.
+    \item \textbf{Precondizioni:} \hyperlink{uc:27.1}{UC 27.1} attivato.
     \item \textbf{Postcondizioni:} L'output è salvato in una nuova nota e presente nel database.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
@@ -2035,7 +2035,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \item \textbf{Descrizione:} L'utente scarta il testo generato perchè valutato non soddisfacente.
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:}  Nessuno.
-    \item \textbf{Precondizioni:} L'output dell'LLM è stato visualizzato correttamente a schermo (\hypertarget{uc:27.2}{UC 27.2}) e l'utente ha terminato la revisione.
+    \item \textbf{Precondizioni:} L'output dell'LLM è stato visualizzato correttamente a schermo (\hyperlink{uc:27.2}{UC 27.2}) e l'utente ha terminato la revisione.
     \item \textbf{Postcondizioni:} Il testo generato viene rimosso dalla memoria temporanea.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
@@ -2053,7 +2053,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \item \textbf{Descrizione:} Richiesta di una nuova versione del testo mantenendo gli stessi parametri.
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:}  LLM$_G$.
-    \item \textbf{Precondizioni:} L'output dell'LLM è stato visualizzato correttamente a schermo (\hypertarget{uc:27.3}{UC 27.3}) e l'utente ha terminato la revisione.
+    \item \textbf{Precondizioni:} L'output dell'LLM è stato visualizzato correttamente a schermo (\hyperlink{uc:27.3}{UC 27.3}) e l'utente ha terminato la revisione.
     \item \textbf{Postcondizioni:} Un nuovo output sostituisce il precedente nella schermata di anteprima.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
@@ -2072,17 +2072,17 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \item \textbf{Descrizione:} Memorizzazione dei metadati relativi a quali note (interne ed esterne) hanno contribuito alla generazione.
     \item \textbf{Attori Principali:} Sistema.
     \item \textbf{Attori Secondari:}  Sistema di persistenza.
-    \item \textbf{Precondizioni:} \hypertarget{uc:26}{UC 26} eseguito.
+    \item \textbf{Precondizioni:} \hyperlink{uc:26}{UC 26} eseguito.
     \item \textbf{Postcondizioni:} La nota generata contiene riferimenti alle note sorgente.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item Al salvataggio della nota, il sistema crea una relazione nel database tra la nuova nota e gli ID delle note selezionate al passo \hypertarget{uc:26.3}{26.3}.
+        \item Al salvataggio della nota, il sistema crea una relazione nel database tra la nuova nota e gli ID delle note selezionate al passo \hyperlink{uc:26.3}{26.3}.
         \item Se vengono menzionate note esterne, verranno salvati i link delle pagine utilizzate.
     \end{enumerate}
 \end{itemize}
 
 \hypertarget{uc:28}{}
-\subsubsection{UC 28 - Annullamento richiesta (!)}
+\subsubsection{UC 28 - Annullamento richiesta}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente interrompe un'operazione di elaborazione testuale in corso, annullando l'attesa della risposta da parte del modello linguistico.
     \item \textbf{Attori Principali:} Utente.
@@ -2836,8 +2836,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \begin{itemize}
         \item Il sistema$_G$ è attivo e accessibile.
         \item L'utente ha tentato di eseguire il login$_G$.
-        \item Il sistema$_G$ ha rilevato credenziali errate o un errore durante il processo di
-        autenticazione.
+        \item Il sistema$_G$ ha rilevato credenziali errate o un errore durante il processo di autenticazione.
     \end{itemize}
     \item \textbf{Postcondizioni:}
     \begin{itemize}
@@ -2847,7 +2846,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{itemize}
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item L'utente inserisce credenziali errate o si $_G$ un errore di connessione al
+        \item L'utente inserisce credenziali errate o si verifica$_G$ un errore di connessione al
         database$_G$.
         \item Il sistema$_G$ mostra un messaggio di errore generico (es.\ ``Credenziali non valide''
         o ``Errore di connessione al server'').
@@ -2884,7 +2883,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     del database$_G$ dell'applicazione.
     \item \textbf{Estensioni:}
     \begin{itemize}
-        \item UC 36.1 - Gestione username già esistente
+        \item UC 35.1 - Gestione username già esistente
     \end{itemize}
 \end{itemize}
 
