@@ -1,0 +1,61 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="UC 11 - Gestione Codice" id="Kt2Dgr2KxfvWRwyXOeAN">
+    <mxGraphModel dx="2333" dy="1032" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-743" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente" vertex="1">
+          <mxGeometry height="60" width="30" x="-210" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-744" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
+          <mxGeometry height="550" width="850" x="-110" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-745" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
+          <mxGeometry height="30" width="60" x="-110" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-746" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 33 - Ricerca e Navigazione" vertex="1">
+          <mxGeometry height="80" width="200" x="215" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-747" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-743" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-746">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-748" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 33.1 - Ricerca mirata per titolo" vertex="1">
+          <mxGeometry height="80" width="180" x="-80" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-749" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-748" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-746">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-750" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 33.2 - Ricerca Full-Text" vertex="1">
+          <mxGeometry height="80" width="180" x="120" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-751" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-750" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-746">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-752" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 33.3 - Filtro per data" vertex="1">
+          <mxGeometry height="80" width="180" x="320" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-753" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-752" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-746">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-754" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 33.4 - Visualizzazione lista note salvate nel Database" vertex="1">
+          <mxGeometry height="80" width="180" x="520" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-755" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-754" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-746">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-756" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 33.3.1 - Filtro per data di creazione" vertex="1">
+          <mxGeometry height="80" width="180" x="220" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-757" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-756" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-752">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-758" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 33.3.2 - Filtro per data di ultima modifica" vertex="1">
+          <mxGeometry height="80" width="180" x="420" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-759" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-758" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-752">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
