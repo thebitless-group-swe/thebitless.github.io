@@ -1,0 +1,50 @@
+name: Glossario
+
+on:
+  push:
+    paths:
+      - '**.tex'
+
+jobs:
+  glossario:
+    if: github.actor != 'github-actions'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: Installa Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Esegui script glossario
+        run: python script-glossario/main.py
+
+      - name: Installa LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            texlive-base \
+            texlive-latex-recommended \
+            texlive-fonts-recommended \
+            texlive-latex-extra \
+            texlive-lang-italian \
+            python3-pygments
+
+      - name: Compila i PDF
+        run: |
+          git diff --name-only HEAD~1 HEAD | grep '\.tex$' | grep -v 'script-glossario' | while read f; do
+            pdflatex -shell-escape -interaction=nonstopmode -output-directory="$(dirname "$f")" "$f"
+          done
+
+      - name: Committa le modifiche
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "glossario: aggiunte $_G$ e PDF aggiornati"
+          git push
