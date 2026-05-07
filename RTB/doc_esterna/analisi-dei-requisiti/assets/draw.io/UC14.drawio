@@ -1,0 +1,37 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="UC 11 - Gestione Codice" id="Kt2Dgr2KxfvWRwyXOeAN">
+    <mxGraphModel dx="964" dy="671" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-83" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente" vertex="1">
+          <mxGeometry height="60" width="30" x="120" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-84" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
+          <mxGeometry height="420" width="420" x="240" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-85" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
+          <mxGeometry height="30" width="60" x="240" y="950" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-86" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 14 - Gestione Link" vertex="1">
+          <mxGeometry height="80" width="170" x="265" y="710" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-87" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-83" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-86">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-88" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 14.1 - Inserimento link" vertex="1">
+          <mxGeometry height="80" width="200" x="450" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-89" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 14.2 - Eliminazione link" vertex="1">
+          <mxGeometry height="80" width="200" x="450" y="830" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-90" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-88" style="endArrow=block;endFill=0;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.85;entryY=0.15;entryDx=0;entryDy=0;entryPerimeter=0;" target="RaLqJGYHGWQkEpiDzxTo-86">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-91" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-89" style="endArrow=block;endFill=0;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.85;entryY=0.85;entryDx=0;entryDy=0;entryPerimeter=0;" target="RaLqJGYHGWQkEpiDzxTo-86">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
