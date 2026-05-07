@@ -1,0 +1,65 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="UC 11 - Gestione Codice" id="Kt2Dgr2KxfvWRwyXOeAN">
+    <mxGraphModel dx="1483" dy="1032" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-701" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente" vertex="1">
+          <mxGeometry height="60" width="30" x="20" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-702" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
+          <mxGeometry height="460" width="650" x="120" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-703" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
+          <mxGeometry height="30" width="60" x="120" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-704" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 32 - Gestione nota salvata" vertex="1">
+          <mxGeometry height="80" width="180" x="355" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-705" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-701" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-704">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-706" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 32.1 - Eliminazione nota dal Database" vertex="1">
+          <mxGeometry height="80" width="180" x="150" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-707" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-706" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-704">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-708" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 32.2 - Rinominazione nota nel Database" vertex="1">
+          <mxGeometry height="80" width="180" x="355" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-709" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-708" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-704">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-710" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 32.3 - Visualizzazione informazioni e metadati" vertex="1">
+          <mxGeometry height="80" width="180" x="560" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-711" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-710" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-704">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-712" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 32.1.1 - Gestione errore eliminazione" vertex="1">
+          <mxGeometry height="80" width="180" x="150" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-713" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-712" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;dashed=1;" target="RaLqJGYHGWQkEpiDzxTo-706">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-714" connectable="0" parent="RaLqJGYHGWQkEpiDzxTo-713" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-715" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 32.2.1 - Gestione errore rinominazione" vertex="1">
+          <mxGeometry height="80" width="180" x="355" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-716" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-715" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;dashed=1;" target="RaLqJGYHGWQkEpiDzxTo-708">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-717" connectable="0" parent="RaLqJGYHGWQkEpiDzxTo-716" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
