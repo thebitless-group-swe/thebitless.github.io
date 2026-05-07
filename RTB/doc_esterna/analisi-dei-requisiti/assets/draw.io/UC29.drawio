@@ -1,0 +1,48 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="UC 11 - Gestione Codice" id="Kt2Dgr2KxfvWRwyXOeAN">
+    <mxGraphModel dx="1483" dy="1032" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-577" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente" vertex="1">
+          <mxGeometry height="60" width="30" x="100" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-578" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
+          <mxGeometry height="460" width="460" x="240" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-579" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
+          <mxGeometry height="30" width="60" x="240" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-580" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 29 - Creazione nuova nota" vertex="1">
+          <mxGeometry height="80" width="200" x="370" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-581" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-577" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-580">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-582" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 29.1 - Inizializzazione editor vuoto" vertex="1">
+          <mxGeometry height="80" width="200" x="260" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-583" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-582" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-580">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-584" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 29.2 - Creazione nota nel Database Browser" vertex="1">
+          <mxGeometry height="80" width="200" x="480" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-585" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-584" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-580">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-586" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 29.2.1 - Gestione errore creazione nota nel Database" vertex="1">
+          <mxGeometry height="80" width="210" x="475" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-587" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-586" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;dashed=1;" target="RaLqJGYHGWQkEpiDzxTo-584">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-588" connectable="0" parent="RaLqJGYHGWQkEpiDzxTo-587" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

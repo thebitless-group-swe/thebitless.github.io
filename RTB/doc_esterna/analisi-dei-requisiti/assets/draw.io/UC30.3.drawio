@@ -1,25 +1,23 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
-  <diagram name="Page-1" id="txlnS8rQwgi-RHibTv1T">
-    <mxGraphModel dx="976" dy="656" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+<mxfile host="app.diagrams.net">
+  <diagram name="UC 11 - Gestione Codice" id="Kt2Dgr2KxfvWRwyXOeAN">
+    <mxGraphModel dx="1483" dy="1032" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="FZwI5ev0mp1Ufgfl1J7u-1" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente" vertex="1">
-          <mxGeometry height="60" width="30" x="90" y="270" as="geometry" />
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-657" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente" vertex="1">
+          <mxGeometry height="60" width="30" x="140" y="395" as="geometry" />
         </mxCell>
-        <mxCell id="FZwI5ev0mp1Ufgfl1J7u-4" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
-          <mxGeometry height="331.25" width="331.25" x="230" y="134.38" as="geometry" />
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-658" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
+          <mxGeometry height="330" width="330" x="280" y="260" as="geometry" />
         </mxCell>
-        <mxCell id="FZwI5ev0mp1Ufgfl1J7u-6" edge="1" parent="1" source="FZwI5ev0mp1Ufgfl1J7u-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="120" y="300" as="targetPoint" />
-          </mxGeometry>
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-659" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
+          <mxGeometry height="30" width="60" x="280" y="560" as="geometry" />
         </mxCell>
-        <mxCell id="FZwI5ev0mp1Ufgfl1J7u-5" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC30.3 - Errore creazione nota nel Database" vertex="1">
-          <mxGeometry height="80" width="250" x="270.63" y="260" as="geometry" />
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-660" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 30.3 - Gestione errore di caricamento" vertex="1">
+          <mxGeometry height="80" width="220" x="335" y="385" as="geometry" />
         </mxCell>
-        <mxCell id="FZwI5ev0mp1Ufgfl1J7u-7" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
-          <mxGeometry height="30" width="60" x="230" y="435.63" as="geometry" />
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-661" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-657" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-660">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
