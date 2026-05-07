@@ -1,0 +1,105 @@
+AC
+Actual Cost
+Agile
+Analisi dei Rischi
+Analista
+Approccio Incrementale
+Approvazione
+Amministratore
+Assegnazione
+Artefatto
+Analisi dei Requisiti
+API
+Backlog
+Baseline
+Brainstorming
+Branch
+Budget
+Bug
+Capitolato
+Casi d'Uso
+Collegamento ipertestuale
+Committente
+Continuous Integration
+Chatbot
+Database
+Dashboard
+Debugging
+Deliverable
+Diagrammi di Gantt
+Discord
+Distant Writing
+Dominio
+Fattibilità
+Feedback
+Framework
+Frontend
+Frontespizio
+Git
+GitHub
+GitHub Projects
+Incrementale
+Integrazione
+Input
+Issue
+Large Language Model (LLM)
+LaTeX
+LIFO (Last In, First Out)
+Matrici di tracciamento
+Metodologia incrementale
+Linguaggio Markdown
+Manutenibilità
+Merge
+Milestone
+Minimum Viable Product (MVP)
+Norme di Progetto
+Open Source
+Output
+Prompt Engineering
+Progettista
+Programmatore
+Project Manager
+Piano di Progetto
+Piano di Qualifica
+Product Baseline (PB)
+Proof of Concept (PoC)
+Pull Request (PR)
+Proponente
+Requisiti
+Requisiti di Qualificazione
+Requisiti Funzionali
+Repository
+Request for Proposal
+RFP
+Release
+Responsabile
+Reviewer
+Rotazione dei ruoli
+REST (Representational State Transfer)
+Requirements and Technology Baseline (RTB)
+Rischio
+Scrum
+Sprint
+Sei Cappelli per Pensare
+Sistema
+Sysadmin
+Stakeholder
+Sviluppo
+Tailoring
+Test
+Test Unitari
+Ticketing
+Tracciabilità
+Tecnologie Web
+Task
+Tester
+UML
+Unità Software
+UX
+Validazione
+Verifica
+Verificatore
+Vincolo
+Way of Working
+WhatsApp
+Workflow
