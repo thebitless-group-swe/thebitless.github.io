@@ -8,36 +8,96 @@ const MEMBERS = [
   { firstName: "Davide",  lastName: "Facco",       avatar: "https://avatars.githubusercontent.com/u/50549691?v=4",   github: "https://github.com/faccuzz" },
 ];
 
-const SECTIONS = [
-  {
-    id: "candidatura",
-    docs: [
-      { name: "Lettera di presentazione",    href: "candidatura/lettera-di-presentazione/lettera-di-presentazione.pdf" },
-      { name: "Dichiarazione degli impegni", href: "candidatura/dichiarazione-degli-impegni/dichiarazione-degli-impegni.pdf" },
-      { name: "Analisi dei capitolati",      href: "candidatura/analisi-dei-capitolati/analisi-dei-capitolati.pdf" },
-    ],
-    verbaliEsterni: [
-      { name: "Verbale esterno 2026-03-25 — Chiamata Conoscitiva Bluewind",  href: "candidatura/verbali/verbali_esterni/VE_2026-03-25_Bluewind/VE_2026-03-25_Bluewind.pdf"},
-      { name: "Verbale esterno 2026-03-18 — Chiamata Conoscitiva Eggon",     href: "candidatura/verbali/verbali_esterni/VE_2026-03-18_Eggon/VE_2026-03-18_Eggon.pdf" },
-      { name: "Verbale esterno 2026-03-16 — Chiamata Conoscitiva Miriade",   href: "candidatura/verbali/verbali_esterni/VE_2026-03-16_Miriade/VE_2026-03-16_Miriade.pdf" },
-      { name: "Verbale esterno 2026-03-12 — Chiamata Conoscitiva Zucchetti", href: "candidatura/verbali/verbali_esterni/VE_2026-03-12_Zucchetti/VE_2026-03-12_Zucchetti.pdf" },
-    ],
-    verbaliInterni: [
-      { name: "Verbale interno 2026-03-20 — Dichiarazione Impegni",   href: "candidatura/verbali/verbali_interni/VI_2026-03-20_dichiarazione-impegni/VI_2026-03-20_dichiarazione-impegni.pdf" },
-      { name: "Verbale interno 2026-03-18 — Discussione Capitolati",  href: "candidatura/verbali/verbali_interni/VI_2026-03-18_discussione-capitolati/VI_2026-03-18_discussione-capitolati.pdf" },
-      { name: "Verbale interno 2026-03-10 — Avvio Progetto",          href: "candidatura/verbali/verbali_interni/VI_2026-03-10_avvio-progetto/VI_2026_03_10_primo_incontro.pdf" },
-    ],
-  },
-  {
-    id: "rtb",
-    verbaliEsterni: [],
-    verbaliInterni: [],
-  },
-  {
-    id: "diapositive",
-    docs: [],
-  },
-];
+const REPO = "thebitless-group-swe/thebitless.github.io";
+const VERBALE_RE = /^(VE|VI)_(\d{4}-\d{2}-\d{2})_(.+)$/;
+
+let SECTIONS = [];
+
+function humanize(s) {
+  const t = s.replace(/[-_]+/g, " ").trim();
+  return t.charAt(0).toUpperCase() + t.slice(1);
+}
+
+function pickPdf(paths) {
+  return paths.find((p) => /_firmato\.pdf$/i.test(p)) || paths[0];
+}
+
+function groupByFolder(files, prefix) {
+  const groups = new Map();
+  for (const p of files) {
+    if (!p.startsWith(prefix + "/")) continue;
+    const parts = p.slice(prefix.length + 1).split("/");
+    if (parts.length < 2) continue;
+    const folder = parts[0];
+    if (!groups.has(folder)) groups.set(folder, []);
+    groups.get(folder).push(p);
+  }
+  return groups;
+}
+
+function buildVerbali(files, prefix) {
+  const items = [];
+  for (const [folder, paths] of groupByFolder(files, prefix)) {
+    const m = folder.match(VERBALE_RE);
+    if (!m) continue;
+    const tipo = m[1] === "VE" ? "esterno" : "interno";
+    items.push({
+      name: `Verbale ${tipo} ${m[2]} — ${humanize(m[3])}`,
+      href: pickPdf(paths),
+      _sort: m[2],
+    });
+  }
+  items.sort((a, b) => b._sort.localeCompare(a._sort));
+  return items.map(({ _sort, ...r }) => r);
+}
+
+function buildDocs(files, prefix, exclude = []) {
+  const items = [];
+  for (const [folder, paths] of groupByFolder(files, prefix)) {
+    if (exclude.includes(folder)) continue;
+    items.push({ name: humanize(folder), href: pickPdf(paths) });
+  }
+  return items.sort((a, b) => a.name.localeCompare(b.name, "it"));
+}
+
+async function loadSections() {
+  try {
+    const res = await fetch(`https://api.github.com/repos/${REPO}/git/trees/main?recursive=1`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    const pdfs = data.tree
+      .filter((e) => e.type === "blob" && e.path.toLowerCase().endsWith(".pdf"))
+      .map((e) => e.path);
+    return [
+      {
+        id: "candidatura",
+        docs: buildDocs(pdfs, "candidatura", ["verbali"]),
+        verbaliEsterni: buildVerbali(pdfs, "candidatura/verbali/verbali_esterni"),
+        verbaliInterni: buildVerbali(pdfs, "candidatura/verbali/verbali_interni"),
+      },
+      {
+        id: "rtb",
+        docs: [
+          ...buildDocs(pdfs, "RTB/doc_esterna", ["verbali"]),
+          ...buildDocs(pdfs, "RTB/doc_interna", ["verbali"]),
+        ],
+        verbaliEsterni: buildVerbali(pdfs, "RTB/doc_esterna/verbali"),
+        verbaliInterni: buildVerbali(pdfs, "RTB/doc_interna/verbali"),
+      },
+      {
+        id: "diapositive",
+        docs: buildDocs(pdfs, "diapositive"),
+      },
+    ];
+  } catch (err) {
+    console.warn("Impossibile recuperare la lista documenti:", err);
+    return [
+      { id: "candidatura", docs: [], verbaliEsterni: [], verbaliInterni: [] },
+      { id: "rtb", docs: [], verbaliEsterni: [], verbaliInterni: [] },
+      { id: "diapositive", docs: [] },
+    ];
+  }
+}
 
 function makeDocList(docs) {
   if (docs.length === 0) return null;
@@ -164,13 +224,15 @@ function initTheme() {
   applyTheme(saved ?? (prefersDark ? "dark" : "light"));
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   initTheme();
-  renderDocs();
   renderTeam();
 
   document.getElementById("theme-toggle")?.addEventListener("click", () => {
     const current = document.documentElement.getAttribute("data-theme");
     applyTheme(current === "dark" ? "light" : "dark");
   });
+
+  SECTIONS = await loadSections();
+  renderDocs();
 });
