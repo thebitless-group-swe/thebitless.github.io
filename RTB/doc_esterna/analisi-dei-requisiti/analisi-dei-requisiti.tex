@@ -112,22 +112,26 @@ Il documento è dunque da considerarsi dinamico, soggetto a un processo di raffi
 
 \subsubsection{Riferimenti Normativi}
 \begin{itemize}
-    \item \textbf{Capitolato C6 - Second Brain}: \\
-    \url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C6.pdf}
-    \item \textbf{Regolamento del Progetto Didattico}: \\
-    \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf}
-    \item \textbf{Norme di Progetto}: \\
-     \scriptsize\url{https://thebitless.github.io/RTB/doc_interna/norme-di-progetto/norme-di-progetto.pdf}
+    \item \textbf{Capitolato C6 - Second Brain}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C6.pdf} \\
+    (Consultato il 2026-04-17)
+    \item \textbf{Regolamento del Progetto Didattico}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf} \\
+    (Consultato il 2026-04-20)
+    \item \textbf{Norme di Progetto}: \\ \url{https://github.com/thebitless.github.io/RTB/doc_interna/norme-di-progetto/norme-di-progetto.pdf} \\
+    (Consultato il 2026-04-29)
 \end{itemize}
+
 
 \subsubsection{Riferimenti Informativi}
 \begin{itemize}
     \item \textbf{Glossario di Progetto}: \\
-    \url{https://thebitless.github.io/RTB/doc_interna/glossario/glossario.pdf}
+    \url{https://github.com/thebitless-group-swe/thebitless.github.io/blob/main/RTB/doc_interna/glossario/glossario.pdf} \\
+    (Consultato il 2026-05-06)
     \item \textbf{Dispense Analisi dei requisiti}: \\
     \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf}
+    (Consultato il 2026-04-28)
     \item \textbf{Dispense Casi d'uso}: \\
-    \url{https://www.math.unipd.it/~rcardin/swea/2022/Diagrammi%20Use%20Case.pdf}
+    \url{https://www.math.unipd.it/~rcardin/swea/2022/Diagrammi%20Use%20Case.pdf} \\
+    (Consultato il 2026-05-03)
 \end{itemize}
 
 \newpage
@@ -135,54 +139,65 @@ Il documento è dunque da considerarsi dinamico, soggetto a un processo di raffi
 \section{Descrizione del prodotto}
 
 \subsection{Prospettiva del prodotto}
-L'idea per la quale nasce questo prodotto è di fornire un nuovo sistema$_G$ per prendere appunti che estenda le capacità umane, implementando l'utilizzo degli LLM$_G$ non solo per aiutare l'utente ad archiviare informazioni, ma a rielaborarle, criticarle e generarle in maniera intelligente.
-Il sistema$_G$, a differenza dei classici chatbot$_G$, dovrà agire come un editor attivo che si basa sulle conoscenze specifiche dell'utente.
+Il progetto consiste nello sviluppo di un \textbf{editor di testo intelligente} integrato con modelli di linguaggio (Large Language Models$_G$). Il sistema agisce come un assistente attivo capace di operare sui contenuti inseriti dall'utente per ottimizzare la gestione delle informazioni.
+
+Il software fornisce strumenti avanzati per l'elaborazione dei testi, tra cui:
+\begin{itemize}
+    \item \textbf{Sintesi Automatica:} Capacità di riassumere testi complessi estraendo i concetti chiave;
+    \item \textbf{Traduzione Contestuale:} Traduzione di contenuti tra diverse lingue, mantenendo la coerenza con il dominio tecnico dell'utente;
+    \item \textbf{Generazione e Revisione:} Produzione di nuove sezioni di testo e critica intelligente di quanto già scritto, per migliorarne la chiarezza o la logica;
+\end{itemize}
+
+L'obiettivo è offrire un ambiente di lavoro dove la tecnologia non si limita ad archiviare i dati, ma supporta attivamente l'utente nel processo di studio e scrittura.
 
 \subsection{Obiettivi del prodotto}
-L'obiettivo principale è sviluppare un'applicazione che verifichi le potenzialità degli LLM$_G$ nel supportare una persona nella creazione di testi, idee e brainstorming$_G$.
-Più nello specifico, il prodotto mira a:
-\begin{itemize}
-    \item Dimostrare la fatibilità di tali strumenti utilizzando Tecnologie Web$_G$
-    \item Esplorare l'efficacia del Prompt Engeneering$_G$ per ottenere analisi critiche e trasformazioni testuali speciali e specifiche
-    \item Sperimentare le modalità di interazione tra uomo e macchina come il Distant Writing$_G$ ed il brainstorming$_G$ assistito
-\end{itemize}
 
+L'obiettivo principale del progetto è lo sviluppo di un'applicazione web finalizzata a massimizzare il supporto fornito dagli \textbf{LLM}$_G$ nei processi creativi e di stesura testuale. Il prodotto si configura come un ambiente operativo per il \textbf{brainstorming}$_G$ assistito e la gestione della conoscenza.
+
+Nello specifico, il prodotto persegue i seguenti obiettivi:
+\begin{itemize}
+    \item \textbf{Verifica della fattibilità tecnica:} Dimostrare come le moderne \textbf{Tecnologie Web}$_G$ possano integrare modelli di intelligenza artificiale complessi, garantendo un'interfaccia utente fluida e tempi di risposta ridotti;
+    \item \textbf{Efficacia del Prompt Engineering$_G$:} Implementare istruzioni avanzate per ottenere dai modelli analisi critiche, sintesi e trasformazioni testuali modellate sulle esigenze specifiche dell'utente;
+    \item \textbf{Sperimentazione dell'interazione Uomo-Macchina:} Validare flussi di lavoro in cui l'algoritmo agisce come partner attivo, supportando l'utente nella generazione di idee e nella revisione logica dei contenuti.
+\end{itemize}
 \subsection{Funzionalità del prodotto}
-Le funzionalità, sia requisiti$_G$ obbligatori che opzionali, del prodotto sono i seguenti:
-\textbf{Funzionalità minime (o obbligatorie)}:
-\begin{itemize}
-    \item Editor Markdown: Il prodotto deve implementare un'area di inserimento testo che supporti il linguaggio di Markdown$_G$
-    \item Rendering Grafico: Visualizzazione del testo formattato in tempo reale, fianco a fianco con l'editor
-    \item Integrazione$_G$ LLM: Accesso tramite API$_G$ ai modelli linguistici di intelligenza artificiale per operare sul testo (su una parte o sull'intero documento)
-    \item Comandi di Base: Implementazione dei comandi di base quali la riscrittura (cambio tono, espansione del testo, correzione grammaticale), il riassunto e la traduzione (Inglese, Francese, Tedesco, Spagnolo)
-    \item Analisi Critica: Implementazione del modello dei sei cappelli$_G$ per analizzare e/o riscrivere il testo da diverse prospettive
-    \begin{itemize}
-        \item[Bianco: ] Testo neutro ed imparziale, che risponde ai fatti
-        \item[Rosso: ] Testo emozionale, che cattura emozioni
-        \item[Giallo: ] Testo ottimista, che guarda agli aspetti positivi e alle opportunità
-        \item[Nero: ] Testo di critica, sotto l'occhio dell'avvocato del diavolo
-        \item[Verde: ] Testo originale, creativo e provocante
-        \item[Blu: ] Testo logico e strutturato, che prioritizza controllo e organizzazione    
-    \end{itemize} 
-    \item Generazione da prompt: Anche detto Distant Writing$_G$, crea un'intero testo partendo da un input$_G$ generale dell'utente
-    \item Gestione file: Salvataggio e lettura delle note in file locali 
-\end{itemize}
 
-\textbf{Funzionalita secondarie (o opzionali)}
+Il sistema prevede una serie di funzionalità distinte tra requisiti$_G$ obbligatori (necessari per il prodotto minimo funzionante) e opzionali (volti ad arricchire l'esperienza utente). \\ \\
+\textbf{Funzionalità minime (Obbligatorie)}:
 \begin{itemize}
-    \item Archivio Server-Side: Memorizzazione delle note all'interno di un database$_G$
-    \item Linking tra Note: Opzione per collegare, tramite un link, una nota all'interno di un'altra
-    \item RAG (Retrieval Augmented Generation): Indica l'utilizzo di note selezionate come contesto all'LLM$_G$ per generare risposte più precise, informate e contestualizzate
+    \item \textbf{Editor Markdown}: Fornitura di un'interfaccia di scrittura che supporti la sintassi Markdown$_G$ per la formattazione del testo;
+    \item \textbf{Rendering in tempo reale}: Visualizzazione istantanea del testo formattato in una vista dedicata (anteprima \textit{side-by-side});
+    \item \textbf{Integrazione$_G$ LLM}: Connessione tramite API$_G$ a modelli linguistici per l'elaborazione del testo selezionato o dell'intero documento;
+    \item \textbf{Strumenti di Editing Assistito}: Comandi per la manipolazione del testo, inclusi: cambio di tono, espansione dei contenuti, correzione grammaticale, riassunto e traduzione multilingua (Inglese, Francese, Tedesco, Spagnolo);
+    \item \textbf{Analisi Critica (Sei Cappelli$_G$)}: Implementazione di un sistema di revisione basato sulla tecnica dei "Sei Cappelli per Pensare", che permette di analizzare o riscrivere il testo secondo diverse prospettive:
+    \begin{itemize}
+        \item \textbf{Bianco}: Analisi oggettiva basata su dati e fatti;
+        \item \textbf{Rosso}: Focus sugli aspetti emotivi e intuitivi;
+        \item \textbf{Giallo}: Approccio ottimista, orientato a benefici e opportunità;
+        \item \textbf{Nero}: Visione critica, mirata a individuare rischi e punti deboli;
+        \item \textbf{Verde}: Generazione di contenuti creativi, originali e fuori dagli schemi;
+        \item \textbf{Blu}: Organizzazione logica, strutturata e focalizzata sul controllo del processo.
+    \end{itemize} 
+    \item \textbf{Generazione da Prompt}: Funzionalità di \textit{Distant Writing}$_G$ per la creazione di un documento completo a partire da una descrizione testuale sintetica fornita dall'utente;
+    \item \textbf{Gestione File}: Possibilità di salvare, archiviare e caricare le note direttamente sul file system locale dell'utente.
+\end{itemize} \\
+\textbf{Funzionalità secondarie (Opzionali)}:
+\begin{itemize}
+    \item \textbf{Persistenza Server-Side}: Memorizzazione e sincronizzazione delle note all'interno di un database$_G$ remoto;
+    \item \textbf{Cross-Linking}: Possibilità di creare collegamenti ipertestuali (link) tra note diverse per navigare nella base di conoscenza;
+    \item \textbf{RAG (Retrieval-Augmented Generation)}: Utilizzo di note specifiche archiviate come contesto diretto per l'LLM, al fine di generare risposte basate esclusivamente sul dominio informativo dell'utente.
 \end{itemize}
 
 \subsection{Utenza di riferimento}
-il capitolato$_G$ identifica diverse tipologie di utenti, essendo che punta ad essere un prodotto duttile a qualsiasi tipologia di nota:
+Il capitolato$_G$ descrive un prodotto versatile, progettato per adattarsi a diverse tipologie di gestione della conoscenza. Le principali categorie di utenti identificate sono:
+
 \begin{itemize}
-    \item Studenti: Per lo studio, lo svolgimento dei compiti e la sintesi delle lezioni
-    \item Professionisti in ambito aziendale: Per la stesura di testi di marketing e la creazione di presentazioni
-    \item Creatori di contenuti e Scrittori: Chiunque necessiti di supporto nel brainstorming$_G$ o nella revisione critica di bozze testuali
-    \item Chiunque altro abbia bisogno di prendere appunti e/o scrivere testi anche partendo da zero e lasciare fare alla macchina il duro lavoro
+    \item \textbf{Studenti}: Utenti che necessitano di strumenti per l'organizzazione del materiale didattico, la sintesi di lezioni e il supporto alla stesura di elaborati;
+    \item \textbf{Professionisti in ambito aziendale}: Figure che operano nella redazione di contenuti per il marketing, nella sintesi di verbali di riunione o nella generazione di bozze per presentazioni commerciali;
+    \item \textbf{Creatori di contenuti e Scrittori}: Utenti che richiedono supporto nelle fasi di brainstorming$_G$ iniziale e nella critica analitica di bozze testuali esistenti;
+    \item \textbf{Utenza generica}: Chiunque necessiti di un editor di testo capace di automatizzare i processi di stesura, traduzione e riorganizzazione dei propri appunti, delegando al sistema le fasi più ripetitive o onerose della scrittura.
 \end{itemize}
+\newpage
 
 \newpage
 
