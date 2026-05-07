@@ -1,64 +1,51 @@
 <mxfile host="app.diagrams.net">
-  <diagram name="Pagina-1" id="0goLp0hhWnlyNVjrv4kk">
-    <mxGraphModel dx="615" dy="612" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+  <diagram name="UC 11 - Gestione Codice" id="Kt2Dgr2KxfvWRwyXOeAN">
+    <mxGraphModel dx="1134" dy="789" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="yFnSDytIDif9PhG58j7F-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry height="440" width="420" x="480" y="480" as="geometry" />
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-164" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente" vertex="1">
+          <mxGeometry height="60" width="30" x="30" y="250" as="geometry" />
         </mxCell>
-        <mxCell id="yFnSDytIDif9PhG58j7F-2" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente" vertex="1">
-          <mxGeometry height="60" width="30" x="410" y="670" as="geometry" />
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-165" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="LLM" vertex="1">
+          <mxGeometry height="60" width="30" x="650" y="250" as="geometry" />
         </mxCell>
-        <mxCell id="yFnSDytIDif9PhG58j7F-3" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="LLM&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="60" width="30" x="930" y="670" as="geometry" />
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-166" parent="1" style="whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="400" width="430" x="170" y="30" as="geometry" />
         </mxCell>
-        <mxCell id="yFnSDytIDif9PhG58j7F-4" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
-          <mxGeometry height="30" width="90" x="480" y="890" as="geometry" />
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-167" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
+          <mxGeometry height="30" width="60" x="170" y="400" as="geometry" />
         </mxCell>
-        <mxCell id="yFnSDytIDif9PhG58j7F-5" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC22 -&amp;nbsp;&lt;div&gt;Riassunto contenuto LLM&lt;/div&gt;" vertex="1">
-          <mxGeometry height="60" width="161" x="519" y="670" as="geometry" />
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-168" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 22 - Riassunto contenuto con LLM" vertex="1">
+          <mxGeometry height="70" width="210" x="280" y="70" as="geometry" />
         </mxCell>
-        <mxCell id="yFnSDytIDif9PhG58j7F-6" edge="1" parent="1" source="yFnSDytIDif9PhG58j7F-7" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;exitX=0.027;exitY=0.725;exitDx=0;exitDy=0;exitPerimeter=0;" target="yFnSDytIDif9PhG58j7F-5" value="">
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-169" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 22.1 - Selezione percentuale di riassunto" vertex="1">
+          <mxGeometry height="70" width="210" x="280" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-170" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 22.2 - Gestione testo insufficiente" vertex="1">
+          <mxGeometry height="70" width="180" x="200" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-171" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 22.3 - Errore LLM" vertex="1">
+          <mxGeometry height="70" width="180" x="400" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-172" edge="1" parent="1" source="p2sep0m7qQ60FvVHNfT_-164" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="p2sep0m7qQ60FvVHNfT_-168">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="yFnSDytIDif9PhG58j7F-7" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC22.1 -&amp;nbsp;&lt;div&gt;Selezione percentuale di riassunto&lt;/div&gt;" vertex="1">
-          <mxGeometry height="80" width="150" x="690" y="530" as="geometry" />
-        </mxCell>
-        <mxCell id="yFnSDytIDif9PhG58j7F-12" edge="1" parent="1" source="yFnSDytIDif9PhG58j7F-2" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="yFnSDytIDif9PhG58j7F-5" value="">
-          <mxGeometry height="50" relative="1" width="50" as="geometry">
-            <mxPoint x="590" y="670" as="sourcePoint" />
-            <mxPoint x="640" y="620" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="yFnSDytIDif9PhG58j7F-13" edge="1" parent="1" source="yFnSDytIDif9PhG58j7F-5" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="yFnSDytIDif9PhG58j7F-3" value="">
-          <mxGeometry height="50" relative="1" width="50" as="geometry">
-            <mxPoint x="590" y="670" as="sourcePoint" />
-            <mxPoint x="640" y="620" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="yFnSDytIDif9PhG58j7F-16" edge="1" parent="1" source="yFnSDytIDif9PhG58j7F-17" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" value="">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="600" y="730" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="yFnSDytIDif9PhG58j7F-17" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC22.3 -&amp;nbsp;&lt;div&gt;Errore LLM&lt;/div&gt;" vertex="1">
-          <mxGeometry height="80" width="152.5" x="508.75" y="780" as="geometry" />
-        </mxCell>
-        <mxCell id="yFnSDytIDif9PhG58j7F-18" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" vertex="1">
-          <mxGeometry height="30" width="60" x="610" y="610" as="geometry" />
-        </mxCell>
-        <mxCell id="yFnSDytIDif9PhG58j7F-22" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" vertex="1">
-          <mxGeometry height="30" width="60" x="590" y="740" as="geometry" />
-        </mxCell>
-        <mxCell id="yFnSDytIDif9PhG58j7F-23" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC22.2 -&amp;nbsp;&lt;div&gt;Gestione testo insufficiente&lt;/div&gt;" vertex="1">
-          <mxGeometry height="80" width="152.5" x="710" y="770" as="geometry" />
-        </mxCell>
-        <mxCell id="yFnSDytIDif9PhG58j7F-24" edge="1" parent="1" source="yFnSDytIDif9PhG58j7F-23" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=0;exitDy=0;entryX=0.901;entryY=0.733;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;" target="yFnSDytIDif9PhG58j7F-5">
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-173" edge="1" parent="1" source="p2sep0m7qQ60FvVHNfT_-168" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="p2sep0m7qQ60FvVHNfT_-165">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="yFnSDytIDif9PhG58j7F-26" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" vertex="1">
-          <mxGeometry height="30" width="60" x="700" y="730" as="geometry" />
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-174" edge="1" parent="1" source="p2sep0m7qQ60FvVHNfT_-168" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;dashed=1;" target="p2sep0m7qQ60FvVHNfT_-169" value="&lt;small&gt;&amp;lt;&amp;lt;include&amp;gt;&amp;gt;&lt;/small&gt;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-175" edge="1" parent="1" source="p2sep0m7qQ60FvVHNfT_-170" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;dashed=1;" target="p2sep0m7qQ60FvVHNfT_-168" value="&lt;small&gt;&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;&lt;/small&gt;">
+          <mxGeometry relative="1" x="-0.501" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-176" edge="1" parent="1" source="p2sep0m7qQ60FvVHNfT_-171" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;dashed=1;" target="p2sep0m7qQ60FvVHNfT_-168" value="&lt;small&gt;&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;&lt;/small&gt;">
+          <mxGeometry relative="1" x="-0.5161" y="-4" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
