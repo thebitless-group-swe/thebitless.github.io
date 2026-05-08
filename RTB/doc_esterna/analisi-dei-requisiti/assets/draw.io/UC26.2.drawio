@@ -1,29 +1,23 @@
 <mxfile host="app.diagrams.net">
-  <diagram name="Pagina-1" id="o11ExwKdGrQa5CvTmQYZ">
-    <mxGraphModel dx="934" dy="642" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+  <diagram name="UC 11 - Gestione Codice" id="Kt2Dgr2KxfvWRwyXOeAN">
+    <mxGraphModel dx="1134" dy="789" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="I5MvPiS5boFL8E6RfWrq-38" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
-          <mxGeometry height="160" width="186" x="314" y="240" as="geometry" />
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-393" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente" vertex="1">
+          <mxGeometry height="60" width="30" x="190" y="230" as="geometry" />
         </mxCell>
-        <mxCell id="I5MvPiS5boFL8E6RfWrq-2" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente" vertex="1">
-          <mxGeometry height="60" width="30" x="230" y="290" as="geometry" />
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-394" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
+          <mxGeometry height="300" width="350" x="310" y="110" as="geometry" />
         </mxCell>
-        <mxCell id="I5MvPiS5boFL8E6RfWrq-5" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC26.2 -&amp;nbsp;&lt;div&gt;Selezione della lunghezza del testo&lt;/div&gt;" vertex="1">
-          <mxGeometry height="60" width="141" x="339" y="290" as="geometry" />
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-395" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
+          <mxGeometry height="30" width="60" x="310" y="410" as="geometry" />
         </mxCell>
-        <mxCell id="I5MvPiS5boFL8E6RfWrq-11" edge="1" parent="1" source="I5MvPiS5boFL8E6RfWrq-2" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="I5MvPiS5boFL8E6RfWrq-5" value="">
-          <mxGeometry height="50" relative="1" width="50" as="geometry">
-            <mxPoint x="410" y="290" as="sourcePoint" />
-            <mxPoint x="460" y="240" as="targetPoint" />
-          </mxGeometry>
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-396" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 26.2 - Selezione della lunghezza del testo" vertex="1">
+          <mxGeometry height="80" width="220" x="375" y="220" as="geometry" />
         </mxCell>
-        <mxCell id="I5MvPiS5boFL8E6RfWrq-39" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="UC26" vertex="1">
-          <mxGeometry height="30" width="60" x="377" y="210" as="geometry" />
-        </mxCell>
-        <mxCell id="2V7zSyU1nFPNTLUCcueZ-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
-          <mxGeometry height="30" width="60" x="314" y="370" as="geometry" />
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-397" edge="1" parent="1" source="p2sep0m7qQ60FvVHNfT_-393" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="p2sep0m7qQ60FvVHNfT_-396">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
