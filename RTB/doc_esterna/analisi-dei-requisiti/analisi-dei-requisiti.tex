@@ -3,9 +3,11 @@
 \usepackage[italian]{babel} 
 \usepackage{comment}      
 \usepackage{graphicx} 
-\graphicspath{{./assets/img/}}
+
 \usepackage{multirow}
 \usepackage{geometry}
+\usepackage{xurl}
+\usepackage[nopatch=footnote]{microtype}
 \newcommand{\ucref}[1]{UC \ref{#1}}
 \usepackage{bookmark}
 \usepackage{float} 
@@ -34,6 +36,11 @@
 
 \begin{document}
 
+
+\raggedbottom
+
+\setlength{\emergencystretch}{2em}
+
 \newcommand{\titolo}{Analisi dei Requisiti}
 \newcommand{\dataverbale}{}
 \newcommand{\dataversione}{2026-04-28}
@@ -42,7 +49,8 @@
 \newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
 \def\templatedir{../../../templates}
 
-%Comandi per includere i paragrafi e i sottoparagrafi nell'indice e numerarli
+
+
 \setcounter{secnumdepth}{5}
 \setcounter{tocdepth}{5}
 
@@ -61,7 +69,7 @@
     \small
     \begin{tabularx}{\textwidth}{|c|c|L|c|c|L|}
         \hline
-        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\   
+        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\  
         \hline
         0.9.0 & 2026-04-28 & A. Marini & S. Zecchinato & - & Sistemazione UC 21 e generalizzazioni \\
         \hline
@@ -2239,6 +2247,12 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \hypertarget{uc:24.2.1}{}
 \subparagraph{UC 24.2.1 - Nessun errore rilevato}
 \mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC24.2.1.pdf}
+  \caption{Diagramma UC24.2.1}
+  \label{fig:uc24.2.1}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione del caso in cui il testo sia già grammaticalmente corretto.
     \item \textbf{Attori Principali:} Utente.
@@ -2707,7 +2721,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \item \textbf{Postcondizioni:} Il sistema torna allo stato precedente all'invio senza perdita di dati locali.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item Il sistema rileva un timeout o un errore dall'API$_G$ LLM$_G$
+        \item Il sistema rileva un timeout o un errore dall'API$_G$ LLM$_G$.
         \item Il sistema mostra un messaggio di avviso.
         \item L'utente può tentare un nuovo invio con lo stato precedente all'errore.
     \end{enumerate}
@@ -2803,7 +2817,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
         \item L'utente sceglie "Sostituisci".
-        \item Il sistema aggiorna il buffere dell'editor.
+        \item Il sistema aggiorna il buffer dell'editor.
         \item Il sistema salva le modifiche.
     \end{enumerate}
 \end{itemize}
@@ -2848,7 +2862,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{figure}
 
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente scarta il testo generato perchè valutato non soddisfacente.
+    \item \textbf{Descrizione:} L'utente scarta il testo generato perché valutato non soddisfacente.
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:}  Nessuno.
     \item \textbf{Precondizioni:} L'output dell'LLM è stato visualizzato correttamente a schermo (\hyperlink{uc:27.2}{UC 27.2}) e l'utente ha terminato la revisione.
@@ -4074,8 +4088,8 @@ I requisiti funzionali definiscono le operazioni, i comportamenti e le funzional
         RF-13 & Il sistema deve permettere la chiusura e l'apertura automatica dei simboli durante la digitazione. & Desiderabile & UC 16 \\ \hline
         RF-14 & Il sistema deve permettere il salvataggio e il caricamento delle note in file di testo locali (.md) su FileSystem. & Obbligatorio & UC 30.1, UC 31.1, Capitolato \\ \hline
         RF-15 & Il sistema deve interfacciarsi con un LLM$_G$ per la generazione automatica del testo (Distant Writing$_G$) partendo da un prompt$_G$. & Obbligatorio & UC 26, Capitolato \\ \hline
-        RF-16 & Il sistema deve implementare comandi base gestiti dall'LLM$_G$: riassunto, riscrittura (cambio tono, espansione, correzione) e traduzione. & Obbligatorio & Capitolato \\ \hline
-        RF-17 & Il sistema deve permettere l'analisi critica del testo applicando il modello dei "sei cappelli per pensare" (Neutro, Emozionale, Ottimista, Critico, Creativo, Logico). & Obbligatorio & Capitolato \\ \hline
+        RF-16 & Il sistema deve implementare comandi base gestiti dall'LLM$_G$: riassunto, riscrittura (cambio tono, espansione, correzione) e traduzione. & Obbligatorio & UC 22, UC 23, UC 24, Capitolato \\ \hline
+        RF-17 & Il sistema deve permettere l'analisi critica del testo applicando il modello dei "sei cappelli per pensare" (Neutro, Emozionale, Ottimista, Critico, Creativo, Logico). & Obbligatorio & UC 25, Capitolato \\ \hline
         RF-18 & Il sistema deve permettere all'utente di definire la lunghezza desiderata del testo generato dall'LLM$_G$. & Desiderabile & UC 26.2 \\ \hline
         RF-19 & Il sistema deve permettere all'utente di validare, accettare, scartare o rigenerare l'output prodotto dall'AI$_G$. & Obbligatorio & UC 27 \\ \hline
         RF-20 & Il sistema deve permettere di interrompere o annullare una richiesta di elaborazione inviata all'LLM$_G$ in corso. & Desiderabile & UC 28 \\ \hline
@@ -4086,8 +4100,10 @@ I requisiti funzionali definiscono le operazioni, i comportamenti e le funzional
         RF-25 & Il sistema deve gestire gli account utente (Registrazione, Login, Logout, Eliminazione Account) per l'accesso al database$_G$. & Opzionale & UC 34, 35, 36, 37 \\ \hline
         RF-26 & L'interfaccia deve permettere di alternare tra Tema Chiaro (Light Mode) e Tema Scuro (Dark Mode). & Desiderabile & UC 18 \\ \hline
         RF-27 & L'interfaccia deve permettere lo scorrimento sincronizzato (Sync Scroll) tra editor sorgente e finestra di render. & Desiderabile & UC 19 \\ \hline
-        RF-28 & Il sistema deve permettere all'utente di fornire un URL come sorgente di contenuto per la generazione automatica di testo; il contenuto della pagina deve essere estratto e fornito all'LLM$_G$ come contesto. & Desiderabile & UC 26.6 \\ \hline
-        
+        RF-28 & Il sistema deve permettere all'utente di fornire un URL come sorgente di contenuto per la generazione automatica di testo; il contenuto della pagina deve essere estratto e fornito all'LLM$_G$ come contesto. & Desiderabile & UC 26.4 \\ \hline
+        RF-29 & Il sistema deve permettere l'inserimento e la rimozione di ancore per la navigazione rapida interna al documento. & Desiderabile & UC 15 \\ \hline
+        RF-30 & Il sistema deve permettere all'utente di gestire l'interfaccia modificando lo stato della barra laterale (apertura, chiusura e ridimensionamento). & Desiderabile & UC 17 \\ \hline
+    
     \end{tabularx}
 \end{center}
 
