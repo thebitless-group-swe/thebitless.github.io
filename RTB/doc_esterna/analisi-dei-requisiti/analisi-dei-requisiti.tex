@@ -226,7 +226,7 @@ Per garantire completezza e rigore metodologico, ogni caso d'uso segue la strutt
 \end{tabular}
 \caption{Struttura della documentazione dei Casi d'Uso$_G$}
 \end{table}
-
+\newpage
 \subsection{Attori del Sistema}
 
 All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie principali di attori$_{G}$:
@@ -236,11 +236,17 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{LLM$_{G}$:} Il modello di intelligenza artificiale integrato nel sistema$_G$. Agisce come attore secondario$_{G}$, fornendo le funzionalità avanzate di elaborazione del linguaggio naturale, sintesi e generazione di contenuti su richiesta del sistema$_G$.
     \item \textbf{Sistema di Persistenza$_{G}$:} Componente responsabile del salvataggio e del recupero dei dati. Agisce come attore secondario$_{G}$ garantendo che le informazioni siano memorizzate in modo permanente e siano accessibili nelle sessioni successive.
 \end{itemize}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/Intro.pdf}
+  \caption{Diagramma degli attori del sistema}
+  \label{fig:DiagrammaAttori}
+\end{figure}
 
 \subsection{Editing di base}
 \hypertarget{uc:1}{}
 \subsubsection{UC 1 - Scrittura testo nell'editor}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC1.pdf}
   \caption{Diagramma UC1}
@@ -260,7 +266,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:2}{}
 \subsubsection{UC 2 - Selezione del testo}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC2.pdf}
   \caption{Diagramma UC2}
@@ -285,8 +291,9 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:2.1}{}
 \paragraph{UC 2.1 - Selezione di un'area di testo con cursore}
+\mbox{}\\
 
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC2.1.pdf}
   \caption{Diagramma UC2.1}
@@ -308,8 +315,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:2.2}{}
 \paragraph{UC 2.2 - Selezione documento intero}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC2.2.pdf}
   \caption{Diagramma UC2.2}
@@ -330,7 +337,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:3}{}
 \subsubsection{UC 3 - Manipolazione del testo}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC3.pdf}
   \caption{Diagramma UC3}
@@ -357,8 +364,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:3.1}{}
 \paragraph{UC 3.1 - Taglia}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC3.1.pdf}
   \caption{Diagramma UC3.1}
@@ -380,8 +387,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:3.2}{}
 \paragraph{UC 3.2 - Copia}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC3.2.pdf}
   \caption{Diagramma UC3.2}
@@ -402,8 +409,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:3.3}{}
 \paragraph{UC 3.3 - Incolla}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC3.3.pdf}
   \caption{Diagramma UC3.3}
@@ -424,7 +431,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:4}{}
 \subsubsection{UC 4 - Azione di Undo}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC4.pdf}
   \caption{Diagramma UC4}
@@ -445,7 +452,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:5}{}
 \subsubsection{UC 5 - Azione di Redo}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC5.pdf}
   \caption{Diagramma UC5}
@@ -466,7 +473,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:6}{}
 \subsubsection{UC 6 - Formattazione del Testo}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC6.pdf}
   \caption{Diagramma UC6}
@@ -495,8 +502,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:6.1}{}
 \paragraph{UC 6.1 - Applicazione grassetto}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC6.1.pdf}
   \caption{Diagramma UC6.1}
@@ -517,8 +524,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:6.2}{}
 \paragraph{UC 6.2 - Rimozione grassetto}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC6.2.pdf}
   \caption{Diagramma UC6.2}
@@ -539,8 +546,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:6.3}{}
 \paragraph{UC 6.3 - Applicazione corsivo}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC6.3.pdf}
   \caption{Diagramma UC6.3}
@@ -561,8 +568,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:6.4}{}
 \paragraph{UC 6.4 - Rimozione corsivo}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC6.4.pdf}
   \caption{Diagramma UC6.4}
@@ -583,8 +590,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:6.5}{}
 \paragraph{UC 6.5 - Applicazione sottolineato}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC6.5.pdf}
   \caption{Diagramma UC6.5}
@@ -605,8 +612,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:6.6}{}
 \paragraph{UC 6.6 - Rimozione sottolineato}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC6.6.pdf}
   \caption{Diagramma UC6.6}
@@ -627,8 +634,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:6.7}{}
 \paragraph{UC 6.7 - Applicazione barrato}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC6.7.pdf}
   \caption{Diagramma UC6.7}
@@ -649,8 +656,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:6.8}{}
 \paragraph{UC 6.8 - Rimozione barrato}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC6.8.pdf}
   \caption{Diagramma UC6.8}
@@ -671,8 +678,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:6.9}{}
 \paragraph{UC 6.9 - Applicazione evidenziazione}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC6.9.pdf}
   \caption{Diagramma UC6.9}
@@ -692,9 +699,9 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 \end{itemize}
 
 \hypertarget{uc:6.10}{}
-\subparagraph{UC 6.10 - Rimozione evidenziazione}
-
-\begin{figure}[ht]
+\paragraph{UC 6.10 - Rimozione evidenziazione}
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC6.10.pdf}
   \caption{Diagramma UC6.10}
@@ -715,7 +722,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:7}{}
 \subsubsection{UC 7 - Gestione Titoli}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC7.pdf}
   \caption{Diagramma UC7}
@@ -742,8 +749,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:7.1}{}
 \paragraph{UC 7.1 - Inserimento titolo}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC7.1.pdf}
   \caption{Diagramma UC7.1}
@@ -764,8 +771,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:7.2}{}
 \paragraph{UC 7.2 - Rimozione titolo}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC7.2.pdf}
   \caption{Diagramma UC7.2}
@@ -786,8 +793,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:7.3}{}
 \paragraph{UC 7.3 - Inserimento sottotitolo}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC7.3.pdf}
   \caption{Diagramma UC7.3}
@@ -808,8 +815,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:7.4}{}
 \paragraph{UC 7.4 - Rimozione sottotitolo}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC7.4.pdf}
   \caption{Diagramma UC7.4}
@@ -830,7 +837,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:8}{}
 \subsubsection{UC 8 - Gestione Elenchi}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC8.pdf}
   \caption{Diagramma UC8}
@@ -856,8 +863,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:8.1}{}
 \paragraph{UC 8.1 - Inserimento elenco}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC8.1.pdf}
   \caption{Diagramma UC8.1}
@@ -878,8 +885,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:8.2}{}
 \paragraph{UC 8.2 - Eliminazione elenco}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC8.2.pdf}
   \caption{Diagramma UC8.2}
@@ -900,7 +907,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:9}{}
 \subsubsection{UC 9 - Gestione Citazioni}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC9.pdf}
   \caption{Diagramma UC9}
@@ -926,8 +933,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:9.1}{}
 \paragraph{UC 9.1 - Inserimento citazione}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC9.1.pdf}
   \caption{Diagramma UC9.1}
@@ -948,8 +955,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:9.2}{}
 \paragraph{UC 9.2 - Eliminazione citazione}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC9.2.pdf}
   \caption{Diagramma UC9.2}
@@ -970,7 +977,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:10}{}
 \subsubsection{UC 10 - Gestione Tabelle}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC10.pdf}
   \caption{Diagramma UC10}
@@ -1001,8 +1008,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:10.1}{}
 \paragraph{UC 10.1 - Inserimento tabella}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC10.1.pdf}
   \caption{Diagramma UC10.1}
@@ -1023,8 +1030,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:10.2}{}
 \paragraph{UC 10.2 - Modifica contenuto cella}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC10.2.pdf}
   \caption{Diagramma UC10.2}
@@ -1046,8 +1053,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:10.3}{}
 \paragraph{UC 10.3 - Aggiunta riga}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC10.3.pdf}
   \caption{Diagramma UC10.3}
@@ -1068,8 +1075,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:10.4}{}
 \paragraph{UC 10.4 - Aggiunta colonna}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC10.4.pdf}
   \caption{Diagramma UC10.4}
@@ -1090,8 +1097,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:10.5}{}
 \paragraph{UC 10.5 - Rimozione riga}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC10.5.pdf}
   \caption{Diagramma UC10.5}
@@ -1112,8 +1119,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:10.6}{}
 \paragraph{UC 10.6 - Rimozione colonna}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC10.6.pdf}
   \caption{Diagramma UC10.6}
@@ -1134,8 +1141,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:10.7}{}
 \paragraph{UC 10.7 - Eliminazione tabella}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC10.7.pdf}
   \caption{Diagramma UC10.7}
@@ -1156,7 +1163,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:11}{}
 \subsubsection{UC 11 - Gestione Codice}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC11.pdf}
   \caption{Diagramma UC11}
@@ -1182,8 +1189,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:11.1}{}
 \paragraph{UC 11.1 - Inserimento sezione di codice}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC11.1.pdf}
   \caption{Diagramma UC11.1}
@@ -1205,8 +1212,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:11.2}{}
 \paragraph{UC 11.2 - Eliminazione sezione di codice}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC11.2.pdf}
   \caption{Diagramma UC11.2}
@@ -1228,7 +1235,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:12}{}
 \subsubsection{UC 12 - Gestione Formule Scientifiche}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC12.pdf}
   \caption{Diagramma UC12}
@@ -1254,8 +1261,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:12.1}{}
 \paragraph{UC 12.1 - Inserimento formula scientifica}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC12.1.pdf}
   \caption{Diagramma UC12.1}
@@ -1277,8 +1284,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:12.2}{}
 \paragraph{UC 12.2 - Eliminazione formula scientifica}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC12.2.pdf}
   \caption{Diagramma UC12.2}
@@ -1300,7 +1307,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:13}{}
 \subsubsection{UC 13 - Gestione Immagini}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC13.pdf}
   \caption{Diagramma UC13}
@@ -1327,8 +1334,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:13.1}{}
 \paragraph{UC 13.1 - Inserimento immagine}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC13.1.pdf}
   \caption{Diagramma UC13.1}
@@ -1351,8 +1358,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:13.2}{}
 \paragraph{UC 13.2 - Sostituzione immagine}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC13.2.pdf}
   \caption{Diagramma UC13.2}
@@ -1374,8 +1381,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:13.3}{}
 \paragraph{UC 13.3 - Eliminazione immagine}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC13.3.pdf}
   \caption{Diagramma UC13.3}
@@ -1397,7 +1404,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:14}{}
 \subsubsection{UC 14 - Gestione Link}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC14.pdf}
   \caption{Diagramma UC14}
@@ -1423,8 +1430,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:14.1}{}
 \paragraph{UC 14.1 - Inserimento link}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC14.1.pdf}
   \caption{Diagramma UC14.1}
@@ -1447,8 +1454,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:14.2}{}
 \paragraph{UC 14.2 - Eliminazione link}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC14.2.pdf}
   \caption{Diagramma UC14.2}
@@ -1470,7 +1477,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:15}{}
 \subsubsection{UC 15 - Gestione Ancore}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC15.pdf}
   \caption{Diagramma UC15}
@@ -1495,8 +1502,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:15.1}{}
 \paragraph{UC 15.1 - Inserimento ancora}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC15.1.pdf}
   \caption{Diagramma UC15.1}
@@ -1518,8 +1525,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:15.2}{}
 \paragraph{UC 15.2 - Eliminazione ancora}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC15.2.pdf}
   \caption{Diagramma UC15.2}
@@ -1541,7 +1548,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:16}{}
 \subsubsection{UC 16 - Apertura e chiusura automatica simboli}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC16.pdf}
   \caption{Diagramma UC16}
@@ -1567,8 +1574,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:16.1}{}
 \paragraph{UC 16.1 - Attivazione aiuto simboli}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC16.1.pdf}
   \caption{Diagramma UC16.1}
@@ -1589,8 +1596,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:16.2}{}
 \paragraph{UC 16.2 - Disattivazione aiuto simboli}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC16.2.pdf}
   \caption{Diagramma UC16.2}
@@ -1611,7 +1618,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:17}{}
 \subsubsection{UC 17 - Gestione Sidebar}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC17.pdf}
   \caption{Diagramma UC17}
@@ -1637,8 +1644,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:17.1}{}
 \paragraph{UC 17.1 - Apertura Sidebar}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC17.1.pdf}
   \caption{Diagramma UC17.1}
@@ -1659,8 +1666,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:17.2}{}
 \paragraph{UC 17.2 - Chiusura Sidebar}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC17.2.pdf}
   \caption{Diagramma UC17.2}
@@ -1681,8 +1688,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:17.3}{}
 \paragraph{UC 17.3 - Ridimensionamento Sidebar}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC17.3.pdf}
   \caption{Diagramma UC17.3}
@@ -1705,7 +1712,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:18}{}
 \subsubsection{UC 18 - Gestione Tema Visivo}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC18.pdf}
   \caption{Diagramma UC18}
@@ -1731,8 +1738,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:18.1}{}
 \paragraph{UC 18.1 - Attivazione Dark Mode}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC18.1.pdf}
   \caption{Diagramma UC18.1}
@@ -1753,8 +1760,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:18.2}{}
 \paragraph{UC 18.2 - Attivazione Light Mode}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC18.2.pdf}
   \caption{Diagramma UC18.2}
@@ -1775,7 +1782,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:19}{}
 \subsubsection{UC 19 - Gestione Sincronizzazione Scorrimento}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC19.pdf}
   \caption{Diagramma UC19}
@@ -1800,8 +1807,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:19.1}{}
 \paragraph{UC 19.1 - Attivazione Sync Scroll}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC19.1.pdf}
   \caption{Diagramma UC19.1}
@@ -1822,8 +1829,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:19.2}{}
 \paragraph{UC 19.2 - Disattivazione Sync Scroll}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC19.2.pdf}
   \caption{Diagramma UC19.2}
@@ -1844,7 +1851,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:20}{}
 \subsubsection{UC 20 - Visualizzazione nota Markdown}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC20.pdf}
   \caption{Diagramma UC20}
@@ -1870,8 +1877,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:20.1}{}
 \paragraph{UC 20.1 - Visualizzazione esclusiva editor Markdown}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC20.1.pdf}
   \caption{Diagramma UC20.1}
@@ -1892,8 +1899,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:20.2}{}
 \paragraph{UC 20.2 - Visualizzazione esclusiva render Markdown}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC20.2.pdf}
   \caption{Diagramma UC20.2}
@@ -1914,8 +1921,8 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:20.3}{}
 \paragraph{UC 20.3 - Visualizzazione combinata editor e render}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC20.3.pdf}
   \caption{Diagramma UC20.3}
@@ -1936,7 +1943,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:21}{}
 \subsubsection{UC 21 - Dettatura tramite Microfono}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC21.pdf}
   \caption{Diagramma UC21}
@@ -1962,7 +1969,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:22}{}
 \subsubsection{UC 22 - Riassunto contenuto con LLM}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC22.pdf}
   \caption{Diagramma UC22}
@@ -1994,8 +2001,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:22.1}{}
 \paragraph{UC 22.1 - Selezione percentuale di riassunto}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC22.1.pdf}
   \caption{Diagramma UC22.1}
@@ -2016,8 +2023,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:22.2}{}
 \paragraph{UC 22.2 - Gestione testo insufficiente per riassunto}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC22.2.pdf}
   \caption{Diagramma UC22.2}
@@ -2039,8 +2046,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:22.3}{}
 \paragraph{UC 22.3 - Errore LLM}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC22.3.pdf}
   \caption{Diagramma UC22.3}
@@ -2062,8 +2069,9 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:23}{}
-\paragraph{UC 23 - Traduzione contenuto con LLM}
-\begin{figure}[ht]
+\subsubsection{UC 23 - Traduzione contenuto con LLM}
+
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC23.pdf}
   \caption{Diagramma UC23}
@@ -2093,9 +2101,9 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:23.1}{}
-\subparagraph{UC 23.1 - Selezione lingua di destinazione}
-
-\begin{figure}[ht]
+\paragraph{UC 23.1 - Selezione lingua di destinazione}
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC23.1.pdf}
   \caption{Diagramma UC23.1}
@@ -2115,9 +2123,9 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:23.2}{}
-\subparagraph{UC 23.2 - Errore LLM}
-
-\begin{figure}[ht]
+\paragraph{UC 23.2 - Errore LLM}
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC23.2.pdf}
   \caption{Diagramma UC23.2}
@@ -2139,8 +2147,9 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:24}{}
-\paragraph{UC 24 - Riscrittura contenuto Markdown}
-\begin{figure}[ht]
+\subsubsection{UC 24 - Riscrittura contenuto Markdown}
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC24.pdf}
   \caption{Diagramma UC24}
@@ -2175,9 +2184,9 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:24.1}{}
-\subparagraph{UC 24.1 - Selezione Variazione Stilistica}
-
-\begin{figure}[ht]
+\paragraph{UC 24.1 - Selezione Variazione Stilistica}
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC24.1.pdf}
   \caption{Diagramma UC24.1}
@@ -2200,9 +2209,9 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:24.2}{}
-\subparagraph{UC 24.2 - Correzione Grammaticale}
-
-\begin{figure}[ht]
+\paragraph{UC 24.2 - Correzione Grammaticale}
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC24.2.pdf}
   \caption{Diagramma UC24.2}
@@ -2229,6 +2238,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:24.2.1}{}
 \subparagraph{UC 24.2.1 - Nessun errore rilevato}
+\mbox{}\\
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione del caso in cui il testo sia già grammaticalmente corretto.
     \item \textbf{Attori Principali:} Utente.
@@ -2241,9 +2251,9 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:24.3}{}
-\subparagraph{UC 24.3 - Errore LLM}
-
-\begin{figure}[ht]
+\paragraph{UC 24.3 - Errore LLM}
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC24.3.pdf}
   \caption{Diagramma UC24.3}
@@ -2265,8 +2275,9 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:25}{}
-\paragraph{UC 25 - Analisi critica del contenuto}
-\begin{figure}[ht]
+\subsubsection{UC 25 - Analisi critica del contenuto}
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC25.pdf}
   \caption{Diagramma UC25}
@@ -2298,9 +2309,9 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:25.1}{}
-\subparagraph{UC 25.1 - Selezione (uno o più cappelli)}
-
-\begin{figure}[ht]
+\paragraph{UC 25.1 - Selezione (uno o più cappelli)}
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC25.1.pdf}
   \caption{Diagramma UC25.1}
@@ -2328,7 +2339,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:25.1.1}{}
 \subparagraph{UC 25.1.1 - Analisi Cappello Bianco (Obiettività e Fatti)}
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC25.1.1.pdf}
   \caption{Diagramma UC25.1.1}
@@ -2350,7 +2362,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:25.1.2}{}
 \subparagraph{UC 25.1.2 - Analisi Cappello Rosso (Emotività e Sensazioni)}
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC25.1.2.pdf}
   \caption{Diagramma UC25.1.2}
@@ -2372,7 +2385,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:25.1.3}{}
 \subparagraph{UC 25.1.3 - Analisi Cappello Giallo (Ottimismo e Opportunità)}
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC25.1.3.pdf}
   \caption{Diagramma UC25.1.3}
@@ -2394,7 +2408,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:25.1.4}{}
 \subparagraph{UC 25.1.4 - Analisi Cappello Nero (Critica e Rischi)}
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC25.1.4.pdf}
   \caption{Diagramma UC25.1.4}
@@ -2416,7 +2431,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:25.1.5}{}
 \subparagraph{UC 25.1.5 - Analisi Cappello Verde (Creatività e Alternativa)}
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC25.1.5.pdf}
   \caption{Diagramma UC25.1.5}
@@ -2438,7 +2454,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:25.1.6}{}
 \subparagraph{UC 25.1.6 - Analisi Cappello Blu (Logica e Struttura)}
-\begin{figure}[ht]
+\mbox{}\\   
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC25.1.6.pdf}
   \caption{Diagramma UC25.1.6}
@@ -2459,9 +2476,9 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:25.2}{}
-\subparagraph{UC 25.2 - Gestione testo insufficiente per l'analisi}
-
-\begin{figure}[ht]
+\paragraph{UC 25.2 - Gestione testo insufficiente per l'analisi}
+\mbox{}\\       
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC25.2.pdf}
   \caption{Diagramma UC25.2}
@@ -2481,9 +2498,9 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:25.3}{}
-\subparagraph{UC 25.3 - Errore LLM}
-
-\begin{figure}[ht]
+\paragraph{UC 25.3 - Errore LLM}
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC25.3.pdf}
   \caption{Diagramma UC25.3}
@@ -2508,7 +2525,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \hypertarget{uc:26}{}
 \subsubsection{UC 26 - Generazione Automatica di testo (Distant Writing)}
 
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC26.pdf}
   \caption{Diagramma UC26}
@@ -2544,8 +2561,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 % --- 26.1 ---
 \hypertarget{uc:26.1}{}
 \paragraph{UC 26.1 - Inserimento o riutilizzo del prompt}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC26.1.pdf}
   \caption{Diagramma UC26.1}
@@ -2569,8 +2586,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 % --- 26.2 ---
 \hypertarget{uc:26.2}{}
 \paragraph{UC 26.2 - Selezione della lunghezza del testo}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC26.2.pdf}
   \caption{Diagramma UC26.2}
@@ -2593,8 +2610,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:26.3}{}
 \paragraph{UC 26.3 - Anteprima e conferma del contesto inviato all'LLM}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC26.3.pdf}
   \caption{Diagramma UC26.3}
@@ -2619,8 +2636,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 % --- UC 26.4 ---
 \hypertarget{uc:26.4}{}
 \paragraph{UC 26.4 - Generazione testo a partire da link}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC26.4.pdf}
   \caption{Diagramma UC26.4}
@@ -2647,8 +2664,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 % --- 26.5 ---
 \hypertarget{uc:26.5}{}
 \paragraph{UC 26.5 - Selezione manuale delle note da inviare come contesto}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC26.5.pdf}
   \caption{Diagramma UC26.5}
@@ -2674,8 +2691,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 % --- 26.6 ---
 \hypertarget{uc:26.6}{}
 \paragraph{UC 26.6 - Errore LLM}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC26.6.pdf}
   \caption{Diagramma UC26.6}
@@ -2701,7 +2718,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \hypertarget{uc:27}{}
 \subsubsection{UC 27 - Validazione output AI}
 
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC27.pdf}
   \caption{Diagramma UC27}
@@ -2737,8 +2754,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:27.1}{}
 \paragraph{UC 27.1 - Accettazione output}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC27.1.pdf}
   \caption{Diagramma UC27.1}
@@ -2769,7 +2786,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:27.1.1}{}
 \subparagraph{UC 27.1.1 - Sostituzione del testo nell'editor}
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC27.1.1.pdf}
   \caption{Diagramma UC27.1.1}
@@ -2794,7 +2812,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:27.1.2}{}
 \subparagraph{UC 27.1.2 - Salvataggio dell'output come nuova nota}
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC27.1.2.pdf}
   \caption{Diagramma UC27.1.2}
@@ -2820,8 +2839,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:27.2}{}
 \paragraph{UC 27.2 - Rifiuto output}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC27.2.pdf}
   \caption{Diagramma UC27.2}
@@ -2845,8 +2864,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:27.3}{}
 \paragraph{UC 27.3 - Rigenerazione output}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC27.3.pdf}
   \caption{Diagramma UC27.3}
@@ -2871,8 +2890,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:27.4}{}
 \paragraph{UC 27.4 - Tracciamento delle note sorgente usate per un output AI}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC27.4.pdf}
   \caption{Diagramma UC27.4}
@@ -2894,7 +2913,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:28}{}
 \subsubsection{UC 28 - Annullamento richiesta}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC28.pdf}
   \caption{Diagramma UC28}
@@ -2920,7 +2939,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e la persistenza dei dati.
 
 \subsubsection{UC 29 - Creazione nuova nota}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC29.pdf}
   \caption{Diagramma UC29}
@@ -2954,7 +2973,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \paragraph{UC 29.1 - Inizializzazione editor vuoto}
 \label{uc29.1}
 
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC29.1.pdf}
   \caption{Diagramma UC29.1}
@@ -2982,8 +3001,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{\texorpdfstring{UC 29.2 - Creazione nota nel Database$_G$ Browser}{UC 29.2 - Creazione nota nel Database Browser}}
 \label{uc29.2}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC29.2.pdf}
   \caption{Diagramma UC29.2}
@@ -3021,7 +3040,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \subparagraph{\texorpdfstring{UC 29.2.1 - Gestione errore creazione nota nel Database$_G$}{UC 29.2.1 - Gestione errore creazione nota nel Database}}
 \label{uc29.2.1}
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC29.2.1.pdf}
   \caption{Diagramma UC29.2.1}
@@ -3051,7 +3071,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \end{itemize}
 
 \subsubsection{UC 30 - Caricamento nota}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC30.pdf}
   \caption{Diagramma UC30}
@@ -3087,8 +3107,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{UC 30.1 - Caricamento da File Locale}
 \label{uc30.1}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC30.1.pdf}
   \caption{Diagramma UC30.1}
@@ -3118,14 +3138,14 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
     \item \textbf{Estensioni:}
     \begin{itemize}
-        \item UC 31.3 - Gestione errore di caricamento
+        \item UC 30.3 - Gestione errore di caricamento
     \end{itemize}
 \end{itemize}
 
 \paragraph{\texorpdfstring{UC 30.2 - Caricamento da Database$_G$ Browser}{UC 30.2 - Caricamento da Database Browser}}
 \label{uc30.2}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC30.2.pdf}
   \caption{Diagramma UC30.2}
@@ -3163,8 +3183,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{UC 30.3 - Gestione errore di caricamento}
 \label{uc30.3}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC30.3.pdf}
   \caption{Diagramma UC30.3}
@@ -3196,7 +3216,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \end{itemize}
 
 \subsubsection{UC 31 - Salvataggio nota}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC31.pdf}
   \caption{Diagramma UC31}
@@ -3233,8 +3253,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{UC 31.1 - Salvataggio su FileSystem}
 \label{uc31.1}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC31.1.pdf}
   \caption{Diagramma UC31.1}
@@ -3265,8 +3285,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{\texorpdfstring{UC 31.2 - Salvataggio da Database$_G$ Browser}{UC 31.2 - Salvataggio da Database Browser}}
 \label{uc31.2}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC31.2.pdf}
   \caption{Diagramma UC31.2}
@@ -3300,8 +3320,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{UC 31.3 - Gestione errore di salvataggio}
 \label{uc31.3}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC31.3.pdf}
   \caption{Diagramma UC31.3}
@@ -3334,7 +3354,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \end{itemize}
 
 \subsubsection{UC 32 - Gestione nota salvata}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC32.pdf}
   \caption{Diagramma UC32}
@@ -3371,8 +3391,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{\texorpdfstring{UC 32.1 - Eliminazione nota dal Database$_G$}{UC 32.1 - Eliminazione nota dal Database}}
 \label{uc32.1}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC32.1.pdf}
   \caption{Diagramma UC32.1}
@@ -3409,7 +3429,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \end{itemize}
 
 \subparagraph{UC 32.1.1 - Gestione errore eliminazione}
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC32.1.1.pdf}
   \caption{Diagramma UC32.1.1}
@@ -3441,8 +3462,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{\texorpdfstring{UC 32.2 - Rinominazione nota nel\allowbreak Database$_G$}{UC 32.2 - Rinominazione nota nel Database}}
 \label{uc32.2}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC32.2.pdf}
   \caption{Diagramma UC32.2}
@@ -3480,13 +3501,14 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \end{itemize}
 
 \subparagraph{UC 32.2.1 - Gestione errore rinominazione}
-\begin{figure}[ht]
+\mbox{}\\
+\label{uc32.2.1}
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC32.2.1.pdf}
   \caption{Diagramma UC32.2.1}
   \label{fig:uc32.2.1}
 \end{figure}
-\label{uc32.2.1}
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di rinominazione della nota.
     \item \textbf{Attore primario:} Utente
@@ -3512,8 +3534,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{UC 32.3 - Visualizzazione informazioni e metadati della nota}
 \label{uc32.3}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC32.3.pdf}
   \caption{Diagramma UC32.3}
@@ -3545,13 +3567,14 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \end{itemize}
 
 \subsubsection{UC 33 - Ricerca e Navigazione}
-\begin{figure}[ht]
+\label{uc33}
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC33.pdf}
   \caption{Diagramma UC33}
   \label{fig:uc33}
+
 \end{figure}
-\label{uc33}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole trovare una o più note nel database$_G$ tramite criteri di ricerca.
     \item \textbf{Attore primario:} Utente
@@ -3584,8 +3607,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{UC 33.1 - Ricerca mirata per titolo}
 \label{uc33.1}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC33.1.pdf}
   \caption{Diagramma UC33.1}
@@ -3619,8 +3642,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{UC 33.2 - Ricerca Full-Text}
 \label{uc33.2}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC33.2.pdf}
   \caption{Diagramma UC33.2}
@@ -3655,8 +3678,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{UC 33.3 - Filtro per data}
 \label{uc33.3}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC33.3.pdf}
   \caption{Diagramma UC33.3}
@@ -3693,6 +3716,13 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \subparagraph{UC 33.3.1 - Filtro per data di creazione}
 \label{uc33.3.1}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC33.3.1.pdf}
+  \caption{Diagramma UC33.3.1}
+  \label{fig:uc33.3.1}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole visualizzare le note create in un determinato periodo.
     \item \textbf{Attore primario:} Utente
@@ -3718,6 +3748,13 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \subparagraph{UC 33.3.2 - Filtro per data di ultima modifica}
 \label{uc33.3.2}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC33.3.2.pdf}
+  \caption{Diagramma UC33.3.2}
+  \label{fig:uc33.3.2}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole visualizzare le note aggiornate in un determinato periodo.
     \item \textbf{Attore primario:} Utente
@@ -3745,6 +3782,13 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{\texorpdfstring{UC 33.4 - Visualizzazione lista note salvate nel Database$_G$}{UC 33.4 - Visualizzazione lista note salvate nel Database}}
 \label{uc33.4}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC33.4.pdf}
+  \caption{Diagramma UC33.4}
+  \label{fig:uc33.4}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole visualizzare tutte le note salvate nel proprio account$_G$.
     \item \textbf{Attore primario:} Utente
@@ -3770,7 +3814,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \end{itemize}
 
 \subsubsection{UC 34 - Login}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC34.pdf}
   \caption{Diagramma UC34}
@@ -3809,8 +3853,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{UC 34.1 - Gestione errore di login}
 \label{uc34.1}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC34.1.pdf}
   \caption{Diagramma UC34.1}
@@ -3843,7 +3887,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \end{itemize}
 
 \subsubsection{UC 35 - Registrazione}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC35.pdf}
   \caption{Diagramma UC35}
@@ -3883,8 +3927,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{UC 35.1 - Gestione username già esistente}
 \label{uc35.1}
-
-\begin{figure}[ht]
+\mbox{}\\
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC35.1.pdf}
   \caption{Diagramma UC35.1}
@@ -3915,7 +3959,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \end{itemize}
 
 \subsubsection{UC 36 - Eliminazione dell'account}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC36.pdf}
   \caption{Diagramma UC36}
@@ -3951,7 +3995,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \end{itemize}
 
 \subsubsection{UC 37 - Logout}
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{assets/img/UC37.pdf}
   \caption{Diagramma UC37}
