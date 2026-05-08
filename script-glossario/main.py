@@ -43,7 +43,6 @@ for documento in documenti:
             pattern,
             r'\g<0>$_G$',
             contenuto,
-            count=1,
             flags=re.IGNORECASE
         )
 
