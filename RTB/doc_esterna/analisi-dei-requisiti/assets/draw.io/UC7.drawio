@@ -1,47 +1,47 @@
 <mxfile host="app.diagrams.net">
   <diagram name="UC 11 - Gestione Codice" id="Kt2Dgr2KxfvWRwyXOeAN">
-    <mxGraphModel dx="1483" dy="1032" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1634" dy="1032" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-389" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente" vertex="1">
-          <mxGeometry height="60" width="30" x="60" y="510" as="geometry" />
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-690" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente" vertex="1">
+          <mxGeometry height="60" width="30" x="40" y="300" as="geometry" />
         </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-390" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
-          <mxGeometry height="500" width="600" x="170" y="320" as="geometry" />
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-691" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
+          <mxGeometry height="500" width="600" x="150" y="110" as="geometry" />
         </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-391" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
-          <mxGeometry height="30" width="60" x="170" y="790" as="geometry" />
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-692" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
+          <mxGeometry height="30" width="60" x="150" y="580" as="geometry" />
         </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-392" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 7 - Gestione Titoli" vertex="1">
-          <mxGeometry height="80" width="180" x="380" y="340" as="geometry" />
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-693" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 7 - Gestione Titoli" vertex="1">
+          <mxGeometry height="80" width="180" x="360" y="130" as="geometry" />
         </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-393" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-389" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-392">
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-694" edge="1" parent="1" source="p2sep0m7qQ60FvVHNfT_-690" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="p2sep0m7qQ60FvVHNfT_-693">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-394" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 7.1 - Inserimento titolo" vertex="1">
-          <mxGeometry height="70" width="200" x="220" y="520" as="geometry" />
-        </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-395" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-394" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-392">
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-696" edge="1" parent="1" source="p2sep0m7qQ60FvVHNfT_-695" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" target="p2sep0m7qQ60FvVHNfT_-693">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-396" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 7.2 - Rimozione titolo" vertex="1">
-          <mxGeometry height="70" width="200" x="220" y="660" as="geometry" />
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-697" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 7.2 - Rimozione titolo" vertex="1">
+          <mxGeometry height="70" width="200" x="200" y="450" as="geometry" />
         </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-397" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-396" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-392">
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-698" edge="1" parent="1" source="p2sep0m7qQ60FvVHNfT_-697" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" target="p2sep0m7qQ60FvVHNfT_-693">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-398" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 7.3 - Inserimento sottotitolo" vertex="1">
-          <mxGeometry height="70" width="200" x="520" y="520" as="geometry" />
-        </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-399" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-398" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-392">
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-700" edge="1" parent="1" source="p2sep0m7qQ60FvVHNfT_-699" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" target="p2sep0m7qQ60FvVHNfT_-693">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-400" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 7.4 - Rimozione sottotitolo" vertex="1">
-          <mxGeometry height="70" width="200" x="520" y="660" as="geometry" />
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-701" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 7.4 - Rimozione sottotitolo" vertex="1">
+          <mxGeometry height="70" width="200" x="500" y="450" as="geometry" />
         </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-401" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-400" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-392">
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-702" edge="1" parent="1" source="p2sep0m7qQ60FvVHNfT_-701" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" target="p2sep0m7qQ60FvVHNfT_-693">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-695" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 7.1 - Inserimento titolo" vertex="1">
+          <mxGeometry height="70" width="200" x="200" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="p2sep0m7qQ60FvVHNfT_-699" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 7.3 - Inserimento sottotitolo" vertex="1">
+          <mxGeometry height="70" width="200" x="500" y="310" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
