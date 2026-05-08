@@ -3,11 +3,13 @@
 \usepackage[italian]{babel} 
 \usepackage{comment}      
 \usepackage{graphicx} 
-\graphicspath{{./assets/img/}}
+
 \usepackage{multirow}
 \usepackage{geometry}
+\usepackage{xurl}
+\usepackage[nopatch=footnote]{microtype}
 \newcommand{\ucref}[1]{UC \ref{#1}}
-\usepackage[table]{xcolor}
+\usepackage{bookmark}
 \usepackage{float} 
 \usepackage{setspace}
 \definecolor{bluBitless}{HTML}{3A75C4}
@@ -34,6 +36,11 @@
 
 \begin{document}
 
+
+\raggedbottom
+
+\setlength{\emergencystretch}{2em}
+
 \newcommand{\titolo}{Analisi dei Requisiti}
 \newcommand{\dataverbale}{}
 \newcommand{\dataversione}{2026-04-28}
@@ -42,7 +49,8 @@
 \newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
 \def\templatedir{../../../templates}
 
-%Comandi per includere i paragrafi e i sottoparagrafi nell'indice e numerarli
+
+
 \setcounter{secnumdepth}{5}
 \setcounter{tocdepth}{5}
 
@@ -61,7 +69,7 @@
     \small
     \begin{tabularx}{\textwidth}{|c|c|L|c|c|L|}
         \hline
-        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\   
+        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\  
         \hline
         0.9.0 & 2026-04-28 & A. Marini & S. Zecchinato & - & Sistemazione UC 21 e generalizzazioni \\
         \hline
@@ -112,11 +120,11 @@ Il documento è dunque da considerarsi dinamico, soggetto a un processo di raffi
 
 \subsubsection{Riferimenti Normativi}
 \begin{itemize}
-    \item \textbf{Capitolato C6 - Second Brain}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C6.pdf} \\
+    \item \textbf{Capitolato C6 - Second Brain}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C6.pdf} \allowbreak \\
     (Consultato il 2026-04-17)
-    \item \textbf{Regolamento del Progetto Didattico}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf} \\
+    \item \textbf{Regolamento del Progetto Didattico}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf} \allowbreak \\
     (Consultato il 2026-04-20)
-    \item \textbf{Norme di Progetto}: \\ \url{https://github.com/thebitless.github.io/RTB/doc_interna/norme-di-progetto/norme-di-progetto.pdf} \\
+    \item \textbf{Norme di Progetto}: \\ \url{https://github.com/thebitless.github.io/RTB/doc_interna/norme-di-progetto/norme-di-progetto.pdf} \allowbreak \\
     (Consultato il 2026-04-29)
 \end{itemize}
 
@@ -124,7 +132,7 @@ Il documento è dunque da considerarsi dinamico, soggetto a un processo di raffi
 \subsubsection{Riferimenti Informativi}
 \begin{itemize}
     \item \textbf{Glossario di Progetto}: \\
-    \url{https://github.com/thebitless-group-swe/thebitless.github.io/blob/main/RTB/doc_interna/glossario/glossario.pdf} \\
+    \url{https://github.com/thebitless-group-swe/thebitless.github.io/blob/main/RTB/doc_interna/glossario/glossario.pdf} \allowbreak \\
     (Consultato il 2026-05-06)
     \item \textbf{Dispense Analisi dei requisiti}: \\
     \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf}
@@ -162,14 +170,15 @@ Nello specifico, il prodotto persegue i seguenti obiettivi:
 \end{itemize}
 \subsection{Funzionalità del prodotto}
 
-Il sistema prevede una serie di funzionalità distinte tra requisiti$_G$ obbligatori (necessari per il prodotto minimo funzionante) e opzionali (volti ad arricchire l'esperienza utente). \\ \\
+Il sistema prevede una serie di funzionalità distinte tra requisiti$_G$ obbligatori (necessari per il prodotto minimo funzionante) e opzionali (volti ad arricchire l'esperienza utente).
+
 \textbf{Funzionalità minime (Obbligatorie)}:
 \begin{itemize}
     \item \textbf{Editor Markdown}: Fornitura di un'interfaccia di scrittura che supporti la sintassi Markdown$_G$ per la formattazione del testo;
     \item \textbf{Rendering in tempo reale}: Visualizzazione istantanea del testo formattato in una vista dedicata (anteprima \textit{side-by-side});
     \item \textbf{Integrazione$_G$ LLM}: Connessione tramite API$_G$ a modelli linguistici per l'elaborazione del testo selezionato o dell'intero documento;
-    \item \textbf{Strumenti di Editing Assistito}: Comandi per la manipolazione del testo, inclusi: cambio di tono, espansione dei contenuti, correzione grammaticale, riassunto e traduzione multilingua (Inglese, Francese, Tedesco, Spagnolo);
-    \item \textbf{Analisi Critica (Sei Cappelli$_G$)}: Implementazione di un sistema di revisione basato sulla tecnica dei "Sei Cappelli per Pensare", che permette di analizzare o riscrivere il testo secondo diverse prospettive:
+    \item \textbf{Strumenti di Editing Assistito}: Comandi per la manipolazione del testo,\allowbreak inclusi: cambio di tono, espansione dei contenuti, correzione grammaticale, riassunto e traduzione multilingua (Inglese, Francese, Tedesco, Spagnolo);
+    \item \textbf{Analisi Critica (Sei Cappelli$_G$):}\allowbreak Implementazione di un sistema di revisione basato sulla tecnica dei "Sei Cappelli per Pensare", che permette di analizzare o riscrivere il testo secondo diverse prospettive:
     \begin{itemize}
         \item \textbf{Bianco}: Analisi oggettiva basata su dati e fatti;
         \item \textbf{Rosso}: Focus sugli aspetti emotivi e intuitivi;
@@ -180,7 +189,7 @@ Il sistema prevede una serie di funzionalità distinte tra requisiti$_G$ obbliga
     \end{itemize} 
     \item \textbf{Generazione da Prompt}: Funzionalità di \textit{Distant Writing}$_G$ per la creazione di un documento completo a partire da una descrizione testuale sintetica fornita dall'utente;
     \item \textbf{Gestione File}: Possibilità di salvare, archiviare e caricare le note direttamente sul file system locale dell'utente.
-\end{itemize} \\
+\end{itemize}
 \textbf{Funzionalità secondarie (Opzionali)}:
 \begin{itemize}
     \item \textbf{Persistenza Server-Side}: Memorizzazione e sincronizzazione delle note all'interno di un database$_G$ remoto;
@@ -193,7 +202,7 @@ Il capitolato$_G$ descrive un prodotto versatile, progettato per adattarsi a div
 
 \begin{itemize}
     \item \textbf{Studenti}: Utenti che necessitano di strumenti per l'organizzazione del materiale didattico, la sintesi di lezioni e il supporto alla stesura di elaborati;
-    \item \textbf{Professionisti in ambito aziendale}: Figure che operano nella redazione di contenuti per il marketing, nella sintesi di verbali di riunione o nella generazione di bozze per presentazioni commerciali;
+    \item \textbf{Professionisti in ambito aziendale}: Figure che operano nella redazione\allowbreak di contenuti per il marketing, nella sintesi di verbali di riunione o nella generazione di bozze per presentazioni commerciali;
     \item \textbf{Creatori di contenuti e Scrittori}: Utenti che richiedono supporto nelle fasi di brainstorming$_G$ iniziale e nella critica analitica di bozze testuali esistenti;
     \item \textbf{Utenza generica}: Chiunque necessiti di un editor di testo capace di automatizzare i processi di stesura, traduzione e riorganizzazione dei propri appunti, delegando al sistema le fasi più ripetitive o onerose della scrittura.
 \end{itemize}
@@ -225,7 +234,7 @@ Per garantire completezza e rigore metodologico, ogni caso d'uso segue la strutt
 \end{tabular}
 \caption{Struttura della documentazione dei Casi d'Uso$_G$}
 \end{table}
-
+\newpage
 \subsection{Attori del Sistema}
 
 All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie principali di attori$_{G}$:
@@ -235,10 +244,22 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{LLM$_{G}$:} Il modello di intelligenza artificiale integrato nel sistema$_G$. Agisce come attore secondario$_{G}$, fornendo le funzionalità avanzate di elaborazione del linguaggio naturale, sintesi e generazione di contenuti su richiesta del sistema$_G$.
     \item \textbf{Sistema di Persistenza$_{G}$:} Componente responsabile del salvataggio e del recupero dei dati. Agisce come attore secondario$_{G}$ garantendo che le informazioni siano memorizzate in modo permanente e siano accessibili nelle sessioni successive.
 \end{itemize}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/Intro.pdf}
+  \caption{Diagramma degli attori del sistema}
+  \label{fig:DiagrammaAttori}
+\end{figure}
 
 \subsection{Editing di base}
 \hypertarget{uc:1}{}
 \subsubsection{UC 1 - Scrittura testo nell'editor}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC1.pdf}
+  \caption{Diagramma UC1}
+  \label{fig:uc1}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente inserisce del testo libero all'interno dell'area di editing del sistema.
     \item \textbf{Attori Principali:} Utente.
@@ -253,6 +274,12 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:2}{}
 \subsubsection{UC 2 - Selezione del testo}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC2.pdf}
+  \caption{Diagramma UC2}
+  \label{fig:uc2}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente seleziona una porzione di testo o l'intero documento per successive manipolazioni.
     \item \textbf{Attori Principali:} Utente.
@@ -272,6 +299,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:2.1}{}
 \paragraph{UC 2.1 - Selezione di un'area di testo con cursore}
+\mbox{}\\
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC2.1.pdf}
+  \caption{Diagramma UC2.1}
+  \label{fig:uc2.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente seleziona una porzione specifica di testo utilizzando il cursore del mouse o la tastiera.
     \item \textbf{Attori Principali:} Utente.
@@ -287,6 +323,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:2.2}{}
 \paragraph{UC 2.2 - Selezione documento intero}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC2.2.pdf}
+  \caption{Diagramma UC2.2}
+  \label{fig:uc2.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente seleziona tutto il testo presente nell'editor in una singola operazione.
     \item \textbf{Attori Principali:} Utente.
@@ -301,6 +345,12 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:3}{}
 \subsubsection{UC 3 - Manipolazione del testo}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC3.pdf}
+  \caption{Diagramma UC3}
+  \label{fig:uc3}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente applica operazioni di base di manipolazione (taglia, copia, incolla) al testo nell'editor.
     \item \textbf{Attori Principali:} Utente.
@@ -322,6 +372,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:3.1}{}
 \paragraph{UC 3.1 - Taglia}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC3.1.pdf}
+  \caption{Diagramma UC3.1}
+  \label{fig:uc3.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente rimuove il testo selezionato copiandolo negli appunti.
     \item \textbf{Attori Principali:} Utente.
@@ -337,6 +395,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:3.2}{}
 \paragraph{UC 3.2 - Copia}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC3.2.pdf}
+  \caption{Diagramma UC3.2}
+  \label{fig:uc3.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente duplica il testo selezionato negli appunti senza rimuoverlo.
     \item \textbf{Attori Principali:} Utente.
@@ -351,6 +417,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:3.3}{}
 \paragraph{UC 3.3 - Incolla}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC3.3.pdf}
+  \caption{Diagramma UC3.3}
+  \label{fig:uc3.3}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente inserisce nell'editor il contenuto presente negli appunti.
     \item \textbf{Attori Principali:} Utente.
@@ -365,6 +439,12 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:4}{}
 \subsubsection{UC 4 - Azione di Undo}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC4.pdf}
+  \caption{Diagramma UC4}
+  \label{fig:uc4}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente annulla l'ultima operazione effettuata nell'editor.
     \item \textbf{Attori Principali:} Utente.
@@ -380,6 +460,12 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:5}{}
 \subsubsection{UC 5 - Azione di Redo}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC5.pdf}
+  \caption{Diagramma UC5}
+  \label{fig:uc5}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente ripristina l'ultima operazione che era stata precedentemente annullata.
     \item \textbf{Attori Principali:} Utente.
@@ -395,6 +481,12 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:6}{}
 \subsubsection{UC 6 - Formattazione del Testo}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC6.pdf}
+  \caption{Diagramma UC6}
+  \label{fig:uc6}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente applica o rimuove la formattazione Markdown a una porzione di testo.
     \item \textbf{Attori Principali:} Utente.
@@ -418,6 +510,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:6.1}{}
 \paragraph{UC 6.1 - Applicazione grassetto}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC6.1.pdf}
+  \caption{Diagramma UC6.1}
+  \label{fig:uc6.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente applica la formattazione in grassetto al testo.
     \item \textbf{Attori Principali:} Utente.
@@ -432,6 +532,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:6.2}{}
 \paragraph{UC 6.2 - Rimozione grassetto}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC6.2.pdf}
+  \caption{Diagramma UC6.2}
+  \label{fig:uc6.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente rimuove la formattazione in grassetto.
     \item \textbf{Attori Principali:} Utente.
@@ -446,6 +554,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:6.3}{}
 \paragraph{UC 6.3 - Applicazione corsivo}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC6.3.pdf}
+  \caption{Diagramma UC6.3}
+  \label{fig:uc6.3}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente applica la formattazione in corsivo al testo.
     \item \textbf{Attori Principali:} Utente.
@@ -460,6 +576,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:6.4}{}
 \paragraph{UC 6.4 - Rimozione corsivo}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC6.4.pdf}
+  \caption{Diagramma UC6.4}
+  \label{fig:uc6.4}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente rimuove la formattazione in corsivo.
     \item \textbf{Attori Principali:} Utente.
@@ -474,6 +598,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:6.5}{}
 \paragraph{UC 6.5 - Applicazione sottolineato}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC6.5.pdf}
+  \caption{Diagramma UC6.5}
+  \label{fig:uc6.5}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente applica la formattazione sottolineata al testo.
     \item \textbf{Attori Principali:} Utente.
@@ -488,6 +620,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:6.6}{}
 \paragraph{UC 6.6 - Rimozione sottolineato}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC6.6.pdf}
+  \caption{Diagramma UC6.6}
+  \label{fig:uc6.6}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente rimuove la formattazione sottolineata.
     \item \textbf{Attori Principali:} Utente.
@@ -502,6 +642,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:6.7}{}
 \paragraph{UC 6.7 - Applicazione barrato}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC6.7.pdf}
+  \caption{Diagramma UC6.7}
+  \label{fig:uc6.7}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente applica la formattazione barrata al testo.
     \item \textbf{Attori Principali:} Utente.
@@ -516,6 +664,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:6.8}{}
 \paragraph{UC 6.8 - Rimozione barrato}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC6.8.pdf}
+  \caption{Diagramma UC6.8}
+  \label{fig:uc6.8}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente rimuove la formattazione barrata.
     \item \textbf{Attori Principali:} Utente.
@@ -530,6 +686,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:6.9}{}
 \paragraph{UC 6.9 - Applicazione evidenziazione}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC6.9.pdf}
+  \caption{Diagramma UC6.9}
+  \label{fig:uc6.9}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente applica la formattazione di evidenziazione al testo.
     \item \textbf{Attori Principali:} Utente.
@@ -543,7 +707,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 \end{itemize}
 
 \hypertarget{uc:6.10}{}
-\subparagraph{UC 6.10 - Rimozione evidenziazione}
+\paragraph{UC 6.10 - Rimozione evidenziazione}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC6.10.pdf}
+  \caption{Diagramma UC6.10}
+  \label{fig:uc6.10}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente rimuove la formattazione di evidenziazione.
     \item \textbf{Attori Principali:} Utente.
@@ -558,6 +730,12 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:7}{}
 \subsubsection{UC 7 - Gestione Titoli}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC7.pdf}
+  \caption{Diagramma UC7}
+  \label{fig:uc7}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente inserisce o rimuove intestazioni di vari livelli (Titoli e Sottotitoli).
     \item \textbf{Attori Principali:} Utente.
@@ -579,6 +757,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:7.1}{}
 \paragraph{UC 7.1 - Inserimento titolo}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC7.1.pdf}
+  \caption{Diagramma UC7.1}
+  \label{fig:uc7.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente converte la riga corrente in un'intestazione principale.
     \item \textbf{Attori Principali:} Utente.
@@ -593,6 +779,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:7.2}{}
 \paragraph{UC 7.2 - Rimozione titolo}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC7.2.pdf}
+  \caption{Diagramma UC7.2}
+  \label{fig:uc7.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente rimuove la formattazione da titolo principale.
     \item \textbf{Attori Principali:} Utente.
@@ -607,6 +801,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:7.3}{}
 \paragraph{UC 7.3 - Inserimento sottotitolo}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC7.3.pdf}
+  \caption{Diagramma UC7.3}
+  \label{fig:uc7.3}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente converte la riga corrente in un'intestazione secondaria o di livello inferiore.
     \item \textbf{Attori Principali:} Utente.
@@ -621,6 +823,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:7.4}{}
 \paragraph{UC 7.4 - Rimozione sottotitolo}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC7.4.pdf}
+  \caption{Diagramma UC7.4}
+  \label{fig:uc7.4}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente rimuove la formattazione da sottotitolo.
     \item \textbf{Attori Principali:} Utente.
@@ -635,6 +845,12 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:8}{}
 \subsubsection{UC 8 - Gestione Elenchi}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC8.pdf}
+  \caption{Diagramma UC8}
+  \label{fig:uc8}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente gestisce l'inserimento o l'eliminazione di elenchi puntati o numerati.
     \item \textbf{Attori Principali:} Utente.
@@ -655,6 +871,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:8.1}{}
 \paragraph{UC 8.1 - Inserimento elenco}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC8.1.pdf}
+  \caption{Diagramma UC8.1}
+  \label{fig:uc8.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente trasforma il testo in un elenco formattato.
     \item \textbf{Attori Principali:} Utente.
@@ -669,6 +893,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:8.2}{}
 \paragraph{UC 8.2 - Eliminazione elenco}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC8.2.pdf}
+  \caption{Diagramma UC8.2}
+  \label{fig:uc8.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente rimuove la formattazione di elenco dalle righe correnti.
     \item \textbf{Attori Principali:} Utente.
@@ -683,6 +915,12 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:9}{}
 \subsubsection{UC 9 - Gestione Citazioni}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC9.pdf}
+  \caption{Diagramma UC9}
+  \label{fig:uc9}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente gestisce l'inserimento o la rimozione di blocchi di citazione (blockquotes).
     \item \textbf{Attori Principali:} Utente.
@@ -703,6 +941,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:9.1}{}
 \paragraph{UC 9.1 - Inserimento citazione}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC9.1.pdf}
+  \caption{Diagramma UC9.1}
+  \label{fig:uc9.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente trasforma il testo corrente in un blocco di citazione.
     \item \textbf{Attori Principali:} Utente.
@@ -717,6 +963,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:9.2}{}
 \paragraph{UC 9.2 - Eliminazione citazione}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC9.2.pdf}
+  \caption{Diagramma UC9.2}
+  \label{fig:uc9.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente rimuove la formattazione di citazione.
     \item \textbf{Attori Principali:} Utente.
@@ -731,6 +985,12 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:10}{}
 \subsubsection{UC 10 - Gestione Tabelle}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC10.pdf}
+  \caption{Diagramma UC10}
+  \label{fig:uc10}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente crea e manipola strutture tabellari all'interno dell'editor.
     \item \textbf{Attori Principali:} Utente.
@@ -756,6 +1016,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:10.1}{}
 \paragraph{UC 10.1 - Inserimento tabella}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC10.1.pdf}
+  \caption{Diagramma UC10.1}
+  \label{fig:uc10.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente inserisce una nuova tabella vuota nell'editor.
     \item \textbf{Attori Principali:} Utente.
@@ -770,6 +1038,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:10.2}{}
 \paragraph{UC 10.2 - Modifica contenuto cella}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC10.2.pdf}
+  \caption{Diagramma UC10.2}
+  \label{fig:uc10.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente modifica il testo all'interno di una specifica cella della tabella.
     \item \textbf{Attori Principali:} Utente.
@@ -785,6 +1061,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:10.3}{}
 \paragraph{UC 10.3 - Aggiunta riga}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC10.3.pdf}
+  \caption{Diagramma UC10.3}
+  \label{fig:uc10.3}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente inserisce una nuova riga all'interno di una tabella esistente.
     \item \textbf{Attori Principali:} Utente.
@@ -799,6 +1083,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:10.4}{}
 \paragraph{UC 10.4 - Aggiunta colonna}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC10.4.pdf}
+  \caption{Diagramma UC10.4}
+  \label{fig:uc10.4}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente inserisce una nuova colonna nella tabella.
     \item \textbf{Attori Principali:} Utente.
@@ -813,6 +1105,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:10.5}{}
 \paragraph{UC 10.5 - Rimozione riga}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC10.5.pdf}
+  \caption{Diagramma UC10.5}
+  \label{fig:uc10.5}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente elimina una riga specifica dalla tabella.
     \item \textbf{Attori Principali:} Utente.
@@ -827,6 +1127,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:10.6}{}
 \paragraph{UC 10.6 - Rimozione colonna}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC10.6.pdf}
+  \caption{Diagramma UC10.6}
+  \label{fig:uc10.6}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente elimina un'intera colonna dalla tabella.
     \item \textbf{Attori Principali:} Utente.
@@ -841,6 +1149,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:10.7}{}
 \paragraph{UC 10.7 - Eliminazione tabella}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC10.7.pdf}
+  \caption{Diagramma UC10.7}
+  \label{fig:uc10.7}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente rimuove interamente la tabella dall'editor.
     \item \textbf{Attori Principali:} Utente.
@@ -855,6 +1171,12 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:11}{}
 \subsubsection{UC 11 - Gestione Codice}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC11.pdf}
+  \caption{Diagramma UC11}
+  \label{fig:uc11}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente interagisce con l'editor per gestire la formattazione e l'inserimento di sezioni di codice sorgente all'interno del documento Markdown.
     \item \textbf{Attori Principali:} Utente.
@@ -875,6 +1197,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:11.1}{}
 \paragraph{UC 11.1 - Inserimento sezione di codice}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC11.1.pdf}
+  \caption{Diagramma UC11.1}
+  \label{fig:uc11.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente inserisce la formattazione necessaria per rappresentare un blocco di codice (es. tramite backtick multipli).
     \item \textbf{Attori Principali:} Utente.
@@ -890,6 +1220,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:11.2}{}
 \paragraph{UC 11.2 - Eliminazione sezione di codice}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC11.2.pdf}
+  \caption{Diagramma UC11.2}
+  \label{fig:uc11.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente rimuove la formattazione di codice da una sezione precedentemente definita.
     \item \textbf{Attori Principali:} Utente.
@@ -905,6 +1243,12 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:12}{}
 \subsubsection{UC 12 - Gestione Formule Scientifiche}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC12.pdf}
+  \caption{Diagramma UC12}
+  \label{fig:uc12}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente gestisce l'inserimento e la rimozione di espressioni matematiche o formule scientifiche formattate.
     \item \textbf{Attori Principali:} Utente.
@@ -925,6 +1269,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:12.1}{}
 \paragraph{UC 12.1 - Inserimento formula scientifica}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC12.1.pdf}
+  \caption{Diagramma UC12.1}
+  \label{fig:uc12.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente inserisce la sintassi specifica per il rendering di una formula matematica.
     \item \textbf{Attori Principali:} Utente.
@@ -940,6 +1292,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:12.2}{}
 \paragraph{UC 12.2 - Eliminazione formula scientifica}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC12.2.pdf}
+  \caption{Diagramma UC12.2}
+  \label{fig:uc12.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente rimuove una formula scientifica esistente o i suoi delimitatori.
     \item \textbf{Attori Principali:} Utente.
@@ -955,6 +1315,12 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:13}{}
 \subsubsection{UC 13 - Gestione Immagini}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC13.pdf}
+  \caption{Diagramma UC13}
+  \label{fig:uc13}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente amministra le immagini all'interno della nota Markdown, potendole inserire, sostituire o eliminare.
     \item \textbf{Attori Principali:} Utente.
@@ -976,6 +1342,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:13.1}{}
 \paragraph{UC 13.1 - Inserimento immagine}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC13.1.pdf}
+  \caption{Diagramma UC13.1}
+  \label{fig:uc13.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente aggiunge un'immagine alla nota fornendo un URL o un percorso file.
     \item \textbf{Attori Principali:} Utente.
@@ -992,6 +1366,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:13.2}{}
 \paragraph{UC 13.2 - Sostituzione immagine}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC13.2.pdf}
+  \caption{Diagramma UC13.2}
+  \label{fig:uc13.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente modifica l'origine o i parametri di un'immagine precedentemente inserita.
     \item \textbf{Attori Principali:} Utente.
@@ -1007,6 +1389,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:13.3}{}
 \paragraph{UC 13.3 - Eliminazione immagine}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC13.3.pdf}
+  \caption{Diagramma UC13.3}
+  \label{fig:uc13.3}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente rimuove il riferimento a un'immagine dalla nota.
     \item \textbf{Attori Principali:} Utente.
@@ -1022,6 +1412,12 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:14}{}
 \subsubsection{UC 14 - Gestione Link}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC14.pdf}
+  \caption{Diagramma UC14}
+  \label{fig:uc14}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente gestisce i collegamenti ipertestuali nel documento, per riferimenti esterni o interni.
     \item \textbf{Attori Principali:} Utente.
@@ -1042,6 +1438,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:14.1}{}
 \paragraph{UC 14.1 - Inserimento link}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC14.1.pdf}
+  \caption{Diagramma UC14.1}
+  \label{fig:uc14.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente trasforma una porzione di testo in un collegamento cliccabile fornendo un URL.
     \item \textbf{Attori Principali:} Utente.
@@ -1058,6 +1462,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:14.2}{}
 \paragraph{UC 14.2 - Eliminazione link}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC14.2.pdf}
+  \caption{Diagramma UC14.2}
+  \label{fig:uc14.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente rimuove un collegamento ipertestuale mantenendo, ove desiderato, il testo originale.
     \item \textbf{Attori Principali:} Utente.
@@ -1073,6 +1485,12 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:15}{}
 \subsubsection{UC 15 - Gestione Ancore}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC15.pdf}
+  \caption{Diagramma UC15}
+  \label{fig:uc15}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente inserisce o rimuove riferimenti interni (ancore) per la navigazione rapida all'interno dello stesso documento.
     \item \textbf{Attori Principali:} Utente.
@@ -1092,6 +1510,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:15.1}{}
 \paragraph{UC 15.1 - Inserimento ancora}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC15.1.pdf}
+  \caption{Diagramma UC15.1}
+  \label{fig:uc15.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente definisce un punto di destinazione nel documento assegnandogli un identificativo.
     \item \textbf{Attori Principali:} Utente.
@@ -1107,6 +1533,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:15.2}{}
 \paragraph{UC 15.2 - Eliminazione ancora}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC15.2.pdf}
+  \caption{Diagramma UC15.2}
+  \label{fig:uc15.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente rimuove un'ancora di navigazione interna precedentemente creata.
     \item \textbf{Attori Principali:} Utente.
@@ -1122,6 +1556,12 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:16}{}
 \subsubsection{UC 16 - Apertura e chiusura automatica simboli}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC16.pdf}
+  \caption{Diagramma UC16}
+  \label{fig:uc16}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema offre un'assistenza alla digitazione che inserisce automaticamente il carattere di chiusura (es. parentesi, virgolette) all'apertura del corrispondente.
     \item \textbf{Attori Principali:} Utente.
@@ -1142,6 +1582,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:16.1}{}
 \paragraph{UC 16.1 - Attivazione aiuto simboli}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC16.1.pdf}
+  \caption{Diagramma UC16.1}
+  \label{fig:uc16.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente abilita l'inserimento automatico del carattere di chiusura.
     \item \textbf{Attori Principali:} Utente.
@@ -1156,6 +1604,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:16.2}{}
 \paragraph{UC 16.2 - Disattivazione aiuto simboli}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC16.2.pdf}
+  \caption{Diagramma UC16.2}
+  \label{fig:uc16.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente disabilita l'inserimento automatico per avere un controllo manuale su ogni carattere digitato.
     \item \textbf{Attori Principali:} Utente.
@@ -1170,6 +1626,12 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:17}{}
 \subsubsection{UC 17 - Gestione Sidebar}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC17.pdf}
+  \caption{Diagramma UC17}
+  \label{fig:uc17}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente modifica lo stato della barra laterale (sidebar) dell'applicazione per massimizzare l'area di lavoro o accedere agli strumenti e all'elenco delle note.
     \item \textbf{Attori Principali:} Utente.
@@ -1190,6 +1652,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:17.1}{}
 \paragraph{UC 17.1 - Apertura Sidebar}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC17.1.pdf}
+  \caption{Diagramma UC17.1}
+  \label{fig:uc17.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente rende visibile la barra laterale.
     \item \textbf{Attori Principali:} Utente.
@@ -1204,6 +1674,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:17.2}{}
 \paragraph{UC 17.2 - Chiusura Sidebar}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC17.2.pdf}
+  \caption{Diagramma UC17.2}
+  \label{fig:uc17.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente nasconde la barra laterale per concentrarsi sul testo.
     \item \textbf{Attori Principali:} Utente.
@@ -1218,6 +1696,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:17.3}{}
 \paragraph{UC 17.3 - Ridimensionamento Sidebar}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC17.3.pdf}
+  \caption{Diagramma UC17.3}
+  \label{fig:uc17.3}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente modifica la larghezza della barra laterale trascinandone il bordo.
     \item \textbf{Attori Principali:} Utente.
@@ -1234,6 +1720,12 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:18}{}
 \subsubsection{UC 18 - Gestione Tema Visivo}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC18.pdf}
+  \caption{Diagramma UC18}
+  \label{fig:uc18}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente modifica la combinazione di colori dell'interfaccia utente (tema scuro o chiaro).
     \item \textbf{Attori Principali:} Utente.
@@ -1254,6 +1746,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:18.1}{}
 \paragraph{UC 18.1 - Attivazione Dark Mode}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC18.1.pdf}
+  \caption{Diagramma UC18.1}
+  \label{fig:uc18.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente imposta il tema dell'applicazione su colori scuri per ridurre l'affaticamento visivo.
     \item \textbf{Attori Principali:} Utente.
@@ -1268,6 +1768,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:18.2}{}
 \paragraph{UC 18.2 - Attivazione Light Mode}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC18.2.pdf}
+  \caption{Diagramma UC18.2}
+  \label{fig:uc18.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente imposta il tema dell'applicazione su colori chiari.
     \item \textbf{Attori Principali:} Utente.
@@ -1282,6 +1790,12 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:19}{}
 \subsubsection{UC 19 - Gestione Sincronizzazione Scorrimento}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC19.pdf}
+  \caption{Diagramma UC19}
+  \label{fig:uc19}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente attiva o disattiva il "Sync Scroll", ovvero la funzione che permette all'editor e alla finestra di rendering di scorrere verticalmente in modo simultaneo.
     \item \textbf{Attori Principali:} Utente.
@@ -1301,6 +1815,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:19.1}{}
 \paragraph{UC 19.1 - Attivazione Sync Scroll}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC19.1.pdf}
+  \caption{Diagramma UC19.1}
+  \label{fig:uc19.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente abilita lo scorrimento vincolato in modo che l'anteprima corrisponda in tempo reale al testo inquadrato nell'editor.
     \item \textbf{Attori Principali:} Utente.
@@ -1315,6 +1837,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:19.2}{}
 \paragraph{UC 19.2 - Disattivazione Sync Scroll}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC19.2.pdf}
+  \caption{Diagramma UC19.2}
+  \label{fig:uc19.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente disabilita lo scorrimento sincronizzato per ispezionare due punti differenti del documento contemporaneamente.
     \item \textbf{Attori Principali:} Utente.
@@ -1329,6 +1859,12 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:20}{}
 \subsubsection{UC 20 - Visualizzazione nota Markdown}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC20.pdf}
+  \caption{Diagramma UC20}
+  \label{fig:uc20}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente sceglie il layout di visualizzazione preferito per l'area di lavoro, alternando o affiancando l'editor testuale nudo e il render grafico.
     \item \textbf{Attori Principali:} Utente.
@@ -1349,6 +1885,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:20.1}{}
 \paragraph{UC 20.1 - Visualizzazione esclusiva editor Markdown}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC20.1.pdf}
+  \caption{Diagramma UC20.1}
+  \label{fig:uc20.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente nasconde il render grafico per dedicare l'intero spazio visibile alla scrittura pura.
     \item \textbf{Attori Principali:} Utente.
@@ -1363,6 +1907,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:20.2}{}
 \paragraph{UC 20.2 - Visualizzazione esclusiva render Markdown}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC20.2.pdf}
+  \caption{Diagramma UC20.2}
+  \label{fig:uc20.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente nasconde l'editor di testo per leggere o presentare il documento formattato come prodotto finito.
     \item \textbf{Attori Principali:} Utente.
@@ -1377,6 +1929,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:20.3}{}
 \paragraph{UC 20.3 - Visualizzazione combinata editor e render}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC20.3.pdf}
+  \caption{Diagramma UC20.3}
+  \label{fig:uc20.3}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente sceglie di mantenere visibili in modalità affiancata sia l'editor sorgente sia l'anteprima formattata.
     \item \textbf{Attori Principali:} Utente.
@@ -1391,6 +1951,12 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 
 \hypertarget{uc:21}{}
 \subsubsection{UC 21 - Dettatura tramite Microfono}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC21.pdf}
+  \caption{Diagramma UC21}
+  \label{fig:uc21}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente attiva la funzione di dettatura del browser per inserire testo tramite input vocale. Il browser converte il parlato in testo e lo inserisce direttamente nel campo di input.
     \item \textbf{Attori Principali:} Utente.
@@ -1410,7 +1976,13 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 Questa sezione del sistema descrive come l'applicazione interagisce con un modello di linguaggio esterno (attore secondario $LLM_G$) per offrire strumenti avanzati di editing.
 
 \hypertarget{uc:22}{}
-\paragraph{UC 22 - Riassunto contenuto con LLM}
+\subsubsection{UC 22 - Riassunto contenuto con LLM}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC22.pdf}
+  \caption{Diagramma UC22}
+  \label{fig:uc22}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente richiede la generazione di un riassunto del testo presente nell'editor tramite un modello di linguaggio esterno.
     \item \textbf{Attori Principali:} Utente.
@@ -1436,7 +2008,15 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:22.1}{}
-\subparagraph{UC 22.1 - Selezione percentuale di riassunto}
+\paragraph{UC 22.1 - Selezione percentuale di riassunto}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC22.1.pdf}
+  \caption{Diagramma UC22.1}
+  \label{fig:uc22.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente definisce la lunghezza relativa del riassunto rispetto al testo originale.
     \item \textbf{Attori Principali:} Utente.
@@ -1450,7 +2030,15 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:22.2}{}
-\subparagraph{UC 22.2 - Gestione testo insufficiente per riassunto}
+\paragraph{UC 22.2 - Gestione testo insufficiente per riassunto}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC22.2.pdf}
+  \caption{Diagramma UC22.2}
+  \label{fig:uc22.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} Validazione della lunghezza del testo prima dell'invio.
     \item \textbf{Attori Principali:} Sistema.
@@ -1465,7 +2053,15 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:22.3}{}
-\subparagraph{UC 22.3 - Errore LLM}
+\paragraph{UC 22.3 - Errore LLM}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC22.3.pdf}
+  \caption{Diagramma UC22.3}
+  \label{fig:uc22.3}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione della mancata risposta del servizio IA.
     \item \textbf{Attori Principali:} Sistema.
@@ -1481,7 +2077,14 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:23}{}
-\paragraph{UC 23 - Traduzione contenuto con LLM}
+\subsubsection{UC 23 - Traduzione contenuto con LLM}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC23.pdf}
+  \caption{Diagramma UC23}
+  \label{fig:uc23}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente richiede la traduzione automatica del testo in una lingua supportata (Inglese, Francese, Tedesco, Spagnolo) tramite il servizio LLM.
     \item \textbf{Attori Principali:} Utente.
@@ -1506,7 +2109,15 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:23.1}{}
-\subparagraph{UC 23.1 - Selezione lingua di destinazione}
+\paragraph{UC 23.1 - Selezione lingua di destinazione}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC23.1.pdf}
+  \caption{Diagramma UC23.1}
+  \label{fig:uc23.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente sceglie la lingua di destinazione tra le opzioni supportate.
     \item \textbf{Attori Principali:} Utente.
@@ -1520,7 +2131,15 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:23.2}{}
-\subparagraph{UC 23.2 - Errore LLM}
+\paragraph{UC 23.2 - Errore LLM}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC23.2.pdf}
+  \caption{Diagramma UC23.2}
+  \label{fig:uc23.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione del fallimento della comunicazione con il servizio di traduzione.
     \item \textbf{Attori Principali:} Sistema.
@@ -1536,7 +2155,14 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:24}{}
-\paragraph{UC 24 - Riscrittura contenuto Markdown}
+\subsubsection{UC 24 - Riscrittura contenuto Markdown}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC24.pdf}
+  \caption{Diagramma UC24}
+  \label{fig:uc24}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente richiede la rielaborazione di un testo per migliorarne la forma o adattarlo a nuove esigenze.
     \item \textbf{Attori Principali:} Utente.
@@ -1566,7 +2192,15 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:24.1}{}
-\subparagraph{UC 24.1 - Selezione Variazione Stilistica}
+\paragraph{UC 24.1 - Selezione Variazione Stilistica}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC24.1.pdf}
+  \caption{Diagramma UC24.1}
+  \label{fig:uc24.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente sceglie un registro stilistico specifico (es. informale, colloquiale) per la rielaborazione.
     \item \textbf{Attori Principali:} Utente.
@@ -1583,7 +2217,15 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:24.2}{}
-\subparagraph{UC 24.2 - Correzione Grammaticale}
+\paragraph{UC 24.2 - Correzione Grammaticale}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC24.2.pdf}
+  \caption{Diagramma UC24.2}
+  \label{fig:uc24.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema analizza il testo per correggere errori ortografici e sintattici.
     \item \textbf{Attori Principali:} Utente.
@@ -1604,6 +2246,13 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:24.2.1}{}
 \subparagraph{UC 24.2.1 - Nessun errore rilevato}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC24.2.1.pdf}
+  \caption{Diagramma UC24.2.1}
+  \label{fig:uc24.2.1}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione del caso in cui il testo sia già grammaticalmente corretto.
     \item \textbf{Attori Principali:} Utente.
@@ -1616,7 +2265,15 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:24.3}{}
-\subparagraph{UC 24.3 - Errore LLM}
+\paragraph{UC 24.3 - Errore LLM}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC24.3.pdf}
+  \caption{Diagramma UC24.3}
+  \label{fig:uc24.3}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione del fallimento di comunicazione con l'intelligenza artificiale.
     \item \textbf{Attori Principali:} Utente.
@@ -1632,7 +2289,14 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:25}{}
-\paragraph{UC 25 - Analisi critica del contenuto}
+\subsubsection{UC 25 - Analisi critica del contenuto}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC25.pdf}
+  \caption{Diagramma UC25}
+  \label{fig:uc25}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente richiede un'analisi del testo basata sulla metodologia dei "Sei Cappelli per Pensare", per ottenere diverse prospettive (obiettiva, emotiva, critica, ecc.).
     \item \textbf{Attori Principali:} Utente.
@@ -1659,7 +2323,15 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:25.1}{}
-\subparagraph{UC 25.1 - Selezione (uno o più cappelli)}
+\paragraph{UC 25.1 - Selezione (uno o più cappelli)}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC25.1.pdf}
+  \caption{Diagramma UC25.1}
+  \label{fig:uc25.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente definisce quali prospettive di analisi attivare.
     \item \textbf{Attori Principali:} Utente.
@@ -1681,6 +2353,13 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:25.1.1}{}
 \subparagraph{UC 25.1.1 - Analisi Cappello Bianco (Obiettività e Fatti)}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC25.1.1.pdf}
+  \caption{Diagramma UC25.1.1}
+  \label{fig:uc25.1.1}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema produce una critica basata esclusivamente sulla verifica dei fatti e sull'assenza di dati oggettivi nel testo.
     \item \textbf{Attori Principali:} Utente.
@@ -1697,6 +2376,13 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:25.1.2}{}
 \subparagraph{UC 25.1.2 - Analisi Cappello Rosso (Emotività e Sensazioni)}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC25.1.2.pdf}
+  \caption{Diagramma UC25.1.2}
+  \label{fig:uc25.1.2}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema produce una critica basata sull'impatto viscerale e sulle reazioni emotive che il testo suscita.
     \item \textbf{Attori Principali:} Utente.
@@ -1713,6 +2399,13 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:25.1.3}{}
 \subparagraph{UC 25.1.3 - Analisi Cappello Giallo (Ottimismo e Opportunità)}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC25.1.3.pdf}
+  \caption{Diagramma UC25.1.3}
+  \label{fig:uc25.1.3}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema produce una critica costruttiva, cercando il valore e i motivi per cui l'idea espressa nel testo potrebbe funzionare.
     \item \textbf{Attori Principali:} Utente.
@@ -1729,6 +2422,13 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:25.1.4}{}
 \subparagraph{UC 25.1.4 - Analisi Cappello Nero (Critica e Rischi)}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC25.1.4.pdf}
+  \caption{Diagramma UC25.1.4}
+  \label{fig:uc25.1.4}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema produce una critica negativa e cautelativa, evidenziando perché il contenuto potrebbe fallire o essere pericoloso.
     \item \textbf{Attori Principali:} Utente.
@@ -1745,6 +2445,13 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:25.1.5}{}
 \subparagraph{UC 25.1.5 - Analisi Cappello Verde (Creatività e Alternativa)}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC25.1.5.pdf}
+  \caption{Diagramma UC25.1.5}
+  \label{fig:uc25.1.5}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema produce una critica basata sulla crescita, proponendo come il testo potrebbe essere trasformato in qualcosa di nuovo o diverso.
     \item \textbf{Attori Principali:} Utente.
@@ -1761,6 +2468,13 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:25.1.6}{}
 \subparagraph{UC 25.1.6 - Analisi Cappello Blu (Logica e Struttura)}
+\mbox{}\\   
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC25.1.6.pdf}
+  \caption{Diagramma UC25.1.6}
+  \label{fig:uc25.1.6}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema produce una critica sul metodo, valutando se il testo è ben organizzato e se il processo di pensiero è coerente.
     \item \textbf{Attori Principali:} Utente.
@@ -1776,7 +2490,15 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:25.2}{}
-\subparagraph{UC 25.2 - Gestione testo insufficiente per l'analisi}
+\paragraph{UC 25.2 - Gestione testo insufficiente per l'analisi}
+\mbox{}\\       
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC25.2.pdf}
+  \caption{Diagramma UC25.2}
+  \label{fig:uc25.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione del caso in cui il testo fornito sia troppo breve o privo di contenuto semantico per un'analisi critica sensata.
     \item \textbf{Attori Principali:} Utente.
@@ -1790,7 +2512,15 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:25.3}{}
-\subparagraph{UC 25.3 - Errore LLM}
+\paragraph{UC 25.3 - Errore LLM}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC25.3.pdf}
+  \caption{Diagramma UC25.3}
+  \label{fig:uc25.3}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} Fallimento della connessione con l'IA durante il processo di analisi critica.
     \item \textbf{Attori Principali:} Utente.
@@ -1809,6 +2539,12 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \hypertarget{uc:26}{}
 \subsubsection{UC 26 - Generazione Automatica di testo (Distant Writing)}
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC26.pdf}
+  \caption{Diagramma UC26}
+  \label{fig:uc26}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente richiede al sistema di generare un testo originale o espandere un'idea tramite l'integrazione con un LLM.
     \item \textbf{Attori Principali:} Utente.
@@ -1839,6 +2575,13 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 % --- 26.1 ---
 \hypertarget{uc:26.1}{}
 \paragraph{UC 26.1 - Inserimento o riutilizzo del prompt}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC26.1.pdf}
+  \caption{Diagramma UC26.1}
+  \label{fig:uc26.1}
+\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente inserisce una nuova istruzione testuale o ne seleziona una usata in precedenza.
@@ -1857,6 +2600,13 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 % --- 26.2 ---
 \hypertarget{uc:26.2}{}
 \paragraph{UC 26.2 - Selezione della lunghezza del testo}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC26.2.pdf}
+  \caption{Diagramma UC26.2}
+  \label{fig:uc26.2}
+\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} Definizione del vincolo sulla quantità del testo generato (corto, medio, lungo).
@@ -1874,6 +2624,13 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:26.3}{}
 \paragraph{UC 26.3 - Anteprima e conferma del contesto inviato all'LLM}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC26.3.pdf}
+  \caption{Diagramma UC26.3}
+  \label{fig:uc26.3}
+\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} Visualizzazione di riepilogo di tutte le informazioni (prompt + note + parametri) prima dell'invio.
@@ -1893,6 +2650,13 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 % --- UC 26.4 ---
 \hypertarget{uc:26.4}{}
 \paragraph{UC 26.4 - Generazione testo a partire da link}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC26.4.pdf}
+  \caption{Diagramma UC26.4}
+  \label{fig:uc26.4}
+\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente fornisce un URL di una pagina web; il sistema estrae il testo rilevante dalla risorsa e lo utilizza come contesto per richiedere all'LLM la generazione di un nuovo testo (es. "Scrivi un testo partendo da questo link").
@@ -1914,6 +2678,13 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 % --- 26.5 ---
 \hypertarget{uc:26.5}{}
 \paragraph{UC 26.5 - Selezione manuale delle note da inviare come contesto}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC26.5.pdf}
+  \caption{Diagramma UC26.5}
+  \label{fig:uc26.5}
+\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente sceglie una o più note esistenti per fornire base documentale all'AI
@@ -1934,6 +2705,13 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 % --- 26.6 ---
 \hypertarget{uc:26.6}{}
 \paragraph{UC 26.6 - Errore LLM}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC26.6.pdf}
+  \caption{Diagramma UC26.6}
+  \label{fig:uc26.6}
+\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione della mancanza di risposta da parte del servizio di Intelligenza Artificiale
@@ -1943,7 +2721,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \item \textbf{Postcondizioni:} Il sistema torna allo stato precedente all'invio senza perdita di dati locali.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item Il sistema rileva un timeout o un errore dall'API$_G$ LLM$_G$
+        \item Il sistema rileva un timeout o un errore dall'API$_G$ LLM$_G$.
         \item Il sistema mostra un messaggio di avviso.
         \item L'utente può tentare un nuovo invio con lo stato precedente all'errore.
     \end{enumerate}
@@ -1953,6 +2731,13 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:27}{}
 \subsubsection{UC 27 - Validazione output AI}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC27.pdf}
+  \caption{Diagramma UC27}
+  \label{fig:uc27}
+\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} Fase decisionale dell'utente sulla qualità del testo ricevuto dall'AI.
@@ -1983,6 +2768,13 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:27.1}{}
 \paragraph{UC 27.1 - Accettazione output}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC27.1.pdf}
+  \caption{Diagramma UC27.1}
+  \label{fig:uc27.1}
+\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente esamina il testo prodotto dall'AI e lo giudica idoneo, accettando di utilizzarlo nel sistema.
@@ -2008,6 +2800,13 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:27.1.1}{}
 \subparagraph{UC 27.1.1 - Sostituzione del testo nell'editor}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC27.1.1.pdf}
+  \caption{Diagramma UC27.1.1}
+  \label{fig:uc27.1.1}
+\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} L'output AI sostituisce il contenuto corrente di una nota aperta.
@@ -2018,7 +2817,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
         \item L'utente sceglie "Sostituisci".
-        \item Il sistema aggiorna il buffere dell'editor.
+        \item Il sistema aggiorna il buffer dell'editor.
         \item Il sistema salva le modifiche.
     \end{enumerate}
 \end{itemize}
@@ -2027,6 +2826,13 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:27.1.2}{}
 \subparagraph{UC 27.1.2 - Salvataggio dell'output come nuova nota}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC27.1.2.pdf}
+  \caption{Diagramma UC27.1.2}
+  \label{fig:uc27.1.2}
+\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} L'output AI viene archiviato come un documento indipendente.
@@ -2047,9 +2853,16 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:27.2}{}
 \paragraph{UC 27.2 - Rifiuto output}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC27.2.pdf}
+  \caption{Diagramma UC27.2}
+  \label{fig:uc27.2}
+\end{figure}
 
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente scarta il testo generato perchè valutato non soddisfacente.
+    \item \textbf{Descrizione:} L'utente scarta il testo generato perché valutato non soddisfacente.
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:}  Nessuno.
     \item \textbf{Precondizioni:} L'output dell'LLM è stato visualizzato correttamente a schermo (\hyperlink{uc:27.2}{UC 27.2}) e l'utente ha terminato la revisione.
@@ -2065,6 +2878,13 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:27.3}{}
 \paragraph{UC 27.3 - Rigenerazione output}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC27.3.pdf}
+  \caption{Diagramma UC27.3}
+  \label{fig:uc27.3}
+\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} Richiesta di una nuova versione del testo mantenendo gli stessi parametri.
@@ -2084,6 +2904,13 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:27.4}{}
 \paragraph{UC 27.4 - Tracciamento delle note sorgente usate per un output AI}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC27.4.pdf}
+  \caption{Diagramma UC27.4}
+  \label{fig:uc27.4}
+\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} Memorizzazione dei metadati relativi a quali note (interne ed esterne) hanno contribuito alla generazione.
@@ -2100,6 +2927,12 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \hypertarget{uc:28}{}
 \subsubsection{UC 28 - Annullamento richiesta}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC28.pdf}
+  \caption{Diagramma UC28}
+  \label{fig:uc28}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente interrompe un'operazione di elaborazione testuale in corso, annullando l'attesa della risposta da parte del modello linguistico.
     \item \textbf{Attori Principali:} Utente.
@@ -2120,6 +2953,12 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e la persistenza dei dati.
 
 \subsubsection{UC 29 - Creazione nuova nota}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC29.pdf}
+  \caption{Diagramma UC29}
+  \label{fig:uc29}
+\end{figure}
 \label{uc29}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole iniziare la stesura di una nuova nota.
@@ -2148,6 +2987,13 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \paragraph{UC 29.1 - Inizializzazione editor vuoto}
 \label{uc29.1}
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC29.1.pdf}
+  \caption{Diagramma UC29.1}
+  \label{fig:uc29.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole iniziare la scrittura di una nota completamente vuota senza interazione con il database$_G$.
     \item \textbf{Attore primario:} Utente
@@ -2167,8 +3013,15 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
 \end{itemize}
 
-\paragraph{UC 29.2 - Creazione nota nel Database$_G$ Browser}
+\paragraph{\texorpdfstring{UC 29.2 - Creazione nota nel Database$_G$ Browser}{UC 29.2 - Creazione nota nel Database Browser}}
 \label{uc29.2}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC29.2.pdf}
+  \caption{Diagramma UC29.2}
+  \label{fig:uc29.2}
+\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole creare una nuova nota persistente nel database$_G$ dell'applicazione.
@@ -2199,8 +3052,15 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{itemize}
 \end{itemize}
 
-\subparagraph{UC 29.2.1 - Gestione errore creazione nota nel Database$_G$}
+\subparagraph{\texorpdfstring{UC 29.2.1 - Gestione errore creazione nota nel Database$_G$}{UC 29.2.1 - Gestione errore creazione nota nel Database}}
 \label{uc29.2.1}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC29.2.1.pdf}
+  \caption{Diagramma UC29.2.1}
+  \label{fig:uc29.2.1}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole creare una nuova nota persistente nel database$_G$ dell'applicazione.
     \item \textbf{Attore primario:} Utente
@@ -2225,6 +3085,12 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \end{itemize}
 
 \subsubsection{UC 30 - Caricamento nota}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC30.pdf}
+  \caption{Diagramma UC30}
+  \label{fig:uc30}
+\end{figure}
 \label{uc30}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente modifica e/o visualizza una nota già esistente.
@@ -2255,6 +3121,14 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{UC 30.1 - Caricamento da File Locale}
 \label{uc30.1}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC30.1.pdf}
+  \caption{Diagramma UC30.1}
+  \label{fig:uc30.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente apre una nota presente in un file locale.
     \item \textbf{Attore primario:} Utente
@@ -2278,12 +3152,20 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
     \item \textbf{Estensioni:}
     \begin{itemize}
-        \item UC 31.3 - Gestione errore di caricamento
+        \item UC 30.3 - Gestione errore di caricamento
     \end{itemize}
 \end{itemize}
 
-\paragraph{UC 30.2 - Caricamento da Database$_G$ Browser}
+\paragraph{\texorpdfstring{UC 30.2 - Caricamento da Database$_G$ Browser}{UC 30.2 - Caricamento da Database Browser}}
 \label{uc30.2}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC30.2.pdf}
+  \caption{Diagramma UC30.2}
+  \label{fig:uc30.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente apre una nota salvata nel database$_G$.
     \item \textbf{Attore primario:} Utente
@@ -2315,6 +3197,14 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{UC 30.3 - Gestione errore di caricamento}
 \label{uc30.3}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC30.3.pdf}
+  \caption{Diagramma UC30.3}
+  \label{fig:uc30.3}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di caricamento della nota.
     \item \textbf{Attore primario:} Utente
@@ -2340,6 +3230,12 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \end{itemize}
 
 \subsubsection{UC 31 - Salvataggio nota}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC31.pdf}
+  \caption{Diagramma UC31}
+  \label{fig:uc31}
+\end{figure}
 \label{uc31}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente salva la nota attualmente aperta nell'editor di testo.
@@ -2371,6 +3267,14 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{UC 31.1 - Salvataggio su FileSystem}
 \label{uc31.1}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC31.1.pdf}
+  \caption{Diagramma UC31.1}
+  \label{fig:uc31.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente esporta la nota corrente come file nel file system.
     \item \textbf{Attore primario:} Utente
@@ -2393,8 +3297,16 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
 \end{itemize}
 
-\paragraph{UC 31.2 - Salvataggio da Database$_G$ Browser}
+\paragraph{\texorpdfstring{UC 31.2 - Salvataggio da Database$_G$ Browser}{UC 31.2 - Salvataggio da Database Browser}}
 \label{uc31.2}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC31.2.pdf}
+  \caption{Diagramma UC31.2}
+  \label{fig:uc31.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente salva la nota nel database$_G$ dell'applicazione.
     \item \textbf{Attore primario:} Utente
@@ -2422,6 +3334,14 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{UC 31.3 - Gestione errore di salvataggio}
 \label{uc31.3}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC31.3.pdf}
+  \caption{Diagramma UC31.3}
+  \label{fig:uc31.3}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di salvataggio della nota.
     \item \textbf{Attore primario:} Utente
@@ -2448,6 +3368,12 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \end{itemize}
 
 \subsubsection{UC 32 - Gestione nota salvata}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC32.pdf}
+  \caption{Diagramma UC32}
+  \label{fig:uc32}
+\end{figure}
 \label{uc32}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole gestire le note salvate nel database$_G$ (eliminazione, rinominazione o consultazione dei metadati$_G$).
@@ -2477,8 +3403,16 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{itemize}
 \end{itemize}
 
-\paragraph{UC 32.1 - Eliminazione nota dal Database$_G$}
+\paragraph{\texorpdfstring{UC 32.1 - Eliminazione nota dal Database$_G$}{UC 32.1 - Eliminazione nota dal Database}}
 \label{uc32.1}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC32.1.pdf}
+  \caption{Diagramma UC32.1}
+  \label{fig:uc32.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole eliminare definitivamente una nota dal database$_G$.
     \item \textbf{Attore primario:} Utente
@@ -2509,6 +3443,13 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \end{itemize}
 
 \subparagraph{UC 32.1.1 - Gestione errore eliminazione}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC32.1.1.pdf}
+  \caption{Diagramma UC32.1.1}
+  \label{fig:uc32.1.1}
+\end{figure}
 \label{uc32.1.1}
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di eliminazione della nota.
@@ -2533,8 +3474,16 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
 \end{itemize}
 
-\paragraph{UC 32.2 - Rinominazione nota nel Database$_G$}
+\paragraph{\texorpdfstring{UC 32.2 - Rinominazione nota nel\allowbreak Database$_G$}{UC 32.2 - Rinominazione nota nel Database}}
 \label{uc32.2}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC32.2.pdf}
+  \caption{Diagramma UC32.2}
+  \label{fig:uc32.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole assegnare un nuovo nome a una nota già salvata nel database$_G$.
     \item \textbf{Attore primario:} Utente
@@ -2566,7 +3515,14 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \end{itemize}
 
 \subparagraph{UC 32.2.1 - Gestione errore rinominazione}
+\mbox{}\\
 \label{uc32.2.1}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC32.2.1.pdf}
+  \caption{Diagramma UC32.2.1}
+  \label{fig:uc32.2.1}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di rinominazione della nota.
     \item \textbf{Attore primario:} Utente
@@ -2592,6 +3548,14 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{UC 32.3 - Visualizzazione informazioni e metadati della nota}
 \label{uc32.3}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC32.3.pdf}
+  \caption{Diagramma UC32.3}
+  \label{fig:uc32.3}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole consultare i metadati$_G$ e le informazioni di una nota salvata nel database$_G$.
     \item \textbf{Attore primario:} Utente
@@ -2618,6 +3582,13 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \subsubsection{UC 33 - Ricerca e Navigazione}
 \label{uc33}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC33.pdf}
+  \caption{Diagramma UC33}
+  \label{fig:uc33}
+
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole trovare una o più note nel database$_G$ tramite criteri di ricerca.
     \item \textbf{Attore primario:} Utente
@@ -2650,6 +3621,13 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{UC 33.1 - Ricerca mirata per titolo}
 \label{uc33.1}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC33.1.pdf}
+  \caption{Diagramma UC33.1}
+  \label{fig:uc33.1}
+\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole cercare una nota conoscendone (parte del) titolo.
@@ -2678,6 +3656,14 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{UC 33.2 - Ricerca Full-Text}
 \label{uc33.2}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC33.2.pdf}
+  \caption{Diagramma UC33.2}
+  \label{fig:uc33.2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole trovare tutte le note che contengono una parola o frase specifica nel loro contenuto.
     \item \textbf{Attore primario:} Utente
@@ -2706,6 +3692,14 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{UC 33.3 - Filtro per data}
 \label{uc33.3}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC33.3.pdf}
+  \caption{Diagramma UC33.3}
+  \label{fig:uc33.3}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole filtrare le note in base a un criterio temporale.
     \item \textbf{Attore primario:} Utente
@@ -2736,6 +3730,13 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \subparagraph{UC 33.3.1 - Filtro per data di creazione}
 \label{uc33.3.1}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC33.3.1.pdf}
+  \caption{Diagramma UC33.3.1}
+  \label{fig:uc33.3.1}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole visualizzare le note create in un determinato periodo.
     \item \textbf{Attore primario:} Utente
@@ -2761,6 +3762,13 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \subparagraph{UC 33.3.2 - Filtro per data di ultima modifica}
 \label{uc33.3.2}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC33.3.2.pdf}
+  \caption{Diagramma UC33.3.2}
+  \label{fig:uc33.3.2}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole visualizzare le note aggiornate in un determinato periodo.
     \item \textbf{Attore primario:} Utente
@@ -2786,8 +3794,15 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \end{enumerate}
 \end{itemize}
 
-\paragraph{UC 33.4 - Visualizzazione lista note salvate nel Database$_G$}
+\paragraph{\texorpdfstring{UC 33.4 - Visualizzazione lista note salvate nel Database$_G$}{UC 33.4 - Visualizzazione lista note salvate nel Database}}
 \label{uc33.4}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC33.4.pdf}
+  \caption{Diagramma UC33.4}
+  \label{fig:uc33.4}
+\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole visualizzare tutte le note salvate nel proprio account$_G$.
     \item \textbf{Attore primario:} Utente
@@ -2813,6 +3828,12 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \end{itemize}
 
 \subsubsection{UC 34 - Login}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC34.pdf}
+  \caption{Diagramma UC34}
+  \label{fig:uc34}
+\end{figure}
 \label{uc34}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole accedere alle funzionalità del database$_G$ dell'applicazione.
@@ -2846,6 +3867,14 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{UC 34.1 - Gestione errore di login}
 \label{uc34.1}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC34.1.pdf}
+  \caption{Diagramma UC34.1}
+  \label{fig:uc34.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di autenticazione dell'utente.
     \item \textbf{Attore primario:} Utente
@@ -2858,8 +3887,8 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Postcondizioni:}
     \begin{itemize}
         \item L'utente non è stato autenticato.
-        \item Il sistema$_G$ notifica all'utente il fallimento del login$_G$ senza specificare se
-        l'errore riguarda lo username o la password (per ragioni di sicurezza$_G$).
+        \item Il sistema$_G$ notifica all'utente il fallimento del
+        login$_G$ senza specificare se l'errore riguarda lo\allowbreak username o la password (per ragioni di sicurezza$_G$).
     \end{itemize}
     \item \textbf{Scenario principale:}
     \begin{enumerate}
@@ -2872,6 +3901,12 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \end{itemize}
 
 \subsubsection{UC 35 - Registrazione}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC35.pdf}
+  \caption{Diagramma UC35}
+  \label{fig:uc35}
+\end{figure}
 \label{uc35}
 \begin{itemize}
     \item \textbf{Attore primario:} Utente
@@ -2906,6 +3941,14 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \paragraph{UC 35.1 - Gestione username già esistente}
 \label{uc35.1}
+\mbox{}\\
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC35.1.pdf}
+  \caption{Diagramma UC35.1}
+  \label{fig:uc35.1}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema$_G$ rileva che lo username inserito dall'utente è già associato a un account$_G$ esistente nel database$_G$.
     \item \textbf{Attore primario:} Utente
@@ -2930,6 +3973,12 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \end{itemize}
 
 \subsubsection{UC 36 - Eliminazione dell'account}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC36.pdf}
+  \caption{Diagramma UC36}
+  \label{fig:uc36}
+\end{figure}
 \label{uc36}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole eliminare definitivamente il proprio account$_G$ e tutti i dati ad esso associati.
@@ -2960,6 +4009,12 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \end{itemize}
 
 \subsubsection{UC 37 - Logout}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{assets/img/UC37.pdf}
+  \caption{Diagramma UC37}
+  \label{fig:uc37}
+\end{figure}
 \label{uc37}
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente vuole terminare la propria sessione autenticata nel sistema$_G$.
@@ -3033,8 +4088,8 @@ I requisiti funzionali definiscono le operazioni, i comportamenti e le funzional
         RF-13 & Il sistema deve permettere la chiusura e l'apertura automatica dei simboli durante la digitazione. & Desiderabile & UC 16 \\ \hline
         RF-14 & Il sistema deve permettere il salvataggio e il caricamento delle note in file di testo locali (.md) su FileSystem. & Obbligatorio & UC 30.1, UC 31.1, Capitolato \\ \hline
         RF-15 & Il sistema deve interfacciarsi con un LLM$_G$ per la generazione automatica del testo (Distant Writing$_G$) partendo da un prompt$_G$. & Obbligatorio & UC 26, Capitolato \\ \hline
-        RF-16 & Il sistema deve implementare comandi base gestiti dall'LLM$_G$: riassunto, riscrittura (cambio tono, espansione, correzione) e traduzione. & Obbligatorio & Capitolato \\ \hline
-        RF-17 & Il sistema deve permettere l'analisi critica del testo applicando il modello dei "sei cappelli per pensare" (Neutro, Emozionale, Ottimista, Critico, Creativo, Logico). & Obbligatorio & Capitolato \\ \hline
+        RF-16 & Il sistema deve implementare comandi base gestiti dall'LLM$_G$: riassunto, riscrittura (cambio tono, espansione, correzione) e traduzione. & Obbligatorio & UC 22, UC 23, UC 24, Capitolato \\ \hline
+        RF-17 & Il sistema deve permettere l'analisi critica del testo applicando il modello dei "sei cappelli per pensare" (Neutro, Emozionale, Ottimista, Critico, Creativo, Logico). & Obbligatorio & UC 25, Capitolato \\ \hline
         RF-18 & Il sistema deve permettere all'utente di definire la lunghezza desiderata del testo generato dall'LLM$_G$. & Desiderabile & UC 26.2 \\ \hline
         RF-19 & Il sistema deve permettere all'utente di validare, accettare, scartare o rigenerare l'output prodotto dall'AI$_G$. & Obbligatorio & UC 27 \\ \hline
         RF-20 & Il sistema deve permettere di interrompere o annullare una richiesta di elaborazione inviata all'LLM$_G$ in corso. & Desiderabile & UC 28 \\ \hline
@@ -3045,8 +4100,10 @@ I requisiti funzionali definiscono le operazioni, i comportamenti e le funzional
         RF-25 & Il sistema deve gestire gli account utente (Registrazione, Login, Logout, Eliminazione Account) per l'accesso al database$_G$. & Opzionale & UC 34, 35, 36, 37 \\ \hline
         RF-26 & L'interfaccia deve permettere di alternare tra Tema Chiaro (Light Mode) e Tema Scuro (Dark Mode). & Desiderabile & UC 18 \\ \hline
         RF-27 & L'interfaccia deve permettere lo scorrimento sincronizzato (Sync Scroll) tra editor sorgente e finestra di render. & Desiderabile & UC 19 \\ \hline
-        RF-28 & Il sistema deve permettere all'utente di fornire un URL come sorgente di contenuto per la generazione automatica di testo; il contenuto della pagina deve essere estratto e fornito all'LLM$_G$ come contesto. & Desiderabile & UC 26.6 \\ \hline
-        
+        RF-28 & Il sistema deve permettere all'utente di fornire un URL come sorgente di contenuto per la generazione automatica di testo; il contenuto della pagina deve essere estratto e fornito all'LLM$_G$ come contesto. & Desiderabile & UC 26.4 \\ \hline
+        RF-29 & Il sistema deve permettere l'inserimento e la rimozione di ancore per la navigazione rapida interna al documento. & Desiderabile & UC 15 \\ \hline
+        RF-30 & Il sistema deve permettere all'utente di gestire l'interfaccia modificando lo stato della barra laterale (apertura, chiusura e ridimensionamento). & Desiderabile & UC 17 \\ \hline
+    
     \end{tabularx}
 \end{center}
 
