@@ -37,12 +37,14 @@ for documento in documenti:
     with open(documento, "r", encoding="utf-8") as file:
         contenuto = file.read()
     
+    inizio, corpo = contenuto.split(r"\begin{document}", 1)
+
     for termine in termini:
         pattern = r'\b' + re.escape(termine) + r'\b(?!\$_G\$)'
-        contenuto = re.sub(
+        corpo = re.sub(
             pattern,
             r'\g<0>$_G$',
-            contenuto,
+            corpo,
             flags=re.IGNORECASE
         )
 
@@ -54,8 +56,9 @@ for documento in documenti:
     
                 pattern_sbagliato = re.escape(termine_corto) + r'\$_G\$' + re.escape(termine_lungo[len(termine_corto):]) + r'\$_G\$'
                 pattern_corretto = termine_lungo + r'$_G$'
-                contenuto = re.sub(pattern_sbagliato, pattern_corretto, contenuto, flags=re.IGNORECASE)
+                corpo = re.sub(pattern_sbagliato, pattern_corretto, corpo, flags=re.IGNORECASE)
 
-    
+    contenuto = inizio + r"\begin{document}" + corpo
+
     with open(documento, "w", encoding="utf-8") as file:
         file.write(contenuto)

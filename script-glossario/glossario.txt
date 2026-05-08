@@ -34,7 +34,6 @@ Fattibilità
 Feedback
 Framework
 Frontend
-Frontespizio
 Git
 GitHub
 GitHub Projects
