@@ -242,7 +242,6 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 \begin{itemize}
     \item \textbf{Utente:} La persona fisica che interagisce con l'interfaccia del sistema$_G$ per gestire le proprie note, organizzare la conoscenza e consultare le informazioni. È l'attore primario$_{G}$ che genera gli input$_{G}$.
     \item \textbf{LLM$_{G}$:} Il modello di intelligenza artificiale integrato nel sistema$_G$. Agisce come attore secondario$_{G}$, fornendo le funzionalità avanzate di elaborazione del linguaggio naturale, sintesi e generazione di contenuti su richiesta del sistema$_G$.
-    \item \textbf{Sistema di Persistenza$_{G}$:} Componente responsabile del salvataggio e del recupero dei dati. Agisce come attore secondario$_{G}$ garantendo che le informazioni siano memorizzate in modo permanente e siano accessibili nelle sessioni successive.
 \end{itemize}
 \begin{figure}[H]
   \centering
@@ -2032,12 +2031,6 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \hypertarget{uc:22.2}{}
 \paragraph{UC 22.2 - Gestione testo insufficiente per riassunto}
 \mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC22.2.pdf}
-  \caption{Diagramma UC22.2}
-  \label{fig:uc22.2}
-\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} Validazione della lunghezza del testo prima dell'invio.
@@ -2055,12 +2048,6 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \hypertarget{uc:22.3}{}
 \paragraph{UC 22.3 - Errore LLM}
 \mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC22.3.pdf}
-  \caption{Diagramma UC22.3}
-  \label{fig:uc22.3}
-\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione della mancata risposta del servizio IA.
@@ -2133,12 +2120,6 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \hypertarget{uc:23.2}{}
 \paragraph{UC 23.2 - Errore LLM}
 \mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC23.2.pdf}
-  \caption{Diagramma UC23.2}
-  \label{fig:uc23.2}
-\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione del fallimento della comunicazione con il servizio di traduzione.
@@ -2247,15 +2228,10 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \hypertarget{uc:24.2.1}{}
 \subparagraph{UC 24.2.1 - Nessun errore rilevato}
 \mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC24.2.1.pdf}
-  \caption{Diagramma UC24.2.1}
-  \label{fig:uc24.2.1}
-\end{figure}
+
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione del caso in cui il testo sia già grammaticalmente corretto.
-    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Principali:} Sistema.
     \item \textbf{Attori Secondari:} $LLM_G$.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
@@ -2267,16 +2243,10 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \hypertarget{uc:24.3}{}
 \paragraph{UC 24.3 - Errore LLM}
 \mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC24.3.pdf}
-  \caption{Diagramma UC24.3}
-  \label{fig:uc24.3}
-\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione del fallimento di comunicazione con l'intelligenza artificiale.
-    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Principali:} Sistema.
     \item \textbf{Attori Secondari:} $LLM_G$.
     \item \textbf{Precondizioni:} L'utente ha avviato una richiesta che coinvolge il $LLM_G$.
     \item \textbf{Postcondizioni:} Il sistema informa l'utente dell'errore senza modificare lo stato del documento.
@@ -2336,19 +2306,17 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \item \textbf{Descrizione:} L'utente definisce quali prospettive di analisi attivare.
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Precondizioni:} È stata invocata la funzione di analisi critica e il testo è presente nell'area di editing.
-    \item \textbf{Scenario Principale:}
-    \begin{enumerate}
-        \item Il sistema mostra i sei cappelli selezionabili:
+    \item \textbf{Scenario Principale:} Il sistema mostra i sei cappelli selezionabili.
+    \item \textbf{Generalizzazioni:}    
         \begin{itemize}
-            \item \textbf{Bianco:} Analisi basata su dati oggettivi e fatti.
-            \item \textbf{Rosso:} Espressione di emozioni, intuizioni e sensazioni.
-            \item \textbf{Giallo:} Identificazione di benefici, valore e opportunità.
-            \item \textbf{Nero:} Valutazione dei rischi, criticità e potenziali problemi.
-            \item \textbf{Verde:} Generazione di idee creative e soluzioni alternative.
-            \item \textbf{Blu:} Organizzazione del pensiero, sintesi e controllo del processo.
+            \item \hyperlink{uc:25.1.1}{UC 25.1.1 - Analisi Cappello Bianco (Obiettività e Fatti)}
+            \item \hyperlink{uc:25.1.2}{UC 25.1.2 - Analisi Cappello Rosso (Emotività e Sensazioni)}
+            \item \hyperlink{uc:25.1.3}{UC 25.1.3 - Analisi Cappello Giallo (Ottimismo e Opportunità)}
+            \item \hyperlink{uc:25.1.4}{UC 25.1.4 - Analisi Cappello Nero (Critica e Rischi)}
+            \item \hyperlink{uc:25.1.5}{UC 25.1.5 - Analisi Cappello Verde (Creatività e Alternativa)}
+            \item \hyperlink{uc:25.1.6}{UC 25.1.6 - Analisi Cappello Blu (Logica e Struttura)}
         \end{itemize}
         \item L'utente seleziona la combinazione desiderata e conferma l'invio.
-    \end{enumerate}
 \end{itemize}
 
 \hypertarget{uc:25.1.1}{}
@@ -2492,16 +2460,10 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \hypertarget{uc:25.2}{}
 \paragraph{UC 25.2 - Gestione testo insufficiente per l'analisi}
 \mbox{}\\       
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC25.2.pdf}
-  \caption{Diagramma UC25.2}
-  \label{fig:uc25.2}
-\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione del caso in cui il testo fornito sia troppo breve o privo di contenuto semantico per un'analisi critica sensata.
-    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Principali:} Sistema.
     \item \textbf{Attori Secondari:} $LLM_G$.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
@@ -2514,16 +2476,10 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \hypertarget{uc:25.3}{}
 \paragraph{UC 25.3 - Errore LLM}
 \mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC25.3.pdf}
-  \caption{Diagramma UC25.3}
-  \label{fig:uc25.3}
-\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} Fallimento della connessione con l'IA durante il processo di analisi critica.
-    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Principali:} Sistema.
     \item \textbf{Attori Secondari:} $LLM_G$.
     \item \textbf{Precondizioni:} L'utente ha confermato la selezione dei cappelli.
     \item \textbf{Postcondizioni:} Il sistema segnala il problema tecnico senza alterare il contenuto originale.
@@ -2586,7 +2542,6 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente inserisce una nuova istruzione testuale o ne seleziona una usata in precedenza.
     \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:}  Sistema di persistenza.
     \item \textbf{Precondizioni:} Il sistema è in modalità di configurazione del prompt$_G$.
     \item \textbf{Postcondizioni:} Un prompt$_G$ è selezionato e pronto all'invio.
     \item \textbf{Scenario Principale:}
@@ -2661,8 +2616,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente fornisce un URL di una pagina web; il sistema estrae il testo rilevante dalla risorsa e lo utilizza come contesto per richiedere all'LLM la generazione di un nuovo testo (es. "Scrivi un testo partendo da questo link").
     \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:} LLM$_G$, Servizio di fetch/estrazione (Browser o Backend Proxy).
-    \item \textbf{Precondizioni:} L'URL fornito è raggiungibile e il contenuto è accessibile (considerare CORS o utilizzo di proxy per fetch server-side).
+    \item \textbf{Precondizioni:} L'URL fornito è raggiungibile e il contenuto è accessibile.
     \item \textbf{Postcondizioni:} Il testo estratto dalla pagina viene incluso nel contesto inviato all'LLM e l'output generato viene mostrato per la validazione dell'utente.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
@@ -2689,7 +2643,6 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente sceglie una o più note esistenti per fornire base documentale all'AI
     \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:}  Sistema di persistenza.
     \item \textbf{Precondizioni:} Esistono note salvate nel sistema.
     \item \textbf{Postcondizioni:} Il contenuto delle note selezionate viene aggiunto al buffer del contesto.
     \item \textbf{Scenario Principale:}
@@ -2706,16 +2659,9 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \hypertarget{uc:26.6}{}
 \paragraph{UC 26.6 - Errore LLM}
 \mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC26.6.pdf}
-  \caption{Diagramma UC26.6}
-  \label{fig:uc26.6}
-\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione della mancanza di risposta da parte del servizio di Intelligenza Artificiale
-    \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:}  LLM$_G$.
     \item \textbf{Precondizioni:} Una richiesta è stata inviata.
     \item \textbf{Postcondizioni:} Il sistema torna allo stato precedente all'invio senza perdita di dati locali.
@@ -2779,7 +2725,6 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente esamina il testo prodotto dall'AI e lo giudica idoneo, accettando di utilizzarlo nel sistema.
     \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:}  Sistema di persistenza.
     \item \textbf{Precondizioni:} L'output dell'LLM è stato visualizzato correttamente a schermo (\hyperlink{uc:27}{UC 27}) e l'utente ha terminato la revisione.
     \item \textbf{Postcondizioni:} L'output è marcato come validato. Il sistema sblocca le funzioni di persistenza definitiva (\hyperlink{uc:27.1.1}{UC 27.1.1}, \hyperlink{uc:27.1.2}{UC 27.1.2}).
     \item \textbf{Scenario Principale:}
@@ -2811,7 +2756,6 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \begin{itemize}
     \item \textbf{Descrizione:} L'output AI sostituisce il contenuto corrente di una nota aperta.
     \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:}  Sistema di persistenza.
     \item \textbf{Precondizioni:} \hyperlink{uc:27.1}{UC 27.1} attivato.
     \item \textbf{Postcondizioni:} Il testo originale della nota aperta è sovrascritto.
     \item \textbf{Scenario Principale:}
@@ -2837,7 +2781,6 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \begin{itemize}
     \item \textbf{Descrizione:} L'output AI viene archiviato come un documento indipendente.
     \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:}  Sistema di persistenza.
     \item \textbf{Precondizioni:} \hyperlink{uc:27.1}{UC 27.1} attivato.
     \item \textbf{Postcondizioni:} L'output è salvato in una nuova nota e presente nel database.
     \item \textbf{Scenario Principale:}
@@ -2905,17 +2848,10 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \hypertarget{uc:27.4}{}
 \paragraph{UC 27.4 - Tracciamento delle note sorgente usate per un output AI}
 \mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC27.4.pdf}
-  \caption{Diagramma UC27.4}
-  \label{fig:uc27.4}
-\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} Memorizzazione dei metadati relativi a quali note (interne ed esterne) hanno contribuito alla generazione.
     \item \textbf{Attori Principali:} Sistema.
-    \item \textbf{Attori Secondari:}  Sistema di persistenza.
     \item \textbf{Precondizioni:} \hyperlink{uc:26}{UC 26} eseguito.
     \item \textbf{Postcondizioni:} La nota generata contiene riferimenti alle note sorgente.
     \item \textbf{Scenario Principale:}
@@ -3055,15 +2991,9 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \subparagraph{\texorpdfstring{UC 29.2.1 - Gestione errore creazione nota nel Database$_G$}{UC 29.2.1 - Gestione errore creazione nota nel Database}}
 \label{uc29.2.1}
 \mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC29.2.1.pdf}
-  \caption{Diagramma UC29.2.1}
-  \label{fig:uc29.2.1}
-\end{figure}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente vuole creare una nuova nota persistente nel database$_G$ dell'applicazione.
-    \item \textbf{Attore primario:} Utente
+    \item \textbf{Descrizione:} Il sistema non crea una nuova nota persistente nel database$_G$ dell'applicazione.
+    \item \textbf{Attore primario:} Sistema
     \item \textbf{Precondizioni:}
     \begin{itemize}
         \item Il sistema$_G$ è attivo e accessibile.
@@ -3198,16 +3128,10 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \paragraph{UC 30.3 - Gestione errore di caricamento}
 \label{uc30.3}
 \mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC30.3.pdf}
-  \caption{Diagramma UC30.3}
-  \label{fig:uc30.3}
-\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di caricamento della nota.
-    \item \textbf{Attore primario:} Utente
+    \item \textbf{Attore primario:} Sistema
     \item \textbf{Precondizioni:}
     \begin{itemize}
         \item Il sistema$_G$ è attivo e accessibile.
@@ -3335,16 +3259,10 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \paragraph{UC 31.3 - Gestione errore di salvataggio}
 \label{uc31.3}
 \mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC31.3.pdf}
-  \caption{Diagramma UC31.3}
-  \label{fig:uc31.3}
-\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di salvataggio della nota.
-    \item \textbf{Attore primario:} Utente
+    \item \textbf{Attore primario:} Sistema
     \item \textbf{Precondizioni:}
     \begin{itemize}
         \item Il sistema$_G$ è attivo e accessibile.
@@ -3444,16 +3362,10 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 
 \subparagraph{UC 32.1.1 - Gestione errore eliminazione}
 \mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC32.1.1.pdf}
-  \caption{Diagramma UC32.1.1}
-  \label{fig:uc32.1.1}
-\end{figure}
 \label{uc32.1.1}
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di eliminazione della nota.
-    \item \textbf{Attore primario:} Utente
+    \item \textbf{Attore primario:} Sistema
     \item \textbf{Precondizioni:}
     \begin{itemize}
         \item Il sistema$_G$ è attivo e accessibile.
@@ -3517,15 +3429,9 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \subparagraph{UC 32.2.1 - Gestione errore rinominazione}
 \mbox{}\\
 \label{uc32.2.1}
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC32.2.1.pdf}
-  \caption{Diagramma UC32.2.1}
-  \label{fig:uc32.2.1}
-\end{figure}
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di rinominazione della nota.
-    \item \textbf{Attore primario:} Utente
+    \item \textbf{Attore primario:} Sistema
     \item \textbf{Precondizioni:}
     \begin{itemize}
         \item Il sistema$_G$ è attivo e accessibile.
@@ -3868,16 +3774,10 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \paragraph{UC 34.1 - Gestione errore di login}
 \label{uc34.1}
 \mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC34.1.pdf}
-  \caption{Diagramma UC34.1}
-  \label{fig:uc34.1}
-\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di autenticazione dell'utente.
-    \item \textbf{Attore primario:} Utente
+    \item \textbf{Attore primario:} Sistema
     \item \textbf{Precondizioni:}
     \begin{itemize}
         \item Il sistema$_G$ è attivo e accessibile.
@@ -3942,12 +3842,6 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \paragraph{UC 35.1 - Gestione username già esistente}
 \label{uc35.1}
 \mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC35.1.pdf}
-  \caption{Diagramma UC35.1}
-  \label{fig:uc35.1}
-\end{figure}
 
 \begin{itemize}
     \item \textbf{Descrizione:} Il sistema$_G$ rileva che lo username inserito dall'utente è già associato a un account$_G$ esistente nel database$_G$.
