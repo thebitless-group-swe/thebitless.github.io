@@ -32,7 +32,7 @@ documenti = [
     if f.endswith(".tex") and "glossario.tex" not in f
 ]
 
-# Per ogni documento, sostituisce i termini con la versione evidenziata, ma solo la prima occorrenza di ogni termine
+# Per ogni documento, legge il contenuto, aggiunge $_G$ dopo ogni termine del glossario (escludendo i comandi LaTeX) 
 for documento in documenti:
     with open(documento, "r", encoding="utf-8") as file:
         contenuto = file.read()
@@ -40,10 +40,16 @@ for documento in documenti:
     inizio, corpo = contenuto.split(r"\begin{document}", 1)
 
     for termine in termini:
-        pattern = r'\b' + re.escape(termine) + r'\b(?!\$_G\$)'
+        pattern = r'\\[a-zA-Z]+\{[^}]*\}|\b' + re.escape(termine) + r'\b(?!\$_G\$)'
+
+        def sostituisci(match):
+            if match.group(0).startswith("\\"):
+                return match.group(0)  # Non sostituisce se è un comando LaTeX
+            return match.group(0) + '$_G$'  # Aggiunge $_G$ dopo il termine
+        
         corpo = re.sub(
             pattern,
-            r'\g<0>$_G$',
+            sostituisci,
             corpo,
             flags=re.IGNORECASE
         )
