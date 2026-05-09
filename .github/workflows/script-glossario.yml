@@ -46,5 +46,5 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add -A
-          git diff --cached --quiet || git commit -m "glossario: aggiunte $_G$ e PDF aggiornati"
+          git diff --cached --quiet || git commit -m "glossario: aggiunti pedici e PDF aggiornati"
           git push
