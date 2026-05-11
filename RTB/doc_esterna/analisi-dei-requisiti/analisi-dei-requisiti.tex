@@ -2010,6 +2010,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \end{enumerate}
     \item \textbf{Inclusioni:}
     \begin{itemize}
+        \item \hyperlink{uc:2}{UC 2 - Selezione del testo}
         \item \hyperlink{uc:22.1}{UC 22.1 - Selezione percentuale di riassunto}
     \end{itemize} 
     \item \textbf{Estensioni:}
@@ -2022,13 +2023,6 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \hypertarget{uc:22.1}{}
 \paragraph{UC 22.1 - Selezione percentuale di riassunto}
 \mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC22.1.pdf}
-  \caption{Diagramma UC22.1}
-  \label{fig:uc22.1}
-\end{figure}
-
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente definisce la lunghezza relativa del riassunto rispetto al testo originale.
     \item \textbf{Attori Principali:} Utente.
@@ -2099,9 +2093,10 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
         \item Il sistema riceve il testo tradotto e aggiorna l'interfaccia.
     \end{enumerate}
     \item \textbf{Inclusioni:}
-    \begin{enumerate}
+    \begin{itemize}
+        \item \hyperlink{uc:2}{UC 2 - Selezione del testo}
         \item \hyperlink{uc:23.1}{UC 23.1 - Selezione lingua di destinazione}
-    \end{enumerate}  
+    \end{itemize}  
     \item \textbf{Estensioni:}
     \begin{itemize}
         \item \hyperlink{uc:23.2}{UC 23.2 - Errore LLM}
@@ -2111,13 +2106,6 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \hypertarget{uc:23.1}{}
 \paragraph{UC 23.1 - Selezione lingua di destinazione}
 \mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC23.1.pdf}
-  \caption{Diagramma UC23.1}
-  \label{fig:uc23.1}
-\end{figure}
-
 \begin{itemize}
     \item \textbf{Descrizione:} L'utente sceglie la lingua di destinazione tra le opzioni supportate.
     \item \textbf{Attori Principali:} Utente.
@@ -2137,7 +2125,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione del fallimento della comunicazione con il servizio di traduzione.
     \item \textbf{Attori Principali:} Sistema.
-    \item \textbf{Attori Secondari:} LLM (Servizio Esterno).
+    \item \textbf{Attori Secondari:} LLM.
     \item \textbf{Precondizioni:} È stata inviata una richiesta di traduzione.
     \item \textbf{Postcondizioni:} L'utente viene avvisato del problema tecnico; lo stato dell'editor rimane invariato.
     \item \textbf{Scenario Principale:}
