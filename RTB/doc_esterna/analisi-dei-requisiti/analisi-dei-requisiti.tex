@@ -2124,8 +2124,8 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \begin{itemize}
     \item \textbf{Descrizione:} Gestione del fallimento della comunicazione con il servizio di traduzione.
-    \item \textbf{Attori Principali:} Sistema.
-    \item \textbf{Attori Secondari:} LLM.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Attori Secondari:} $LLM_G$.
     \item \textbf{Precondizioni:} È stata inviata una richiesta di traduzione.
     \item \textbf{Postcondizioni:} L'utente viene avvisato del problema tecnico; lo stato dell'editor rimane invariato.
     \item \textbf{Scenario Principale:}
@@ -2141,31 +2141,33 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \mbox{}\\
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{assets/img/UC24.pdf}
+  \includegraphics[width=0.8\textwidth]{assets/img/UC24.pdf}
   \caption{Diagramma UC24}
   \label{fig:uc24}
 \end{figure}
+
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente richiede la rielaborazione di un testo per migliorarne la forma o adattarlo a nuove esigenze.
+    \item \textbf{Descrizione:} L'utente richiede la rielaborazione di un testo per migliorarne la forma, correggerne la sintassi o adattarne lo stile.
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:} $LLM_G$.
-    \item \textbf{Precondizioni:} Il sistema è operativo e l'utente ha inserito o selezionato del testo nell'area di editing.
-    \item \textbf{Postcondizioni:} Il sistema visualizza la versione rielaborata nell'interfaccia.
+    \item \textbf{Precondizioni:} Il Sistema$_G$ è operativo e l'utente ha visualizzato il contenuto da rielaborare.
+    \item \textbf{Postcondizioni:} Il Sistema$_G$ visualizza la versione rielaborata del testo fornita dall'$LLM_G$.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item L'utente seleziona la porzione di testo.
+        \item L'utente seleziona la porzione di testo interessata (\hyperlink{uc:2}{UC 2}).
         \item L'utente attiva la funzione di riscrittura.
-        \item Il sistema permette di scegliere tra variazione stilistica (\hyperlink{uc:24.1}{UC 24.1}) o correzione grammaticale (\hyperlink{uc:24.2}{UC 24.2}).
-        \item Il sistema invia la richiesta al $LLM_G$.
-        \item Il sistema visualizza la versione rielaborata.
+        \item L'utente sceglie se procedere con una Variazione Stilistica (\hyperlink{uc:24.1}{UC 24.1}) o una Correzione Grammaticale (\hyperlink{uc:24.2}{UC 24.2})
+        \item Il sistema invia il contenuto e le specifiche al $LLM_G$.
+        \item Il sistema riceve il testo elaborato e lo mostra all'utente.
     \end{enumerate}
     \item \textbf{Generalizzazioni:}
     \begin{itemize}
-        \item \hyperlink{uc:24.2}{UC 24.2 - Correzione Grammaticale}
+        \item \hyperlink{uc:24.1}{UC 24.1 - Variazione Stilistica}: Per cambiare il tono del testo (es. da informale a formale).
+        \item \hyperlink{uc:24.2}{UC 24.2 - Correzione Grammaticale}: Per correggere errori ortografici e sintattici senza variare lo stile.
     \end{itemize}
     \item \textbf{Inclusioni:}
     \begin{itemize}
-        \item \hyperlink{uc:24.1}{UC 24.1 - Selezione Variazione Stilistica}
+        \item \hyperlink{uc:2}{UC 2 - Selezione del testo}
     \end{itemize}
     \item \textbf{Estensioni:}
     \begin{itemize}
@@ -2173,57 +2175,59 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \end{itemize}
 \end{itemize}
 
-\hypertarget{uc:24.1}{}
-\paragraph{UC 24.1 - Selezione Variazione Stilistica}
 \mbox{}\\
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{assets/img/UC24.1.pdf}
-  \caption{Diagramma UC24.1}
-  \label{fig:uc24.1}
+  \includegraphics[width=0.8\textwidth]{assets/img/UC24-1.pdf}
+  \caption{Diagramma Generalizzazioni UC24}
+  \label{fig:uc24-1}
 \end{figure}
 
+\hypertarget{uc:24.1}{}
+\paragraph{UC 24.1 - Variazione Stilistica}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente sceglie un registro stilistico specifico (es. informale, colloquiale) per la rielaborazione.
+    \item \textbf{Descrizione:} L'utente richiede di cambiare il tono o lo stile del testo.
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:} $LLM_G$.
-    \item \textbf{Precondizioni:} È stata invocata la funzione di riscrittura (\hyperlink{uc:24}{UC 24}).
-    \item \textbf{Postcondizioni:} Il sistema visualizza la versione rielaborata secondo lo stile scelto.
+    \item \textbf{Precondizioni:} L'utente ha attivato la funzione di riscrittura (\hyperlink{uc:24}{UC 24}).
+    \item \textbf{Postcondizioni:} Il testo è stato riscritto secondo lo stile selezionato.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item L'utente visualizza le opzioni stilistiche disponibili.
-        \item L'utente seleziona lo stile desiderato.
-        \item Il sistema inoltra il testo e il parametro stilistico al $LLM_G$.
-        \item Il sistema visualizza la versione rielaborata.
+        \item Il sistema richiede la selezione dello stile desiderato (\hyperlink{uc:24.1.1}{UC 24.1.1}).
+        \item Il sistema invia il testo e lo stile scelto all'$LLM_G$.
+        \item Il sistema riceve e visualizza il testo trasformato.
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperlink{uc:24.1.1}{UC 24.1.1 - Selezione tipologia di stile}.
+\end{itemize}
+
+\hypertarget{uc:24.1.1}{}
+\subparagraph{UC 24.1.1 - Selezione tipologia di stile}
+\begin{itemize}
+    \item \textbf{Descrizione:} L'utente sceglie attivamente il tono stilistico da applicare al testo da una lista di opzioni fornite dal sistema.
+    \item \textbf{Attori Principali:} Utente.
+    \item \textbf{Precondizioni:} Il sistema ha mostrato il menu di selezione degli stili.
+    \item \textbf{Postcondizioni:} Il sistema ha registrato lo stile scelto per la successiva elaborazione.
+    \item \textbf{Scenario Principale:}
+    \begin{enumerate}
+        \item Il sistema mostra un elenco di opzioni: Formale, Informale, Accademico, Critico.
+        \item L'utente seleziona una delle opzioni.
+        \item Il sistema memorizza la scelta e prosegue l'esecuzione.
     \end{enumerate}
 \end{itemize}
 
 \hypertarget{uc:24.2}{}
 \paragraph{UC 24.2 - Correzione Grammaticale}
-\mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC24.2.pdf}
-  \caption{Diagramma UC24.2}
-  \label{fig:uc24.2}
-\end{figure}
-
 \begin{itemize}
-    \item \textbf{Descrizione:} Il sistema analizza il testo per correggere errori ortografici e sintattici.
+    \item \textbf{Descrizione:} L'utente richiede la correzione di errori ortografici e sintattici senza alterare lo stile originale.
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:} $LLM_G$.
-    \item \textbf{Precondizioni:} E' stata invocata la funzione di riscrittura e il testo è presente nell'area di editing.
-    \item \textbf{Postcondizioni:} Il sistema visualizza la versione corretta del testo.
+    \item \textbf{Precondizioni:} L'utente ha attivato la funzione di riscrittura (\hyperlink{uc:24}{UC 24}).
+    \item \textbf{Postcondizioni:} Il testo corretto è visualizzato nell'interfaccia.
     \item \textbf{Scenario Principale:}
     \begin{enumerate}
-        \item L'utente richiede la verifica grammaticale.
-        \item Il sistema analizza il testo tramite $LLM_G$.
-        \item Il sistema visualizza la versione rielaborata con le correzioni.
+        \item Il sistema invia il testo all'$LLM_G$ con l'istruzione di correggere esclusivamente la grammatica.
+        \item Il sistema riceve il testo corretto e lo mostra all'utente.
     \end{enumerate}
-    \item \textbf{Estensioni:}
-    \begin{itemize}
-        \item \hyperlink{uc:24.2.1}{UC 24.2.1 - Scenario: Nessun errore rilevato}
-    \end{itemize}
 \end{itemize}
 
 \hypertarget{uc:24.2.1}{}
