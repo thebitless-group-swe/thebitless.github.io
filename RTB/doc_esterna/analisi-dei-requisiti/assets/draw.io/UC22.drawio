@@ -9,22 +9,22 @@
       <mxGeometry height="60" width="30" x="660" y="330" as="geometry" />
     </mxCell>
     <mxCell id="p2sep0m7qQ60FvVHNfT_-705" parent="1" style="whiteSpace=wrap;html=1;" value="" vertex="1">
-      <mxGeometry height="400" width="430" x="180" y="160" as="geometry" />
+      <mxGeometry height="390" width="430" x="180" y="170" as="geometry" />
     </mxCell>
     <mxCell id="p2sep0m7qQ60FvVHNfT_-706" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
-      <mxGeometry height="30" width="60" x="550" y="130" as="geometry" />
+      <mxGeometry height="30" width="60" x="180" y="560" as="geometry" />
     </mxCell>
     <mxCell id="p2sep0m7qQ60FvVHNfT_-707" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 22 - Riassunto contenuto con LLM" vertex="1">
-      <mxGeometry height="70" width="210" x="290" y="300" as="geometry" />
+      <mxGeometry height="70" width="210" x="290" y="315" as="geometry" />
     </mxCell>
     <mxCell id="p2sep0m7qQ60FvVHNfT_-708" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 22.1 - Selezione percentuale di riassunto" vertex="1">
-      <mxGeometry height="70" width="210" x="290" y="180" as="geometry" />
+      <mxGeometry height="70" width="210" x="380" y="200" as="geometry" />
     </mxCell>
     <mxCell id="p2sep0m7qQ60FvVHNfT_-709" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 22.2 - Gestione testo insufficiente" vertex="1">
-      <mxGeometry height="70" width="180" x="210" y="450" as="geometry" />
+      <mxGeometry height="70" width="180" x="210" y="470" as="geometry" />
     </mxCell>
     <mxCell id="p2sep0m7qQ60FvVHNfT_-710" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 22.3 - Errore LLM" vertex="1">
-      <mxGeometry height="70" width="180" x="410" y="450" as="geometry" />
+      <mxGeometry height="70" width="180" x="410" y="470" as="geometry" />
     </mxCell>
     <mxCell id="p2sep0m7qQ60FvVHNfT_-711" edge="1" parent="1" source="p2sep0m7qQ60FvVHNfT_-703" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="p2sep0m7qQ60FvVHNfT_-707">
       <mxGeometry relative="1" as="geometry" />
@@ -44,6 +44,12 @@
       <mxGeometry relative="1" x="-0.5161" y="-4" as="geometry">
         <mxPoint as="offset" />
       </mxGeometry>
+    </mxCell>
+    <mxCell id="NEW_UC_2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 2 - Selezione del testo" vertex="1">
+      <mxGeometry height="70" width="180" x="190" y="200" as="geometry" />
+    </mxCell>
+    <mxCell id="NEW_EDGE_INCLUDE" edge="1" parent="1" source="p2sep0m7qQ60FvVHNfT_-707" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;dashed=1;" target="NEW_UC_2" value="&lt;small&gt;&amp;lt;&amp;lt;include&amp;gt;&amp;gt;&lt;/small&gt;">
+      <mxGeometry relative="1" as="geometry" />
     </mxCell>
   </root>
 </mxGraphModel>
