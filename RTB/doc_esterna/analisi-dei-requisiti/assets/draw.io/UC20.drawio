@@ -1,40 +1,25 @@
 <mxfile host="app.diagrams.net">
-  <diagram name="UC 11 - Gestione Codice" id="Kt2Dgr2KxfvWRwyXOeAN">
-    <mxGraphModel dx="964" dy="671" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+  <diagram id="AxWHpAUfe2nSXUw-a4qK" name="Page-1">
+    <mxGraphModel dx="787" dy="497" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-214" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente" vertex="1">
-          <mxGeometry height="60" width="30" x="100" y="680" as="geometry" />
+        <mxCell id="UC3-drawio-actor" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=11;" value="Utente" vertex="1">
+          <mxGeometry height="50" width="25" x="390" y="331" as="geometry" />
         </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-215" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
-          <mxGeometry height="500" width="500" x="220" y="460" as="geometry" />
+        <mxCell id="UC3-drawio-boundary" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="90" width="150" x="450" y="310" as="geometry" />
         </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-216" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
-          <mxGeometry height="30" width="60" x="220" y="960" as="geometry" />
+        <mxCell id="UC3-drawio-label" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=11;" value="Sistema" vertex="1">
+          <mxGeometry height="30" width="60" x="540" y="280" as="geometry" />
         </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-217" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 20 - Visualizzazione nota Markdown" vertex="1">
-          <mxGeometry height="80" width="180" x="240" y="670" as="geometry" />
+        <mxCell id="UC3-drawio-usecase" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;convertToSvg=1;svgWhiteSpace=wrap;labelBorderColor=none;labelBackgroundColor=none;spacingBottom=-5;" value="&lt;div&gt;UC 20 - Inserimento elenco&lt;/div&gt;" vertex="1">
+          <mxGeometry height="42" width="122.5" x="467.5" y="335" as="geometry" />
         </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-218" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-214" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-217">
+        <mxCell id="UC3-drawio-association" edge="1" parent="1" source="UC3-drawio-actor" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="UC3-drawio-usecase">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-219" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 20.1 - Visualizzazione esclusiva editor Markdown" vertex="1">
-          <mxGeometry height="80" width="220" x="470" y="500" as="geometry" />
-        </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-220" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 20.2 - Visualizzazione esclusiva render Markdown" vertex="1">
-          <mxGeometry height="80" width="220" x="470" y="670" as="geometry" />
-        </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-221" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 20.3 - Visualizzazione combinata editor e render" vertex="1">
-          <mxGeometry height="80" width="220" x="470" y="840" as="geometry" />
-        </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-222" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-219" style="endArrow=block;endFill=0;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.85;entryY=0.15;entryDx=0;entryDy=0;entryPerimeter=0;" target="RaLqJGYHGWQkEpiDzxTo-217">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-223" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-220" style="endArrow=block;endFill=0;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="RaLqJGYHGWQkEpiDzxTo-217">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-224" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-221" style="endArrow=block;endFill=0;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.85;entryY=0.85;entryDx=0;entryDy=0;entryPerimeter=0;" target="RaLqJGYHGWQkEpiDzxTo-217">
+        <mxCell id="4S_GJxI6N92lzNAu5wbE-6" edge="1" parent="1" source="UC3-drawio-label" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="UC3-drawio-label">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
