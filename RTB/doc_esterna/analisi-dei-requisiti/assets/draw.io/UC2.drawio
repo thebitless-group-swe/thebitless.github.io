@@ -1,37 +1,21 @@
-<mxfile host="app.diagrams.net">
-  <diagram name="UC 11 - Gestione Codice" id="Kt2Dgr2KxfvWRwyXOeAN">
-    <mxGraphModel dx="964" dy="671" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
-      <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-259" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente" vertex="1">
-          <mxGeometry height="60" width="30" x="100" y="671.25" as="geometry" />
-        </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-260" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
-          <mxGeometry height="460" width="460" x="240" y="490" as="geometry" />
-        </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-261" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
-          <mxGeometry height="30" width="60" x="240" y="920" as="geometry" />
-        </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-262" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 2 - Selezione del testo" vertex="1">
-          <mxGeometry height="80" width="170" x="385" y="521.25" as="geometry" />
-        </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-263" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-259" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-262">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-264" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 2.1 - Selezione di un&#39;area di testo con cursore" vertex="1">
-          <mxGeometry height="80" width="205" x="270" y="721.25" as="geometry" />
-        </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-265" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-264" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-262">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-266" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 2.2 - Selezione documento intero" vertex="1">
-          <mxGeometry height="80" width="205" x="480" y="721.25" as="geometry" />
-        </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-267" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-266" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-262">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-      </root>
-    </mxGraphModel>
-  </diagram>
-</mxfile>
+<mxGraphModel dx="962" dy="536" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    <mxCell id="UC2-actor-utente" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente" vertex="1">
+      <mxGeometry height="60" width="30" x="290" y="665" as="geometry" />
+    </mxCell>
+    <mxCell id="UC2-system-boundary" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
+      <mxGeometry height="215" width="215" x="378.75" y="587.5" as="geometry" />
+    </mxCell>
+    <mxCell id="UC2-system-label" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
+      <mxGeometry height="30" width="60" x="533.75" y="560" as="geometry" />
+    </mxCell>
+    <mxCell id="UC2-usecase" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" value="UC 2 - Selezione di un&#39;area di testo con cursore" vertex="1">
+      <mxGeometry height="65" width="192.5" x="390" y="662.5" as="geometry" />
+    </mxCell>
+    <mxCell id="UC2-association" edge="1" parent="1" source="UC2-actor-utente" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="UC2-usecase">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+  </root>
+</mxGraphModel>

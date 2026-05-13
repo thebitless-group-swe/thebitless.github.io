@@ -5,6 +5,7 @@
 \usepackage{graphicx} 
 
 \usepackage{multirow}
+\usepackage{longtable}
 \usepackage{geometry}
 \usepackage{xurl}
 \usepackage[nopatch=footnote]{microtype}
@@ -14,8 +15,8 @@
 \usepackage{setspace}
 \definecolor{bluBitless}{HTML}{3A75C4}
 \usepackage{tabularx}
-\newcolumntype{L}{>{\raggedright\arraybackslash}X}
 \usepackage{fancyhdr}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -35,8 +36,6 @@
 }
 
 \begin{document}
-
-
 \raggedbottom
 
 \setlength{\emergencystretch}{2em}
@@ -48,9 +47,6 @@
 \newcommand{\stato}{Stesura}
 \newcommand{\destinatari}{The Bitless, prof. T. Vardanega, prof. R. Cardin, Zucchetti}
 \def\templatedir{../../../templates}
-
-
-
 \setcounter{secnumdepth}{5}
 \setcounter{tocdepth}{5}
 
@@ -62,49 +58,61 @@
 \newpage
 \pagenumbering{arabic}
 
+\begingroup
+\small
+\begin{longtable}{|c|c|c|c|c|p{3cm}|}
+    \hline
+    \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
+    \hline
+    \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
+    \hline
+    \endhead
+
+    1.0.0 & 2026-05-12 & A. Marini & S. Zecchinato & A. Marini & Approvazione finale. \\ \hline
+
+    0.17.0 & 2026-04-30 & A. Marini & S. Zecchinato & - & Inserimento diagrammi UML UC 70-83. \\ \hline
+
+    0.16.0 & 2026-04-29 & L. Battistella & S. Zecchinato & - & Inserimento diagrammi UML UC 40-69. \\ \hline
+
+    0.15.0 & 2026-04-28 & D. Facco & S. Zecchinato & - & Inserimento diagrammi UML UC 1-39. \\ \hline
+
+    0.14.0 & 2026-04-27 & L. Battistella & E. De Piccoli & - & Sistemazione UC Annullamento e Errore LLM \\ \hline
+
+    0.13.0 & 2026-04-25 & A. Marini & E. De Piccoli & - & Stesura UC 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83. \\ \hline
+
+    0.12.0 & 2026-04-23 & D. Facco & E. De Piccoli & - & Stesura UC 65, 66, 67, 68, 69, 70, 71, 72. \\ \hline
+
+    0.11.0 & 2026-04-20 & S. Zecchinato & E. De Piccoli & - & Stesura UC 57, 58, 59, 60, 61, 62, 63, 64. \\ \hline
+
+    0.10.0 & 2026-04-17 & A. Menegaldo & E. De Piccoli & - & Stesura UC 49, 50, 51, 52, 53, 54, 55, 56. \\ \hline
+
+    0.9.0 & 2026-04-14 & L. Battistella & E. De Piccoli & - & Stesura UC 41, 42, 43, 44, 45, 46, 47, 48. \\ \hline
+
+    0.8.0 & 2026-04-10 & S. Vendramin & A. Menegaldo & - & Stesura UC 33, 34, 35, 36, 37, 38, 39, 40. \\ \hline
+
+    0.7.0 & 2026-04-06 & A. Marini & A. Menegaldo & - & Stesura UC 25, 26, 27, 28, 29, 30, 31, 32. \\ \hline
+
+    0.6.0 & 2026-04-02 & E. De Piccoli & A. Menegaldo & - & Stesura UC 17, 18, 19, 20, 21, 22, 23, 24. \\ \hline
+
+    0.5.0 & 2026-03-31 & D. Facco & A. Menegaldo & - & Stesura UC 9, 10, 11, 12, 13, 14, 15, 16. \\ \hline
+
+    0.4.0 & 2026-03-25 & S. Zecchinato & D. Facco & - & Stesura UC 1, 2, 3, 4, 5, 6, 7, 8. \\ \hline
+
+    0.3.0 & 2026-03-20 & A. Menegaldo & E. De Piccoli & - & Stesura introduzione ai casi d'uso e tabella dei casi d'uso. \\ \hline
+
+    0.2.0 & 2026-03-12 & A. Marini & S. Vendramin & - & Stesura Introduzione e descrizione del prodotto. \\ \hline
+
+    0.1.0 & 2026-03-05 & S. Vendramin & A. Menegaldo & - & Creazione struttura documento \\ \hline
+
+\end{longtable}
+\endgroup
+
+\newpage
+
 \tableofcontents
 \newpage
 
 \listoffigures
-\newpage
-
-\begin{center}
-    \small
-    \begin{tabularx}{\textwidth}{|c|c|c|c|c|L|}
-        \hline
-        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\  
-        \hline
-        1.0.0 & 2026-05-10 & - & - & A. Marini & Approvazione \\
-        \hline
-        0.13.0 & 2026-05-09 & - & S. Zecchinato & - & Verifica e sistemazione refusi \\
-        \hline
-        0.12.0 & 2026-05-05 & D. Facco & S. Zecchinato & - & Inserimento UML UC Funzionalità AI \\
-        \hline
-        0.11.0 & 2026-05-03 & S. Vendramin & S. Zecchinato & - & Inserimento UML UC Salvataggio e persistenza \\
-        \hline
-        0.10.0 & 2026-04-30 & S. Vendramin & S. Zecchinato & - & Inserimento UML UC Editing di base \\
-        \hline
-        0.9.0 & 2026-04-28 & A. Marini & S. Zecchinato & - & Sistemazione UC 21 e generalizzazioni \\
-        \hline
-        0.8.0 & 2026-04-28 & S. Vendramin & S. Zecchinato & - & Sezione Requisiti \\
-        \hline
-        0.7.0 & 2026-04-27 & A. Menegaldo & E. De Piccoli & - & Stesura casi d'uso salvataggio e persistenza \\
-        \hline
-        0.6.0 & 2026-04-26 & S. Zecchinato & E. De Piccoli & - & Struttura salvataggio e persistenza \\
-        \hline
-        0.5.0 & 2026-04-22 & D. Facco & E. De Piccoli & - & Stesura casi d'uso funzionalità AI \\
-        \hline
-        0.4.0 & 2026-04-21 & S. Vendramin & E. De Piccoli & - & Stesura Casi d'uso editing di base\\
-        \hline
-        0.3.0 & 2026-03-25 & D. Facco & S. Vendramin & - & Stesura Analisi del Prodotto \\
-        \hline
-        0.2.0 & 2026-03-22 & A. Marini & S. Vendramin & - & Stesura Introduzione \\
-        \hline
-        0.1.0 & 2026-03-21 & S. Vendramin & A. Menegaldo & - & Struttura documento \\
-        \hline
-    \end{tabularx}
-\end{center}
-
 \newpage
 
 \section{Introduzione}
@@ -134,25 +142,24 @@ Il documento è dunque da considerarsi dinamico, soggetto a un processo di raffi
 \subsubsection{Riferimenti Normativi}
 \begin{itemize}
     \item \textbf{Capitolato C6 - Second Brain}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C6.pdf} \allowbreak \\
-    (Consultato il 2026-04-17)
+    Ultimo accesso 14 aprile 2026
     \item \textbf{Regolamento del Progetto Didattico}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf} \allowbreak \\
-    (Consultato il 2026-04-20)
-    \item \textbf{Norme di Progetto}: \\ \url{https://github.com/thebitless.github.io/RTB/doc_interna/norme-di-progetto/norme-di-progetto.pdf} \allowbreak \\
-    (Consultato il 2026-04-29)
+    Ultimo accesso 14 aprile 2026
+    \item \textbf{Norme di Progetto v0.5.0}: \\ \url{https://thebitless.live/RTB/doc_interna/norme-di-progetto/norme-di-progetto.pdf} \allowbreak \\
+    Ultimo accesso 21 aprile 2026
 \end{itemize}
-
 
 \subsubsection{Riferimenti Informativi}
 \begin{itemize}
-    \item \textbf{Glossario di Progetto}: \\
-    \url{https://github.com/thebitless-group-swe/thebitless.github.io/blob/main/RTB/doc_interna/glossario/glossario.pdf} \allowbreak \\
-    (Consultato il 2026-05-06)
+    \item \textbf{Glossario v0.5.0}: \\
+    \url{https://thebitless.live/RTB/doc_interna/glossario/glossario.pdf} \allowbreak \\
+    Ultimo accesso 30 aprile 2026
     \item \textbf{Dispense Analisi dei requisiti}: \\
     \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf}
-    (Consultato il 2026-04-28)
+    Ultimo accesso 14 aprile 2026
     \item \textbf{Dispense Casi d'uso}: \\
     \url{https://www.math.unipd.it/~rcardin/swea/2022/Diagrammi%20Use%20Case.pdf} \\
-    (Consultato il 2026-05-03)
+    Ultimo accesso 21 aprile 2026
 \end{itemize}
 
 \newpage
@@ -236,45 +243,45 @@ Per garantire completezza e rigore metodologico, ogni caso d'uso segue la strutt
 \hline
 \rowcolor[HTML]{EFEFEF} 
 \textbf{Campo} & \textbf{Descrizione} \\ \hline
-\textbf{Descrizione} & Breve riassunto che spiega l'obiettivo del caso d'uso e il valore che apporta all'utente. \\ \hline
 \textbf{Attori Principali} & Persone o entità che interagiscono attivamente con il sistema$_G$ per raggiungere un obiettivo, avviando l'operazione. \\ \hline
 \textbf{Attori Secondari} & Entità esterne (come l'LLM$_{G}$) che interagiscono con il sistema$_G$ in modo passivo o forniscono servizi necessari al completamento del compito. \\ \hline
-\textbf{Precondizioni} & Stato in cui deve trovarsi il sistema$_G$ affinché il caso d'uso possa essere avviato con successo. \\ \hline
-\textbf{Postcondizioni} & Stato del sistema$_G$ al termine dell'esecuzione del caso d'uso, garantendo che l'obiettivo sia stato raggiunto. \\ \hline
+\textbf{Pre-condizioni} & Stato in cui deve trovarsi il sistema$_G$ affinché il caso d'uso possa essere avviato con successo. \\ \hline
+\textbf{Post-condizioni} & Stato del sistema$_G$ al termine dell'esecuzione del caso d'uso, garantendo che l'obiettivo sia stato raggiunto. \\ \hline
 \textbf{Scenario Principale} & Sequenza ordinata di passi che l'attore e il sistema$_G$ compiono per completare l'operazione. \\ \hline
+\textbf{Scenario Alternativo} & Scenario divergente dal principale per il verificarsi di una particolare condizione. \\ \hline
 \textbf{Estensioni} & Casi d'uso$_G$ aggiuntivi o varianti che possono attivarsi in base a specifiche condizioni durante il flusso principale. \\ \hline
 \textbf{Inclusioni} & Funzionalità comuni o moduli esterni che vengono obbligatoriamente richiamati per il corretto funzionamento del caso d'uso. \\ \hline
+\textbf{Generalizzazioni} & Casi d’uso più specifici che ereditano comportamento e caratteristiche da un caso d’uso più generale, potendo aggiungere o specializzare ulteriori funzionalità. \\ \hline
+\textbf{Trigger} & Condizione o evento che scatena l'attivazione del caso d'uso. \\ \hline
 \end{tabular}
 \caption{Struttura della documentazione dei Casi d'Uso$_G$}
 \end{table}
 \newpage
-\subsection{Attori del Sistema}
-
-All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie principali di attori$_{G}$:
+\subsection{Attori del Sistema} 
+All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipologie principali di attori$_G$:
 
 \begin{itemize}
-    \item \textbf{Utente:} La persona fisica che interagisce con l'interfaccia del sistema$_G$ per gestire le proprie note, organizzare la conoscenza e consultare le informazioni. È l'attore primario$_{G}$ che genera gli input$_{G}$.
-    \item \textbf{LLM$_{G}$:} Il modello di intelligenza artificiale integrato nel sistema$_G$. Agisce come attore secondario$_{G}$, fornendo le funzionalità avanzate di elaborazione del linguaggio naturale, sintesi e generazione di contenuti su richiesta del sistema$_G$.
+    \item \textbf{Utente:} rappresenta la persona fisica che interagisce con l'interfaccia del sistema$_G$ per gestire le proprie note, organizzare la conoscenza e consultare le informazioni. È l'attore primario$_G$ che genera gli input$_G$ e può utilizzare le funzionalità generali dell'applicazione, come l'editing del testo, la formattazione, l'utilizzo delle funzionalità AI e la gestione locale delle note.
+
+    \begin{itemize}
+        \item \textbf{Utente autenticato:} rappresenta una specializzazione dell'attore Utente. Indica un utente che ha completato il processo di autenticazione e può accedere anche alle funzionalità cloud, come sincronizzazione, salvataggio nel database$_G$, caricamento di note online, ricerca nel database$_G$ e gestione dell'account. L'attore \textbf{Utente autenticato} eredita tutte le funzionalità dell'attore \textbf{Utente}, aggiungendo quelle disponibili solo dopo l'autenticazione.
+    \end{itemize}
+    
+    \item \textbf{LLM$_G$:} rappresenta il modello di intelligenza artificiale integrato nel sistema$_G$. Agisce come attore secondario$_G$, fornendo le funzionalità avanzate di elaborazione del linguaggio naturale, sintesi, traduzione, correzione, analisi e generazione di contenuti su richiesta del sistema$_G$.
 \end{itemize}
+
+
+\subsection{Editing di base}
+
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/Intro.pdf}
-  \caption{Diagramma degli attori del sistema}
-  \label{fig:DiagrammaAttori}
+    \centering
+    \includegraphics[width=0.7\textwidth]{assets/img/UC1.pdf}
+    \caption{UC 1-5 - Scrittura, selezione del testo, taglia, copia e incolla}
+    \label{fig:uc1-uc5}
 \end{figure}
-
-\subsection{Editing di base}
-\subsection{Editing di base}
-
 % --- UC 1 ---
 \subsubsection{UC 1 - Scrittura testo nell'editor}
 \hypertarget{uc:1}{}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{assets/img/UC1.pdf}
-    \caption{UC 1 - Scrittura testo nell'editor}
-    \label{fig:uc1}
-\end{figure}
 
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
@@ -298,13 +305,6 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 % --- UC 2 ---
 \subsubsection{UC 2 - Selezione di un'area di testo con cursore}
 \hypertarget{uc:2}{}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{assets/img/UC2.pdf}
-    \caption{UC 2 - Selezione di un'area di testo con cursore}
-    \label{fig:uc2}
-\end{figure}
-
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:}
@@ -325,14 +325,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole isolare una parte del testo per sottoporla a successive operazioni di modifica, spostamento o formattazione.
 \end{itemize}
 
-% --- UC 4 ---
+% --- UC 3 ---
 \subsubsection{UC 3 - Taglia}
 \hypertarget{uc:3}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:}
         \begin{itemize}
-        \item Una porzione di testo è stata preventivamente selezionata tramite \hyperlink{uc:2}{UC 2} o \hyperlink{uc:3}{UC 3}.
+        \item Una porzione di testo è stata preventivamente selezionata tramite \hyperlink{uc:2}{UC 2}.
         \end{itemize}
     \item \textbf{Post-condizioni:}
         \begin{itemize}
@@ -345,21 +345,23 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
             \item Il sistema copia la selezione negli appunti.
             \item Il sistema elimina i caratteri corrispondenti dal documento e aggiorna la vista.
         \end{enumerate}
-    \item \textbf{Inclusioni:} 
-        \begin{itemize}
-            \item \hyperlink{uc:2}{UC 2 - Selezione del testo}
-        \end{itemize}
     \item \textbf{Trigger:} L'utente vuole rimuovere una porzione di testo per spostarla in un'altra posizione o applicazione.
 \end{itemize}
 
 % --- UC 4 ---
 \subsubsection{UC 4 - Copia}
 \hypertarget{uc:4}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{assets/img/UC4.pdf}
+    \caption{UC 4 - Copia}
+    \label{fig:uc4}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:}
         \begin{itemize}
-        \item Una porzione di testo è stata selezionata correttamente tramite \hyperlink{uc:2}{UC 2}..
+        \item Una porzione di testo è stata selezionata correttamente tramite \hyperlink{uc:2}{UC 2}.
         \end{itemize}
     \item \textbf{Post-condizioni:}
         \begin{itemize}
@@ -371,16 +373,18 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
             \item L'utente attiva il comando "Copia".
             \item Il sistema acquisisce la stringa selezionata e la memorizza nella clipboard.
         \end{enumerate}
-    \item \textbf{Inclusioni:} 
-        \begin{itemize}
-            \item \hyperlink{uc:2}{UC 2 - Selezione del testo}
-        \end{itemize}
     \item \textbf{Trigger:} L'utente vuole duplicare una porzione di testo senza rimuoverla dalla posizione originale.
 \end{itemize}
 
 % --- UC 5 ---
 \subsubsection{UC 5 - Incolla}
 \hypertarget{uc:5}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{assets/img/UC5.pdf}
+    \caption{UC 5 - Incolla}
+    \label{fig:uc5}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:}
@@ -404,6 +408,12 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 % --- UC 6 ---
 \subsubsection{UC 6 - Undo}
 \hypertarget{uc:6}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{assets/img/UC6.pdf}
+    \caption{UC 6 - Undo}
+    \label{fig:uc6}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:}
@@ -424,8 +434,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
 \end{itemize}
 
 % --- UC 7 ---
-\subsubsection{UC 7 - Redo}
 \hypertarget{uc:7}{}
+\subsubsection{UC 7 - Redo}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{assets/img/UC7.pdf}
+    \caption{UC 7 - Redo}
+    \label{fig:uc7}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:}
@@ -445,9 +461,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole ripristinare un'azione che era stata rimossa tramite il comando di Undo.
 \end{itemize}
 
-% --- UC 7 ---
-\subsubsection{UC 7 - Applicazione stile Grassetto}
-\hypertarget{uc:7}{}
+% --- UC 8 ---
+\hypertarget{uc:8}{}
+\subsubsection{UC 8 - Applicazione stile Grassetto}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{assets/img/UC8.pdf}
+    \caption{UC 8 - Applicazione stile Grassetto}
+    \label{fig:uc8}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -467,9 +489,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole iniziare a scrivere in grassetto o applicare tale enfasi a una porzione di testo selezionata.
 \end{itemize}
 
-% --- UC 8 ---
-\subsubsection{UC 8 - Rimozione stile Grassetto}
-\hypertarget{uc:8}{}
+\hypertarget{uc:9}{}
+\subsubsection{UC 9 - Rimozione stile Grassetto}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{assets/img/UC9.pdf}
+    \caption{UC 9 - Rimozione stile Grassetto}
+    \label{fig:uc9}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -489,9 +516,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole cessare la scrittura in grassetto o rimuovere tale formattazione da una parte del testo.
 \end{itemize}
 
-% --- UC 9 - APPLICAZIONE CORSIVO ---
-\subsubsection{UC 9 - Applicazione stile Corsivo}
-\hypertarget{uc:9}{}
+% --- UC 10 - APPLICAZIONE CORSIVO ---
+\hypertarget{uc:10}{}
+\subsubsection{UC 10 - Applicazione stile Corsivo}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{assets/img/UC10.pdf}
+    \caption{UC 10 - Applicazione stile Corsivo}
+    \label{fig:uc10}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -510,9 +543,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole applicare lo stile corsivo al testo esistente o futuro.
 \end{itemize}
 
-% --- UC 10 - RIMOZIONE CORSIVO ---
-\subsubsection{UC 10 - Rimozione stile Corsivo}
-\hypertarget{uc:10}{}
+% --- UC 11 - RIMOZIONE CORSIVO ---
+\hypertarget{uc:11}{}
+\subsubsection{UC 11 - Rimozione stile Corsivo}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{assets/img/UC11.pdf}
+    \caption{UC 11 - Rimozione stile Corsivo}
+    \label{fig:uc11}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -531,9 +570,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole rimuovere lo stile corsivo dal testo.
 \end{itemize}
 
-% --- UC 10 - APPLICAZIONE SOTTOLINEATO ---
-\subsubsection{UC 10 - Applicazione stile Sottolineato}
-\hypertarget{uc:10}{}
+% --- UC 12 - APPLICAZIONE SOTTOLINEATO ---
+\hypertarget{uc:12}{}
+\subsubsection{UC 12 - Applicazione stile Sottolineato}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{assets/img/UC12.pdf}
+    \caption{UC 12 - Applicazione stile Sottolineato}
+    \label{fig:uc12}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -553,9 +598,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole evidenziare una porzione di testo (esistente o da scrivere) tramite una linea inferiore.
 \end{itemize}
 
-% --- UC 11 - RIMOZIONE SOTTOLINEATO ---
-\subsubsection{UC 11 - Rimozione stile Sottolineato}
-\hypertarget{uc:11}{}
+% --- UC 13 - RIMOZIONE SOTTOLINEATO ---
+\hypertarget{uc:13}{}
+\subsubsection{UC 13 - Rimozione stile Sottolineato}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{assets/img/UC13.pdf}
+    \caption{UC 13 - Rimozione stile Sottolineato}
+    \label{fig:uc13}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -575,9 +626,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole rimuovere lo stile sottolineato dal testo o cessare la scrittura con tale formattazione.
 \end{itemize}
 
-% --- UC 12 - APPLICAZIONE BARRATO ---
-\subsubsection{UC 12 - Applicazione stile Barrato}
-\hypertarget{uc:12}{}
+% --- UC 14 - APPLICAZIONE BARRATO ---
+\hypertarget{uc:14}{}
+\subsubsection{UC 14 - Applicazione stile Barrato}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{assets/img/UC14.pdf}
+    \caption{UC 14 - Applicazione stile Barrato}
+    \label{fig:uc14}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -597,9 +654,9 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole applicare lo stile barrato al testo per indicare contenuti eliminati o non più validi.
 \end{itemize}
 
-% --- UC 13 - RIMOZIONE BARRATO ---
-\subsubsection{UC 13 - Rimozione stile Barrato}
-\hypertarget{uc:13}{}
+% --- UC 15 - RIMOZIONE BARRATO ---
+\hypertarget{uc:15}{}
+\subsubsection{UC 15 - Rimozione stile Barrato}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -619,15 +676,9 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole rimuovere lo stile barrato da una porzione di testo o cessare la scrittura in tale modalità.
 \end{itemize}
 
-% --- UC 14 ---
-\subsubsection{UC 14 - Inserimento titolo}
-\hypertarget{uc:14}{}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{assets/img/UC14.pdf}
-    \caption{UC 14 - Inserimento titolo}
-    \label{fig:uc14}
-\end{figure}
+% --- UC 16 ---
+\hypertarget{uc:16}{}
+\subsubsection{UC 16 - Inserimento titolo}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -649,20 +700,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole definire una riga di testo (esistente o futura) come intestazione principale del documento.
 \end{itemize}
 
-% --- UC 15 ---
-\subsubsection{UC 15 - Rimozione titolo}
-\hypertarget{uc:15}{}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{assets/img/UC15.pdf}
-    \caption{UC 15 - Rimozione titolo}
-    \label{fig:uc15}
-\end{figure}
+% --- UC 17 ---
+\subsubsection{UC 17 - Rimozione titolo}
+\hypertarget{uc:17}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item La riga corrente presenta il marcatore di titolo (\hyperlink{uc:14}{UC 14}).
+            \item La riga corrente presenta il marcatore di titolo (\hyperlink{uc:16}{UC 16}).
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
@@ -677,15 +722,9 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole rimuovere lo stato di intestazione principale da una riga per tornare al testo normale.
 \end{itemize}
 
-% --- UC 16 ---
-\subsubsection{UC 16 - Inserimento sottotitolo}
-\hypertarget{uc:16}{}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{assets/img/UC16.pdf}
-    \caption{UC 16 - Inserimento sottotitolo}
-    \label{fig:uc16}
-\end{figure}
+% --- UC 18 ---
+\subsubsection{UC 18 - Inserimento sottotitolo}
+\hypertarget{uc:18}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -704,20 +743,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole organizzare gerarchicamente il testo convertendo una riga in una sotto-intestazione.
 \end{itemize}
 
-% --- UC 17 ---
-\subsubsection{UC 17 - Rimozione sottotitolo}
-\hypertarget{uc:17}{}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{assets/img/UC17.pdf}
-    \caption{UC 17 - Rimozione sottotitolo}
-    \label{fig:uc17}
-\end{figure}
+% --- UC 19 ---
+\subsubsection{UC 19 - Rimozione sottotitolo}
+\hypertarget{uc:19}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item La riga corrente è formattata come sottotitolo (\hyperlink{uc:16}{UC 16}).
+            \item La riga corrente è formattata come sottotitolo (\hyperlink{uc:18}{UC 18}).
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
@@ -731,9 +764,9 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole annullare la formattazione da sottotitolo di una riga.
 \end{itemize}
 
-% --- UC 18 ---
-\subsubsection{UC 18 - Inserimento elenco}
-\hypertarget{uc:18}{}
+% --- UC 20 ---
+\subsubsection{UC 20 - Inserimento elenco}
+\hypertarget{uc:20}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -752,14 +785,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole organizzare il contenuto in forma di lista.
 \end{itemize}
 
-% --- UC 19 ---
-\subsubsection{UC 19 - Eliminazione elenco}
-\hypertarget{uc:19}{}
+% --- UC 21 ---
+\subsubsection{UC 21 - Eliminazione elenco}
+\hypertarget{uc:21}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item La riga o le righe correnti sono formattate come elenco (\hyperlink{uc:18}{UC 18}).
+            \item La riga o le righe correnti sono formattate come elenco (\hyperlink{uc:20}{UC 20}).
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
@@ -773,15 +806,9 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole rimuovere la struttura a lista da una porzione di testo.
 \end{itemize}
 
-% --- UC 20 ---
-\subsubsection{UC 20 - Inserimento citazione}
-\hypertarget{uc:20}{}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{assets/img/UC20.pdf}
-    \caption{UC 20 - Inserimento citazione}
-    \label{fig:uc20}
-\end{figure}
+% --- UC 22 ---
+\subsubsection{UC 22 - Inserimento citazione}
+\hypertarget{uc:22}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -801,16 +828,16 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole convertire la riga corrente in un blocco di citazione.
 \end{itemize}
 
-% --- UC 21 ---
-\subsubsection{UC 21 - Eliminazione citazione}
-\hypertarget{uc:21}{}
+% --- UC 23 ---
+\subsubsection{UC 23 - Eliminazione citazione}
+\hypertarget{uc:23}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item La riga corrente presenta il marcatore di citazione (\hyperlink{uc:20}{UC 20}).
+            \item La riga corrente presenta il marcatore di citazione (\hyperlink{uc:22}{UC 22}).
         \end{itemize}
-    \item \textbf{Post-condizioni:} 
+    \item \textbf{Post-condizioni:}
         \begin{itemize}
             \item Il marcatore \texttt{>} viene rimosso e il testo torna alla formattazione standard.
         \end{itemize}
@@ -822,15 +849,9 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole rimuovere lo stile citazione da una riga di testo precedentemente formattata.
 \end{itemize}
 
-% --- UC 22 ---
-\subsubsection{UC 22 - Inserimento blocco di codice}
-\hypertarget{uc:22}{}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{assets/img/UC22.pdf}
-    \caption{UC 22 - Inserimento blocco di codice}
-    \label{fig:uc22}
-\end{figure}
+% --- UC 24 ---
+\subsubsection{UC 24 - Inserimento blocco di codice}
+\hypertarget{uc:24}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -851,20 +872,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole inserire una sezione di codice sorgente formattata all'interno del documento.
 \end{itemize}
 
-% --- UC 23 ---
-\subsubsection{UC 23 - Eliminazione blocco di codice}
-\hypertarget{uc:23}{}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{assets/img/UC23.pdf}
-    \caption{UC 23 - Eliminazione blocco di codice}
-    \label{fig:uc23}
-\end{figure}
+% --- UC 25 ---
+\subsubsection{UC 25 - Eliminazione blocco di codice}
+\hypertarget{uc:25}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item È presente almeno un blocco di codice nell'editor (\hyperlink{uc:22}{UC 22}).
+            \item È presente almeno un blocco di codice nell'editor (\hyperlink{uc:24}{UC 24}).
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
@@ -880,15 +895,9 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole rimuovere la formattazione di codice da una sezione precedentemente definita.
 \end{itemize}
 
-% --- UC 24 ---
-\subsubsection{UC 24 - Inserimento formula scientifica}
-\hypertarget{uc:24}{}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{assets/img/UC24.pdf}
-    \caption{UC 24 - Inserimento formula scientifica}
-    \label{fig:uc24}
-\end{figure}
+% --- UC 26 ---
+\subsubsection{UC 26 - Inserimento formula scientifica}
+\hypertarget{uc:26}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -897,7 +906,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
-            \item Il sistema inserisce i delimitatori matematici (es. \texttt{\$\$}).
+            \item Il sistema inserisce i delimitatori matematici.
             \item La vista di rendering mostra lo spazio dedicato all'espressione matematica formattata.
         \end{itemize}
     \item \textbf{Scenario principale:}
@@ -909,20 +918,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole inserire una formula matematica o scientifica nel documento.
 \end{itemize}
 
-% --- UC 25 ---
-\subsubsection{UC 25 - Eliminazione formula scientifica}
-\hypertarget{uc:25}{}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{assets/img/UC25.pdf}
-    \caption{UC 25 - Eliminazione formula scientifica}
-    \label{fig:uc25}
-\end{figure}
+% --- UC 27 ---
+\subsubsection{UC 27 - Eliminazione formula scientifica}
+\hypertarget{uc:27}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item Una formula scientifica o i suoi delimitatori sono presenti nel testo (\hyperlink{uc:24}{UC 24}).
+            \item Una formula scientifica o i suoi delimitatori sono presenti nel testo (\hyperlink{uc:26}{UC 26}).
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
@@ -938,15 +941,9 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole rimuovere una formula scientifica precedentemente inserita dal documento.
 \end{itemize}
 
-% --- UC 26 ---
-\subsubsection{UC 26 - Inserimento link ipertestuale}
-\hypertarget{uc:26}{}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{assets/img/UC26.pdf}
-    \caption{UC 26 - Inserimento link ipertestuale}
-    \label{fig:uc26}
-\end{figure}
+% --- UC 28 ---
+\subsubsection{UC 28 - Inserimento link ipertestuale}
+\hypertarget{uc:28}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -960,27 +957,21 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
         \end{itemize}
     \item \textbf{Scenario principale:}
         \begin{enumerate}
-            \item L'utente seleziona la porzione di testo da trasformare in link (\hyperlink{uc:2}{Inclusione UC 2}) o posiziona il cursore nel punto desiderato.
+            \item L'utente seleziona la porzione di testo da trasformare in link o posiziona il cursore nel punto desiderato.
             \item L'utente attiva il comando "Inserisci Link" tramite interfaccia o scorciatoia.
-            \item Il sistema inserisce la sintassi Markdown e richiede l'inserimento dell'indirizzo di destinazione (URL).
+            \item Il sistema inserisce la sintassi Markdown e richiede l'inserimento dell'indirizzo di destinazione.
             \item L'utente inserisce l'URL e conferma l'operazione.
         \end{enumerate}
-    \item \textbf{Inclusioni:} 
-        \begin{itemize}
-            \item \hyperlink{uc:2}{UC 2 - Selezione del testo} (se applicato a testo esistente).
-        \end{itemize}
+    \item \textbf{Inclusioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:28.1}{UC 28.1 - Inserimento URL del link}.
+    \end{itemize}
     \item \textbf{Trigger:} L'utente vuole trasformare una porzione di testo in un collegamento cliccabile verso una risorsa esterna o interna.
 \end{itemize}
 
-% --- UC 27 ---
-\subsubsection{UC 27 - Eliminazione link ipertestuale}
-\hypertarget{uc:27}{}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{assets/img/UC27.pdf}
-    \caption{UC 27 - Eliminazione link ipertestuale}
-    \label{fig:uc27}
-\end{figure}
+% --- UC 29 ---
+\subsubsection{UC 29 - Eliminazione link ipertestuale}
+\hypertarget{uc:29}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1001,15 +992,9 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole rimuovere la funzionalità di collegamento ipertestuale da una porzione di testo.
 \end{itemize}
 
-% --- UC 28 ---
-\subsubsection{UC 28 - Inserimento ancora di navigazione}
-\hypertarget{uc:28}{}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{assets/img/UC28.pdf}
-    \caption{UC 28 - Inserimento ancora di navigazione}
-    \label{fig:uc28}
-    \end{figure}
+% --- UC 30 ---
+\subsubsection{UC 30 - Inserimento ancora di navigazione}
+\hypertarget{uc:30}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1018,32 +1003,26 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
-            \item Viene inserito il markup identificativo (es. \texttt{<a name="id"></a>} o id HTML) nel documento.
+            \item Viene inserito il markup identificativo nel documento.
         \end{itemize}
     \item \textbf{Scenario principale:}
         \begin{enumerate}
             \item L'utente attiva il comando "Inserisci Ancora".
-            \item Il sistema richiede l'assegnazione di un identificativo univoco (ID).
+            \item Il sistema richiede l'assegnazione di un identificativo univoco.
             \item L'utente inserisce il nome dell'ancora e conferma.
             \item Il sistema inserisce il codice necessario nella posizione del cursore.
         \end{enumerate}
     \item \textbf{Trigger:} L'utente vuole definire un punto di riferimento interno al documento per consentire la navigazione rapida tramite link interni.
 \end{itemize}
 
-% --- UC 29 ---
-\subsubsection{UC 29 - Eliminazione ancora di navigazione}
-\hypertarget{uc:29}{}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{assets/img/UC29.pdf}
-    \caption{UC 29 - Eliminazione ancora di navigazione}
-    \label{fig:uc29}
-\end{figure}
+% --- UC 31 ---
+\subsubsection{UC 31 - Eliminazione ancora di navigazione}
+\hypertarget{uc:31}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item Un'ancora di navigazione è presente all'interno del testo (\hyperlink{uc:28}{UC 28}).
+            \item Un'ancora di navigazione è presente all'interno del testo (\hyperlink{uc:30}{UC 30}).
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
@@ -1058,9 +1037,9 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole rimuovere un punto di riferimento interno non più necessario.
 \end{itemize}
 
-% --- UC 30 ---
-\subsubsection{UC 30 - Inserimento tabella}
-\hypertarget{uc:30}{}
+% --- UC 32 ---
+\subsubsection{UC 32 - Inserimento tabella}
+\hypertarget{uc:32}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1074,20 +1053,49 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Scenario principale:}
         \begin{enumerate}
             \item L'utente attiva la funzione "Inserisci Tabella".
+            \item L'utente definisce la dimensione iniziale della tabella → \hyperlink{uc:32.1}{UC 32.1}.
             \item Il sistema genera la sintassi Markdown necessaria per rappresentare la struttura iniziale.
             \item Il cursore viene posizionato nella prima cella disponibile per la digitazione.
         \end{enumerate}
+    \item \textbf{Inclusioni:}
+    \begin{itemize}
+        \item \hyperlink{uc:32.1}{UC 32.1 - Definizione dimensione tabella}.
+    \end{itemize}
     \item \textbf{Trigger:} L'utente vuole creare una nuova struttura tabellare per organizzare i dati nel documento.
 \end{itemize}
 
-% --- UC 31 ---
-\subsubsection{UC 31 - Inserimento riga nella tabella}
-\hypertarget{uc:31}{}
+% --- UC 32.1 ---
+\paragraph{UC 32.1 - Definizione dimensione tabella}
+\hypertarget{uc:32.1}{}
+\begin{itemize}
+    \item \textbf{Attore principale:} Utente
+    \item \textbf{Pre-condizioni:}
+        \begin{itemize}
+            \item L'utente ha attivato la funzione di inserimento tabella.
+            \item Il sistema$_G$ mostra i parametri necessari alla creazione della struttura tabellare.
+        \end{itemize}
+    \item \textbf{Post-condizioni:}
+        \begin{itemize}
+            \item Il sistema$_G$ dispone del numero di righe e colonne da utilizzare per generare la tabella.
+        \end{itemize}
+    \item \textbf{Scenario principale:}
+        \begin{enumerate}
+            \item L'utente indica il numero iniziale di righe desiderato.
+            \item L'utente indica il numero iniziale di colonne desiderato.
+            \item Il sistema$_G$ registra i parametri inseriti.
+            \item Il sistema$_G$ abilita la generazione della tabella Markdown.
+        \end{enumerate}
+    \item \textbf{Trigger:} L'utente deve specificare la struttura iniziale della tabella da inserire nel documento.
+\end{itemize}
+
+% --- UC 33 ---
+\subsubsection{UC 33 - Inserimento riga nella tabella}
+\hypertarget{uc:33}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item Il cursore è posizionato all'interno di una tabella esistente (\hyperlink{uc:30}{UC 30}).
+            \item Il cursore è posizionato all'interno di una tabella esistente (\hyperlink{uc:32}{UC 32}).
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
@@ -1102,14 +1110,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole espandere la tabella per inserire nuovi record di dati.
 \end{itemize}
 
-% --- UC 32 ---
-\subsubsection{UC 32 - Rimozione riga dalla tabella}
-\hypertarget{uc:32}{}
+% --- UC 34 ---
+\subsubsection{UC 34 - Rimozione riga dalla tabella}
+\hypertarget{uc:34}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item Il cursore si trova su una riga appartenente a una tabella (\hyperlink{uc:30}{UC 30}).
+            \item Il cursore si trova su una riga appartenente a una tabella (\hyperlink{uc:33}{UC 33}).
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
@@ -1123,9 +1131,9 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole eliminare una specifica riga di dati dalla tabella.
 \end{itemize}
 
-% --- UC 33 ---
-\subsubsection{UC 33 - Inserimento colonna nella tabella}
-\hypertarget{uc:33}{}
+% --- UC 35 ---
+\subsubsection{UC 35 - Inserimento colonna nella tabella}
+\hypertarget{uc:35}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1144,9 +1152,9 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole espandere orizzontalmente la tabella per aggiungere una nuova categoria di dati.
 \end{itemize}
 
-% --- UC 34 ---
-\subsubsection{UC 34 - Rimozione colonna dalla tabella}
-\hypertarget{uc:34}{}
+% --- UC 36 ---
+\subsubsection{UC 36 - Rimozione colonna dalla tabella}
+\hypertarget{uc:36}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1165,74 +1173,82 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole eliminare un'intera categoria di dati (colonna) dalla tabella.
 \end{itemize}
 
-% --- UC 35 ---
-\subsubsection{UC 35 - Sostituzione immagine}
-\hypertarget{uc:35}{}
-\begin{itemize}
-    \item \textbf{Attore principale:} Utente
-    \item \textbf{Pre-condizioni:} 
-        \begin{itemize}
-            \item Il sistema è operativo e la nota è aperta.
-        \end{itemize}
-    \item \textbf{Post-condizioni:} 
-        \begin{itemize}
-            \item Il markup dell'immagine viene inserito con i corretti riferimenti (URL/Path).
-        \end{itemize}
-    \item \textbf{Scenario principale:}
-        \begin{enumerate}
-            \item L'utente attiva la funzione "Inserisci Immagine".
-            \item Il sistema richiede l'inserimento dell'indirizzo dell'immagine (URL) o del percorso locale.
-            \item Il sistema genera la sintassi \texttt{![alt\_text](url)} nel documento.
-        \end{enumerate}
-    \item \textbf{Trigger:} L'utente vuole visualizzare un'immagine all'interno del proprio documento.
-\end{itemize}
-
-% --- UC 36 ---
-\subsubsection{UC 36 - Eliminazione immagine}
-\hypertarget{uc:36}{}
-\begin{itemize}
-    \item \textbf{Attore principale:} Utente
-    \item \textbf{Pre-condizioni:} 
-        \begin{itemize}
-            \item Un'immagine è già presente nell'editor (\hyperlink{uc:35}{UC 35}).
-        \end{itemize}
-    \item \textbf{Post-condizioni:}
-            \begin{itemize}
-            \item Il percorso dell'immagine esistente viene aggiornato.
-        \end{itemize}
-    \item \textbf{Scenario principale:}
-        \begin{enumerate}
-            \item L'utente seleziona il link dell'immagine nel markup.
-            \item L'utente fornisce un nuovo URL o percorso file.
-            \item Il sistema sostituisce il valore precedente con quello aggiornato.
-        \end{enumerate}
-    \item \textbf{Trigger:} L'utente vuole cambiare l'immagine visualizzata mantenendo la posizione nel documento.
-\end{itemize}
-
 % --- UC 37 ---
-\subsubsection{UC 37 - Eliminazione immagine}
+\subsubsection{UC 37 - Inserimento immagine}
 \hypertarget{uc:37}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item Un markup di immagine è presente nel documento.
+            \item Il sistema è operativo e la nota è aperta.
+            \item Il cursore è posizionato nel punto in cui inserire l'immagine.
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
-            \item Il markup dell'immagine viene rimosso e il render non mostra più il file multimediale.
+            \item Il markup dell'immagine viene inserito nel documento con i corretti riferimenti URL o path.
+            \item L'immagine viene visualizzata nell'anteprima di rendering.
         \end{itemize}
     \item \textbf{Scenario principale:}
         \begin{enumerate}
-            \item L'utente cancella la sintassi Markdown relativa all'immagine.
+            \item L'utente attiva la funzione "Inserisci Immagine".
+            \item Il sistema richiede l'inserimento dell'indirizzo dell'immagine o del percorso locale.
+            \item L'utente inserisce l'URL o il path dell'immagine.
+            \item Il sistema genera la sintassi Markdown \texttt{![alt\_text](url)} nel documento.
+            \item Il sistema aggiorna l'anteprima di rendering.
+        \end{enumerate}
+    \item \textbf{Trigger:} L'utente vuole visualizzare un'immagine all'interno del proprio documento.
+\end{itemize}
+
+% --- UC 38 ---
+\subsubsection{UC 38 - Sostituzione immagine}
+\hypertarget{uc:38}{}
+\begin{itemize}
+    \item \textbf{Attore principale:} Utente
+    \item \textbf{Pre-condizioni:}
+        \begin{itemize}
+            \item Un'immagine è già presente nell'editor tramite \hyperlink{uc:37}{UC 37}.
+        \end{itemize}
+    \item \textbf{Post-condizioni:}
+        \begin{itemize}
+            \item Il percorso dell'immagine esistente viene aggiornato.
+            \item L'anteprima mostra la nuova immagine.
+        \end{itemize}
+    \item \textbf{Scenario principale:}
+        \begin{enumerate}
+            \item L'utente seleziona il markup dell'immagine presente nel documento.
+            \item L'utente fornisce un nuovo URL o percorso locale.
+            \item Il sistema sostituisce il riferimento precedente con quello aggiornato.
+            \item Il sistema aggiorna l'anteprima di rendering.
+        \end{enumerate}
+    \item \textbf{Trigger:} L'utente vuole cambiare l'immagine visualizzata mantenendo la posizione nel documento.
+\end{itemize}
+
+% --- UC 39 ---
+\subsubsection{UC 39 - Eliminazione immagine}
+\hypertarget{uc:39}{}
+\begin{itemize}
+    \item \textbf{Attore principale:} Utente
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item Un'immagine è presente nel documento tramite \hyperlink{uc:37}{UC 37}.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item Il markup dell'immagine viene rimosso.
+            \item L'immagine non viene più mostrata nell'anteprima di rendering.
+        \end{itemize}
+    \item \textbf{Scenario principale:}
+        \begin{enumerate}
+            \item L'utente seleziona la sintassi Markdown relativa all'immagine.
+            \item L'utente cancella il markup selezionato.
             \item Il sistema aggiorna la vista di rendering.
         \end{enumerate}
     \item \textbf{Trigger:} L'utente vuole rimuovere un'immagine dal documento.
 \end{itemize}
 
-% --- UC 38 ---
-\subsubsection{UC 38 - Attivazione auto-completamento simboli}
-\hypertarget{uc:38}{}
+% --- UC 40 ---
+\subsubsection{UC 40 - Attivazione auto-completamento simboli}
+\hypertarget{uc:40}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1252,14 +1268,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente desidera assistenza automatica nella chiusura di parentesi e virgolette.
 \end{itemize}
 
-% --- UC 39 ---
-\subsubsection{UC 39 - Disattivazione auto-completamento simboli}
-\hypertarget{uc:39}{}
+% --- UC 41 ---
+\subsubsection{UC 41 - Disattivazione auto-completamento simboli}
+\hypertarget{uc:41}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item La funzionalità di auto-chiusura è attiva (\hyperlink{uc:38}{UC 38}).
+            \item La funzionalità di auto-chiusura è attiva (\hyperlink{uc:40}{UC 40}).
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
@@ -1273,9 +1289,9 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente desidera il controllo manuale completo su ogni carattere digitato.
 \end{itemize}
 
-% --- UC 40 ---
-\subsubsection{UC 40 - Attivazione Sincronizzazione Scorrimento (Sync Scroll)}
-\hypertarget{uc:40}{}
+% --- UC 42 ---
+\subsubsection{UC 42 - Attivazione Sincronizzazione Scorrimento (Sync Scroll)}
+\hypertarget{uc:42}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1294,14 +1310,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole che l'anteprima mostri sempre il contenuto corrispondente al testo visibile nell'editor.
 \end{itemize}
 
-% --- UC 41 ---
-\subsubsection{UC 41 - Disattivazione Sincronizzazione Scorrimento (Sync Scroll)}
-\hypertarget{uc:41}{}
+% --- UC 43 ---
+\subsubsection{UC 43 - Disattivazione Sincronizzazione Scorrimento (Sync Scroll)}
+\hypertarget{uc:43}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item Il Sync Scroll è attivo (\hyperlink{uc:40}{UC 40}).
+            \item Il Sync Scroll è attivo (\hyperlink{uc:42}{UC 42}).
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
@@ -1315,9 +1331,9 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole ispezionare due punti diversi del documento contemporaneamente.
 \end{itemize}
 
-% --- UC 42 ---
-\subsubsection{UC 42 - Attivazione Dark Mode}
-\hypertarget{uc:42}{}
+% --- UC 44 ---
+\subsubsection{UC 44 - Attivazione Dark Mode}
+\hypertarget{uc:44}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1336,16 +1352,16 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole ridurre l'affaticamento visivo in condizioni di scarsa luminosità.
 \end{itemize}
 
-% --- UC 43 ---
-\subsubsection{UC 43 - Attivazione Light Mode}
-\hypertarget{uc:43}{}
+% --- UC 45 ---
+\subsubsection{UC 45 - Attivazione Light Mode}
+\hypertarget{uc:45}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item Il tema attuale è impostato su "Dark" (\hyperlink{uc:42}{UC 42}).
+            \item Il tema attuale è impostato su "Dark" (\hyperlink{uc:44}{UC 44}).
         \end{itemize}
-    \item \textbf{Post-condizioni:} 
+    \item \textbf{Post-condizioni:}
         \begin{itemize}
             \item L'interfaccia assume una palette cromatica chiara.
         \end{itemize}
@@ -1357,9 +1373,9 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente desidera una visualizzazione ad alto contrasto su sfondo chiaro.
 \end{itemize}
 
-% --- UC 44 ---
-\subsubsection{UC 44 - Apertura Sidebar}
-\hypertarget{uc:44}{}
+% --- UC 46 ---
+\subsubsection{UC 46 - Apertura Sidebar}
+\hypertarget{uc:46}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1378,14 +1394,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole accedere all'elenco delle note o agli strumenti laterali.
 \end{itemize}
 
-% --- UC 45 ---
-\subsubsection{UC 45 - Chiusura Sidebar}
-\hypertarget{uc:45}{}
+% --- UC 47 ---
+\subsubsection{UC 47 - Chiusura Sidebar}
+\hypertarget{uc:47}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item La sidebar è attualmente visibile (\hyperlink{uc:44}{UC 44}).
+            \item La sidebar è attualmente visibile (\hyperlink{uc:46}{UC 46}).
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
@@ -1399,9 +1415,9 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente vuole massimizzare lo spazio dedicato alla scrittura.
 \end{itemize}
 
-% --- UC 46 ---
-\subsubsection{UC 46 - Attivazione visualizzazione esclusiva Editor}
-\hypertarget{uc:46}{}
+% --- UC 48 ---
+\subsubsection{UC 48 - Attivazione visualizzazione esclusiva Editor}
+\hypertarget{uc:48}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1421,9 +1437,9 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente desidera eliminare le distrazioni visive per concentrarsi esclusivamente sulla stesura del codice Markdown.
 \end{itemize}
 
-% --- UC 47 ---
-\subsubsection{UC 47 - Attivazione visualizzazione esclusiva Render}
-\hypertarget{uc:47}{}
+% --- UC 49 ---
+\subsubsection{UC 49 - Attivazione visualizzazione esclusiva Render}
+\hypertarget{uc:49}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1443,15 +1459,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente desidera visualizzare il documento finale formattato per finalità di lettura o presentazione.
 \end{itemize}
 
-% --- UC 48 ---
-\subsubsection{UC 48 - Attivazione visualizzazione combinata (Split View)}
-\hypertarget{uc:48}{}
+% --- UC 50 ---
+\subsubsection{UC 50 - Attivazione visualizzazione combinata (Split View)}
+\hypertarget{uc:50}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item Il sistema è in una modalità di visualizzazione esclusiva (\hyperlink{uc:46}{UC 46} o \hyperlink{uc:47}{UC 47}).
-        \end{itemize}
+        \item Il sistema è in una modalità di visualizzazione esclusiva (\hyperlink{uc:48}{UC 48} o \hyperlink{uc:49}{UC 49}).        \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
             \item Sia l'editor che il render sono visibili simultaneamente in modalità affiancata.
@@ -1464,9 +1479,9 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente desidera monitorare in tempo reale l'effetto delle modifiche testuali sulla resa grafica del documento.
 \end{itemize}
 
-% --- UC 49 ---
-\subsubsection{UC 49 - Inserimento testo tramite dettatura vocale}
-\hypertarget{uc:49}{}
+% --- UC 51 ---
+\subsubsection{UC 51 - Inserimento testo tramite dettatura vocale}
+\hypertarget{uc:51}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1489,19 +1504,26 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato tre tipologie pri
     \item \textbf{Trigger:} L'utente desidera inserire contenuti testuali in modo rapido senza utilizzare la tastiera.
 \end{itemize}
 
+\newpage 
 \subsection{Funzionalità AI}
 Questa sezione del sistema descrive come l'applicazione interagisce con un modello di linguaggio esterno (attore secondario $LLM_G$) per offrire strumenti avanzati di editing.
 
-% --- UC 50 ---
-\subsubsection{UC 50 - Riassunto contenuto}
-\hypertarget{uc:50}{}
+% --- UC 52 ---
+\hypertarget{uc:52}{}
+\subsubsection{UC 52 - Riassunto contenuto}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{assets/img/UC52.pdf}
+    \caption{UC 52 - Riassunto Contenuto}
+    \label{fig:uc52}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Attore secondario} LLM$_G$
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
             \item Il sistema è operativo.
-            \item È presente del testo nell'area di editing.
+            \item È presente del testo selezionato nell'area di editing (\hyperlink{uc:2}{UC 2}).
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
@@ -1510,36 +1532,44 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \item \textbf{Scenario principale:}
         \begin{enumerate}
             \item L'utente seleziona la porzione di testo da elaborare → Vedi \hyperlink{uc:2}{UC 2}.
-            \item L'utente imposta la percentuale di concisione desiderata → Vedi \hyperlink{uc:50.1}{UC 50.1}.
-            \item L'utente avvia la richiesta di generazione.
+            \item L'utente imposta la percentuale di concisione desiderata → Vedi \hyperlink{uc:52.1}{UC 52.1}.            \item L'utente avvia la richiesta di generazione.
             \item Il sistema invia i dati all'attore secondario LLM$_G$.
             \item Il sistema riceve il testo elaborato e lo mostra nell'interfaccia.
         \end{enumerate}
     \item \textbf{Scenari alternativi:}
         \begin{itemize}
-            \item Il testo selezionato è insufficiente per l'elaborazione → Vedi \hyperlink{uc:50.2}{UC 50.2}.
-            \item Si verifica un errore di comunicazione con LLM$_G$ → Vedi \hyperlink{uc:63}{UC 63}.
-        \end{itemize}
+            \item L'utente decide di interrompere l'attesa dell'elaborazione prima che il sistema riceva il risultato dall'attore secondario → Vedi \hyperlink{uc:61}{UC 61}.
+            \item Durante l'inoltro della richiesta o la generazione del testo si verifica un errore di rete o un'anomalia nel servizio $LLM_G$  → Vedi \hyperlink{uc:62}{UC 62}.
+            \item Il testo selezionato è troppo breve → Vedi \hyperlink{uc:63}{UC 63}.        \end{itemize}
     \item \textbf{Inclusioni:} 
         \begin{itemize}
-            \item \hyperlink{uc:2}{UC 2 - Selezione del testo}
-            \item \hyperlink{uc:50.1}{UC 50.1 - Selezione percentuale di riassunto}
+            \item \hyperlink{uc:52.1}{UC 52.1 - Selezione percentuale di riassunto}
         \end{itemize}
     \item \textbf{Estensioni:} 
         \begin{itemize}
-            \item \hyperlink{uc:63}{UC 63 - Errore LLM}
-            \item \hyperlink{uc:64}{UC 64 - Gestione testo insufficiente per l'elaborazione}           \end{itemize}
+            \item \hyperlink{uc:61}{UC 61 - Annullamento richiesta in corso}
+            \item \hyperlink{uc:62}{UC 62 - Errore LLM}
+            \item \hyperlink{uc:63}{UC 63 - Testo insufficiente}  
+        \end{itemize}
     \item \textbf{Trigger:} L'utente desidera ottenere una sintesi del testo tramite intelligenza artificiale.
 \end{itemize}
+Il Caso d’Uso UC52 include un ulteriore Caso d’Uso come raffigurato nella seguente immagine:
 
-% --- UC 50.1 ---
-\subsubsection{UC 50.1 - Selezione percentuale di riassunto}
-\hypertarget{uc:50.1}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{assets/img/UC52.1.pdf}
+    \caption{Inclusione del Caso d'Uso n.52: UC 52.1}
+    \label{fig:uc52.1}
+\end{figure}
+
+% --- UC 52.1 ---
+\subsubsection{UC 52.1 - Selezione percentuale di riassunto}
+\hypertarget{uc:52.1}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
-    \item \textbf{Pre-condizioni:} 
+    \item \textbf{Pre-condizioni:}
         \begin{itemize}
-            \item L'utente ha attivato la funzione di riassunto (\hyperlink{uc:50}{UC 50}).
+            \item L'utente ha attivato la funzione di riassunto (\hyperlink{uc:52}{UC 52}).
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
@@ -1553,8 +1583,14 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \item \textbf{Trigger:} L'utente desidera specificare il grado di sintesi del riassunto che verrà generato.
 \end{itemize}
 
-\hypertarget{uc:51}{}
-\subsubsection{UC 51 - Traduzione contenuto}
+\hypertarget{uc:53}{}
+\subsubsection{UC 53 - Traduzione contenuto}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{assets/img/UC53.pdf}
+    \caption{UC 53 - Traduzione Contenuto}
+    \label{fig:uc53}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore Principale:} Utente.
     \item \textbf{Attore Secondario:} LLM$_G$.
@@ -1569,21 +1605,30 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \end{enumerate}
     \item \textbf{Scenari Alternativi:}
     \begin{itemize}
-        \item L'utente decide di interrompere l'attesa dell'elaborazione prima che il sistema riceva il risultato dall'attore secondario. → Vedi \hyperlink{uc:62}{UC 62}.
-        \item Se durante l'inoltro della richiesta o la generazione del testo si verifica un errore di rete o un'anomalia nel servizio $LLM_G$, il sistema interrompe la sessione → Vedi \hyperlink{uc:63}{UC 63}.
+        \item L'utente decide di interrompere l'attesa dell'elaborazione prima che il sistema riceva il risultato dall'attore secondario → Vedi \hyperlink{uc:61}{UC 61}.
+        \item Durante l'inoltro della richiesta o la generazione del testo si verifica un errore di rete o un'anomalia nel servizio $LLM_G$  → Vedi \hyperlink{uc:62}{UC 62}.
+        \item Il testo selezionato è troppo breve → Vedi \hyperlink{uc:63}{UC 63}.
     \end{itemize}
     \item \textbf{Inclusioni:}
     \begin{itemize}
-        \item \hyperlink{uc:2}{UC 2 - Selezione del testo}
         \item \hyperlink{uc:53.1}{UC 53.1 - Selezione lingua di destinazione}
     \end{itemize}  
     \item \textbf{Estensioni:}
     \begin{itemize}
-        \item \hyperlink{uc:63}{UC 63 - Errore LLM}
-        \item \hyperlink{uc:62}{UC 62 - Annullamento richiesta in corso}
+        \item \hyperlink{uc:61}{UC 61 - Annullamento richiesta in corso}
+        \item \hyperlink{uc:62}{UC 62 - Errore LLM}
+        \item \hyperlink{uc:63}{UC 63 - Testo insufficiente}  
     \end{itemize}
     \item \textbf{Trigger:} L'utente desidera tradurre un testo in una lingua diversa da quella originale.
 \end{itemize}
+Il Caso d’Uso UC53 include un ulteriore Caso d’Uso come raffigurato nella seguente immagine:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{assets/img/UC53.1.pdf}
+    \caption{Inclusione del Caso d'Uso n.53: UC 53.1}
+    \label{fig:uc53.1}
+\end{figure}
 
 \hypertarget{uc:53.1}{}
 \paragraph{UC 53.1 - Selezione lingua di destinazione}
@@ -1602,6 +1647,12 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 
 \subsubsection{UC 54 - Variazione Stilistica}
 \hypertarget{uc:54}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{assets/img/UC54.pdf}
+    \caption{UC 54 - Variazione Stilistica}
+    \label{fig:uc54}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Attore secondario:} $LLM_G$
@@ -1617,26 +1668,25 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \item \textbf{Scenario principale:}
         \begin{enumerate}
             \item L'utente attiva la funzione di riscrittura stilistica.
-            \item L'utente seleziona lo stile desiderato (es. Formale, Informale, Accademico)  → \textbf{Inclusione \hyperlink{uc:54.1}{UC 54.1}}.
+            \item L'utente seleziona lo stile desiderato (es. Formale, Informale, Accademico)  → \hyperlink{uc:54.1}{UC 54.1}.
             \item Il sistema inoltra il testo selezionato e il parametro stilistico all'attore secondario $LLM_G$.
             \item Il sistema riceve l'output trasformato e lo mostra nell'interfaccia di anteprima per la validazione.
         \end{enumerate}
-    \item \textbf{Scenari Alternativi:}
-        \begin{itemize}
-            \item L'utente decide di interrompere l'attesa prima della ricezione dell'output  → Vedi \hyperlink{uc:62}{UC 62}.
-            \item In caso di errore di rete o timeout del servizio $LLM_G$  → Vedi \hyperlink{uc:63}{UC 63}.
-            \item Il sistema rileva che il testo selezionato è troppo breve per un'elaborazione stilistica efficace → Vedi \hyperlink{uc:64}{UC 64}.
-        \end{itemize}
+    \item \textbf{Scenari Secondari:}
+    \begin{itemize}
+        \item Il testo selezionato è troppo breve o privo di contenuto semantico → \textbf{Vedi \hyperlink{uc:63}{UC 63}}.
+        \item L'utente decide di annullare l'operazione chiudendo il menu di selezione o interrompendo l'attesa del responso → \textbf{Vedi \hyperlink{uc:61}{UC 61}}.
+        \item Durante l'invio o l'elaborazione dei dati il server $LLM_G$ restituisce un errore → \textbf{Vedi \hyperlink{uc:62}{UC 62}}.
+    \end{itemize}
     \item \textbf{Inclusioni:} 
         \begin{itemize}
-            \item \hyperlink{uc:2}{UC 2 - Selezione del testo}
             \item \hyperlink{uc:54.1}{UC 54.1 - Selezione tipologia di stile}
         \end{itemize}
     \item \textbf{Estensioni:} 
         \begin{itemize}
-            \item \hyperlink{uc:62}{UC 62 - Annullamento richiesta in corso}
-            \item \hyperlink{uc:63}{UC 63 - Errore LLM}
-            \item \hyperlink{uc:64}{UC 64 - Gestione testo insufficiente per l'elaborazione}
+            \item \hyperlink{uc:61}{UC 61 - Annullamento richiesta in corso}
+            \item \hyperlink{uc:62}{UC 62 - Errore LLM}
+            \item \hyperlink{uc:63}{UC 63 - Testo insufficiente}
         \end{itemize}
     \item \textbf{Trigger:} L'utente desidera modificare il tono o il registro linguistico di una porzione di testo.
 \end{itemize}
@@ -1658,8 +1708,14 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 % --- UC 55 ---
-\subsubsection{UC 55 - Correzione Grammaticale}
 \hypertarget{uc:55}{}
+\subsubsection{UC 55 - Correzione Grammaticale}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{assets/img/UC55.pdf}
+    \caption{UC 55 - Correzione Grammaticale}
+    \label{fig:uc55}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Attore secondario:} $LLM_G$
@@ -1681,16 +1737,16 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \item \textbf{Scenari Alternativi:}
         \begin{itemize}
             \item L'IA conferma che il testo originale è già corretto → Vedi \hyperlink{uc:55.1}{UC 55.1}.
-            \item L'utente interrompe la richiesta in corso → Vedi \hyperlink{uc:62}{UC 62}.
-            \item Errore di connessione o del servizio esterno → Vedi \hyperlink{uc:63}{UC 63}.
+            \item L'utente interrompe la richiesta in corso → Vedi \hyperlink{uc:61}{UC 61}.
+            \item Errore di connessione o del servizio esterno → Vedi \hyperlink{uc:62}{UC 62}
+            \item Il testo selezionato è troppo breve → Vedi \hyperlink{uc:63}{UC 63}.        
         \end{itemize}
-    \item \textbf{Inclusioni:} \hyperlink{uc:2}{UC 2 - Selezione del testo}.
     \item \textbf{Estensioni:} 
         \begin{itemize}
             \item \hyperlink{uc:55.1}{UC 55.1 - Nessun errore rilevato}
-            \item \hyperlink{uc:62}{UC 62 - Annullamento richiesta in corso}
-            \item \hyperlink{uc:63}{UC 63 - Errore LLM}
-            \item \hyperlink{uc:64}{UC 64 - Gestione testo insufficiente per l'elaborazione}
+            \item \hyperlink{uc:61}{UC 61 - Annullamento richiesta in corso}
+            \item \hyperlink{uc:62}{UC 62 - Errore LLM}
+            \item \hyperlink{uc:63}{UC 63 - Testo insufficiente}
         \end{itemize}
     \item \textbf{Trigger:} L'utente desidera correggere errori ortografici e/o sintattici nel testo selezionato.
 \end{itemize}
@@ -1699,7 +1755,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \paragraph{UC 55.1 - Nessun errore rilevato}
 \hypertarget{uc:55.1}{}
 \begin{itemize}
-    \item \textbf{Attore principale:} Sistema
+    \item \textbf{Attore principale:} Utente
     \item \textbf{Attore secondario:} $LLM_G$
     \item \textbf{Pre-condizioni:} L'analisi grammaticale è stata completata con esito negativo (nessuna modifica suggerita).
     \item \textbf{Post-condizioni:} L'utente viene informato della correttezza del testo.
@@ -1713,7 +1769,13 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:56}{}
-\subsubsection{UC 56 - Analisi critica del contenuto}
+\subsubsection{UC 56 - Analisi critica contenuto}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{assets/img/UC56.pdf}
+    \caption{UC 56 - Analisi Critica contenuto}
+    \label{fig:uc56}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore Principale:} Utente.
     \item \textbf{Attore Secondario:} $LLM_G$.
@@ -1723,15 +1785,15 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \begin{enumerate}
         \item L'utente seleziona la porzione di testo da analizzare.
         \item L'utente attiva la funzione "Analisi Critica".
-        \item L'utente seleziona un cappello specifico → \hyperlink{uc:55.1}{UC 55.1}.
+        \item L'utente seleziona un cappello specifico → \hyperlink{uc:56.1}{UC 56.1}.
         \item Il sistema invia il testo e la configurazione dei cappelli al $LLM_G$.
         \item Il sistema visualizza l'output analitico suddiviso per tipologia di cappello.
     \end{enumerate}
     \item \textbf{Scenari Secondari:}
     \begin{itemize}
-        \item Se il testo selezionato è troppo breve, composto solo da spazi vuoti o caratteri speciali che non permettono un'analisi semantica sensata, il sistema interrompe la procedura per evitare elaborazioni errate dell'IA → \textbf{Vedi \hyperlink{uc:64}{UC 64}}.
-        \item L'utente decide di annullare l'operazione chiudendo il menu di selezione o interrompendo l'attesa del responso; il sistema ripristina la visualizzazione dell'editor senza apportare modifiche → \textbf{Vedi \hyperlink{uc:61}{UC 61}}.
-        \item Se durante l'invio o l'elaborazione dei dati il server $LLM_G$ restituisce un errore, il sistema segnala il malfunzionamento all'utente → \textbf{Vedi \hyperlink{uc:63}{UC 63}}.
+        \item Il testo selezionato è troppo breve, composto solo da spazi vuoti o caratteri speciali che non permettono un'analisi semantica sensata → \textbf{Vedi \hyperlink{uc:63}{UC 63}}.
+        \item L'utente decide di annullare l'operazione chiudendo il menu di selezione o interrompendo l'attesa del responso → \textbf{Vedi \hyperlink{uc:61}{UC 61}}.
+        \item Durante l'invio o l'elaborazione dei dati il server $LLM_G$ restituisce un errore  → \textbf{Vedi \hyperlink{uc:62}{UC 62}}.
     \end{itemize}
     \item \textbf{Inclusioni:}
     \begin{itemize}
@@ -1739,8 +1801,9 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \end{itemize}
     \item \textbf{Estensioni:}
     \begin{itemize}
-        \item \hyperlink{uc:63}{UC 63 - Errore LLM}
-        \item \hyperlink{uc:64}{UC 64 - Gestione testo insufficiente per l'elaborazione}   
+        \item \hyperlink{uc:62}{UC 62 - Errore LLM}
+        \item \hyperlink{uc:63}{UC 63 - Testo insufficiente} 
+        \item \hyperlink{uc:61}{UC 61 - Annullamento richiesta in corso}
     \end{itemize}
     \item \textbf{Trigger:} L'utente desidera ottenere un'analisi critica del testo basata su diverse prospettive.
 \end{itemize}
@@ -1770,7 +1833,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:56.1.1}{}
-\subparagraph{UC 56.1.1 - Analisi Cappello Bianco (Obiettività e Fatti)}
+\subparagraph{UC 56.1.1 - Analisi Cappello Bianco (Obiettività)}
 \begin{itemize}
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:} $LLM_G$.
@@ -1786,7 +1849,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:56.1.2}{}
-\subparagraph{UC 56.1.2 - Analisi Cappello Rosso (Emotività e Sensazioni)}
+\subparagraph{UC 56.1.2 - Analisi Cappello Rosso (Emotività)}
 \begin{itemize}
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:} $LLM_G$.
@@ -1802,7 +1865,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:56.1.3}{}
-\subparagraph{UC 56.1.3 - Analisi Cappello Giallo (Ottimismo e Opportunità)}
+\subparagraph{UC 56.1.3 - Analisi Cappello Giallo (Ottimismo)}
 \begin{itemize}
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:} $LLM_G$.
@@ -1818,7 +1881,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:56.1.4}{}
-\subparagraph{UC 56.1.4 - Analisi Cappello Nero (Critica e Rischi)}
+\subparagraph{UC 56.1.4 - Analisi Cappello Nero (Critica)}
 \begin{itemize}
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:} $LLM_G$.
@@ -1831,11 +1894,10 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
         \item Il sistema visualizza la critica pessimistica/logica.
     \end{enumerate}
     \item \textbf{Trigger:} L'utente vuole ottenere una critica negativa e cautelativa, evidenziando perché il contenuto potrebbe fallire o essere pericoloso.
-
 \end{itemize}
 
 \hypertarget{uc:56.1.5}{}
-\subparagraph{UC 56.1.5 - Analisi Cappello Verde (Creatività e Alternativa)}
+\subparagraph{UC 56.1.5 - Analisi Cappello Verde (Creatività)}
 \begin{itemize}
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:} $LLM_G$.
@@ -1852,7 +1914,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{itemize}
 
 \hypertarget{uc:56.1.6}{}
-\subparagraph{UC 56.1.6 - Analisi Cappello Blu (Logica e Struttura)}
+\subparagraph{UC 56.1.6 - Analisi Cappello Blu (Logica)}
 \begin{itemize}
     \item \textbf{Attori Principali:} Utente.
     \item \textbf{Attori Secondari:} $LLM_G$.
@@ -1892,22 +1954,23 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \end{enumerate}
     \item \textbf{Scenari Secondari:}
     \begin{itemize}
-        \item L'utente può scegliere di espandere il contesto tramite URL → \textbf{Vedi \hyperlink{uc:57.4}{UC 57.4}} o tramite note personali → \textbf{Vedi \hyperlink{uc:57.5}{UC 57.5}}.
-        \item L'utente decide di non attendere la risposta e interrompe la richiesta pendente → \textbf{Vedi \hyperlink{uc:52}{UC 52}}.
+        \item L'utente può scegliere di arricchire il contesto tramite URL → \textbf{Vedi \hyperlink{uc:57.4}{UC 57.4}}.
+        \item L'utente può scegliere di arricchire il contesto selezionando manualmente una o più note personali → \textbf{Vedi \hyperlink{uc:57.5}{UC 57.5}}.
+        \item L'utente decide di non attendere la risposta e interrompe la richiesta pendente → \textbf{Vedi \hyperlink{uc:61}{UC 61}}.
         \item Il servizio LLM$_G$ non è raggiungibile o restituisce un errore durante l'elaborazione → \textbf{Vedi \hyperlink{uc:62}{UC 62}}.
     \end{itemize}
     \item \textbf{Inclusioni:}
     \begin{itemize}
-        \item \hyperlink{uc:57.1}{UC 57.1 - Inserimento o riutilizzo del prompt}
-        \item \hyperlink{uc:57.2}{UC 57.2 - Selezione della lunghezza del testo}
-        \item \hyperlink{uc:57.3}{UC 57.3 - Anteprima e conferma del contesto}
+        \item \hyperlink{uc:57.1}{UC 57.1 - Inserimento o riutilizzo del prompt}.
+        \item \hyperlink{uc:57.2}{UC 57.2 - Selezione della lunghezza del testo}.
+        \item \hyperlink{uc:57.3}{UC 57.3 - Conferma del contesto}.
     \end{itemize}
     \item \textbf{Estensioni:}
     \begin{itemize}
-        \item \hyperlink{uc:57.4}{UC 57.4 - Generazione testo a partire da link}
-        \item \hyperlink{uc:57.5}{UC 57.5 - Selezione manuale delle note}
-        \item \hyperlink{uc:63}{UC 63 - Errore LLM}
-        \item \hyperlink{uc:52}{UC 52 - Annullamento operazione in corso}
+        \item \hyperlink{uc:57.4}{UC 57.4 - Generazione testo a partire da link}.
+        \item \hyperlink{uc:57.5}{UC 57.5 - Selezione manuale delle note}.
+        \item \hyperlink{uc:61}{UC 61 - Annullamento richiesta in corso}.
+        \item \hyperlink{uc:62}{UC 62 - Errore LLM}.
     \end{itemize}
     \item \textbf{Trigger:} L'utente desidera produrre nuovi contenuti testuali tramite l'ausilio dell'intelligenza artificiale.
 \end{itemize}
@@ -1963,7 +2026,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \hypertarget{uc:57.4}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
-    \item \textbf{Pre-condizioni:} L'utente dispone di un URL accessibile.
+    \item \textbf{Pre-condizioni:} L'utente ha avviato la configurazione della generazione automatica di testo (\hyperlink{uc:57}{UC 57})..
     \item \textbf{Post-condizioni:} Il contenuto estratto dall'URL è integrato nel contesto di generazione.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
@@ -1974,41 +2037,95 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \item \textbf{Trigger:} L'utente desidera che l'IA basi la generazione su informazioni reperite da una specifica fonte web.
 \end{itemize}
 
+% --- UC 57.5 ---
+\subsubsection{UC 57.5 - Selezione manuale delle note}
+\hypertarget{uc:57.5}{}
+\begin{itemize}
+    \item \textbf{Attore principale:} Utente autenticato
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item L'utente è autenticato (\hyperlink{uc:84}{UC 84}).
+            \item Il database$_G$ contiene almeno una nota associata all'utente.
+            \item L'utente ha avviato la configurazione della generazione automatica di testo (\hyperlink{uc:57}{UC 57}).
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item Le note selezionate vengono aggiunte al contesto della richiesta da inviare all'LLM$_G$.
+        \end{itemize}
+    \item \textbf{Scenario principale:}
+        \begin{enumerate}
+            \item Il sistema$_G$ mostra all'utente l'elenco delle note disponibili nel database$_G$.
+            \item L'utente seleziona una o più note da utilizzare come contesto per la generazione.
+            \item Il sistema$_G$ recupera il contenuto delle note selezionate.
+            \item Il sistema$_G$ aggiunge il contenuto recuperato al buffer del contesto della richiesta.
+            \item Il sistema$_G$ aggiorna il riepilogo del contesto da mostrare all'utente prima dell'invio.
+        \end{enumerate}
+    \item \textbf{Scenari alternativi:}
+        \begin{itemize}
+            \item Se il caricamento di una o più note fallisce, il sistema$_G$ interrompe l'operazione e mostra un messaggio di errore → Vedi \hyperlink{uc:69}{UC 69}.
+        \end{itemize}
+    \item \textbf{Estensioni:}
+        \begin{itemize}
+            \item \hyperlink{uc:69}{UC 69 - Errore caricamento nota}.
+        \end{itemize}
+    \item \textbf{Trigger:} L'utente desidera arricchire il contesto della generazione automatica scegliendo manualmente una o più note personali da fornire all'LLM$_G$.
+\end{itemize}
+
 % --- UC 58 ---
-\subsubsection{UC 58 - Salvataggio output AI sulla nota corrente}
+\subsubsection{UC 58 - Accettazione output AI}
 \hypertarget{uc:58}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
-    \item \textbf{Pre-condizioni:} Il sistema ha visualizzato un output generato o trasformato dall'IA nell'area di anteprima ed è presente una nota aperta.
-    \item \textbf{Post-condizioni:} Il contenuto originale dell'editor viene sovrascritto dal testo prodotto dall'IA e salvato.
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item Il sistema ha visualizzato un output generato o trasformato dall'IA nell'area di anteprima.
+            \item È presente una nota aperta nell'editor$_G$.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item L'output prodotto dall'IA viene accettato dall'utente.
+            \item Il contenuto della nota corrente viene aggiornato con il testo prodotto dall'IA.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente seleziona il comando "Sostituisci nell'editor" dall'interfaccia di anteprima.
-        \item Il sistema rimpiazza il testo corrente nell'area di editing con il contenuto generato.
-        \item Il sistema effettua la persistenza dei dati aggiornati nel database.
-    \end{enumerate}
-    \item \textbf{Trigger:} L'utente intende integrare l'output dell'IA direttamente nel proprio lavoro corrente.
+        \begin{enumerate}
+            \item L'utente visualizza l'output prodotto dall'IA nell'area di anteprima.
+            \item L'utente seleziona il comando di accettazione dell'output.
+            \item Il sistema integra il testo generato nella nota corrente → \hyperlink{uc:58.1}{UC 58.1}.
+        \end{enumerate}
+    \item \textbf{Inclusioni:}
+        \begin{itemize}
+            \item \hyperlink{uc:58.1}{UC 58.1 - Salvataggio output AI sulla nota corrente}.
+        \end{itemize}
+    \item \textbf{Trigger:} L'utente desidera utilizzare il contenuto prodotto dall'IA all'interno della nota corrente.
+\end{itemize}
+
+% --- UC 58.1 ---
+\paragraph{UC 58.1 - Salvataggio output AI sulla nota corrente}
+\hypertarget{uc:58.1}{}
+\begin{itemize}
+    \item \textbf{Attore principale:} Utente
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item L'utente ha accettato l'output prodotto dall'IA.
+            \item È presente una nota aperta nell'editor$_G$.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item Il contenuto originale dell'editor$_G$ viene sostituito o aggiornato con il testo prodotto dall'IA.
+            \item La nota corrente contiene la versione accettata dall'utente.
+        \end{itemize}
+    \item \textbf{Scenario principale:}
+        \begin{enumerate}
+            \item Il sistema acquisisce il testo prodotto dall'IA.
+            \item Il sistema sostituisce il contenuto corrente dell'editor$_G$ con l'output accettato.
+            \item Il sistema aggiorna la visualizzazione dell'editor$_G$ e dell'anteprima.
+        \end{enumerate}
+    \item \textbf{Trigger:} L'utente conferma l'accettazione dell'output IA e ne richiede l'integrazione nella nota corrente.
 \end{itemize}
 
 % --- UC 59 ---
-\subsubsection{UC 59 - Salvataggio output AI come nuova nota}
+\subsubsection{UC 59 - Rifiuto output AI}
 \hypertarget{uc:59}{}
-\begin{itemize}
-    \item \textbf{Attore principale:} Utente
-    \item \textbf{Pre-condizioni:} Il sistema ha visualizzato un output generato o trasformato dall'IA nell'area di anteprima.
-    \item \textbf{Post-condizioni:} L'output dell'IA viene archiviato come una nuova entità "Nota" indipendente.
-    \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente seleziona il comando "Salva come nuova nota" dall'interfaccia di anteprima.
-        \item Il sistema crea un nuovo record nel database per la nota.
-        \item Il sistema archivia il testo generato e notifica l'avvenuto salvataggio.
-    \end{enumerate}
-    \item \textbf{Trigger:} L'utente desidera conservare l'output dell'IA come una nota a sé stante.
-\end{itemize}
-
-% --- UC 60 ---
-\subsubsection{UC 60 - Rifiuto output AI}
-\hypertarget{uc:60}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} L'output dell'IA è visualizzato nell'area di anteprima.
@@ -2021,9 +2138,9 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \item \textbf{Trigger:} L'utente non desidera utilizzare il contenuto prodotto.
 \end{itemize}
 
-% --- UC 61 ---
-\subsubsection{UC 61 - Rigenerazione output AI}
-\hypertarget{uc:61}{}
+% --- UC 60 ---
+\subsubsection{UC 60 - Rigenerazione output AI}
+\hypertarget{uc:60}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Attore secondario:} LLM$_G$
@@ -2035,13 +2152,13 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
         \item Il sistema reinvia la richiesta (prompt e parametri) all'attore secondario.
         \item Il sistema aggiorna l'anteprima con il nuovo contenuto ricevuto.
     \end{enumerate}
-    \item \textbf{Estensioni:} \hyperlink{uc:63}{UC 63 - Errore LLM}.
+    \item \textbf{Estensioni:} \hyperlink{uc:62}{UC 62 - Errore LLM}.
     \item \textbf{Trigger:} L'utente desidera ottenere una nuova versione del testo generato, mantenendo le stesse istruzioni di base.
 \end{itemize}
 
-% --- UC 62 ---
-\subsubsection{UC 62 - Annullamento richiesta in corso}
-\hypertarget{uc:62}{}
+% --- UC 61 ---
+\subsubsection{UC 61 - Annullamento richiesta in corso}
+\hypertarget{uc:61}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -2063,15 +2180,15 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \item \textbf{Trigger:} L'utente desidera interrompere l'attesa dell'elaborazione e riprendere il controllo dell'editor.
 \end{itemize}
 
-% --- UC 63 ---
-\subsubsection{UC 63 - Errore LLM}
-\hypertarget{uc:63}{}
+% --- UC 62 ---
+\subsubsection{UC 62 - Errore LLM}
+\hypertarget{uc:62}{}
 \begin{itemize}
-    \item \textbf{Attore principale:} Utente.
+    \item \textbf{Attore principale:} Utente
     \item \textbf{Attore secondario:} LLM$_G$
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item Una funzionalità dipendente da LLM$_G$ è stata attivata.
+            \item Una funzionalità dipendente da LLM$_G$ è stata attivata dall'utente.
             \item È stata inoltrata una richiesta di elaborazione dati verso il server esterno.
         \end{itemize}
     \item \textbf{Post-condizioni:} 
@@ -2090,11 +2207,11 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \item \textbf{Trigger:} Il servizio esterno di intelligenza artificiale restituisce un errore o non risponde entro i tempi previsti durante un'operazione AI.
 \end{itemize}
 
-% --- UC 64 ---
-\subsubsection{UC 64 - Gestione testo insufficiente per l'elaborazione}
-\hypertarget{uc:64}{}
+% --- UC 63 ---
+\subsubsection{UC 63 - Gestione testo insufficiente per l'elaborazione}
+\hypertarget{uc:63}{}
 \begin{itemize}
-    \item \textbf{Attore principale:} Sistema
+    \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
             \item L'utente ha invocato una funzionalità di elaborazione AI.
@@ -2114,1163 +2231,1110 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
     \item \textbf{Trigger:} L'input fornito dall'utente non soddisfa i requisiti minimi di carico informativo necessari per l'elaborazione dell'IA.
 \end{itemize}
 
+\newpage 
 \subsection{Salvataggio e Persistenza}
 In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e la persistenza dei dati.
 
-\subsubsection{UC 29 - Creazione nuova nota}
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC29.pdf}
-  \caption{Diagramma UC29}
-  \label{fig:uc29}
-\end{figure}
-\label{uc29}
+% --- UC 64 ---
+\subsubsection{UC 64 - Creazione nota vuota}
+\hypertarget{uc:64}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente vuole iniziare la stesura di una nuova nota.
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item L'editor di testo è disponibile a schermo.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item L'utente ha avviato la scrittura di una nuova nota.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item Il sistema$_G$ è attivo e l'interfaccia di editing è accessibile.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item L'editor$_G$ predispone una nuova sessione di scrittura locale.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente seleziona l'opzione per creare una nuova nota.
-        \item Il sistema$_G$ esegue l'azione scelta tra le generalizzazioni disponibili.
-    \end{enumerate}
-    \item \textbf{Generalizzazioni:}
-    \begin{itemize}
-        \item UC 29.1 - Inizializzazione editor vuoto
-        \item UC 29.2 - Creazione nota nel Database$_G$ Browser
-    \end{itemize}
+        \begin{enumerate}
+            \item L'utente seleziona il comando "Nuova nota".
+            \item Il sistema$_G$ inizializza un nuovo buffer di testo vuoto identificato temporaneamente come "Senza titolo".
+            \item Il sistema$_G$ sposta il focus dell'interfaccia sulla nuova nota.
+        \end{enumerate}
+    \item \textbf{Scenario secondario:}
+        \begin{itemize}
+            \item Si verifica un'eccezione imprevista nell'allocazione della memoria o nel caricamento dei componenti dell'interfaccia → \textbf{Vedi \hyperlink{uc:66}{UC 66}}.
+        \end{itemize}
+    \item \textbf{Estensioni:} 
+        \begin{itemize}
+            \item \hyperlink{uc:66}{UC 66 - Errore creazione nota}.
+        \end{itemize}
+    \item \textbf{Trigger:} L'utente desidera avviare una stesura immediata nell'editor$_G$.
 \end{itemize}
 
-\paragraph{UC 29.1 - Inizializzazione editor vuoto}
-\label{uc29.1}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC29.1.pdf}
-  \caption{Diagramma UC29.1}
-  \label{fig:uc29.1}
-\end{figure}
-
+% --- UC 65 ---
+\subsubsection{UC 65 - Creazione nota nel database}
+\hypertarget{uc:65}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente vuole iniziare la scrittura di una nota completamente vuota senza interazione con il database$_G$.
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item L'editor di testo è disponibile a schermo.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item L'editor di testo è stato azzerato ed è pronto per la scrittura di una nuova nota vuota.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente autenticato
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item Il sistema$_G$ è correttamente collegato al database$_G$.
+            \item L'utente ha eseguito l'autenticazione → \hyperlink{uc:84}{UC 84}.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item Un nuovo record viene creato in modo persistente nel database$_G$.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente seleziona l'opzione ``Nuova nota''.
-        \item Il sistema$_G$ svuota l'area di editing$_G$, rimuovendo qualsiasi contenuto precedente.
-    \end{enumerate}
+        \begin{enumerate}
+            \item L'utente seleziona "Crea nota nel database" tramite il Browser delle note.
+            \item Il sistema$_G$ richiede all'utente un titolo per la nuova nota.
+            \item L'utente inserisce il titolo e conferma l'azione.
+            \item Il sistema$_G$ tenta di registrare la nota nel database$_G$.
+        \end{enumerate}
+    \item \textbf{Scenario secondario:}
+        \begin{itemize}
+            \item La creazione fallisce a causa di un titolo già esistente, timeout della richiesta o assenza improvvisa di connessione → \textbf{Vedi \hyperlink{uc:66}{UC 66}}.
+        \end{itemize}
+    \item \textbf{Estensioni:} 
+        \begin{itemize}
+            \item \hyperlink{uc:66}{UC 66 - Errore creazione nota}.
+        \end{itemize}
+    \item \textbf{Trigger:} L'utente vuole avviare un documento con salvataggio cloud automatico.
 \end{itemize}
 
-\paragraph{\texorpdfstring{UC 29.2 - Creazione nota nel Database$_G$ Browser}{UC 29.2 - Creazione nota nel Database Browser}}
-\label{uc29.2}
-\mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC29.2.pdf}
-  \caption{Diagramma UC29.2}
-  \label{fig:uc29.2}
-\end{figure}
-
+% --- UC 66 ---
+\subsubsection{UC 66 - Errore creazione nota}
+\hypertarget{uc:66}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente vuole creare una nuova nota persistente nel database$_G$ dell'applicazione.
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item Il sistema$_G$ è correttamente collegato al database$_G$.
-        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item Una nuova nota vuota è stata creata e registrata nel database$_G$.
-        \item L'editor di testo visualizza la nuova nota vuota, pronta per la scrittura.
-        \item La nuova nota compare nella lista delle note nel Database$_G$ Browser.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item Il sistema$_G$ è attivo e accessibile.
+            \item Il sistema$_G$ rileva un'anomalia nel processo di creazione, come errore di allocazione memoria, titolo già esistente o fallimento della query al database$_G$.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item L'utente viene informato del fallimento.
+            \item Il sistema$_G$ ripristina lo stato precedente per evitare perdite di dati.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente seleziona l'opzione ``Nuova nota nel database$_G$'' tramite il Database$_G$ Browser.
-        \item Il sistema$_G$ richiede all'utente un nome per la nuova nota.
-        \item L'utente inserisce il nome desiderato per la nota.
-        \item Il sistema$_G$ crea un record vuoto nel database$_G$ associato all'account$_G$ dell'utente.
-        \item Il sistema$_G$ apre la nota nell'editor di testo.
-    \end{enumerate}
-    \item \textbf{Estensioni:}
-    \begin{itemize}
-        \item UC 29.2.1 - Gestione errore creazione nota nel Database$_G$.
-    \end{itemize}
+        \begin{enumerate}
+            \item Il sistema$_G$ identifica la causa dell'errore.
+            \item Il sistema$_G$ mostra un messaggio di errore descrittivo all'utente.
+            \item Il sistema$_G$ ripristina lo stato precedente dell'interfaccia.
+        \end{enumerate}
+    \item \textbf{Trigger:} Il sistema$_G$ rileva un errore nel processo di creazione o inizializzazione della nota.
 \end{itemize}
 
-\subparagraph{\texorpdfstring{UC 29.2.1 - Gestione errore creazione nota nel Database$_G$}{UC 29.2.1 - Gestione errore creazione nota nel Database}}
-\label{uc29.2.1}
-\mbox{}\\
+% --- UC 67 ---
+\subsubsection{UC 67 - Caricamento nota da file locale}
+\hypertarget{uc:67}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} Il sistema non crea una nuova nota persistente nel database$_G$ dell'applicazione.
-    \item \textbf{Attore primario:} Sistema
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item Il sistema$_G$ è correttamente collegato al database$_G$.
-        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item La nuova nota vuota non è stata creata nel database$_G$.
-        \item Il sistema$_G$ notifica all'utente l'impossibilità di completare l'operazione.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item Il sistema$_G$ dispone dei permessi di lettura necessari per accedere alle directory locali del dispositivo.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item Il testo contenuto nel file selezionato viene importato e visualizzato correttamente nell'editor$_G$.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente seleziona l'opzione ``Nuova nota nel database$_G$'' tramite il Database$_G$ Browser.
-        \item Si verifica$_G$ un errore durante la creazione della nota (es. esiste già una nota con quel nome, errore di connessione al database$_G$).
-        \item Il sistema$_G$ mostra un messaggio di errore adeguato a schermo.
-        \item L'utente può scegliere se riprovare o annullare l'operazione.
-    \end{enumerate}
+        \begin{enumerate}
+            \item L'utente seleziona il comando "Importa da file" tramite l'interfaccia principale.
+            \item L'utente sceglie il file, in formato \texttt{.md} o \texttt{.txt}, attraverso il selettore di sistema.
+            \item Il sistema$_G$ esegue il parsing del contenuto e aggiorna l'area di editing.
+        \end{enumerate}
+    \item \textbf{Scenario secondario:}
+        \begin{itemize}
+            \item Si verifica un errore di lettura causato da un file corrotto, un formato non supportato o restrizioni di accesso del sistema operativo → \textbf{Vedi \hyperlink{uc:69}{UC 69}}.
+        \end{itemize}
+    \item \textbf{Estensioni:} 
+        \begin{itemize}
+            \item \hyperlink{uc:69}{UC 69 - Errore caricamento nota}.
+        \end{itemize}
+    \item \textbf{Trigger:} L'utente desidera modificare un documento salvato localmente sul proprio dispositivo.
 \end{itemize}
 
-\subsubsection{UC 30 - Caricamento nota}
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC30.pdf}
-  \caption{Diagramma UC30}
-  \label{fig:uc30}
-\end{figure}
-\label{uc30}
+% --- UC 68 ---
+\subsubsection{UC 68 - Caricamento nota da database}
+\hypertarget{uc:68}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente modifica e/o visualizza una nota già esistente.
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item Una nota esistente è stata caricata correttamente nell'editor di testo.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente autenticato
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item L'utente ha eseguito l'autenticazione → \hyperlink{uc:84}{UC 84}.
+            \item Il database$_G$ cloud è raggiungibile tramite connessione di rete.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item La nota selezionata viene scaricata dal cloud e caricata nell'area di lavoro dell'editor$_G$.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente accede al menù di caricamento note.
-        \item L'utente sceglie la modalità di caricamento.
-    \end{enumerate}
-    \item \textbf{Generalizzazioni:}
-    \begin{itemize}
-        \item UC 30.1 - Caricamento da File Locale
-        \item UC 30.2 - Caricamento da Database$_G$ Browser
-    \end{itemize}
-    \item \textbf{Estensioni:}
-    \begin{itemize}
-        \item UC 30.3 - Gestione errore di caricamento
-    \end{itemize}
+        \begin{enumerate}
+            \item L'utente naviga nel Database Browser e seleziona il titolo della nota desiderata.
+            \item Il sistema$_G$ inoltra una richiesta di lettura al server remoto.
+            \item Il sistema$_G$ riceve il contenuto testuale e lo renderizza nell'editor$_G$.
+        \end{enumerate}
+    \item \textbf{Scenario secondario:}
+        \begin{itemize}
+            \item Si verifica un errore di ricezione dovuto a instabilità della rete, sessione scaduta o record non trovato sul server → \textbf{Vedi \hyperlink{uc:69}{UC 69}}.
+        \end{itemize} 
+    \item \textbf{Estensioni:} 
+        \begin{itemize}
+            \item \hyperlink{uc:69}{UC 69 - Errore caricamento nota}.
+        \end{itemize}
+    \item \textbf{Trigger:} L'utente desidera accedere a una nota precedentemente salvata nel proprio spazio cloud.
 \end{itemize}
 
-\paragraph{UC 30.1 - Caricamento da File Locale}
-\label{uc30.1}
-\mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC30.1.pdf}
-  \caption{Diagramma UC30.1}
-  \label{fig:uc30.1}
-\end{figure}
-
+% --- UC 69 ---
+\subsubsection{UC 69 - Errore caricamento nota}
+\hypertarget{uc:69}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente apre una nota presente in un file locale.
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item L'utente possiede un file di testo in formato Markdown$_G$ nel proprio file system.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item Il contenuto del file selezionato è stato caricato correttamente nell'editor di testo.
-        \item Il render Markdown$_G$ aggiorna la visualizzazione con il contenuto caricato.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item Il sistema$_G$ rileva un'anomalia critica durante il flusso di lettura dati o ricezione pacchetti.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item L'editor$_G$ preserva la sessione di lavoro precedente senza alterazioni.
+            \item L'utente riceve una notifica di errore.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente clicca il pulsante ``File''.
-        \item L'utente seleziona l'opzione ``Importa da file''.
-        \item Il sistema$_G$ apre una finestra di dialogo per la selezione del file.
-        \item L'utente seleziona il file Markdown$_G$ desiderato dal proprio file system.
-        \item Il sistema$_G$ legge il contenuto del file e lo carica nell'editor di testo.
-    \end{enumerate}
-    \item \textbf{Estensioni:}
-    \begin{itemize}
-        \item UC 30.3 - Gestione errore di caricamento
-    \end{itemize}
+        \begin{enumerate}
+            \item Il sistema$_G$ identifica la causa del fallimento, come timeout del server, formato incompatibile, file corrotto o record rimosso.
+            \item Il sistema$_G$ mostra un messaggio di errore descrittivo e interrompe la procedura di importazione.
+            \item Il sistema$_G$ ripristina la disponibilità dell'interfaccia per nuovi tentativi.
+        \end{enumerate}
+    \item \textbf{Trigger:} Il sistema$_G$ rileva un errore imprevisto o un'eccezione nel processo di input dei dati.
 \end{itemize}
 
-\paragraph{\texorpdfstring{UC 30.2 - Caricamento da Database$_G$ Browser}{UC 30.2 - Caricamento da Database Browser}}
-\label{uc30.2}
-\mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC30.2.pdf}
-  \caption{Diagramma UC30.2}
-  \label{fig:uc30.2}
-\end{figure}
-
+% --- UC 70 ---
+\subsubsection{UC 70 - Salvataggio nota su File System}
+\hypertarget{uc:70}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente apre una nota salvata nel database$_G$.
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item Il sistema$_G$ è correttamente collegato al database$_G$.
-        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
-        \item L'utente dispone di almeno una nota salvata nel database$_G$.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item La nota selezionata è stata caricata correttamente nell'editor di testo.
-        \item Il render Markdown$_G$ aggiorna la visualizzazione con il contenuto caricato.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item Una nota è aperta nell'editor$_G$.
+            \item Il sistema$_G$ dispone dei permessi di scrittura sul disco locale.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item Il contenuto attuale dell'editor viene scritto in un file locale nel percorso scelto.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente accede al Database$_G$ Browser.
-        \item Il sistema$_G$ mostra la lista delle note salvate nel database$_G$.
-        \item L'utente seleziona la nota desiderata dalla lista.
-        \item Il sistema$_G$ recupera il contenuto della nota dal database$_G$ e lo carica nell'editor
-        di testo.
-    \end{enumerate}
-    \item \textbf{Estensioni:}
-    \begin{itemize}
-        \item UC 30.3 - Gestione errore di caricamento
-    \end{itemize}
+        \begin{enumerate}
+            \item L'utente seleziona il comando "Salva su file" tramite l'interfaccia.
+            \item L'utente definisce il percorso di destinazione e il nome del file tramite il selettore di sistema.
+            \item Il sistema$_G$ esegue la scrittura dei dati sul supporto fisico.
+        \end{enumerate}
+    \item \textbf{Scenario secondario:}
+        \begin{itemize}
+            \item Si verifica un errore di scrittura dovuto a disco pieno, percorso non valido o permessi di accesso insufficienti → \textbf{Vedi \hyperlink{uc:72}{UC 72}}.
+        \end{itemize}
+    \item \textbf{Estensioni:} 
+        \begin{itemize}
+            \item \hyperlink{uc:72}{UC 72 - Errore salvataggio nota}.
+        \end{itemize}
+    \item \textbf{Trigger:} L'utente desidera rendere persistenti le modifiche correnti sul proprio dispositivo.
 \end{itemize}
 
-\paragraph{UC 30.3 - Gestione errore di caricamento}
-\label{uc30.3}
-\mbox{}\\
-
+% --- UC 71 ---
+\subsubsection{UC 71 - Salvataggio nota nel database}
+\hypertarget{uc:71}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di caricamento della nota.
-    \item \textbf{Attore primario:} Sistema
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item L'utente ha richiesto il caricamento di una nota da file locale o dal database$_G$.
-        \item Il sistema$_G$ non è riuscito a importare correttamente la nota.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item La nota non è stata caricata nell'editor.
-        \item Il sistema$_G$ notifica all'utente l'impossibilità di completare l'operazione.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente autenticato
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item L'utente è autenticato → \hyperlink{uc:84}{UC 84}.
+            \item La nota è stata precedentemente creata o caricata dal database$_G$.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item Il record corrispondente nel database$_G$ viene aggiornato con la versione più recente del testo.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente seleziona la nota che vuole importare nel sistema$_G$.
-        \item Si verifica$_G$ un errore durante il caricamento della nota (es.\ file non valido, nota
-        inesistente, errore di lettura, errore di connessione al database$_G$).
-        \item Il sistema$_G$ mostra un messaggio di errore adeguato a schermo.
-        \item L'utente può scegliere se riprovare o annullare l'operazione.
-    \end{enumerate}
+        \begin{enumerate}
+            \item L'utente seleziona il comando "Salva nel database".
+            \item Il sistema$_G$ inoltra il pacchetto dati aggiornato al server cloud.
+            \item Il sistema$_G$ riceve la conferma di avvenuta sincronizzazione.
+        \end{enumerate}
+    \item \textbf{Scenario secondario:}
+        \begin{itemize}
+            \item Si verifica un errore di persistenza causato da instabilità di rete, errore del server o sessione non valida → \textbf{Vedi \hyperlink{uc:72}{UC 72}}.
+        \end{itemize}
+    \item \textbf{Estensioni:} 
+        \begin{itemize}
+            \item \hyperlink{uc:72}{UC 72 - Errore salvataggio nota}.
+        \end{itemize}
+    \item \textbf{Trigger:} L'utente desidera sincronizzare il proprio lavoro con lo spazio di archiviazione cloud.
 \end{itemize}
 
-\subsubsection{UC 31 - Salvataggio nota}
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC31.pdf}
-  \caption{Diagramma UC31}
-  \label{fig:uc31}
-\end{figure}
-\label{uc31}
+% --- UC 72 ---
+\subsubsection{UC 72 - Errore salvataggio nota}
+\hypertarget{uc:72}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente salva la nota attualmente aperta nell'editor di testo.
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item La nota da salvare è aperta nell'editor di testo.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item L'utente ha salvato correttamente la nota tramite la modalità scelta.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item Il sistema$_G$ rileva un'eccezione o un errore durante la fase di scrittura fisica o di sincronizzazione cloud.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item I dati nell'editor$_G$ rimangono integri.
+            \item L'utente viene informato del fallimento dell'operazione.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente seleziona l'opzione di salvataggio della nota.
-        \item L'utente sceglie la modalità di salvataggio.
-    \end{enumerate}
-    \item \textbf{Generalizzazioni:}
-    \begin{itemize}
-        \item UC 31.1 - Salvataggio su FileSystem
-        \item UC 31.2 - Salvataggio da Database$_G$ Browser
-    \end{itemize}
-    \item \textbf{Estensioni:}
-    \begin{itemize}
-        \item UC 31.3 - Gestione errore di salvataggio
-    \end{itemize}
+        \begin{enumerate}
+            \item Il sistema$_G$ identifica la causa del fallimento, come spazio esaurito, timeout del server, percorso non valido o permessi negati.
+            \item Il sistema$_G$ visualizza un avviso descrittivo dell'errore.
+            \item Il sistema$_G$ ripristina lo stato interattivo dell'editor per permettere un nuovo tentativo.
+        \end{enumerate}
+    \item \textbf{Trigger:} Il sistema$_G$ rileva un fallimento nella procedura di persistenza dei dati.
 \end{itemize}
 
-\paragraph{UC 31.1 - Salvataggio su FileSystem}
-\label{uc31.1}
-\mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC31.1.pdf}
-  \caption{Diagramma UC31.1}
-  \label{fig:uc31.1}
-\end{figure}
-
+% --- UC 73 ---
+\subsubsection{UC 73 - Eliminazione nota da File System}
+\hypertarget{uc:73}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente esporta la nota corrente come file nel file system.
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item La nota da salvare è aperta nell'editor di testo.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item L'utente ha salvato correttamente la nota nel file system sotto forma di file
-        Markdown$_G$ (\texttt{.md}).
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item Il sistema$_G$ dispone dei permessi di scrittura/modifica nelle directory locali.
+            \item La nota selezionata è memorizzata localmente sul dispositivo.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item Il file corrispondente alla nota viene rimosso permanentemente dal supporto fisico locale.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente seleziona l'opzione ``Salva su file''.
-        \item Il sistema$_G$ apre una finestra di dialogo per la selezione della destinazione.
-        \item L'utente sceglie la directory di destinazione e il nome del file.
-        \item Il sistema$_G$ salva il contenuto dell'editor nel percorso selezionato.
-    \end{enumerate}
+        \begin{enumerate}
+            \item L'utente seleziona la nota tramite il Browser locale.
+            \item L'utente seleziona il comando "Elimina nota".
+            \item Il sistema$_G$ richiede una conferma esplicita per procedere con la cancellazione.
+            \item L'utente conferma l'azione.
+            \item Il sistema$_G$ interagisce con il File System per rimuovere il file.
+        \end{enumerate}
+    \item \textbf{Scenario secondario:}
+        \begin{itemize}
+            \item Si verifica un errore di accesso al disco o il file risulta già rimosso da un processo esterno → \textbf{Vedi \hyperlink{uc:75}{UC 75}}.
+        \end{itemize}
+    \item \textbf{Estensioni:} 
+        \begin{itemize}
+            \item \hyperlink{uc:75}{UC 75 - Errore eliminazione nota}.
+        \end{itemize}
+    \item \textbf{Trigger:} L'utente desidera rimuovere definitivamente una nota dal proprio dispositivo.
 \end{itemize}
 
-\paragraph{\texorpdfstring{UC 31.2 - Salvataggio da Database$_G$ Browser}{UC 31.2 - Salvataggio da Database Browser}}
-\label{uc31.2}
-\mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC31.2.pdf}
-  \caption{Diagramma UC31.2}
-  \label{fig:uc31.2}
-\end{figure}
-
+% --- UC 74 ---
+\subsubsection{UC 74 - Eliminazione nota da database}
+\hypertarget{uc:74}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente salva la nota nel database$_G$ dell'applicazione.
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item La nota da salvare è aperta nell'editor di testo.
-        \item Il sistema$_G$ è correttamente collegato al database$_G$.
-        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item Il contenuto della nota è stato aggiornato o inserito correttamente nel database$_G$.
-        \item Il Database$_G$ Browser aggiorna la lista delle note per riflettere le modifiche.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente autenticato
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item L'utente ha effettuato l'autenticazione → \hyperlink{uc:84}{UC 84}.
+            \item Il database$_G$ cloud è raggiungibile.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item Il record della nota viene eliminato definitivamente dal database$_G$ remoto.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente seleziona l'opzione ``Salva nel database$_G$''.
-        \item Se la nota è nuova, il sistema$_G$ richiede un nome per la nota.
-        \item L'utente inserisce o conferma il nome della nota.
-        \item Il sistema$_G$ salva il contenuto dell'editor nel database$_G$ associandolo all'account$_G$
-        dell'utente.
-    \end{enumerate}
+        \begin{enumerate}
+            \item L'utente seleziona la nota tramite il Database Browser.
+            \item L'utente seleziona il comando "Elimina nota dal cloud".
+            \item Il sistema$_G$ richiede una conferma esplicita per l'eliminazione remota.
+            \item L'utente conferma l'azione.
+            \item Il sistema$_G$ inoltra la richiesta di cancellazione al server cloud.
+        \end{enumerate}
+    \item \textbf{Scenario secondario:}
+        \begin{itemize}
+            \item La cancellazione fallisce per instabilità della rete, sessione scaduta o errore interno del server → \textbf{Vedi \hyperlink{uc:75}{UC 75}}.
+        \end{itemize}
+    \item \textbf{Estensioni:} 
+        \begin{itemize}
+            \item \hyperlink{uc:75}{UC 75 - Errore eliminazione nota}.
+        \end{itemize}
+    \item \textbf{Trigger:} L'utente desidera rimuovere una nota dal proprio account cloud.
 \end{itemize}
 
-\paragraph{UC 31.3 - Gestione errore di salvataggio}
-\label{uc31.3}
-\mbox{}\\
-
+% --- UC 75 ---
+\subsubsection{UC 75 - Errore eliminazione nota}
+\hypertarget{uc:75}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di salvataggio della nota.
-    \item \textbf{Attore primario:} Sistema
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item La nota da salvare è aperta nell'editor di testo.
-        \item L'utente ha richiesto il salvataggio della nota.
-        \item Il sistema$_G$ ha rilevato un errore durante il salvataggio.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item La nota non è stata salvata.
-        \item Il sistema$_G$ notifica l'errore all'utente.
-        \item L'utente può scegliere se riprovare o annullare l'operazione.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item Il sistema$_G$ rileva un'anomalia che impedisce il completamento della rimozione, locale o remota.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item L'integrità del dato viene preservata.
+            \item La nota non viene eliminata.
+            \item L'utente riceve un feedback sull'errore.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item Si verifica un errore durante il salvataggio (es.\ percorso non valido, nome già
-        utilizzato, spazio insufficiente, errore di connessione al database$_G$).
-        \item Il sistema$_G$ mostra un messaggio di errore descrittivo a schermo.
-        \item L'utente decide se riprovare il salvataggio o annullare l'operazione.
-    \end{enumerate}
+        \begin{enumerate}
+            \item Il sistema$_G$ identifica l'origine e la causa del fallimento, come permessi negati su disco, timeout della connessione o errore API.
+            \item Il sistema$_G$ mostra un messaggio di errore descrittivo all'utente.
+            \item Il sistema$_G$ ripristina la vista dell'elenco note originale.
+        \end{enumerate}
+    \item \textbf{Trigger:} Il sistema$_G$ riceve una notifica di fallimento o un'eccezione durante la fase di cancellazione.
 \end{itemize}
 
-\subsubsection{UC 32 - Gestione nota salvata}
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC32.pdf}
-  \caption{Diagramma UC32}
-  \label{fig:uc32}
-\end{figure}
-\label{uc32}
+% --- UC 76 ---
+\subsubsection{UC 76 - Rinominazione nota locale}
+\hypertarget{uc:76}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente vuole gestire le note salvate nel database$_G$ (eliminazione, rinominazione o consultazione dei metadati$_G$).
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item Il sistema$_G$ è correttamente collegato al database$_G$.
-        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
-        \item Esiste almeno una nota salvata nel database$_G$.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item L'utente ha completato l'operazione di manutenzione$_G$ desiderata sulla nota selezionata.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item Il sistema$_G$ dispone dei permessi di scrittura sulla directory locale interessata.
+            \item La nota è presente nel File System e visualizzata nell'interfaccia.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item Il file fisico viene rinominato sul disco mantenendo l'estensione originale \texttt{.md} o \texttt{.txt}.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente accede al Database$_G$ Browser.
-        \item L'utente seleziona la nota su cui intende operare.
-        \item L'utente sceglie l'operazione di manutenzione$_G$ desiderata tra quelle disponibili.
-    \end{enumerate}
-    \item \textbf{Generalizzazioni:}
-    \begin{itemize}
-        \item UC 32.1 - Eliminazione nota dal Database$_G$
-        \item UC 32.2 - Rinominazione nota nel Database$_G$
-        \item UC 32.3 - Visualizzazione informazioni e metadati della nota
-    \end{itemize}
+        \begin{enumerate}
+            \item L'utente seleziona il comando "Rinomina" sulla nota locale scelta.
+            \item Il sistema$_G$ abilita l'editing del titolo o apre una finestra di dialogo per l'inserimento.
+            \item L'utente inserisce il nuovo nome e conferma.
+            \item Il sistema$_G$ valida i caratteri inseriti e richiede al sistema operativo il cambio nome del file.
+        \end{enumerate}
+    \item \textbf{Scenario secondario:}
+        \begin{itemize}
+            \item Il nome inserito contiene caratteri non validi per il File System o esiste già un file con lo stesso nome → \textbf{Vedi \hyperlink{uc:78}{UC 78}}.
+        \end{itemize}
+    \item \textbf{Estensioni:} 
+        \begin{itemize}
+            \item \hyperlink{uc:78}{UC 78 - Errore rinominazione nota}.
+        \end{itemize}
+    \item \textbf{Trigger:} L'utente desidera cambiare il titolo identificativo di un file locale.
 \end{itemize}
 
-\paragraph{\texorpdfstring{UC 32.1 - Eliminazione nota dal Database$_G$}{UC 32.1 - Eliminazione nota dal Database}}
-\label{uc32.1}
-\mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC32.1.pdf}
-  \caption{Diagramma UC32.1}
-  \label{fig:uc32.1}
-\end{figure}
-
+% --- UC 77 ---
+\subsubsection{UC 77 - Rinominazione nota nel database}
+\hypertarget{uc:77}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente vuole eliminare definitivamente una nota dal database$_G$.
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item Il sistema$_G$ è correttamente collegato al database$_G$.
-        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
-        \item Esiste almeno una nota salvata nel database$_G$.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item La nota selezionata è stata rimossa permanentemente dal database$_G$.
-        \item Il Database$_G$ Browser aggiorna la lista delle note escludendo la nota eliminata.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente autenticato
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item L'utente è autenticato → \hyperlink{uc:84}{UC 84}.
+            \item Il database$_G$ cloud è raggiungibile.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item Il titolo della nota viene aggiornato nel record corrispondente sul database$_G$.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente seleziona la nota da eliminare nel Database Browser.
-        \item L'utente seleziona l'opzione ``Elimina nota''.
-        \item Il sistema$_G$ mostra una richiesta di conferma all'utente.
-        \item L'utente conferma l'eliminazione.
-        \item Il sistema$_G$ rimuove il record della nota dal database$_G$.
-    \end{enumerate}
-    \item \textbf{Estensioni:}
-    \begin{itemize}
-        \item UC 32.1.1 - Gestione errore eliminazione
-    \end{itemize}
+        \begin{enumerate}
+            \item L'utente seleziona il comando "Rinomina" per una nota presente nel cloud.
+            \item L'utente inserisce il nuovo titolo e conferma l'azione.
+            \item Il sistema$_G$ inoltra una richiesta di aggiornamento al server remoto.
+            \item Il sistema$_G$ riceve la conferma e aggiorna la visualizzazione nel browser delle note.
+        \end{enumerate}
+    \item \textbf{Scenario secondario:}
+        \begin{itemize}
+            \item La richiesta fallisce a causa di un titolo duplicato nel database, timeout di rete o sessione scaduta → \textbf{Vedi \hyperlink{uc:78}{UC 78}}.
+        \end{itemize}
+    \item \textbf{Estensioni:} 
+        \begin{itemize}
+            \item \hyperlink{uc:78}{UC 78 - Errore rinominazione nota}.
+        \end{itemize}
+    \item \textbf{Trigger:} L'utente desidera organizzare meglio le proprie note cloud cambiandone il titolo.
 \end{itemize}
 
-\subparagraph{UC 32.1.1 - Gestione errore eliminazione}
-\mbox{}\\
-\label{uc32.1.1}
+% --- UC 78 ---
+\subsubsection{UC 78 - Errore rinominazione nota}
+\hypertarget{uc:78}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di eliminazione della nota.
-    \item \textbf{Attore primario:} Sistema
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item L'utente ha richiesto l'eliminazione di una nota dal database$_G$.
-        \item Il sistema$_G$ ha rilevato un errore durante il tentativo di eliminazione.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item La nota non è stata eliminata.
-        \item Il sistema$_G$ notifica all'utente il fallimento dell'operazione.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item Il sistema$_G$ rileva un errore di validazione o un fallimento nella comunicazione con la sorgente dei dati.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item La nota mantiene il titolo originale.
+            \item L'utente viene informato del motivo del fallimento.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item Si verifica$_G$ un errore durante l'eliminazione della nota (es.\ errore di connessione
-        al database$_G$, permessi insufficienti).
-        \item Il sistema$_G$ mostra un messaggio di errore descrittivo a schermo.
-        \item L'utente può scegliere se riprovare o annullare l'operazione.
-    \end{enumerate}
+        \begin{enumerate}
+            \item Il sistema$_G$ identifica la causa dell'errore, come caratteri vietati, collisione di nomi o errore server.
+            \item Il sistema$_G$ mostra una notifica di errore descrittiva.
+            \item Il sistema$_G$ riapre la modalità di editing del titolo per permettere una correzione immediata.
+        \end{enumerate}
+    \item \textbf{Trigger:} Il sistema$_G$ rileva un'eccezione o riceve un feedback negativo durante la procedura di rinominazione.
 \end{itemize}
 
-\paragraph{\texorpdfstring{UC 32.2 - Rinominazione nota nel\allowbreak Database$_G$}{UC 32.2 - Rinominazione nota nel Database}}
-\label{uc32.2}
-\mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC32.2.pdf}
-  \caption{Diagramma UC32.2}
-  \label{fig:uc32.2}
-\end{figure}
-
+% --- UC 79 ---
+\subsubsection{UC 79 - Visualizzazione informazioni della nota}
+\hypertarget{uc:79}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente vuole assegnare un nuovo nome a una nota già salvata nel database$_G$.
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item Il sistema$_G$ è correttamente collegato al database$_G$.
-        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
-        \item Esiste almeno una nota salvata nel database$_G$.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item Il titolo della nota selezionata è stato aggiornato nel database$_G$.
-        \item Il Database$_G$ Browser mostra il nuovo nome della nota nella lista.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item Il sistema$_G$ è attivo e l'interfaccia di navigazione è accessibile.
+            \item L'utente ha selezionato una nota esistente dall'elenco, sia essa locale o nel database$_G$.
+            \item Se la nota è memorizzata nel database$_G$, l'utente ha effettuato l'autenticazione → \hyperlink{uc:84}{UC 84}.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item Il sistema$_G$ mostra all'utente un pannello informativo contenente i dettagli descrittivi e tecnici della nota selezionata.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente seleziona la nota da rinominare nel Database Browser.
-        \item L'utente seleziona l'opzione ``Rinomina nota''.
-        \item Il sistema$_G$ mostra un campo di input$_G$ con il nome corrente della nota.
-        \item L'utente modifica il nome della nota.
-        \item L'utente conferma la modifica.
-        \item Il sistema$_G$ aggiorna il titolo della nota nel database$_G$.
-    \end{enumerate}
-    \item \textbf{Estensioni:}
-    \begin{itemize}
-        \item UC 32.2.1 - Gestione errore rinominazione
-    \end{itemize}
+        \begin{enumerate}
+            \item L'utente seleziona il comando "Visualizza informazioni" relativo alla nota scelta.
+            \item Il sistema$_G$ recupera i metadati associati alla nota dalla sorgente di riferimento, File System o Database.
+            \item Il sistema$_G$ mostra un pannello riassuntivo con i seguenti dati:
+                \begin{itemize}
+                    \item \textbf{Titolo:} Nome identificativo della nota.
+                    \item \textbf{Data di creazione:} Data e ora della prima generazione della nota.
+                    \item \textbf{Ultima modifica:} Timestamp dell'ultimo salvataggio o sincronizzazione andata a buon fine.
+                    \item \textbf{Formato:} Estensione del file o tipologia di codifica, ad esempio \texttt{.md} o \texttt{.txt}.
+                \end{itemize}
+            \item L'utente chiude il pannello informativo per tornare alla vista precedente.
+        \end{enumerate}
+    \item \textbf{Trigger:} L'utente desidera conoscere i dettagli tecnici o la cronologia di modifica di una specifica nota.
 \end{itemize}
 
-\subparagraph{UC 32.2.1 - Gestione errore rinominazione}
-\mbox{}\\
-\label{uc32.2.1}
+% --- UC 80 ---
+\subsubsection{UC 80 - Ricerca nota per titolo nel database}
+\hypertarget{uc:80}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di rinominazione della nota.
-    \item \textbf{Attore primario:} Sistema
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item L'utente ha richiesto la rinominazione di una nota nel database$_G$.
-        \item Il sistema$_G$ ha rilevato un errore durante il tentativo di rinominazione.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item Il nome della nota non è stato modificato.
-        \item Il sistema$_G$ notifica all'utente il fallimento dell'operazione.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente autenticato
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item L'utente è autenticato → \hyperlink{uc:84}{UC 84}.
+            \item Il database$_G$ è raggiungibile e contiene almeno una nota associata all'utente.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item Il sistema$_G$ visualizza esclusivamente i record il cui titolo soddisfa i criteri di ricerca.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item Si verifica$_G$ un errore durante la rinominazione (es.\ nome già esistente nel database$_G$,
-        nome vuoto o non valido, errore di connessione al database$_G$).
-        \item Il sistema$_G$ mostra un messaggio di errore descrittivo a schermo.
-        \item L'utente può scegliere se riprovare con un nome diverso o annullare l'operazione.
-    \end{enumerate}
+        \begin{enumerate}
+            \item L'utente accede alla barra di ricerca all'interno del Database Browser.
+            \item L'utente inserisce una stringa testuale nel campo di ricerca specifico per il titolo.
+            \item Il sistema$_G$ filtra i record nel database$_G$ che corrispondono, anche parzialmente, alla stringa.
+            \item Il sistema$_G$ aggiorna la lista mostrata all'utente con i risultati ottenuti.
+        \end{enumerate}
+    \item \textbf{Trigger:} L'utente desidera individuare una nota nel cloud conoscendone il nome.
 \end{itemize}
 
-\paragraph{UC 32.3 - Visualizzazione informazioni e metadati della nota}
-\label{uc32.3}
-\mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC32.3.pdf}
-  \caption{Diagramma UC32.3}
-  \label{fig:uc32.3}
-\end{figure}
-
+% --- UC 81 ---
+\subsubsection{UC 81 - Ricerca Full-Text nel database}
+\hypertarget{uc:81}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente vuole consultare i metadati$_G$ e le informazioni di una nota salvata nel database$_G$.
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item Il sistema$_G$ è correttamente collegato al database$_G$.
-        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
-        \item Esiste almeno una nota salvata nel database$_G$.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ ha mostrato all'utente le informazioni e i metadati$_G$ della nota
-        selezionata.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente autenticato
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item L'utente è autenticato → \hyperlink{uc:84}{UC 84}.
+            \item Il database$_G$ è correttamente interrogabile.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item Il sistema$_G$ elenca le note che contengono la stringa cercata all'interno del corpo del testo.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente seleziona una nota nel Database$_G$ Browser.
-        \item L'utente seleziona l'opzione ``Visualizza informazioni''.
-        \item Il sistema$_G$ mostra un pannello con i metadati$_G$ della nota, tra cui: titolo, data di
-        creazione, data dell'ultima modifica, dimensione del contenuto.
-    \end{enumerate}
+        \begin{enumerate}
+            \item L'utente abilita la modalità di ricerca "Contenuto" o Full-Text.
+            \item L'utente inserisce la parola o frase chiave desiderata.
+            \item Il sistema$_G$ esegue una scansione del contenuto di tutte le note dell'utente nel database$_G$.
+            \item Il sistema$_G$ visualizza i risultati, eventualmente evidenziando le occorrenze.
+        \end{enumerate}
+    \item \textbf{Trigger:} L'utente cerca una nota cloud basandosi su una parola specifica contenuta nel corpo del documento.
 \end{itemize}
 
-\subsubsection{UC 33 - Ricerca e Navigazione}
-\label{uc33}
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC33.pdf}
-  \caption{Diagramma UC33}
-  \label{fig:uc33}
-
-\end{figure}
+% --- UC 82 ---
+\subsubsection{UC 82 - Filtro note per data di creazione}
+\hypertarget{uc:82}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente vuole trovare una o più note nel database$_G$ tramite criteri di ricerca.
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item Il sistema$_G$ è correttamente collegato al database$_G$.
-        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
-        \item Esiste almeno una nota salvata nel database$_G$.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ ha mostrato i risultati della ricerca coerenti con i criteri inseriti
-        dall'utente.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente autenticato
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item L'utente è autenticato → \hyperlink{uc:84}{UC 84}.
+            \item L'utente visualizza l'elenco delle note sincronizzate nel Database Browser.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item La lista viene filtrata mostrando solo le note generate nell'intervallo temporale definito.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente accede alla funzione di ricerca nel Database$_G$ Browser.
-        \item L'utente inserisce i criteri di ricerca.
-        \item Il sistema$_G$ esegue la ricerca e mostra i risultati.
-    \end{enumerate}
-    \item \textbf{Generalizzazioni:}
-    \begin{itemize}
-        \item UC 33.1 - Ricerca mirata per titolo
-        \item UC 33.2 - Ricerca Full-Text
-        \item UC 33.3 - Filtro per data
-        \item UC 33.4 - Visualizzazione lista note salvate nel Database$_G$
-    \end{itemize}
+        \begin{enumerate}
+            \item L'utente seleziona il filtro per "Data di creazione".
+            \item L'utente definisce un intervallo temporale, data di inizio e/o data di fine.
+            \item Il sistema$_G$ aggiorna la vista escludendo i record non pertinenti all'intervallo.
+        \end{enumerate}
+    \item \textbf{Trigger:} L'utente desidera filtrare le note in base alla data di creazione.
 \end{itemize}
 
-\paragraph{UC 33.1 - Ricerca mirata per titolo}
-\label{uc33.1}
-\mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC33.1.pdf}
-  \caption{Diagramma UC33.1}
-  \label{fig:uc33.1}
-\end{figure}
-
+% --- UC 83 ---
+\subsubsection{UC 83 - Filtro note per data di ultima modifica}
+\hypertarget{uc:83}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente vuole cercare una nota conoscendone (parte del) titolo.
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item Il sistema$_G$ è correttamente collegato al database$_G$.
-        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
-        \item Esiste almeno una nota salvata nel database$_G$.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ mostra la lista delle note il cui titolo contiene la stringa di ricerca
-        inserita dall'utente.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente autenticato
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item L'utente è autenticato → \hyperlink{uc:84}{UC 84}.
+            \item L'utente visualizza l'elenco delle note sincronizzate nel Database Browser.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item Il sistema$_G$ mostra le note il cui ultimo salvataggio rientra nel periodo scelto.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente accede al campo di ricerca nel Database$_G$ Browser.
-        \item L'utente inserisce una stringa di testo nel campo di ricerca per titolo.
-        \item Il sistema$_G$ filtra le note il cui titolo corrisponde (anche parzialmente) alla
-        stringa inserita.
-        \item Il sistema$_G$ visualizza i risultati filtrati nella lista delle note.
-    \end{enumerate}
+        \begin{enumerate}
+            \item L'utente seleziona il filtro "Data ultima modifica".
+            \item L'utente inserisce i parametri temporali desiderati tramite l'apposito selettore.
+            \item Il sistema$_G$ applica il filtro e aggiorna dinamicamente la lista delle note.
+        \end{enumerate}
+    \item \textbf{Trigger:} L'utente desidera filtrare le note in base alla data dell'ultima modifica.
 \end{itemize}
 
-\paragraph{UC 33.2 - Ricerca Full-Text}
-\label{uc33.2}
-\mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC33.2.pdf}
-  \caption{Diagramma UC33.2}
-  \label{fig:uc33.2}
-\end{figure}
-
+% --- UC 84 ---
+\subsubsection{UC 84 - Autenticazione}
+\hypertarget{uc:84}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente vuole trovare tutte le note che contengono una parola o frase specifica nel loro contenuto.
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item Il sistema$_G$ è correttamente collegato al database$_G$.
-        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
-        \item Esiste almeno una nota salvata nel database$_G$.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ mostra la lista delle note il cui contenuto include la stringa di ricerca
-        inserita dall'utente.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente non autenticato
+    \item \textbf{Pre-condizioni:}
+        \begin{itemize}
+            \item Il sistema$_G$ è attivo e mostra l'interfaccia di login.
+            \item L'utente non ha ancora effettuato l'accesso al proprio account cloud.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item L'utente è correttamente autenticato e le funzionalità cloud sono abilitate.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente accede al campo di ricerca nel Database$_G$ Browser.
-        \item L'utente inserisce una stringa di testo nel campo di ricerca full-text.
-        \item Il sistema$_G$ esegue una ricerca sul contenuto di tutte le note dell'utente nel
-        database$_G$.
-        \item Il sistema$_G$ visualizza i risultati che contengono la stringa cercata, evidenziandone
-        le occorrenze.
-    \end{enumerate}
+        \begin{enumerate}
+            \item L'utente avvia la procedura di login.
+            \item L'utente inserisce lo username → \hyperlink{uc:84.1}{UC 84.1}.
+            \item L'utente inserisce la password → \hyperlink{uc:84.2}{UC 84.2}.
+            \item L'utente conferma l'invio delle credenziali.
+            \item Il sistema$_G$ verifica i dati con il database$_G$.
+            \item Il sistema$_G$ abilita le funzionalità cloud.
+        \end{enumerate}
+    \item \textbf{Scenario secondario:}
+        \begin{itemize}
+            \item Il sistema$_G$ rileva un fallimento nella procedura di autenticazione, sia per credenziali errate che per problemi di comunicazione con il database$_G$ → \textbf{Vedi \hyperlink{uc:85}{UC 85}}.
+        \end{itemize}
+    \item \textbf{Inclusioni:} 
+        \begin{itemize}
+            \item \hyperlink{uc:84.1}{UC 84.1 - Inserimento username}.
+            \item \hyperlink{uc:84.2}{UC 84.2 - Inserimento password}.
+        \end{itemize}
+    \item \textbf{Estensioni:} 
+        \begin{itemize}
+            \item \hyperlink{uc:85}{UC 85 - Errore di autenticazione}.
+        \end{itemize}
+    \item \textbf{Trigger:} L'utente desidera accedere alle funzionalità cloud dell'applicazione, come la sincronizzazione e la gestione delle note online.
 \end{itemize}
 
-\paragraph{UC 33.3 - Filtro per data}
-\label{uc33.3}
-\mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC33.3.pdf}
-  \caption{Diagramma UC33.3}
-  \label{fig:uc33.3}
-\end{figure}
-
+% --- UC 84.1 ---
+\paragraph{UC 84.1 - Inserimento username}
+\hypertarget{uc:84.1}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente vuole filtrare le note in base a un criterio temporale.
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item Il sistema$_G$ è correttamente collegato al database$_G$.
-        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
-        \item Esiste almeno una nota salvata nel database$_G$.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ mostra la lista delle note filtrate in base al criterio di data
-        selezionato.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente non autenticato
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item Il sistema$_G$ mostra un modulo che richiede l'identificazione, Login o Registrazione.
+            \item Il campo di testo per lo username è attivo.   
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item Il sistema$_G$ ha acquisito la stringa testuale inserita dall'utente.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente accede alla sezione di filtro per data nel Database$_G$ Browser.
-        \item L'utente sceglie il tipo di filtro temporale da applicare.
-        \item Il sistema$_G$ applica il filtro e aggiorna la lista delle note.
-    \end{enumerate}
-    \item \textbf{Generalizzazioni:}
-    \begin{itemize}
-        \item UC 33.3.1 - Filtro per data di creazione
-        \item UC 33.3.2 - Filtro per data di ultima modifica
-    \end{itemize}
+        \begin{enumerate}
+            \item L'utente digita il proprio identificativo nell'apposito campo.
+            \item Il sistema$_G$ visualizza i caratteri digitati in chiaro per permettere il controllo ortografico.
+            \item Il sistema$_G$ valida che la stringa non sia vuota e rispetti i limiti di lunghezza definiti.
+        \end{enumerate}
+    \item \textbf{Trigger:} L'utente interagisce con il campo di input dello username.
 \end{itemize}
 
-\subparagraph{UC 33.3.1 - Filtro per data di creazione}
-\label{uc33.3.1}
-\mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC33.3.1.pdf}
-  \caption{Diagramma UC33.3.1}
-  \label{fig:uc33.3.1}
-\end{figure}
+% --- UC 84.2 ---
+\paragraph{UC 84.2 - Inserimento password}  
+\hypertarget{uc:84.2}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente vuole visualizzare le note create in un determinato periodo.
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item Il sistema$_G$ è correttamente collegato al database$_G$.
-        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
-        \item Esiste almeno una nota salvata nel database$_G$.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ mostra le note create nell'intervallo di date specificato dall'utente.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente non autenticato
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item Il sistema$_G$ mostra un modulo che richiede l'identificazione, Login o Registrazione.
+            \item Il campo di testo per la password è attivo.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item Il sistema$_G$ ha acquisito la stringa testuale inserita dall'utente, applicando il mascheramento dei caratteri.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente seleziona il filtro ``Data di creazione''.
-        \item Il sistema$_G$ mostra un selettore di intervallo di date.
-        \item L'utente inserisce la data di inizio e/o di fine dell'intervallo desiderato.
-        \item Il sistema$_G$ filtra e mostra le note create nell'intervallo specificato.
-    \end{enumerate}
+        \begin{enumerate}
+            \item L'utente digita la propria password nell'apposito campo.
+            \item Il sistema$_G$ sostituisce i caratteri digitati con simboli di mascheramento, ad esempio asterischi, per garantire la riservatezza.
+            \item Il sistema$_G$ valida che la password non sia vuota e rispetti i criteri di complessità se previsti.
+        \end{enumerate}
+    \item \textbf{Trigger:} L'utente interagisce con il campo di input della password.
 \end{itemize}
 
-\subparagraph{UC 33.3.2 - Filtro per data di ultima modifica}
-\label{uc33.3.2}
-\mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC33.3.2.pdf}
-  \caption{Diagramma UC33.3.2}
-  \label{fig:uc33.3.2}
-\end{figure}
+% --- UC 85 ---
+\subsubsection{UC 85 - Errore di autenticazione}
+\hypertarget{uc:85}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente vuole visualizzare le note aggiornate in un determinato periodo.
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item Il sistema$_G$ è correttamente collegato al database$_G$.
-        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
-        \item Esiste almeno una nota salvata nel database$_G$.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ mostra le note la cui ultima modifica rientra nell'intervallo di date
-        specificato dall'utente.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente non autenticato
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item Il sistema$_G$ ha ricevuto credenziali non valide o non è riuscito a comunicare con il database$_G$.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item L'accesso non viene concesso.
+            \item L'utente rimane disconnesso.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente seleziona il filtro ``Data ultima modifica''.
-        \item Il sistema$_G$ mostra un selettore di intervallo di date.
-        \item L'utente inserisce la data di inizio e/o di fine dell'intervallo desiderato.
-        \item Il sistema$_G$ filtra e mostra le note modificate l'ultima volta nell'intervallo
-        specificato.
-    \end{enumerate}
+        \begin{enumerate}
+            \item Il sistema$_G$ verifica le credenziali fornite.
+            \item Il sistema$_G$ registra l'evento di autenticazione fallita.
+            \item Il sistema$_G$ comunica all'utente l'errore e richiede la verifica delle credenziali o il ripristino della connessione.
+        \end{enumerate}
+    \item \textbf{Trigger:} Il sistema$_G$ non riesce ad autenticare l'utente.
 \end{itemize}
 
-\paragraph{\texorpdfstring{UC 33.4 - Visualizzazione lista note salvate nel Database$_G$}{UC 33.4 - Visualizzazione lista note salvate nel Database}}
-\label{uc33.4}
-\mbox{}\\
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC33.4.pdf}
-  \caption{Diagramma UC33.4}
-  \label{fig:uc33.4}
-\end{figure}
+% --- UC 86 ---
+\subsubsection{UC 86 - Registrazione nuovo account}
+\hypertarget{uc:86}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente vuole visualizzare tutte le note salvate nel proprio account$_G$.
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item Il sistema$_G$ è correttamente collegato al database$_G$.
-        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ mostra all'utente la lista completa (o filtrata) delle note presenti nel
-        database$_G$.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente non autenticato
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item Il sistema$_G$ è attivo e l'interfaccia di registrazione è accessibile.
+            \item L'utente non possiede un account$_G$ o non è autenticato.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item Un nuovo profilo utente viene creato nel database$_G$.
+            \item L'utente viene autenticato automaticamente.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente accede al Database$_G$ Browser.
-        \item Il sistema$_G$ recupera dal database$_G$ la lista delle note associate all'account$_G$
-        dell'utente.
-        \item Il sistema$_G$ visualizza la lista delle note, mostrando per ciascuna almeno il titolo
-        e la data dell'ultima modifica.
-    \end{enumerate}
+        \begin{enumerate}
+            \item L'utente inserisce lo username desiderato → \hyperlink{uc:84.1}{UC 84.1}.
+            \item L'utente inserisce la password scelta → \hyperlink{uc:84.2}{UC 84.2}.
+            \item L'utente conferma la password scelta → \hyperlink{uc:86.1}{UC 86.1}.
+            \item L'utente invia i dati per la creazione dell'account.
+            \item Il sistema$_G$ verifica la disponibilità dello username e la validità dei dati.
+            \item Il sistema$_G$ registra l'account e avvia la sessione cloud.
+        \end{enumerate}
+    \item \textbf{Scenario secondario:}
+        \begin{itemize}
+            \item Lo username scelto è già presente nel database$_G$ → \textbf{Vedi \hyperlink{uc:87}{UC 87}}.
+            \item Le password inserite non coincidono → \textbf{Vedi \hyperlink{uc:88}{UC 88}}.
+        \end{itemize}
+    \item \textbf{Inclusioni:} 
+        \begin{itemize}
+            \item \hyperlink{uc:84.1}{UC 84.1 - Inserimento username}.
+            \item \hyperlink{uc:84.2}{UC 84.2 - Inserimento password}.
+            \item \hyperlink{uc:86.1}{UC 86.1 - Conferma password}.
+        \end{itemize}
+    \item \textbf{Estensioni:} 
+        \begin{itemize}
+            \item \hyperlink{uc:87}{UC 87 - Errore username già esistente}.
+            \item \hyperlink{uc:88}{UC 88 - Errore mancata corrispondenza password}.
+        \end{itemize}
+    \item \textbf{Trigger:} L'utente desidera creare un profilo per usufruire dei servizi di sincronizzazione cloud.
 \end{itemize}
 
-\subsubsection{UC 34 - Login}
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC34.pdf}
-  \caption{Diagramma UC34}
-  \label{fig:uc34}
-\end{figure}
-\label{uc34}
+% --- UC 86.1 ---
+\paragraph{UC 86.1 - Conferma password}
+\hypertarget{uc:86.1}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente vuole accedere alle funzionalità del database$_G$ dell'applicazione.
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item Il sistema$_G$ è correttamente collegato al database$_G$.
-        \item L'utente dispone di un account$_G$ registrato nel sistema$_G$.
-        \item L'utente non ha ancora eseguito il login$_G$.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item L'utente ha effettuato l'accesso al sistema$_G$ ed è autenticato.
-        \item Il sistema$_G$ rende disponibili le funzionalità legate al database$_G$.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente non autenticato
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item L'utente si trova nella schermata di registrazione.
+            \item Il campo "Password" è già stato compilato.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item Il sistema$_G$ dispone di una seconda istanza della password per la verifica di coerenza.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente accede alla schermata di login$_G$.
-        \item L'utente inserisce le proprie credenziali (username e password).
-        \item L'utente conferma l'accesso.
-        \item Il sistema$_G$ verifica$_G$ le credenziali con il database$_G$.
-        \item Il sistema$_G$ autentica l'utente e mostra l'interfaccia principale con le
-        funzionalità del database$_G$ abilitate.
-    \end{enumerate}
-    \item \textbf{Estensioni:}
-    \begin{itemize}
-        \item UC 34.1 - Gestione errore di login$_G$
-    \end{itemize}
+        \begin{enumerate}
+            \item L'utente digita nuovamente la password nel campo dedicato alla conferma.
+            \item Il sistema$_G$ applica il mascheramento dei caratteri come previsto per la sicurezza$_G$.
+            \item Il sistema$_G$ abilita il controllo di uguaglianza tra le due stringhe acquisite.
+        \end{enumerate}
+    \item \textbf{Trigger:} L'utente seleziona il campo di conferma password durante la registrazione.
 \end{itemize}
 
-\paragraph{UC 34.1 - Gestione errore di login}
-\label{uc34.1}
-\mbox{}\\
-
+% --- UC 87 ---
+\subsubsection{UC 87 - Errore username già esistente}
+\hypertarget{uc:87}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} Il sistema$_G$ rileva un errore nel processo di autenticazione dell'utente.
-    \item \textbf{Attore primario:} Sistema
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item L'utente ha tentato di eseguire il login$_G$.
-        \item Il sistema$_G$ ha rilevato credenziali errate o un errore durante il processo di autenticazione.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item L'utente non è stato autenticato.
-        \item Il sistema$_G$ notifica all'utente il fallimento del
-        login$_G$ senza specificare se l'errore riguarda lo\allowbreak username o la password (per ragioni di sicurezza$_G$).
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente non autenticato
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item Lo username inserito è già associato a un altro account nel database$_G$.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item La registrazione viene interrotta.
+            \item L'utente è invitato a cambiare identificativo.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente inserisce credenziali errate o si verifica$_G$ un errore di connessione al
-        database$_G$.
-        \item Il sistema$_G$ mostra un messaggio di errore generico (es.\ ``Credenziali non valide''
-        o ``Errore di connessione al server'').
-        \item L'utente può riprovare a inserire le credenziali o annullare l'operazione.
-    \end{enumerate}
+        \begin{enumerate}
+            \item Il sistema$_G$ notifica l'indisponibilità dello username.
+            \item Il sistema$_G$ mantiene i dati negli altri campi per agevolare la correzione.
+            \item L'utente può inserire un nuovo username valido.
+        \end{enumerate}
+    \item \textbf{Trigger:} Il sistema$_G$ rileva un conflitto di identità durante la validazione dei dati di registrazione.
 \end{itemize}
 
-\subsubsection{UC 35 - Registrazione}
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC35.pdf}
-  \caption{Diagramma UC35}
-  \label{fig:uc35}
-\end{figure}
-\label{uc35}
+% --- UC 88 ---
+\subsubsection{UC 88 - Errore mancata corrispondenza password}
+\hypertarget{uc:88}{}
 \begin{itemize}
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item Il sistema$_G$ è correttamente collegato al database$_G$.
-        \item L'utente non possiede un account$_G$ registrato nel sistema$_G$.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item Un nuovo account$_G$ è stato creato e registrato nel database$_G$.
-        \item L'utente è autenticato nel sistema$_G$ con il nuovo account$_G$.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente non autenticato
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item La stringa di conferma differisce dalla password inserita inizialmente.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item Il sistema$_G$ impedisce l'invio dei dati.
+            \item L'utente viene informato dell'anomalia.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente accede alla schermata di registrazione$_G$.
-        \item L'utente inserisce uno username e una password.
-        \item L'utente conferma la password.
-        \item L'utente invia il modulo di registrazione$_G$.
-        \item Il sistema$_G$ verifica$_G$ che lo username non sia già in uso nel database$_G$.
-        \item Il sistema$_G$ crea il nuovo account$_G$ nel database$_G$.
-        \item Il sistema$_G$ autentica automaticamente l'utente con il nuovo account$_G$.
-    \end{enumerate}
-    \item \textbf{Trigger:} L'utente vuole creare un nuovo account$_G$ per accedere alle funzionalità
-    del database$_G$ dell'applicazione.
-    \item \textbf{Estensioni:}
-    \begin{itemize}
-        \item UC 35.1 - Gestione username già esistente
-    \end{itemize}
+        \begin{enumerate}
+            \item Il sistema$_G$ mostra un messaggio di errore relativo alla mancata corrispondenza.
+            \item Il sistema$_G$ svuota entrambi i campi password.
+            \item L'utente può inserire nuovamente la password e la relativa conferma.
+        \end{enumerate}
+    \item \textbf{Trigger:} Il sistema$_G$ rileva una discrepanza tra i due campi password inseriti.
 \end{itemize}
 
-\paragraph{UC 35.1 - Gestione username già esistente}
-\label{uc35.1}
-\mbox{}\\
-
+% --- UC 89 ---
+\subsubsection{UC 89 - Eliminazione account}
+\hypertarget{uc:89}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} Il sistema$_G$ rileva che lo username inserito dall'utente è già associato a un account$_G$ esistente nel database$_G$.
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item L'utente ha tentato di registrarsi con uno username già presente nel database$_G$.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item L'account$_G$ non è stato creato.
-        \item Il sistema$_G$ notifica all'utente che lo username scelto non è disponibile.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente autenticato
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item L'utente ha eseguito l'autenticazione → \hyperlink{uc:84}{UC 84}.
+        \end{itemize}
+    \item \textbf{Post-condizioni:} 
+        \begin{itemize}
+            \item L'account e tutti i dati cloud associati vengono rimossi permanentemente dal database$_G$.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente inserisce uno username già presente nel database$_G$.
-        \item Il sistema$_G$ rileva il conflitto durante la verifica$_G$.
-        \item Il sistema$_G$ mostra un messaggio di errore che informa l'utente che lo username è
-        già in uso.
-        \item L'utente può scegliere un username diverso e riprovare.
-    \end{enumerate}
+        \begin{enumerate}
+            \item L'utente accede alla sezione gestione profilo.
+            \item L'utente seleziona l'opzione di eliminazione definitiva.
+            \item Il sistema$_G$ visualizza un avviso di irreversibilità dell'operazione.
+            \item L'utente conferma la propria volontà.
+            \item Il sistema$_G$ elimina il record utente e le note correlate dal database$_G$.
+            \item Il sistema$_G$ termina la sessione corrente.
+        \end{enumerate}
+    \item \textbf{Trigger:} L'utente desidera cessare l'utilizzo del servizio e rimuovere i propri dati dal server.
 \end{itemize}
 
-\subsubsection{UC 36 - Eliminazione dell'account}
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC36.pdf}
-  \caption{Diagramma UC36}
-  \label{fig:uc36}
-\end{figure}
-\label{uc36}
+% --- UC 90 ---
+\subsubsection{UC 90 - Logout}
+\hypertarget{uc:90}{}
 \begin{itemize}
-    \item \textbf{Descrizione:} L'utente vuole eliminare definitivamente il proprio account$_G$ e tutti i dati ad esso associati.
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item Il sistema$_G$ è correttamente collegato al database$_G$.
-        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item L'account$_G$ dell'utente è stato eliminato permanentemente dal database$_G$.
-        \item Tutte le note associate all'account$_G$ dell'utente sono state rimosse dal database$_G$.
-        \item L'utente è stato disconnesso dal sistema$_G$.
-    \end{itemize}
+    \item \textbf{Attore principale:} Utente autenticato
+    \item \textbf{Pre-condizioni:} 
+        \begin{itemize}
+            \item L'utente è autenticato → \hyperlink{uc:84}{UC 84}.
+        \end{itemize}
+    \item \textbf{Post-condizioni:}
+        \begin{itemize}
+            \item L'utente è stato disconnesso dal sistema$_G$.
+            \item Le funzionalità legate al database$_G$ non sono più accessibili fino al prossimo login.
+        \end{itemize}
     \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente accede alle impostazioni dell'account$_G$.
-        \item L'utente seleziona l'opzione ``Elimina account$_G$''.
-        \item Il sistema$_G$ mostra un avviso che informa l'utente che l'operazione è irreversibile
-        e che tutti i dati associati verranno eliminati.
-        \item L'utente conferma l'eliminazione dell'account$_G$.
-        \item Il sistema$_G$ elimina l'account$_G$ e tutti i dati associati dal database$_G$.
-        \item Il sistema$_G$ effettua il logout$_G$ dell'utente e lo reindirizza alla schermata
-        di login$_G$.
-    \end{enumerate}
+        \begin{enumerate}
+            \item L'utente seleziona il comando "Logout" dall'interfaccia.
+            \item Il sistema$_G$ invalida il token di sessione.
+            \item Il sistema$_G$ reindirizza l'utente alla schermata iniziale.
+        \end{enumerate}
+    \item \textbf{Trigger:} L'utente desidera terminare la propria sessione autenticata nel sistema$_G$.
 \end{itemize}
-
-\subsubsection{UC 37 - Logout}
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{assets/img/UC37.pdf}
-  \caption{Diagramma UC37}
-  \label{fig:uc37}
-\end{figure}
-\label{uc37}
-\begin{itemize}
-    \item \textbf{Descrizione:} L'utente vuole terminare la propria sessione autenticata nel sistema$_G$.
-    \item \textbf{Attore primario:} Utente
-    \item \textbf{Precondizioni:}
-    \begin{itemize}
-        \item Il sistema$_G$ è attivo e accessibile.
-        \item L'utente ha eseguito il login$_G$ al sistema$_G$.
-    \end{itemize}
-    \item \textbf{Postcondizioni:}
-    \begin{itemize}
-        \item L'utente è stato disconnesso dal sistema$_G$.
-        \item Le funzionalità legate al database$_G$ non sono più accessibili fino al prossimo
-        login$_G$.
-    \end{itemize}
-    \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item L'utente seleziona l'opzione ``Logout$_G$''.
-        \item Il sistema$_G$ termina la sessione dell'utente.
-        \item Il sistema$_G$ reindirizza l'utente alla schermata di login$_G$.
-    \end{enumerate}
-\end{itemize}
-
-\newpage
 
 \section{Requisiti}
 
-Il presente capitolo definisce in modo puntuale e tracciabile tutti i requisiti individuati durante l'analisi del capitolato$_G$ e il successivo confronto con la proponente Zucchetti S.p.A. 
-Ogni requisito è stato classificato per tipologia (Funzionale, di Qualità o di Vincolo) e per priorità (Obbligatorio, Desiderabile, Opzionale), seguendo le indicazioni fornite dalle norme di progetto e dai casi d'uso$_G$ precedentemente analizzati.
+Il presente capitolo definisce in modo puntuale e tracciabile tutti i requisiti individuati durante l'analisi del capitolato$_G$ e il successivo confronto con la proponente Zucchetti S.p.A.
+
+Ogni requisito è stato classificato per tipologia e priorità, seguendo le indicazioni fornite dalle Norme di Progetto e dai Casi d'Uso$_G$ precedentemente analizzati.
 
 La classificazione dei requisiti segue la seguente nomenclatura:
-\begin{center}
-    \textbf{R[Tipologia]-[Identificativo]}
-\end{center}
-Dove la \textbf{Tipologia} può assumere i seguenti valori:
-\begin{itemize}
-    \item \textbf{F}: Requisito Funzionale;
-    \item \textbf{Q}: Requisito di Qualità;
-    \item \textbf{V}: Requisito di Vincolo.
-\end{itemize}
 
-La \textbf{Priorità} è definita come:
+\begin{center}
+    \textbf{R-[Identificativo]-[Tipologia]-[Priorità]}
+\end{center}
+
+Dove:
 \begin{itemize}
-    \item \textbf{Obbligatorio}: requisito indispensabile per l'accettazione del Minimum Viable Product (MVP);
-    \item \textbf{Desiderabile}: requisito che aggiunge valore al prodotto ma non è strettamente necessario per le funzionalità base;
-    \item \textbf{Opzionale}: requisito relativo a funzionalità aggiuntive (es. salvataggio in database$_G$ remoto, RAG).
+    \item \textbf{Identificativo}: numero progressivo del requisito all'interno della propria tipologia;
+    \item \textbf{Tipologia}: può assumere i seguenti valori:
+    \begin{itemize}
+        \item \textbf{F}: Requisito Funzionale;
+        \item \textbf{Q}: Requisito di Qualità;
+        \item \textbf{V}: Requisito di Vincolo.
+    \end{itemize}
+    \item \textbf{Priorità}: può assumere i seguenti valori:
+    \begin{itemize}
+        \item \textbf{Ob}: Obbligatorio;
+        \item \textbf{De}: Desiderabile;
+        \item \textbf{Op}: Opzionale.
+    \end{itemize}
 \end{itemize}
 
 \subsection{Requisiti Funzionali}
-I requisiti funzionali definiscono le operazioni, i comportamenti e le funzionalità specifiche che il sistema$_G$ \textbf{Second Brain} deve offrire agli utenti, tracciati direttamente a partire dai Casi d'Uso (UC).
 
-\begin{center}
-    \renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{|c|L|c|c|}
-        \hline
-        \rowcolor[HTML]{EFEFEF}
-        \textbf{Codice} & \textbf{Descrizione} & \textbf{Priorità} & \textbf{Riferimento} \\ \hline
-        
-        RF-1 & Il sistema deve permettere l'inserimento di testo libero nell'area di editing formattata in Markdown$_G$. & Obbligatorio & UC 1 \\ \hline
-        RF-2 & Il sistema deve permettere la selezione del testo (parziale o documento intero). & Obbligatorio & UC 2 \\ \hline
-        RF-3 & Il sistema deve supportare le operazioni base di manipolazione del testo (Taglia, Copia, Incolla). & Obbligatorio & UC 3 \\ \hline
-        RF-4 & Il sistema deve supportare le azioni di annullamento (Undo) e ripristino (Redo) delle modifiche. & Obbligatorio & UC 4, UC 5 \\ \hline
-        RF-5 & Il sistema deve permettere l'applicazione di formattazione testuale (grassetto, corsivo, sottolineato, barrato, evidenziazione). & Obbligatorio & UC 6 \\ \hline
-        RF-6 & Il sistema deve permettere l'inserimento e la gestione di titoli e sottotitoli. & Obbligatorio & UC 7 \\ \hline
-        RF-7 & Il sistema deve gestire l'inserimento e l'eliminazione di elenchi puntati e numerati. & Obbligatorio & UC 8 \\ \hline
-        RF-8 & Il sistema deve permettere la formattazione di blocchi di citazione. & Obbligatorio & UC 9 \\ \hline
-        RF-9 & Il sistema deve permettere la creazione, modifica ed eliminazione di tabelle Markdown$_G$. & Obbligatorio & UC 10 \\ \hline
-        RF-10 & Il sistema deve supportare l'inserimento di blocchi di codice sorgente e formule matematiche (es. LaTeX/KaTeX). & Obbligatorio & UC 11, UC 12 \\ \hline
-        RF-11 & Il sistema deve permettere la gestione di immagini e collegamenti ipertestuali (link). & Obbligatorio & UC 13, UC 14 \\ \hline
-        RF-12 & Il sistema deve fornire il rendering grafico del testo Markdown$_G$ in tempo reale. & Obbligatorio & UC 20, Capitolato \\ \hline
-        RF-13 & Il sistema deve permettere la chiusura e l'apertura automatica dei simboli durante la digitazione. & Desiderabile & UC 16 \\ \hline
-        RF-14 & Il sistema deve permettere il salvataggio e il caricamento delle note in file di testo locali (.md) su FileSystem. & Obbligatorio & UC 30.1, UC 31.1, Capitolato \\ \hline
-        RF-15 & Il sistema deve interfacciarsi con un LLM$_G$ per la generazione automatica del testo (Distant Writing$_G$) partendo da un prompt$_G$. & Obbligatorio & UC 26, Capitolato \\ \hline
-        RF-16 & Il sistema deve implementare comandi base gestiti dall'LLM$_G$: riassunto, riscrittura (cambio tono, espansione, correzione) e traduzione. & Obbligatorio & UC 22, UC 23, UC 24, Capitolato \\ \hline
-        RF-17 & Il sistema deve permettere l'analisi critica del testo applicando il modello dei "sei cappelli per pensare" (Neutro, Emozionale, Ottimista, Critico, Creativo, Logico). & Obbligatorio & UC 25, Capitolato \\ \hline
-        RF-18 & Il sistema deve permettere all'utente di definire la lunghezza desiderata del testo generato dall'LLM$_G$. & Desiderabile & UC 26.2 \\ \hline
-        RF-19 & Il sistema deve permettere all'utente di validare, accettare, scartare o rigenerare l'output prodotto dall'AI$_G$. & Obbligatorio & UC 27 \\ \hline
-        RF-20 & Il sistema deve permettere di interrompere o annullare una richiesta di elaborazione inviata all'LLM$_G$ in corso. & Desiderabile & UC 28 \\ \hline
-        RF-21 & Il sistema deve fornire una funzione di dettatura tramite la Web Speech API del browser per l'inserimento di testo tramite input vocale. & Desiderabile & UC 21 \\ \hline
-        RF-22 & Il sistema deve permettere il salvataggio, caricamento ed eliminazione delle note in un database$_G$ remoto (Server-Side). & Opzionale & UC 29.2, 30.2, 31.2, Capitolato \\ \hline
-        RF-23 & Il sistema deve permettere il linking tra note e fornire all'LLM$_G$ il contesto di note specifiche (RAG). & Opzionale & UC 26.3, Capitolato \\ \hline
-        RF-24 & Il sistema deve implementare funzionalità di ricerca (per titolo o full-text) e filtri (per data) nel database$_G$. & Opzionale & UC 33 \\ \hline
-        RF-25 & Il sistema deve gestire gli account utente (Registrazione, Login, Logout, Eliminazione Account) per l'accesso al database$_G$. & Opzionale & UC 34, 35, 36, 37 \\ \hline
-        RF-26 & L'interfaccia deve permettere di alternare tra Tema Chiaro (Light Mode) e Tema Scuro (Dark Mode). & Desiderabile & UC 18 \\ \hline
-        RF-27 & L'interfaccia deve permettere lo scorrimento sincronizzato (Sync Scroll) tra editor sorgente e finestra di render. & Desiderabile & UC 19 \\ \hline
-        RF-28 & Il sistema deve permettere all'utente di fornire un URL come sorgente di contenuto per la generazione automatica di testo; il contenuto della pagina deve essere estratto e fornito all'LLM$_G$ come contesto. & Desiderabile & UC 26.4 \\ \hline
-        RF-29 & Il sistema deve permettere l'inserimento e la rimozione di ancore per la navigazione rapida interna al documento. & Desiderabile & UC 15 \\ \hline
-        RF-30 & Il sistema deve permettere all'utente di gestire l'interfaccia modificando lo stato della barra laterale (apertura, chiusura e ridimensionamento). & Desiderabile & UC 17 \\ \hline
-    
-    \end{tabularx}
-\end{center}
+I requisiti funzionali descrivono le funzionalità che il sistema$_G$ deve offrire agli utenti per soddisfare gli obiettivi del prodotto.
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.4}
+\begin{longtable}{|p{2.2cm}|p{7.5cm}|p{4cm}|}
+\hline
+\rowcolor[HTML]{EFEFEF}
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti} \\ \hline
+\endhead
+
+R-1-F-Ob & L'Utente deve poter inserire testo libero nell'area di editing in formato Markdown$_G$. & UC 1 \\ \hline
+
+R-2-F-Ob & L'Utente deve poter selezionare una porzione di testo presente nell'editor. & UC 2 \\ \hline
+
+R-3-F-Ob & L'Utente deve poter tagliare una porzione di testo selezionata, rimuovendola dall'editor e memorizzandola negli appunti di sistema. & UC 3 \\ \hline
+
+R-4-F-Ob & L'Utente deve poter copiare una porzione di testo selezionata negli appunti di sistema senza modificare il contenuto dell'editor. & UC 4 \\ \hline
+
+R-5-F-Ob & L'Utente deve poter incollare nell'editor un contenuto testuale precedentemente copiato o tagliato. & UC 5 \\ \hline
+
+R-6-F-Ob & L'Utente deve poter annullare l'ultima modifica effettuata nell'editor. & UC 6 \\ \hline
+
+R-7-F-Ob & L'Utente deve poter ripristinare un'operazione precedentemente annullata, se non sono state effettuate nuove modifiche successive. & UC 7 \\ \hline
+
+R-8-F-Ob & L'Utente deve poter applicare e rimuovere la formattazione in grassetto al testo tramite marcatori Markdown$_G$. & UC 8, UC 9 \\ \hline
+
+R-9-F-Ob & L'Utente deve poter applicare e rimuovere la formattazione in corsivo al testo tramite marcatori Markdown$_G$. & UC 10, UC 11 \\ \hline
+
+R-10-F-Ob & L'Utente deve poter applicare e rimuovere la formattazione sottolineata al testo. & UC 12, UC 13 \\ \hline
+
+R-11-F-Ob & L'Utente deve poter applicare e rimuovere la formattazione barrata al testo tramite marcatori Markdown$_G$. & UC 14, UC 15 \\ \hline
+
+R-12-F-Ob & L'Utente deve poter inserire e rimuovere titoli e sottotitoli mediante sintassi Markdown$_G$. & UC 16, UC 17, UC 18, UC 19 \\ \hline
+
+R-13-F-Ob & L'Utente deve poter inserire ed eliminare elenchi puntati o numerati. & UC 20, UC 21 \\ \hline
+
+R-14-F-Ob & L'Utente deve poter inserire e rimuovere blocchi di citazione. & UC 22, UC 23 \\ \hline
+
+R-15-F-Ob & L'Utente deve poter inserire ed eliminare blocchi di codice sorgente nel documento. & UC 24, UC 25 \\ \hline
+
+R-16-F-Ob & L'Utente deve poter inserire ed eliminare formule scientifiche o matematiche. & UC 26, UC 27 \\ \hline
+
+R-17-F-Ob & L'Utente deve poter inserire ed eliminare collegamenti ipertestuali. & UC 28, UC 29 \\ \hline
+
+R-18-F-De & L'Utente deve poter inserire e rimuovere ancore di navigazione interne al documento. & UC 30, UC 31 \\ \hline
+
+R-19-F-Ob & L'Utente deve poter inserire, modificare ed eliminare tabelle Markdown$_G$. & UC 32, UC 33, UC 34, UC 35, UC 36 \\ \hline
+
+R-20-F-Ob & L'Utente deve poter inserire, sostituire ed eliminare immagini all'interno del documento. & UC 37, UC 38, UC 39 \\ \hline
+
+R-21-F-De & L'Utente deve poter attivare e disattivare l'auto-completamento dei simboli durante la digitazione. & UC 40, UC 41 \\ \hline
+
+R-22-F-De & L'Utente deve poter attivare e disattivare la sincronizzazione dello scorrimento tra editor e anteprima. & UC 42, UC 43 \\ \hline
+
+R-23-F-De & L'Utente deve poter alternare l'interfaccia tra tema chiaro e tema scuro. & UC 44, UC 45 \\ \hline
+
+R-24-F-De & L'Utente deve poter aprire e chiudere la barra laterale dell'interfaccia. & UC 46, UC 47 \\ \hline
+
+R-25-F-Ob & L'Utente deve poter alternare la visualizzazione tra solo editor, solo anteprima e visualizzazione combinata. & UC 48, UC 49, UC 50 \\ \hline
+
+R-26-F-De & L'Utente deve poter inserire testo tramite dettatura vocale, se il browser supporta le Web Speech API. & UC 51 \\ \hline
+
+R-27-F-Ob & L'Utente deve poter ottenere un riassunto del testo selezionato tramite LLM$_G$. & UC 52 \\ \hline
+
+R-28-F-De & L'Utente deve poter scegliere la percentuale di concisione del riassunto. & UC 52.1 \\ \hline
+
+R-29-F-Ob & L'Utente deve poter tradurre il testo selezionato in una lingua supportata tramite LLM$_G$. & UC 53, UC 53.1 \\ \hline
+
+R-30-F-Ob & L'Utente deve poter modificare lo stile linguistico del testo selezionato tramite LLM$_G$. & UC 54, UC 54.1 \\ \hline
+
+R-31-F-Ob & L'Utente deve poter correggere grammaticalmente il testo selezionato tramite LLM$_G$. & UC 55 \\ \hline
+
+R-32-F-Ob & L'Utente deve ricevere una comunicazione nel caso in cui l'LLM$_G$ non rilevi errori nel testo analizzato. & UC 55.1 \\ \hline
+
+R-33-F-Ob & L'Utente deve poter analizzare criticamente il testo secondo la metodologia dei Sei Cappelli per Pensare. & UC 56, UC 56.1 \\ \hline
+
+R-34-F-Ob & L'Utente deve poter selezionare una specifica prospettiva di analisi tra Cappello Bianco, Rosso, Giallo, Nero, Verde e Blu. & UC 56.1.1, UC 56.1.2, UC 56.1.3, UC 56.1.4, UC 56.1.5, UC 56.1.6 \\ \hline
+
+R-35-F-Ob & L'Utente deve poter generare automaticamente un testo a partire da un prompt$_G$. & UC 57, UC 57.1 \\ \hline
+
+R-36-F-De & L'Utente deve poter definire la lunghezza desiderata del testo generato. & UC 57.2 \\ \hline
+
+R-37-F-De & Il Sistema deve mostrare all'Utente un riepilogo del contesto prima dell'invio della richiesta all'LLM$_G$. & UC 57.3 \\ \hline
+
+R-38-F-De & L'Utente deve poter fornire un URL come fonte di contesto per la generazione automatica di testo. & UC 57.4 \\ \hline
+
+R-39-F-Op & L'Utente autenticato deve poter selezionare manualmente note salvate nel database$_G$ da usare come contesto per la generazione automatica. & UC 57.5 \\ \hline
+
+R-40-F-Ob & L'Utente deve poter salvare, scartare o rigenerare l'output prodotto dall'LLM$_G$. & UC 58, UC 59, UC 60, UC 61 \\ \hline
+
+R-41-F-De & L'Utente deve poter annullare una richiesta di elaborazione in corso. & UC 62 \\ \hline
+
+R-42-F-Ob & Il Sistema deve gestire gli errori di comunicazione o risposta del servizio LLM$_G$, preservando il contenuto originale dell'editor. & UC 63 \\ \hline
+
+R-43-F-Ob & Il Sistema deve impedire l'invio di richieste AI quando il testo fornito è insufficiente per un'elaborazione significativa. & UC 64 \\ \hline
+
+R-44-F-Ob & L'Utente deve poter creare una nuova nota vuota nell'editor. & UC 65 \\ \hline
+
+R-45-F-Op & L'Utente autenticato deve poter creare una nuova nota nel database$_G$. & UC 66 \\ \hline
+
+R-46-F-Ob & Il Sistema deve gestire eventuali errori durante la creazione di una nuova nota, informando l'Utente e preservando lo stato precedente. & UC 67 \\ \hline
+
+R-47-F-Ob & L'Utente deve poter caricare una nota da file locale in formato \texttt{.md} o \texttt{.txt}. & UC 68 \\ \hline
+
+R-48-F-Op & L'Utente autenticato deve poter caricare una nota dal database$_G$. & UC 69 \\ \hline
+
+R-49-F-Ob & Il Sistema deve gestire eventuali errori durante il caricamento di una nota, preservando la sessione di lavoro precedente. & UC 70 \\ \hline
+
+R-50-F-Ob & L'Utente deve poter salvare una nota sul File System locale. & UC 71 \\ \hline
+
+R-51-F-Op & L'Utente autenticato deve poter salvare una nota nel database$_G$. & UC 72 \\ \hline
+
+R-52-F-Ob & Il Sistema deve gestire eventuali errori durante il salvataggio di una nota, preservando l'integrità dei dati presenti nell'editor. & UC 73 \\ \hline
+
+R-53-F-Ob & L'Utente deve poter eliminare una nota dal File System locale. & UC 74 \\ \hline
+
+R-54-F-Op & L'Utente autenticato deve poter eliminare una nota dal database$_G$. & UC 75 \\ \hline
+
+R-55-F-Ob & Il Sistema deve gestire eventuali errori durante l'eliminazione di una nota, evitando la perdita inconsistente dei dati. & UC 76 \\ \hline
+
+R-56-F-Ob & L'Utente deve poter rinominare una nota locale. & UC 77 \\ \hline
+
+R-57-F-Op & L'Utente autenticato deve poter rinominare una nota salvata nel database$_G$. & UC 78 \\ \hline
+
+R-58-F-Ob & Il Sistema deve gestire eventuali errori durante la rinominazione di una nota, mantenendo il titolo precedente. & UC 79 \\ \hline
+
+R-59-F-De & L'Utente deve poter visualizzare le informazioni e i metadati di una nota selezionata. & UC 80 \\ \hline
+
+R-60-F-Op & L'Utente autenticato deve poter cercare note nel database$_G$ per titolo. & UC 81 \\ \hline
+
+R-61-F-Op & L'Utente autenticato deve poter effettuare una ricerca full-text nel contenuto delle note salvate nel database$_G$. & UC 82 \\ \hline
+
+R-62-F-Op & L'Utente autenticato deve poter filtrare le note del database$_G$ per data di creazione. & UC 83 \\ \hline
+
+R-63-F-Op & L'Utente autenticato deve poter filtrare le note del database$_G$ per data di ultima modifica. & UC 84 \\ \hline
+
+R-64-F-Op & L'Utente non autenticato deve poter effettuare l'autenticazione tramite username e password. & UC 85, UC 85.1, UC 85.2 \\ \hline
+
+R-65-F-Op & Il Sistema deve gestire eventuali errori di autenticazione, mantenendo l'Utente disconnesso e mostrando un messaggio di errore. & UC 86 \\ \hline
+
+R-66-F-Op & L'Utente non autenticato deve poter registrare un nuovo account. & UC 87, UC 87.1 \\ \hline
+
+R-67-F-Op & Il Sistema deve impedire la registrazione con uno username già presente nel database$_G$. & UC 88 \\ \hline
+
+R-68-F-Op & Il Sistema deve impedire la registrazione se la password e la conferma password non coincidono. & UC 89 \\ \hline
+
+R-69-F-Op & L'Utente autenticato deve poter eliminare il proprio account e i dati cloud associati. & UC 90 \\ \hline
+
+R-70-F-Op & L'Utente autenticato deve poter effettuare il logout. & UC 91 \\ \hline
+
+\end{longtable}
+\endgroup
+
+\newcommand{\fonteCapitolato}[1]{\href{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C6.pdf}{Capitolato di progetto}\newline\textit{Sezione: #1}}
+\newcommand{\fonteInterna}[1]{Analisi interna\newline\textit{Sezione: #1}}
 
 \subsection{Requisiti di Qualità}
-I requisiti di qualità stabiliscono i criteri prestazionali, di usabilità, affidabilità e manutenibilità che il software deve rispettare per garantire uno standard ingegneristico elevato.
 
-\begin{center}
-    \renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{|c|L|c|c|}
-        \hline
-        \rowcolor[HTML]{EFEFEF}
-        \textbf{Codice} & \textbf{Descrizione} & \textbf{Priorità} & \textbf{Riferimento} \\ \hline
-        
-        RQ-1 & Il codice sorgente del prodotto deve essere versionato tramite un repository pubblico su GitHub. & Obbligatorio & Capitolato \\ \hline
-        RQ-2 & Il prodotto deve essere rilasciato con una licenza open-source (es. MIT, Apache 2.0). & Obbligatorio & Capitolato \\ \hline
-        RQ-3 & La codebase deve possedere una copertura di Test di Unità minima del 75\% (consigliata 80\%). & Obbligatorio & Standard PD \\ \hline
-        RQ-4 & Devono essere previsti Test di Integrazione e Test End-to-End con copertura documentata. & Obbligatorio & Standard PD \\ \hline
-        RQ-5 & Il software deve fornire feedback visivi in tempo reale (loading indicators) durante l'attesa di risposta dall'API$_G$ dell'LLM$_G$. & Obbligatorio & Usabilità \\ \hline
-        RQ-6 & Il ritardo nel rendering grafico del testo Markdown$_G$ inserito nell'editor non deve superare 1 secondo. & Desiderabile & Prestazioni \\ \hline
-        RQ-7 & Il codice deve essere adeguatamente commentato e corredato da un file README chiaro per l'installazione e configurazione del progetto. & Obbligatorio & Capitolato \\ \hline
-        RQ-8 & Deve essere redatto un manuale d'uso completo destinato agli utenti finali e uno per gli sviluppatori. & Obbligatorio & Capitolato \\ \hline
-        RQ-9 & I messaggi di errore (es. mancata risposta dell'LLM$_G$, database irraggiungibile) devono essere chiari e non esporre dettagli di sicurezza. & Obbligatorio & Usabilità \\ \hline
-        
-    \end{tabularx}
-\end{center}
+I requisiti di qualità stabiliscono criteri legati a usabilità, verificabilità, manutenibilità, documentazione e continuità del prodotto.
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.45}
+\begin{longtable}{|p{2.2cm}|p{7.5cm}|p{4cm}|}
+\hline
+\rowcolor[HTML]{EFEFEF}
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Fonte} \\ \hline
+\endhead
+
+R-1-Q-Ob & Il prodotto deve essere un sistema organico, autocontenuto e semplice da utilizzare anche per un utente non esperto. & \fonteCapitolato{Caratteristiche e requisiti obbligatori} \\ \hline
+
+R-2-Q-Ob & Il prodotto deve essere accompagnato da un'adeguata copertura con test automatici, soprattutto a partire dal MVP. & \fonteCapitolato{Caratteristiche e requisiti obbligatori} \\ \hline
+
+R-3-Q-Ob & I casi d'uso principali devono essere verificabili tramite test automatici ripetibili. & \fonteCapitolato{Caratteristiche e requisiti obbligatori} \\ \hline
+
+R-4-Q-Ob & Il prodotto deve adottare soluzioni architetturali duttili e robuste, adeguate a supportare revisioni, estensioni e incrementi successivi. & \fonteCapitolato{Caratteristiche e requisiti obbligatori} \\ \hline
+
+R-5-Q-Ob & Il codice deve essere revisionato a ogni iterazione significativa del progetto, in modo da garantire qualità, coerenza e manutenibilità. & \fonteCapitolato{Caratteristiche e requisiti obbligatori} \\ \hline
+
+R-6-Q-Ob & Il progetto deve prestare particolare attenzione alla realizzazione e alla sperimentazione dei prompt usati per stimolare le operazioni desiderate del LLM. & \fonteCapitolato{Caratteristiche e requisiti obbligatori} \\ \hline
+
+R-7-Q-Ob & Il progetto deve essere accompagnato dalla documentazione minima richiesta dal corso di Ingegneria del Software. & \fonteCapitolato{Documentazione} \\ \hline
+
+R-8-Q-Ob & Deve essere fornito un manuale per l'utilizzo dell'applicazione da parte dell'utente finale. & \fonteCapitolato{Documentazione} \\ \hline
+
+R-9-Q-Ob & Deve essere fornito un manuale per chiunque voglia estendere l'applicazione. & \fonteCapitolato{Documentazione} \\ \hline
+
+R-10-Q-De & Il progetto dovrebbe essere pubblicato su GitHub o su un altro repository pubblico, così da favorire la continuità del prodotto risultante. & \fonteCapitolato{Garanzia e manutenzione} \\ \hline
+
+R-11-Q-De & Il progetto dovrebbe essere pubblicato secondo requisiti compatibili con la natura open-source del repository scelto. & \fonteCapitolato{Garanzia e manutenzione} \\ \hline
+
+R-12-Q-De & Il sistema dovrebbe fornire feedback visivi durante le operazioni che richiedono attesa, come l'elaborazione da parte dell'LLM. & \fonteInterna{Funzionalità AI} \\ \hline
+
+R-13-Q-Ob & I messaggi di errore devono essere comprensibili per l'utente e non devono esporre dettagli tecnici o di sicurezza non necessari. & \fonteInterna{Casi d'uso} \\ \hline
+
+R-14-Q-De & L'interfaccia dovrebbe favorire la concentrazione dell'utente sulla scrittura, permettendo modalità di visualizzazione adeguate alle diverse fasi di lavoro. & \fonteCapitolato{Caratteristiche e requisiti obbligatori} \\ \hline
+
+R-15-Q-Ob & Il prodotto deve rispettare le Norme di Progetto definite dal gruppo. & \fonteInterna{Norme di Progetto} \\ \hline
+
+\end{longtable}
+\endgroup
+
 
 \subsection{Requisiti di Vincolo}
-I requisiti di vincolo definiscono le limitazioni tecnologiche e le scelte architetturali imposte dal proponente o derivanti dalla natura intrinseca del progetto.
 
-\begin{center}
-    \renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{|c|L|c|c|}
-        \hline
-        \rowcolor[HTML]{EFEFEF}
-        \textbf{Codice} & \textbf{Descrizione} & \textbf{Priorità} & \textbf{Riferimento} \\ \hline
-        
-        RV-1 & Il sistema client deve essere sviluppato unicamente utilizzando Tecnologie Web$_G$ (HTML, CSS, JavaScript/TypeScript e framework moderni). & Obbligatorio & Capitolato \\ \hline
-        RV-2 & Il linguaggio di riferimento obbligatorio per l'inserimento formattato dei testi è il Markdown$_G$. & Obbligatorio & Capitolato \\ \hline
-        RV-3 & L'architettura deve prevedere l'interfacciamento tramite API$_G$ con servizi LLM$_G$ esterni (es. OpenAI, Google Gemini, Mistral). & Obbligatorio & Capitolato \\ \hline
-        RV-4 & L'applicazione web deve essere pienamente accessibile, fruibile e "responsive" sui principali web browser moderni (Google Chrome, Mozilla Firefox, Safari, Microsoft Edge). & Obbligatorio & Standard PD \\ \hline
-        RV-5 & Nel caso di sviluppo della funzionalità Opzionale (Database Server-Side), deve essere implementata una componente back-end capace di esporre API (es. tramite Node.js, Python/Flask). & Opzionale & Capitolato \\ \hline
-        RV-6 & Tutte le librerie e i framework di terze parti adottati nello sviluppo devono essere provvisti di licenza open-source compatibile. & Obbligatorio & Standard PD \\ \hline
+I requisiti di vincolo definiscono limitazioni tecnologiche, architetturali o organizzative imposte dal capitolato o dalle scelte progettuali.
 
-    \end{tabularx}
-\end{center}
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.45}
+\begin{longtable}{|p{2.2cm}|p{7.5cm}|p{4cm}|}
+\hline
+\rowcolor[HTML]{EFEFEF}
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Fonte} \\ \hline
+\endhead
+
+R-1-V-Ob & Il sistema client deve essere sviluppato utilizzando Tecnologie Web, in particolare una pagina HTML eseguita tramite browser. & \fonteCapitolato{Caratteristiche e requisiti obbligatori} \\ \hline
+
+R-2-V-Ob & Il linguaggio di riferimento per l'inserimento formattato dei testi deve essere Markdown. & \fonteCapitolato{Caratteristiche e requisiti obbligatori} \\ \hline
+
+R-3-V-Ob & Il sistema deve interfacciarsi con servizi LLM tramite API. & \fonteCapitolato{Caratteristiche e requisiti obbligatori} \\ \hline
+
+R-4-V-Ob & L'interazione con i servizi LLM deve tenere conto delle limitazioni imposte dalla same-origin policy o prevedere configurazioni adeguate per superarle. & \fonteCapitolato{Caratteristiche e requisiti obbligatori} \\ \hline
+
+R-5-V-Ob & Le note salvate localmente devono essere memorizzate come file di testo. & \fonteCapitolato{Caratteristiche e requisiti obbligatori} \\ \hline
+
+R-6-V-Op & Nel caso di implementazione dell'archivio server-side, le note devono essere memorizzate in un database raggiungibile dal sistema. & \fonteCapitolato{Requisiti opzionali} \\ \hline
+
+R-7-V-Op & Nel caso di implementazione della persistenza server-side, deve essere prevista una componente server raggiungibile tramite chiamate HTTP. & \fonteCapitolato{Requisiti opzionali} \\ \hline
+
+R-8-V-Op & La componente server-side, se realizzata, può essere sviluppata utilizzando Java o Python. & \fonteCapitolato{Requisiti opzionali} \\ \hline
+
+R-9-V-Op & Nel caso di implementazione delle funzionalità RAG, il sistema deve poter utilizzare le note collegate come contesto per la generazione o modifica dei testi tramite LLM. & \fonteCapitolato{Requisiti opzionali} \\ \hline
+
+R-10-V-De & L'applicazione dovrebbe essere fruibile tramite i principali browser web moderni. & \fonteInterna{Analisi del prodotto} \\ \hline
+
+R-11-V-De & Le librerie e i framework di terze parti adottati dovrebbero avere licenze compatibili con la pubblicazione open-source del progetto. & \fonteCapitolato{Garanzia e manutenzione} \\ \hline
+
+R-12-V-Ob & I requisiti minimi obbligatori del capitolato non possono essere eliminati o modificati in corso d'opera. & \fonteCapitolato{Variazioni ai requisiti} \\ \hline
+
+R-13-V-Op & I requisiti opzionali possono essere modificati, eliminati o integrati dal gruppo vincitore dell'appalto. & \fonteCapitolato{Variazioni ai requisiti} \\ \hline
+
+\end{longtable}
+\endgroup
 
 \end{document}
