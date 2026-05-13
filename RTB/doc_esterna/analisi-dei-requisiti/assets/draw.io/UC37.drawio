@@ -1,22 +1,25 @@
 <mxfile host="app.diagrams.net">
-  <diagram name="UC 11 - Gestione Codice" id="Kt2Dgr2KxfvWRwyXOeAN">
-    <mxGraphModel dx="1483" dy="1032" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+  <diagram id="l2tbZ47sLmdqv0hGni-S" name="Page-1">
+    <mxGraphModel dx="1062" dy="671" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-821" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente" vertex="1">
-          <mxGeometry height="60" width="30" x="110" y="435" as="geometry" />
+        <mxCell id="UC3-drawio-actor" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=11;" value="Utente" vertex="1">
+          <mxGeometry height="50" width="25" x="390" y="331" as="geometry" />
         </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-822" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
-          <mxGeometry height="330" width="330" x="250" y="300" as="geometry" />
+        <mxCell id="UC3-drawio-boundary" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="90" width="150" x="450" y="310" as="geometry" />
         </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-823" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
-          <mxGeometry height="30" width="60" x="250" y="600" as="geometry" />
+        <mxCell id="UC3-drawio-label" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=11;" value="Sistema" vertex="1">
+          <mxGeometry height="30" width="60" x="540" y="280" as="geometry" />
         </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-824" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 37 - Logout" vertex="1">
-          <mxGeometry height="80" width="220" x="305" y="425" as="geometry" />
+        <mxCell id="UC3-drawio-usecase" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;spacingBottom=-4;" value="UC 37 - Inserimento immagine" vertex="1">
+          <mxGeometry height="42" width="122.5" x="467.5" y="335" as="geometry" />
         </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-825" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-821" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-824">
+        <mxCell id="UC3-drawio-association" edge="1" parent="1" source="UC3-drawio-actor" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="UC3-drawio-usecase">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4S_GJxI6N92lzNAu5wbE-6" edge="1" parent="1" source="UC3-drawio-label" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="UC3-drawio-label">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
