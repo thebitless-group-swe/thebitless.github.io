@@ -1,0 +1,42 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
+  <diagram name="Page-1" id="4xtho81ADt9NAkVEL4nd">
+    <mxGraphModel dx="976" dy="656" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="StCBPmpuHo7DJ7ayqhCM-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="310" width="440" x="310" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="StCBPmpuHo7DJ7ayqhCM-8" edge="1" parent="1" source="StCBPmpuHo7DJ7ayqhCM-2" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;dashed=1;startArrow=open;startFill=0;endArrow=none;endFill=0;" target="StCBPmpuHo7DJ7ayqhCM-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="StCBPmpuHo7DJ7ayqhCM-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC67 - Caricamento nota da file locale" vertex="1">
+          <mxGeometry height="100" width="215" x="427.5" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="StCBPmpuHo7DJ7ayqhCM-4" edge="1" parent="1" source="StCBPmpuHo7DJ7ayqhCM-3" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="StCBPmpuHo7DJ7ayqhCM-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="StCBPmpuHo7DJ7ayqhCM-3" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente" vertex="1">
+          <mxGeometry height="60" width="30" x="110" y="335" as="geometry" />
+        </mxCell>
+        <mxCell id="StCBPmpuHo7DJ7ayqhCM-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
+          <mxGeometry height="30" width="60" x="690" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="StCBPmpuHo7DJ7ayqhCM-7" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC69 - Errore caricamento nota" vertex="1">
+          <mxGeometry height="100" width="215" x="520" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="StCBPmpuHo7DJ7ayqhCM-12" edge="1" parent="1" source="StCBPmpuHo7DJ7ayqhCM-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;dashed=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="620" y="395" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="StCBPmpuHo7DJ7ayqhCM-9" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" value="&lt;b&gt;Condizione&lt;/b&gt;&lt;div&gt;Il sistema non riesce a caricare la nota&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="140" x="320" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="StCBPmpuHo7DJ7ayqhCM-10" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="582.5" y="350" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

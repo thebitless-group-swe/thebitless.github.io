@@ -8,5 +8,7 @@
 *.fls
 *.fdb_latexmk
 *.synctex.gz
+*.lof
 creationdate.lua
 pdfa.xmpi
+*.drawio.bkp
