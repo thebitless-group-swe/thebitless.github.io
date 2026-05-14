@@ -1,0 +1,648 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage[table]{xcolor}
+\usepackage[italian]{babel} 
+\usepackage{comment}      
+\usepackage{graphicx} 
+\usepackage{capt-of}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{geometry}
+\usepackage{xurl}
+\usepackage[nopatch=footnote]{microtype}
+\usepackage{bookmark}
+\usepackage{float} 
+\usepackage{setspace}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+\usepackage{array}
+
+\definecolor{bluBitless}{HTML}{3A75C4}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{Piano di Qualifica}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black, 
+    urlcolor=bluBitless,     
+    citecolor=black,  
+    filecolor=black,
+    breaklinks=true,
+    pdfpagemode=UseNone    
+}
+
+\begin{document}
+\raggedbottom
+\setlength{\emergencystretch}{2em}
+
+\newcommand{\titolo}{Piano di Qualifica}
+\newcommand{\dataverbale}{}
+\newcommand{\dataversione}{2026-05-14}
+\newcommand{\versione}{0.1.0}
+\newcommand{\stato}{Approvato}
+\newcommand{\destinatari}{The Bitless, prof. T. Vardanega, prof. R. Cardin, Zucchetti}
+\def\templatedir{../../../templates}
+
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+\input{\templatedir/frontespizio.tex}
+\end{titlepage}
+
+\newpage
+\pagenumbering{arabic}
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{|c|c|c|c|c|p{4cm}|}
+    \hline
+    \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
+    \hline
+    \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
+    \hline
+    \endhead
+
+    0.1.0 & 2026-05-14 & A. Marini & - & A. Marini & Creazione prima versione del documento Piano di Qualifica. Inserimento struttura iniziale, riferimenti, metriche di qualità e strategia di testing. \\ \hline
+
+\end{longtable}
+\endgroup
+
+\newpage
+
+\tableofcontents
+\newpage
+
+\listoftables
+\newpage
+
+\listoffigures
+\newpage
+
+\section{Introduzione}
+
+\subsection{Scopo del documento}
+
+Il presente documento descrive il \textit{Piano di Qualifica} adottato dal gruppo \textit{The Bitless} per il progetto \textit{Second Brain}, relativo al capitolato C6 proposto dall'azienda Zucchetti.
+
+Il Piano di Qualifica ha lo scopo di definire in modo esplicito gli obiettivi di qualità perseguiti durante lo sviluppo del prodotto software e le modalità con cui tali obiettivi vengono misurati, controllati e progressivamente migliorati.
+
+Il documento raccoglie quindi:
+\begin{itemize}
+    \item le metriche utilizzate per valutare la qualità dei processi interni al gruppo;
+    \item le metriche utilizzate per valutare la qualità del prodotto software;
+    \item la strategia di verifica e validazione adottata;
+    \item la classificazione dei test previsti;
+    \item i criteri con cui interpretare i risultati raccolti nel cruscotto di valutazione.
+\end{itemize}
+
+Il Piano di Qualifica non ha l'obiettivo di sostituire le \textit{Norme di Progetto}, nelle quali vengono definite le procedure operative seguite dal gruppo. Esso stabilisce invece quali aspetti devono essere misurati, quali valori sono considerati accettabili e quali valori rappresentano un risultato ottimale.
+
+\subsection{Scopo del prodotto}
+
+Il prodotto richiesto dal capitolato C6 consiste in un'applicazione web per la scrittura e la gestione di note in formato Markdown, arricchita dall'integrazione con un Large Language Model.
+
+L'applicazione deve permettere all'utente di:
+\begin{itemize}
+    \item scrivere testo Markdown in un'area di editing;
+    \item visualizzare il risultato formattato in una zona di rendering;
+    \item applicare operazioni basate su LLM al testo completo o a una selezione;
+    \item riassumere, riscrivere e tradurre il testo;
+    \item ottenere analisi critiche secondo il modello dei sei cappelli per pensare;
+    \item generare un testo completo a partire da un prompt;
+    \item salvare e recuperare note in formato testuale.
+\end{itemize}
+
+La qualità del prodotto deve quindi essere valutata non solo rispetto alla correttezza funzionale, ma anche rispetto alla facilità d'uso, alla stabilità dell'interazione con il modello linguistico, alla manutenibilità del codice e alla verificabilità delle funzionalità principali.
+
+\subsection{Glossario}
+
+Per evitare ambiguità terminologiche, i termini tecnici, di dominio o potenzialmente equivoci sono definiti nel documento \textit{Glossario}. Alla prima occorrenza significativa nel presente documento, tali termini devono essere interpretati secondo la definizione riportata nel Glossario.
+
+\subsection{Riferimenti}
+
+\subsubsection{Riferimenti normativi}
+
+\begin{itemize}
+    \item \textbf{Norme di Progetto v0.1.0} \\
+    Documento interno del gruppo \textit{The Bitless}, contenente le procedure operative, gli strumenti adottati e le convenzioni seguite nello svolgimento del progetto.
+
+    \item \textbf{Piano di Progetto v0.1.0} \\
+    Documento interno del gruppo \textit{The Bitless}, contenente la pianificazione delle attività, la stima dei costi, la gestione dei rischi e il consuntivo di avanzamento.
+
+    \item \textbf{Analisi dei Requisiti v2.0.0} \\
+    Documento esterno del gruppo \textit{The Bitless}, contenente la descrizione dei casi d'uso, dei requisiti funzionali, dei requisiti non funzionali e dei vincoli di progetto.
+
+    \item \textbf{Capitolato C6 -- Second Brain} \\
+    Capitolato proposto dall'azienda Zucchetti per il corso di Ingegneria del Software 2025/2026.
+\end{itemize}
+
+\subsubsection{Riferimenti informativi}
+
+\begin{itemize}
+    \item \textbf{Glossario v0.1.0} \\
+    Documento contenente le definizioni dei termini rilevanti utilizzati nei prodotti documentali del gruppo.
+
+    \item \textbf{Slide T07 -- Qualità del software} \\
+    Materiale didattico del corso di Ingegneria del Software.
+
+    \item \textbf{Slide T08 -- Qualità del software} \\
+    Materiale didattico del corso di Ingegneria del Software.
+
+    \item \textbf{ISO/IEC 25010} \\
+    Standard utilizzato come riferimento informativo per la classificazione delle caratteristiche di qualità del prodotto software.
+
+    \item \textbf{Documentazione Markdown} \\
+    Riferimento informativo per la sintassi Markdown e per le funzionalità di rendering previste dal prodotto.
+
+    \item \textbf{Documentazione API compatibili con OpenAI} \\
+    Riferimento informativo per l'integrazione con modelli linguistici tramite chiamate HTTP.
+\end{itemize}
+
+\section{Metriche di qualità del processo}
+
+Le metriche di qualità del processo permettono di controllare il modo in cui il gruppo organizza e svolge le proprie attività. Esse non misurano direttamente il comportamento del prodotto finale, ma valutano l'efficacia della pianificazione, la stabilità dei requisiti, la qualità della documentazione, l'efficienza delle verifiche e la sostenibilità del lavoro.
+
+Nel presente documento le metriche di processo sono identificate con il prefisso \textbf{MPC}, acronimo di \textit{Metrica di Processo e Controllo}. Ogni metrica è associata a:
+\begin{itemize}
+    \item un identificativo univoco;
+    \item un nome descrittivo;
+    \item una soglia di accettabilità;
+    \item un valore ottimale.
+\end{itemize}
+
+Le soglie riportate hanno lo scopo di aiutare il gruppo a interpretare i dati raccolti durante il progetto. Il raggiungimento del valore accettabile indica che il processo è sotto controllo; il raggiungimento del valore ottimale indica invece una condizione pienamente soddisfacente.
+
+\subsection{Fornitura}
+
+Le metriche relative alla fornitura misurano l'andamento del progetto rispetto alla pianificazione economica e temporale. Esse permettono di confrontare quanto era stato previsto con quanto è stato effettivamente realizzato.
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{|c|p{4cm}|p{3cm}|p{3cm}|}
+    \hline
+    \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore accettabile} & \textbf{Valore ottimale} \\
+    \hline
+    \endhead
+
+    MPC-PV & Planned Value & $> 0$ & Coerente con la pianificazione approvata \\ \hline
+    MPC-EV & Earned Value & $\geq 80\%$ del valore pianificato & $\geq$ Planned Value \\ \hline
+    MPC-AC & Actual Cost & $\leq 120\%$ del costo pianificato & $\leq$ costo pianificato \\ \hline
+    MPC-CV & Cost Variance & $\geq -10\%$ & $\geq 0$ \\ \hline
+    MPC-SV & Schedule Variance & $\geq -10\%$ & $\geq 0$ \\ \hline
+    MPC-EAC & Estimate At Completion & $\leq 110\%$ del budget & $\leq$ budget approvato \\ \hline
+    MPC-ETC & Estimate To Complete & Valore definito e aggiornato & Valore coerente con il piano a finire \\ \hline
+    MPC-TCR & Task Completion Rate & $\geq 85\%$ & $100\%$ \\ \hline
+    MPC-TS & Task Slippage & $\leq 15\%$ & $0\%$ \\ \hline
+
+    \caption{Metriche per la qualità del processo di fornitura.}
+    \label{tab:metriche-fornitura}
+\end{longtable}
+\endgroup
+
+\subsection{Sviluppo}
+
+Le metriche relative allo sviluppo controllano la stabilità del lavoro tecnico e la capacità del gruppo di introdurre modifiche in modo ordinato, verificabile e tracciabile.
+
+Nel progetto \textit{Second Brain}, particolare attenzione viene posta alla stabilità dei requisiti collegati all'integrazione con LLM, poiché la natura esplorativa del capitolato può portare a raffinamenti progressivi dei prompt, delle funzioni disponibili e delle modalità di interazione con il testo.
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{|c|p{4cm}|p{3cm}|p{3cm}|}
+    \hline
+    \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore accettabile} & \textbf{Valore ottimale} \\
+    \hline
+    \endhead
+
+    MPC-RSI & Requirements Stability Index & $\geq 80\%$ & $100\%$ \\ \hline
+    MPC-PRCT & Pull Request Cycle Time & $\leq 72$ ore & $\leq 24$ ore \\ \hline
+    MPC-MR & Merge Rework & $\leq 20\%$ delle pull request & $\leq 5\%$ delle pull request \\ \hline
+    MPC-IR & Issue Reopening Rate & $\leq 15\%$ & $0\%$ \\ \hline
+
+    \caption{Metriche per la qualità del processo di sviluppo.}
+    \label{tab:metriche-sviluppo}
+\end{longtable}
+\endgroup
+
+\subsection{Documentazione}
+
+Le metriche relative alla documentazione misurano la leggibilità, la correttezza e la verificabilità dei documenti prodotti. Poiché i documenti rappresentano il principale mezzo di comunicazione verso committente, proponenti e docenti, essi devono essere chiari, aggiornati e coerenti tra loro.
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{|c|p{4cm}|p{3cm}|p{3cm}|}
+    \hline
+    \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore accettabile} & \textbf{Valore ottimale} \\
+    \hline
+    \endhead
+
+    MPC-IG & Indice di Gulpease & $\geq 40$ & $\geq 60$ \\ \hline
+    MPC-CO & Correttezza ortografica & Nessun errore grave & $0$ errori \\ \hline
+    MPC-CD & Completezza documentale & $\geq 90\%$ sezioni previste & $100\%$ sezioni previste \\ \hline
+    MPC-CR & Coerenza dei riferimenti & $\geq 95\%$ riferimenti validi & $100\%$ riferimenti validi \\ \hline
+
+    \caption{Metriche per la qualità della documentazione.}
+    \label{tab:metriche-documentazione}
+\end{longtable}
+\endgroup
+
+\subsection{Verifica}
+
+Le metriche relative alla verifica misurano l'efficacia delle attività di controllo svolte sul prodotto e sui documenti. Esse permettono di valutare se gli errori vengono individuati tempestivamente e se le correzioni introdotte risultano effettivamente risolutive.
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{|c|p{4cm}|p{3cm}|p{3cm}|}
+    \hline
+    \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore accettabile} & \textbf{Valore ottimale} \\
+    \hline
+    \endhead
+
+    MPC-CC & Code Coverage & $\geq 70\%$ & $\geq 90\%$ \\ \hline
+    MPC-TSR & Test Success Rate & $\geq 95\%$ & $100\%$ \\ \hline
+    MPC-DD & Defect Density & $\leq 2$ difetti per componente & $0$ difetti aperti \\ \hline
+    MPC-TR & Test Requirements Coverage & $100\%$ requisiti obbligatori coperti & $100\%$ requisiti coperti \\ \hline
+    MPC-QMS & Quality Metrics Satisfied & $\geq 80\%$ & $100\%$ \\ \hline
+
+    \caption{Metriche per la qualità del processo di verifica.}
+    \label{tab:metriche-verifica}
+\end{longtable}
+\endgroup
+
+\section{Metriche di qualità del prodotto}
+
+Le metriche di qualità del prodotto misurano le caratteristiche del software realizzato. A differenza delle metriche di processo, esse valutano direttamente il comportamento dell'applicazione, la sua affidabilità, la sua facilità d'uso e la sua capacità di soddisfare i requisiti del capitolato.
+
+Nel presente documento le metriche di prodotto sono identificate con il prefisso \textbf{MPD}, acronimo di \textit{Metrica di Prodotto}. Le caratteristiche considerate sono:
+\begin{itemize}
+    \item funzionalità;
+    \item affidabilità;
+    \item usabilità;
+    \item efficienza;
+    \item manutenibilità;
+    \item sicurezza.
+\end{itemize}
+
+\subsection{Funzionalità}
+
+Le metriche di funzionalità misurano quanto il prodotto soddisfa i requisiti individuati nell'Analisi dei Requisiti. Per il progetto \textit{Second Brain}, la copertura dei requisiti obbligatori è particolarmente importante, poiché il capitolato richiede un insieme minimo di funzionalità necessarie per considerare accettabile il prodotto.
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{|c|p{4cm}|p{3cm}|p{3cm}|}
+    \hline
+    \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore accettabile} & \textbf{Valore ottimale} \\
+    \hline
+    \endhead
+
+    MPD-CRO & Copertura requisiti obbligatori & $100\%$ & $100\%$ \\ \hline
+    MPD-CRD & Copertura requisiti desiderabili & $\geq 50\%$ & $\geq 80\%$ \\ \hline
+    MPD-CROp & Copertura requisiti opzionali & $\geq 0\%$ & $\geq 60\%$ \\ \hline
+    MPD-CLLM & Copertura funzioni LLM obbligatorie & $100\%$ & $100\%$ \\ \hline
+    MPD-CMD & Correttezza rendering Markdown & $\geq 95\%$ casi previsti & $100\%$ casi previsti \\ \hline
+    MPD-SN & Salvataggio e recupero note & $100\%$ casi obbligatori & $100\%$ casi obbligatori \\ \hline
+
+    \caption{Metriche per la qualità funzionale del prodotto.}
+    \label{tab:metriche-funzionalita}
+\end{longtable}
+\endgroup
+
+\subsection{Affidabilità}
+
+Le metriche di affidabilità misurano la capacità del prodotto di mantenere un comportamento corretto anche in presenza di input non ottimali, errori di comunicazione o risposte inattese da parte del modello linguistico.
+
+Nel contesto del capitolato C6, l'affidabilità riguarda in particolare:
+\begin{itemize}
+    \item la stabilità dell'editor durante la scrittura;
+    \item la conservazione del testo inserito dall'utente;
+    \item la gestione degli errori provenienti dall'LLM;
+    \item la capacità di evitare perdita di dati durante salvataggio e caricamento delle note.
+\end{itemize}
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{|c|p{4cm}|p{3cm}|p{3cm}|}
+    \hline
+    \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore accettabile} & \textbf{Valore ottimale} \\
+    \hline
+    \endhead
+
+    MPD-DL & Data Loss & $0$ perdite nei casi principali & $0$ perdite in ogni test \\ \hline
+    MPD-EH & Error Handling & $\geq 90\%$ errori gestiti & $100\%$ errori gestiti \\ \hline
+    MPD-SR & Session Recovery & Recupero testo nei casi previsti & Recupero completo e automatico \\ \hline
+    MPD-AR & Availability Rate & $\geq 95\%$ durante i test & $\geq 99\%$ durante i test \\ \hline
+
+    \caption{Metriche per la qualità dell'affidabilità.}
+    \label{tab:metriche-affidabilita}
+\end{longtable}
+\endgroup
+
+\subsection{Usabilità}
+
+Le metriche di usabilità valutano la facilità con cui l'utente può comprendere e utilizzare l'applicazione. Il prodotto deve risultare accessibile anche a utenti non esperti, come richiesto dalla natura del capitolato.
+
+L'interfaccia deve permettere di distinguere chiaramente:
+\begin{itemize}
+    \item l'area di editing Markdown;
+    \item l'area di rendering;
+    \item i comandi base sul testo;
+    \item i comandi collegati all'LLM;
+    \item le funzioni di salvataggio e caricamento.
+\end{itemize}
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{|c|p{4cm}|p{3cm}|p{3cm}|}
+    \hline
+    \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore accettabile} & \textbf{Valore ottimale} \\
+    \hline
+    \endhead
+
+    MPD-LT & Learning Time & $\leq 30$ minuti & $\leq 10$ minuti \\ \hline
+    MPD-NE & Navigation Errors & $\leq 3$ errori per scenario & $0$ errori per scenario \\ \hline
+    MPD-UI & UI Consistency & $\geq 90\%$ elementi coerenti & $100\%$ elementi coerenti \\ \hline
+    MPD-FU & Feature Understandability & $\geq 80\%$ funzioni comprese senza guida & $\geq 95\%$ funzioni comprese senza guida \\ \hline
+
+    \caption{Metriche per la qualità dell'usabilità.}
+    \label{tab:metriche-usabilita}
+\end{longtable}
+\endgroup
+
+\subsection{Efficienza}
+
+Le metriche di efficienza misurano i tempi di risposta e l'uso delle risorse. Nel progetto \textit{Second Brain}, una parte significativa del tempo di risposta può dipendere dal modello linguistico utilizzato; per questo motivo è opportuno distinguere tra:
+\begin{itemize}
+    \item tempo di risposta dell'interfaccia locale;
+    \item tempo di rendering Markdown;
+    \item tempo di risposta delle chiamate LLM.
+\end{itemize}
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{|c|p{4cm}|p{3cm}|p{3cm}|}
+    \hline
+    \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore accettabile} & \textbf{Valore ottimale} \\
+    \hline
+    \endhead
+
+    MPD-RT & Response Time interfaccia & $\leq 2$ secondi & $\leq 0{,}5$ secondi \\ \hline
+    MPD-MRT & Markdown Rendering Time & $\leq 1$ secondo & $\leq 0{,}3$ secondi \\ \hline
+    MPD-LLMRT & LLM Response Time & $\leq 15$ secondi & $\leq 8$ secondi \\ \hline
+    MPD-LS & Loading Speed & $\leq 3$ secondi & $\leq 1$ secondo \\ \hline
+
+    \caption{Metriche per la qualità dell'efficienza.}
+    \label{tab:metriche-efficienza}
+\end{longtable}
+\endgroup
+
+\subsection{Manutenibilità}
+
+Le metriche di manutenibilità valutano quanto il codice sia comprensibile, modificabile e testabile. Considerata la natura evolutiva del progetto, è importante che l'architettura permetta di aggiungere o modificare funzioni LLM, prompt e modalità di salvataggio senza introdurre regressioni.
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{|c|p{4cm}|p{3cm}|p{3cm}|}
+    \hline
+    \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore accettabile} & \textbf{Valore ottimale} \\
+    \hline
+    \endhead
+
+    MPD-CYC & Complessità ciclomatica & $\leq 15$ & $\leq 10$ \\ \hline
+    MPD-CS & Code Smell & $\leq 5$ per componente & $\leq 1$ per componente \\ \hline
+    MPD-DUP & Duplicazione del codice & $\leq 10\%$ & $\leq 3\%$ \\ \hline
+    MPD-MOD & Modularità & Componenti principali separate & Dipendenze ridotte e ben definite \\ \hline
+
+    \caption{Metriche per la qualità della manutenibilità.}
+    \label{tab:metriche-manutenibilita}
+\end{longtable}
+\endgroup
+
+\subsection{Sicurezza}
+
+Le metriche di sicurezza misurano la capacità del prodotto di proteggere dati, chiavi di accesso e contenuti dell'utente. Poiché l'applicazione interagisce con servizi LLM esterni, è necessario evitare l'esposizione impropria di credenziali e gestire con attenzione i dati inviati tramite API.
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{|c|p{4cm}|p{3cm}|p{3cm}|}
+    \hline
+    \textbf{ID} & \textbf{Nome metrica} & \textbf{Valore accettabile} & \textbf{Valore ottimale} \\
+    \hline
+    \endhead
+
+    MPD-SK & Secret Key Exposure & $0$ chiavi esposte & $0$ chiavi esposte \\ \hline
+    MPD-IV & Input Validation & $\geq 95\%$ input validati & $100\%$ input validati \\ \hline
+    MPD-DS & Data Sanitization & $\geq 95\%$ dati sanificati & $100\%$ dati sanificati \\ \hline
+    MPD-PR & Privacy Risk & Nessun dato sensibile non necessario inviato & Minimizzazione completa dei dati inviati \\ \hline
+
+    \caption{Metriche per la qualità della sicurezza.}
+    \label{tab:metriche-sicurezza}
+\end{longtable}
+\endgroup
+
+\section{Strategia di verifica e testing}
+
+La strategia di verifica adottata dal gruppo ha lo scopo di fornire evidenza oggettiva del corretto avanzamento del progetto e della conformità del prodotto rispetto ai requisiti individuati.
+
+Le attività di testing vengono organizzate in modo progressivo. Nelle fasi iniziali vengono privilegiati test e controlli sulle funzionalità fondamentali, mentre nelle fasi successive la copertura viene estesa alle interazioni tra componenti, ai flussi completi e ai requisiti non funzionali.
+
+Ogni test è identificato da un codice univoco, da una descrizione, dal requisito associato e da uno stato.
+
+\subsection{Stati dei test}
+
+Gli stati utilizzati per classificare i test sono i seguenti:
+
+\begin{itemize}
+    \item \textbf{NI -- Non Implementato}: il test è stato previsto, ma non è ancora stato implementato;
+    \item \textbf{I -- Implementato}: il test è stato implementato, ma non ancora eseguito o verificato stabilmente;
+    \item \textbf{S -- Superato}: il test è stato eseguito e ha prodotto esito positivo;
+    \item \textbf{NS -- Non Superato}: il test è stato eseguito, ma ha prodotto esito negativo;
+    \item \textbf{NA -- Non Applicabile}: il test non è applicabile alla versione corrente del prodotto.
+\end{itemize}
+
+\subsection{Copertura del codice}
+
+La copertura del codice misura la percentuale di codice sorgente eseguita durante l'esecuzione dei test automatici.
+
+Questa metrica viene utilizzata come indicatore della quantità di codice effettivamente verificata, ma non è sufficiente da sola a garantire la correttezza del prodotto. Per questo motivo viene interpretata insieme al tasso di successo dei test, alla copertura dei requisiti e al numero di difetti individuati.
+
+Il valore minimo accettabile è fissato al $70\%$, mentre il valore ottimale è pari o superiore al $90\%$.
+
+\subsection{Test unitari}
+
+I test unitari verificano singole unità software in isolamento. Nel progetto \textit{Second Brain}, tali test riguardano principalmente:
+\begin{itemize}
+    \item parsing e gestione del testo Markdown;
+    \item funzioni di aggiornamento dello stato dell'editor;
+    \item validazione degli input;
+    \item costruzione dei prompt da inviare all'LLM;
+    \item funzioni di salvataggio e lettura delle note;
+    \item gestione degli errori applicativi.
+\end{itemize}
+
+La specifica dei test unitari viene raffinata con l'avanzamento della progettazione di dettaglio. In questa fase, il Piano di Qualifica definisce la strategia e gli obiettivi di copertura, mentre l'elenco puntuale dei test sarà aggiornato quando le unità software saranno stabilizzate.
+
+\subsection{Test di integrazione}
+
+I test di integrazione verificano la corretta collaborazione tra più componenti del sistema. Essi sono particolarmente importanti per controllare:
+\begin{itemize}
+    \item la comunicazione tra editor e renderer Markdown;
+    \item l'invio del testo selezionato alle funzioni LLM;
+    \item la ricezione e visualizzazione della risposta del modello;
+    \item il collegamento tra interfaccia utente e sistema di persistenza;
+    \item la gestione degli errori provenienti da API esterne.
+\end{itemize}
+
+Questi test permettono di individuare errori che non emergono necessariamente durante la verifica delle singole unità, ma che si manifestano quando più componenti vengono usati insieme.
+
+\subsection{Test di sistema}
+
+I test di sistema verificano il comportamento complessivo dell'applicazione rispetto ai requisiti funzionali e non funzionali. Essi vengono definiti a partire dai casi d'uso e dai requisiti presenti nell'Analisi dei Requisiti.
+
+Per il progetto \textit{Second Brain}, i test di sistema devono coprire almeno i seguenti scenari:
+\begin{itemize}
+    \item scrittura di testo Markdown nell'area di editing;
+    \item visualizzazione corretta del testo formattato;
+    \item applicazione della funzione di riassunto;
+    \item applicazione della funzione di riscrittura;
+    \item applicazione della funzione di traduzione;
+    \item applicazione delle critiche secondo i sei cappelli per pensare;
+    \item generazione di un testo completo a partire da prompt;
+    \item salvataggio e caricamento di una nota.
+\end{itemize}
+
+\subsection{Test di regressione}
+
+I test di regressione vengono eseguiti dopo modifiche al codice, correzioni di difetti o introduzione di nuove funzionalità. Il loro obiettivo è verificare che il comportamento già validato non sia stato compromesso.
+
+Nel caso del progetto \textit{Second Brain}, i test di regressione sono particolarmente importanti perché le funzionalità basate su LLM e prompt possono essere raffinate più volte durante lo sviluppo. Ogni modifica ai prompt, alle chiamate API o alla gestione della risposta deve quindi essere accompagnata dalla riesecuzione dei test collegati.
+
+\subsection{Test di accettazione}
+
+I test di accettazione verificano che il prodotto rispetti le aspettative del committente e soddisfi i requisiti obbligatori previsti dal capitolato.
+
+Essi sono formulati dal punto di vista dell'utente finale e descrivono scenari completi di utilizzo. Il superamento dei test di accettazione costituisce una condizione necessaria per considerare il prodotto conforme agli obiettivi minimi del progetto.
+
+\section{Tracciamento dei test}
+
+Il tracciamento dei test permette di collegare ogni verifica al requisito corrispondente. In questo modo è possibile controllare quali requisiti risultano coperti e quali richiedono ulteriori attività di verifica.
+
+Ogni test viene identificato secondo la seguente convenzione:
+
+\begin{itemize}
+    \item \textbf{TU}: test unitario;
+    \item \textbf{TI}: test di integrazione;
+    \item \textbf{TS}: test di sistema;
+    \item \textbf{TA}: test di accettazione.
+\end{itemize}
+
+\subsection{Test di sistema principali}
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{|c|p{7cm}|c|c|}
+    \hline
+    \textbf{ID} & \textbf{Descrizione} & \textbf{Requisito} & \textbf{Stato} \\
+    \hline
+    \endhead
+
+    TS-001 & Verificare che l'utente possa inserire testo Markdown nell'area di editing. & RF-OBB-001 & NI \\ \hline
+    TS-002 & Verificare che il testo Markdown venga renderizzato correttamente nell'area di anteprima. & RF-OBB-002 & NI \\ \hline
+    TS-003 & Verificare che l'utente possa selezionare una porzione di testo e applicare un comando LLM. & RF-OBB-003 & NI \\ \hline
+    TS-004 & Verificare che il sistema produca un riassunto del testo completo o selezionato. & RF-OBB-004 & NI \\ \hline
+    TS-005 & Verificare che il sistema produca una riscrittura del testo secondo le opzioni disponibili. & RF-OBB-005 & NI \\ \hline
+    TS-006 & Verificare che il sistema traduca il testo nella lingua scelta dall'utente. & RF-OBB-006 & NI \\ \hline
+    TS-007 & Verificare che il sistema applichi la critica del cappello bianco al testo. & RF-OBB-007 & NI \\ \hline
+    TS-008 & Verificare che il sistema applichi la critica del cappello rosso al testo. & RF-OBB-008 & NI \\ \hline
+    TS-009 & Verificare che il sistema applichi la critica del cappello giallo al testo. & RF-OBB-009 & NI \\ \hline
+    TS-010 & Verificare che il sistema applichi la critica del cappello nero al testo. & RF-OBB-010 & NI \\ \hline
+    TS-011 & Verificare che il sistema applichi la critica del cappello verde al testo. & RF-OBB-011 & NI \\ \hline
+    TS-012 & Verificare che il sistema applichi la critica del cappello blu al testo. & RF-OBB-012 & NI \\ \hline
+    TS-013 & Verificare che l'utente possa inserire un prompt per generare un testo completo. & RF-OBB-013 & NI \\ \hline
+    TS-014 & Verificare che il testo generato tramite prompt venga inserito nell'area di editing. & RF-OBB-014 & NI \\ \hline
+    TS-015 & Verificare che l'utente possa salvare una nota in formato testuale. & RF-OBB-015 & NI \\ \hline
+    TS-016 & Verificare che l'utente possa caricare una nota precedentemente salvata. & RF-OBB-016 & NI \\ \hline
+
+    \caption{Test di sistema principali per i requisiti obbligatori.}
+    \label{tab:test-sistema-principali}
+\end{longtable}
+\endgroup
+
+\subsection{Test di accettazione principali}
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{|c|p{7cm}|c|c|}
+    \hline
+    \textbf{ID} & \textbf{Descrizione} & \textbf{Requisito} & \textbf{Stato} \\
+    \hline
+    \endhead
+
+    TA-001 & L'utente scrive una nota Markdown, visualizza l'anteprima formattata e salva il contenuto prodotto. & RF-OBB-001, RF-OBB-002, RF-OBB-015 & NI \\ \hline
+    TA-002 & L'utente seleziona una porzione di testo e richiede al sistema di riassumerla tramite LLM. & RF-OBB-003, RF-OBB-004 & NI \\ \hline
+    TA-003 & L'utente richiede una riscrittura del testo con tono diverso e verifica l'inserimento del risultato nell'editor. & RF-OBB-005 & NI \\ \hline
+    TA-004 & L'utente traduce una nota in una lingua diversa da quella originale. & RF-OBB-006 & NI \\ \hline
+    TA-005 & L'utente applica le analisi dei sei cappelli e riceve una risposta coerente con il punto di vista scelto. & RF-OBB-007 -- RF-OBB-012 & NI \\ \hline
+    TA-006 & L'utente fornisce un prompt e ottiene un testo completo generato dal modello linguistico. & RF-OBB-013, RF-OBB-014 & NI \\ \hline
+    TA-007 & L'utente carica una nota salvata in precedenza e riprende la modifica del contenuto. & RF-OBB-016 & NI \\ \hline
+
+    \caption{Test di accettazione principali.}
+    \label{tab:test-accettazione-principali}
+\end{longtable}
+\endgroup
+
+\section{Cruscotto di valutazione}
+
+Il cruscotto di valutazione raccoglie periodicamente i valori delle metriche definite nel presente documento. La sua funzione è fornire una visione sintetica dello stato del progetto e rendere più semplice individuare eventuali scostamenti rispetto agli obiettivi fissati.
+
+Il cruscotto viene aggiornato al termine di ogni periodo di lavoro rilevante e viene utilizzato durante le retrospettive per:
+\begin{itemize}
+    \item valutare l'efficacia delle attività svolte;
+    \item individuare problemi ricorrenti;
+    \item stabilire eventuali azioni correttive;
+    \item migliorare la pianificazione futura;
+    \item verificare l'effetto delle iniziative di miglioramento.
+\end{itemize}
+
+Le misurazioni riportate nel cruscotto non devono essere interpretate come semplici dati storici, ma come strumenti di supporto alle decisioni. Ogni valore fuori soglia richiede un'analisi delle cause e, se necessario, la definizione di una misura correttiva.
+
+\subsection{Interpretazione dei valori}
+
+Per ogni metrica vengono individuate tre possibili situazioni:
+\begin{itemize}
+    \item \textbf{valore non accettabile}: il dato rilevato è sotto la soglia minima e richiede intervento;
+    \item \textbf{valore accettabile}: il dato è compatibile con gli obiettivi minimi del gruppo;
+    \item \textbf{valore ottimale}: il dato indica una condizione pienamente soddisfacente.
+\end{itemize}
+
+\subsection{Frequenza di aggiornamento}
+
+Le metriche di processo vengono aggiornate a ogni periodo di avanzamento, mentre le metriche di prodotto vengono aggiornate in corrispondenza delle attività di verifica, rilascio o consolidamento delle funzionalità.
+
+In particolare:
+\begin{itemize}
+    \item le metriche di pianificazione vengono aggiornate alla chiusura di ogni sprint o periodo equivalente;
+    \item le metriche documentali vengono aggiornate a ogni rilascio verificato dei documenti;
+    \item le metriche di testing vengono aggiornate a ogni esecuzione significativa della suite di test;
+    \item le metriche di prodotto vengono aggiornate a ogni incremento stabile del software.
+\end{itemize}
+
+\end{document}
