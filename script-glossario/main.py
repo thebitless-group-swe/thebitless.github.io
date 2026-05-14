@@ -36,6 +36,10 @@ for documento in documenti:
     with open(documento, "r", encoding="utf-8") as file:
         contenuto = file.read()
     
+    # Divide il file in due parti ignorando tutto ciò che viene prima di \begin{document} saltando eventuali file di supporto (frontespizio)
+    if r"\begin{document}" not in contenuto:
+        continue
+    
     inizio, corpo = contenuto.split(r"\begin{document}", 1)
 
     for termine in termini:
