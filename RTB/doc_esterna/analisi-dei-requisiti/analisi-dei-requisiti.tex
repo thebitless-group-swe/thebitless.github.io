@@ -3,6 +3,7 @@
 \usepackage[italian]{babel} 
 \usepackage{comment}      
 \usepackage{graphicx} 
+\usepackage{capt-of}
 
 \usepackage{multirow}
 \usepackage{longtable}
@@ -264,9 +265,9 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Utente:} rappresenta la persona fisica che interagisce con l'interfaccia del sistema$_G$ per gestire le proprie note, organizzare la conoscenza e consultare le informazioni. È l'attore primario$_G$ che genera gli input$_G$ e può utilizzare le funzionalità generali dell'applicazione, come l'editing del testo, la formattazione, l'utilizzo delle funzionalità AI e la gestione locale delle note.
 
     \begin{itemize}
-        \item \textbf{Utente autenticato:} rappresenta una specializzazione dell'attore Utente. Indica un utente che ha completato il processo di autenticazione e può accedere anche alle funzionalità cloud, come sincronizzazione, salvataggio nel database$_G$, caricamento di note online, ricerca nel database$_G$ e gestione dell'account. L'attore \textbf{Utente autenticato} eredita tutte le funzionalità dell'attore \textbf{Utente}, aggiungendo quelle disponibili solo dopo l'autenticazione.
+        \item \textbf{Utente autenticato:} rappresenta una specializzazione dell'attore Utente. Indica un utente che ha completato il processo di autenticazione e può accedere anche alle funzionalità cloud, come sincronizzazione, salvataggio nel database$_G$, caricamento di note online, ricerca nel database$_G$ e gestione dell'account.
     \end{itemize}
-    
+
     \item \textbf{LLM$_G$:} rappresenta il modello di intelligenza artificiale integrato nel sistema$_G$. Agisce come attore secondario$_G$, fornendo le funzionalità avanzate di elaborazione del linguaggio naturale, sintesi, traduzione, correzione, analisi e generazione di contenuti su richiesta del sistema$_G$.
 \end{itemize}
 
@@ -1931,6 +1932,14 @@ Il Caso d’Uso UC53 include un ulteriore Caso d’Uso come raffigurato nella se
     \item \textbf{Trigger:} L'utente desidera modificare il tono o il registro linguistico di una porzione di testo.
 \end{itemize}
 
+Il Caso d’Uso UC54 include un ulteriore Caso d’Uso come raffigurato nella seguente immagine:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{assets/img/UC54.1.pdf}
+    \caption{UC 54.1 - Inclusione di UC 54}
+    \label{fig:uc54.1}
+\end{figure}
+
 % --- UC 54.1 ---
 \paragraph{UC 54.1 - Selezione tipologia di stile}
 \hypertarget{uc:54.1}{}
@@ -2048,9 +2057,22 @@ Il Caso d’Uso UC53 include un ulteriore Caso d’Uso come raffigurato nella se
     \item \textbf{Trigger:} L'utente desidera ottenere un'analisi critica del testo basata su diverse prospettive.
 \end{itemize}
 
+Il Caso d’Uso UC56 include un ulteriore Caso d’Uso come raffigurato nella seguente immagine:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{assets/img/UC56.1.pdf}
+    \caption{UC 56.1 - Inclusione di UC 56}
+\end{figure}
+
 % --- UC 56.1 (PADRE DELLE GENERALIZZAZIONI) ---
-\paragraph{UC 56.1 - Selezione di un cappello}
 \hypertarget{uc:56.1}{}
+\paragraph{UC 56.1 - Selezione di un cappello}
+
+\begin{center} % Usiamo center invece di figure
+    \includegraphics[width=\textwidth]{assets/img/UC56.1.1.pdf}
+    \captionof{figure}{UC 56.1 - Selezione di un cappello} % captionof invece di caption
+    \label{fig:uc56.1}
+\end{center}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} L'interfaccia di scelta dei profili è visibile.
@@ -2062,12 +2084,12 @@ Il Caso d’Uso UC53 include un ulteriore Caso d’Uso come raffigurato nella se
         \end{enumerate}
     \item \textbf{Generalizzazioni:} 
         \begin{itemize}
-            \item \hyperlink{uc:56.1.1}{UC 56.1.1 - Selezione Cappello Bianco}
-            \item \hyperlink{uc:56.1.2}{UC 56.1.2 - Selezione Cappello Rosso}
-            \item \hyperlink{uc:56.1.3}{UC 56.1.3 - Selezione Cappello Giallo}
-            \item \hyperlink{uc:56.1.4}{UC 56.1.4 - Selezione Cappello Nero}
-            \item \hyperlink{uc:56.1.5}{UC 56.1.5 - Selezione Cappello Verde}
-            \item \hyperlink{uc:56.1.6}{UC 56.1.6 - Selezione Cappello Blu}
+            \item \hyperlink{uc:56.1.1}{UC 56.1.1 - Analisi Cappello Bianco}
+            \item \hyperlink{uc:56.1.2}{UC 56.1.2 - Analisi Cappello Rosso}
+            \item \hyperlink{uc:56.1.3}{UC 56.1.3 - Analisi Cappello Giallo}
+            \item \hyperlink{uc:56.1.4}{UC 56.1.4 - Analisi Cappello Nero}
+            \item \hyperlink{uc:56.1.5}{UC 56.1.5 - Analisi Cappello Verde}
+            \item \hyperlink{uc:56.1.6}{UC 56.1.6 - Analisi Cappello Blu}
         \end{itemize}
     \item \textbf{Trigger:} L'utente desidera definire l'angolazione critica da applicare al testo.
 \end{itemize}
@@ -2215,6 +2237,13 @@ Il Caso d’Uso UC53 include un ulteriore Caso d’Uso come raffigurato nella se
     \item \textbf{Trigger:} L'utente desidera produrre nuovi contenuti testuali tramite l'ausilio dell'intelligenza artificiale.
 \end{itemize}
 
+Il Caso d’Uso UC57 include tre ulteriori Caso d’Uso come raffigurato nella seguente immagine:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{assets/img/UC57.1.pdf}
+    \caption{UC 57.1, UC 57.2, UC 57.3 - Inclusioni di UC 57}
+\end{figure}
+
 % --- UC 57.1 ---
 \subsubsection{UC 57.1 - Inserimento o riutilizzo del prompt}
 \hypertarget{uc:57.1}{}
@@ -2302,18 +2331,20 @@ Il Caso d’Uso UC53 include un ulteriore Caso d’Uso come raffigurato nella se
         \end{enumerate}
     \item \textbf{Scenari alternativi:}
         \begin{itemize}
-            \item Se il caricamento di una o più note fallisce, il sistema$_G$ interrompe l'operazione e mostra un messaggio di errore → Vedi \hyperlink{uc:69}{UC 69}.
+            \item \textbf{Errore di recupero dati:} Se il database non è raggiungibile o il contenuto di una nota risulta corrotto, il sistema$_G$ informa l'utente con un messaggio di avviso e annulla l'inserimento di quella specifica nota nel contesto.
         \end{itemize}
-    \item \textbf{Estensioni:}
-        \begin{itemize}
-            \item \hyperlink{uc:69}{UC 69 - Errore caricamento nota}.
-        \end{itemize}
-    \item \textbf{Trigger:} L'utente desidera arricchire il contesto della generazione automatica scegliendo manualmente una o più note personali da fornire all'LLM$_G$.
+    \item \textbf{Trigger:} L'utente desidera arricchire il contesto della generazione automatica scegliendo manualmente una o più note personali.
 \end{itemize}
 
 % --- UC 58 ---
-\subsubsection{UC 58 - Accettazione output AI}
 \hypertarget{uc:58}{}
+\subsubsection{UC 58 - Accettazione output}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{assets/img/UC58.pdf}
+    \caption{UC 58 - Accettazione output}
+    \label{fig:uc58}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -2334,13 +2365,21 @@ Il Caso d’Uso UC53 include un ulteriore Caso d’Uso come raffigurato nella se
         \end{enumerate}
     \item \textbf{Inclusioni:}
         \begin{itemize}
-            \item \hyperlink{uc:58.1}{UC 58.1 - Salvataggio output AI sulla nota corrente}.
+            \item \hyperlink{uc:58.1}{UC 58.1 - Salvataggio output sulla nota corrente}.
         \end{itemize}
     \item \textbf{Trigger:} L'utente desidera utilizzare il contenuto prodotto dall'IA all'interno della nota corrente.
 \end{itemize}
 
+Il caso d'uso UC 58 include un ulteriore caso d'uso come raffigurato nella seguente immagine:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{assets/img/UC58.1.pdf}
+    \caption{UC 58.1 - Inclusione di UC 58}
+    \label{fig:uc58.1}
+\end{figure}
+
 % --- UC 58.1 ---
-\paragraph{UC 58.1 - Salvataggio output AI sulla nota corrente}
+\paragraph{UC 58.1 - Salvataggio output sulla nota corrente}
 \hypertarget{uc:58.1}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
@@ -2364,8 +2403,14 @@ Il Caso d’Uso UC53 include un ulteriore Caso d’Uso come raffigurato nella se
 \end{itemize}
 
 % --- UC 59 ---
-\subsubsection{UC 59 - Rifiuto output AI}
 \hypertarget{uc:59}{}
+\subsubsection{UC 59 - Rifiuto output}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{assets/img/UC59.pdf}
+    \caption{UC 59 - Rifiuto output}
+    \label{fig:uc59}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} L'output dell'IA è visualizzato nell'area di anteprima.
@@ -2379,8 +2424,14 @@ Il Caso d’Uso UC53 include un ulteriore Caso d’Uso come raffigurato nella se
 \end{itemize}
 
 % --- UC 60 ---
-\subsubsection{UC 60 - Rigenerazione output AI}
 \hypertarget{uc:60}{}
+\subsubsection{UC 60 - Rigenerazione output}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{assets/img/UC60.pdf}
+    \caption{UC 60 - Rigenerazione output}
+    \label{fig:uc60}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Attore secondario:} LLM$_G$
