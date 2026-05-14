@@ -1,46 +1,26 @@
 <mxfile host="app.diagrams.net">
-  <diagram name="UC 11 - Gestione Codice" id="Kt2Dgr2KxfvWRwyXOeAN">
-    <mxGraphModel dx="1634" dy="1032" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+  <diagram id="AxWHpAUfe2nSXUw-a4qK" name="Page-1">
+    <mxGraphModel dx="787" dy="497" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="p2sep0m7qQ60FvVHNfT_-631" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente" vertex="1">
-          <mxGeometry height="60" width="30" x="40" y="280" as="geometry" />
+        <mxCell id="UC3-drawio-actor" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=11;" value="Utente" vertex="1">
+          <mxGeometry height="50" width="25" x="390" y="331" as="geometry" />
         </mxCell>
-        <mxCell id="p2sep0m7qQ60FvVHNfT_-632" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
-          <mxGeometry height="460" width="460" x="180" y="100" as="geometry" />
+        <mxCell id="UC3-drawio-boundary" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="90" width="150" x="450" y="310" as="geometry" />
         </mxCell>
-        <mxCell id="p2sep0m7qQ60FvVHNfT_-633" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
-          <mxGeometry height="30" width="60" x="180" y="530" as="geometry" />
+        <mxCell id="UC3-drawio-label" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=11;" value="Sistema" vertex="1">
+          <mxGeometry height="30" width="60" x="540" y="280" as="geometry" />
         </mxCell>
-        <mxCell id="p2sep0m7qQ60FvVHNfT_-634" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 31 - Salvataggio nota" vertex="1">
-          <mxGeometry height="80" width="200" x="310" y="130" as="geometry" />
+        <mxCell id="UC3-drawio-usecase" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;convertToSvg=1;svgWhiteSpace=wrap;labelBorderColor=none;labelBackgroundColor=none;spacingBottom=0;" value="UC 31 - Eliminazione ancora di navigazione" vertex="1">
+          <mxGeometry height="55" width="122.5" x="470" y="328.5" as="geometry" />
         </mxCell>
-        <mxCell id="p2sep0m7qQ60FvVHNfT_-635" edge="1" parent="1" source="p2sep0m7qQ60FvVHNfT_-631" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="p2sep0m7qQ60FvVHNfT_-634">
+        <mxCell id="UC3-drawio-association" edge="1" parent="1" source="UC3-drawio-actor" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="UC3-drawio-usecase">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="p2sep0m7qQ60FvVHNfT_-636" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 31.1 - Salvataggio su FileSystem" vertex="1">
-          <mxGeometry height="80" width="200" x="200" y="290" as="geometry" />
-        </mxCell>
-        <mxCell id="p2sep0m7qQ60FvVHNfT_-637" edge="1" parent="1" source="p2sep0m7qQ60FvVHNfT_-636" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" target="p2sep0m7qQ60FvVHNfT_-634">
+        <mxCell id="4S_GJxI6N92lzNAu5wbE-6" edge="1" parent="1" source="UC3-drawio-label" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="UC3-drawio-label">
           <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="p2sep0m7qQ60FvVHNfT_-638" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 31.2 - Salvataggio da Database Browser" vertex="1">
-          <mxGeometry height="80" width="200" x="420" y="290" as="geometry" />
-        </mxCell>
-        <mxCell id="p2sep0m7qQ60FvVHNfT_-639" edge="1" parent="1" source="p2sep0m7qQ60FvVHNfT_-638" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" target="p2sep0m7qQ60FvVHNfT_-634">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="p2sep0m7qQ60FvVHNfT_-640" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 31.3 - Gestione errore di salvataggio" vertex="1">
-          <mxGeometry height="80" width="210" x="305" y="430" as="geometry" />
-        </mxCell>
-        <mxCell id="p2sep0m7qQ60FvVHNfT_-641" edge="1" parent="1" source="p2sep0m7qQ60FvVHNfT_-640" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;dashed=1;" target="p2sep0m7qQ60FvVHNfT_-634">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="p2sep0m7qQ60FvVHNfT_-642" connectable="0" parent="p2sep0m7qQ60FvVHNfT_-641" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" vertex="1">
-          <mxGeometry relative="1" x="-0.1" as="geometry">
-            <mxPoint y="48" as="offset" />
-          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
