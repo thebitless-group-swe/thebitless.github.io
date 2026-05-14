@@ -274,15 +274,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
 
 \subsection{Editing di base}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{assets/img/UC1.pdf}
-    \caption{UC 1-5 - Scrittura, selezione del testo, taglia, copia e incolla}
-    \label{fig:uc1-uc5}
-\end{figure}
-% --- UC 1 ---
+
 \subsubsection{UC 1 - Scrittura testo nell'editor}
 \hypertarget{uc:1}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC1.pdf}
+    \caption{UC 1 - Scrittura testo nell'editor}
+    \label{fig:uc1}
+\end{figure}
 
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
@@ -303,9 +303,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole inserire nuovi contenuti testuali o sintassi Markdown per comporre il proprio documento.
 \end{itemize}
 
-% --- UC 2 ---
+
 \subsubsection{UC 2 - Selezione di un'area di testo con cursore}
 \hypertarget{uc:2}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC2.pdf}
+    \caption{UC 2 - Selezione di un'area di testo con cursore}
+    \label{fig:uc2}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:}
@@ -326,9 +332,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole isolare una parte del testo per sottoporla a successive operazioni di modifica, spostamento o formattazione.
 \end{itemize}
 
-% --- UC 3 ---
+
 \subsubsection{UC 3 - Taglia}
 \hypertarget{uc:3}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC3.pdf}
+    \caption{UC 3 - Taglia}
+    \label{fig:uc3}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:}
@@ -349,12 +361,12 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole rimuovere una porzione di testo per spostarla in un'altra posizione o applicazione.
 \end{itemize}
 
-% --- UC 4 ---
+
 \subsubsection{UC 4 - Copia}
 \hypertarget{uc:4}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{assets/img/UC4.pdf}
+    \includegraphics[width=0.55\textwidth]{assets/img/UC4.pdf}
     \caption{UC 4 - Copia}
     \label{fig:uc4}
 \end{figure}
@@ -377,12 +389,12 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole duplicare una porzione di testo senza rimuoverla dalla posizione originale.
 \end{itemize}
 
-% --- UC 5 ---
+
 \subsubsection{UC 5 - Incolla}
 \hypertarget{uc:5}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{assets/img/UC5.pdf}
+    \includegraphics[width=0.55\textwidth]{assets/img/UC5.pdf}
     \caption{UC 5 - Incolla}
     \label{fig:uc5}
 \end{figure}
@@ -406,7 +418,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole inserire nel documento del testo precedentemente tagliato o copiato.
 \end{itemize}
 
-% --- UC 6 ---
+
 \subsubsection{UC 6 - Undo}
 \hypertarget{uc:6}{}
 \begin{figure}[H]
@@ -434,7 +446,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole correggere un errore o revocare una modifica indesiderata appena compiuta.
 \end{itemize}
 
-% --- UC 7 ---
+
 \hypertarget{uc:7}{}
 \subsubsection{UC 7 - Redo}
 \begin{figure}[H]
@@ -462,7 +474,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole ripristinare un'azione che era stata rimossa tramite il comando di Undo.
 \end{itemize}
 
-% --- UC 8 ---
+
 \hypertarget{uc:8}{}
 \subsubsection{UC 8 - Applicazione stile Grassetto}
 \begin{figure}[H]
@@ -517,7 +529,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole cessare la scrittura in grassetto o rimuovere tale formattazione da una parte del testo.
 \end{itemize}
 
-% --- UC 10 - APPLICAZIONE CORSIVO ---
+
 \hypertarget{uc:10}{}
 \subsubsection{UC 10 - Applicazione stile Corsivo}
 \begin{figure}[H]
@@ -544,7 +556,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole applicare lo stile corsivo al testo esistente o futuro.
 \end{itemize}
 
-% --- UC 11 - RIMOZIONE CORSIVO ---
+
 \hypertarget{uc:11}{}
 \subsubsection{UC 11 - Rimozione stile Corsivo}
 \begin{figure}[H]
@@ -571,7 +583,6 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole rimuovere lo stile corsivo dal testo.
 \end{itemize}
 
-% --- UC 12 - APPLICAZIONE SOTTOLINEATO ---
 \hypertarget{uc:12}{}
 \subsubsection{UC 12 - Applicazione stile Sottolineato}
 \begin{figure}[H]
@@ -599,7 +610,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole evidenziare una porzione di testo (esistente o da scrivere) tramite una linea inferiore.
 \end{itemize}
 
-% --- UC 13 - RIMOZIONE SOTTOLINEATO ---
+
 \hypertarget{uc:13}{}
 \subsubsection{UC 13 - Rimozione stile Sottolineato}
 \begin{figure}[H]
@@ -627,7 +638,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole rimuovere lo stile sottolineato dal testo o cessare la scrittura con tale formattazione.
 \end{itemize}
 
-% --- UC 14 - APPLICAZIONE BARRATO ---
+
 \hypertarget{uc:14}{}
 \subsubsection{UC 14 - Applicazione stile Barrato}
 \begin{figure}[H]
@@ -655,9 +666,16 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole applicare lo stile barrato al testo per indicare contenuti eliminati o non più validi.
 \end{itemize}
 
-% --- UC 15 - RIMOZIONE BARRATO ---
-\hypertarget{uc:15}{}
+
+
 \subsubsection{UC 15 - Rimozione stile Barrato}
+\hypertarget{uc:15}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC15.pdf}
+    \caption{UC 15 - Rimozione stile Barrato}
+    \label{fig:uc15}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -677,9 +695,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole rimuovere lo stile barrato da una porzione di testo o cessare la scrittura in tale modalità.
 \end{itemize}
 
-% --- UC 16 ---
-\hypertarget{uc:16}{}
+
 \subsubsection{UC 16 - Inserimento titolo}
+\hypertarget{uc:16}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC16.pdf}
+    \caption{UC 16 - Inserimento titolo}
+    \label{fig:uc16}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -701,9 +725,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole definire una riga di testo (esistente o futura) come intestazione principale del documento.
 \end{itemize}
 
-% --- UC 17 ---
+
 \subsubsection{UC 17 - Rimozione titolo}
 \hypertarget{uc:17}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC17.pdf}
+    \caption{UC 17 - Rimozione titolo}
+    \label{fig:uc17}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -723,9 +753,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole rimuovere lo stato di intestazione principale da una riga per tornare al testo normale.
 \end{itemize}
 
-% --- UC 18 ---
+
 \subsubsection{UC 18 - Inserimento sottotitolo}
 \hypertarget{uc:18}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC18.pdf}
+    \caption{UC 18 - Inserimento sottotitolo}
+    \label{fig:uc18}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -744,9 +780,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole organizzare gerarchicamente il testo convertendo una riga in una sotto-intestazione.
 \end{itemize}
 
-% --- UC 19 ---
+
 \subsubsection{UC 19 - Rimozione sottotitolo}
 \hypertarget{uc:19}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC19.pdf}
+    \caption{UC 19 - Rimozione sottotitolo}
+    \label{fig:uc19}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -765,9 +807,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole annullare la formattazione da sottotitolo di una riga.
 \end{itemize}
 
-% --- UC 20 ---
+
 \subsubsection{UC 20 - Inserimento elenco}
 \hypertarget{uc:20}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC20.pdf}
+    \caption{UC 20 - Inserimento elenco}
+    \label{fig:uc20}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -786,9 +834,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole organizzare il contenuto in forma di lista.
 \end{itemize}
 
-% --- UC 21 ---
+
 \subsubsection{UC 21 - Eliminazione elenco}
 \hypertarget{uc:21}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC21.pdf}
+    \caption{UC 21 - Eliminazione elenco}
+    \label{fig:uc21}
+\end{figure}    
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -807,9 +861,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole rimuovere la struttura a lista da una porzione di testo.
 \end{itemize}
 
-% --- UC 22 ---
+
 \subsubsection{UC 22 - Inserimento citazione}
 \hypertarget{uc:22}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC22.pdf}
+    \caption{UC 22 - Inserimento citazione}
+    \label{fig:uc22}
+\end{figure}    
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -829,9 +889,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole convertire la riga corrente in un blocco di citazione.
 \end{itemize}
 
-% --- UC 23 ---
+
 \subsubsection{UC 23 - Eliminazione citazione}
 \hypertarget{uc:23}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC23.pdf}
+    \caption{UC 23 - Eliminazione citazione}
+    \label{fig:uc23}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -850,9 +916,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole rimuovere lo stile citazione da una riga di testo precedentemente formattata.
 \end{itemize}
 
-% --- UC 24 ---
+
 \subsubsection{UC 24 - Inserimento blocco di codice}
 \hypertarget{uc:24}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC24.pdf}
+    \caption{UC 24 - Inserimento blocco di codice}
+    \label{fig:uc24}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -873,9 +945,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole inserire una sezione di codice sorgente formattata all'interno del documento.
 \end{itemize}
 
-% --- UC 25 ---
+
 \subsubsection{UC 25 - Eliminazione blocco di codice}
 \hypertarget{uc:25}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC25.pdf}
+    \caption{UC 25 - Eliminazione blocco di codice}
+    \label{fig:uc25}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -896,9 +974,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole rimuovere la formattazione di codice da una sezione precedentemente definita.
 \end{itemize}
 
-% --- UC 26 ---
+
 \subsubsection{UC 26 - Inserimento formula scientifica}
 \hypertarget{uc:26}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC26.pdf}
+    \caption{UC 26 - Inserimento formula scientifica}
+    \label{fig:uc26}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -919,9 +1003,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole inserire una formula matematica o scientifica nel documento.
 \end{itemize}
 
-% --- UC 27 ---
+
 \subsubsection{UC 27 - Eliminazione formula scientifica}
 \hypertarget{uc:27}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC27.pdf}
+    \caption{UC 27 - Eliminazione formula scientifica}
+    \label{fig:uc27}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -942,9 +1032,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole rimuovere una formula scientifica precedentemente inserita dal documento.
 \end{itemize}
 
-% --- UC 28 ---
+
 \subsubsection{UC 28 - Inserimento link ipertestuale}
 \hypertarget{uc:28}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC28.pdf}
+    \caption{UC 28 - Inserimento link ipertestuale}
+    \label{fig:uc28}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -970,9 +1066,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole trasformare una porzione di testo in un collegamento cliccabile verso una risorsa esterna o interna.
 \end{itemize}
 
-% --- UC 29 ---
+
 \subsubsection{UC 29 - Eliminazione link ipertestuale}
 \hypertarget{uc:29}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC29.pdf}
+    \caption{UC 29 - Eliminazione link ipertestuale}
+    \label{fig:uc29}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -993,9 +1095,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole rimuovere la funzionalità di collegamento ipertestuale da una porzione di testo.
 \end{itemize}
 
-% --- UC 30 ---
+
 \subsubsection{UC 30 - Inserimento ancora di navigazione}
 \hypertarget{uc:30}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC30.pdf}
+    \caption{UC 30 - Inserimento ancora di navigazione}
+    \label{fig:uc30}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1016,9 +1124,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole definire un punto di riferimento interno al documento per consentire la navigazione rapida tramite link interni.
 \end{itemize}
 
-% --- UC 31 ---
+
 \subsubsection{UC 31 - Eliminazione ancora di navigazione}
 \hypertarget{uc:31}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC31.pdf}
+    \caption{UC 31 - Eliminazione ancora di navigazione}
+    \label{fig:uc31}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1038,9 +1152,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole rimuovere un punto di riferimento interno non più necessario.
 \end{itemize}
 
-% --- UC 32 ---
+
 \subsubsection{UC 32 - Inserimento tabella}
 \hypertarget{uc:32}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC32.pdf}
+    \caption{UC 32 - Inserimento tabella}
+    \label{fig:uc32}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1065,9 +1185,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole creare una nuova struttura tabellare per organizzare i dati nel documento.
 \end{itemize}
 
-% --- UC 32.1 ---
-\paragraph{UC 32.1 - Definizione dimensione tabella}
+Il Caso d'Uso UC32 include un ulteriore Caso d'Uso come raffigurato nella seguente immagine:
 \hypertarget{uc:32.1}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC32.1.pdf}
+    \caption{UC 32.1 - Inclusione di UC32}
+    \label{fig:uc32.1}
+\end{figure}
+\paragraph{UC 32.1 - Definizione dimensione tabella}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:}
@@ -1089,9 +1215,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente deve specificare la struttura iniziale della tabella da inserire nel documento.
 \end{itemize}
 
-% --- UC 33 ---
+
 \subsubsection{UC 33 - Inserimento riga nella tabella}
 \hypertarget{uc:33}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC33.pdf}
+    \caption{UC 33 - Inserimento riga nella tabella}
+    \label{fig:uc33}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1111,9 +1243,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole espandere la tabella per inserire nuovi record di dati.
 \end{itemize}
 
-% --- UC 34 ---
+
 \subsubsection{UC 34 - Rimozione riga dalla tabella}
 \hypertarget{uc:34}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC34.pdf}
+    \caption{UC 34 - Rimozione riga dalla tabella}
+    \label{fig:uc34}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1132,9 +1270,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole eliminare una specifica riga di dati dalla tabella.
 \end{itemize}
 
-% --- UC 35 ---
+
 \subsubsection{UC 35 - Inserimento colonna nella tabella}
 \hypertarget{uc:35}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC35.pdf}
+    \caption{UC 35 - Inserimento colonna nella tabella}
+    \label{fig:uc35}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1153,9 +1297,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole espandere orizzontalmente la tabella per aggiungere una nuova categoria di dati.
 \end{itemize}
 
-% --- UC 36 ---
+
 \subsubsection{UC 36 - Rimozione colonna dalla tabella}
 \hypertarget{uc:36}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC36.pdf}
+    \caption{UC 36 - Rimozione colonna dalla tabella}
+    \label{fig:uc36}
+\end{figure}    
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1174,9 +1324,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole eliminare un'intera categoria di dati (colonna) dalla tabella.
 \end{itemize}
 
-% --- UC 37 ---
+
 \subsubsection{UC 37 - Inserimento immagine}
 \hypertarget{uc:37}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC37.pdf}
+    \caption{UC 37 - Inserimento immagine}
+    \label{fig:uc37}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1200,9 +1356,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole visualizzare un'immagine all'interno del proprio documento.
 \end{itemize}
 
-% --- UC 38 ---
+
 \subsubsection{UC 38 - Sostituzione immagine}
 \hypertarget{uc:38}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC38.pdf}
+    \caption{UC 38 - Sostituzione immagine}
+    \label{fig:uc38}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:}
@@ -1224,9 +1386,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole cambiare l'immagine visualizzata mantenendo la posizione nel documento.
 \end{itemize}
 
-% --- UC 39 ---
+
 \subsubsection{UC 39 - Eliminazione immagine}
 \hypertarget{uc:39}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC39.pdf}
+    \caption{UC 39 - Eliminazione immagine}
+    \label{fig:uc39}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1247,9 +1415,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole rimuovere un'immagine dal documento.
 \end{itemize}
 
-% --- UC 40 ---
+
 \subsubsection{UC 40 - Attivazione auto-completamento simboli}
 \hypertarget{uc:40}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC40.pdf}
+    \caption{UC 40 - Attivazione auto-completamento simboli}
+    \label{fig:uc40}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1269,9 +1443,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente desidera assistenza automatica nella chiusura di parentesi e virgolette.
 \end{itemize}
 
-% --- UC 41 ---
+
 \subsubsection{UC 41 - Disattivazione auto-completamento simboli}
 \hypertarget{uc:41}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC41.pdf}
+    \caption{UC 41 - Disattivazione auto-completamento simboli}
+    \label{fig:uc41}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1290,9 +1470,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente desidera il controllo manuale completo su ogni carattere digitato.
 \end{itemize}
 
-% --- UC 42 ---
+
 \subsubsection{UC 42 - Attivazione Sincronizzazione Scorrimento (Sync Scroll)}
 \hypertarget{uc:42}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC42.pdf}
+    \caption{UC 42 - Attivazione Sincronizzazione Scorrimento (Sync Scroll)}
+    \label{fig:uc42}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1311,9 +1497,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole che l'anteprima mostri sempre il contenuto corrispondente al testo visibile nell'editor.
 \end{itemize}
 
-% --- UC 43 ---
+
 \subsubsection{UC 43 - Disattivazione Sincronizzazione Scorrimento (Sync Scroll)}
 \hypertarget{uc:43}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC43.pdf}
+    \caption{UC 43 - Disattivazione Sincronizzazione Scorrimento (Sync Scroll)}
+    \label{fig:uc43}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1332,9 +1524,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole ispezionare due punti diversi del documento contemporaneamente.
 \end{itemize}
 
-% --- UC 44 ---
+
 \subsubsection{UC 44 - Attivazione Dark Mode}
 \hypertarget{uc:44}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC44.pdf}
+    \caption{UC 44 - Attivazione Dark Mode}
+    \label{fig:uc44}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1353,9 +1551,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole ridurre l'affaticamento visivo in condizioni di scarsa luminosità.
 \end{itemize}
 
-% --- UC 45 ---
+
 \subsubsection{UC 45 - Attivazione Light Mode}
 \hypertarget{uc:45}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC45.pdf}
+    \caption{UC 45 - Attivazione Light Mode}
+    \label{fig:uc45}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1374,9 +1578,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente desidera una visualizzazione ad alto contrasto su sfondo chiaro.
 \end{itemize}
 
-% --- UC 46 ---
+
 \subsubsection{UC 46 - Apertura Sidebar}
 \hypertarget{uc:46}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC46.pdf}
+    \caption{UC 46 - Apertura Sidebar}
+    \label{fig:uc46}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1395,9 +1605,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole accedere all'elenco delle note o agli strumenti laterali.
 \end{itemize}
 
-% --- UC 47 ---
+
 \subsubsection{UC 47 - Chiusura Sidebar}
 \hypertarget{uc:47}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC47.pdf}
+    \caption{UC 47 - Chiusura Sidebar}
+    \label{fig:uc47}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1416,9 +1632,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente vuole massimizzare lo spazio dedicato alla scrittura.
 \end{itemize}
 
-% --- UC 48 ---
+
 \subsubsection{UC 48 - Attivazione visualizzazione esclusiva Editor}
 \hypertarget{uc:48}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC48.pdf}
+    \caption{UC 48 - Attivazione visualizzazione esclusiva Editor}
+    \label{fig:uc48}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1438,9 +1660,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente desidera eliminare le distrazioni visive per concentrarsi esclusivamente sulla stesura del codice Markdown.
 \end{itemize}
 
-% --- UC 49 ---
+
 \subsubsection{UC 49 - Attivazione visualizzazione esclusiva Render}
 \hypertarget{uc:49}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC49.pdf}
+    \caption{UC 49 - Attivazione visualizzazione esclusiva Render}
+    \label{fig:uc49}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1460,9 +1688,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente desidera visualizzare il documento finale formattato per finalità di lettura o presentazione.
 \end{itemize}
 
-% --- UC 50 ---
+
 \subsubsection{UC 50 - Attivazione visualizzazione combinata (Split View)}
 \hypertarget{uc:50}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC50.pdf}
+    \caption{UC 50 - Attivazione visualizzazione combinata (Split View)}
+    \label{fig:uc50}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
@@ -1480,9 +1714,15 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Trigger:} L'utente desidera monitorare in tempo reale l'effetto delle modifiche testuali sulla resa grafica del documento.
 \end{itemize}
 
-% --- UC 51 ---
+
 \subsubsection{UC 51 - Inserimento testo tramite dettatura vocale}
 \hypertarget{uc:51}{}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{assets/img/UC51.pdf}
+    \caption{UC 51 - Inserimento testo tramite dettatura vocale}
+    \label{fig:uc51}
+\end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
