@@ -34,7 +34,7 @@
         <mxCell id="jaEmoDdwr42s-Wh7kGPf-11" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC84.2 - Inserimento password" vertex="1">
           <mxGeometry height="100" width="215" x="380" y="380" as="geometry" />
         </mxCell>
-        <mxCell id="ssOFu9crJtmsMcYIbcvY-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC84.3 - Conferma password" vertex="1">
+        <mxCell id="ssOFu9crJtmsMcYIbcvY-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC86.1 - Conferma password" vertex="1">
           <mxGeometry height="100" width="215" x="380" y="510" as="geometry" />
         </mxCell>
       </root>

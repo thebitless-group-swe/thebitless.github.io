@@ -2061,7 +2061,7 @@ Il Caso d’Uso UC54 include un ulteriore Caso d’Uso come raffigurato nella se
     \end{itemize}
     \item \textbf{Inclusioni:}
     \begin{itemize}
-        \item \hyperlink{uc:56.1}{UC 56.1 - Selezione di un cappello}
+        \item \hyperlink{uc:56.1}{UC 56.1 - Selezione e applicazione di un cappello}
     \end{itemize}
     \item \textbf{Estensioni:}
     \begin{itemize}
@@ -2081,10 +2081,10 @@ Il Caso d’Uso UC56 include un ulteriore Caso d’Uso come raffigurato nella se
 
 % --- UC 56.1 (PADRE DELLE GENERALIZZAZIONI) ---
 \hypertarget{uc:56.1}{}
-\paragraph{UC 56.1 - Selezione di un cappello}
+\paragraph{UC 56.1 - Selezione e applicazione di un cappello}
 
 \begin{center} % Usiamo center invece di figure
-    \includegraphics[width=\textwidth]{assets/img/UC56.1.1.pdf}
+    \includegraphics[width=\textwidth]{assets/img/UC56.1.1-6.pdf}
     \captionof{figure}{UC 56.1 - Selezione di un cappello} % captionof invece di caption
     \label{fig:uc56.1}
 \end{center}
@@ -2096,6 +2096,7 @@ Il Caso d’Uso UC56 include un ulteriore Caso d’Uso come raffigurato nella se
         \begin{enumerate}
             \item Il sistema mostra le opzioni di analisi basate sulla metodologia dei "Sei Cappelli".
             \item L'utente seleziona uno dei profili disponibili.
+            \item L'utente applica la configurazione selezionata.
         \end{enumerate}
     \item \textbf{Generalizzazioni:} 
         \begin{itemize}
@@ -2209,6 +2210,11 @@ Il Caso d’Uso UC56 include un ulteriore Caso d’Uso come raffigurato nella se
 % --- UC 57 ---
 \subsubsection{UC 57 - Generazione automatica di testo}
 \hypertarget{uc:57}{}
+\begin{center} 
+    \includegraphics[width=1.1\textwidth]{assets/img/UC57.pdf}
+    \captionof{figure}{UC 57 - Generazione automatica di testo}
+    \label{fig:uc57}
+\end{center}
 \begin{itemize}
     \item \textbf{Attore Principale:} Utente
     \item \textbf{Attore Secondario:} LLM$_G$
@@ -2310,7 +2316,7 @@ Il Caso d’Uso UC57 include tre ulteriori Caso d’Uso come raffigurato nella s
 \hypertarget{uc:57.4}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
-    \item \textbf{Pre-condizioni:} L'utente ha avviato la configurazione della generazione automatica di testo (\hyperlink{uc:57}{UC 57})..
+    \item \textbf{Pre-condizioni:} L'utente ha avviato la configurazione della generazione automatica di testo (\hyperlink{uc:57}{UC 57}).
     \item \textbf{Post-condizioni:} Il contenuto estratto dall'URL è integrato nel contesto di generazione.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
@@ -2318,7 +2324,7 @@ Il Caso d’Uso UC57 include tre ulteriori Caso d’Uso come raffigurato nella s
         \item Il sistema recupera il contenuto della pagina e ne estrae il testo rilevante.
         \item Il testo estratto viene aggiunto al buffer del contesto per la richiesta principale.
     \end{enumerate}
-    \item \textbf{Trigger:} L'utente desidera che l'IA basi la generazione su informazioni reperite da una specifica fonte web.
+    \item \textbf{Trigger:} L'utente desidera che l'IA basi la generazione su informazioni reperite da una o più specifiche fonti web.
 \end{itemize}
 
 % --- UC 57.5 ---
