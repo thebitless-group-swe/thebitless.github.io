@@ -22,7 +22,7 @@
         <mxCell id="StCBPmpuHo7DJ7ayqhCM-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
           <mxGeometry height="30" width="60" x="690" y="190" as="geometry" />
         </mxCell>
-        <mxCell id="StCBPmpuHo7DJ7ayqhCM-7" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC66 - Creazione nota vuota" vertex="1">
+        <mxCell id="StCBPmpuHo7DJ7ayqhCM-7" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC66 - Errore creazione nota" vertex="1">
           <mxGeometry height="100" width="215" x="520" y="420" as="geometry" />
         </mxCell>
         <mxCell id="StCBPmpuHo7DJ7ayqhCM-12" edge="1" parent="1" source="StCBPmpuHo7DJ7ayqhCM-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;dashed=1;">
@@ -30,8 +30,8 @@
             <mxPoint x="620" y="395" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="StCBPmpuHo7DJ7ayqhCM-9" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" value="&lt;b&gt;Condizione&lt;/b&gt;&lt;div&gt;Il sistema non riesce a creare la nota&lt;/div&gt;" vertex="1">
-          <mxGeometry height="70" width="140" x="320" y="360" as="geometry" />
+        <mxCell id="StCBPmpuHo7DJ7ayqhCM-9" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" value="&lt;b&gt;Condizione&lt;/b&gt;&lt;div&gt;La creazione di una nuova nota nel database fallisce&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="170" x="320" y="360" as="geometry" />
         </mxCell>
         <mxCell id="StCBPmpuHo7DJ7ayqhCM-10" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" vertex="1">
           <mxGeometry height="30" width="60" x="582.5" y="350" as="geometry" />
