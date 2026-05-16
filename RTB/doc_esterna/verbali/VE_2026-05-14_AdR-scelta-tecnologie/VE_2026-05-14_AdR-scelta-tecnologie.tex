@@ -1,0 +1,152 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+
+\usepackage{xcolor}
+\usepackage[a-1b]{pdfx}
+\usepackage[italian]{babel}
+\usepackage{comment}      
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{minted} 
+\usepackage{geometry}
+\usepackage{float} 
+\usepackage{setspace}
+\usepackage{fancyhdr}
+
+\newcommand{\titolo}{Verbale esterno}
+\newcommand{\dataverbale}{2026-05-14}
+\newcommand{\dataversione}{2026-05-16}
+\newcommand{\versione}{1.0.0}
+\newcommand{\stato}{Approvato}
+\newcommand{\destinatari}{The Bitless, prof. T. Vardanega, prof. R. Cardin, Zucchetti}
+\def\templatedir{../../../../templates}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{Verbale esterno \ \dataverbale}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt} 
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,           
+    linkbordercolor=0 0 0,      
+    urlbordercolor=0 0 0,      
+    citebordercolor=0 0 0,     
+    filebordercolor=0 0 0,     
+    breaklinks=true,           
+}
+
+\newcommand{\issue}[1]{\href{https://github.com/thebitless-group-swe/thebitless.github.io/issues/#1}{\##1}}
+
+\begin{document}
+
+\begin{titlepage}
+    \pagenumbering{gobble}
+\input{../../../../templates/frontespizio.tex}
+\end{titlepage}
+
+\newpage
+
+\pagenumbering{roman}
+\pagestyle{fancy} 
+
+\tableofcontents 
+
+\newpage
+\pagenumbering{arabic}
+
+\section{Informazioni sulla riunione}
+In data \textbf{\dataverbale} si è svolto un incontro di revisione con \textbf{Gregorio Piccoli}, referente aziendale di \textbf{Zucchetti}. L'incontro si è tenuto in modalità telematica tramite \textbf{Google Meet}, dalle ore 12:00 alle ore 12:45.
+
+\section{Partecipanti}
+
+\subsection{Interni}
+\begin{center}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
+\hline
+Lorenzo & Battistella & Assente \\
+Edoardo & De Piccoli & Presente \\
+Davide & Facco & Presente \\
+Anna & Marini & Presente \\
+Andrea & Menegaldo & Assente \\
+Samuele & Vendramin & Presente \\
+Simone & Zecchinato & Presente \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Esterni}
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Nome} & \textbf{Azienda} \\
+\hline
+Gregorio Piccoli & Zucchetti S.p.A. \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ordine del giorno}
+
+\subsection{Revisione Analisi dei Requisiti}
+Il referente, assieme al gruppo, analizza i casi d'uso della nuova \href{https://thebitless.live/RTB/doc_esterna/analisi-dei-requisiti/analisi-dei-requisiti.pdf}{Analisi dei Requisiti}, modificata rispetto alla versione presentata precedentemente per errori di modellazione. Vengono passati in rassegna tutti i casi d'uso e i loro diagrammi UML per verificare che l'analisi effettuata dal gruppo sia coerente con le aspettative della proponente. Vengono segnalate le seguenti modifiche da apportare dopo le quali l'analisi può ritenersi completa e coerente:
+
+\subsubsection{UC 56 - Selezione di un cappello}
+Il referente Gregorio Piccoli segnala che il titolo \textit{Selezione di un cappello} risulta particolarmente generico e poco incisivo: non rispecchia del tutto l'azione che l'utente deve intraprendere. Dopo una discussione si converge sull'idea di modificare il nome del caso d'uso in \textit{Selezione e applicazione di un cappello} che rispecchia appieno l'azione dell'utente che consiste nel selezionare e, di conseguenza, applicare l'analisi di un cappello. Viene poi ricordato che la selezione può essere di uno o più cappelli.
+
+\subsubsection{UC 57.4 - Generazione testo a partire da link}
+Viene segnalato dal referente che l'utente dovrebbe poter inserire uno o più link e, dunque, il titolo del caso d'uso dovrebbe essere \textit{Generazione testo a partire da links}. Il gruppo decide di tenere il termine \textit{link} in quanto risulta corretto in italiano sia come singolare che come plurale (si prenda come esempio il termine \textit{film} che subisce la stessa sorte). Si decide però di contestualizzare meglio la possibilità di inserire uno o più link nel trigger del caso d'uso. 
+
+Si discute poi della possibilità di permettere al sistema di ricercare autonomamente in internet a seconda del prompt e di generare il testo. Viene però puntualizzato quanto sia complesso poi definire quali fonti siano da considere autorevoli. Si decide dunque di intraprendere un processo esplorativo dell'idea per capirne possibilità e limiti ma di procedere con il caso d'uso originale.
+
+\subsubsection{Errori di battitura}
+Vengono segnalati alcuni errori di battitura che verranno sistemati pergarantire la correttezza del documento.
+
+\subsection{Proposta delle tecnologie per il PoC}
+Si procede ad esporre al referente le scelte intraprese dal gruppo circa le tecnologie per il Proof of Concept. Il referente approva la scelta.
+Per maggiori dettagli si veda \href{https://thebitless.live/RTB/doc_interna/verbali/VI_2026-05-12_quarto-sprint/VI_2026-05-12_quarto-sprint.pdf}{VI\_2026-05-12\_quarto-sprint}.
+
+\subsection{Presentazione mockup}
+Vengono presentati al referente i mockup dell'interfaccia grafica sviluppati dal gruppo. Il mockup permette di esplorare alcune delle funzioni principali del sistema: vengono visualizzate una ad una per controllare la coerenza con le aspettative della proponente. La proponente approva e pone l'accento sulla possibilità di selezionare uno o più cappelli per l'analisi.
+
+\section{Attività da svolgere}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
+\hline
+\textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
+\hline
+S. Zecchinato & Redazione verbale del \dataverbale & \centering \issue{143} \tabularnewline
+\hline
+Analisti & Integrazione modifiche Casi d'Uso a seguito dei feedback ricevuti & \centering - \tabularnewline
+\hline
+Progettisti & Progettazione PoC & \centering \issue{145} \tabularnewline
+\hline
+Tutti i componenti & Studio individuale tecnologie scelte& \centering \issue{144} \tabularnewline
+\hline
+Tutti i componenti & Invio documento completo alla proponente per conferma definitiva & \centering -- \tabularnewline
+\hline
+\end{tabular}
+\end{center}
+
+\vfill
+
+\noindent
+\begin{minipage}[t]{0.45\textwidth}
+  \textbf{Luogo e data} \\
+  \vspace{0.5cm}
+  Padova, 16 maggio 2026
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+  \raggedleft
+  \textbf{Zucchetti S.p.A.} \\
+  \vspace{1.8cm} 
+  \rule{6cm}{0.4pt}
+\end{minipage}
+
+\end{document}
