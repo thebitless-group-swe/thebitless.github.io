@@ -69,6 +69,7 @@
     \hline
     \endhead
     2.0.0 & 2026-05-14 & S. Zecchinato & A. Menegaldo & S. Zecchinato & Approvazione seconda versione \\ \hline
+    1.4.0 & 2026-05-13 & S. Vendramin & S. Zecchinato & - & Sistemazione errori di battitura\\ \hline
 
     1.3.0 & 2026-05-13 & S. Zecchinato & A. Menegaldo & - & Sistemazione UML UC Salvataggio-persistenza\\ \hline
 
@@ -131,7 +132,7 @@ Il presente documento rappresenta il fondamento metodologico su cui poggia l'int
 Nello specifico, il documento persegue i seguenti obiettivi:
 
 \begin{itemize}
-    \item \textbf{Definizione del perimetro funzionale:} Identifica con precisione \textit{cosa} il Sistema$_G$ debba realizzare (requisiti funzionali$_G$) e quali standard qualitativi debba rispettare (requisiti non funzionali, quali usabilità, sicurezza e performance), tracciando i confini operativi e i vincoli$_G$ tecnologici del progetto.
+    \item \textbf{Definizione del perimetro funzionale:} Identifica con precisione cosa il Sistema$_G$ debba realizzare (requisiti funzionali$_G$) e quali standard qualitativi debba rispettare (requisiti non funzionali, quali usabilità, sicurezza e performance), tracciando i confini operativi e i vincoli$_G$ tecnologici del progetto.
     
     \item \textbf{Sincronizzazione degli Stakeholder$_G$:} Agisce come un "contratto tecnico" tra il team di sviluppo e il committente$_G$. L'utilizzo di un linguaggio condiviso permette di allineare le aspettative di analisti, progettisti e tester$_G$, eliminando ambiguità che potrebbero compromettere la validità del prodotto finale.
     
@@ -179,9 +180,9 @@ Il progetto consiste nello sviluppo di un \textbf{editor di testo intelligente} 
 
 Il software fornisce strumenti avanzati per l'elaborazione dei testi, tra cui:
 \begin{itemize}
-    \item \textbf{Sintesi Automatica:} Capacità di riassumere testi complessi estraendo i concetti chiave;
-    \item \textbf{Traduzione Contestuale:} Traduzione di contenuti tra diverse lingue, mantenendo la coerenza con il dominio tecnico dell'utente;
-    \item \textbf{Generazione e Revisione:} Produzione di nuove sezioni di testo e critica intelligente di quanto già scritto, per migliorarne la chiarezza o la logica;
+    \item \textbf{Sintesi Automatica:} Capacità di riassumere testi complessi estraendo i concetti chiave.
+    \item \textbf{Traduzione Contestuale:} Traduzione di contenuti tra diverse lingue, mantenendo la coerenza con il dominio tecnico dell'utente.
+    \item \textbf{Generazione e Revisione:} Produzione di nuove sezioni di testo e critica intelligente di quanto già scritto, per migliorarne la chiarezza o la logica.
 \end{itemize}
 
 L'obiettivo è offrire un ambiente di lavoro dove la tecnologia non si limita ad archiviare i dati, ma supporta attivamente l'utente nel processo di studio e scrittura.
@@ -192,8 +193,8 @@ L'obiettivo principale del progetto è lo sviluppo di un'applicazione web finali
 
 Nello specifico, il prodotto persegue i seguenti obiettivi:
 \begin{itemize}
-    \item \textbf{Verifica della fattibilità tecnica:} Dimostrare come le moderne \textbf{Tecnologie Web}$_G$ possano integrare modelli di intelligenza artificiale complessi, garantendo un'interfaccia utente fluida e tempi di risposta ridotti;
-    \item \textbf{Efficacia del Prompt Engineering$_G$:} Implementare istruzioni avanzate per ottenere dai modelli analisi critiche, sintesi e trasformazioni testuali modellate sulle esigenze specifiche dell'utente;
+    \item \textbf{Verifica della fattibilità tecnica:} Dimostrare come le moderne \textbf{Tecnologie Web}$_G$ possano integrare modelli di intelligenza artificiale complessi, garantendo un'interfaccia utente fluida e tempi di risposta ridotti.
+    \item \textbf{Efficacia del Prompt Engineering$_G$:} Implementare istruzioni avanzate per ottenere dai modelli analisi critiche, sintesi e trasformazioni testuali modellate sulle esigenze specifiche dell'utente.
     \item \textbf{Sperimentazione dell'interazione Uomo-Macchina:} Validare flussi di lavoro in cui l'algoritmo agisce come partner attivo, supportando l'utente nella generazione di idee e nella revisione logica dei contenuti.
 \end{itemize}
 \subsection{Funzionalità del prodotto}
@@ -202,26 +203,26 @@ Il sistema prevede una serie di funzionalità distinte tra requisiti$_G$ obbliga
 
 \textbf{Funzionalità minime (Obbligatorie)}:
 \begin{itemize}
-    \item \textbf{Editor Markdown}: Fornitura di un'interfaccia di scrittura che supporti la sintassi Markdown$_G$ per la formattazione del testo;
-    \item \textbf{Rendering in tempo reale}: Visualizzazione istantanea del testo formattato in una vista dedicata (anteprima \textit{side-by-side});
-    \item \textbf{Integrazione$_G$ LLM}: Connessione tramite API$_G$ a modelli linguistici per l'elaborazione del testo selezionato o dell'intero documento;
-    \item \textbf{Strumenti di Editing Assistito}: Comandi per la manipolazione del testo,\allowbreak inclusi: cambio di tono, espansione dei contenuti, correzione grammaticale, riassunto e traduzione multilingua (Inglese, Francese, Tedesco, Spagnolo);
+    \item \textbf{Editor Markdown}: Fornitura di un'interfaccia di scrittura che supporti la sintassi Markdown$_G$ per la formattazione del testo.
+    \item \textbf{Rendering in tempo reale}: Visualizzazione istantanea del testo formattato in una vista dedicata (anteprima \textit{side-by-side}),
+    \item \textbf{Integrazione$_G$ LLM}: Connessione tramite API$_G$ a modelli linguistici per l'elaborazione del testo selezionato o dell'intero documento.
+    \item \textbf{Strumenti di Editing Assistito}: Comandi per la manipolazione del testo, inclusi: cambio di tono, espansione dei contenuti, correzione grammaticale, riassunto e traduzione multilingua (Inglese, Francese, Tedesco, Spagnolo).
     \item \textbf{Analisi Critica (Sei Cappelli$_G$):}\allowbreak Implementazione di un sistema di revisione basato sulla tecnica dei "Sei Cappelli per Pensare", che permette di analizzare o riscrivere il testo secondo diverse prospettive:
     \begin{itemize}
-        \item \textbf{Bianco}: Analisi oggettiva basata su dati e fatti;
-        \item \textbf{Rosso}: Focus sugli aspetti emotivi e intuitivi;
-        \item \textbf{Giallo}: Approccio ottimista, orientato a benefici e opportunità;
-        \item \textbf{Nero}: Visione critica, mirata a individuare rischi e punti deboli;
-        \item \textbf{Verde}: Generazione di contenuti creativi, originali e fuori dagli schemi;
+        \item \textbf{Bianco}: Analisi oggettiva basata su dati e fatti.
+        \item \textbf{Rosso}: Focus sugli aspetti emotivi e intuitivi.
+        \item \textbf{Giallo}: Approccio ottimista, orientato a benefici e opportunità.
+        \item \textbf{Nero}: Visione critica, mirata a individuare rischi e punti deboli.
+        \item \textbf{Verde}: Generazione di contenuti creativi, originali e fuori dagli schemi.
         \item \textbf{Blu}: Organizzazione logica, strutturata e focalizzata sul controllo del processo.
     \end{itemize} 
-    \item \textbf{Generazione da Prompt}: Funzionalità di \textit{Distant Writing}$_G$ per la creazione di un documento completo a partire da una descrizione testuale sintetica fornita dall'utente;
+    \item \textbf{Generazione da Prompt}: Funzionalità di \textit{Distant Writing}$_G$ per la creazione di un documento completo a partire da una descrizione testuale sintetica fornita dall'utente.
     \item \textbf{Gestione File}: Possibilità di salvare, archiviare e caricare le note direttamente sul file system locale dell'utente.
 \end{itemize}
 \textbf{Funzionalità secondarie (Opzionali)}:
 \begin{itemize}
-    \item \textbf{Persistenza Server-Side}: Memorizzazione e sincronizzazione delle note all'interno di un database$_G$ remoto;
-    \item \textbf{Cross-Linking}: Possibilità di creare collegamenti ipertestuali (link) tra note diverse per navigare nella base di conoscenza;
+    \item \textbf{Persistenza Server-Side}: Memorizzazione e sincronizzazione delle note all'interno di un database$_G$ remoto.
+    \item \textbf{Cross-Linking}: Possibilità di creare collegamenti ipertestuali (link) tra note diverse per navigare nella base di conoscenza.
     \item \textbf{RAG (Retrieval-Augmented Generation)}: Utilizzo di note specifiche archiviate come contesto diretto per l'LLM, al fine di generare risposte basate esclusivamente sul dominio informativo dell'utente.
 \end{itemize}
 
@@ -229,9 +230,9 @@ Il sistema prevede una serie di funzionalità distinte tra requisiti$_G$ obbliga
 Il capitolato$_G$ descrive un prodotto versatile, progettato per adattarsi a diverse tipologie di gestione della conoscenza. Le principali categorie di utenti identificate sono:
 
 \begin{itemize}
-    \item \textbf{Studenti}: Utenti che necessitano di strumenti per l'organizzazione del materiale didattico, la sintesi di lezioni e il supporto alla stesura di elaborati;
-    \item \textbf{Professionisti in ambito aziendale}: Figure che operano nella redazione\allowbreak di contenuti per il marketing, nella sintesi di verbali di riunione o nella generazione di bozze per presentazioni commerciali;
-    \item \textbf{Creatori di contenuti e Scrittori}: Utenti che richiedono supporto nelle fasi di brainstorming$_G$ iniziale e nella critica analitica di bozze testuali esistenti;
+    \item \textbf{Studenti}: Utenti che necessitano di strumenti per l'organizzazione del materiale didattico, la sintesi di lezioni e il supporto alla stesura di elaborati.
+    \item \textbf{Professionisti in ambito aziendale}: Figure che operano nella redazione di contenuti per il marketing, nella sintesi di verbali di riunione o nella generazione di bozze per presentazioni commerciali.
+    \item \textbf{Creatori di contenuti e Scrittori}: Utenti che richiedono supporto nelle fasi di brainstorming$_G$ iniziale e nella critica analitica di bozze testuali esistenti.
     \item \textbf{Utenza generica}: Chiunque necessiti di un editor di testo capace di automatizzare i processi di stesura, traduzione e riorganizzazione dei propri appunti, delegando al sistema le fasi più ripetitive o onerose della scrittura.
 \end{itemize}
 \newpage
@@ -275,7 +276,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
         \item \textbf{Utente autenticato:} rappresenta una specializzazione dell'attore Utente. Indica un utente che ha completato il processo di autenticazione e può accedere anche alle funzionalità cloud, come sincronizzazione, salvataggio nel database$_G$, caricamento di note online, ricerca nel database$_G$ e gestione dell'account.
     \end{itemize}
 
-    \item \textbf{LLM$_G$:} rappresenta il modello di intelligenza artificiale integrato nel sistema$_G$. Agisce come attore secondario$_G$, fornendo le funzionalità avanzate di elaborazione del linguaggio naturale, sintesi, traduzione, correzione, analisi e generazione di contenuti su richiesta del sistema$_G$.
+    \item \textbf{LLM$_G$:} rappresenta il modello di intelligenza artificiale interfacciato con il sistema$_G$. Agisce come attore secondario$_G$, fornendo le funzionalità avanzate di elaborazione del linguaggio naturale, sintesi, traduzione, correzione, analisi e generazione di contenuti su richiesta del sistema$_G$.
 \end{itemize}
 \begin{figure}[H]
     \centering
@@ -499,6 +500,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
             \item Il sistema è operativo e l'area di editing è attiva.
+            \item Il cursore è posizionato nell'area di editing oppure una porzione di testo è stata preventivamente selezionata tramite \hyperlink{uc:2}{UC 2}.
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
@@ -525,7 +527,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item Lo stile grassetto è attivo nella posizione del cursore o sulla selezione corrente.
+            \item Lo stile grassetto è attivo nella posizione del cursore o sulla sezione preventivamente selezionata tramite \hyperlink{uc:2}{UC 2}.
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
@@ -554,6 +556,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
             \item Il sistema è operativo.
+            \item Il cursore è posizionato nell'area di editing oppure una porzione di testo è stata preventivamente selezionata tramite \hyperlink{uc:2}{UC 2}.
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
@@ -580,7 +583,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item Lo stile corsivo è attivo nella posizione del cursore o sulla selezione corrente.
+            \item Lo stile corsivo è attivo nella posizione del cursore o sulla sezione preventivamente selezionata tramite \hyperlink{uc:2}{UC 2}.
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
@@ -607,6 +610,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
             \item Il sistema è operativo e l'area di editing ha il focus.
+            \item Il cursore è posizionato nell'area di editing oppure una porzione di testo è stata preventivamente selezionata tramite \hyperlink{uc:2}{UC 2}.
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
@@ -634,7 +638,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item Lo stile sottolineato è attivo nella posizione del cursore o sulla selezione corrente.
+            \item Lo stile sottolineato è attivo nella posizione del cursore o sulla sezione preventivamente selezionata tramite \hyperlink{uc:2}{UC 2}.
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
@@ -663,15 +667,16 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
             \item Il sistema è operativo.
+            \item Il cursore è posizionato nell'area di editing oppure una porzione di testo è stata preventivamente selezionata tramite \hyperlink{uc:2}{UC 2}.
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
-            \item Il sistema inserisce i marcatori Markdown del barrato (\texttt{~~}) alla posizione del cursore o sulla selezione.
+            \item Il sistema inserisce i marcatori Markdown del barrato (\texttt{\textasciitilde\textasciitilde}) alla posizione del cursore o sulla selezione.
         \end{itemize}
     \item \textbf{Scenario principale:}
         \begin{enumerate}
             \item L'utente attiva il comando "Barrato".
-            \item Il sistema inserisce i marcatori sintattici \texttt{~~} nel buffer di testo.
+            \item Il sistema inserisce i marcatori sintattici \texttt{\textasciitilde\textasciitilde} nel buffer di testo.
             \item Il sistema aggiorna il rendering grafico mostrando il testo barrato.
         \end{enumerate}
     \item \textbf{Trigger:} L'utente vuole applicare lo stile barrato al testo per indicare contenuti eliminati o non più validi.
@@ -691,16 +696,16 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item Lo stile barrato è attivo nella posizione del cursore o sulla selezione corrente.
+            \item Lo stile barrato è attivo nella posizione del cursore o sulla sezione preventivamente selezionata tramite \hyperlink{uc:2}{UC 2}.
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
-            \item Il sistema rimuove i marcatori Markdown del barrato (\texttt{~~}).
+            \item Il sistema rimuove i marcatori Markdown del barrato (\texttt{\textasciitilde\textasciitilde}).
         \end{itemize}
     \item \textbf{Scenario principale:}
         \begin{enumerate}
             \item L'utente disattiva il comando "Barrato".
-            \item Il sistema elimina i tag sintattici \texttt{~~} corrispondenti.
+            \item Il sistema elimina i tag sintattici \texttt{\textasciitilde\textasciitilde} corrispondenti.
             \item Il sistema aggiorna la visualizzazione del documento.
         \end{enumerate}
     \item \textbf{Trigger:} L'utente vuole rimuovere lo stile barrato da una porzione di testo o cessare la scrittura in tale modalità.
@@ -832,6 +837,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
             \item Il sistema è operativo e l'editor ha il focus.
+            \item Il cursore è posizionato nell'area di editing oppure una porzione di testo è stata preventivamente selezionata tramite \hyperlink{uc:2}{UC 2}.
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
@@ -885,11 +891,12 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item Il sistema è operativo e il cursore è posizionato su una riga di testo.
+            \item Il sistema è operativo.
+            \item Il cursore è posizionato nell'area di editing oppure una porzione di testo è stata preventivamente selezionata tramite \hyperlink{uc:2}{UC 2}.
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
-            \item Il sistema antepone il marcatore Markdown di citazione (\texttt{>}) alla riga corrente.
+            \item Il sistema antepone il marcatore Markdown di citazione (\texttt{>}) nella posizione del cursore o sulla selezione.
         \end{itemize}
     \item \textbf{Scenario principale:}
         \begin{enumerate}
@@ -897,7 +904,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
             \item Il sistema inserisce il carattere \texttt{>} all'inizio della riga.
             \item Il sistema aggiorna l'anteprima di rendering mostrando il blocco citato.
         \end{enumerate}
-    \item \textbf{Trigger:} L'utente vuole convertire la riga corrente in un blocco di citazione.
+    \item \textbf{Trigger:} L'utente vuole applicare la citazione al testo esistente o futuro.
 \end{itemize}
 
 
@@ -913,7 +920,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item La riga corrente presenta il marcatore di citazione (\hyperlink{uc:22}{UC 22}).
+            \item \item Il marcatore citazione è attivo nella posizione del cursore o sulla sezione preventivamente selezionata tramite \hyperlink{uc:2}{UC 2}.
         \end{itemize}
     \item \textbf{Post-condizioni:}
         \begin{itemize}
@@ -924,7 +931,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
             \item L'utente disattiva il comando "Citazione".
             \item Il sistema aggiorna il buffer di testo eliminando la formattazione di blocco.
         \end{enumerate}
-    \item \textbf{Trigger:} L'utente vuole rimuovere lo stile citazione da una riga di testo precedentemente formattata.
+    \item \textbf{Trigger:} L'utente vuole rimuovere lo stile citazione da una riga o sezione di testo precedentemente formattata.
 \end{itemize}
 
 
@@ -969,11 +976,11 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item È presente almeno un blocco di codice nell'editor (\hyperlink{uc:24}{UC 24}).
+            \item Un blocco di codice o i suoi delimitatori sono presenti nel testo (\hyperlink{uc:24}{UC 24}).
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
-            \item I marcatori sintattici del blocco di codice vengono rimossi.
+            \item I marcatori sintattici del blocco di codice selezionato vengono rimossi.
             \item Il testo contenuto rimane nell'editor come testo semplice o viene eliminato in base alla selezione.
         \end{itemize}
     \item \textbf{Scenario principale:}
@@ -1652,7 +1659,7 @@ Il Caso d'Uso UC32 include un ulteriore Caso d'Uso come raffigurato nella seguen
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item Il sistema è in modalità "Visualizzazione Combinata" o "Solo Render".
+            \item Il sistema è in modalità "Visualizzazione Combinata" o "Solo Render"(\hyperlink{uc:50}{UC 50} o \hyperlink{uc:49}{UC 49}).
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
@@ -1680,7 +1687,7 @@ Il Caso d'Uso UC32 include un ulteriore Caso d'Uso come raffigurato nella seguen
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
-            \item Il sistema è in modalità "Visualizzazione Combinata" o "Solo Editor".
+            \item Il sistema è in modalità "Visualizzazione Combinata" o "Solo Editor" (\hyperlink{uc:50}{UC 50} o \hyperlink{uc:48}{UC 48}).
         \end{itemize}
     \item \textbf{Post-condizioni:} 
         \begin{itemize}
@@ -1756,7 +1763,7 @@ Il Caso d'Uso UC32 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \subsection{Funzionalità AI}
 Questa sezione del sistema descrive come l'applicazione interagisce con un modello di linguaggio esterno (attore secondario $LLM_G$) per offrire strumenti avanzati di editing.
 
-% --- UC 52 ---
+
 \hypertarget{uc:52}{}
 \subsubsection{UC 52 - Riassunto contenuto}
 \begin{figure}[H]
@@ -1767,7 +1774,7 @@ Questa sezione del sistema descrive come l'applicazione interagisce con un model
 \end{figure}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
-    \item \textbf{Attore secondario} LLM$_G$
+    \item \textbf{Attore secondario:} LLM$_G$
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
             \item Il sistema è operativo.
@@ -1810,7 +1817,7 @@ Il Caso d’Uso UC52 include un ulteriore Caso d’Uso come raffigurato nella se
     \label{fig:uc52.1}
 \end{figure}
 
-% --- UC 52.1 ---
+
 \subsubsection{UC 52.1 - Selezione percentuale di riassunto}
 \hypertarget{uc:52.1}{}
 \begin{itemize}
@@ -1840,18 +1847,18 @@ Il Caso d’Uso UC52 include un ulteriore Caso d’Uso come raffigurato nella se
     \label{fig:uc53}
 \end{figure}
 \begin{itemize}
-    \item \textbf{Attore Principale:} Utente.
-    \item \textbf{Attore Secondario:} LLM$_G$.
+    \item \textbf{Attore principale:} Utente.
+    \item \textbf{Attore secondario:} LLM$_G$.
     \item \textbf{Precondizioni:} L'editor contiene testo e la connessione Internet è attiva.
     \item \textbf{Postcondizioni:} Il sistema sostituisce o affianca il testo originale con la traduzione ottenuta.
-    \item \textbf{Scenario Principale:}
+    \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item L'utente seleziona la porzione di testo o l'intero documento.
         \item L'utente seleziona la lingua di destinazione (\hyperlink{uc:53.1}{UC 53.1}).
         \item Il sistema inoltra la richiesta di traduzione all'attore secondario LLM.
         \item Il sistema riceve il testo tradotto e aggiorna l'interfaccia.
     \end{enumerate}
-    \item \textbf{Scenari Alternativi:}
+    \item \textbf{Scenari alternativi:}
     \begin{itemize}
         \item L'utente decide di interrompere l'attesa dell'elaborazione prima che il sistema riceva il risultato dall'attore secondario → Vedi \hyperlink{uc:61}{UC 61}.
         \item Durante l'inoltro della richiesta o la generazione del testo si verifica un errore di rete o un'anomalia nel servizio $LLM_G$  → Vedi \hyperlink{uc:62}{UC 62}.
@@ -1882,10 +1889,10 @@ Il Caso d’Uso UC53 include un ulteriore Caso d’Uso come raffigurato nella se
 \paragraph{UC 53.1 - Selezione lingua di destinazione}
 \mbox{}\\
 \begin{itemize}
-    \item \textbf{Attore Principale:} Utente.
+    \item \textbf{Attore principale:} Utente.
     \item \textbf{Precondizioni:} L'interfaccia di traduzione è attiva.
     \item \textbf{Postcondizioni:} Il sistema imposta il flag della lingua per la chiamata API.
-    \item \textbf{Scenario Principale:}
+    \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item L'utente seleziona una delle opzioni supportate: Inglese, Francese, Tedesco, Spagnolo.
         \item Il sistema conferma la selezione e abilita il tasto di invio.
@@ -1920,7 +1927,7 @@ Il Caso d’Uso UC53 include un ulteriore Caso d’Uso come raffigurato nella se
             \item Il sistema inoltra il testo selezionato e il parametro stilistico all'attore secondario $LLM_G$.
             \item Il sistema riceve l'output trasformato e lo mostra nell'interfaccia di anteprima per la validazione.
         \end{enumerate}
-    \item \textbf{Scenari Secondari:}
+    \item \textbf{Scenari secondari:}
     \begin{itemize}
         \item Il testo selezionato è troppo breve o privo di contenuto semantico → \textbf{Vedi \hyperlink{uc:63}{UC 63}}.
         \item L'utente decide di annullare l'operazione chiudendo il menu di selezione o interrompendo l'attesa del responso → \textbf{Vedi \hyperlink{uc:61}{UC 61}}.
@@ -1947,7 +1954,7 @@ Il Caso d’Uso UC54 include un ulteriore Caso d’Uso come raffigurato nella se
     \label{fig:uc54.1}
 \end{figure}
 
-% --- UC 54.1 ---
+
 \paragraph{UC 54.1 - Selezione tipologia di stile}
 \hypertarget{uc:54.1}{}
 \begin{itemize}
@@ -1963,7 +1970,7 @@ Il Caso d’Uso UC54 include un ulteriore Caso d’Uso come raffigurato nella se
     \item \textbf{Trigger:} L'utente desidera specificare il tipo di adattamento stilistico da applicare al testo selezionato.
 \end{itemize}
 
-% --- UC 55 ---
+
 \hypertarget{uc:55}{}
 \subsubsection{UC 55 - Correzione Grammaticale}
 \begin{figure}[H]
@@ -1990,7 +1997,7 @@ Il Caso d’Uso UC54 include un ulteriore Caso d’Uso come raffigurato nella se
             \item Il sistema invia il testo selezionato all'attore secondario $LLM_G$ con istruzioni di correzione sintattica e ortografica.
             \item Il sistema riceve la versione rielaborata e la visualizza nell'interfaccia.
         \end{enumerate}
-    \item \textbf{Scenari Alternativi:}
+    \item \textbf{Scenari alternativi:}
         \begin{itemize}
             \item L'IA conferma che il testo originale è già corretto → Vedi \hyperlink{uc:55.1}{UC 55.1}.
             \item L'utente interrompe la richiesta in corso → Vedi \hyperlink{uc:61}{UC 61}.
@@ -2007,7 +2014,6 @@ Il Caso d’Uso UC54 include un ulteriore Caso d’Uso come raffigurato nella se
     \item \textbf{Trigger:} L'utente desidera correggere errori ortografici e/o sintattici nel testo selezionato.
 \end{itemize}
 
-% --- UC 55.1 ---
 \paragraph{UC 55.1 - Nessun errore rilevato}
 \hypertarget{uc:55.1}{}
 \begin{itemize}
@@ -2033,11 +2039,15 @@ Il Caso d’Uso UC54 include un ulteriore Caso d’Uso come raffigurato nella se
     \label{fig:uc56}
 \end{figure}
 \begin{itemize}
-    \item \textbf{Attore Principale:} Utente.
-    \item \textbf{Attore Secondario:} $LLM_G$.
-    \item \textbf{Precondizioni:} Il sistema è operativo e l'utente ha inserito o selezionato del testo nell'area di editing.
+    \item \textbf{Attore principale:} Utente.
+    \item \textbf{Attore secondario:} $LLM_G$.
+    \item \textbf{Precondizioni:} 
+            \begin{itemize}
+            \item Il sistema è operativo e connesso a Internet.
+            \item È presente del testo selezionato nell'area di editing (\hyperlink{uc:2}{UC 2}).
+            \end{itemize}
     \item \textbf{Postcondizioni:} Il sistema visualizza i risultati dell'analisi critica per i cappelli selezionati.
-    \item \textbf{Scenario Principale:}
+    \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item L'utente seleziona la porzione di testo da analizzare.
         \item L'utente attiva la funzione "Analisi Critica".
@@ -2045,7 +2055,7 @@ Il Caso d’Uso UC54 include un ulteriore Caso d’Uso come raffigurato nella se
         \item Il sistema invia il testo e la configurazione dei cappelli al $LLM_G$.
         \item Il sistema visualizza l'output analitico suddiviso per tipologia di cappello.
     \end{enumerate}
-    \item \textbf{Scenari Secondari:}
+    \item \textbf{Scenari secondari:}
     \begin{itemize}
         \item Il testo selezionato è troppo breve, composto solo da spazi vuoti o caratteri speciali che non permettono un'analisi semantica sensata → \textbf{Vedi \hyperlink{uc:63}{UC 63}}.
         \item L'utente decide di annullare l'operazione chiudendo il menu di selezione o interrompendo l'attesa del responso → \textbf{Vedi \hyperlink{uc:61}{UC 61}}.
@@ -2071,13 +2081,13 @@ Il Caso d’Uso UC56 include un ulteriore Caso d’Uso come raffigurato nella se
     \caption{UC 56.1 - Inclusione di UC 56}
 \end{figure}
 
-% --- UC 56.1 (PADRE DELLE GENERALIZZAZIONI) ---
+
 \hypertarget{uc:56.1}{}
 \paragraph{UC 56.1 - Selezione e applicazione di un cappello}
 
-\begin{center} % Usiamo center invece di figure
+\begin{center}
     \includegraphics[width=\textwidth]{assets/img/UC56.1.1-6.pdf}
-    \captionof{figure}{UC 56.1 - Selezione di un cappello} % captionof invece di caption
+    \captionof{figure}{UC 56.1 - Selezione di un cappello}
     \label{fig:uc56.1}
 \end{center}
 \begin{itemize}
@@ -2105,11 +2115,11 @@ Il Caso d’Uso UC56 include un ulteriore Caso d’Uso come raffigurato nella se
 \hypertarget{uc:56.1.1}{}
 \subparagraph{UC 56.1.1 - Analisi Cappello Bianco (Obiettività)}
 \begin{itemize}
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:} $LLM_G$.
+    \item \textbf{Attore principale:} Utente.
+    \item \textbf{Attore secondario:} $LLM_G$.
     \item \textbf{Precondizioni:} È stata invocata la funzione di analisi critica (\hyperlink{uc:56}{UC 56}) e il testo è presente nell'area di editing.
     \item \textbf{Postcondizioni:} Il sistema visualizza una critica analitica focalizzata sulla neutralità e sulle evidenze.
-    \item \textbf{Scenario Principale:}
+    \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item L'utente seleziona il "Cappello Bianco".
         \item Il sistema richiede al $LLM_G$ di criticare il testo identificando quali fatti mancano o quali dati sono riportati in modo imparziale.
@@ -2121,11 +2131,11 @@ Il Caso d’Uso UC56 include un ulteriore Caso d’Uso come raffigurato nella se
 \hypertarget{uc:56.1.2}{}
 \subparagraph{UC 56.1.2 - Analisi Cappello Rosso (Emotività)}
 \begin{itemize}
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:} $LLM_G$.
+    \item \textbf{Attore principale:} Utente.
+    \item \textbf{Attore secondario:} $LLM_G$.
     \item \textbf{Precondizioni:} È stata invocata la funzione di analisi critica (\hyperlink{uc:56}{UC 56}) e il testo è presente nell'area di editing.
     \item \textbf{Postcondizioni:} Il sistema visualizza una valutazione basata sul "sentimento" e sull'intuizione.
-    \item \textbf{Scenario Principale:}
+    \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item L'utente seleziona il "Cappello Rosso".
         \item Il sistema richiede al $LLM_G$ di criticare il testo in base alle passioni e alle emozioni (paura, gioia, rabbia) che trasmette.
@@ -2137,11 +2147,11 @@ Il Caso d’Uso UC56 include un ulteriore Caso d’Uso come raffigurato nella se
 \hypertarget{uc:56.1.3}{}
 \subparagraph{UC 56.1.3 - Analisi Cappello Giallo (Ottimismo)}
 \begin{itemize}
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:} $LLM_G$.
+    \item \textbf{Attore principale:} Utente.
+    \item \textbf{Attore secondario:} $LLM_G$.
     \item \textbf{Precondizioni:} È stata invocata la funzione di analisi critica (\hyperlink{uc:56}{UC 56}) e il testo è presente nell'area di editing.
     \item \textbf{Postcondizioni:} Il sistema visualizza una critica positiva focalizzata sui benefici.
-    \item \textbf{Scenario Principale:}
+    \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item L'utente seleziona il "Cappello Giallo".
         \item Il sistema richiede al $LLM_G$ di individuare i vantaggi e le potenzialità latenti nel contenuto.
@@ -2153,11 +2163,11 @@ Il Caso d’Uso UC56 include un ulteriore Caso d’Uso come raffigurato nella se
 \hypertarget{uc:56.1.4}{}
 \subparagraph{UC 56.1.4 - Analisi Cappello Nero (Critica)}
 \begin{itemize}
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:} $LLM_G$.
+    \item \textbf{Attore principale:} Utente.
+    \item \textbf{Attore secondario:} $LLM_G$.
     \item \textbf{Precondizioni:} È stata invocata la funzione di analisi critica (\hyperlink{uc:56}{UC 56}) e il testo è presente nell'area di editing.
     \item \textbf{Postcondizioni:} Il sistema visualizza una critica focalizzata su difetti, rischi e mancanze logiche.
-    \item \textbf{Scenario Principale:}
+    \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item L'utente seleziona il "Cappello Nero".
         \item Il sistema richiede al $LLM_G$ di agire come "avvocato del diavolo" contro il testo inserito.
@@ -2169,11 +2179,11 @@ Il Caso d’Uso UC56 include un ulteriore Caso d’Uso come raffigurato nella se
 \hypertarget{uc:56.1.5}{}
 \subparagraph{UC 56.1.5 - Analisi Cappello Verde (Creatività)}
 \begin{itemize}
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:} $LLM_G$.
+    \item \textbf{Attore principale:} Utente.
+    \item \textbf{Attore secondario:} $LLM_G$.
     \item \textbf{Precondizioni:} È stata invocata la funzione di analisi critica (\hyperlink{uc:56}{UC 56}) e il testo è presente nell'area di editing.
     \item \textbf{Postcondizioni:} Il sistema visualizza una critica creativa orientata al superamento dei limiti attuali.
-    \item \textbf{Scenario Principale:}
+    \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item L'utente seleziona il "Cappello Verde".
         \item Il sistema richiede al $LLM_G$ di criticare il testo proponendo alternative "fuori dagli schemi".
@@ -2186,11 +2196,11 @@ Il Caso d’Uso UC56 include un ulteriore Caso d’Uso come raffigurato nella se
 \hypertarget{uc:56.1.6}{}
 \subparagraph{UC 56.1.6 - Analisi Cappello Blu (Logica)}
 \begin{itemize}
-    \item \textbf{Attori Principali:} Utente.
-    \item \textbf{Attori Secondari:} $LLM_G$.
+    \item \textbf{Attore principale:} Utente.
+    \item \textbf{Attore secondario:} $LLM_G$.
     \item \textbf{Precondizioni:} È stata invocata la funzione di analisi critica (\hyperlink{uc:56}{UC 56}) e il testo è presente nell'area di editing.
     \item \textbf{Postcondizioni:} Il sistema visualizza una critica sulla gestione e sulla sintesi del contenuto.
-    \item \textbf{Scenario Principale:}
+    \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item L'utente seleziona il "Cappello Blu".
         \item Il sistema richiede al $LLM_G$ di giudicare l'architettura del discorso e la sua conclusione logica.
@@ -2199,7 +2209,7 @@ Il Caso d’Uso UC56 include un ulteriore Caso d’Uso come raffigurato nella se
     \item \textbf{Trigger:} L'utente vuole ottenere una critica che valuti la coerenza e l'efficacia della struttura argomentativa del testo.
 \end{itemize}
 
-% --- UC 57 ---
+
 \subsubsection{UC 57 - Generazione automatica di testo}
 \hypertarget{uc:57}{}
 \begin{center} 
@@ -2208,8 +2218,8 @@ Il Caso d’Uso UC56 include un ulteriore Caso d’Uso come raffigurato nella se
     \label{fig:uc57}
 \end{center}
 \begin{itemize}
-    \item \textbf{Attore Principale:} Utente
-    \item \textbf{Attore Secondario:} LLM$_G$
+    \item \textbf{Attore principale:} Utente
+    \item \textbf{Attore secondario:} LLM$_G$
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
             \item Il sistema è operativo e connesso a Internet.
@@ -2218,7 +2228,7 @@ Il Caso d’Uso UC56 include un ulteriore Caso d’Uso come raffigurato nella se
         \begin{itemize}
             \item Il sistema visualizza il testo generato dall'attore secondario pronto per la validazione.
         \end{itemize}
-    \item \textbf{Scenario Principale:}
+    \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item L'utente avvia la funzione di generazione.
         \item L'utente inserisce il prompt desiderato → \hyperlink{uc:57.1}{UC 57.1}.
@@ -2227,7 +2237,7 @@ Il Caso d’Uso UC56 include un ulteriore Caso d’Uso come raffigurato nella se
         \item Il sistema inoltra la richiesta all'attore secondario LLM$_G$.
         \item Il sistema riceve l'output elaborato e lo mostra all'utente.
     \end{enumerate}
-    \item \textbf{Scenari Secondari:}
+    \item \textbf{Scenari secondari:}
     \begin{itemize}
         \item L'utente può scegliere di arricchire il contesto tramite URL → \textbf{Vedi \hyperlink{uc:57.4}{UC 57.4}}.
         \item L'utente può scegliere di arricchire il contesto selezionando manualmente una o più note personali → \textbf{Vedi \hyperlink{uc:57.5}{UC 57.5}}.
@@ -2257,7 +2267,7 @@ Il Caso d’Uso UC57 include tre ulteriori Caso d’Uso come raffigurato nella s
     \caption{UC 57.1, UC 57.2, UC 57.3 - Inclusioni di UC 57}
 \end{figure}
 
-% --- UC 57.1 ---
+
 \subsubsection{UC 57.1 - Inserimento del prompt}
 \hypertarget{uc:57.1}{}
 \begin{itemize}
@@ -2272,7 +2282,7 @@ Il Caso d’Uso UC57 include tre ulteriori Caso d’Uso come raffigurato nella s
     \item \textbf{Trigger:} L'utente deve fornire le linee guida per l'elaborazione del testo.
 \end{itemize}
 
-% --- UC 57.2 ---
+
 \subsubsection{UC 57.2 - Selezione della lunghezza del testo}
 \hypertarget{uc:57.2}{}
 \begin{itemize}
@@ -2282,12 +2292,13 @@ Il Caso d’Uso UC57 include tre ulteriori Caso d’Uso come raffigurato nella s
     \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item L'utente seleziona tra le opzioni di lunghezza disponibili (Corto, Medio, Lungo).
-        \item Il sistema aggiorna i parametri della richiesta API per limitare o estendere il numero di token generati.
+        \item Il sistema accoda un'istruzione al prompt per indicare al LLM$_G$ il livello di sintesi richiesto.
+        \item Il sistema imposta contestualmente un limite massimo di token per la chiamata API per limitare o estendere il numero di token generati.
     \end{enumerate}
     \item \textbf{Trigger:} L'utente desidera controllare quanto debba essere lungo l'output dell'IA.
 \end{itemize}
 
-% --- UC 57.3 ---
+
 \subsubsection{UC 57.3 - Conferma del contesto}
 \hypertarget{uc:57.3}{}
 \begin{itemize}
@@ -2303,7 +2314,6 @@ Il Caso d’Uso UC57 include tre ulteriori Caso d’Uso come raffigurato nella s
     \item \textbf{Trigger:} L'utente intende verificare la correttezza del contesto prima di avviare l'elaborazione esterna.
 \end{itemize}
 
-% --- UC 57.4 ---
 \subsubsection{UC 57.4 - Generazione testo a partire da link}
 \hypertarget{uc:57.4}{}
 \begin{itemize}
@@ -2319,7 +2329,7 @@ Il Caso d’Uso UC57 include tre ulteriori Caso d’Uso come raffigurato nella s
     \item \textbf{Trigger:} L'utente desidera che l'IA basi la generazione su informazioni reperite da una o più specifiche fonti web.
 \end{itemize}
 
-% --- UC 57.5 ---
+
 \subsubsection{UC 57.5 - Selezione manuale delle note}
 \hypertarget{uc:57.5}{}
 \begin{itemize}
@@ -2349,7 +2359,7 @@ Il Caso d’Uso UC57 include tre ulteriori Caso d’Uso come raffigurato nella s
     \item \textbf{Trigger:} L'utente desidera arricchire il contesto della generazione automatica scegliendo manualmente una o più note personali.
 \end{itemize}
 
-% --- UC 58 ---
+
 \hypertarget{uc:58}{}
 \subsubsection{UC 58 - Accettazione output}
 \begin{figure}[H]
@@ -2391,7 +2401,6 @@ Il caso d'uso UC 58 include un ulteriore caso d'uso come raffigurato nella segue
     \label{fig:uc58.1}
 \end{figure}
 
-% --- UC 58.1 ---
 \paragraph{UC 58.1 - Salvataggio output sulla nota corrente}
 \hypertarget{uc:58.1}{}
 \begin{itemize}
@@ -2415,7 +2424,6 @@ Il caso d'uso UC 58 include un ulteriore caso d'uso come raffigurato nella segue
     \item \textbf{Trigger:} L'utente conferma l'accettazione dell'output IA e ne richiede l'integrazione nella nota corrente.
 \end{itemize}
 
-% --- UC 59 ---
 \hypertarget{uc:59}{}
 \subsubsection{UC 59 - Rifiuto output}
 \begin{figure}[H]
@@ -2436,7 +2444,6 @@ Il caso d'uso UC 58 include un ulteriore caso d'uso come raffigurato nella segue
     \item \textbf{Trigger:} L'utente non desidera utilizzare il contenuto prodotto.
 \end{itemize}
 
-% --- UC 60 ---
 \hypertarget{uc:60}{}
 \subsubsection{UC 60 - Rigenerazione output}
 \begin{figure}[H]
@@ -2460,7 +2467,6 @@ Il caso d'uso UC 58 include un ulteriore caso d'uso come raffigurato nella segue
     \item \textbf{Trigger:} L'utente desidera ottenere una nuova versione del testo generato, mantenendo le stesse istruzioni di base.
 \end{itemize}
 
-% --- UC 61 ---
 \subsubsection{UC 61 - Annullamento richiesta in corso}
 \hypertarget{uc:61}{}
 \begin{itemize}
@@ -2484,7 +2490,6 @@ Il caso d'uso UC 58 include un ulteriore caso d'uso come raffigurato nella segue
     \item \textbf{Trigger:} L'utente desidera interrompere l'attesa dell'elaborazione e riprendere il controllo dell'editor.
 \end{itemize}
 
-% --- UC 62 ---
 \subsubsection{UC 62 - Errore LLM}
 \hypertarget{uc:62}{}
 \begin{itemize}
@@ -2511,7 +2516,6 @@ Il caso d'uso UC 58 include un ulteriore caso d'uso come raffigurato nella segue
     \item \textbf{Trigger:} Il servizio esterno di intelligenza artificiale restituisce un errore o non risponde entro i tempi previsti durante un'operazione AI.
 \end{itemize}
 
-% --- UC 63 ---
 \subsubsection{UC 63 - Gestione testo insufficiente per l'elaborazione}
 \hypertarget{uc:63}{}
 \begin{itemize}
@@ -2539,7 +2543,6 @@ Il caso d'uso UC 58 include un ulteriore caso d'uso come raffigurato nella segue
 \subsection{Salvataggio e Persistenza}
 In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e la persistenza dei dati.
 
-% --- UC 64 ---
 \subsubsection{UC 64 - Creazione nota vuota}
 \hypertarget{uc:64}{}
 \begin{figure}[H]
@@ -2575,7 +2578,6 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} L'utente desidera avviare una stesura immediata nell'editor$_G$.
 \end{itemize}
 
-% --- UC 65 ---
 \subsubsection{UC 65 - Creazione nota nel database}
 \hypertarget{uc:65}{}
 \begin{figure}[H]
@@ -2613,7 +2615,6 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} L'utente vuole avviare un documento con salvataggio cloud automatico.
 \end{itemize}
 
-% --- UC 66 ---
 \subsubsection{UC 66 - Errore creazione nota}
 \hypertarget{uc:66}{}
 \begin{itemize}
@@ -2637,7 +2638,6 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} Il sistema$_G$ rileva un errore nel processo di creazione o inizializzazione della nota.
 \end{itemize}
 
-% --- UC 67 ---
 \subsubsection{UC 67 - Caricamento nota da file locale}
 \hypertarget{uc:67}{}
 \begin{figure}[H]
@@ -2673,7 +2673,6 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} L'utente desidera modificare un documento salvato localmente sul proprio dispositivo.
 \end{itemize}
 
-% --- UC 68 ---
 \subsubsection{UC 68 - Caricamento nota da database}
 \hypertarget{uc:68}{}
 \begin{figure}[H]
@@ -2710,7 +2709,6 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} L'utente desidera accedere a una nota precedentemente salvata nel proprio spazio cloud.
 \end{itemize}
 
-% --- UC 69 ---
 \subsubsection{UC 69 - Errore caricamento nota}
 \hypertarget{uc:69}{}
 \begin{itemize}
@@ -2733,7 +2731,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} Il sistema$_G$ rileva un errore imprevisto o un'eccezione nel processo di input dei dati.
 \end{itemize}
 
-% --- UC 70 ---
+
 \subsubsection{UC 70 - Salvataggio nota su File System}
 \hypertarget{uc:70}{}
 \begin{figure}[H]
@@ -2770,7 +2768,6 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} L'utente desidera rendere persistenti le modifiche correnti sul proprio dispositivo.
 \end{itemize}
 
-% --- UC 71 ---
 \subsubsection{UC 71 - Salvataggio nota nel database}
 \hypertarget{uc:71}{}
 \begin{figure}[H]
@@ -2807,7 +2804,6 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} L'utente desidera sincronizzare il proprio lavoro con lo spazio di archiviazione cloud.
 \end{itemize}
 
-% --- UC 72 ---
 \subsubsection{UC 72 - Errore salvataggio nota}
 \hypertarget{uc:72}{}
 \begin{itemize}
@@ -2830,7 +2826,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} Il sistema$_G$ rileva un fallimento nella procedura di persistenza dei dati.
 \end{itemize}
 
-% --- UC 73 ---
+
 \subsubsection{UC 73 - Eliminazione nota da File System}
 \hypertarget{uc:73}{}
 \begin{figure}[H]
@@ -2932,7 +2928,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} Il sistema$_G$ riceve una notifica di fallimento o un'eccezione durante la fase di cancellazione.
 \end{itemize}
 
-% --- UC 76 ---
+
 \subsubsection{UC 76 - Rinominazione nota su File System}
 \hypertarget{uc:76}{}
 \begin{figure}[H]
@@ -2970,7 +2966,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} L'utente desidera cambiare il titolo identificativo di un file locale.
 \end{itemize}
 
-% --- UC 77 ---
+
 \subsubsection{UC 77 - Rinominazione nota nel database}
 \hypertarget{uc:77}{}
 \begin{figure}[H]
@@ -3008,7 +3004,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} L'utente desidera organizzare meglio le proprie note cloud cambiandone il titolo.
 \end{itemize}
 
-% --- UC 78 ---
+
 \subsubsection{UC 78 - Errore rinominazione nota}
 \hypertarget{uc:78}{}
 \begin{itemize}
@@ -3031,7 +3027,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} Il sistema$_G$ rileva un'eccezione o riceve un feedback negativo durante la procedura di rinominazione.
 \end{itemize}
 
-% --- UC 79 ---
+
 \subsubsection{UC 79 - Visualizzazione informazioni della nota}
 \hypertarget{uc:79}{}
 \begin{figure}[H]
@@ -3068,7 +3064,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} L'utente desidera conoscere i dettagli tecnici o la cronologia di modifica di una specifica nota.
 \end{itemize}
 
-% --- UC 80 ---
+
 \hypertarget{uc:80}{}
 \subsubsection{UC 80 - Ricerca nota per titolo nel database}
 \begin{figure}[H]
@@ -3098,7 +3094,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} L'utente desidera individuare una nota nel cloud conoscendone il nome.
 \end{itemize}
 
-% --- UC 81 ---
+
 \subsubsection{UC 81 - Ricerca Full-Text nel database}
 \hypertarget{uc:81}{}
 \begin{figure}[H]
@@ -3128,7 +3124,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} L'utente cerca una nota cloud basandosi su una parola specifica contenuta nel corpo del documento.
 \end{itemize}
 
-% --- UC 82 ---
+
 \subsubsection{UC 82 - Filtro note per data di creazione}
 \hypertarget{uc:82}{}
 \begin{figure}[H]
@@ -3157,7 +3153,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} L'utente desidera filtrare le note in base alla data di creazione.
 \end{itemize}
 
-% --- UC 83 ---
+
 \subsubsection{UC 83 - Filtro note per data di ultima modifica}
 \begin{figure}[H]
     \centering
@@ -3186,7 +3182,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
     \item \textbf{Trigger:} L'utente desidera filtrare le note in base alla data dell'ultima modifica.
 \end{itemize}
 
-% --- UC 84 ---
+
 \subsubsection{UC 84 - Autenticazione}
 \begin{figure}[H]
     \centering
@@ -3239,7 +3235,7 @@ Il Caso d'Uso UC84 include due ulteriori Casi d'Uso come raffigurato nella segue
     \label{fig:uc84.1-2}
 \end{figure}
 
-% --- UC 84.1 ---
+
 \paragraph{UC 84.1 - Inserimento username}
 \hypertarget{uc:84.1}{}
 \begin{itemize}
@@ -3262,7 +3258,7 @@ Il Caso d'Uso UC84 include due ulteriori Casi d'Uso come raffigurato nella segue
     \item \textbf{Trigger:} L'utente interagisce con il campo di input dello username.
 \end{itemize}
 
-% --- UC 84.2 ---
+
 \paragraph{UC 84.2 - Inserimento password}  
 \hypertarget{uc:84.2}{}
 \begin{itemize}
@@ -3285,7 +3281,7 @@ Il Caso d'Uso UC84 include due ulteriori Casi d'Uso come raffigurato nella segue
     \item \textbf{Trigger:} L'utente interagisce con il campo di input della password.
 \end{itemize}
 
-% --- UC 85 ---
+
 \subsubsection{UC 85 - Errore di autenticazione}
 \hypertarget{uc:85}{}
 \begin{itemize}
@@ -3308,7 +3304,7 @@ Il Caso d'Uso UC84 include due ulteriori Casi d'Uso come raffigurato nella segue
     \item \textbf{Trigger:} Il sistema$_G$ non riesce ad autenticare l'utente.
 \end{itemize}
 
-% --- UC 86 ---
+
 \subsubsection{UC 86 - Registrazione nuovo account}
 \hypertarget{uc:86}{}
 \begin{figure}[H]
@@ -3365,7 +3361,7 @@ Il Caso d'Uso UC86 include tre ulteriori Casi d'Uso come raffigurato nella segue
     \label{fig:uc86.1}
 \end{figure}
 
-% --- UC 86.1 ---
+
 \paragraph{UC 86.1 - Conferma password}
 \hypertarget{uc:86.1}{}
 \begin{itemize}
@@ -3388,7 +3384,7 @@ Il Caso d'Uso UC86 include tre ulteriori Casi d'Uso come raffigurato nella segue
     \item \textbf{Trigger:} L'utente seleziona il campo di conferma password durante la registrazione.
 \end{itemize}
 
-% --- UC 87 ---
+
 \subsubsection{UC 87 - Errore username già esistente}
 \hypertarget{uc:87}{}
 \begin{itemize}
@@ -3411,7 +3407,7 @@ Il Caso d'Uso UC86 include tre ulteriori Casi d'Uso come raffigurato nella segue
     \item \textbf{Trigger:} Il sistema$_G$ rileva un conflitto di identità durante la validazione dei dati di registrazione.
 \end{itemize}
 
-% --- UC 88 ---
+
 \subsubsection{UC 88 - Errore mancata corrispondenza password}
 \hypertarget{uc:88}{}
 \begin{itemize}
@@ -3434,7 +3430,6 @@ Il Caso d'Uso UC86 include tre ulteriori Casi d'Uso come raffigurato nella segue
     \item \textbf{Trigger:} Il sistema$_G$ rileva una discrepanza tra i due campi password inseriti.
 \end{itemize}
 
-% --- UC 89 ---
 \subsubsection{UC 89 - Eliminazione account}
 \hypertarget{uc:89}{}
 \begin{figure}[H]
@@ -3465,7 +3460,7 @@ Il Caso d'Uso UC86 include tre ulteriori Casi d'Uso come raffigurato nella segue
     \item \textbf{Trigger:} L'utente desidera cessare l'utilizzo del servizio e rimuovere i propri dati dal server.
 \end{itemize}
 
-% --- UC 90 ---
+
 \subsubsection{UC 90 - Logout}
 \hypertarget{uc:90}{}
 \begin{figure}[H]
@@ -3509,17 +3504,17 @@ La classificazione dei requisiti segue la seguente nomenclatura:
 
 Dove:
 \begin{itemize}
-    \item \textbf{Identificativo}: numero progressivo del requisito all'interno della propria tipologia;
+    \item \textbf{Identificativo}: numero progressivo del requisito all'interno della propria tipologia.
     \item \textbf{Tipologia}: può assumere i seguenti valori:
     \begin{itemize}
-        \item \textbf{F}: Requisito Funzionale;
-        \item \textbf{Q}: Requisito di Qualità;
+        \item \textbf{F}: Requisito Funzionale.
+        \item \textbf{Q}: Requisito di Qualità.
         \item \textbf{V}: Requisito di Vincolo.
     \end{itemize}
     \item \textbf{Priorità}: può assumere i seguenti valori:
     \begin{itemize}
-        \item \textbf{Ob}: Obbligatorio;
-        \item \textbf{De}: Desiderabile;
+        \item \textbf{Ob}: Obbligatorio.
+        \item \textbf{De}: Desiderabile.
         \item \textbf{Op}: Opzionale.
     \end{itemize}
 \end{itemize}
