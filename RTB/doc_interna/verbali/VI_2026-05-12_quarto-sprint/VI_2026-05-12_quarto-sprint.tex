@@ -14,7 +14,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{The Bitless}
-\fancyhead[R]{\titolo \ \dataverbale}
+\fancyhead[R]{Verbale \titolo \ \dataverbale}
 \fancyfoot[C]{\thepage}
 
 \usepackage{hyperref}
@@ -31,9 +31,9 @@
 
 \begin{document}
 
-\newcommand{\titolo}{Verbale Interno}
+\newcommand{\titolo}{interno}
 \newcommand{\dataverbale}{2026-05-12}
-\newcommand{\dataversione}{2026-05-12}
+\newcommand{\dataversione}{2026-05-14}
 \newcommand{\versione}{1.0.0}
 \newcommand{\stato}{Approvato}
 \newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
@@ -71,19 +71,20 @@ Simone & Zecchinato & Presente \\
 
 \section{Ordine del giorno}
 \begin{enumerate}
-    \item Rotazione dei ruoli 
-    \item Riscontro problemi avuti nella stesura dell'AdR 
-    \item Discussione e scelta delle tecnologie per il PoC
-    \item Resoconto Sprint 3 e rendicontazione ore
-    \item Pianificazione compiti futuri
+    \item Rotazione dei ruoli;
+    \item Riscontro problemi avuti nella stesura dell'AdR;
+    \item Discussione e scelta delle tecnologie per il PoC;
+    \item Resoconto Sprint 3 e rendicontazione ore;
+    \item Pianificazione compiti futuri;
+    \item Assegnazione attività singole.
 \end{enumerate}
 
 \section{Discussione e decisioni}
 
 \subsection{Rotazione dei ruoli}
-Prima di stabilire i nuovi ruoli operativi per il quarto sprint, il gruppo ha discusso sulla possibilità di attivare i ruoli di programmatore e di progettista per avviare le fasi preliminari del PoC. 
-A seguito della discussione, il gruppo decide di attivare due progettisti e un programmatore e di ridurre il ruolo di analista ad una persona. Questa scelta è stata ritenuta necessaria in quanto, prevedendo di iniziare il PoC verso la fine di questo sprint, risulta necessario iniziare la progettazione a discapito dell'analisi che, a questo punto, è quasi completata.
-
+Il gruppo ha definito la ripartizione dei ruoli per il quarto sprint.\\
+In primo luogo, si è deciso di introdurre la figura del \textit{Programmatore}, che si affiancherà a quella del \textit{Progettista}. Questa collaborazione consentirà di avviare la stesura effettiva del codice e lo sviluppo del \textit{Proof of Concept} (PoC) verso la fine del quarto sprint, traducendo in pratica le prime scelte tecnologiche. \\
+In secondo luogo, per questo specifico sprint si è scelto di ridurre a una sola persona il ruolo di \textit{Verificatore}. Il team ha valutato che in questa fase ci sarà meno materiale da controllare rispetto agli sprint precedenti; l'Analisi dei Requisiti è infatti terminata, rimangono da sistemare soltanto gli ultimi dettagli tecnici e formali sulla stesura di alcuni casi d'uso. Di conseguenza, un unico \textit{Verificatore} è stato ritenuto sufficiente per coprire l'intero carico di lavoro.
 La ripartizione è stata definita come segue:
 \begin{center}
     \begin{tabular}{|l|l|c|}
@@ -96,9 +97,9 @@ La ripartizione è stata definita come segue:
         \hline
         Davide & Facco & Amministratore \\ 
         \hline
-        Anna & Marini & Analista \\
+        Anna & Marini & Verificatore \\
         \hline
-        Andrea & Menegaldo & Verificatore \\
+        Andrea & Menegaldo & Analista, Amministratore \\
         \hline
         Samuele & Vendramin & Programmatore \\        
         \hline  
@@ -108,12 +109,12 @@ La ripartizione è stata definita come segue:
 \end{center}
 
 \subsection{Riscontro problemi avuti nella stesura dell'AdR}
-Il gruppo discute sulle difficoltà riscontrate nella stesura dell'AdR che hanno portato ad una riscrittura parziale del documento. Questo è stato dovuto a:
+Il gruppo ha discusso approfonditamente le difficoltà riscontrate durante la stesura dell'Analisi dei Requisiti, le quali hanno reso necessaria una riscrittura parziale del documento. Questa criticità è stata causata principalmente da:
 \begin{itemize}
-    \item scarso dialogo tra i componenti;
-    \item mancanza di una linea guida comune.
+    \item uno scarso dialogo e coordinamento tra i componenti;
+    \item la mancanza di una linea guida comune e condivisa.
 \end{itemize}
-Per evitare che questi problemi si possano ripresentare in futuro, ogni membro del gruppo si impegna ad avere maggior dialogo con gli altri, ponendosi linee guida che mitigano il rischio di qui sopra. 
+Durante il confronto, si è analizzato come questa situazione abbia concretizzato il rischio\\ \textbf{RO-2 (Incomprensioni comunicative)} formalizzato nel Piano di Progetto. Per evitare che tali problemi si ripresentino in futuro, ogni membro del gruppo si impegna a mantenere un dialogo più costante e tempestivo con gli altri. Inoltre, il team ha stabilito di definire fin da subito delle linee guida chiare prima di iniziare ogni nuova attività, mitigando così all'origine qualsiasi fraintendimento comunicativo o tecnico.
 
 \subsection{Discussione e scelta delle tecnologie per il PoC}
 Considerando di iniziare in questo sprint il PoC, il gruppo discute delle tecnologie da adottare che verranno proposte alla proponente giovedì 15 maggio. La proponente, in sede precedente, proponeva al gruppo le seguenti tecnologie \textit{backend}:
@@ -132,10 +133,10 @@ Il gruppo ha optato per l'adozione di React in virtù del suo ecosistema maturo 
 Il team ha analizzato l'andamento del terzo Sprint, confrontando le attività pianificate con quelle effettivamente svolte. Si è proceduto alla verifica delle ore di lavoro rendicontate da ciascun componente necessarie per il monitoraggio dei costi e dell'avanzamento nel Piano di Progetto.
 
 \subsection{Pianificazione compiti futuri}
-Il gruppo decide di avviare a conclusione per l'inizio di questo sprint la stesura dell'AdR. Si decide poi di iniziare uno studio iniziale delle tecnologie scelte, valutandone pro e contro in maniera esaustiva e valutandone la curva di apprendimento, necessaria per una corretta stima dello studio dei linguaggi.
-S. Zecchinato propone lo studio per adottare completamente \textit{Projects} di GitHub per mitigare i rischi riscontrati nello scorso sprint.
+Si decide di proseguire con lo studio delle tecnologie scelte, valutandone pro e contro in maniera esaustiva e valutandone la curva di apprendimento, necessaria per una corretta stima dello studio dei linguaggi.
+Inoltre, si stabilisce di avviare la progettazione del PoC, iniziando a definire l'architettura generale dell'applicativo e a identificare i componenti principali da sviluppare.
 
-\section{Assegnazione attività singole}
+\subsection{Assegnazione attività singole}
 \begin{center}
     \renewcommand{\arraystretch}{1.4}
         \begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
@@ -146,9 +147,9 @@ S. Zecchinato propone lo studio per adottare completamente \textit{Projects} di 
         \hline
         S. Zecchinato & Stesura verbale interno 2026-05-12 & \issue{131} \\
         \hline
-        De Piccoli - Battistella & Studio iniziale delle tecnologie proposte & \issue{132} \\
+        Tutti i componenti & Studio delle tecnologie scelte & \issue{144} \\
         \hline
-        Marini - Vendramin - Zecchinato & Aggiornamento AdR & \issue{133}  \\
+        E. De Piccoli - L. Battistella & Inizio progettazione PoC & \issue{145} \\
         \hline
         D. Facco & Aggiornamento \texttt{readme} della repository & \issue{134} \\
         \hline
