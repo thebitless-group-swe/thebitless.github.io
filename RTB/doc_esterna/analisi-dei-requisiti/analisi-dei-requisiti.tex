@@ -68,16 +68,13 @@
     \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
     \hline
     \endhead
-    2.0.0 & 2026-05-14 & S. Zecchinato & A. Menegaldo & S. Zecchinato & Approvazione seconda versione \\ \hline
-    1.4.0 & 2026-05-13 & S. Vendramin & S. Zecchinato & - & Sistemazione errori di battitura\\ \hline
+    0.21.0 & 2026-05-13 & S. Vendramin & S. Zecchinato & - & Sistemazione errori di battitura\\ \hline
 
-    1.3.0 & 2026-05-13 & S. Zecchinato & A. Menegaldo & - & Sistemazione UML UC Salvataggio-persistenza\\ \hline
+    0.20.0 & 2026-05-13 & S. Zecchinato & A. Menegaldo & - & Sistemazione UML UC Salvataggio-persistenza\\ \hline
 
-    1.2.0 & 2026-05-13 & S. Vendramin & A. Menegaldo & - & Sistemazione UML UC 56, 57\\ \hline
+    0.19.0 & 2026-05-13 & S. Vendramin & A. Menegaldo & - & Sistemazione UML UC 56, 57\\ \hline
 
-    1.1.0 & 2026-05-12 & A. Marini & S. Zecchinato & - & Aggiornamento struttura dopo riscontro errori\\ \hline
-
-    1.0.0 & 2026-05-12 & A. Marini & S. Zecchinato & A. Marini & Approvazione finale \\ \hline
+    0.18.0 & 2026-05-12 & A. Marini & S. Zecchinato & - & Aggiornamento struttura dopo riscontro errori\\ \hline
 
     0.17.0 & 2026-04-30 & A. Marini & S. Zecchinato & - & Inserimento diagrammi UML UC 60-90. \\ \hline
 
@@ -274,13 +271,14 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
 
     \begin{itemize}
         \item \textbf{Utente autenticato:} rappresenta una specializzazione dell'attore Utente. Indica un utente che ha completato il processo di autenticazione e può accedere anche alle funzionalità cloud, come sincronizzazione, salvataggio nel database$_G$, caricamento di note online, ricerca nel database$_G$ e gestione dell'account.
+        \item \textbf{Utente non autenticato:} rappresenta una specializzazione dell'attore Utente. Indica un utente che non ha completato il processo di autenticazione e può accedere solamente alle funzioni di base, cioè quelle che non comprendono operazioni in cloud, come sincronizzazione, salvataggio nel database$_G$, caricamento di note online, ricerca nel database$_G$ e gestione dell'account. 
     \end{itemize}
 
     \item \textbf{LLM$_G$:} rappresenta il modello di intelligenza artificiale interfacciato con il sistema$_G$. Agisce come attore secondario$_G$, fornendo le funzionalità avanzate di elaborazione del linguaggio naturale, sintesi, traduzione, correzione, analisi e generazione di contenuti su richiesta del sistema$_G$.
 \end{itemize}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.3\textwidth]{assets/img/attori.pdf}
+    \includegraphics[width=0.8\textwidth]{assets/img/attori.pdf}
     \caption{Attori del sistema}
     \label{fig:attori}
 \end{figure}
@@ -2046,7 +2044,7 @@ Il Caso d’Uso UC54 include un ulteriore Caso d’Uso come raffigurato nella se
             \item Il sistema è operativo e connesso a Internet.
             \item È presente del testo selezionato nell'area di editing (\hyperlink{uc:2}{UC 2}).
             \end{itemize}
-    \item \textbf{Postcondizioni:} Il sistema visualizza i risultati dell'analisi critica per i cappelli selezionati.
+    \item \textbf{Postcondizioni:} Il sistema visualizza i risultati dell'analisi critica per il cappello selezionato.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item L'utente seleziona la porzione di testo da analizzare.
@@ -2063,7 +2061,7 @@ Il Caso d’Uso UC54 include un ulteriore Caso d’Uso come raffigurato nella se
     \end{itemize}
     \item \textbf{Inclusioni:}
     \begin{itemize}
-        \item \hyperlink{uc:56.1}{UC 56.1 - Selezione e applicazione di un cappello}
+        \item \hyperlink{uc:56.1}{UC 56.1 - Applicazione di un cappello}
     \end{itemize}
     \item \textbf{Estensioni:}
     \begin{itemize}
@@ -2083,11 +2081,11 @@ Il Caso d’Uso UC56 include un ulteriore Caso d’Uso come raffigurato nella se
 
 
 \hypertarget{uc:56.1}{}
-\paragraph{UC 56.1 - Selezione e applicazione di un cappello}
+\paragraph{UC 56.1 - Applicazione di un cappello}
 
 \begin{center}
     \includegraphics[width=\textwidth]{assets/img/UC56.1.1-6.pdf}
-    \captionof{figure}{UC 56.1 - Selezione di un cappello}
+    \captionof{figure}{UC 56.1 - Applicazione di un cappello}
     \label{fig:uc56.1}
 \end{center}
 \begin{itemize}
@@ -3192,7 +3190,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
 \end{figure}
 \hypertarget{uc:84}{}
 \begin{itemize}
-    \item \textbf{Attore principale:} Utente
+    \item \textbf{Attore principale:} Utente non autenticato
     \item \textbf{Pre-condizioni:}
         \begin{itemize}
             \item Il sistema$_G$ è attivo e mostra l'interfaccia di login.
@@ -3239,7 +3237,7 @@ Il Caso d'Uso UC84 include due ulteriori Casi d'Uso come raffigurato nella segue
 \paragraph{UC 84.1 - Inserimento username}
 \hypertarget{uc:84.1}{}
 \begin{itemize}
-    \item \textbf{Attore principale:} Utente
+    \item \textbf{Attore principale:} Utente non autenticato
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
             \item Il sistema$_G$ mostra un modulo che richiede l'identificazione, Login o Registrazione.
@@ -3262,7 +3260,7 @@ Il Caso d'Uso UC84 include due ulteriori Casi d'Uso come raffigurato nella segue
 \paragraph{UC 84.2 - Inserimento password}  
 \hypertarget{uc:84.2}{}
 \begin{itemize}
-    \item \textbf{Attore principale:} Utente
+    \item \textbf{Attore principale:} Utente non autenticato
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
             \item Il sistema$_G$ mostra un modulo che richiede l'identificazione, Login o Registrazione.
@@ -3285,7 +3283,7 @@ Il Caso d'Uso UC84 include due ulteriori Casi d'Uso come raffigurato nella segue
 \subsubsection{UC 85 - Errore di autenticazione}
 \hypertarget{uc:85}{}
 \begin{itemize}
-    \item \textbf{Attore principale:} Utente
+    \item \textbf{Attore principale:} Utente non autenticato
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
             \item Il sistema$_G$ ha ricevuto credenziali non valide o non è riuscito a comunicare con il database$_G$.
@@ -3310,11 +3308,11 @@ Il Caso d'Uso UC84 include due ulteriori Casi d'Uso come raffigurato nella segue
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{assets/img/UC86.pdf}
-    \caption{UC 86 -Registrazione nuovo account}
+    \caption{UC 86 - Registrazione nuovo account}
     \label{fig:uc86}
 \end{figure}
 \begin{itemize}
-    \item \textbf{Attore principale:} Utente
+    \item \textbf{Attore principale:} Utente non autenticato
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
             \item Il sistema$_G$ è attivo e l'interfaccia di registrazione è accessibile.
@@ -3365,7 +3363,7 @@ Il Caso d'Uso UC86 include tre ulteriori Casi d'Uso come raffigurato nella segue
 \paragraph{UC 86.1 - Conferma password}
 \hypertarget{uc:86.1}{}
 \begin{itemize}
-    \item \textbf{Attore principale:} Utente
+    \item \textbf{Attore principale:} Utente non autenticato
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
             \item L'utente si trova nella schermata di registrazione.
@@ -3388,7 +3386,7 @@ Il Caso d'Uso UC86 include tre ulteriori Casi d'Uso come raffigurato nella segue
 \subsubsection{UC 87 - Errore username già esistente}
 \hypertarget{uc:87}{}
 \begin{itemize}
-    \item \textbf{Attore principale:} Utente
+    \item \textbf{Attore principale:} Utente non autenticato
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
             \item Lo username inserito è già associato a un altro account nel database$_G$.
@@ -3411,7 +3409,7 @@ Il Caso d'Uso UC86 include tre ulteriori Casi d'Uso come raffigurato nella segue
 \subsubsection{UC 88 - Errore mancata corrispondenza password}
 \hypertarget{uc:88}{}
 \begin{itemize}
-    \item \textbf{Attore principale:} Utente
+    \item \textbf{Attore principale:} Utente non autenticato
     \item \textbf{Pre-condizioni:} 
         \begin{itemize}
             \item La stringa di conferma differisce dalla password inserita inizialmente.
