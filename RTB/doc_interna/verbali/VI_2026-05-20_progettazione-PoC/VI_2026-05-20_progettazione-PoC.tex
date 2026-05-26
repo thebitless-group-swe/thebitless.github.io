@@ -75,7 +75,7 @@ Simone & Zecchinato & Presente \\
     \item Riscontro errore AdR
     \item Proposta di progettazione, tecnologie e architettura
     \item Proposta To-Do list operativa
-    \item Assegnazione attività singole
+    \item Assegnazione$_G$ attività singole
 \end{enumerate}
 
 \section{Discussione e decisioni}
@@ -83,15 +83,15 @@ Simone & Zecchinato & Presente \\
 \subsection{Riscontro errore AdR}
 La collega A. Marini rende noto al gruppo di aver riscontrato un problema nella generalizzazione degli attori del documento \href{https://thebitless.live/RTB/doc_esterna/analisi-dei-requisiti/analisi-dei-requisiti.pdf}{\textbf{Analisi dei Requisiti}}. La generalizzazione non tiene infatti conto di tutti quegli utenti che non sono autenticati. Si decide quindi di aggiungere alla generalizzazione \textit{Utente}$\to$\textit{Utente autenticato} l'attore \textit{Utente non autenticato} per specificare quali azioni possono essere svolte esclusivamente dagli utenti non autenticati.
 
-Si discute poi della generalizzazione in UC 56.1 che preclude la possibilità di applicare più cappelli contemporaneamente. Ad aumentare la preoccupazione su questa modellazione, il collega S. Vendramin porta alla luce un problema di sicronizzazione dello \textit{streaming} degll'LLM in caso di più risposte simultanee. Dato che la scelta di più cappelli contemporaneamente aveva suscitato l'interesse della proponente si decide, in vista della visita del gruppo a Zucchetti, di chiedere direttamente al referente aziendale per il progetto.
+Si discute poi della generalizzazione in UC 56.1 che preclude la possibilità di applicare più cappelli contemporaneamente. Ad aumentare la preoccupazione su questa modellazione, il collega S. Vendramin porta alla luce un problema di sicronizzazione dello \textit{streaming} degll'LLM$_G$ in caso di più risposte simultanee. Dato che la scelta di più cappelli contemporaneamente aveva suscitato l'interesse della proponente$_G$ si decide, in vista della visita del gruppo a Zucchetti, di chiedere direttamente al referente aziendale per il progetto.
 Il referente, informato del problema, suggerisce di abbandonare la possibilità di più cappelli selezionati in favore di un singolo cappello, più semplice da gestire.
 
 \subsection{Proposta di progettazione, tecnologie e architettura}
-Il gruppo legge il documento proposto dal collega progettista E. De Piccoli, con le proposte per le tecnologie e l'architettura del sistema\footnote{Reperibile al seguente \href{https://www.notion.so/Tecnologie-e-Architettura-del-progetto-Second-Brain-366a3da351ad800189b5fdaa5ab54902?source=copy_link}{link}}. Dopo una lettura del documento ed una riflessione circa le scelte proposte, il gruppo approva il l'architettura proposta.
-I colleghi D. Facco e L. Battistella propongono alcune tecnologie aggiuntive denominate \textit{LiteLLM} (per gestire più modelli LLM anche in caso di \textit{fallback}) e \textit{SpaCY} (per il \textit{Natural Language Processing}) che potrebbero semplificare il lavoro del gruppo. Ci si riserva di studiarne la possibile integrazione e l'effettivo vantaggio apportato in caso affermativo.
+Il gruppo legge il documento proposto dal collega progettista$_G$ E. De Piccoli, con le proposte per le tecnologie e l'architettura del sistema$_G$\footnote{Reperibile al seguente \href{https://www.notion.so/Tecnologie-e-Architettura-del-progetto-Second-Brain-366a3da351ad800189b5fdaa5ab54902?source=copy_link}{link}}. Dopo una lettura del documento ed una riflessione circa le scelte proposte, il gruppo approva il l'architettura proposta.
+I colleghi D. Facco e L. Battistella propongono alcune tecnologie aggiuntive denominate \textit{LiteLLM} (per gestire più modelli LLM$_G$ anche in caso di \textit{fallback}) e \textit{SpaCY} (per il \textit{Natural Language Processing}) che potrebbero semplificare il lavoro del gruppo. Ci si riserva di studiarne la possibile integrazione$_G$ e l'effettivo vantaggio apportato in caso affermativo.
 
 \subsection{Proposta To-Do list operativa}
-A seguito dell'approvazione da parte del gruppo dell'architettura proposta, il collega programmatore S. Vendramin propone la To-Do list operativa\footnote{Reperibile al seguente \href{https://www.notion.so/To-Do-List-Operativa-Sviluppo-del-Proof-of-Concept-PoC-3669f0eda5af80cdbb32d9e5e4ed9abd}{link}} per il PoC contentente, oltre agli obiettivi di pratici per lo sviluppo, gli obiettivi sulla validazione del Proof of Concept.
+A seguito dell'approvazione$_G$ da parte del gruppo dell'architettura proposta, il collega programmatore$_G$ S. Vendramin propone la To-Do list operativa\footnote{Reperibile al seguente \href{https://www.notion.so/To-Do-List-Operativa-Sviluppo-del-Proof-of-Concept-PoC-3669f0eda5af80cdbb32d9e5e4ed9abd}{link}} per il PoC$_G$ contentente, oltre agli obiettivi di pratici per lo sviluppo$_G$, gli obiettivi sulla validazione$_G$ del Proof of Concept$_G$.
 Il gruppo, a seguito di una discussione sugli eventuali punti da aggiungere o da modificare, approva la proposta.
 
 \section{Assegnazione attività singole}
@@ -105,7 +105,7 @@ Il gruppo, a seguito di una discussione sugli eventuali punti da aggiungere o da
         \hline
         S. Zecchinato & Sistemazione attori AdR & \issueDoc{152} \\
         \hline
-        E. De Piccoli - Battistella & Studio fattibilità integrazioni aggiuntive & \issueDoc{153} \\
+        E. De Piccoli - Battistella & Studio fattibilità$_G$ integrazioni aggiuntive & \issueDoc{153} \\
         \hline
         S. Vendramin & Setup infrastruttura & \issuePoC{1} \\
         \hline
