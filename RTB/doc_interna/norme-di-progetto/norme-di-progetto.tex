@@ -60,6 +60,10 @@
         \hline
         \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
         \hline
+        0.6.1 & 2026-05-26 & S. Zecchinato & A. Menegaldo & - & Sistema errori di battitura \\
+        \hline
+        0.6.0 & 2026-05-20 & A. Marini & A. Menegaldo & - & Aggiunge procedure operative \\
+        \hline
         0.5.0 & 2026-04-29 & A. Marini & S. Zecchinato & - & Processi organizzativi \\
         \hline
         0.4.0 & 2026-04-20 & S. Zecchinato & E. De Piccoli & - & Verifica \\
@@ -278,7 +282,7 @@ Ogni documento deve riportare un nome significativo che permetta a chiunque cons
 \end{itemize}
 
 \paragraph{Commit e Pull Request}  \mbox{} \\
-Ogni Commit$_G$ e ogni Pull Request$_G$ devono apportare modifiche significative e devono quindi essere fatti in maniera accorta. Le descrizioni ai commit e alle pull request devono avere carattere significativo, s'intende quindi che il commento deve poter essere letto e compreso da qualunque mebro del team senza dover andare ad osservare il contenuto dell'azione.
+Ogni Commit$_G$ e ogni Pull Request$_G$ devono apportare modifiche significative e devono quindi essere fatti in maniera accorta. Le descrizioni ai commit e alle pull request devono avere carattere significativo, s'intende quindi che il commento deve poter essere letto e compreso da qualunque membro del team senza dover andare ad osservare il contenuto dell'azione.
 
 \subsubsection{Struttura generale dei documenti}
 \label{subsubsec:strutturagenerale}
@@ -424,7 +428,7 @@ Il gruppo applica ai seguenti prodotti il processo di verifica:
 
 \label{paragraph:verifica-implementazione}
 \subsubsection{Attività di verifica e implementazione del processo} \mbox{}
-Le attività di verifica agiscono sulle fasi dello sviluppo in modo che la verifica non sia solamente un controllo finale ma sia anzi un contrllo costante della fase. In quest'ottica infatti ci si aspetta che il controllo finale verifichi solamente che il prodotto ottenuto al termine di una fase sia coerente con ciò che quella fase aveva avuto in input, ovvero non devono esser stati introdotti bug (per il codice) o refusi (per il testo). 
+Le attività di verifica agiscono sulle fasi dello sviluppo in modo che la verifica non sia solamente un controllo finale ma sia anzi un controllo costante della fase. In quest'ottica infatti ci si aspetta che il controllo finale verifichi solamente che il prodotto ottenuto al termine di una fase sia coerente con ciò che quella fase aveva avuto in input, ovvero non devono esser stati introdotti bug (per il codice) o refusi (per il testo). 
 
 Finora il gruppo si è occupato di documentazione e dunque la verifica verteva sulla correttezza sintattica, semantica e grammaticale di ogni documento. Per quanto concerne al codice, la verifica verrà trattata più approfonditamente dopo il raggiungimento della \textit{RTB - Requirements and Technology Baseline}$_G$ e le informazioni verranno riportate nel documento denominato \textbf{Piano di Qualifica}$_G$.
 La verifica è composta da due fasi:
@@ -460,7 +464,7 @@ I test di unità, in inglese \textit{unit test}$_G$, sono quei test che valutano
 \end{itemize}
 
 \paragraph{Test di Integrazione} \mbox{} \\
-I test di integrazione, in inglese \textit{integration test}$_G$, sono quei testi che valutano l'interazione tra le varie componenti software e si usano primariamente per l'assemblaggio incrementale, ovvero in tutti quei momenti in cui si vuole integrare una nuova parte al sistema. Questo garantisce quello che in gergo si chiama \textit{Continuous Integration}$_G$.
+I test di integrazione, in inglese \textit{integration test}$_G$, sono quei test che valutano l'interazione tra le varie componenti software e si usano primariamente per l'assemblaggio incrementale, ovvero in tutti quei momenti in cui si vuole integrare una nuova parte al sistema. Questo garantisce quello che in gergo si chiama \textit{Continuous Integration}$_G$.
 I test di integrazione possono essere implementati con strategia \textbf{bottom-up} in cui si va ad integrare prima le componenti con minori dipendenze d'uso, oppure con strategia \textbf{top-down}, in cui si vanno ad integrare prima le componenti con maggiori dipendenze d'uso.
 
 \label{subsec:validazione}
