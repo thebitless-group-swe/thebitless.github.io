@@ -1,0 +1,161 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+\usepackage[a-1b]{pdfx}
+\usepackage[italian]{babel} 
+\usepackage{comment}      
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{minted} 
+\usepackage{geometry}
+\usepackage{float} 
+\usepackage{setspace}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{Verbale \titolo \ \dataverbale}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    pdfborderstyle={/S/U/W 1},
+    linkbordercolor=0 0 0,
+    urlbordercolor=0 0 0,
+    citebordercolor=0 0 0,
+    filebordercolor=0 0 0,
+    breaklinks=true,
+}
+\newcommand{\issue}[1]{\href{https://github.com/thebitless-group-swe/thebitless.github.io/issues/#1}{\##1}}
+
+\begin{document}
+
+\newcommand{\titolo}{interno}
+\newcommand{\dataverbale}{2026-05-12}
+\newcommand{\dataversione}{2026-05-14}
+\newcommand{\versione}{1.0.0}
+\newcommand{\stato}{Approvato}
+\newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+\def\templatedir{../../../../templates}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+\input{\templatedir/frontespizio.tex}
+\end{titlepage}
+
+\newpage
+\tableofcontents 
+
+\newpage
+\pagenumbering{arabic}
+\section{Informazioni sulla riunione}
+Il presente documento riporta la verbalizzazione della riunione interna al gruppo \textbf{The Bitless} avvenuta il \dataverbale{}. L'incontro si è svolto in modalità telematica tramite la piattaforma Discord. La riunione si è aperta alle ore 11:30 e si è conclusa alle ore 12:30.
+
+\section{Presenze}
+\begin{center}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
+\hline
+Lorenzo & Battistella & Presente \\
+Edoardo & De Piccoli & Presente \\
+Davide & Facco & Presente \\
+Anna & Marini & Presente \\
+Andrea & Menegaldo & Presente \\
+Samuele & Vendramin & Presente \\
+Simone & Zecchinato & Presente \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ordine del giorno}
+\begin{enumerate}
+    \item Rotazione dei ruoli;
+    \item Riscontro problemi avuti nella stesura dell'AdR;
+    \item Discussione e scelta delle tecnologie per il PoC;
+    \item Resoconto Sprint 3 e rendicontazione ore;
+    \item Pianificazione compiti futuri;
+    \item Assegnazione attività singole.
+\end{enumerate}
+
+\section{Discussione e decisioni}
+
+\subsection{Rotazione dei ruoli}
+Il gruppo ha definito la ripartizione dei ruoli per il quarto sprint.\\
+In primo luogo, si è deciso di introdurre la figura del \textit{Programmatore}, che si affiancherà a quella del \textit{Progettista}. Questa collaborazione consentirà di avviare la stesura effettiva del codice e lo sviluppo del \textit{Proof of Concept} (PoC) verso la fine del quarto sprint, traducendo in pratica le prime scelte tecnologiche. \\
+In secondo luogo, per questo specifico sprint si è scelto di ridurre a una sola persona il ruolo di \textit{Verificatore}. Il team ha valutato che in questa fase ci sarà meno materiale da controllare rispetto agli sprint precedenti; l'Analisi dei Requisiti è infatti terminata, rimangono da sistemare soltanto gli ultimi dettagli tecnici e formali sulla stesura di alcuni casi d'uso. Di conseguenza, un unico \textit{Verificatore} è stato ritenuto sufficiente per coprire l'intero carico di lavoro.
+La ripartizione è stata definita come segue:
+\begin{center}
+    \begin{tabular}{|l|l|c|}
+        \hline
+        \textbf{Nome} & \textbf{Cognome} & \textbf{Ruolo} \\
+        \hline
+        Lorenzo & Battistella & Progettista \\
+        \hline
+        Edoardo & De Piccoli & Progettista \\
+        \hline
+        Davide & Facco & Amministratore \\ 
+        \hline
+        Anna & Marini & Verificatore \\
+        \hline
+        Andrea & Menegaldo & Analista, Amministratore \\
+        \hline
+        Samuele & Vendramin & Programmatore \\        
+        \hline  
+        Simone & Zecchinato & Responsabile \\
+        \hline  
+    \end{tabular}
+\end{center}
+
+\subsection{Riscontro problemi avuti nella stesura dell'AdR}
+Il gruppo ha discusso approfonditamente le difficoltà riscontrate durante la stesura dell'Analisi dei Requisiti, le quali hanno reso necessaria una riscrittura parziale del documento. Questa criticità è stata causata principalmente da:
+\begin{itemize}
+    \item uno scarso dialogo e coordinamento tra i componenti;
+    \item la mancanza di una linea guida comune e condivisa.
+\end{itemize}
+Durante il confronto, si è analizzato come questa situazione abbia concretizzato il rischio\\ \textbf{RO-2 (Incomprensioni comunicative)} formalizzato nel Piano di Progetto. Per evitare che tali problemi si ripresentino in futuro, ogni membro del gruppo si impegna a mantenere un dialogo più costante e tempestivo con gli altri. Inoltre, il team ha stabilito di definire fin da subito delle linee guida chiare prima di iniziare ogni nuova attività, mitigando così all'origine qualsiasi fraintendimento comunicativo o tecnico.
+
+\subsection{Discussione e scelta delle tecnologie per il PoC}
+Considerando di iniziare in questo sprint il PoC, il gruppo discute delle tecnologie da adottare che verranno proposte alla proponente giovedì 15 maggio. La proponente, in sede precedente, proponeva al gruppo le seguenti tecnologie \textit{backend}:
+\begin{itemize}
+    \item Java;
+    \item Python.
+\end{itemize}
+Il gruppo ha scelto di utilizzare Python per la sua ottima integrazione con le librerie di Large Language Models (LLM), preferendolo a Java per la maggiore concisione e velocità di sviluppo. Per il \textit{frontend} la proponente lasciava carta bianca, E. De Piccoli propone le seguenti tecnologie:
+\begin{itemize}
+    \item React;
+    \item Svelte.
+\end{itemize}
+Il gruppo ha optato per l'adozione di React in virtù del suo ecosistema maturo e della vasta disponibilità di librerie di terze parti come quelle di gestione del testo \textit{markdown}, preferendolo a Svelte per garantire una maggiore manutenibilità a lungo termine e una più agevole reperibilità di risorse specializzate sul mercato.
+
+\subsection{Resoconto dello Sprint 3}
+Il team ha analizzato l'andamento del terzo Sprint, confrontando le attività pianificate con quelle effettivamente svolte. Si è proceduto alla verifica delle ore di lavoro rendicontate da ciascun componente necessarie per il monitoraggio dei costi e dell'avanzamento nel Piano di Progetto.
+
+\subsection{Pianificazione compiti futuri}
+Si decide di proseguire con lo studio delle tecnologie scelte, valutandone pro e contro in maniera esaustiva e valutandone la curva di apprendimento, necessaria per una corretta stima dello studio dei linguaggi.
+Inoltre, si stabilisce di avviare la progettazione del PoC, iniziando a definire l'architettura generale dell'applicativo e a identificare i componenti principali da sviluppare.
+
+\subsection{Assegnazione attività singole}
+\begin{center}
+    \renewcommand{\arraystretch}{1.4}
+        \begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
+        \hline
+        \textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
+        \hline
+        S. Zecchinato & Slide secondo Diario di Bordo & \issue{130} \\
+        \hline
+        S. Zecchinato & Stesura verbale interno 2026-05-12 & \issue{131} \\
+        \hline
+        Tutti i componenti & Studio delle tecnologie scelte & \issue{144} \\
+        \hline
+        E. De Piccoli - L. Battistella & Inizio progettazione PoC & \issue{145} \\
+        \hline
+        D. Facco & Aggiornamento \texttt{readme} della repository & \issue{134} \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\appendix
+
+\end{document}
