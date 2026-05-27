@@ -14,7 +14,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{The Bitless}
-\fancyhead[R]{Verbale \tipoverbale \ \dataverbale}
+\fancyhead[R]{Verbale \titolo \ \dataverbale}
 \fancyfoot[C]{\thepage}
 
 \usepackage{hyperref}
@@ -31,42 +31,24 @@
 
 \begin{document}
 
-\newcommand{\tipoverbale}{interno}
+\newcommand{\titolo}{interno}
 \newcommand{\dataverbale}{2026-04-14}
 \newcommand{\dataversione}{2026-04-19}
 \newcommand{\versione}{1.0.0}
 \newcommand{\stato}{Stesura}
 \newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
-\def\templatedir{../../../templates}
+\def\templatedir{../../../../templates}
 
 \begin{titlepage}
 \pagenumbering{gobble}
-\input{../../../templates/frontespizio.tex}
+\input{../../../../templates/frontespizio.tex}
 \end{titlepage}
-
-\newpage
-\pagenumbering{arabic}
-
-\begin{center}
-    \begin{tabular}{|c|c|c|c|c|c|}
-        \hline
-        \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
-        \hline
-        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione breve} \\
-        \hline
-        1.0.0 & 2026-04-19 & L. Battistella & E. De Piccoli & L. Battistella & Approvazione \\
-        \hline
-        0.1.0 & 2026-04-16 & L. Battistella & E. De Piccoli & - & Prima stesura \\
-        \hline
-    \end{tabular}
-\end{center}
-
 \newpage
 \tableofcontents 
 
 \newpage
 \section{Informazioni sulla riunione}
-Il presente documento riporta la verbalizzazione della riunione interna al gruppo \textbf{The Bitless} avvenuta il \dataverbale{}. L'incontro si è svolto in modalità telematica tramite la piattaforma Discord$_G$. La riunione si è aperta alle ore 17:00 e si è conclusa alle ore 18:00.
+Il presente documento riporta la verbalizzazione della riunione interna al gruppo \textbf{The Bitless} avvenuta il \dataverbale{}. L'incontro si è svolto in modalità telematica tramite la piattaforma Discord$_G$. La riunione si è aperta alle ore 17:00 e si è conclusa alle ore 18:30.
 
 \section{Presenze}
 \begin{center}
@@ -87,10 +69,10 @@ Simone & Zecchinato & Presente \\
 
 \section{Ordine del giorno}
 \begin{enumerate}
-    \item Rotazione dei ruoli
-    \item Definizione ruoli e responsabilità 
-    \item Raffinamento dei Casi d'uso
-    \item Definizione delle prossime attività
+    \item Rotazione dei ruoli;
+    \item Definizione ruoli e responsabilità, con particolare attenzione alla definizione dei compiti del Responsabile;
+    \item Raffinamento dei Casi d'uso;
+    \item Assegnazione attività singole.
 \end{enumerate}
 
 \section{Discussione e decisioni}
@@ -106,13 +88,13 @@ Il gruppo decide di riassegnare i ruoli in maniera casuale ai componenti mantene
         \hline
         Edoardo & De Piccoli & Verificatore \\
         \hline
-        Andrea & Menegaldo & Amministratore \\
+        Andrea & Menegaldo & Analista \\
         \hline
-        Davide & Facco & Analista \\ 
+        Davide & Facco & Verificatore \\ 
         \hline
         Simone & Zecchinato & Analista \\
         \hline
-        Anna & Marini & Analista \\
+        Anna & Marini & Amministratore \\
         \hline
         Samuele & Vendramin & Analista \\       
         \hline  
@@ -120,30 +102,31 @@ Il gruppo decide di riassegnare i ruoli in maniera casuale ai componenti mantene
 \end{center}
 
 \subsection{Definizione ruoli e responsabilità}
-
 Durante l'incontro, il gruppo ha ribadito le responsabilità associate ai diversi ruoli operativi. Il gruppo ha consolidato la definizione dei compiti del Responsabile, il quale garantisce la coerenza del progetto attraverso il coordinamento delle attività. Tra i suoi compiti principali sono stati riaffermati la redazione dei verbali (interni ed esterni), l'approvazione formale della documentazione e l'assegnazione dei task ai membri del team, assicurando così il rispetto delle scadenze e degli obiettivi prefissati.
-
-
 \subsection{Raffinamento dei Casi d'Uso}
+La discussione si è successivamente focalizzata sulla struttura dei casi d'uso delineata dagli analisti nello sprint precedente. Il gruppo ha analizzato la bozza della gerarchia per verificarne l'aderenza ai requisiti di progetto e per assicurarne la coerenza complessiva.\\
+\\
+Un punto di confronto ha riguardato la modellazione delle gestioni d'errore relative alle funzionalità basate su Intelligenza Artificiale (quali ad esempio l'analisi critica del testo, la traduzione, il riassunto). Inizialmente, il gruppo ha valutato l'opportunità di inserire un caso d'uso di estensione specifico per ogni singola tipologia di errore. Successivamente si è constatato che tali errori sono tutti riconducibili a malfunzionamenti della chiamata API o a problemi di connessione con l'LLM. Per evitare ridondanze, si è deciso di astrarre la gestione in un unico caso d'uso di errore, da richiamare tramite relazione di \textit{extend} dai casi d'uso principali interessati. \\
+\\
+Infine, il gruppo ha riesaminato il capitolato d'appalto per identificare chiaramente le funzionalità opzionali. Questo controllo ha permesso di verificare l'effettiva presenza e la corretta mappatura dei requisiti obbligatori all'interno del modello.
 
-Durante la riunione abbiamo analizzato nuovamente la bozza della gerarchia dei casi d'uso, revisionandola per assicurarci che rispetti tutti i requisiti di progetto. Il confronto si è focalizzato sul perfezionamento delle descrizioni degli scenari più specifici, con l'obiettivo di eliminare ogni ambiguità e fornire una guida chiara per la fase di implementazione.
-
-
-\subsection{Definizione delle prossime attività}
-Si decide di inziare la stesura dei casi d'uso$_G$ da parte degli analisti, mentre il responsabile si occuperà di scrivere il verbale interno.
-
-\section{Assegnazione attività singole}
+\subsection{Assegnazione attività singole}
 \begin{center}
     \renewcommand{\arraystretch}{1.4}
         \begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
         \hline
         \textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
         \hline
-        L. Battistella & Stesura verbale interno & \issue{87} \\
+        L. Battistella & Stesura verbale interno 2026-04-14 & \issue{87} \\
+        \hline
+        A. Menegaldo - S. Vendramin & Stesura Casi d'Uso relativi all'Editing di base & \issue{74} \\
+        \hline
+        S. Vendramin - S. Zecchinato & Stesura Casi d'Uso relativi alle Funzionalità AI & \issue{75} \\
+        \hline
+        S. Zecchinato - A. Menegaldo & Stesura Casi d'Uso relativi al Salvataggio e Persistenza & \issue{72} \\
         \hline
     \end{tabular}
 \end{center}
-
 
 \appendix
 
