@@ -12,12 +12,12 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 2
 
       - name: Installa Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
@@ -37,14 +37,52 @@ jobs:
 
       - name: Compila i PDF
         run: |
-          git diff --name-only HEAD~1 HEAD | grep '\.tex$' | grep -v 'script-glossario' | while read f; do
-            pdflatex -shell-escape -interaction=nonstopmode -output-directory="$(dirname "$f")" "$f"
-          done
+          git diff --name-only HEAD~1 HEAD \
+            | grep '\.tex$' \
+            | grep -v 'script-glossario' \
+            | while read f; do
+              if ! grep -q '\\documentclass' "$f"; then
+                echo "Skip $f (partial, no \\documentclass)"
+                continue
+              fi
+              dir="$(dirname "$f")"
+              base="$(basename "$f")"
+              pdflatex -shell-escape -interaction=nonstopmode \
+                -output-directory="$dir" \
+                "\\PassOptionsToPackage{expansion=false}{microtype}\\pdfminorversion=7 \\input{$base}" \
+                < /dev/null
+              pdflatex -shell-escape -interaction=nonstopmode \
+                -output-directory="$dir" \
+                "\\PassOptionsToPackage{expansion=false}{microtype}\\pdfminorversion=7 \\input{$base}" \
+                < /dev/null
+            done
 
-      - name: Committa le modifiche
+      - name: Apri PR con le modifiche
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          if git diff --quiet && [ -z "$(git status --porcelain)" ]; then
+            echo "Nessuna modifica da committare, esco"
+            exit 0
+          fi
+          
+          BRANCH="bot/glossario-${{ github.run_id }}"
+          git checkout -b "$BRANCH"
           git add -A
-          git diff --cached --quiet || git commit -m "glossario: aggiunti pedici e PDF aggiornati"
-          git push
+          git commit -m "glossario: aggiunti pedici e PDF aggiornati"
+          git push origin "$BRANCH"
+          
+          gh pr create \
+            --base "${{ github.ref_name }}" \
+            --head "$BRANCH" \
+            --title "glossario: aggiunti pedici e PDF aggiornati" \
+            --body "PR automatica generata dal workflow Glossario per il commit ${{ github.sha }}.
+
+          Contiene:
+          - pedici \$_G\$ inseriti automaticamente dallo script
+          - PDF ricompilati a partire dai .tex modificati
+          
+          Generata da run [#${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})."
