@@ -14,7 +14,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{The Bitless}
-\fancyhead[R]{Verbale \tipoverbale \ \dataverbale}
+\fancyhead[R]{Verbale \titolo \ \dataverbale}
 \fancyfoot[C]{\thepage}
 
 \usepackage{hyperref}
@@ -31,9 +31,9 @@
 
 \begin{document}
 
-\newcommand{\tipoverbale}{interno}
+\newcommand{\titolo}{interno}
 \newcommand{\dataverbale}{2026-03-31}
-\newcommand{\dataversione}{2026-04-02}
+\newcommand{\dataversione}{2026-04-03}
 \newcommand{\versione}{1.0.0}
 \newcommand{\stato}{Approvato}
 \newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
@@ -42,23 +42,6 @@
 \pagenumbering{gobble}
 \input{../../../../templates/frontespizio.tex}
 \end{titlepage}
-
-\newpage
-\pagenumbering{arabic}
-
-\begin{center}
-    \begin{tabular}{|c|c|c|c|c|c|}
-        \hline
-        \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
-        \hline
-        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione breve} \\
-        \hline
-        1.0.0 & 2026-04-02 & S. Vendramin &  L. Battistella &  L. Battistella & Approvazione \\
-        0.8.0 & 2026-04-02 & S. Zecchinato & S. Vendramin & - & Scrittura sezioni \\
-        0.1.0 & 2026-03-31 & S. Zecchinato & A. Menegaldo & - & Prima stesura \\
-        \hline
-    \end{tabular}
-\end{center}
 
 \newpage
 \tableofcontents 
@@ -120,32 +103,35 @@ Il gruppo decide di assegnare in maniera casuale ai componenti i ruoli di respon
         \hline  
     \end{tabular}
 \end{center}
-Si decide poi di ruotare i ruoli ogni due settimane.
 
 \subsection{Definizione delle prossime attività}
-Si discute sulle prossime attività da intraprendere:
-\begin{enumerate}
-    \item Inizio stesura del glossario
-    \item Inizio stesura delle norme di progetto
-    \item Sistemazione del sito web
-\end{enumerate}
-Innanzitutto si decide di iniziare la stesura dei due documenti denominati \textit{Glossario}, che raccoglie tutti i vocaboli di progetto che risultano di difficile comprensione, e \textit{Norme di Progetto} che raccoglie le varie normative da seguire nel corso del progetto.
-Vengono assegnate le attività di stesura e, per accogliere questi due nuovi documenti, vene decisa la modifica del sito.
+
+Durante la riunione, il gruppo ha definito le prossime priorità operative per impostare correttamente il lavoro fin dalle fasi iniziali. \\
+Come prima cosa, si è deciso di iniziare subito la stesura del \textit{Glossario} e delle \textit{Norme di Progetto}. Fissare da subito delle regole interne condivise (come le convenzioni per scrivere il codice, l'uso di Git e gli standard per i documenti) è infatti essenziale per lavorare in modo omogeneo ed evitare errori in futuro. Allo stesso tempo, il \textit{Glossario} ci aiuterà a chiarire immediatamente i termini tecnici e di dominio del progetto, prevenendo incomprensioni con il cliente nei prossimi incontri.\\
+Successivamente, si è concordato di iniziare l'Analisi dei Requisiti partendo dalla stesura della struttura del documento, dell'introduzione e della descrizione generale del prodotto. In un secondo momento, il team avvierà delle sessioni di brainstorming per individuare i primi casi d'uso. Per mantenere il lavoro ordinato, si è scelto di definire sin da subito una gerarchia di base; a questo proposito, gli analisti studieranno la soluzione migliore per gestire tale gerarchia, applicando le relazioni di \textit{include}, \textit{extend} o generalizzazione dove ritenuto più opportuno.\\
+Infine, in vista della produzione dei primi documenti ufficiali, si è deciso di aggiornare e sistemare il sito web del gruppo. L'obiettivo è predisporre in anticipo uno spazio adeguato dove caricare i file non appena saranno approvati internamente, in modo da renderli facilmente accessibili e garantire totale trasparenza verso i committenti.
 
 \subsection{Assegnazione attività singole}
+
 \begin{center}
     \renewcommand{\arraystretch}{1.4}
         \begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
         \hline
         \textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
         \hline
-        S. Zecchinato & Stesura verbale interno & \issue{58} \\
+        S. Vendramin & Stesura verbale interno 2026-03-31 & \issue{58} \\
         \hline
-        Facco - Battistella & Stesura \textit{Glossario} & \issue{59} \\
+        D. Facco - L. Battistella & Stesura \textit{Glossario} & \issue{59} \\
         \hline
-        Marini - Zecchinato & Stesura \textit{Norme di Progetto} & \issue{60} \\
+        A. Marini - S. Zecchinato & Stesura \textit{Norme di Progetto} & \issue{60} \\
         \hline
         E. De Piccoli & Modiche sito web & \issue{61} \\
+        \hline
+        A. Marini & Struttura Analisi dei Requisiti & \issue{65} \\
+        \hline
+        A. Marini & Stesura Introduzione Analisi dei Requisiti & \issue{71} \\
+        \hline
+        D. Facco & Stesura Descrizione del prodotto Analisi dei Requisiti & \issue{70} \\
         \hline
     \end{tabular}
 \end{center}
