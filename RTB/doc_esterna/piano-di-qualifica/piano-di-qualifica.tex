@@ -503,26 +503,26 @@ La specifica dei Test Unitari$_G$ viene raffinata con l'avanzamento della proget
 \newcolumntype{D}{>{\hsize=1.45\hsize}X} % Descrizione Interfaccia
 \newcolumntype{M}{>{\hsize=0.55\hsize}X} % Moduli Coinvolti
 
-I test di integrazione del PoC verificano che i moduli dell'architettura dialoghino correttamente ai loro confini, validando interfacce, formato dei dati scambiati e propagazione degli errori lungo l'intera catena.
+I test$_G$ di integrazione$_G$ del PoC$_G$ verificano che i moduli dell'architettura dialoghino correttamente ai loro confini, validando interfacce, formato dei dati scambiati e propagazione degli errori lungo l'intera catena.
 \begin{table}[H]
 	\centering
 	\begin{tabularx}{\textwidth}{|l|D|M|}
 		\hline
 		\textbf{Codice} & \textbf{Descrizione Interfaccia} & \textbf{Moduli Coinvolti} \\
 		\hline
-		\textbf{TI-001} & Verifica dello scambio dati e della gestione degli errori tra hook e FastAPI; invio della richiesta via fetch POST, ricezione dello stream SSE e gestione dell'indisponibilità del provider (HTTP 503). & Frontend React (hook useLlmStream) $\leftrightarrow$ Backend FastAPI \\
+		\textbf{TI-001} & Verifica$_G$ dello scambio dati e della gestione degli errori tra hook e FastAPI; invio della richiesta via fetch POST, ricezione dello stream SSE e gestione dell'indisponibilità del provider (HTTP 503). & Frontend$_G$ React (hook useLlmStream) $\leftrightarrow$ Backend FastAPI \\
 		\hline
-		\textbf{TI-002} & Verifica dell'invio del prompt di sistema e del contesto utente verso il modello LLM e della ricezione dello stream di risposta openai-compatible dall'API del provider, tramite client HTTP asincrono (httpx). & LLMClient / LiteLLMClient $\leftrightarrow$ Provider LiteLLM Zucchetti \\
+		\textbf{TI-002} & Verifica$_G$ dell'invio del prompt di sistema$_G$ e del contesto utente verso il modello LLM$_G$ e della ricezione dello stream di risposta openai-compatible dall'API$_G$ del provider, tramite client HTTP asincrono (httpx). & LLMClient / LiteLLMClient $\leftrightarrow$ Provider LiteLLM Zucchetti \\
 		\hline
-		\textbf{TI-003} & Verifica della propagazione dell'annullamento lungo l'intera catena; dall'AbortController lato client a Request.is\_disconnected() lato server, fino alla chiusura dello stream del provider. & AbortController (client) $\leftrightarrow$ Request.is\_disconnected() (server) \\
+		\textbf{TI-003} & Verifica$_G$ della propagazione dell'annullamento lungo l'intera catena; dall'AbortController lato client a Request.is\_disconnected() lato server, fino alla chiusura dello stream del provider. & AbortController (client) $\leftrightarrow$ Request.is\_disconnected() (server) \\
 		\hline
-		\textbf{TI-004} & Verifica del parsing dei chunk SSE e dell'aggiornamento progressivo dello stato globale dell'applicazione (appendChunk / streamedOutput). & useLlmStream (parsing via lib/sse.ts) $\leftrightarrow$ Store Zustand \\
+		\textbf{TI-004} & Verifica$_G$ del parsing dei chunk SSE e dell'aggiornamento progressivo dello stato globale dell'applicazione (appendChunk / streamedOutput). & useLlmStream (parsing via lib/sse.ts) $\leftrightarrow$ Store Zustand \\
 		\hline
-		\textbf{TI-005} & Verifica del binding del testo e del re-render granulare dell'anteprima durante lo streaming, mediato dalla store globale: l'editor mantiene il focus mentre solo la preview si aggiorna. & Store Zustand (selettori granulari) $\leftrightarrow$ Editor / Preview \\
+		\textbf{TI-005} & Verifica$_G$ del binding del testo e del re-render granulare dell'anteprima durante lo streaming, mediato dalla store globale: l'editor mantiene il focus mentre solo la preview si aggiorna. & Store Zustand (selettori granulari) $\leftrightarrow$ Editor / Preview \\
 		\hline
-		\textbf{TI-006} & Verifica dell'applicazione a runtime della politica CORS tra i due servizi containerizzati; le richieste provenienti da un'origine non presente nella whitelist vengono bloccate, quelle da origine consentita vengono accettate. & Origine cross-origin del browser $\leftrightarrow$ CORSMiddleware (FastAPI) \\
+		\textbf{TI-006} & Verifica$_G$ dell'applicazione a runtime della politica CORS tra i due servizi containerizzati; le richieste provenienti da un'origine non presente nella whitelist vengono bloccate, quelle da origine consentita vengono accettate. & Origine cross-origin del browser $\leftrightarrow$ CORSMiddleware (FastAPI) \\
 		\hline
-		\textbf{TI-007} & Verifica dell'integrazione del pannello dei comandi con la logica di streaming e lo stato globale, il click su ``Genera'' disabilita il bottone tramite isGenerating, un errore del provider compare nell'Alert tramite errorMessage e il testo presente nell'editor resta intatto. & AIPanel $\leftrightarrow$ useLlmStream $\leftrightarrow$ Store Zustand \\
+		\textbf{TI-007} & Verifica$_G$ dell'integrazione$_G$ del pannello dei comandi con la logica di streaming e lo stato globale, il click su ``Genera'' disabilita il bottone tramite isGenerating, un errore del provider compare nell'Alert tramite errorMessage e il testo presente nell'editor resta intatto. & AIPanel $\leftrightarrow$ useLlmStream $\leftrightarrow$ Store Zustand \\
 		\hline
 	\end{tabularx}
 	\caption{Test di integrazione}
