@@ -42,9 +42,9 @@
 
 \newcommand{\titolo}{Piano di Qualifica$_G$}
 \newcommand{\dataverbale}{}
-\newcommand{\dataversione}{2026-05-14}
-\newcommand{\versione}{0.1.0}
-\newcommand{\stato}{Approvato}
+\newcommand{\dataversione}{2026-06-04}
+\newcommand{\versione}{0.1.1}
+\newcommand{\stato}{Stesura}
 \newcommand{\destinatari}{The Bitless, prof. T. Vardanega, prof. R. Cardin, Zucchetti}
 \def\templatedir{../../../templates}
 
@@ -69,7 +69,8 @@
     \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
     \hline
     \endhead
-
+    0.1.1 & 2026-06-04 & L. Battistella & - & - & Aggiornamento test di sistema. \\ 
+    \hline
     0.1.0 & 2026-05-14 & A. Marini & - & A. Marini & Creazione prima versione del documento Piano di Qualifica$_G$. Inserimento struttura iniziale, riferimenti, metriche di qualità e strategia di testing. \\ \hline
 
 \end{longtable}
@@ -576,32 +577,162 @@ Ogni test$_G$ viene identificato secondo la seguente convenzione:
 \begingroup
 \small
 \renewcommand{\arraystretch}{1.25}
-\begin{longtable}{|c|p{7cm}|c|c|}
+\begin{longtable}{|p{1.8cm}|p{9cm}|p{2.5cm}|p{1.5cm}|}
+    \hline
+    \textbf{ID} & \textbf{Descrizione} & \textbf{Requisito} & \textbf{Stato} \\
+    \hline
+    \endfirsthead
+
     \hline
     \textbf{ID} & \textbf{Descrizione} & \textbf{Requisito} & \textbf{Stato} \\
     \hline
     \endhead
 
-    TS-001 & Verificare che l'utente possa inserire testo Markdown nell'area di editing. & RF-OBB-001 & NI \\ \hline
-    TS-002 & Verificare che il testo Markdown venga renderizzato correttamente nell'area di anteprima. & RF-OBB-002 & NI \\ \hline
-    TS-003 & Verificare che l'utente possa selezionare una porzione di testo e applicare un comando LLM$_G$. & RF-OBB-003 & NI \\ \hline
-    TS-004 & Verificare che il sistema$_G$ produca un riassunto del testo completo o selezionato. & RF-OBB-004 & NI \\ \hline
-    TS-005 & Verificare che il sistema$_G$ produca una riscrittura del testo secondo le opzioni disponibili. & RF-OBB-005 & NI \\ \hline
-    TS-006 & Verificare che il sistema$_G$ traduca il testo nella lingua scelta dall'utente. & RF-OBB-006 & NI \\ \hline
-    TS-007 & Verificare che il sistema$_G$ applichi la critica del cappello bianco al testo. & RF-OBB-007 & NI \\ \hline
-    TS-008 & Verificare che il sistema$_G$ applichi la critica del cappello rosso al testo. & RF-OBB-008 & NI \\ \hline
-    TS-009 & Verificare che il sistema$_G$ applichi la critica del cappello giallo al testo. & RF-OBB-009 & NI \\ \hline
-    TS-010 & Verificare che il sistema$_G$ applichi la critica del cappello nero al testo. & RF-OBB-010 & NI \\ \hline
-    TS-011 & Verificare che il sistema$_G$ applichi la critica del cappello verde al testo. & RF-OBB-011 & NI \\ \hline
-    TS-012 & Verificare che il sistema$_G$ applichi la critica del cappello blu al testo. & RF-OBB-012 & NI \\ \hline
-    TS-013 & Verificare che l'utente possa inserire un prompt per generare un testo completo. & RF-OBB-013 & NI \\ \hline
-    TS-014 & Verificare che il testo generato tramite prompt venga inserito nell'area di editing. & RF-OBB-014 & NI \\ \hline
-    TS-015 & Verificare che l'utente possa salvare una nota in formato testuale. & RF-OBB-015 & NI \\ \hline
-    TS-016 & Verificare che l'utente possa caricare una nota precedentemente salvata. & RF-OBB-016 & NI \\ \hline
+    TS-001 & Verificare che l'Utente possa inserire testo libero nell'area di editing in formato Markdown$_G$. & R-1-F-Ob & NI \\
+    \hline
+    TS-002 & Verificare che l'Utente possa selezionare una porzione di testo presente nell'editor. & R-2-F-Ob & NI \\
+    \hline
+    TS-003 & Verificare che l'Utente possa tagliare una porzione di testo selezionata, rimuovendola dall'editor e memorizzandola negli appunti di sistema. & R-3-F-Ob & NI \\
+    \hline
+    TS-004 & Verificare che l'Utente possa copiare una porzione di testo selezionata negli appunti di sistema senza modificare il contenuto dell'editor. & R-4-F-Ob & NI \\
+    \hline
+    TS-005 & Verificare che l'Utente possa incollare nell'editor un contenuto testuale precedentemente copiato o tagliato. & R-5-F-Ob & NI \\
+    \hline
+    TS-006 & Verificare che l'Utente possa annullare l'ultima modifica effettuata nell'editor. & R-6-F-Ob & NI \\
+    \hline
+    TS-007 & Verificare che l'Utente possa ripristinare un'operazione precedentemente annullata, se non sono state effettuate nuove modifiche successive. & R-7-F-Ob & NI \\
+    \hline
+    TS-008 & Verificare che l'Utente possa applicare e rimuovere la formattazione in grassetto al testo tramite marcatori Markdown$_G$. & R-8-F-Ob & NI \\
+    \hline
+    TS-009 & Verificare che l'Utente possa applicare e rimuovere la formattazione in corsivo al testo tramite marcatori Markdown$_G$. & R-9-F-Ob & NI \\
+    \hline
+    TS-010 & Verificare che l'Utente possa applicare e rimuovere la formattazione sottolineata al testo. & R-10-F-Ob & NI \\
+    \hline
+    TS-011 & Verificare che l'Utente possa applicare e rimuovere la formattazione barrata al testo tramite marcatori Markdown$_G$. & R-11-F-Ob & NI \\
+    \hline
+    TS-012 & Verificare che l'Utente possa inserire e rimuovere titoli e sottotitoli mediante sintassi Markdown$_G$. & R-12-F-Ob & NI \\
+    \hline
+    TS-013 & Verificare che l'Utente possa inserire ed eliminare elenchi puntati o numerati. & R-13-F-Ob & NI \\
+    \hline
+    TS-014 & Verificare che l'Utente possa inserire e rimuovere blocchi di citazione. & R-14-F-Ob & NI \\
+    \hline
+    TS-015 & Verificare che l'Utente possa inserire ed eliminare blocchi di codice sorgente nel documento. & R-15-F-Ob & NI \\
+    \hline
+    TS-016 & Verificare che l'Utente possa inserire ed eliminare formule scientifiche o matematiche. & R-16-F-Ob & NI \\
+    \hline
+    TS-017 & Verificare che l'Utente possa inserire ed eliminare collegamenti ipertestuali. & R-17-F-Ob & NI \\
+    \hline
+    TS-018 & Verificare che l'Utente possa inserire, modificare ed eliminare tabelle Markdown$_G$. & R-19-F-Ob & NI \\
+    \hline
+    TS-019 & Verificare che l'Utente possa inserire, sostituire ed eliminare immagini all'interno del documento. & R-20-F-Ob & NI \\
+    \hline
+    TS-020 & Verificare che l'Utente possa alternare la visualizzazione tra solo editor, solo anteprima e visualizzazione combinata. & R-25-F-Ob & NI \\
+    \hline
+    TS-021 & Verificare che l'Utente possa ottenere un riassunto del testo selezionato tramite LLM$_G$. & R-27-F-Ob & NI \\
+    \hline
+    TS-022 & Verificare che l'Utente possa tradurre il testo selezionato in una lingua supportata tramite LLM$_G$. & R-29-F-Ob & NI \\
+    \hline
+    TS-023 & Verificare che l'Utente possa modificare lo stile linguistico del testo selezionato tramite LLM$_G$. & R-30-F-Ob & NI \\
+    \hline
+    TS-024 & Verificare che l'Utente possa correggere grammaticalmente il testo selezionato tramite LLM$_G$. & R-31-F-Ob & NI \\
+    \hline
+    TS-025 & Verificare che l'Utente riceva una comunicazione nel caso in cui l'LLM$_G$ non rilevi errori nel testo analizzato. & R-32-F-Ob & NI \\
+    \hline
+    TS-026 & Verificare che l'Utente possa analizzare criticamente il testo secondo la metodologia dei Sei Cappelli per Pensare. & R-33-F-Ob & NI \\
+    \hline
+    TS-027 & Verificare che l'Utente possa selezionare una specifica prospettiva di analisi tra Cappello Bianco, Rosso, Giallo, Nero, Verde e Blu. & R-34-F-Ob & NI \\
+    \hline
+    TS-028 & Verificare che l'Utente possa generare automaticamente un testo a partire da un prompt$_G$. & R-35-F-Ob & NI \\
+    \hline
+    TS-029 & Verificare che l'Utente possa salvare, scartare o rigenerare l'output prodotto dall'LLM$_G$. & R-40-F-Ob & NI \\
+    \hline
+    TS-030 & Verificare che il Sistema gestisca gli errori di comunicazione o risposta del servizio LLM$_G$, preservando il contenuto originale dell'editor. & R-42-F-Ob & NI \\
+    \hline
+    TS-031 & Verificare che il Sistema impedisca l'invio di richieste AI quando il testo fornito è insufficiente per un'elaborazione significativa. & R-43-F-Ob & NI \\
+    \hline
+    TS-032 & Verificare che l'Utente possa creare una nuova nota vuota nell'editor. & R-44-F-Ob & NI \\
+    \hline
+    TS-033 & Verificare che il Sistema gestisca eventuali errori durante la creazione di una nuova nota, informando l'Utente e preservando lo stato precedente. & R-46-F-Ob & NI \\
+    \hline
+    TS-034 & Verificare che l'Utente possa caricare una nota da file locale in formato .md o .txt. & R-47-F-Ob & NI \\
+    \hline
+    TS-035 & Verificare che il Sistema gestisca eventuali errori durante il caricamento di una nota, preservando la sessione di lavoro precedente. & R-49-F-Ob & NI \\
+    \hline
+    TS-036 & Verificare che l'Utente possa salvare una nota sul File System locale. & R-50-F-Ob & NI \\
+    \hline
+    TS-037 & Verificare che il Sistema gestisca eventuali errori durante il salvataggio di una nota, preservando l'integrità dei dati presenti nell'editor. & R-52-F-Ob & NI \\
+    \hline
+    TS-038 & Verificare che l'Utente possa eliminare una nota dal File System locale. & R-53-F-Ob & NI \\
+    \hline
+    TS-039 & Verificare che il Sistema gestisca eventuali errori durante l'eliminazione di una nota, evitando la perdita inconsistente dei dati. & R-55-F-Ob & NI \\
+    \hline
+    TS-040 & Verificare che l'Utente possa rinominare una nota locale. & R-56-F-Ob & NI \\
+    \hline
+    TS-041 & Verificare che il Sistema gestisca eventuali errori durante la rinominazione di una nota, mantenendo il titolo precedente. & R-58-F-Ob & NI \\
+    \hline
 
-    \caption{Test di sistema principali per i requisiti obbligatori.}
-    \label{tab:test-sistema-principali}
+    TS-042 & Verificare che l'Utente possa inserire e rimuovere ancore di navigazione interne al documento. & R-18-F-De & NI \\
+    \hline
+    TS-043 & Verificare che l'Utente possa attivare e disattivare l'autocompletamento dei simboli durante la digitazione. & R-21-F-De & NI \\
+    \hline
+    TS-044 & Verificare che l'Utente possa attivare e disattivare la sincronizzazione dello scorrimento tra editor e anteprima. & R-22-F-De & NI \\
+    \hline
+    TS-045 & Verificare che l'Utente possa alternare l'interfaccia tra tema chiaro e tema scuro. & R-23-F-De & NI \\
+    \hline
+    TS-046 & Verificare che l'Utente possa aprire e chiudere la barra laterale dell'interfaccia. & R-24-F-De & NI \\
+    \hline
+    TS-047 & Verificare che l'Utente possa inserire testo tramite dettatura vocale, se il browser supporta le Web Speech API. & R-26-F-De & NI \\
+    \hline
+    TS-048 & Verificare che l'Utente possa scegliere la percentuale di concisione del riassunto. & R-28-F-De & NI \\
+    \hline
+    TS-049 & Verificare che l'Utente possa definire la lunghezza desiderata del testo generato. & R-36-F-De & NI \\
+    \hline
+    TS-050 & Verificare che il Sistema mostri all'Utente un riepilogo del contesto prima dell'invio della richiesta all'LLM$_G$. & R-37-F-De & NI \\
+    \hline
+    TS-051 & Verificare che l'Utente possa fornire un URL come fonte di contesto per la generazione automatica di testo. & R-38-F-De & NI \\
+    \hline
+    TS-052 & Verificare che l'Utente possa annullare una richiesta di elaborazione in corso. & R-41-F-De & NI \\
+    \hline
+    TS-053 & Verificare che l'Utente possa visualizzare le informazioni e i metadati di una nota selezionata. & R-59-F-De & NI \\
+    \hline
+
+    TS-054 & Verificare che l'Utente autenticato possa selezionare manualmente note salvate nel database$_G$ da usare come contesto per la generazione automatica. & R-39-F-Op & NI \\
+    \hline
+    TS-055 & Verificare che l'Utente autenticato possa creare una nuova nota nel database$_G$. & R-45-F-Op & NI \\
+    \hline
+    TS-056 & Verificare che l'Utente autenticato possa caricare una nota dal database$_G$. & R-48-F-Op & NI \\
+    \hline
+    TS-057 & Verificare che l'Utente autenticato possa salvare una nota nel database$_G$. & R-51-F-Op & NI \\
+    \hline
+    TS-058 & Verificare che l'Utente autenticato possa eliminare una nota dal database$_G$. & R-54-F-Op & NI \\
+    \hline
+    TS-059 & Verificare che l'Utente autenticato possa rinominare una nota salvata nel database$_G$. & R-57-F-Op & NI \\
+    \hline
+    TS-060 & Verificare che l'Utente autenticato possa cercare note nel database$_G$ per titolo. & R-60-F-Op & NI \\
+    \hline
+    TS-061 & Verificare che l'Utente autenticato possa effettuare una ricerca full-text nel contenuto delle note salvate nel database$_G$. & R-61-F-Op & NI \\
+    \hline
+    TS-062 & Verificare che l'Utente autenticato possa filtrare le note del database$_G$ per data di creazione. & R-62-F-Op & NI \\
+    \hline
+    TS-063 & Verificare che l'Utente autenticato possa filtrare le note del database$_G$ per data di ultima modifica. & R-63-F-Op & NI \\
+    \hline
+    TS-064 & Verificare che l'Utente non autenticato possa effettuare l'autenticazione tramite username e password. & R-64-F-Op & NI \\
+    \hline
+    TS-065 & Verificare che il Sistema gestisca eventuali errori di autenticazione, mantenendo l'Utente disconnesso e mostrando un messaggio di errore. & R-65-F-Op & NI \\
+    \hline
+    TS-066 & Verificare che l'Utente non autenticato possa registrare un nuovo account. & R-66-F-Op & NI \\
+    \hline
+    TS-067 & Verificare che il Sistema impedisca la registrazione con uno username già presente nel database$_G$. & R-67-F-Op & NI \\
+    \hline
+    TS-068 & Verificare che il Sistema impedisca la registrazione se la password e la conferma password non coincidono. & R-68-F-Op & NI \\
+    \hline
+    TS-069 & Verificare che l'Utente autenticato possa eliminare il proprio account e i dati cloud associati. & R-69-F-Op & NI \\
+    \hline
+    TS-070 & Verificare che l'Utente autenticato possa effettuare il logout. & R-70-F-Op & NI \\
+    \hline
+
 \end{longtable}
+
 \endgroup
 
 \subsection{Test di accettazione principali}
