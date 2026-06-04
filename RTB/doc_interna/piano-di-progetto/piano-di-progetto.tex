@@ -9,6 +9,7 @@
 \usepackage{multirow}
 \usepackage{tikz}
 \usepackage{geometry}
+\renewcommand{\arraystretch}{1.2}
 \newcommand{\ucref}[1]{UC \ref{#1}}
 \usepackage[table]{xcolor}
 \usepackage[utf8]{inputenc}
@@ -704,6 +705,23 @@ Durante il quarto sprint\textsubscript{G}, il team prevede di concentrarsi princ
     \item proseguire con l'aggiornamento e la stesura della documentazione di supporto.
 \end{itemize}
 
+\subsection{Sprint \#5: da 2026-05-26 a 2026-06-08}
+
+\subsubsection{Obiettivi}
+Gli obiettivi dello Sprint \#5 sono stati definiti a partire dalle evidenze emerse nella retrospettiva precedente e in coerenza con l'avanzamento complessivo del progetto.
+
+\begin{itemize}
+    \item  Avanzamento del PoC, con implementazione del frontend e del backend. L'obiettivo è chiudere lo sviluppo del PoC entro la finestra dello sprint.
+
+    \item Proseguimento della stesura del \textit{Piano di Qualifica}, con particolare attenzione alla sezione dedicata alle metriche di prodotto, che saranno popolate a partire dai test effettivamente eseguiti sul PoC. La disponibilità di codice funzionante consentirà di passare da definizioni astratte a misurazioni concrete.
+
+    \item Aggiornamento del \textit{Piano di Progetto} per riflettere i consuntivi dello Sprint \#4 e la pianificazione rivista per gli sprint successivi.
+
+    \item Revisione e consolidamento delle\textit{Norme di Progetto}, con correzione di eventuali refusi, aggiornamento dei riferimenti incrociati e allineamento allo stato corrente del progetto.
+
+    \item Avanzamento del \textit{Glossario} con i nuovi termini emersi durante lo sviluppo e la progettazione.
+\end{itemize}
+
 \section{Preventivo}
 Il preventivo viene elaborato considerando il costo orario associato a ciascun ruolo, il budget complessivo previsto e le attività pianificate per il periodo di riferimento. Per ogni sprint\textsubscript{G} vengono quindi riportati:
 
@@ -982,13 +1000,13 @@ accumulate in totali per persona e per ruolo:
         \hline
         L. Battistella & - & 7 & - & - & - & - & 7 \\ \hline
         E. De Piccoli & - & - & 7 & - & - & - & 7 \\ \hline
-        D. Facco & - & - & - & 7 & - & - & 7 \\ \hline
+        D. Facco & - & - & - & 8 & - & - & 8 \\ \hline
         A. Marini & 4 & - & 3 & - & - & - & 7 \\ \hline
-        A. Menegaldo & - & - & - & 6 & - & - & 6 \\ \hline
+        A. Menegaldo & - & - & - & 8 & - & - & 8 \\ \hline
         S. Vendramin & - & - & - & - & - & 6 & 6 \\ \hline
         S. Zecchinato & - & - & - & - & - & 7 & 7 \\ \hline
         \rowcolor{bluBitless!8}
-        \textbf{Totale per ruolo} & \textbf{4} & \textbf{7} & \textbf{10} & \textbf{13} & \textbf{-} & \textbf{13} & \textbf{47} \\
+        \textbf{Totale per ruolo} & \textbf{4} & \textbf{7} & \textbf{10} & \textbf{16} & \textbf{-} & \textbf{13} & \textbf{50} \\
         \hline
     \end{tabular}
     \caption{\textit{Preventivo orario Sprint \#3}}
@@ -1013,35 +1031,35 @@ accumulate in totali per persona e per ruolo:
 % Titolo
 \node[font=\Large\bfseries] at (0,4.25) {Distribuzione ore per ruolo};
 
-% Totale = 47
-% Re = 4  -> 8,5%
-% Am = 7  -> 14,9%
-% An = 10 -> 21,3%
-% Pt = 13 -> 27,7%
-% Ve = 13 -> 27,7%
+% Totale = 50
+% Re = 4  -> 8,0%
+% Am = 7  -> 14,0%
+% An = 10 -> 20,0%
+% Pt = 16 -> 32,0%
+% Ve = 13 -> 26,0%
 
 % Settori
 \path[fill=colResp, draw=white, line width=1.5pt]
-(0,0) -- (90:\r) arc[start angle=90,end angle=59.36,radius=\r] -- cycle;
+(0,0) -- (90:\r) arc[start angle=90,end angle=61.2,radius=\r] -- cycle;
 
 \path[fill=colAmm, draw=white, line width=1.5pt]
-(0,0) -- (59.36:\r) arc[start angle=59.36,end angle=5.74,radius=\r] -- cycle;
+(0,0) -- (61.2:\r) arc[start angle=61.2,end angle=10.8,radius=\r] -- cycle;
 
 \path[fill=colAn, draw=white, line width=1.5pt]
-(0,0) -- (5.74:\r) arc[start angle=5.74,end angle=-70.85,radius=\r] -- cycle;
+(0,0) -- (10.8:\r) arc[start angle=10.8,end angle=-61.2,radius=\r] -- cycle;
 
 \path[fill=colPt, draw=white, line width=1.5pt]
-(0,0) -- (-70.85:\r) arc[start angle=-70.85,end angle=-170.43,radius=\r] -- cycle;
+(0,0) -- (-61.2:\r) arc[start angle=-61.2,end angle=-176.4,radius=\r] -- cycle;
 
 \path[fill=colVe, draw=white, line width=1.5pt]
-(0,0) -- (-170.43:\r) arc[start angle=-170.43,end angle=-270,radius=\r] -- cycle;
+(0,0) -- (-176.4:\r) arc[start angle=-176.4,end angle=-270,radius=\r] -- cycle;
 
 % Percentuali interne
-\node[font=\small\bfseries] at (75:1.65) {8,5\%};
-\node[font=\small\bfseries] at (32:1.75) {14,9\%};
-\node[font=\small\bfseries] at (-32:1.75) {21,3\%};
-\node[font=\small\bfseries] at (-120:1.75) {27,7\%};
-\node[font=\small\bfseries] at (140:1.75) {27,7\%};
+\node[font=\small\bfseries] at (75:1.65) {8,0\%};
+\node[font=\small\bfseries] at (36:1.75) {14,0\%};
+\node[font=\small\bfseries] at (-25:1.75) {20,0\%};
+\node[font=\small\bfseries] at (-118:1.75) {32,0\%};
+\node[font=\small\bfseries] at (136:1.75) {26,0\%};
 
 % Responsabile
 \fill[lineGray] (0.95,2.90) circle (1.7pt);
@@ -1065,7 +1083,7 @@ accumulate in totali per persona e per ruolo:
 \fill[lineGray] (-1.85,-2.45) circle (1.7pt);
 \draw[lineGray, line width=0.7pt] (-1.85,-2.45) -- (-3.75,-2.45) -- (-5.45,-2.45);
 \node[anchor=south west, font=\normalsize\bfseries] at (-5.45,-2.38) {Progettista};
-\node[anchor=north west, font=\small\bfseries, text=lineGray] at (-5.45,-2.60) {13 ore};
+\node[anchor=north west, font=\small\bfseries, text=lineGray] at (-5.45,-2.60) {16 ore};
 
 % Verificatore
 \fill[lineGray] (-2.30,2.15) circle (1.7pt);
@@ -1092,11 +1110,11 @@ Di seguito è riportato il preventivo economico del terzo sprint\textsubscript{G
         Responsabile di progetto & 4 & 120,00 \\ \hline
         Amministratore & 7 & 140,00 \\ \hline
         Analista & 10 & 250,00 \\ \hline
-        Progettista & 13 & 325,00 \\ \hline
+        Progettista & 16 & 400,00 \\ \hline
         Programmatore & 0 & 0,00 \\ \hline
         Verificatore & 13 & 195,00 \\ \hline
         \rowcolor{bluBitless!8}
-        \textbf{Totale} & \textbf{47} & \textbf{1.030,00} \\ \hline
+        \textbf{Totale} & \textbf{50} & \textbf{1.105,00} \\ \hline
     \end{tabular}
     \caption{\textit{Preventivo economico dello Sprint \#3}}
 \end{table}
@@ -1244,6 +1262,137 @@ Di seguito è riportato il preventivo economico del quarto sprint\textsubscript{
     \caption{\textit{Preventivo economico dello Sprint \#4}}
 \end{table}
 
+\subsection{Sprint \#5: da 2026-05-26 a 2026-06-08}
+Di seguito è riportata la distribuzione delle ore preventivate per ciascun membro del team:
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|}
+        \hline
+        \rowcolor{bluBitless!15}
+        \textbf{Membro} & \textbf{Re} & \textbf{Am} & \textbf{An} & \textbf{Pt} & \textbf{Pr} & \textbf{Ve} & \textbf{Totale per persona} \\
+        \hline
+        L. Battistella & - & - & - & - & - & 8 & 8 \\ \hline
+        E. De Piccoli & - & - & - & - & 9 & - & 9 \\ \hline
+        D. Facco & - & - & - & - & 9 & - & 9 \\ \hline
+        A. Marini & - & - & - & - & 9 & - & 9 \\ \hline
+        A. Menegaldo & 5 & - & - & - & - & 3 & 8 \\ \hline
+        S. Vendramin & - & 7 & - & - & - & - & 7 \\ \hline
+        S. Zecchinato & - & - & - & 8 & - & - & 8 \\ \hline
+        \rowcolor{bluBitless!8}
+        \textbf{Totale per ruolo} & \textbf{5} & \textbf{7} & \textbf{-} & \textbf{8} & \textbf{27} & \textbf{11} & \textbf{58} \\
+        \hline
+    \end{tabular}
+    \caption{\textit{Preventivo orario Sprint \#5}}
+\end{table}
+
+\begin{figure}[H]
+\centering
+
+\begin{tikzpicture}[scale=0.85]
+
+% Colori pastello
+\definecolor{colResp}{HTML}{BFD7EA}
+\definecolor{colAmm}{HTML}{F7C8C8}
+\definecolor{colPt}{HTML}{FFE5B4}
+\definecolor{colPr}{HTML}{FFF2CC}
+\definecolor{colVe}{HTML}{CDECCF}
+\definecolor{lineGray}{HTML}{8A8A8A}
+
+% Raggio dell'areogramma
+\def\r{3.2}
+
+% Titolo
+\node[font=\Large\bfseries] at (0,4.25) {Distribuzione ore per ruolo};
+
+% Settori (Totale = 58 ore)
+% Re: 5 ore   -> 8,6%   -> 31.0°
+% Am: 7 ore   -> 12,1%  -> 43.4°
+% Pt: 8 ore   -> 13,8%  -> 49.7°
+% Pr: 27 ore  -> 46,6%  -> 167.6°
+% Ve: 11 ore  -> 19,0%  -> 68.3°
+
+\path[fill=colResp, draw=white, line width=1.5pt]
+(0,0) -- (90:\r) arc[start angle=90,end angle=59.0,radius=\r] -- cycle;
+
+\path[fill=colAmm, draw=white, line width=1.5pt]
+(0,0) -- (59.0:\r) arc[start angle=59.0,end angle=15.6,radius=\r] -- cycle;
+
+\path[fill=colPt, draw=white, line width=1.5pt]
+(0,0) -- (15.6:\r) arc[start angle=15.6,end angle=-34.1,radius=\r] -- cycle;
+
+\path[fill=colPr, draw=white, line width=1.5pt]
+(0,0) -- (-34.1:\r) arc[start angle=-34.1,end angle=-201.7,radius=\r] -- cycle;
+
+\path[fill=colVe, draw=white, line width=1.5pt]
+(0,0) -- (-201.7:\r) arc[start angle=-201.7,end angle=-270,radius=\r] -- cycle;
+
+% Percentuali interne
+\node[font=\small\bfseries] at (74:1.75) {8,6\%};
+\node[font=\small\bfseries] at (37:1.75) {12,1\%};
+\node[font=\small\bfseries] at (-9:1.85) {13,8\%};
+\node[font=\small\bfseries] at (-118:1.55) {46,6\%};
+\node[font=\small\bfseries] at (124:1.85) {19,0\%};
+
+% Etichette esterne
+% Responsabile
+\fill[lineGray] (1.3,2.8) circle (1.7pt);
+\draw[lineGray, line width=0.7pt] (1.3,2.8) -- (3.5,2.8) -- (5.5,2.8);
+\node[anchor=south east, font=\normalsize\bfseries] at (5.5,2.87) {Responsabile};
+\node[anchor=north east, font=\small\bfseries, text=lineGray] at (5.5,2.65) {5 ore};
+
+% Amministratore
+\fill[lineGray] (2.9,1.2) circle (1.7pt);
+\draw[lineGray, line width=0.7pt] (2.9,1.2) -- (4.2,1.2) -- (5.5,1.2);
+\node[anchor=south east, font=\normalsize\bfseries] at (5.5,1.27) {Amministratore};
+\node[anchor=north east, font=\small\bfseries, text=lineGray] at (5.5,1.05) {7 ore};
+
+% Progettista
+\fill[lineGray] (3.0,-0.8) circle (1.7pt);
+\draw[lineGray, line width=0.7pt] (3.0,-0.8) -- (4.2,-0.8) -- (5.5,-0.8);
+\node[anchor=south east, font=\normalsize\bfseries] at (5.5,-0.73) {Progettista};
+\node[anchor=north east, font=\small\bfseries, text=lineGray] at (5.5,-0.95) {8 ore};
+
+% Programmatore
+\fill[lineGray] (-0.8,-3.1) circle (1.7pt);
+\draw[lineGray, line width=0.7pt] (-0.8,-3.1) -- (-2.0,-3.1) -- (-5.5,-3.1);
+\node[anchor=south west, font=\normalsize\bfseries] at (-5.5,-3.03) {Programmatore};
+\node[anchor=north west, font=\small\bfseries, text=lineGray] at (-5.5,-3.25) {27 ore};
+
+% Verificatore
+\fill[lineGray] (-2.2,2.4) circle (1.7pt);
+\draw[lineGray, line width=0.7pt] (-2.2,2.4) -- (-3.8,2.4) -- (-5.5,2.4);
+\node[anchor=south west, font=\normalsize\bfseries] at (-5.5,2.47) {Verificatore};
+\node[anchor=north west, font=\small\bfseries, text=lineGray] at (-5.5,2.25) {11 ore};
+
+\end{tikzpicture}
+
+\caption{Areogramma del preventivo orario nello Sprint \#5}
+\label{fig:preventivo-sprint5}
+\end{figure}
+
+Di seguito è riportato il preventivo economico del quinto sprint$G$:
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{|l|c|c|}
+        \hline
+        \rowcolor{bluBitless!15}
+        \textbf{Ruolo} & \textbf{Ore per ruolo} & \textbf{Costo (in €)} \\
+        \hline
+        Responsabile di progetto & 5 & 150,00 \\ \hline
+        Amministratore & 7 & 140,00 \\ \hline
+        Analista & 0 & 0,00 \\ \hline
+        Progettista & 8 & 200,00 \\ \hline
+        Programmatore & 27 & 405,00 \\ \hline
+        Verificatore & 11 & 165,00 \\ \hline
+        \rowcolor{bluBitless!8}
+        \textbf{Totale} & \textbf{58} & \textbf{1.060,00} \\ \hline
+    \end{tabular}
+    \caption{\textit{Preventivo economico dello Sprint \#5}}
+\end{table}
 
 \section{Consuntivo}
 Il consuntivo rappresenta la stima aggiornata delle ore e dei costi effettivamente impiegati durante lo sprint\textsubscript{G}, confrontati con le previsioni iniziali. Questa fase è fondamentale per valutare l'andamento del progetto, identificare eventuali scostamenti rispetto alla pianificazione e aggiornare il preventivo a finire.
@@ -1743,13 +1892,13 @@ Durante lo Sprint\textsubscript{G} \#2 sono stati monitorati i rischi individuat
         \hline
         L. Battistella & - & 7 & 1 & - & - & - & 8 \\ \hline
         E. De Piccoli & - & - & 7 & - & - & - & 7 \\ \hline
-        D. Facco & - & - & - & 7 & - & - & 7 \\ \hline
+        D. Facco & - & - & - & 10 & - & - & 10 \\ \hline
         A. Marini & 4 & - & 3 & - & - & - & 7 \\ \hline
-        A. Menegaldo & - & - & 1 & 6 & - & - & 7 \\ \hline
+        A. Menegaldo & - & - & 1 & 8 & - & - & 9 \\ \hline
         S. Vendramin & - & - & 1 & - & - & 6 & 7 \\ \hline
         S. Zecchinato & - & - & - & - & - & 7 & 7 \\ \hline
         \rowcolor{bluBitless!8}
-        \textbf{Totale per ruolo} & \textbf{4} & \textbf{7} & \textbf{13} & \textbf{13} & \textbf{-} & \textbf{13} & \textbf{50} \\
+        \textbf{Totale per ruolo} & \textbf{4} & \textbf{7} & \textbf{13} & \textbf{18} & \textbf{-} & \textbf{13} & \textbf{55} \\
         \hline
     \end{tabular}
     \caption{\textit{Consuntivo orario Sprint \#3}}
@@ -1774,35 +1923,35 @@ Durante lo Sprint\textsubscript{G} \#2 sono stati monitorati i rischi individuat
 % Titolo
 \node[font=\Large\bfseries] at (0,4.25) {Distribuzione ore per ruolo};
 
-% Totale = 50
-% Re = 4  -> 8,0%
-% Am = 7  -> 14,0%
-% An = 13 -> 26,0%
-% Pt = 13 -> 26,0%
-% Ve = 13 -> 26,0%
+% Totale = 55
+% Re = 4  -> 7,3%  -> 26.2°
+% Am = 7  -> 12,7% -> 45.8°
+% An = 13 -> 23,6% -> 85.1°
+% Pt = 18 -> 32,7% -> 117.8°
+% Ve = 13 -> 23,7% -> 85.1°
 
 % Settori
 \path[fill=colResp, draw=white, line width=1.5pt]
-(0,0) -- (90:\r) arc[start angle=90,end angle=61.2,radius=\r] -- cycle;
+(0,0) -- (90:\r) arc[start angle=90,end angle=63.8,radius=\r] -- cycle;
 
 \path[fill=colAmm, draw=white, line width=1.5pt]
-(0,0) -- (61.2:\r) arc[start angle=61.2,end angle=10.8,radius=\r] -- cycle;
+(0,0) -- (63.8:\r) arc[start angle=63.8,end angle=18.0,radius=\r] -- cycle;
 
 \path[fill=colAn, draw=white, line width=1.5pt]
-(0,0) -- (10.8:\r) arc[start angle=10.8,end angle=-82.8,radius=\r] -- cycle;
+(0,0) -- (18.0:\r) arc[start angle=18.0,end angle=-67.1,radius=\r] -- cycle;
 
 \path[fill=colPt, draw=white, line width=1.5pt]
-(0,0) -- (-82.8:\r) arc[start angle=-82.8,end angle=-176.4,radius=\r] -- cycle;
+(0,0) -- (-67.1:\r) arc[start angle=-67.1,end angle=-184.9,radius=\r] -- cycle;
 
 \path[fill=colVe, draw=white, line width=1.5pt]
-(0,0) -- (-176.4:\r) arc[start angle=-176.4,end angle=-270,radius=\r] -- cycle;
+(0,0) -- (-184.9:\r) arc[start angle=-184.9,end angle=-270,radius=\r] -- cycle;
 
 % Percentuali interne
-\node[font=\small\bfseries] at (76:1.65) {8,0\%};
-\node[font=\small\bfseries] at (36:1.75) {14,0\%};
-\node[font=\small\bfseries] at (-36:1.75) {26,0\%};
-\node[font=\small\bfseries] at (-130:1.75) {26,0\%};
-\node[font=\small\bfseries] at (137:1.75) {26,0\%};
+\node[font=\small\bfseries] at (77:1.65) {7,3\%};
+\node[font=\small\bfseries] at (41:1.75) {12,7\%};
+\node[font=\small\bfseries] at (-25:1.75) {23,6\%};
+\node[font=\small\bfseries] at (-126:1.75) {32,7\%};
+\node[font=\small\bfseries] at (-227:1.75) {23,7\%};
 
 % Responsabile
 \fill[lineGray] (0.80,2.95) circle (1.7pt);
@@ -1826,7 +1975,7 @@ Durante lo Sprint\textsubscript{G} \#2 sono stati monitorati i rischi individuat
 \fill[lineGray] (-1.80,-2.50) circle (1.7pt);
 \draw[lineGray, line width=0.7pt] (-1.80,-2.50) -- (-3.75,-2.50) -- (-5.45,-2.50);
 \node[anchor=south west, font=\normalsize\bfseries] at (-5.45,-2.43) {Progettista};
-\node[anchor=north west, font=\small\bfseries, text=lineGray] at (-5.45,-2.65) {13 ore};
+\node[anchor=north west, font=\small\bfseries, text=lineGray] at (-5.45,-2.65) {18 ore};
 
 % Verificatore
 \fill[lineGray] (-2.30,2.15) circle (1.7pt);
@@ -1856,20 +2005,19 @@ Di seguito è riportato il consuntivo economico del terzo sprint\textsubscript{G
         Responsabile di progetto & 4 & 0 & 120,00 & 0,00 \\ \hline
         Amministratore & 7 & 0 & 140,00 & 0,00 \\ \hline
         Analista & 13 & -3 & 325,00 & -75,00 \\ \hline
-        Progettista & 13 & 0 & 325,00 & 0,00 \\ \hline
+        Progettista & 18 & -2 & 450,00 & -50,00 \\ \hline
         Programmatore & 0 & 0 & 0,00 & 0,00 \\ \hline
         Verificatore & 13 & 0 & 195,00 & 0,00 \\ \hline
 
         \rowcolor{bluBitless!8}
-        \textbf{Totale} & \textbf{50} & \textbf{-3} & \textbf{1.105,00} & \textbf{-75,00} \\ \hline
+        \textbf{Totale} & \textbf{55} & \textbf{-5} & \textbf{1.230,00} & \textbf{-125,00} \\ \hline
 
         Sprint pregressi & 90 & / & 2.010,00 & / \\ \hline
-        Restante & 504 & / & 9.735,00 & / \\ \hline
+        Restante & 499 & / & 9.610,00 & / \\ \hline
     \end{tabular}
     \caption{\textit{Consuntivo economico Sprint \#3}} 
 \end{table}
 
-Di seguito sono riportate le ore rimanenti per la coppia risorsa-ruolo dopo lo Sprint \#3:
 \begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.4}
@@ -1880,36 +2028,43 @@ Di seguito sono riportate le ore rimanenti per la coppia risorsa-ruolo dopo lo S
         \hline
         L. Battistella & 2 & 2 & 0 & 22 & 22 & 23 & 71 \\ \hline
         E. De Piccoli & 7 & 4 & 2 & 22 & 22 & 17 & 74 \\ \hline
-        D. Facco & 7 & 8 & 3 & 15 & 23 & 16 & 72 \\ \hline
+        D. Facco & 7 & 8 & 3 & 12 & 23 & 16 & 69 \\ \hline
         A. Marini & 3 & 1 & 0 & 22 & 23 & 23 & 72 \\ \hline
-        A. Menegaldo & 7 & 8 & 2 & 17 & 22 & 15 & 71 \\ \hline
+        A. Menegaldo & 7 & 8 & 2 & 15 & 22 & 15 & 69 \\ \hline
         S. Vendramin & 0 & 9 & 0 & 22 & 24 & 16 & 71 \\ \hline
-        S. Zecchinato & 6 & 9 & 0 & 23 & 22 & 14 & 74 \\ \hline
+        S. Zecchinato & 6 & 9 & 0 & 23 & 22 & 13 & 73 \\ \hline
         \rowcolor{bluBitless!8}
-        \textbf{Totale per ruolo} & \textbf{32} & \textbf{41} & \textbf{7} & \textbf{143} & \textbf{158} & \textbf{124} & \textbf{505} \\
+        \textbf{Totale per ruolo} & \textbf{32} & \textbf{41} & \textbf{7} & \textbf{138} & \textbf{158} & \textbf{123} & \textbf{499} \\
         \hline
     \end{tabular}
     \caption{\textit{Ore rimanenti per coppia risorsa-ruolo dopo lo Sprint \#3}}
 \end{table}
 
+
 \subsubsection{Revisione delle attività}
-Nel corso del terzo sprint\textsubscript{G}, il team ha svolto le seguenti attività fondamentali per il consolidamento dei requisiti e la modellazione utente del prodotto software:
+Nel corso del terzo sprint\textsubscript{G}, il team ha svolto attività fondamentali per il consolidamento dei requisiti e la progettazione preliminare del software. Nello specifico:
 \begin{itemize}
     \item Aggiornamento dell'\textit{Analisi dei Requisiti} a seguito di un incontro di allineamento con l'azienda proponente;
     \item Sistemazione definitiva dei casi d'uso\textsubscript{G} e realizzazione dei relativi diagrammi UML\textsubscript{G} di specifica;
-    \item Progettazione e realizzazione dei mock-up\textsubscript{G} per lo studio dell'interfaccia utente (UX/UI\textsubscript{G});
+    \item \textbf{Gestione delle priorità di Progettazione:} Il team si è reso conto che avviare lo sviluppo del PoC nel prossimo sprint senza una solida architettura di base sarebbe stato rischioso. Pertanto, i Progettisti hanno riorganizzato le priorità: la realizzazione dei mock-up\textsubscript{G} per l'interfaccia utente (UX/UI\textsubscript{G}) è stata completata in forma minimale per poter dedicare il grosso delle ore a un'urgente esplorazione e definizione delle tecnologie.
+    \item Per quanto riguarda la conseguente progettazione architetturale preliminare, il team ha definito i seguenti aspetti fondamentali:
+    \begin{itemize}
+        \item \textbf{Selezione dello Stack:} Valutazione e scelta motivata delle tecnologie ottimali (SPA React con Zustand per il frontend, FastAPI asincrono per il backend, Docker Compose per l'infrastruttura).
+        \item \textbf{Decomposizione Strutturale:} Scomposizione logica del sistema in macro-aree indipendenti, stabilendo i principi architetturali di base (es. backend puramente \textit{stateless} e privo di logica di dominio, delegando il mantenimento dello stato al frontend).
+        \item \textbf{Strategia di Isolamento:} Progettazione delle astrazioni necessarie (come il provider LLM astratto) per garantire un basso accoppiamento e permettere lo sviluppo parallelo.
+    \end{itemize}
     \item Aggiornamento del \textit{Piano di Progetto}, Norme di Progetto e Glossario;
-    \item Redazione dei verbali interni ed esterni relativi agli incontri svolti durante lo sprint\textsubscript{G}.
+    \item Redazione dei verbali interni ed esterni relativi agli incontri svolti durante lo sprint\textsubscript{G};
     \item Inizio redazione Piano di Qualifica\textsubscript{G};
-    \item Creazione di uno script\textsubscript{G} in grado di inserire automaticamente il pedice del \textit{Glossario} sui documenti;
+    \item Creazione di uno script\textsubscript{G} in grado di inserire automaticamente il pedice del \textit{Glossario} sui documenti.
 \end{itemize}
 
 \subsubsection{Retrospettiva}
 A seguire le analisi a posteriori del terzo sprint\textsubscript{G}:
 \begin{itemize}
-    \item Il ruolo di Analista ha richiesto un impegno superiore di 3 ore rispetto a quanto preventivato. Questo scostamento è stato causato sia dalle incomprensioni comunicative, che hanno costretto il team a uniformare e riscrivere intere sezioni del documento, sia dal carico di lavoro necessario per integrare le modifiche della Proponente\textsubscript{G} e disegnare i diagrammi UML\textsubscript{G};
-    \item Il gruppo ha riscontrato un feedback positivo per quanto riguarda l'organizzazione e la conduzione delle riunioni. Al contrario, sono stati rilevati come aspetti da migliorare la coordinazione a distanza e la disabitudine iniziale al lavoro di squadra, elementi che hanno influito sul rendimento delle singole risorse;
-    \item Nella prima metà dello sprint\textsubscript{G}, il progettista ha lavorato a stretto contatto con il team di analisti per mappare le necessità grafiche sui casi d'uso\textsubscript{G}. Per questo motivo, la realizzazione dei mock-up\textsubscript{G} e la definizione dell'interfaccia utente sono passate in primo piano rispetto allo studio dei framework di sviluppo. Questo ha comportato un aggiornamento della pianificazione, spostando l'approfondimento delle tecnologie alle prossime iterazioni.
+    \item Il ruolo di Analista ha richiesto un impegno superiore di 3 ore rispetto a quanto preventivato. Questo scostamento è dovuto a una mancanza di comunicazione sulle strategie di stesura durante lo sprint precedente: nella fase di revisione preliminare alla creazione dei diagrammi UML\textsubscript{G}, il team ha riscontrato inconsistenze di formato tra le diverse sezioni dell'\textit{Analisi dei Requisiti}. È stato necessario spendere ore non previste per uniformare e riscrivere le parti disallineate.
+    \item Il ruolo di Progettista ha richiesto 2 ore in più rispetto al preventivo. Questo scostamento è dovuto a un errore di pianificazione: non avevamo considerato che, prima di avviare lo sviluppo pratico del PoC, fosse strettamente necessario definire l'architettura di base e scegliere le tecnologie. Per dare priorità a questo studio fondamentale, i progettisti hanno limitato la creazione dei mock-up\textsubscript{G} a versioni essenziali, dedicando le ore extra alla progettazione del software;   
+    \item Il gruppo ha riscontrato un feedback positivo nell'organizzazione e nella conduzione delle riunioni, adottando un approccio strutturato che ha garantito confronti produttivi, buone idee e una gestione ottimale del tempo;
 \end{itemize}
 
 \subsubsection{Aggiornamento della pianificazione e del preventivo}
@@ -1922,21 +2077,22 @@ Il team ha definito un piano d'azione organizzativo immediato per ottimizzare l'
 \end{itemize}
 
 \paragraph{Pianificazione futura}
-Alla luce dei risultati dello Sprint \textsubscript{G} \#3, il gruppo conferma il progressivo spostamento del focus dalle attività prevalentemente documentali verso la progettazione e l’avvio dello sviluppo del sistema.
+Alla luce dei risultati dello Sprint \textsubscript{G} \#3, il gruppo conferma il progressivo spostamento del focus dalle attività prevalentemente documentali verso la progettazione pura.
 
-Nel prossimo sprint \textsubscript{G} \#4 verrà consolidato il passaggio alla fase architetturale, con un maggiore coinvolgimento del ruolo di Progettista e l’avvio operativo del ruolo di Programmatore, che inizierà a tradurre le scelte progettuali e i mock-up\textsubscript{G} in una prima implementazione del Proof of Concept. Parallelamente, sarà necessario dedicare tempo all’allineamento tecnologico del team, poiché lo studio delle tecnologie di sviluppo è stato parzialmente rimandato nelle iterazioni precedenti.
+Nel prossimo sprint \textsubscript{G} \#4 verrà consolidata la fase architetturale iniziata in questa iterazione. Il ruolo di Progettista avrà il compito di raffinare le scelte sui framework e definire nel dettaglio l'isolamento dei moduli. Una volta completata questa base logica, il ruolo di Programmatore verrà attivato per tradurre le scelte progettuali in una prima implementazione del Proof of Concept.
 
-Un ulteriore obiettivo sarà il rafforzamento della collaborazione tra Progettazione e Sviluppo, così da garantire una transizione fluida tra modello e implementazione. In questa fase sarà inoltre importante mantenere un equilibrio tra attività di apprendimento e produzione, riducendo il rischio di rallentamenti dovuti alla curva di apprendimento degli strumenti.
+Un ulteriore obiettivo sarà il rafforzamento della collaborazione tra progettazione e sviluppo, così da garantire una transizione fluida tra modello e implementazione. In questa fase sarà inoltre importante mantenere un equilibrio tra attività di apprendimento (lo studio delle tecnologie) e produzione, riducendo il rischio di rallentamenti dovuti alla curva di apprendimento degli strumenti.
 
 Infine, il team continuerà a migliorare la qualità della pianificazione operativa, rendendo le attività sempre più chiare, atomiche e condivise, così da ridurre ambiguità e migliorare l’efficienza complessiva del lavoro nello sprint.
+
 \paragraph{Preventivo a finire}
-L’analisi complessiva dell’andamento dello Sprint \textsubscript{G} \#3 evidenzia uno scostamento limitato rispetto alle previsioni iniziali, concentrato principalmente sul ruolo di Analista, il quale ha richiesto un impegno leggermente superiore a causa delle attività di revisione e, in particolare, della necessaria sistemazione dell’\textit{Analisi dei Requisiti} a seguito di alcune problematiche emerse durante la stesura e l’allineamento dei contenuti. Tali attività correttive hanno rappresentato il principale fattore di incremento del carico di lavoro rispetto a quanto preventivato.
+L’analisi complessiva dell’andamento dello Sprint \textsubscript{G} \#3 evidenzia uno scostamento limitato rispetto alle previsioni iniziali, concentrato principalmente sui ruoli di Analista (+3 ore per attività correttive e di allineamento sui requisiti) e di Progettista (+2 ore per anticipare lo studio architetturale necessario al PoC).
 
-Nel complesso, le variazioni osservate risultano comunque contenute e non alterano in modo significativo l’equilibrio generale della pianificazione, né la sostenibilità del budget economico definito nel Piano di Progetto. Le ore residue restano quindi adeguate a coprire le attività future, in particolare quelle legate all’evoluzione verso la progettazione e lo sviluppo del sistema.
+Nel complesso, queste variazioni risultano contenute e non alterano in modo significativo l’equilibrio generale della pianificazione, né la sostenibilità del budget economico definito nel Piano di Progetto. Le ore residue restano ampiamente adeguate a coprire le attività future.
 
-Alla luce dei dati raccolti, il team non ritiene necessario apportare modifiche sostanziali al preventivo a finire in questa fase. Tuttavia, si sottolinea che, qualora nei prossimi sprint dovessero emergere ulteriori necessità di revisione significativa dell’Analisi dei Requisiti, si provvederà a riconsiderare l’allocazione delle ore previste per il ruolo di Analista, aggiornando di conseguenza il preventivo. Al momento, tali condizioni non si ritengono sufficientemente probabili da giustificare una variazione immediata delle stime.
+Di conseguenza, il team ha deciso di accettare gli scostamenti senza alterare il preventivo a finire. Questa scelta si basa sulla consapevolezza che le ore extra impiegate dai Progettisti in questo sprint costituiscono un investimento tecnico che snellirà i lavori nel prossimo ciclo, permettendo di iniziare lo sviluppo del PoC con fondamenta architetturali già consolidate. Tuttavia, qualora nei prossimi sprint dovessero emergere ulteriori necessità di profonda revisione dell'Analisi dei Requisiti, si provvederà a riconsiderare l’allocazione complessiva aggiornando il preventivo.
 
-\paragraph{Gestione dei rischi}
+\paragraph{Gestione dei rischi (\hyperref[tab:gestione-rischi]{Sezione \S2})}
 Nel corso del terzo sprint\textsubscript{G}, il team ha affrontato due rischi organizzativi critici descritti all'interno della Sezione 2 del documento. 
 
 \begin{itemize}
@@ -1956,6 +2112,8 @@ Nel corso del terzo sprint\textsubscript{G}, il team ha affrontato due rischi or
     \end{itemize}
     \end{itemize}
 \end{itemize} 
+
+
 \subsection{Sprint \#4: da 2026-05-12 a 2026-05-25}
 
 \begin{table}[H]
@@ -1966,15 +2124,15 @@ Nel corso del terzo sprint\textsubscript{G}, il team ha affrontato due rischi or
         \rowcolor{bluBitless!15}
         \textbf{Membro} & \textbf{Re} & \textbf{Am} & \textbf{An} & \textbf{Pt} & \textbf{Pr} & \textbf{Ve} & \textbf{Totale per persona} \\
         \hline
-        L. Battistella & - & - & - & 7 & - & - & 7 \\ \hline
-        E. De Piccoli & - & - & - & 8 & - & - & 8 \\ \hline
+        L. Battistella & - & - & - & 9 & - & - & 9 \\ \hline
+        E. De Piccoli & - & - & - & 9 & - & - & 9 \\ \hline
         D. Facco & - & 7 & - & - & - & - & 7 \\ \hline
         A. Marini & - & - & - & - & - & 8 & 8 \\ \hline
-        A. Menegaldo & - & 3 & 3 & - & - & - & 6 \\ \hline
+        A. Menegaldo & - & 3 & 2 & - & - & - & 5 \\ \hline
         S. Vendramin & - & - & - & - & 9 & - & 9 \\ \hline
         S. Zecchinato & 4 & - & - & - & 3 & - & 7 \\ \hline
         \rowcolor{bluBitless!8}
-        \textbf{Totale per ruolo} & \textbf{4} & \textbf{10} & \textbf{3} & \textbf{15} & \textbf{12} & \textbf{8} & \textbf{52} \\
+        \textbf{Totale per ruolo} & \textbf{4} & \textbf{10} & \textbf{2} & \textbf{18} & \textbf{12} & \textbf{8} & \textbf{54} \\
         \hline
     \end{tabular}
     \caption{\textit{Consuntivo orario Sprint \#4}}
@@ -2000,40 +2158,40 @@ Nel corso del terzo sprint\textsubscript{G}, il team ha affrontato due rischi or
 % Titolo
 \node[font=\Large\bfseries] at (0,4.25) {Distribuzione ore consuntivate per ruolo};
 
-% Totale = 52 ore
-% Re = 4   -> 7,7%   -> 27.7°
-% Am = 10  -> 19,2%  -> 69.2°
-% An = 3   -> 5,8%   -> 20.8°
-% Pt = 15  -> 28,8%  -> 103.7°
-% Pr = 12  -> 23,1%  -> 83.1°
-% Ve = 8   -> 15,4%  -> 55.5°
+% Totale = 54 ore
+% Re = 4  -> 7,4%  -> 26.7°
+% Am = 10 -> 18,5% -> 66.7°
+% An = 2  -> 3,7%  -> 13.3°
+% Pt = 18 -> 33,3% -> 120.0°
+% Pr = 12 -> 22,2% -> 80.0°
+% Ve = 8  -> 14,8% -> 53.3°
 
 % Settori
 \path[fill=colResp, draw=white, line width=1.5pt]
-(0,0) -- (90:\r) arc[start angle=90,end angle=62.3,radius=\r] -- cycle;
+(0,0) -- (90:\r) arc[start angle=90,end angle=63.3,radius=\r] -- cycle;
 
 \path[fill=colAmm, draw=white, line width=1.5pt]
-(0,0) -- (62.3:\r) arc[start angle=62.3,end angle=-6.9,radius=\r] -- cycle;
+(0,0) -- (63.3:\r) arc[start angle=63.3,end angle=-3.3,radius=\r] -- cycle;
 
 \path[fill=colAn, draw=white, line width=1.5pt]
-(0,0) -- (-6.9:\r) arc[start angle=-6.9,end angle=-27.7,radius=\r] -- cycle;
+(0,0) -- (-3.3:\r) arc[start angle=-3.3,end angle=-16.7,radius=\r] -- cycle;
 
 \path[fill=colPt, draw=white, line width=1.5pt]
-(0,0) -- (-27.7:\r) arc[start angle=-27.7,end angle=-131.4,radius=\r] -- cycle;
+(0,0) -- (-16.7:\r) arc[start angle=-16.7,end angle=-136.7,radius=\r] -- cycle;
 
 \path[fill=colPr, draw=white, line width=1.5pt]
-(0,0) -- (-131.4:\r) arc[start angle=-131.4,end angle=-214.5,radius=\r] -- cycle;
+(0,0) -- (-136.7:\r) arc[start angle=-136.7,end angle=-216.7,radius=\r] -- cycle;
 
 \path[fill=colVe, draw=white, line width=1.5pt]
-(0,0) -- (-214.5:\r) arc[start angle=-214.5,end angle=-270,radius=\r] -- cycle;
+(0,0) -- (-216.7:\r) arc[start angle=-216.7,end angle=-270,radius=\r] -- cycle;
 
 % Percentuali interne
-\node[font=\small\bfseries] at (76:1.75) {7,7\%};
-\node[font=\small\bfseries] at (28:1.75) {19,2\%};
-\node[font=\small\bfseries] at (-17:1.85) {5,8\%};
-\node[font=\small\bfseries] at (-79:1.75) {28,8\%};
-\node[font=\small\bfseries] at (-173:1.75) {23,1\%};
-\node[font=\small\bfseries] at (-242:1.75) {15,4\%};
+\node[font=\small\bfseries] at (76:1.75) {7,4\%};
+\node[font=\small\bfseries] at (30:1.75) {18,5\%};
+\node[font=\small\bfseries] at (-10:1.85) {3,7\%};
+\node[font=\small\bfseries] at (-76:1.75) {33,3\%};
+\node[font=\small\bfseries] at (-176:1.75) {22,2\%};
+\node[font=\small\bfseries] at (-243:1.75) {14,8\%};
 
 % Etichette esterne
 % Responsabile
@@ -2052,13 +2210,13 @@ Nel corso del terzo sprint\textsubscript{G}, il team ha affrontato due rischi or
 \fill[lineGray] (3.1,-0.5) circle (1.7pt);
 \draw[lineGray, line width=0.7pt] (3.1,-0.5) -- (4.2,-0.5) -- (5.5,-0.5);
 \node[anchor=south east, font=\normalsize\bfseries] at (5.5,-0.43) {Analista};
-\node[anchor=north east, font=\small\bfseries, text=lineGray] at (5.5,-0.65) {3 ore};
+\node[anchor=north east, font=\small\bfseries, text=lineGray] at (5.5,-0.65) {2 ore};
 
 % Progettista
 \fill[lineGray] (0.5,-3.1) circle (1.7pt);
 \draw[lineGray, line width=0.7pt] (0.5,-3.1) -- (-2.0,-3.1) -- (-5.5,-3.1);
 \node[anchor=south west, font=\normalsize\bfseries] at (-5.5,-3.03) {Progettista};
-\node[anchor=north west, font=\small\bfseries, text=lineGray] at (-5.5,-3.25) {15 ore};
+\node[anchor=north west, font=\small\bfseries, text=lineGray] at (-5.5,-3.25) {18 ore};
 
 % Programmatore
 \fill[lineGray] (-2.9,-1.1) circle (1.7pt);
@@ -2094,42 +2252,62 @@ Di seguito è riportato il consuntivo economico del quarto sprint\textsubscript{
 
         Responsabile di progetto & 4 & +2 & 120,00 & +60,00 \\ \hline
         Amministratore & 10 & 0 & 200,00 & 0,00 \\ \hline
-        Analista & 3 & 0 & 75,00 & 0,00 \\ \hline
-        Progettista & 15 & 0 & 375,00 & 0,00 \\ \hline
+        Analista & 2 & +1 & 50,00 & +25,00 \\ \hline
+        Progettista & 18 & -3 & 450,00 & -75,00 \\ \hline
         Programmatore & 12 & -4 & 180,00 & -60,00 \\ \hline
         Verificatore & 8 & 0 & 120,00 & 0,00 \\ \hline
 
         \rowcolor{bluBitless!8}
-        \textbf{Totale} & \textbf{52} & \textbf{-2} & \textbf{1.070,00} & \textbf{0,00} \\ \hline
+        \textbf{Totale} & \textbf{54} & \textbf{-4} & \textbf{1.120,00} & \textbf{-50,00} \\ \hline
 
         Sprint pregressi & 140 & / & 3.115,00 & / \\ \hline
-        Restante & 452 & / & 8.665,00 & / \\ \hline
+        Restante & 451 & / & 8.615,00 & / \\ \hline
     \end{tabular}
     \caption{\textit{Consuntivo economico Sprint \#4}} 
+\end{table}
+
+Di seguito sono riportate le ore rimanenti per la coppia risorsa-ruolo:
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|}
+        \hline
+        \rowcolor{bluBitless!15}
+        \textbf{Membro del team} & \textbf{Re} & \textbf{Am} & \textbf{An} & \textbf{Pt} & \textbf{Pr} & \textbf{Ve} & \textbf{Totale per persona} \\
+        \hline
+        L. Battistella & 2 & 2 & 0 & 13 & 22 & 23 & 62 \\ \hline
+        E. De Piccoli & 7 & 4 & 2 & 13 & 22 & 17 & 65 \\ \hline
+        D. Facco & 7 & 1 & 3 & 15 & 23 & 16 & 65 \\ \hline
+        A. Marini & 3 & 1 & 0 & 22 & 23 & 15 & 64 \\ \hline
+        A. Menegaldo & 7 & 5 & 0 & 23 & 22 & 9 & 66 \\ \hline
+        S. Vendramin & 0 & 9 & 0 & 16 & 15 & 22 & 62 \\ \hline
+        S. Zecchinato & 2 & 9 & 0 & 23 & 19 & 14 & 67 \\ \hline
+        \rowcolor{bluBitless!8}
+        \textbf{Totale per ruolo} & \textbf{28} & \textbf{31} & \textbf{5} & \textbf{125} & \textbf{146} & \textbf{116} & \textbf{451} \\
+        \hline
+    \end{tabular}
+    \caption{\textit{Ore rimanenti per coppia risorsa-ruolo dopo lo Sprint \#4}}
 \end{table}
 
 \subsubsection{Revisione delle attività}
 Nel corso del quarto sprint\textsubscript{G}, il team ha svolto le seguenti attività coerentemente con la pianificazione:
 \begin{itemize}
-    \item Consolidamento definitivo del documento di \textit{Analisi dei Requisiti} in ogni sua singola sezione;
-    \item Chiusura delle decisioni formali e definitive sullo stack tecnologico e sui framework di sviluppo per il prodotto \textit{Second Brain} e per il relativo \textit{Proof of Concept};
-    \item Studio iniziale dell'architettura logica e strutturale del PoC e analisi dei requisiti minimi di accoppiamento software;
-    \item Introduzione formale delle attività del Programmatore, avviate in sinergia collaborativa con i Progettisti;
-    \item Sviluppo iniziale, configurazione dei file di ambiente e codifica effettiva delle prime routine del PoC verso la conclusione dello sprint\textsubscript{G};
+    \item Consolidamento del documento di \textit{Analisi dei Requisiti} in ogni sua singola sezione;
+    \item Chiusura delle decisioni sullo stack tecnologico e sui framework di sviluppo per il prodotto \textit{Second Brain} e per il relativo \textit{Proof of Concept};
+    \item Il lavoro di progettazione durante la prima metà dello sprint si è occupato della stesura dei veri e propri contratti operativi. In questa fase sono stati affrontati i seguenti aspetti:
+    \begin{itemize}
+        \item \textbf{Progettazione delle Interfacce (API Design):} Definizione dei contratti di comunicazione tra backend e frontend. Sono stati progettati i payload (schemi Pydantic), gli endpoint (es. \texttt{POST /api/summarize}) e le logiche del flusso SSE.
+        \item \textbf{Modellazione dei Flussi:} Definizione teorica del ciclo di vita del dato end-to-end: dall'input dell'utente, alla validazione, fino alla gestione delle eccezioni e all'annullamento dello stream.
+        \item \textbf{Grafo di dipendenze:} Traduzione del design in un grafo di dipendenze logiche e scomposizione in task.
+    \end{itemize}
+    \item Introduzione formale delle attività del Programmatore nella seconda metà dello sprint, in collaborazione con i Progettisti;
+    \item Sviluppo iniziale del PoC: inizializzazione del repository condiviso, la configurazione di Docker Compose, la gestione dei segreti, l'impostazione del frontend (Vite + React + TypeScript con Tailwind CSS v4) e del backend (FastAPI), e la configurazione del middleware CORS;
     \item Avvio del percorso di formazione e allineamento interno sulle tecnologie selezionate;
     \item Avanzamento e stesura dei documenti di supporto, inclusi il \textit{Piano di Progetto} e le \textit{Norme di Progetto}.
 \end{itemize}
 
 \subsubsection{Retrospettiva}
-Di seguito sono riportati i risultati del questionario di valutazione dello sprint\textsubscript{G}, realizzato dal responsabile di progetto in carica per supportare la fase di retrospettiva\textsubscript{G}:
-\begin{itemize}
-    \item Organizzazione dello sprint - Valutazione: 8,0;
-    \item Conduzione dei meeting interni - Valutazione: 8,0;
-    \item Conduzione dei meeting esterni - Valutazione: 8,5;
-    \item Impegno e partecipazione dei singoli membri - Valutazione: 8,0;
-    \item La totalità dei membri era a conoscenza delle mansioni, superando le lacune ereditate dai periodi precedenti;
-    \item La frequenza delle riunioni si è dimostrata adatta alla complessità delle attività tecniche di avvio.
-\end{itemize}
 A seguire le analisi a posteriori del quarto sprint\textsubscript{G}:
 \begin{itemize}
     \item Le valutazioni raccolte dal team hanno evidenziato una pianificazione iniziale idonea ma non esaustiva sul piano dello studio autonomo. La transizione verso l'ambiente di sviluppo pratico ha riscontrato barriere tecniche legate al know-how individuale. Per tale motivo, per non generare colli di bottiglia o stalli sulle scadenze, si è registrata una discrepanza di 2 ore produttive rispetto a quanto definito originariamente nel preventivo orario;
@@ -2164,31 +2342,7 @@ Come riportato nelle analisi a posteriori, il team ha dovuto riconsiderare e rim
 \paragraph{Preventivo a finire}
 Riguardo alla ripartizione del budget, le ore non impiegate nei ruoli di coordinamento o risparmiate grazie all'efficientamento dei processi comunicativi interni saranno interamente reinvestite negli sprint a ridosso delle milestone\textsubscript{G} tecnologiche e della RTB\textsubscript{G}. Questo consentirà di apportare raffinamenti formali alla documentazione e supportare l'incremento di effort richiesto per i test di sistema e di integrazione. Durante la retrospettiva\textsubscript{G}, il team ha confermato l'adeguatezza del calendario di massima del progetto, escludendo la necessità di rielaborare la data di consegna stimata. Nei prossimi sprint\textsubscript{G} verrà mantenuta la flessibilità di allocazione oraria per spostare eventuali risorse eccedenti verso i ruoli di natura tecnica in caso di anomalie bloccanti sul codice.
 
-Di seguito sono riportate le ore rimanenti per la coppia risorsa-ruolo:
-
-\begin{table}[H]
-    \centering
-    \renewcommand{\arraystretch}{1.4}
-    \begin{tabular}{|l|c|c|c|c|c|c|c|}
-        \hline
-        \rowcolor{bluBitless!15}
-        \textbf{Membro del team} & \textbf{Re} & \textbf{Am} & \textbf{An} & \textbf{Pt} & \textbf{Pr} & \textbf{Ve} & \textbf{Totale per persona} \\
-        \hline
-        L. Battistella & 2 & 2 & 0 & 15 & 22 & 23 & 64 \\ \hline
-        E. De Piccoli & 7 & 4 & 2 & 14 & 22 & 17 & 66 \\ \hline
-        D. Facco & 7 & 1 & 3 & 15 & 23 & 16 & 65 \\ \hline
-        A Marini & 3 & 1 & 0 & 22 & 23 & 15 & 64 \\ \hline
-        A. Menegaldo & 7 & 5 & -1 & 23 & 22 & 9 & 65 \\ \hline
-        S. Vendramin & 0 & 9 & 0 & 16 & 15 & 22 & 62 \\ \hline
-        S. Zecchinato & 2 & 9 & 0 & 23 & 19 & 14 & 67 \\ \hline
-        \rowcolor{bluBitless!8}
-        \textbf{Totale per ruolo} & \textbf{28} & \textbf{31} & \textbf{4} & \textbf{128} & \textbf{146} & \textbf{116} & \textbf{453} \\
-        \hline
-    \end{tabular}
-    \caption{\textit{Ore rimanenti per coppia risorsa-ruolo dopo lo Sprint \#4}}
-\end{table}
-
-\paragraph{Gestione dei rischi}
+\paragraph{Gestione dei rischi (\hyperref[tab:gestione-rischi]{Sezione \S2})}
 Nel corso del quarto sprint\textsubscript{G}, il team ha affrontato l'affioramento concreto e l'impatto operativo dei rischi tecnologici precedentemente mappati nella sezione generale del documento. L'analisi sul campo ha evidenziato che l'applicazione tempestiva delle contromisure ha evitato ritardi strutturali, permettendo al gruppo di trarre importanti lezioni metodologiche.
 
 \begin{itemize}
