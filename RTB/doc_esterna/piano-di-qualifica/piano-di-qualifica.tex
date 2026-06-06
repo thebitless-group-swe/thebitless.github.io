@@ -603,28 +603,30 @@ Ogni test$_G$ viene identificato secondo la seguente convenzione:
     \label{tab:test-sistema-principali}
 \end{longtable}
 \endgroup
-
 \subsection{Test di accettazione principali}
-
 \begingroup
 \small
 \renewcommand{\arraystretch}{1.25}
-\begin{longtable}{|c|p{7cm}|c|c|}
-    \hline
-    \textbf{ID} & \textbf{Descrizione} & \textbf{Requisito} & \textbf{Stato} \\
-    \hline
-    \endhead
-
-    TA-001 & L'utente scrive una nota Markdown, visualizza l'anteprima formattata e salva il contenuto prodotto. & RF-OBB-001, RF-OBB-002, RF-OBB-015 & NI \\ \hline
-    TA-002 & L'utente seleziona una porzione di testo e richiede al sistema$_G$ di riassumerla tramite LLM$_G$. & RF-OBB-003, RF-OBB-004 & NI \\ \hline
-    TA-003 & L'utente richiede una riscrittura del testo con tono diverso e verifica$_G$ l'inserimento del risultato nell'editor. & RF-OBB-005 & NI \\ \hline
-    TA-004 & L'utente traduce una nota in una lingua diversa da quella originale. & RF-OBB-006 & NI \\ \hline
-    TA-005 & L'utente applica le analisi dei sei cappelli e riceve una risposta coerente con il punto di vista scelto. & RF-OBB-007 -- RF-OBB-012 & NI \\ \hline
-    TA-006 & L'utente fornisce un prompt e ottiene un testo completo generato dal modello linguistico. & RF-OBB-013, RF-OBB-014 & NI \\ \hline
-    TA-007 & L'utente carica una nota salvata in precedenza e riprende la modifica del contenuto. & RF-OBB-016 & NI \\ \hline
-
-    \caption{Test di accettazione principali.}
-    \label{tab:test-accettazione-principali}
+\begin{longtable}{|c|p{8.3cm}|>{\raggedright\arraybackslash\exhyphenpenalty=10000}p{2.8cm}|c|}
+\hline
+\textbf{ID} & \textbf{Descrizione} & \textbf{Requisito} & \textbf{Stato} \\
+\hline
+\endfirsthead
+\multicolumn{4}{c}{\tablename~\thetable{}~(continua)}\\
+\hline
+\textbf{ID} & \textbf{Descrizione} & \textbf{Requisito} & \textbf{Stato} \\
+\hline
+\endhead
+\endfoot
+\caption{Test di accettazione principali.}\label{tab:test-accettazione-principali}\\
+\endlastfoot
+TA-001 & L'utente scrive una nota in formato Markdown, ne osserva l'anteprima formattata e salva il contenuto su file locale. & RF-OBB-001, RF-OBB-002, RF-OBB-015 & NI \\ \hline
+TA-002 & L'utente seleziona una porzione di testo e ne richiede il riassunto all'LLM$_G$, scegliendo se porre il risultato in coda o in sostituzione della selezione. & RF-OBB-003, RF-OBB-004 & NI \\ \hline
+TA-003 & L'utente richiede una riscrittura del testo specificando il tipo di intervento (sistemazione grammaticale, cambio di tono, estensione o riduzione) e la modalità di inserimento del risultato. & RF-OBB-005 & NI \\ \hline
+TA-004 & L'utente richiede al sistema la traduzione del testo, indicando la lingua di destinazione e la modalità di inserimento del risultato. & RF-OBB-006 & NI \\ \hline
+TA-005 & L'utente applica in sequenza al testo le sei analisi dei cappelli (bianco, rosso, giallo, nero, verde, blu). & da RF-OBB-007 a RF-OBB-012 & NI \\ \hline
+TA-006 & L'utente inserisce un prompt nell'apposito pannello e avvia la generazione dell'intero testo da parte dell'LLM$_G$. & RF-OBB-013, RF-OBB-014 & NI \\ \hline
+TA-007 & Partendo da una nota salvata in precedenza, l'utente la carica da file locale e ne riprende la modifica nell'area di editing. & RF-OBB-016 & NI \\ \hline
 \end{longtable}
 \endgroup
 
