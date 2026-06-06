@@ -72,8 +72,8 @@
   \begin{center}
     \IfFileExists{logo_gruppo_senza_background.png}{\includegraphics[height=15mm]{logo_gruppo_senza_background.png}}\\
     {\color{sbnavy}\rule{0.55\textwidth}{1.2pt}}\\[10pt]
-    {\Huge\bfseries\color{sbnavy} Tecnologie \& Proof of Concept}\\[8pt]
-    {\large\color{sbteal} Capitolato C6 --- Second Brain}\\[4pt]
+    {\Huge\bfseries\color{sbnavy} Tecnologie \& Proof of Concept$_G$}\\[8pt]
+    {\large\color{sbteal} Capitolato$_G$ C6 --- Second Brain}\\[4pt]
     {\normalsize\color{sbgray} The Bitless \quad\textbullet\quad Gruppo 18 \quad\textbullet\quad A.A. 2025/2026}\\[6pt]
     {\small\color{sbgray} [INSERIRE DATA]}\\[14pt]
     {\color{sbnavy}\rule{0.55\textwidth}{1.2pt}}\\[12pt]
@@ -83,21 +83,21 @@
 \end{frame}
 }
 
-% ============ SLIDE 2 — CAPITOLATO ============
+% ============ SLIDE 2 — CAPITOLATO$_G$ ============
 \begin{frame}{Second Brain}
   \begin{block}{Visione}
-    Un editor \textbf{Markdown} affiancato a un \textbf{LLM}: un secondo cervello per scrivere, migliorare e fare brainstorming.
+    Un editor \textbf{Markdown} affiancato a un \textbf{LLM}: un secondo cervello per scrivere, migliorare e fare brainstorming$_G$.
   \end{block}
   \vspace{2pt}
   \begin{columns}[T]
     \column{0.54\textwidth}
-    {\bfseries\small Requisiti obbligatori}
+    {\bfseries\small Requisiti$_G$ obbligatori}
     \begin{itemize}
       \item[\textcolor{sbteal}{\textbullet}] {\small Editor Markdown + rendering live}
-      \item[\textcolor{sbteal}{\textbullet}] {\small Accesso a un LLM sul testo}
+      \item[\textcolor{sbteal}{\textbullet}] {\small Accesso a un LLM$_G$ sul testo}
       \item[\textcolor{sbteal}{\textbullet}] {\small Riassunto, riscrittura, traduzione}
       \item[\textcolor{sbteal}{\textbullet}] {\small Critica ``Sei cappelli'' di De Bono}
-      \item[\textcolor{sbteal}{\textbullet}] {\small Distant Writing (testo da prompt)}
+      \item[\textcolor{sbteal}{\textbullet}] {\small Distant Writing$_G$ (testo da prompt)}
       \item[\textcolor{sbteal}{\textbullet}] {\small Salvataggio e lettura note}
     \end{itemize}
     \column{0.46\textwidth}
@@ -111,11 +111,11 @@
       \node[draw=sbteal, thick, fill=sblight, rounded corners=3pt, minimum width=18mm, minimum height=17mm, below left=2mm and 1mm of bar.south, anchor=north east] (txt) {testo};
       % pannello render
       \node[draw=sbteal, thick, fill=white, rounded corners=3pt, minimum width=18mm, minimum height=17mm, below right=2mm and 1mm of bar.south, anchor=north west] (rnd) {render};
-      % LLM
-      \node[draw=sbaccent, very thick, fill=sbaccent!15, circle, minimum size=11mm, right=6mm of app, font=\scriptsize\bfseries] (llm) {LLM};
-      \draw[-{Stealth[length=2mm]}, very thick, sbaccent] (app.east) -- (llm.west);
+      % LLM$_G$
+      \node[draw=sbaccent, very thick, fill=sbaccent!15, circle, minimum size=11mm, right=6mm of app, font=\scriptsize\bfseries] (llm$_G$) {LLM$_G$};
+      \draw[-{Stealth[length=2mm]}, very thick, sbaccent] (app.east) -- (llm$_G$.west);
     \end{tikzpicture}\\[2pt]
-    {\scriptsize\color{sbgray} editor a 2 pannelli + accesso LLM}
+    {\scriptsize\color{sbgray} editor a 2 pannelli + accesso LLM$_G$}
   \end{columns}
   \vspace{2pt}
 \end{frame}
@@ -132,26 +132,26 @@
     arr/.style={-{Stealth[length=3mm]}, very thick, draw=sbteal}
   ]
     \node[box] (web) {\textbf{Browser}\\ SPA React};
-    \node[box, right=of web] (api) {\textbf{Backend}\\ FastAPI};
-    \node[box, right=of api] (llm) {\textbf{LiteLLM}\\ Zucchetti};
-    \draw[arr] (web) -- node[above, font=\scriptsize, text=sbnavy] {fetch POST} (api);
-    \draw[arr] (api) -- node[above, font=\scriptsize, text=sbnavy] {httpx} (llm);
-    \draw[arr, dashed] (llm.south) to[bend left=25] node[below, font=\scriptsize, text=sbnavy] {streaming SSE} (web.south);
+    \node[box, right=of web] (api$_G$) {\textbf{Backend}\\ FastAPI};
+    \node[box, right=of api$_G$] (llm$_G$) {\textbf{LiteLLM}\\ Zucchetti};
+    \draw[arr] (web) -- node[above, font=\scriptsize, text=sbnavy] {fetch POST} (api$_G$);
+    \draw[arr] (api$_G$) -- node[above, font=\scriptsize, text=sbnavy] {httpx} (llm$_G$);
+    \draw[arr, dashed] (llm$_G$.south) to[bend left=25] node[below, font=\scriptsize, text=sbnavy] {streaming SSE} (web.south);
   \end{tikzpicture}
   \end{center}
   \vspace{4pt}
   \begin{itemize}
     \item Streaming \textbf{end-to-end} con effetto macchina da scrivere
-    \item Backend \textbf{stateless}: nessuna logica di dominio lato server
+    \item Backend \textbf{stateless}: nessuna logica di dominio$_G$ lato server
   \end{itemize}
 \end{frame}
 
-% ============ SLIDE 4 — FRONTEND ============
-\begin{frame}{Tecnologie --- Frontend}
+% ============ SLIDE 4 — FRONTEND$_G$ ============
+\begin{frame}{Tecnologie --- Frontend$_G$}
   \begin{itemize}
     \item \textbf{React 19 + TypeScript + Vite} --- ecosistema maturo, tipi statici, dev server rapido
     \item \textbf{CodeMirror 6} --- editor Markdown leggero (\textasciitilde100\,KB), undo/redo e highlighting nativi
-    \item \textbf{react-markdown + plugin} --- pipeline Markdown$\to$AST, anti-XSS, tabelle e LaTeX
+    \item \textbf{react-markdown + plugin} --- pipeline Markdown$\to$AST, anti-XSS, tabelle e LaTeX$_G$
     \item \textbf{Zustand} --- stato globale senza boilerplate, re-render minimi
     \item \textbf{Tailwind v4 + shadcn/ui} --- componenti modificabili, no lock-in, tema chiaro/scuro
   \end{itemize}
@@ -167,7 +167,7 @@
     \draw[a] (cm) -- (st);
     \draw[a] (st) -- (md);
     \draw[a] (hk) -- (st);
-    \draw[a, sbaccent] (hk.east) -- ++(1.6,0) node[right, text=sbgray] {API (SSE)};
+    \draw[a, sbaccent] (hk.east) -- ++(1.6,0) node[right, text=sbgray] {API$_G$ (SSE)};
   \end{tikzpicture}
   \end{center}
 \end{frame}
@@ -185,7 +185,7 @@
     \end{block}
     \column{0.33\textwidth}
     \begin{scelto}{CodeMirror 6 \ensuremath{\checkmark}}
-      {\small Leggero e modulare: highlighting, undo/redo e accessibilità nativi, API tipizzata.}
+      {\small Leggero e modulare: highlighting, undo/redo e accessibilità nativi, API$_G$ tipizzata.}
     \end{scelto}
   \end{columns}
   \vspace{6pt}
@@ -197,8 +197,8 @@
 % ============ SLIDE 6 — BACKEND ============
 \begin{frame}{Tecnologie --- Backend}
   \begin{itemize}
-    \item \textbf{Python 3.12 + FastAPI} --- async nativo per lo streaming LLM, OpenAPI autogenerato
-    \item \textbf{Pydantic v2} --- validazione runtime, errori 422 espliciti, base per i tipi TypeScript
+    \item \textbf{Python 3.12 + FastAPI} --- async nativo per lo streaming LLM$_G$, OpenAPI autogenerato
+    \item \textbf{Pydantic v2} --- validazione$_G$ runtime, errori 422 espliciti, base per i tipi TypeScript
     \item \textbf{httpx async} --- streaming nativo e propagazione dell'annullamento fino al provider
     \item \textbf{Astrazione ``LLMClient''} --- interfaccia astratta sopra il provider, per testabilità ed estensioni
   \end{itemize}
@@ -209,29 +209,29 @@
   \begin{columns}[T]
     \column{0.5\textwidth}
     \begin{block}{Node.js + Express}
-      {\small Ecosistema JS unico FE+BE, ma lo streaming LLM richiede gestire a mano async e backpressure; validazione e OpenAPI da aggiungere con librerie esterne.}
+      {\small Ecosistema JS unico FE+BE, ma lo streaming LLM$_G$ richiede gestire a mano async e backpressure; validazione$_G$ e OpenAPI da aggiungere con librerie esterne.}
     \end{block}
     \column{0.5\textwidth}
     \begin{scelto}{FastAPI \ensuremath{\checkmark}}
-      {\small Async nativo per stream lunghi senza bloccare; validazione Pydantic e OpenAPI integrate; dall'OpenAPI generiamo i tipi TypeScript del frontend.}
+      {\small Async nativo per stream lunghi senza bloccare; validazione$_G$ Pydantic e OpenAPI integrate; dall'OpenAPI generiamo i tipi TypeScript del frontend$_G$.}
     \end{scelto}
   \end{columns}
   \vspace{6pt}
   \begin{center}
-    {\color{sbnavy}\small Il cuore del progetto è lo streaming LLM: FastAPI lo gestisce nativamente.}
+    {\color{sbnavy}\small Il cuore del progetto è lo streaming LLM$_G$: FastAPI lo gestisce nativamente.}
   \end{center}
 \end{frame}
 
-% ============ SLIDE 8 — CONFRONTO ACCESSO LLM ============
-\begin{frame}{Accesso all'LLM --- astrazione vs chiamata diretta}
+% ============ SLIDE 8 — CONFRONTO ACCESSO LLM$_G$ ============
+\begin{frame}{Accesso all'LLM$_G$ --- astrazione vs chiamata diretta}
   \begin{columns}[T]
     \column{0.5\textwidth}
     \begin{block}{Chiamata diretta al provider}
-      {\small Meno codice subito, ma le route restano accoppiate al provider concreto: cambiarlo o aggiungerne uno impone di riscriverle, e i test richiedono l'LLM reale.}
+      {\small Meno codice subito, ma le route restano accoppiate al provider concreto: cambiarlo o aggiungerne uno impone di riscriverle, e i test$_G$ richiedono l'LLM$_G$ reale.}
     \end{block}
     \column{0.5\textwidth}
     \begin{scelto}{LLMClient astratto + LiteLLMClient \ensuremath{\checkmark}}
-      {\small Le route dipendono dall'interfaccia, non dal provider: cambiarlo = modifica di config; testabile con mock pytest senza chiamare l'LLM.}
+      {\small Le route dipendono dall'interfaccia, non dal provider: cambiarlo = modifica di config; testabile con mock pytest senza chiamare l'LLM$_G$.}
     \end{scelto}
   \end{columns}
   \vspace{6pt}
@@ -245,20 +245,20 @@
     {\bfseries Infrastruttura}
     \begin{itemize}
       \item Docker Compose --- ambiente riproducibile in un comando
-      \item Mono-repo --- frontend + backend, CI unificata
+      \item Mono-repo --- frontend$_G$ + backend, CI unificata
     \end{itemize}
     \column{0.5\textwidth}
     {\bfseries Qualità}
     \begin{itemize}
-      \item GitHub Actions --- CI: lint, type check, test, build
-      \item Test: Vitest + Playwright (FE), pytest (BE)
+      \item GitHub$_G$ Actions --- CI: lint, type check, test$_G$, build
+      \item Test$_G$: Vitest + Playwright (FE), pytest (BE)
       \item openapi-typescript --- tipi TS dal backend, zero disallineamenti
     \end{itemize}
   \end{columns}
 \end{frame}
 
-% ============ SLIDE 10 — POC OBIETTIVO ============
-\begin{frame}{Proof of Concept --- obiettivo}
+% ============ SLIDE 10 — POC$_G$ OBIETTIVO ============
+\begin{frame}{Proof of Concept$_G$ --- obiettivo}
   \begin{block}{Obiettivo}
     Validare la pipeline di \textbf{streaming LLM end-to-end} con una sola funzione: il \textbf{riassunto}.
   \end{block}
@@ -271,22 +271,22 @@
   ]
     \node[flowstep] (a) {Utente scrive\\ in Markdown};
     \node[flowstep, right=10mm of a] (b) {Click\\ ``Genera Riassunto''};
-    \node[flowstep, right=10mm of b] (c) {Output in\\ streaming};
+    \node[flowstep, right=10mm of b] (c) {Output$_G$ in\\ streaming};
     \draw[arr] (a) -- (b);
     \draw[arr] (b) -- (c);
   \end{tikzpicture}
   \end{center}
   \vspace{2pt}
-  {\color{sbnavy}\small Le altre funzioni AI (traduzione, riscrittura, Sei Cappelli, Distant Writing) differiscono \textbf{solo per il prompt}: l'architettura resta identica.}
+  {\color{sbnavy}\small Le altre funzioni AI (traduzione, riscrittura, Sei Cappelli, Distant Writing$_G$) differiscono \textbf{solo per il prompt}: l'architettura resta identica.}
 \end{frame}
 
-% ============ SLIDE 11 — POC VALIDAZIONE ============
-\begin{frame}{Proof of Concept --- cosa abbiamo validato}
+% ============ SLIDE 11 — POC$_G$ VALIDAZIONE$_G$ ============
+\begin{frame}{Proof of Concept$_G$ --- cosa abbiamo validato}
   \begin{itemize}
     \item[\textcolor{sbaccent}{\ensuremath{\checkmark}}] Streaming fluido (effetto macchina da scrivere), UI mai bloccata
     \item[\textcolor{sbaccent}{\ensuremath{\checkmark}}] Interruzione propagata su tutta la catena (client $\to$ server $\to$ provider)
     \item[\textcolor{sbaccent}{\ensuremath{\checkmark}}] Errori del provider gestiti con messaggio chiaro, testo dell'editor preservato
-    \item[\textcolor{sbaccent}{\ensuremath{\checkmark}}] Chiave API mai esposta al client
+    \item[\textcolor{sbaccent}{\ensuremath{\checkmark}}] Chiave API$_G$ mai esposta al client
     \item[\textcolor{sbaccent}{\ensuremath{\checkmark}}] Ambiente riproducibile da zero con \texttt{docker compose up}
   \end{itemize}
 \end{frame}
