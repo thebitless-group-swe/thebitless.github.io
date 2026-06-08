@@ -69,9 +69,13 @@
     \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
     \hline
     \endhead
+    0.3.0 & 2026-06-08 & S. Zecchinato & - & - & Aggiunge valutazione MPC-AC/MPC-ETC \\ 
+    \hline
+    0.2.0 & 2026-06-07 & S. Zecchinato & - & - & Aggiunge valutazione MPC-PV/MPC-EV \\
+    \hline
     0.1.1 & 2026-06-04 & L. Battistella & - & - & Aggiornamento test$_G$ di sistema$_G$. \\ 
     \hline
-    0.1.0 & 2026-05-14 & A. Marini & - & A. Marini & Creazione prima versione del documento Piano di Qualifica$_G$. Inserimento struttura iniziale, riferimenti, metriche di qualità e strategia di testing. \\ \hline
+    0.1.0 & 2026-05-14 & A. Marini & - & - & Creazione prima versione del documento Piano di Qualifica$_G$. Inserimento struttura iniziale, riferimenti, metriche di qualità e strategia di testing. \\ \hline
 
 \end{longtable}
 \endgroup
@@ -777,7 +781,7 @@ Le misurazioni che seguono fanno riferimento al periodo che intercorre tra l'agg
 \subsection{Confronto MPC-PV e MPC-EV}
 \begin{table}[H]
     \centering
-	\begin{tabular}{|c|c|c|c|c|}
+	\begin{tabular}{|c|l|l|l|l|}
 		\hline
 		\textbf{Sprint} & \textbf{Planned Value} & \textbf{Earned Value} & \textbf{Accumulo PV} & \textbf{Accumulo EV} \\
 		\hline
@@ -799,13 +803,48 @@ Le misurazioni che seguono fanno riferimento al periodo che intercorre tra l'agg
 Come possiamo notare dalla figura §\ref{fig:pv-ev}, il \textit{Planned Value} cresce di pari passo con l'avanzare degli sprint. Vediamo poi come nel primo sprint l'\textit{Earned Value} sia minore rispetto alla stima pianificata: questo è dovuto da una inesperienza nella programmazione del lavoro che, a partire dallo sprint 2 è stata migliorata. 
 Questo lo si può notare anche dall'accumulo di EV che, dallo sprint 3, comincia ad essere maggiore dell'accumulo di PV, che riporta quindi un avanzamento del progetto di poco in anticipo rispetto a quanto pianificato. Valutazione:
 \begin{itemize}
-    \item \textbf{Soglia accettabile:} PV$>0$€, rispettato.
-    \item \textbf{Soglia ottima:} PV$<$EV, rispettato in quasi tutti gli sprint.
+    \item \textbf{Valore accettabile:} PV$>0$€, vincolo rispettato.
+    \item \textbf{Valore ottimo:} PV$<$EV, vincolo rispettato in quasi tutti gli sprint.
 \end{itemize}
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/pv-ev.pdf}
     \caption{Comparazione \textit{Planned Value - Earned Value}}
     \label{fig:pv-ev}
+\end{figure}
+
+\subsection{Confronto MPC-AC e MPC-ETC}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|l|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Actual Cost} & \textbf{Accumulo AC} & \textbf{Estimate to Complete} & \textbf{EAC} \\
+		\hline
+		1 & €945,00 & €945,00 & €11.994,61 & €12.939,61 \\ 
+		\hline
+        2 & €980,00 & €1.925,0 & €10.375,87 & €12.300,87 \\
+        \hline
+        3 & €1.105,00 & €3.030,00 & €10.064,31 & €13.094,31 \\
+        \hline
+        4 & €780,00 & €3.810,00 & €8.239,99 & €12.049,99 \\
+        \hline
+        5 & & & & \\
+        \hline
+	\end{tabular}
+	\caption{MPC-AC, MPC-ETC e MPC-EAC per sprint}
+	\label{tab:ac-etc}
+\end{table}
+Dal grafico in figura \ref{fig:ac-etc}, possiamo notare come l'\textit{Actual Cost} continui a salire, il che è del tutto normale in quanto man mano che il progetto avanza si consumano risorse economiche. Per quanto riguarda invece l'\textit{Estimate to Complete} e l'\textit{Estimate at Completion}, notiamo che nel primo sprint le curve scendevano, un segnale positivo. Tra il secondo e il terzo sprint, tuttavia, notiamo un peggioramento delle performance di progetto: i costi reali continuano a crescere senza un proporzionale calo del lavoro residuo (ETC), portando la stima del costo finale (EAC) a salire. Questo è successo a seguito della revisione dell'\textit{Analisi dei Requisiti} che ha impegnato buona parte del team senza portare un avantamento effettivo del progetto. A questo si aggiunge una consistente inesperienza nella programmazione del lavoro di gruppo che ha gravato sul bilancio.
+Fortunatamente, dal terzo sprint in poi si registra un netto recupero dell'efficienza: l'ETC subisce un calo deciso e, di conseguenza, la previsione del costo totale finale torna ad abbassarsi in modo consistente, il che è un buon segno. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} AC$>0$€, vincolo rispettato.
+    \item \textbf{Valore ottimo:} AC$\leq$EAC, vincolo rispettato.
+    \item \textbf{Valore accettabile:} ETC$\geq 0$, vincolo rispettato.
+    \item \textbf{Valore ottimo:} ETC$\geq 0$, vincolo rispettato.
+\end{itemize}
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/ac-etc.pdf}
+    \caption{Comparazione \textit{Actual Cost - Estimate to Complete - Estimated at Completion}}
+    \label{fig:ac-etc}
 \end{figure}
 
 \end{document}
