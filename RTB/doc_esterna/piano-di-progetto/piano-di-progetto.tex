@@ -43,8 +43,8 @@
 
 \newcommand{\titolo}{Piano di Progetto}
 \newcommand{\dataverbale}{}
-\newcommand{\dataversione}{2026-05-22}
-\newcommand{\versione}{0.9.0}
+\newcommand{\dataversione}{2026-06-11}
+\newcommand{\versione}{0.10.0}
 \newcommand{\stato}{Stesura}
 \newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
 \def\templatedir{../../../templates}
@@ -65,6 +65,8 @@
         \hline
         \rowcolor{bluBitless!15} % Colore di sfondo per l'intestazione
         \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
+        \hline
+        0.10.0 & 2026-06-11 & A. Marini & - & - & Pianificazione Sprint \#5 e rettifica consuntivo Sprint \#1 \\
         \hline
         0.9.0 & 2026-05-22 & D. Facco & A. Marini & - & Miglioramento consuntivo \\
         \hline
@@ -679,7 +681,7 @@ Nello specifico, il team si impegnerà a:
     \item proseguire l'aggiornamento dei documenti di progetto, in particolare \textit{Piano di Progetto}, \textit{Norme di Progetto}, \textit{Glossario} e \textit{Analisi dei Requisiti};
 
     \item sviluppare uno script\textsubscript{G} per automatizzare la gestione dei termini del \textit{Glossario}, riducendo il lavoro manuale necessario per inserire nei documenti il riferimento ai termini glossarizzati;
-    \item redigere i verbali interni ed esterni relativi agli incontri svolti durante lo sprintG.
+    \item redigere i verbali interni ed esterni relativi agli incontri svolti durante lo sprint\textsubscript{G}.
 \end{itemize}
 
 \begin{figure}[H]
@@ -708,18 +710,27 @@ Durante il quarto sprint\textsubscript{G}, il team prevede di concentrarsi princ
 \subsection{Sprint \#5: da 2026-05-26 a 2026-06-08}
 
 \subsubsection{Obiettivi}
-Gli obiettivi dello Sprint \#5 sono stati definiti a partire dalle evidenze emerse nella retrospettiva precedente e in coerenza con l'avanzamento complessivo del progetto.
+Gli obiettivi dello Sprint\textsubscript{G} \#5 sono stati definiti a partire dalle evidenze emerse nella retrospettiva precedente e in coerenza con l'avanzamento complessivo del progetto. L'attività centrale dell'iterazione è il completamento del \textit{Proof of Concept}, affiancata dalla stesura del \textit{Piano di Qualifica} e dalla revisione di correttezza dei documenti già prodotti.
 
+Per concentrare l'impegno sullo sviluppo, il team ha previsto l'impiego di tre Programmatori\textsubscript{G}, dedicati in parallelo al front-end e al back-end del PoC, e di un Verificatore\textsubscript{G} incaricato di controllare in modo continuativo quanto via via implementato.
+
+Nello specifico, il team si impegnerà a:
 \begin{itemize}
-    \item  Avanzamento del PoC, con implementazione del frontend e del backend. L'obiettivo è chiudere lo sviluppo del PoC entro la finestra dello sprint.
+    \item completare lo sviluppo del \textit{Proof of Concept}, portando a termine entro la finestra dello sprint\textsubscript{G} l'implementazione del front-end e del back-end e la verifica delle componenti realizzate;
 
-    \item Proseguimento della stesura del \textit{Piano di Qualifica}, con particolare attenzione alla sezione dedicata alle metriche di prodotto, che saranno popolate a partire dai test effettivamente eseguiti sul PoC. La disponibilità di codice funzionante consentirà di passare da definizioni astratte a misurazioni concrete.
+    \item proseguire la stesura del \textit{Piano di Qualifica}, con particolare attenzione alla sezione dedicata alle metriche di prodotto, che saranno popolate a partire dai test\textsubscript{G} effettivamente eseguiti sul PoC: la disponibilità di codice funzionante consentirà di passare da definizioni astratte a misurazioni concrete;
 
-    \item Aggiornamento del \textit{Piano di Progetto} per riflettere i consuntivi dello Sprint \#4 e la pianificazione rivista per gli sprint successivi.
+    \item revisionare la correttezza dei documenti già prodotti, correggendo eventuali refusi, aggiornando i riferimenti incrociati e allineando i contenuti allo stato corrente del progetto, con particolare riguardo alle \textit{Norme di Progetto};
 
-    \item Revisione e consolidamento delle\textit{Norme di Progetto}, con correzione di eventuali refusi, aggiornamento dei riferimenti incrociati e allineamento allo stato corrente del progetto.
+    \item aggiornare il \textit{Piano di Progetto} per riflettere i consuntivi dello Sprint\textsubscript{G} \#4 e la pianificazione rivista per gli sprint\textsubscript{G} successivi;
 
-    \item Avanzamento del \textit{Glossario} con i nuovi termini emersi durante lo sviluppo e la progettazione.
+    \item avanzare il \textit{Glossario} con i nuovi termini emersi durante lo sviluppo e la progettazione, integrandolo nel sito pubblico del gruppo affinché risulti direttamente consultabile online;
+
+    \item migliorare la veste grafica e l'organizzazione del sito pubblico del progetto;
+
+    \item proseguire l'attività di studio e approfondimento delle tecnologie adottate per lo sviluppo del PoC;
+
+    \item redigere i verbali interni ed esterni relativi agli incontri svolti durante lo sprint\textsubscript{G}.
 \end{itemize}
 
 \section{Preventivo}
@@ -829,7 +840,7 @@ accumulate in totali per persona e per ruolo:
 \fill[lineGray] (-1.35,-2.65) circle (1.7pt);
 \draw[lineGray, line width=0.7pt] (-1.35,-2.65) -- (-3.65,-2.65) -- (-5.45,-2.65);
 \node[anchor=south west, font=\normalsize\bfseries] at (-5.45,-2.58) {Analista};
-\node[anchor=north west, font=\small\bfseries, text=lineGray] at (-5.45,-2.80) {28 ore};
+\node[anchor=north west, font=\small\bfseries, text=lineGray] at (-5.45,-2.80) {24 ore};
 
 % Linee ed etichette esterne - Verificatore
 \fill[lineGray] (-2.15,2.35) circle (1.7pt);
@@ -1410,15 +1421,15 @@ accumulate in totali per persona e per ruolo:
         \rowcolor{bluBitless!15}
         \textbf{Membro} & \textbf{Re} & \textbf{Am} & \textbf{An} & \textbf{Pt} & \textbf{Pr} & \textbf{Ve} & \textbf{Totale per persona} \\
         \hline
-        L. Battistella & - & - & 7 & - & - & - & 7 \\ \hline
+        L. Battistella & - & - & 5 & - & - & - & 5 \\ \hline
         E. De Piccoli & - & 5 & - & - & - & - & 5 \\ \hline
-        D. Facco & - & - & 9 & - & - & - & 9 \\ \hline
-        A. Marini & - & - & 6 & - & - & - & 6 \\ \hline
+        D. Facco & - & - & 7 & - & - & - & 7 \\ \hline
+        A. Marini & - & - & 4 & - & - & - & 4 \\ \hline
         A. Menegaldo & - & - & - & - & - & 8 & 8 \\ \hline
         S. Vendramin & 6 & - & - & - & - & - & 6 \\ \hline
-        S. Zecchinato & - & - & 6 & - & - & - & 6 \\ \hline
+        S. Zecchinato & - & - & 5 & - & - & - & 5 \\ \hline
         \rowcolor{bluBitless!8}
-        \textbf{Totale per ruolo} & \textbf{6} & \textbf{5} & \textbf{28} & \textbf{-} & \textbf{-} & \textbf{8} & \textbf{47} \\
+        \textbf{Totale per ruolo} & \textbf{6} & \textbf{5} & \textbf{21} & \textbf{-} & \textbf{-} & \textbf{8} & \textbf{40} \\
         \hline
     \end{tabular}
     \caption{\textit{Consuntivo orario Sprint \#1}}
@@ -1442,30 +1453,30 @@ accumulate in totali per persona e per ruolo:
 % Titolo
 \node[font=\Large\bfseries] at (0,4.25) {Distribuzione ore per ruolo};
 
-% Totale = 47
-% Re = 6 -> 12,8%
-% Am = 5 -> 10,6%
-% An = 28 -> 59,6%
-% Ve = 8 -> 17,0%
+% Totale = 40
+% Re = 6 -> 15,0%
+% Am = 5 -> 12,5%
+% An = 21 -> 52,5%
+% Ve = 8 -> 20,0%
 
 % Settori
 \path[fill=colResp, draw=white, line width=1.5pt]
-(0,0) -- (90:\r) arc[start angle=90,end angle=44.0,radius=\r] -- cycle;
+(0,0) -- (90:\r) arc[start angle=90,end angle=36.0,radius=\r] -- cycle;
 
 \path[fill=colAmm, draw=white, line width=1.5pt]
-(0,0) -- (44.0:\r) arc[start angle=44.0,end angle=5.7,radius=\r] -- cycle;
+(0,0) -- (36.0:\r) arc[start angle=36.0,end angle=-9.0,radius=\r] -- cycle;
 
 \path[fill=colAn, draw=white, line width=1.5pt]
-(0,0) -- (5.7:\r) arc[start angle=5.7,end angle=-208.7,radius=\r] -- cycle;
+(0,0) -- (-9.0:\r) arc[start angle=-9.0,end angle=-198.0,radius=\r] -- cycle;
 
 \path[fill=colVe, draw=white, line width=1.5pt]
-(0,0) -- (-208.7:\r) arc[start angle=-208.7,end angle=-270,radius=\r] -- cycle;
+(0,0) -- (-198.0:\r) arc[start angle=-198.0,end angle=-270,radius=\r] -- cycle;
 
 % Percentuali interne
-\node[font=\normalsize\bfseries] at (61:1.75) {12,8\%};
-\node[font=\normalsize\bfseries] at (8:1.45) {10,6\%};
-\node[font=\normalsize\bfseries] at (-106:1.55) {59,6\%};
-\node[font=\normalsize\bfseries] at (123:1.85) {17,0\%};
+\node[font=\normalsize\bfseries] at (63:1.75) {15,0\%};
+\node[font=\normalsize\bfseries] at (13:1.65) {12,5\%};
+\node[font=\normalsize\bfseries] at (-103:1.55) {52,5\%};
+\node[font=\normalsize\bfseries] at (126:1.85) {20,0\%};
 
 % Linee ed etichette esterne - Responsabile
 \fill[lineGray] (1.65,2.50) circle (1.7pt);
@@ -1482,7 +1493,7 @@ accumulate in totali per persona e per ruolo:
 \fill[lineGray] (-1.10,-2.85) circle (1.7pt);
 \draw[lineGray, line width=0.7pt] (-1.10,-2.85) -- (-3.65,-2.85) -- (-5.45,-2.85);
 \node[anchor=south west, font=\normalsize\bfseries] at (-5.45,-2.78) {Analista};
-\node[anchor=north west, font=\small\bfseries, text=lineGray] at (-5.45,-3.00) {28 ore};
+\node[anchor=north west, font=\small\bfseries, text=lineGray] at (-5.45,-3.00) {21 ore};
 
 % Linee ed etichette esterne - Verificatore
 \fill[lineGray] (-2.15,2.35) circle (1.7pt);
@@ -1510,16 +1521,16 @@ Di seguito è riportato il consuntivo economico del primo sprint\textsubscript{G
 
         Responsabile di progetto & 6 & -2 & 180,00 & -60,00 \\ \hline
         Amministratore & 5 & 0 & 100,00 & 0,00 \\ \hline
-        Analista & 28 & -4 & 700,00 & -100,00 \\ \hline
+        Analista & 21 & +3 & 525,00 & +75,00 \\ \hline
         Progettista & 0 & 0 & 0,00 & 0,00 \\ \hline
         Programmatore & 0 & 0 & 0,00 & 0,00 \\ \hline
         Verificatore & 8 & 0 & 120,00 & 0,00 \\ \hline
 
         \rowcolor{bluBitless!8}
-        \textbf{Totale} & \textbf{47} & \textbf{-6} & \textbf{1.100,00} & \textbf{-160,00} \\ \hline
+        \textbf{Totale} & \textbf{40} & \textbf{+1} & \textbf{925,00} & \textbf{+15,00} \\ \hline
 
         Sprint pregressi & 0 & / & 0,00 & / \\ \hline
-        Restante & 597 & / & 11.760,00 & / \\ \hline
+        Restante & 604 & / & 11.935,00 & / \\ \hline
     \end{tabular}
     \caption{\textit{Consuntivo economico Sprint \#1}}
 \end{table}
@@ -1533,15 +1544,15 @@ Di seguito sono riportate le ore rimanenti per la coppia risorsa-ruolo:
         \rowcolor{bluBitless!15}
         \textbf{Membro del team} & \textbf{Re} & \textbf{Am} & \textbf{An} & \textbf{Pt} & \textbf{Pr} & \textbf{Ve} & \textbf{Totale per persona} \\
         \hline
-        L. Battistella & 7 & 9 & 2 & 22 & 22 & 23 & 85 \\ \hline
+        L. Battistella & 7 & 9 & 4 & 22 & 22 & 23 & 87 \\ \hline
         E. De Piccoli & 7 & 4 & 9 & 22 & 22 & 23 & 87 \\ \hline
-        D. Facco & 7 & 8 & 0 & 22 & 23 & 23 & 83 \\ \hline
-        A. Marini & 7 & 8 & 3 & 22 & 23 & 23 & 86 \\ \hline
+        D. Facco & 7 & 8 & 2 & 22 & 23 & 23 & 85 \\ \hline
+        A. Marini & 7 & 8 & 5 & 22 & 23 & 23 & 88 \\ \hline
         A. Menegaldo & 7 & 8 & 9 & 23 & 22 & 15 & 84 \\ \hline
         S. Vendramin & 1 & 9 & 8 & 22 & 24 & 22 & 86 \\ \hline
-        S. Zecchinato & 6 & 9 & 3 & 23 & 22 & 23 & 86 \\ \hline
+        S. Zecchinato & 6 & 9 & 4 & 23 & 22 & 23 & 87 \\ \hline
         \rowcolor{bluBitless!8}
-        \textbf{Totale per ruolo} & \textbf{42} & \textbf{55} & \textbf{34} & \textbf{156} & \textbf{158} & \textbf{152} & \textbf{597} \\
+        \textbf{Totale per ruolo} & \textbf{42} & \textbf{55} & \textbf{41} & \textbf{156} & \textbf{158} & \textbf{152} & \textbf{604} \\
         \hline
     \end{tabular}
     \caption{\textit{Ore rimanenti per coppia risorsa-ruolo dopo lo Sprint \#1}}
@@ -1570,15 +1581,16 @@ Dall'analisi dello Sprint\textsubscript{G} \#1 sono emersi alcuni scostamenti tr
 
 \begin{itemize}
     \item \textbf{Scostamento del ruolo Analista:}
-    le ore consuntivate per il ruolo di Analista sono risultate superiori
-    rispetto a quelle preventivate (28 ore effettive contro le 24 previste,
-    +4 ore). Il gruppo ha avuto bisogno di ore aggiuntive di ``palestra''
-    iniziale per familiarizzare con il contesto del progetto: comprendere
-    l'analisi del capitolato, studiare cosa fossero i casi d'uso\textsubscript{G}
-    e i requisiti\textsubscript{G}, e assimilare le modalità corrette di
-    documentazione. Questo investimento di apprendimento, pur non producendo
-    direttamente documentazione, è stato necessario per costruire le competenze
-    di base indispensabili alle attività di analisi degli sprint successivi.
+    le ore consuntivate per il ruolo di Analista sono risultate inferiori
+    rispetto a quelle preventivate (21 ore effettive contro le 24 previste,
+    -3 ore). Il gruppo ha infatti impiegato più tempo effettivo nell'attività
+    di ``palestra'' iniziale, ovvero nel familiarizzare con il contesto del
+    progetto (comprendere l'analisi del capitolato, studiare cosa fossero i
+    casi d'uso\textsubscript{G} e i requisiti\textsubscript{G}, assimilare le
+    modalità corrette di documentazione), che nella produzione della
+    documentazione effettiva. Di conseguenza, le ore dedicate alla stesura
+    vera e propria dei contenuti di analisi sono risultate inferiori a quanto
+    inizialmente preventivato.
 
     \item \textbf{Scostamento del ruolo Responsabile:}
     il ruolo di Responsabile ha consuntivato 6 ore contro le 4 preventivate
@@ -1648,16 +1660,18 @@ Durante il primo sprint\textsubscript{G}, il team ha osservato l’emergere di c
         \item \textbf{RO-8 - Errata stima delle attività}
         \begin{itemize}
             \item \textbf{Descrizione:} La stima iniziale delle ore di Analista si è
-            rivelata insufficiente. Sono state preventivate 24 ore, ma ne sono state
-            consuntivate 28: il gruppo ha sottostimato il tempo necessario alla fase
-            di studio e comprensione del contesto (casi d'uso\textsubscript{G},
+            rivelata leggermente sovrastimata. Sono state preventivate 24 ore, ma ne
+            sono state consuntivate 21: il tempo effettivo dedicato alla produzione
+            della documentazione di analisi è stato inferiore al previsto, poiché una
+            parte rilevante dell'impegno è stata assorbita dall'attività di ``palestra''
+            iniziale di familiarizzazione con il contesto (casi d'uso\textsubscript{G},
             requisiti\textsubscript{G}, modalità di documentazione), trattandosi della
             prima attività di analisi del progetto.
             \item \textbf{Esito della mitigazione:} Parzialmente efficace. Lo
             scostamento è stato assorbito senza impatti sulle scadenze, ma ha
-            evidenziato la necessità di considerare esplicitamente, nelle stime
-            successive, le ore di apprendimento e non solo quelle di produzione.
-            \item \textbf{Impatto:} Contenuto. Le 4 ore aggiuntive rientrano nel
+            evidenziato la necessità di distinguere, nelle stime successive, le ore di
+            apprendimento da quelle di produzione effettiva.
+            \item \textbf{Impatto:} Contenuto. Le 3 ore in meno rientrano nel
             monte ore complessivo del ruolo e non hanno compromesso il budget né la
             pianificazione.
         \end{itemize}
@@ -1787,8 +1801,8 @@ Di seguito è riportato il consuntivo economico del secondo sprint\textsubscript
         \rowcolor{bluBitless!8}
         \textbf{Totale} & \textbf{46} & \textbf{-2} & \textbf{980,00} & \textbf{0,00} \\ \hline
 
-        Sprint pregressi & 47 & / & 1.100,00 & / \\ \hline
-        Restante & 551 & / & 10.780,00 & / \\ \hline
+        Sprint pregressi & 40 & / & 925,00 & / \\ \hline
+        Restante & 558 & / & 10.955,00 & / \\ \hline
     \end{tabular}
     \caption{\textit{Consuntivo economico Sprint \#2}}
 \end{table}
@@ -1803,15 +1817,15 @@ Di seguito sono riportate le ore rimanenti per la coppia risorsa-ruolo:
         \rowcolor{bluBitless!15}
         \textbf{Membro del team} & \textbf{Re} & \textbf{Am} & \textbf{An} & \textbf{Pt} & \textbf{Pr} & \textbf{Ve} & \textbf{Totale per persona} \\
         \hline
-        L. Battistella & 2 & 9 & 0 & 22 & 22 & 23 & 78 \\ \hline
+        L. Battistella & 2 & 9 & 2 & 22 & 22 & 23 & 80 \\ \hline
         E. De Piccoli & 7 & 4 & 9 & 22 & 22 & 17 & 81 \\ \hline
-        D. Facco & 7 & 8 & 0 & 22 & 23 & 16 & 76 \\ \hline
-        A. Marini & 7 & 1 & 3 & 22 & 23 & 23 & 79 \\ \hline
+        D. Facco & 7 & 8 & 2 & 22 & 23 & 16 & 78 \\ \hline
+        A. Marini & 7 & 1 & 5 & 22 & 23 & 23 & 81 \\ \hline
         A. Menegaldo & 7 & 8 & 3 & 23 & 22 & 15 & 78 \\ \hline
         S. Vendramin & 1 & 9 & 1 & 22 & 24 & 22 & 79 \\ \hline
-        S. Zecchinato & 6 & 9 & 0 & 23 & 22 & 20 & 80 \\ \hline
+        S. Zecchinato & 6 & 9 & 1 & 23 & 22 & 20 & 81 \\ \hline
         \rowcolor{bluBitless!8}
-        \textbf{Totale per ruolo} & \textbf{37} & \textbf{48} & \textbf{16} & \textbf{156} & \textbf{158} & \textbf{136} & \textbf{551} \\
+        \textbf{Totale per ruolo} & \textbf{37} & \textbf{48} & \textbf{23} & \textbf{156} & \textbf{158} & \textbf{136} & \textbf{558} \\
         \hline
     \end{tabular}
     \caption{\textit{Ore rimanenti per coppia risorsa-ruolo dopo lo Sprint \#2}}
@@ -2037,8 +2051,8 @@ Di seguito è riportato il consuntivo economico del terzo sprint\textsubscript{G
         \rowcolor{bluBitless!8}
         \textbf{Totale} & \textbf{50} & \textbf{-6} & \textbf{1.105,00} & \textbf{-150,00} \\ \hline
 
-        Sprint pregressi & 93 & / & 2.080,00 & / \\ \hline
-        Restante & 501 & / & 9.675,00 & / \\ \hline
+        Sprint pregressi & 86 & / & 1.905,00 & / \\ \hline
+        Restante & 508 & / & 9.850,00 & / \\ \hline
     \end{tabular}
     \caption{\textit{Consuntivo economico Sprint \#3}} 
 \end{table}
@@ -2051,15 +2065,15 @@ Di seguito è riportato il consuntivo economico del terzo sprint\textsubscript{G
         \rowcolor{bluBitless!15}
         \textbf{Membro del team} & \textbf{Re} & \textbf{Am} & \textbf{An} & \textbf{Pt} & \textbf{Pr} & \textbf{Ve} & \textbf{Totale per persona} \\
         \hline
-        L. Battistella & 2 & 2 & 0 & 22 & 22 & 23 & 71 \\ \hline
+        L. Battistella & 2 & 2 & 2 & 22 & 22 & 23 & 73 \\ \hline
         E. De Piccoli & 7 & 4 & 1 & 22 & 22 & 17 & 73 \\ \hline
-        D. Facco & 7 & 8 & 0 & 15 & 23 & 16 & 69 \\ \hline
-        A. Marini & 3 & 1 & 0 & 22 & 23 & 23 & 72 \\ \hline
+        D. Facco & 7 & 8 & 2 & 15 & 23 & 16 & 71 \\ \hline
+        A. Marini & 3 & 1 & 2 & 22 & 23 & 23 & 74 \\ \hline
         A. Menegaldo & 7 & 8 & 2 & 17 & 22 & 15 & 71 \\ \hline
         S. Vendramin & 1 & 9 & 0 & 22 & 24 & 16 & 72 \\ \hline
-        S. Zecchinato & 6 & 9 & 0 & 23 & 22 & 13 & 73 \\ \hline
+        S. Zecchinato & 6 & 9 & 1 & 23 & 22 & 13 & 74 \\ \hline
         \rowcolor{bluBitless!8}
-        \textbf{Totale per ruolo} & \textbf{33} & \textbf{41} & \textbf{3} & \textbf{143} & \textbf{158} & \textbf{123} & \textbf{501} \\
+        \textbf{Totale per ruolo} & \textbf{33} & \textbf{41} & \textbf{10} & \textbf{143} & \textbf{158} & \textbf{123} & \textbf{508} \\
         \hline
     \end{tabular}
     \caption{\textit{Ore rimanenti per coppia risorsa-ruolo dopo lo Sprint \#3}}
@@ -2283,8 +2297,8 @@ Di seguito è riportato il consuntivo economico del quarto sprint\textsubscript{
         \rowcolor{bluBitless!8}
         \textbf{Totale} & \textbf{54} & \textbf{-4} & \textbf{1.120,00} & \textbf{-50,00} \\ \hline
 
-        Sprint pregressi & 143 & / & 3.185,00 & / \\ \hline
-        Restante & 447 & / & 8.555,00 & / \\ \hline
+        Sprint pregressi & 136 & / & 3.010,00 & / \\ \hline
+        Restante & 454 & / & 8.730,00 & / \\ \hline
     \end{tabular}
     \caption{\textit{Consuntivo economico Sprint \#4}} 
 \end{table}
@@ -2299,15 +2313,15 @@ Di seguito sono riportate le ore rimanenti per la coppia risorsa-ruolo:
         \rowcolor{bluBitless!15}
         \textbf{Membro del team} & \textbf{Re} & \textbf{Am} & \textbf{An} & \textbf{Pt} & \textbf{Pr} & \textbf{Ve} & \textbf{Totale per persona} \\
         \hline
-        L. Battistella & 2 & 2 & 0 & 13 & 22 & 23 & 62 \\ \hline
+        L. Battistella & 2 & 2 & 2 & 13 & 22 & 23 & 64 \\ \hline
         E. De Piccoli & 7 & 4 & 1 & 13 & 22 & 17 & 64 \\ \hline
-        D. Facco & 7 & 1 & 0 & 15 & 23 & 16 & 62 \\ \hline
-        A. Marini & 3 & 1 & 0 & 22 & 23 & 15 & 64 \\ \hline
+        D. Facco & 7 & 1 & 2 & 15 & 23 & 16 & 64 \\ \hline
+        A. Marini & 3 & 1 & 2 & 22 & 23 & 15 & 66 \\ \hline
         A. Menegaldo & 7 & 5 & 0 & 17 & 22 & 15 & 66 \\ \hline
         S. Vendramin & 1 & 9 & 0 & 22 & 15 & 16 & 63 \\ \hline
-        S. Zecchinato & 2 & 9 & 0 & 23 & 19 & 13 & 66 \\ \hline
+        S. Zecchinato & 2 & 9 & 1 & 23 & 19 & 13 & 67 \\ \hline
         \rowcolor{bluBitless!8}
-        \textbf{Totale per ruolo} & \textbf{29} & \textbf{31} & \textbf{1} & \textbf{125} & \textbf{146} & \textbf{115} & \textbf{447} \\
+        \textbf{Totale per ruolo} & \textbf{29} & \textbf{31} & \textbf{8} & \textbf{125} & \textbf{146} & \textbf{115} & \textbf{454} \\
         \hline
     \end{tabular}
     \caption{\textit{Ore rimanenti per coppia risorsa-ruolo dopo lo Sprint \#4}}
