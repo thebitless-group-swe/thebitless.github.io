@@ -793,7 +793,7 @@ Le misurazioni che seguono fanno riferimento al periodo che intercorre tra l'agg
         \hline
         4 & €880,00 & €832,43 & €3.800,00 & €3.881,39 \\
         \hline
-        5 & & & & \\
+        5 & €1.075,00 & €1.126,19 & €4.875,00 & €5.007,58 \\
         \hline
 	\end{tabular}
 	\caption{MPC-PC e MPC-EV per sprint}
@@ -827,16 +827,18 @@ Questo lo si può notare anche dall'accumulo di EV che, dallo sprint 3, comincia
         \hline
         4 & €780,00 & €3.810,00 & €8.239,99 & €12.049,99 \\
         \hline
-        5 & & & & \\
+        5 & €1.120,00 & €4.930,00 & €7.859,31 & €12.789,31 \\
         \hline
 	\end{tabular}
 	\caption{MPC-AC, MPC-ETC e MPC-EAC per sprint}
 	\label{tab:ac-etc}
 \end{table}
-Dal grafico in figura \ref{fig:ac-etc}, possiamo notare come l'\textit{Actual Cost} continui a salire, il che è del tutto normale in quanto man mano che il progetto avanza si consumano risorse economiche. Per quanto riguarda invece l'\textit{Estimate to Complete} e l'\textit{Estimate at Completion}, notiamo che nel primo sprint le curve scendevano, un segnale positivo. Tra il secondo e il terzo sprint, tuttavia, notiamo un peggioramento delle performance di progetto: i costi reali continuano a crescere senza un proporzionale calo del lavoro residuo (ETC), portando la stima del costo finale (EAC) a salire. Questo è successo a seguito della revisione dell'\textit{Analisi dei Requisiti} che ha impegnato buona parte del team senza portare un avantamento effettivo del progetto. A questo si aggiunge una consistente inesperienza nella programmazione del lavoro di gruppo che ha gravato sul bilancio.
-Fortunatamente, dal terzo sprint in poi si registra un netto recupero dell'efficienza: l'ETC subisce un calo deciso e, di conseguenza, la previsione del costo totale finale torna ad abbassarsi in modo consistente, il che è un buon segno. Valutazione:
+L'analisi del grafico in Figura \ref{fig:ac-etc} evidenzia, come atteso, un incremento progressivo dell'\textit{Actual Cost}, fisiologico e coerente con il continuo assorbimento delle risorse economiche durante l'avanzamento del progetto.
+Relativamente alle metriche previsionali \textit{Estimate to Complete} ed \textit{Estimate at Completion}, osserviamo un trend decrescente fino al secondo sprint. Tale dinamica rappresenta un indicatore di elevata efficienza iniziale, avendo posizionato la stima del costo a finire (EAC) significativamente al di sotto del budget stanziato.
+Tra il secondo e il terzo sprint, tuttavia, rileviamo una flessione nelle performance di progetto: all'incremento dei costi sostenuti non corrisponde una proporzionale riduzione del lavoro residuo stimato (ETC). Conseguentemente, l'EAC subisce un innalzamento, approssimandosi al limite critico definito dal BAC. Questa deviazione è imputabile principalmente alla fase di revisione dell'\textit{Analisi dei Requisiti}, un'attività che ha richiesto un notevole impiego di risorse in termini di \textit{effort} senza tuttavia generare un proporzionale incremento del valore maturato (\textit{Earned Value}). A tale criticità si è sommata un'iniziale inesperienza nella pianificazione operativa e nel coordinamento delle attività del team, con inevitabili ricadute negative sull'efficienza economica complessiva dello sprint.
+A partire dal terzo sprint si registra, in controtendenza, un marcato recupero dell'efficienza operativa, con una riduzione dell'ETC. Ciò determina una conseguente e significativa riduzione della stima del costo totale a finire. Pur riscontrando un lieve incremento dell'EAC in corrispondenza del quinto sprint, la proiezione di chiusura si stabilizza al di sotto del limite imposto dal BAC. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} AC$>0$€, vincolo rispettato.
+    \item \textbf{Valore accettabile:} AC$\leq 120\% * PV $€, vincolo \textit{rispettato}.
     \item \textbf{Valore ottimo:} AC$\leq$EAC, vincolo rispettato.
     \item \textbf{Valore accettabile:} ETC$\geq 0$, vincolo rispettato.
     \item \textbf{Valore ottimo:} ETC$\geq 0$, vincolo rispettato.
@@ -847,4 +849,134 @@ Fortunatamente, dal terzo sprint in poi si registra un netto recupero dell'effic
     \label{fig:ac-etc}
 \end{figure}
 
+\subsection{Confronto MPC-CV e MPC-SV}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|l|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Cost Variance (€)} & \textbf{Schedule Variance (€)} & \textbf{Giudizio} \\
+		\hline
+		1 & -5,81 & -45,81 & In ritardo e lievemente sopra il budget\\ 
+		\hline
+        2 & -44,55 & +44,55 & In anticipo ma sopra il budget \\
+        \hline
+        3 & -19,77 & +130,23 & In anticipo ma sopra il budget \\
+        \hline
+        4 & +52,43 & -47,57 & In ritardo ma sotto il budget \\
+        \hline
+        5 & +6,19 & +51,19 & In anticipo e lievemente sotto il budget \\
+        \hline
+	\end{tabular}
+	\caption{MPC-AC, MPC-ETC e MPC-EAC per sprint}
+	\label{tab:cv-sv}
+\end{table}
+Dall'analisi del grafico in Figura §\ref{fig:cv-sv} possiamo notare un andamento altalenante che, tuttavia, culmina in una convergenza verso l'efficienza ottimale:
+\begin{itemize}
+    \item \textbf{Sprint 1:} In questa fase il progetto si avvia con performance al di sotto del livello di ottimalità. Questa dinamica è del tutto coerente con le difficoltà iniziali di calibrazione del team.
+    \item \textbf{Sprint 2:} In questo sprint il team recupera il ritardo iniziale con un ottimo slancio portandosi in anticipo sulle consegne. Questo slancio, però, comporta un impiego di risorse economiche superiore al previsto, che porta ad uno scenario di anticipo temporale a fronte di un sovraccosto.
+    \item \textbf{Sprint 3:} La tendenza all'accelerazione vista nello scorso sprint si consolida generando il picco massimo di vantaggio sulla schedulazione. Questo ritmo veloce produce un ulteriore, seppur contenuto, sforamento del budget.
+    \item \textbf{Sprint 4:} In questo sprint il team registra una flessione dal punto di vista temporale, accumulando nuovamente ritardo rispetto al piano ideale. Di contro si rileva un eccellente recupero dell'efficenza economica.
+    \item \textbf{Sprint 5:} In quest'ultima iterazione analizzata, il progetto raggiunge uno stato di equilibrio. Entrambe le metriche di varianza risultano positive consolidando un solido anticipo sulla tabella di marcia mantenendo allo stesso tempo una, seppur minima, efficienza finanziaria.
+\end{itemize}
+Valutazione: \textbf{DA RIVEDERE!}
+\begin{itemize}
+    \item \textbf{Valore accettabile CV:} $CV>0$, vincolo \textit{violato} in due sprint su cinque con scostamenti minimi.
+    \item \textbf{Valore accettabile SV:} $SV\geq 0$, vincolo \textit{violato} in due sprint su cinque con slittamenti consistenti.
+\end{itemize}
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/cv-sv.pdf}
+    \caption{Comparazione \textit{Cost Variance - Schedule Variance}}
+    \label{fig:cv-sv}
+\end{figure}
+
+\subsection{Confronto MPC-EAC e MPC-BAC}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|l|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Estimate At Completion} & \textbf{Budget At Completion} & \textbf{Stato} \\
+		\hline
+		1 & €12.939,61 & €12.860,00 & EAC$>$BAC \\ 
+		\hline
+        2 & €12.300,87 & €12.860,00 & EAC$<$BAC \\
+        \hline
+        3 & €13.094,00 & €12.860,00 & EAC$>$BAC \\
+        \hline
+        4 & €12.049,99 & €12.860,00& EAC$<$BAC \\
+        \hline
+        5 & €12.789,31 & €12.860,00 & EAC$<$BAC \\
+        \hline
+	\end{tabular}
+	\caption{MPC-AC, MPC-ETC e MPC-EAC per sprint}
+	\label{tab:eac-bac}
+\end{table}
+
+Dall'aggiudicazione del capitolato fino alla revisione della RTB, l'\textit{Estimate At Completion} oscilla attorno al \textit{Budget At Completion}. Il BTC supera il BAC solo in due occasioni:
+\begin{itemize}
+    \item \textbf{Sprint 1:} come detto anche nelle altre sezioni, il promo sprint ha sofferto dell'inesperienza del gruppo nell'organizzare le task, dimensionarle e portarle a compimento, Questo ha provocato un leggero sforamento di budget.
+    \item \textbf{Sprint 3:} in questo sprint il gruppo si è dovuto confrontare con la revisione dell'\textit{Analisi dei Requisiti}, che ha portato ad un rallentamento del progetto e ad un conseguente minore valore aggiunto.
+\end{itemize} 
+Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} EAC$\leq 110\%$ budget, vincolo \textit{rispettato}.
+    \item \textbf{Valore ottimale:} EAC$\leq$ budget, vincolo \textit{violato} in due sprint su cinque.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/eac-bac.pdf}
+    \caption{Comparazione \textit{Estimate At Completion - Budget At Completion}}
+    \label{fig:eac-bac}
+\end{figure}
+
+\subsection{Valutazione MPC-TCR}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|l|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Task completate} & \textbf{Task in ritardo} & \textbf{TCR (\%)} & \textbf{Giudizio} \\
+		\hline
+		1 & 13 & 3 & $76,9\%$ & Critico\\ 
+		\hline
+        2 & 11 & 0 & $100,0\%$ & Ottimo \\
+        \hline
+        3 & 13 & 0 & $100,0\%$ & Ottimo \\
+        \hline
+        4 & 13 & 1 & $92,3\%$ & Accettabile \\
+        \hline
+        5 & 49 & 0 & $100,0\%$ & Ottimo  \\
+        \hline
+	\end{tabular}
+	\caption{TCR per sprint}
+	\label{tab:tcr}
+\end{table}
+Il \textit{Task Completion Rate} risulta ottimo in tre sprint su cinque. Notiamo subottimalità critica nelo sprint 1 ($76,9\%$) e una subottimalità lieve nello sprint 4 ($92,3\%$). Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $TCR \geq 85\%$, vincolo \textit{violato} nello sprint 1.
+\end{itemize}
+
+\subsection{Valutazione MPC-TS}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|l|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Task completate} & \textbf{Task in ritardo} & \textbf{TS (\%)} & \textbf{Giudizio} \\
+		\hline
+		1 & 13 & 3 & $23,1\%$ & Critico\\ 
+		\hline
+        2 & 11 & 0 & $0,0\%$ & Ottimo \\
+        \hline
+        3 & 13 & 0 & $0,0\%$ & Ottimo \\
+        \hline
+        4 & 13 & 1 & $7,7\%$ & Accettabile \\
+        \hline
+        5 & 49 & 0 & $0,0\%$ & Ottimo  \\
+        \hline
+	\end{tabular}
+	\caption{TS per sprint}
+	\label{tab:ts}
+\end{table}
+Il \textit{Task Slippage} risulta ottimo in tre sprint su cinque. Notiamo subottimalità critica nelo sprint 1 ($23,1\%$) e una subottimalità lieve nello sprint 4 ($7,7\%$). Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $TS \leq 15\%$, vincolo \textit{violato} nello sprint 1.
+\end{itemize}
 \end{document}
