@@ -1,0 +1,167 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+\usepackage[a-1b]{pdfx}
+\usepackage[italian]{babel} 
+\usepackage{comment}      
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{minted} 
+\usepackage{geometry}
+\usepackage{float} 
+\usepackage{setspace}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{Verbale \titolo \ \dataverbale}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    pdfborderstyle={/S/U/W 1},
+    linkbordercolor=0 0 0,
+    urlbordercolor=0 0 0,
+    citebordercolor=0 0 0,
+    filebordercolor=0 0 0,
+    breaklinks=true,
+}
+\newcommand{\issueDoc}[1]{\href{https://github.com/thebitless-group-swe/thebitless.github.io/issues/#1}{\##1}}
+\newcommand{\issuePoC}[1]{\href{https://github.com/thebitless-group-swe/PoC/issues/#1}{\##1}}
+
+\begin{document}
+
+\newcommand{\titolo}{interno}
+\newcommand{\dataverbale}{2026-05-26}
+\newcommand{\dataversione}{2026-05-28}
+\newcommand{\versione}{1.0.0}
+\newcommand{\stato}{Approvato}
+\newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+\def\templatedir{../../../../templates}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+\input{\templatedir/frontespizio.tex}
+\end{titlepage}
+
+\newpage
+\tableofcontents 
+
+\newpage
+\pagenumbering{arabic}
+\section{Informazioni sulla riunione}
+Il presente documento riporta la verbalizzazione della riunione interna al gruppo \textbf{The Bitless} avvenuta il \dataverbale{}. L'incontro si è svolto in modalità telematica tramite la piattaforma Discord$_G$. La riunione si è aperta alle ore 10:00 e si è conclusa alle ore 11:00.
+
+\section{Presenze}
+\begin{center}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
+\hline
+Lorenzo & Battistella & Assente \\
+Edoardo & De Piccoli & Presente \\
+Davide & Facco & Presente \\
+Anna & Marini & Presente \\
+Andrea & Menegaldo & Presente \\
+Samuele & Vendramin & Assente \\
+Simone & Zecchinato & Presente \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ordine del giorno}
+\begin{enumerate}
+    \item Rotazione dei ruoli$_G$ 
+    \item Pianificazione sviluppo$_G$ PoC$_G$
+    \item Resoconto Sprint$_G$ 4 e rendicontazione ore
+    \item Pianificazione compiti futuri
+\end{enumerate}
+
+\section{Discussione e decisioni}
+
+\subsection{Rotazione dei ruoli}
+Prima di stabilire i nuovi ruoli operativi per il quinto sprint$_G$, il gruppo ha discusso sulla possibilità di aumentare il numero di programmatori$_G$ per agevolare la creazione del PoC$_G$.
+A seguito della discussione, il gruppo decide di attivare tre programmatori, di rimuovere il ruolo di analista$_G$ e di ridurre il ruolo di progettista$_G$ a una sola persona. Tali scelte derivano dal fatto che in questo sprint$_G$ l'attività centrale è lo sviluppo$_G$ del PoC$_G$:
+\begin{itemize}
+    \item l'impiego di tre programmatori consente di parallelizzare e accelerare l'implementazione del PoC$_G$;
+    \item un solo progettista$_G$ è ritenuto sufficiente, in quanto il grosso del lavoro di progettazione è già stato svolto negli sprint$_G$ precedenti: non si reputa pertanto necessario proseguire con più di una persona su questo ruolo;
+    \item il ruolo di analista$_G$ viene rimosso poiché in questo sprint$_G$ non sono previste attività di analisi. Qualora dovesse emergere la necessità di eventuali rifiniture in vista della RTB$_G$, il gruppo valuterà nel prossimo sprint$_G$ come riorganizzare i ruoli e le risorse di conseguenza.
+\end{itemize}
+
+La ripartizione è stata definita come segue:
+\begin{center}
+    \begin{tabular}{|l|l|c|}
+        \hline
+        \textbf{Nome} & \textbf{Cognome} & \textbf{Ruolo} \\
+        \hline
+        Lorenzo & Battistella & Verificatore$_G$ \\
+        \hline
+        Edoardo & De Piccoli & Programmatore$_G$ \\
+        \hline
+        Davide & Facco & Programmatore$_G$ \\
+        \hline
+        Anna & Marini & Programmatore$_G$ \\
+        \hline
+        Andrea & Menegaldo & Responsabile$_G$ \\
+        \hline
+        Samuele & Vendramin & Amministratore$_G$ \\
+        \hline
+        Simone & Zecchinato & Progettista$_G$ \\
+        \hline  
+    \end{tabular}
+\end{center}
+
+
+\subsection{Pianificazione sviluppo PoC}
+Riguardo lo svolgimento del PoC$_G$, i tre programmatori, in accordo con il gruppo, hanno definito le linee guida per lo sviluppo$_G$ del PoC$_G$.
+
+In coerenza con quanto concordato dai progettisti$_G$ nelle fasi precedenti, sono già state predisposte sull'Issue$_G$ Tracking System$_G$ delle issue$_G$ molto specifiche e atomiche, che i programmatori dovranno seguire durante questo sprint$_G$ per avanzare in modo ordinato con il PoC$_G$.
+
+Lo sviluppo$_G$ non procederà completando prima per intero il front-end e poi il back-end (o viceversa): per consentire ai programmatori di lavorare in parallelo, si affronteranno poche task$_G$ alla volta, dando comunque priorità iniziale alle API$_G$ di base del back-end, così da fornire al front-end gli endpoint necessari. L'indicazione di massima è quindi la seguente:
+\begin{itemize}
+    \item sviluppo$_G$ preliminare delle API$_G$ di base del back-end;
+    \item sviluppo$_G$ del front-end man mano che le relative API$_G$ diventano disponibili;
+    \item integrazione$_G$ parallela e continua delle due parti.
+\end{itemize}
+I programmatori si impegnano a mantenere una comunicazione costante e a segnalare tempestivamente blocchi o difficoltà al Progettista$_G$ e al Responsabile$_G$.
+
+\subsection{Resoconto dello Sprint 4}
+Il team ha analizzato l'andamento del quarto Sprint$_G$, confrontando le attività pianificate con quelle effettivamente svolte. A partire dal documento Google condiviso, il gruppo ha discusso i principali problemi affrontati durante lo Sprint$_G$ 4, tra cui una sottostima delle attività, aspetto che verrà approfondito e trattato all'interno del Piano di Progetto$_G$. Si è inoltre proceduto alla verifica$_G$ delle ore di lavoro rendicontate da ciascun componente, necessarie per il monitoraggio dei costi e dell'avanzamento nel Piano di Progetto$_G$.
+
+\subsection{Pianificazione compiti futuri}
+Il gruppo decide di dare priorità all'inizio del PdQ$_G$ e del PoC$_G$ (back-end → front-end → integrazione$_G$ parallela). Si ribadisce infine la necessità di studio individuale delle tecnologie scelte (Python, React).
+
+\subsection{Assegnazione attività singole}
+\begin{center}
+    \renewcommand{\arraystretch}{1.4}
+        \begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
+        \hline
+        \textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
+        \hline
+        A. Menegaldo & Stesura verbale interno 2026-05-28 & \issueDoc{158} \\
+        \hline
+        L. Battistella & Stesura Test$_G$ di sistema$_G$ Piano di Qualifica$_G$ & \issueDoc{164} \\
+        \hline
+        S. Vendramin & Stesura Test$_G$ di integrazione$_G$ Piano di Qualifica$_G$ & \issueDoc{165} \\
+        \hline
+        S. Vendramin & Stesura Test$_G$ di accettazione Piano di Qualifica$_G$ & \issueDoc{166} \\
+        \hline
+        S. Zecchinato & Stesura Resoconto economico Piano di Qualifica$_G$ & \issueDoc{167} \\
+        \hline
+        A. Menegaldo & Slide terzo Diario di Bordo & \issueDoc{161} \\
+        \hline
+        E. De Piccoli - D. Facco - A. Marini & Implementazione del backend del PoC$_G$ & \issuePoC{11} \\
+        \hline
+        E. De Piccoli - D. Facco - A. Marini & Implementazione del frontend$_G$ del PoC$_G$ & \issuePoC{22} \\
+        \hline
+        L. Battistella & Validazione$_G$ del PoC$_G$ & \issuePoC{37} \\
+        \hline
+        E. De Piccoli - D. Facco - A. Marini & Integrazione$_G$ e release$_G$ del PoC$_G$ & \issuePoC{43} \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\appendix
+
+\end{document}

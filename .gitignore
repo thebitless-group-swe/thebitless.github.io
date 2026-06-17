@@ -7,6 +7,8 @@
 *.toc
 *.fls
 *.fdb_latexmk
+*.snm
+*.nav
 *.synctex.gz
 *.lof
 creationdate.lua
