@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Glossario — TheBitless</title>
+  <link rel="icon" type="image/png" href="assets/logo-mark.png">
   <link rel="stylesheet" href="styles.css">
   <script>
     (function(){var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();
@@ -13,8 +14,19 @@
 
   <nav class="navbar">
     <div class="navbar-inner">
-      <a href="../index.html" class="navbar-brand">TheBitless</a>
+      <a href="../index.html" class="navbar-brand" aria-label="TheBitless — home">
+        <img src="assets/logo-mark.png" alt="TheBitless" class="brand-logo">
+      </a>
+
+      <div class="phases" role="tablist" aria-label="Fasi del progetto" data-home="../index.html">
+        <button class="phase-tab" data-phase="rtb" role="tab" tabindex="0">RTB</button>
+        <!-- Sezione Candidatura nascosta (non eliminata): per riattivarla, togliere il commento dal pulsante. -->
+        <!-- <button class="phase-tab" data-phase="candidatura" role="tab" tabindex="-1">Candidatura</button> -->
+        <button class="phase-tab" data-phase="diari" role="tab" tabindex="-1">Diapositive</button>
+      </div>
+
       <div class="navbar-links">
+        <a href="#team" class="nav-link">Chi siamo</a>
         <a href="glossario.html" class="nav-link active">Glossario</a>
       </div>
     </div>
@@ -40,7 +52,9 @@
     <div class="glossary-grid" id="glossary-grid"></div>
   </main>
 
-  <footer>
+  <footer id="team">
+    <h2 class="team-heading">Chi siamo</h2>
+    <div class="team-grid" id="team-grid"></div>
     <div class="footer-top">
       <div class="footer-info">
         <a href="https://github.com/thebitless-group-swe" class="footer-link" target="_blank" rel="noopener">github.com/thebitless-group-swe ↗</a>
@@ -51,7 +65,6 @@
         <span class="theme-icon theme-icon--dark">☽</span>
       </button>
     </div>
-    <div class="team-grid" id="team-grid"></div>
   </footer>
 
   <script src="javascript.js"></script>

@@ -1,4 +1,5 @@
-const GLOSSARIO = [
+// Copia locale di riserva: usata solo se il glossario.tex non è raggiungibile.
+const FALLBACK_GLOSSARIO = [
   {
     term: "Analisi dei Requisiti",
     desc: "Attività che identifica, documenta e classifica i requisiti funzionali e non funzionali del sistema da sviluppare, definendo cosa il software deve fare.",
@@ -189,6 +190,103 @@ const GLOSSARIO = [
   },
 ];
 
+// URL del glossario.tex nel branch main del repository: la fonte di verità.
+const GLOSSARIO_TEX_URL =
+  "https://raw.githubusercontent.com/thebitless-group-swe/thebitless.github.io/main/RTB/doc_interna/glossario/glossario.tex";
+
+// Lista mostrata a video: parte dalla copia di riserva e viene rimpiazzata
+// dai termini letti dal glossario.tex non appena il fetch va a buon fine.
+let GLOSSARIO = FALLBACK_GLOSSARIO;
+
+// Legge un gruppo racchiuso tra graffe a partire da s[start] === "{",
+// gestendo l'annidamento, e restituisce [contenuto, indiceDopoLaGraffaChiusa].
+function readBraceGroup(s, start) {
+  let depth = 0;
+  let out = "";
+  let i = start;
+  for (; i < s.length; i++) {
+    const c = s[i];
+    if (c === "{") {
+      depth++;
+      if (depth === 1) continue;
+    } else if (c === "}") {
+      depth--;
+      if (depth === 0) {
+        i++;
+        break;
+      }
+    }
+    out += c;
+  }
+  return [out, i];
+}
+
+// Ripulisce i comandi LaTeX più comuni per ottenere testo leggibile.
+function cleanTex(s) {
+  return s
+    .replace(/\\textsubscript\{([^}]*)\}/g, "$1")
+    .replace(/\\(?:textit|textbf|emph|texttt|textsc|textsuperscript)\{([^}]*)\}/g, "$1")
+    .replace(/\\label\{[^}]*\}/g, "")
+    .replace(/``/g, "“")
+    .replace(/''/g, "”")
+    .replace(/\\&/g, "&")
+    .replace(/\\%/g, "%")
+    .replace(/\\_/g, "_")
+    .replace(/\\\$/g, "$")
+    .replace(/\\#/g, "#")
+    .replace(/\\\\/g, " ")
+    .replace(/~/g, " ")
+    .replace(/[{}]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+// Estrae tutte le voci \glossaryterm{Termine}{Definizione} dal sorgente .tex.
+function parseGlossaryTerms(tex) {
+  const terms = [];
+  const marker = "\\glossaryterm";
+  let i = 0;
+  while ((i = tex.indexOf(marker, i)) !== -1) {
+    let j = i + marker.length;
+    while (j < tex.length && /\s/.test(tex[j])) j++;
+    if (tex[j] !== "{") {
+      // Non è una voce (es. la definizione \newcommand): si prosegue.
+      i = j;
+      continue;
+    }
+    const [term, afterTerm] = readBraceGroup(tex, j);
+    let k = afterTerm;
+    while (k < tex.length && /\s/.test(tex[k])) k++;
+    if (tex[k] !== "{") {
+      i = afterTerm;
+      continue;
+    }
+    const [desc, afterDesc] = readBraceGroup(tex, k);
+    const cleanTerm = cleanTex(term);
+    const cleanDesc = cleanTex(desc);
+    if (cleanTerm) terms.push({ term: cleanTerm, desc: cleanDesc });
+    i = afterDesc;
+  }
+  terms.sort((a, b) => a.term.localeCompare(b.term, "it", { sensitivity: "base" }));
+  return terms;
+}
+
+// Scarica il glossario.tex e aggiorna GLOSSARIO con i termini reali.
+async function loadGlossario() {
+  try {
+    const res = await fetch(GLOSSARIO_TEX_URL, { cache: "no-cache" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const tex = await res.text();
+    const parsed = parseGlossaryTerms(tex);
+    if (parsed.length) GLOSSARIO = parsed;
+  } catch (err) {
+    console.warn(
+      "Impossibile recuperare il glossario dal repository, uso la copia locale:",
+      err
+    );
+  }
+}
+
 function renderGlossario(filter) {
   const grid = document.getElementById("glossary-grid");
   if (!grid) return;
@@ -239,11 +337,16 @@ function renderGlossario(filter) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  renderGlossario();
-
+document.addEventListener("DOMContentLoaded", async () => {
   const input = document.getElementById("search-input");
+
+  // Render immediato con la copia locale, così la pagina non resta vuota.
+  renderGlossario();
   if (input) {
     input.addEventListener("input", () => renderGlossario(input.value));
   }
+
+  // Sostituzione con i termini letti dal glossario.tex del repository.
+  await loadGlossario();
+  renderGlossario(input ? input.value : "");
 });

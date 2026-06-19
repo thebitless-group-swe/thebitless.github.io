@@ -1,7 +1,6 @@
 ﻿\documentclass[a4paper, 10pt]{article} 
 
-\usepackage[italian]{babel} 
-\usepackage{xcolor} 
+\usepackage[italian]{babel}  
 \usepackage{comment}      
 \usepackage{graphicx} 
 \renewcommand{\arraystretch}{1.2}
@@ -78,15 +77,18 @@
     \hline
     \endhead
     1.0.0 & 2026-06-16 & S. Zecchinato & A. Menegaldo & E. De Piccoli & Approvazione del documento \\ \hline
+
     0.20.0 & 2026-06-04 & S. Zecchinato & A. Menegaldo & - & Aggiornamento sezione Metriche di Qualità del prodotto \\ \hline
+
     0.19.0 & 2026-05-28 & S. Vendramin & A. Menegaldo & - & Aggiornamento sezione Metriche di Qualità del prodotto \\ \hline
+
     0.18.1 & 2026-05-13 & A. Marini & S. Vendramin & - & Corretto formato riferimenti \\ \hline
 
     0.18.0 & 2026-05-11 & D. Facco & S. Vendramin & - & Sistemazione Attività di verifica$_G$ (sezione 3.3.2) \\ \hline
 
     0.17.1 & 2026-05-08 & E. De Piccoli & S. Vendramin & - & Correzione errori di battitura \\ \hline
 
-    0.17.0 & 2026-05-07 & L. Battistella & S. Vendramin & - & Stesura sezione Metriche di Qualità del prodotto \\ \hline
+    0.17.0 & 2026-05-07 & L. Battistella & S. Vendramin & - & Stesura sezione Metriche per la Qualità del prodotto \\ \hline
 
     0.16.0 & 2026-05-04 & S. Zecchinato & S. Vendramin & - & Stesura sezione Metriche di Qualità del processo \\ \hline
 
@@ -131,11 +133,11 @@
 \section{Introduzione}
 
 \subsection{Scopo del documento}
-Questo documento delinea le modalità operative, denominate Way of Working$_G$, adottate dal team \textbf{The Bitless} durante lo svolgimento del progetto didattico. Il suo scopo è stabilire un protocollo comune di lavoro: una serie di norme che ogni componente del gruppo deve rispettare. Questo garantisce che lo sviluppo$_G$ proceda in modo fluido, ordinato e con uno standard qualitativo elevato.
+Questo documento delinea le modalità operative, denominate Way of Working$_G$, adottate dal team \textbf{The Bitless} durante lo svolgimento del progetto didattico. Il suo scopo è stabilire un protocollo comune di lavoro: una serie di norme che ogni membro del gruppo è tenuto a rispettare. Questo garantisce che lo sviluppo$_G$ proceda in modo fluido, ordinato e con uno standard qualitativo elevato.
 
 Il documento recepisce le direttive del Regolamento del Progetto Didattico e si ispira allo standard internazionale \textbf{ISO/IEC 12207:1995}. Tale norma individua tre principali tipologie di processi:
 \begin{itemize}
-    \item \textbf{Processi Primari}: tutto ciò che serve a creare il prodotto, dalla raccolta dei requisiti$_G$ fino alla manutenzione finale;
+    \item \textbf{Processi Primari}: l'insieme delle attività necessarie alla realizzazione del prodotto, dalla raccolta dei requisiti$_G$ fino alla manutenzione finale;
     \item \textbf{Processi di Supporto}: attività trasversali che garantiscono la solidità del lavoro, come la gestione della configurazione e le attività di test$_G$;
     \item \textbf{Processi Organizzativi}: compiti dedicati alla gestione delle risorse, alla formazione interna e al costante miglioramento dell'infrastruttura di squadra.
 \end{itemize}
@@ -144,15 +146,15 @@ In linea con lo standard, è stato applicato un processo di \textbf{personalizza
 
 \subsection{Scopo del prodotto}
 
-Il progetto proposto dal capitolato$_G$ \textbf{C6} di \textbf{Zucchetti S.p.A.}, consiste nella realizzazione di \textbf{Second Brain}: una piattaforma digitale evoluta basata sullo standard \textbf{Markdown$_G$}.
+Il progetto proposto dal capitolato$_G$ \textbf{C6} di \textbf{Zucchetti S.p.A.} consiste nella realizzazione di \textbf{Second Brain}: una piattaforma digitale evoluta basata sullo standard \textbf{Markdown$_G$}.
 
-L'elemento distintivo del sistema$_G$ risiede nell'integrazione$_G$ nativa di modelli di linguaggio estesi (\textbf{LLM$_G$}), finalizzati ad abilitare il paradigma del \textbf{``Distant Writing''$_G$}. In questo scenario, l'utente assume il ruolo strategico di \textbf{progettista del testo} e coordinatore del flusso narrativo, delegando all'intelligenza artificiale l'esecuzione iterativa e l'espansione dei nuclei informativi.
+L'elemento distintivo del sistema$_G$ risiede nell'integrazione$_G$ nativa di modelli di linguaggio estesi (\textbf{LLM$_G$}), finalizzati a consentire il paradigma del \textbf{``Distant Writing''$_G$}. In questo scenario, l'utente assume il ruolo strategico di \textbf{progettista del testo} e coordinatore del flusso narrativo, delegando all'intelligenza artificiale l'esecuzione iterativa e l'espansione dei nuclei informativi.
 
 L'apporto degli LLM$_G$ si declina in due aree funzionali:
 
 \begin{itemize}
     \item \textbf{Collaborazione Iterativa e Generativa:} Il sistema$_G$ supporta l'utente nelle operazioni di riscrittura adattiva, sintesi semantica, traduzione multilingue ed estrazione automatica di entità e concetti rilevanti, ottimizzando i tempi di produzione dei contenuti.
-    \item \textbf{Analisi Critica:} Attraverso l'applicazione della tecnica dei \textbf{``Sei Cappelli per Pensare''}, l'assistente virtuale agisce come un revisore analitico capace di esaminare i testi da diverse angolazioni (rischi, benefici, logica e creatività), offrendo un supporto decisionale strutturato che eleva la qualità del prodotto finale.
+    \item \textbf{Analisi Critica:} Attraverso l'applicazione della tecnica dei \textbf{``Sei Cappelli per Pensare''}(Edward de Bono), l'assistente virtuale agisce come un revisore analitico capace di esaminare i testi da diverse angolazioni (rischi, benefici, logica e creatività), offrendo un supporto decisionale strutturato che eleva la qualità del prodotto finale.
 \end{itemize}
 
 Il termine ultimo per la consegna del prodotto è fissato per il \textbf{30 agosto 2026}, con un budget$_G$ operativo previsto di \textbf{12.860,00 €}.
@@ -188,7 +190,7 @@ Al fine di garantire una corretta comprensione del dominio$_G$, è fondamentale 
     \textit{Ultimo accesso:} 8 maggio 2026. \\
     
     \item \textbf{Glossario v0.5.0}: \\
-    \url{https://thebitless.github.io/RTB/doc_interna/glossario/glossario.pdf} \\
+    \url{https://github.com/thebitless-group-swe/thebitless.github.io/blob/main/RTB/doc_interna/glossario/glossario.pdf} \\
     \textit{Ultimo accesso:} 8 maggio 2026. \\
 \end{itemize}
 
@@ -202,7 +204,7 @@ Il gruppo \textbf{The Bitless} ha selezionato i seguenti processi come cardini d
 \end{itemize}
 
 \subsection{Fornitura}
-\subsubsection{Processo}
+\subsubsection{Processo di Fornitura}
 Il processo di \textbf{fornitura} descrive il modo in cui il gruppo gestisce il lavoro per il cliente, dalla pianificazione iniziale fino alla consegna del software. Esso comprende tutte le fasi di comunicazione con i committenti, la firma degli accordi, l'organizzazione dei compiti e il controllo costante che tutto proceda secondo i tempi stabiliti.
 
 L'obiettivo principale è assicurare che ogni fase del lavoro sia chiara e documentata. In questo modo, il gruppo può garantire che il prodotto finale rispetti esattamente le richieste e gli standard di qualità promessi a \textbf{Zucchetti S.p.A.} durante la fase di analisi.
@@ -232,7 +234,7 @@ Il gruppo \textbf{The Bitless} si impegna nella redazione e nel costante aggiorn
 \begin{itemize}
     \item \textbf{Lettera di Candidatura}: istanza formale con cui il gruppo manifesta l'interesse per il capitolato$_G$ C6 proposto da \textbf{Zucchetti S.p.A.}. Illustra le ragioni della scelta e fornisce le coordinate per accedere ai repository$_G$\textsubscript{G} ufficiali del progetto.
 
-    \item \textbf{Analisi dei Capitolati}: documento di analisi comparativa che espone le motivazioni tecniche e logistiche che hanno portato alla selezione del progetto \textbf{Second Brain} rispetto alle altre proposte disponibili. Contiene l'analisi in dettaglio di ogni capitolato$_G$, descrivendone l'obiettivo, le tecnologie adottate e le considerazioni emerse durante il confronto nel gruppo.
+    \item \textbf{Analisi dei Capitolati}: documento di analisi comparativa che espone le motivazioni tecniche e logistiche che hanno portato alla selezione del progetto \textbf{Second Brain} rispetto alle altre proposte disponibili. Contiene un'analisi dettagliata di ciascun capitolato$_G$, descrivendone l'obiettivo, le tecnologie adottate e le considerazioni emerse durante il confronto nel gruppo.
 
     \item \textbf{Dichiarazione degli impegni}: documento che ufficializza l'impegno operativo dei membri del team, stabilito in un monte ore produttivo di 93 ore per ciascun componente. Include il piano economico e la strategia di rotazione dei ruoli$_G$\textsubscript{G} ogni due settimane, volta a garantire un'esperienza formativa completa e un carico di lavoro bilanciato tra i componenti.
 
@@ -262,15 +264,15 @@ Il gruppo \textbf{The Bitless} adotta le seguenti procedure per garantire il cor
     
     \item \textbf{Gestione e Pianificazione degli Incontri SAL}:
     \begin{itemize}
-        \item \textbf{Frequenza e Necessità}: Gli incontri di Stato Avanzamento Lavori (SAL) non sono prefissati rigidamente, ma vengono organizzati ogniqualvolta si presenti la necessità di validare una milestone$_G$ o discutere criticità emergenti.
+        \item \textbf{Frequenza e Necessità}: Gli incontri di Stato di Avanzamento Lavori (SAL) non sono prefissati rigidamente, ma vengono organizzati ogniqualvolta si presenti la necessità di validare una milestone$_G$ o discutere criticità emergenti.
         \item \textbf{Preavviso Minimo}: Per rispettare la disponibilità del referente aziendale e permettere al team una preparazione adeguata, ogni incontro deve essere richiesto con un preavviso minimo di \textbf{48 ore}.
         \item \textbf{Preparazione del Responsabile}: Prima di ogni incontro, il Responsabile$_G$ di turno ha l'obbligo di redigere una sintesi dettagliata che riporti gli obiettivi raggiunti e le eventuali difficoltà tecniche o organizzative riscontrate.
     \end{itemize}
 
     \item \textbf{Verbalizzazione}:
     \begin{itemize}
-        \item \textbf{Redazione}: Al termine di ogni sessione con il cliente, deve essere prodotto un \textbf{Verbale Esterno}, che riporterà la data e ora dell’incontro, i partecipanti, gli argomenti trattati e le decisioni prese.
-        Il documento serve a cristallizzare gli accordi presi e a evitare ambiguità future.
+        \item \textbf{Redazione}: Al termine di ogni sessione con il cliente, deve essere prodotto un \textbf{Verbale Esterno}, che riporterà la data e l'ora dell'incontro, i partecipanti, gli argomenti trattati e le decisioni prese.
+        Il documento serve a cristallizzare gli accordi presi e ad evitare ambiguità future.
         \item \textbf{Revisione Interna}: Prima dell'archiviazione finale, il verbale deve essere sottoposto a una fase di \textit{peer-review} interna: un membro del gruppo diverso dall'estensore deve verificarne la correttezza dei contenuti e la forma.
     \end{itemize}
 \end{enumerate}
@@ -294,9 +296,9 @@ Per garantire un coordinamento efficace delle attività di fornitura, sono stati
 
 \subsection{Sviluppo}
 
-\subsubsection{Processo}
+\subsubsection{Processo di sviluppo}
 
-Il gruppo adotta lo standard \textbf{ISO/IEC 12207:1995} come riferimento per l'intero ciclo di vita del software. Tale norma fornisce le linee guida per il processo di sviluppo$_G$, articolato nelle attività fondamentali di analisi, progettazione, codifica, integrazione$_G$\textsubscript{G}, test$_G$, installazione e accettazione. La conduzione di ciascuna attività è vincolata al rispetto delle indicazioni contenute nel contratto con il committente$_G$, al fine di garantire che l’implementazione finale sia pienamente conforme ai requisiti$_G$ e alle specifiche concordate.
+Il gruppo adotta lo standard \textbf{ISO/IEC 12207:1995} come riferimento per l'intero ciclo di vita del software. Tale norma fornisce le linee guida per il processo di sviluppo$_G$, articolato nelle attività fondamentali di analisi, progettazione, codifica, integrazione$_G$\textsubscript{G}, test$_G$, installazione e accettazione. La conduzione di ciascuna attività è vincolata al rispetto delle indicazioni contenute nel contratto con il committente$_G$, al fine di garantire che l'implementazione finale sia pienamente conforme ai requisiti$_G$ e alle specifiche concordate.
 \subsubsection{Attività previste}
 
 In conformità alla subclause 5.3 dello standard, il processo di sviluppo$_G$ si articola nelle seguenti tredici attività:
@@ -334,7 +336,7 @@ In conformità alla subclause 5.3 dello standard, il processo di sviluppo$_G$ si
 \paragraph{Analisi dei Requisiti}
 \subparagraph{Descrizione}~\\
 L'analisi dei \textbf{requisiti}\textsubscript{G} è un'attività\textsubscript{G} critica nell'ambito dello sviluppo$_G$ software\textsubscript{G}, poiché stabilisce le fondamenta per il design, l'implementazione e i test$_G$\textsubscript{G} del sistema$_G$\textsubscript{G}. Lo scopo dell'analisi dei requisiti$_G$\textsubscript{G} è comprendere e definire in modo esaustivo le esigenze del cliente e del sistema$_G$\textsubscript{G}, traducendole in specifiche tecniche verificabili e tracciabili.
-L'attività\textsubscript{G} di analisi richiede di rispondere a domande fondamentali: \textit{``Qual è il dominio applicativo?''}, \textit{``Quali sono le reali necessità della proponente?''}, \textit{``Cosa deve fare il sistema per soddisfarle?''}. Essa consiste nella comprensione approfondita del dominio$_G$ e nella definizione chiara di obiettivi, vincoli e requisiti$_G$ sia tecnici che funzionali, derivati dall'interazione sistematica con la proponente$_G$ e dall'analisi dei casi d'uso$_G$\textsubscript{G}.
+L'attività\textsubscript{G} di analisi richiede di rispondere a domande fondamentali: \textit{``Qual è il dominio applicativo?''}, \textit{``Quali sono le reali necessità della proponente?''}, \textit{``Quale comportamento deve avere il sistema per soddisfarle''}. Essa consiste nella comprensione approfondita del dominio$_G$ e nella definizione chiara di obiettivi, vincoli e requisiti$_G$ sia tecnici che funzionali, derivati dall'interazione sistematica con la proponente$_G$ e dall'analisi dei casi d'uso$_G$\textsubscript{G}.
 \subparagraph{Obiettivi}~\\
 \begin{itemize}
     \item Definire insieme alla proponente$_G$\textsubscript{G} gli obiettivi del prodotto per rispecchiarne le aspettative, tramite identificazione, documentazione e validazione$_G$ dei Requisiti Funzionali$_G$ e non funzionali;
@@ -389,10 +391,10 @@ Ogni caso d'uso testuale è costituito dai seguenti elementi:
 
     \item \textbf{Postcondizioni}: stato in cui si trova il sistema$_G$\textsubscript{G} al termine dell'esecuzione corretta dello scenario principale;
     \item \textbf{Scenario principale}: sequenza ordinata di eventi che si verificano quando l'attore interagisce con il sistema$_G$\textsubscript{G} per raggiungere l'obiettivo del caso d'uso;
-    \item \textbf{Scenari alternativi}: sequenze di eventi che si verificano al verificarsi di condizioni specifiche, rappresentando deviazioni dal percorso principale senza raggiungere le postcondizioni attese;
+    \item \textbf{Scenari alternativi}: sequenze di eventi che si verificano al verificarsi di condizioni specifiche, rappresentando deviazioni dal percorso principale, raggiungendo una postcondizione, ma non quella postcondizioni attese;
     \item \textbf{Estensioni}: scenari alternativi che, al verificarsi di condizioni specifiche, deviano il flusso dal percorso principale senza giungere alle postcondizioni attese;
-    \item \textbf{Inclusioni}: scenari che rappresentano funzionalità comuni a più casi d'uso$_G$, richiamati obbligatoriamente all'interno del flusso principale per evitare duplicazioni.
-    \item \textbf{Generalizzazioni}: scenari che rappresentano funzionalità condivise tra più casi d'uso$_G$, in cui un caso d'uso figlio eredita il comportamento da un caso d'uso padre, consentendo di modellare varianti specifiche senza duplicare il flusso principale.
+    \item \textbf{Inclusioni}: scenari che rappresentano funzionalità comuni a più casi d'uso$_G$, richiamati obbligatoriamente all'interno del flusso principale per evitare duplicazioni;
+    \item \textbf{Generalizzazioni}: scenari che rappresentano funzionalità condivise tra più casi d'uso$_G$, in cui un caso d'uso figlio eredita il comportamento da un caso d'uso padre, consentendo di modellare varianti specifiche senza duplicare il flusso principale;
     \item \textbf{Trigger}: evento esterno che innesca l'esecuzione del caso d'uso, come un'azione dell'utente o una condizione di sistema$_G$.
 \end{enumerate}
 \paragraph{Diagrammi dei casi d'uso}
@@ -528,6 +530,7 @@ L'architettura\textsubscript{G} prodotta deve soddisfare i seguenti attributi qu
 I diagrammi UML$_G$\textsubscript{G} costituiscono lo strumento primario di documentazione progettuale. I principali vantaggi del loro utilizzo sono:
 
 \begin{itemize}
+    \item \textbf{Tracciabilità}: consentono di collegare le scelte progettuali ai requisiti$_G$ di sistema$_G$, facilitando la verifica$_G$ della copertura;
     \item \textbf{Chiarezza nella comunicazione}: rendono comprensibili i concetti tecnici a team e stakeholder$_G$\textsubscript{G}, indipendentemente dal loro livello di dettaglio implementativo;
     \item \textbf{Standardizzazione}: offrono un linguaggio comune e non ambiguo per la documentazione dei sistemi software\textsubscript{G};
     \item \textbf{Analisi visiva}: aiutano a identificare errori strutturali e lacune progettuali prima della fase di implementazione, riducendo il costo delle correzioni;
@@ -645,7 +648,7 @@ Le seguenti norme sono state formalizzate prendendo spunto dal libro \textit{``C
     \end{itemize}
     I commenti devono descrivere il \textit{perché} di una scelta implementativa non ovvia, non il \textit{cosa} fa il codice, che deve essere autoesplicativo;
 
-    \item \textbf{Gestione degli errori}: in Python\textsubscript{G}, le eccezioni vanno gestite esplicitamente con blocchi \texttt{try-except}, evitando la cattura generica di \texttt{Exception} senza un'adeguata registrazione o gestione. In React\textsubscript{G}, le eccezioni devono essere intercettate tramite componenti Error Boundary e le operazioni asincrone gestite con \texttt{.catch()} o blocchi \texttt{try-catch} all'interno di funzioni \texttt{async};
+    \item \textbf{Gestione degli errori}: in Python\textsubscript{G}, le eccezioni vanno gestite esplicitamente con blocchi \texttt{try-except}, evitando la cattura generica di \texttt{Exception} priva di un'adeguata gestione o registrazione nel log. In React\textsubscript{G}, le eccezioni devono essere intercettate tramite componenti Error Boundary e le operazioni asincrone gestite con \texttt{.catch()} o blocchi \texttt{try-catch} all'interno di funzioni \texttt{async};
 
     \item \textbf{Test unitari}\textsubscript{G}: ogni unità software$_G$\textsubscript{G} prodotta deve essere accompagnata dai relativi Test Unitari$_G$\textsubscript{G}. La copertura minima dei rami logici richiesta è dell'\textbf{80\%}. I test$_G$ devono essere indipendenti, ripetibili e privi di dipendenze da stato globale o da risorse esterne non mockate. Per Python si utilizza \texttt{pytest}, per React si impiegano \texttt{Jest} e \texttt{React Testing Library};
 
@@ -654,7 +657,7 @@ Le seguenti norme sono state formalizzate prendendo spunto dal libro \textit{``C
 
 \paragraph{Configurazione Ambiente di esecuzione}
 
-L’ambiente di esecuzione del sistema$_G$ è progettato per garantire riproducibilità, isolamento e facilità di deployment. Viene adottata la containerizzazione mediante \textbf{Docker Compose}: il backend Python e il server Nginx che serve il frontend$_G$ React compilato risiedono in container separati. Le dipendenze sono dichiarate nei file \texttt{requirements.txt} e \texttt{package.json}; le variabili d’ambiente sono iniettate a runtime e mai incluse nelle immagini. In fase di sviluppo$_G$, volumi montati abilitano il live reload, riducendo i tempi di feedback$_G$. L’infrastruttura riproduce fedelmente l’ambiente di produzione, assicurando coerenza durante tutto il ciclo di vita.
+L'ambiente di esecuzione del sistema$_G$ è progettato per garantire riproducibilità, isolamento e facilità di deployment. Viene adottata la containerizzazione mediante \textbf{Docker Compose}: il backend Python e il server Nginx che serve il frontend$_G$ React compilato risiedono in container separati. Le dipendenze sono dichiarate nei file \texttt{requirements.txt} e \texttt{package.json}; le variabili d'ambiente sono iniettate a runtime e mai incluse nelle immagini. In fase di sviluppo$_G$, volumi montati abilitano il live reload, riducendo i tempi di feedback$_G$. L'infrastruttura riproduce fedelmente l'ambiente di produzione, assicurando coerenza durante tutto il ciclo di vita.
 
 \subsubsection{Strumenti a supporto}
 
@@ -687,19 +690,19 @@ La documentazione rappresenta uno degli elementi fondamentali per il corretto go
 Tutti i documenti prodotti dal gruppo costituiscono artefatti$_G$ ufficiali del progetto e devono quindi rispettare:
 \begin{itemize}
     \item \textbf{standard qualitativi condivisi}: ogni documento deve raggiungere un livello minimo di qualità definito nel Piano di Qualifica$_G$, comprensivo di metriche per la leggibilità, completezza e correttezza;
-    \item \textbf{convenzioni documentali uniformi}: l’intera documentazione adotta lo stesso stile tipografico, la stessa struttura gerarchica e la medesima nomenclatura, in modo da garantire un aspetto coerente e professionale;
-    \item \textbf{procedure di verifica rigorose}: prima dell’approvazione$_G$ ogni documento viene sottoposto a un processo di revisione formale da parte di un Verificatore$_G$ incaricato, che applica le checklist definite nelle presenti norme;
+    \item \textbf{convenzioni documentali uniformi}: l'intera documentazione adotta lo stesso stile tipografico, la stessa struttura gerarchica e la medesima nomenclatura, in modo da garantire un aspetto coerente e professionale;
+    \item \textbf{procedure di verifica rigorose}: prima dell'approvazione$_G$ ogni documento viene sottoposto a un processo di revisione formale da parte di un Verificatore$_G$ incaricato, che applica le checklist definite nelle presenti norme;
     \item \textbf{criteri di versionamento e tracciabilità}: ogni modifica è registrata in un apposito registro delle modifiche e il documento è identificato da un numero di versione incrementale$_G$ secondo le regole di semantic versioning$_G$, consentendo la completa ricostruzione della storia evolutiva;
-    \item \textbf{regole di approvazione formale}: nessun documento può essere considerato ufficiale senza l’approvazione$_G$ esplicita del Responsabile$_G$, che ne autorizza il consolidamento nel branch$_G$ principale.
+    \item \textbf{regole di approvazione formale}: nessun documento può essere considerato ufficiale senza l'approvazione$_G$ esplicita del Responsabile$_G$, che ne autorizza il consolidamento nel branch$_G$ principale.
 \end{itemize}
 
 Un processo documentale ben definito permette di:
 \begin{itemize}
     \item \textbf{mantenere la tracciabilità delle decisioni progettuali}: ogni scelta architetturale o requisito è collegato a un documento che ne spiega le motivazioni, facilitando future analisi di impatto;
     \item \textbf{garantire coerenza tra stato reale del progetto e documentazione ufficiale}: la documentazione viene aggiornata a ogni modifica significativa del prodotto, in modo da rispecchiare fedelmente lo stato corrente del sistema$_G$ e ridurre il debito informativo;
-    \item \textbf{uniformare terminologia e stile redazionale}: l’adozione di un glossario centralizzato e di template comuni evita ambiguità e riduce il carico cognitivo per i lettori;
+    \item \textbf{uniformare terminologia e stile redazionale}: l'adozione di un glossario centralizzato e di template comuni evita ambiguità e riduce il carico cognitivo per i lettori;
     \item \textbf{favorire la collaborazione tra i membri del gruppo}: il workflow$_G$ basato su branch$_G$ e Pull Request$_G$ consente a più persone di lavorare simultaneamente sugli stessi documenti, gestendo in modo ordinato i conflitti di versione;
-    \item \textbf{semplificare le attività di revisione e verifica}: l’uso di strumenti automatici di compilazione e di generazione del PDF permette di verificare immediatamente la resa finale del documento e di concentrare lo sforzo umano sugli aspetti contenutistici;
+    \item \textbf{semplificare le attività di revisione e verifica}: l'uso di strumenti automatici di compilazione e di generazione del PDF permette di verificare immediatamente la resa finale del documento e di concentrare lo sforzo umano sugli aspetti contenutistici;
     \item \textbf{garantire la conservazione storica delle modifiche effettuate}: grazie a Git$_G$, ogni versione precedente è recuperabile, consentendo confronti e ripristini puntuali.
 \end{itemize}
 
@@ -709,25 +712,25 @@ Tra i principali documenti prodotti dal gruppo rientrano:
 \begin{itemize}
     \item \textbf{Norme di Progetto$_G$ (NdP)}: documento che definisce le regole, le procedure e gli strumenti adottati dal gruppo per tutte le attività di progetto;
     \item \textbf{Analisi dei Requisiti$_G$ (AdR)}: documento che raccoglie, classifica e formalizza i requisiti$_G$ del sistema$_G$, distinguendo tra Requisiti Funzionali$_G$, di qualità e di vincolo$_G$;
-    \item \textbf{Piano di Progetto$_G$ (PdP)}: documento che descrive la pianificazione temporale, l’allocazione delle risorse e l’organizzazione del lavoro;
+    \item \textbf{Piano di Progetto$_G$ (PdP)}: documento che descrive la pianificazione temporale, l'allocazione delle risorse e l'organizzazione del lavoro;
     \item \textbf{Piano di Qualifica$_G$ (PdQ)}: documento che definisce le metriche di qualità, le procedure di misurazione e gli obiettivi qualitativi del prodotto e dei processi;
     \item \textbf{documentazione tecnica e progettuale}: include diagrammi UML$_G$, specifiche di interfaccia, tracciati record e documentazione delle API$_G$;
     \item \textbf{verbali interni}: registrazioni formali delle riunioni interne del gruppo, contenenti decisioni, assegnazioni e scadenze;
-    \item \textbf{verbali esterni}: resoconti degli incontri con l’azienda proponente$_G$, utili per cristallizzare accordi e requisiti$_G$.
+    \item \textbf{verbali esterni}: resoconti degli incontri con l'azienda proponente$_G$, utili per cristallizzare accordi e requisiti$_G$.
 \end{itemize}
 
-Ogni documento deve rappresentare fedelmente lo stato corrente del progetto e deve essere mantenuto costantemente aggiornato. In caso di discrepanza tra il prodotto software e la documentazione, quest’ultima deve essere tempestivamente corretta per ripristinare la coerenza informativa.
+Ogni documento deve rappresentare fedelmente lo stato corrente del progetto e deve essere mantenuto costantemente aggiornato. In caso di discrepanza tra il prodotto software e la documentazione, quest'ultima deve essere tempestivamente corretta per ripristinare la coerenza informativa.
 
 \paragraph{Documentation as Code}
 
-Il gruppo adotta il paradigma \textit{Documentation as Code}, secondo il quale la documentazione viene trattata con le stesse metodologie, procedure e strumenti utilizzati per il codice sorgente. La scelta discende dalla volontà di mantenere il massimo allineamento tra lo stato del software e la sua descrizione ufficiale, riducendo al minimo il rischio$_G$ di documentazione obsoleta.
+Il gruppo adotta il paradigma \textit{Documentation as Code}, secondo il quale la documentazione viene trattata con le stesse metodologie, procedure e strumenti utilizzati per il codice sorgente. La scelta deriva dalla volontà di mantenere il massimo allineamento tra lo stato del software e la sua descrizione ufficiale, riducendo al minimo il rischio$_G$ di documentazione obsoleta.
 
 Questo approccio consente di:
 \begin{itemize}
-    \item \textbf{mantenere la documentazione sincronizzata con l’evoluzione del progetto}: poiché la documentazione risiede nello stesso repository$_G$ del codice, ogni modifica al prodotto può essere immediatamente accompagnata dall’aggiornamento dei relativi documenti;
+    \item \textbf{mantenere la documentazione sincronizzata con l'evoluzione del progetto}: poiché la documentazione risiede nello stesso repository$_G$ del codice, ogni modifica al prodotto può essere immediatamente accompagnata dall'aggiornamento dei relativi documenti;
     \item \textbf{garantire versionamento e tracciabilità delle modifiche}: la storia di ogni modifica è registrata nei commit$_G$ di Git$_G$, con autore, data e messaggio descrittivo;
-    \item \textbf{applicare workflow$_G$ strutturati di revisione}: le Pull Request$_G$ impongono una revisione obbligatoria prima dell’integrazione$_G$, esattamente come per il codice;
-    \item \textbf{automatizzare compilazione e pubblicazione dei documenti}: un’apposita pipeline CI/CD compila i sorgenti \LaTeX$_G$ e rende disponibile il PDF aggiornato nella repository$_G$ dei documenti, eliminando operazioni manuali e relativi errori;
+    \item \textbf{applicare workflow$_G$ strutturati di revisione}: le Pull Request$_G$ impongono una revisione obbligatoria prima dell'integrazione$_G$, esattamente come per il codice;
+    \item \textbf{automatizzare compilazione e pubblicazione dei documenti}: un'apposita pipeline CI/CD compila i sorgenti \LaTeX$_G$ e rende disponibile il PDF aggiornato nella repository$_G$ dei documenti, eliminando operazioni manuali e relativi errori;
     \item \textbf{favorire la collaborazione simultanea tra più membri del gruppo}: ogni redattore lavora sul proprio branch$_G$ e può integrare il lavoro altrui attraverso merge$_G$ non distruttivi.
 \end{itemize}
 
@@ -735,8 +738,8 @@ L'approccio adottato prevede che:
 \begin{itemize}
     \item tutti i documenti siano conservati nella medesima repository$_G$ del progetto, organizzati in cartelle separate per tipologia (verbali, documenti di progetto, documenti tecnici);
     \item ogni modifica venga effettuata tramite branch$_G$ dedicati, creati a partire dal branch$_G$ \texttt{develop}, con nomi che identificano il tipo di intervento (es. \texttt{docs/nome-documento});
-    \item le modifiche siano sottoposte a Pull Request$_G$, in cui il redattore descrive il contenuto della modifica e i motivi dell’aggiornamento;
-    \item ogni aggiornamento venga verificato prima dell’integrazione$_G$: un verificatore$_G$ esamina il contenuto e accerta il rispetto delle norme prima di autorizzare il merge$_G$;
+    \item le modifiche siano sottoposte a Pull Request$_G$, in cui il redattore descrive il contenuto della modifica e i motivi dell'aggiornamento;
+    \item ogni aggiornamento venga verificato prima dell'integrazione$_G$: un verificatore$_G$ esamina il contenuto e accerta il rispetto delle norme prima di autorizzare il merge$_G$;
     \item la cronologia delle revisioni sia completamente tracciabile tramite Git$_G$, permettendo di risalire a ogni singola modifica e di confrontare versioni differenti tramite diff.
 \end{itemize}
 
@@ -751,11 +754,11 @@ Il ciclo di vita dei documenti definisce l'insieme degli stati attraversati da o
 
 Ogni documento attraversa progressivamente le seguenti fasi:
 \begin{enumerate}
-    \item \textbf{Necessità}: emersione di un bisogno informativo che richiede la creazione o l’aggiornamento di un documento;
-    \item \textbf{Pianificazione}: definizione degli obiettivi, della struttura e dell’allocazione delle risorse necessarie per la stesura;
+    \item \textbf{Necessità}: emersione di un bisogno informativo che richiede la creazione o l'aggiornamento di un documento;
+    \item \textbf{Pianificazione}: definizione degli obiettivi, della struttura e dell'allocazione delle risorse necessarie per la stesura;
     \item \textbf{Redazione}: scrittura effettiva del contenuto, seguendo i template e le convenzioni prescritte;
-    \item \textbf{Verifica}: revisione formale da parte di un verificatore$_G$ indipendente dall’autore;
-    \item \textbf{Approvazione}: validazione$_G$ finale da parte del Responsabile$_G$, che sancisce l’ufficialità del documento;
+    \item \textbf{Verifica}: revisione formale da parte di un verificatore$_G$ indipendente dall'autore;
+    \item \textbf{Approvazione}: validazione$_G$ finale da parte del Responsabile$_G$, che sancisce l'ufficialità del documento;
     \item \textbf{Consolidamento}: archiviazione della versione approvata nel branch$_G$ \texttt{main} e generazione del PDF definitivo;
     \item \textbf{Manutenzione}: fase continua di aggiornamento a seguito di modifiche progettuali o correzioni.
 \end{enumerate}
@@ -764,18 +767,18 @@ Ogni documento attraversa progressivamente le seguenti fasi:
 
 Il processo documentale ha origine nel momento in cui emerge la necessità di:
 \begin{itemize}
-    \item produrre nuova documentazione, ad esempio quando si avvia una nuova fase del progetto che richiede la stesura del Piano di Qualifica$_G$ o dell’Analisi dei Requisiti$_G$;
-    \item aggiornare documentazione esistente, per riflettere una modifica architetturale, l’introduzione di nuovi requisiti$_G$ o la correzione di errori segnalati;
+    \item produrre nuova documentazione, ad esempio quando si avvia una nuova fase del progetto che richiede la stesura del Piano di Qualifica$_G$ o dell'Analisi dei Requisiti$_G$;
+    \item aggiornare documentazione esistente, per riflettere una modifica architetturale, l'introduzione di nuovi requisiti$_G$ o la correzione di errori segnalati;
     \item formalizzare decisioni progettuali, come la scelta di una tecnologia, di un pattern architetturale o di un protocollo di comunicazione, che devono essere registrati per futura consultazione;
-    \item registrare modifiche significative del progetto, come un cambiamento di priorità, la riallocazione di risorse o l’inserimento di nuovi componenti.
+    \item registrare modifiche significative del progetto, come un cambiamento di priorità, la riallocazione di risorse o l'inserimento di nuovi componenti.
 \end{itemize}
 
 La necessità può derivare:
 \begin{itemize}
     \item da obblighi previsti dal capitolato$_G$, che richiede la consegna di documentazione specifica (es. AdR, PdP, PdQ);
-    \item dall’avanzamento delle attività di sviluppo$_G$, che rende necessario documentare nuovi moduli, API$_G$ o procedure di deploy;
-    \item da richieste dell’azienda proponente$_G$, emerse durante incontri o comunicazioni ufficiali;
-    \item da nuove esigenze organizzative, come la riorganizzazione del gruppo o l’introduzione di nuovi ruoli;
+    \item dall'avanzamento delle attività di sviluppo$_G$, che rende necessario documentare nuovi moduli, API$_G$ o procedure di deploy;
+    \item da richieste dell'azienda proponente$_G$, emerse durante incontri o comunicazioni ufficiali;
+    \item da nuove esigenze organizzative, come la riorganizzazione del gruppo o l'introduzione di nuovi ruoli;
     \item da modifiche ai requisiti$_G$, che impattano la documentazione di analisi e di progetto.
 \end{itemize}
 
@@ -787,16 +790,16 @@ La pianificazione comprende:
 \begin{enumerate}
     \item \textbf{identificazione del documento da produrre}: si stabilisce se si tratta di un nuovo documento o di una modifica a uno esistente;
     \item \textbf{definizione degli obiettivi documentali}: si specifica cosa il documento deve comunicare, a chi è rivolto e con quale livello di dettaglio;
-    \item \textbf{suddivisione del documento in sezioni}: si abbozza l’indice, individuando i capitoli e i paragrafi principali;
+    \item \textbf{suddivisione del documento in sezioni}: si abbozza l'indice, individuando i capitoli e i paragrafi principali;
     \item \textbf{definizione delle scadenze}: si fissa una data entro la quale la redazione deve essere completata, in coerenza con la pianificazione di progetto;
     \item \textbf{assegnazione dei task$_G$ ai membri del gruppo}: il Responsabile$_G$ nomina un redattore (o più redattori per documenti complessi) e un verificatore$_G$;
-    \item \textbf{apertura delle Issue$_G$ nell’ITS$_G$ adottato}: per ogni attività documentale si crea una issue$_G$ su GitHub$_G$, assegnandola al redattore e al verificatore$_G$ e collegandola alla milestone$_G$ di competenza.
+    \item \textbf{apertura delle Issue$_G$ nell'ITS$_G$ adottato}: per ogni attività documentale si crea una issue$_G$ su GitHub$_G$, assegnandola al redattore e al verificatore$_G$ e collegandola alla milestone$_G$ di competenza.
 \end{enumerate}
 
 Durante le riunioni operative il gruppo:
 \begin{itemize}
     \item discute i contenuti da inserire, condividendo conoscenze e allineando le diverse visioni;
-    \item definisce la struttura del documento, decidendo l’ordine delle sezioni e l’eventuale necessità di diagrammi o tabelle;
+    \item definisce la struttura del documento, decidendo l'ordine delle sezioni e l'eventuale necessità di diagrammi o tabelle;
     \item stabilisce le convenzioni redazionali, come lo stile delle didascalie, la formattazione del codice e le regole per i riferimenti incrociati;
     \item organizza la distribuzione del lavoro, suddividendo le sezioni tra più redattori qualora il documento sia particolarmente corposo.
 \end{itemize}
@@ -808,7 +811,7 @@ Durante la fase di redazione il documento viene prodotto secondo le norme defini
 La redazione deve rispettare:
 \begin{itemize}
     \item \textbf{uniformità terminologica}: tutti i termini tecnici devono corrispondere a quelli definiti nel glossario di progetto e non possono essere utilizzati sinonimi ambigui;
-    \item \textbf{coerenza stilistica}: il registro linguistico, l’uso dei tempi verbali e la formattazione devono essere omogenei in tutto il documento;
+    \item \textbf{coerenza stilistica}: il registro linguistico, l'uso dei tempi verbali e la formattazione devono essere omogenei in tutto il documento;
     \item \textbf{correttezza grammaticale}: il testo deve essere privo di errori ortografici e sintattici, anche avvalendosi di correttori automatici;
     \item \textbf{conformità alla struttura documentale definita}: il documento deve seguire il template comune, con frontespizio$_G$, registro delle modifiche, indice e corpo strutturato;
     \item \textbf{completezza dei contenuti}: ogni sezione deve essere sviluppata in modo esaustivo, senza lasciare placeholder o frasi incomplete.
@@ -817,8 +820,8 @@ La redazione deve rispettare:
 Ogni modifica viene effettuata:
 \begin{itemize}
     \item su branch$_G$ dedicati, creati a partire da \texttt{develop} con un nome descrittivo (es. \texttt{docs/adr-requisiti-funzionali});
-    \item mediante commit$_G$ atomici e significativi, ciascuno dei quali rappresenta un’unità logica di modifica e reca un messaggio chiaro (es. ``Aggiunta sezione requisiti$_G$ di vincolo$_G$'');
-    \item mantenendo tracciabilità$_G$ delle revisioni, grazie all’associazione tra commit$_G$ e issue$_G$ di riferimento, visibile sia su GitHub$_G$ che nel registro delle modifiche del documento stesso.
+    \item mediante commit$_G$ atomici e significativi, ciascuno dei quali rappresenta un'unità logica di modifica e reca un messaggio chiaro (es. ``Aggiunta sezione requisiti$_G$ di vincolo$_G$'');
+    \item mantenendo tracciabilità$_G$ delle revisioni, grazie all'associazione tra commit$_G$ e issue$_G$ di riferimento, visibile sia su GitHub$_G$ che nel registro delle modifiche del documento stesso.
 \end{itemize}
 
 \paragraph{Stato di verifica}
@@ -845,11 +848,11 @@ Durante questa fase:
 
 \paragraph{Stato di approvazione}
 
-Una volta completata positivamente la verifica$_G$, il documento può essere approvato dal Responsabile$_G$. L’approvazione$_G$ rappresenta l’atto formale di validazione$_G$ che trasforma il documento in un artefatto$_G$ ufficiale del progetto.
+Una volta completata positivamente la verifica$_G$, il documento può essere approvato dal Responsabile$_G$. L'approvazione$_G$ rappresenta l'atto formale di validazione$_G$ che trasforma il documento in un artefatto$_G$ ufficiale del progetto.
 
 L'approvazione$_G$:
 \begin{itemize}
-    \item rappresenta l’atto formale di validazione$_G$: con la sua approvazione$_G$, il Responsabile$_G$ attesta che il documento ha superato tutti i controlli e può essere utilizzato come riferimento ufficiale;
+    \item rappresenta l'atto formale di validazione$_G$: con la sua approvazione$_G$, il Responsabile$_G$ attesta che il documento ha superato tutti i controlli e può essere utilizzato come riferimento ufficiale;
     \item rende il documento ufficiale: da questo momento, il contenuto del documento è vincolante per le attività successive e può essere esibito al proponente$_G$ come deliverable$_G$ di progetto;
     \item consente il consolidamento nel branch$_G$ \texttt{main}: la Pull Request$_G$ di approvazione$_G$ viene mergiata, e il documento confluisce nel ramo principale da cui vengono generati i PDF definitivi;
     \item rende il documento valido come ground truth$_G$: qualsiasi decisione, requisito o specifica in esso contenuta diventa la verità di riferimento per lo sviluppo$_G$ e la verifica$_G$ del prodotto.
@@ -857,17 +860,17 @@ L'approvazione$_G$:
 
 \paragraph{Stato di manutenzione}
 
-Dopo l’approvazione$_G$, ogni documento può essere soggetto a manutenzione. La manutenzione è un’attività continua che garantisce l’allineamento tra il documento e lo stato corrente del progetto.
+Dopo l'approvazione$_G$, ogni documento può essere soggetto a manutenzione. La manutenzione è un'attività continua che garantisce lallineamento tra il documento e lo stato corrente del progetto.
 
 Le modifiche possono derivare:
 \begin{itemize}
-    \item da nuove esigenze progettuali, come l’aggiunta di funzionalità che richiedono l’aggiornamento dell’AdR e del PdP;
+    \item da nuove esigenze progettuali, come l'aggiunta di funzionalità che richiedono l'aggiornamento dell'AdR e del PdP;
     \item da modifiche ai requisiti$_G$, che impattano sia i documenti di analisi sia quelli di specifica;
-    \item da correzione di errori, individuati durante le revisioni post-approvazione$_G$ o durante l’utilizzo del documento come riferimento;
-    \item dall’evoluzione del prodotto, che può comportare la revisione di stime, pianificazioni e diagrammi architetturali.
+    \item da correzione di errori, individuati durante le revisioni post-approvazione$_G$ o durante l'utilizzo del documento come riferimento;
+    \item dall'evoluzione del prodotto, che può comportare la revisione di stime, pianificazioni e diagrammi architetturali.
 \end{itemize}
 
-Ogni modifica determina il ritorno del documento allo stato di redazione, riavviando il ciclo:
+Ogni modifica, anche minima, determina il ritorno del documento allo stato di Redazione, riavviando il ciclo a partire da tale fase:
 \begin{enumerate}
     \item modifica (redazione su nuovo branch$_G$);
     \item verifica$_G$ (Pull Request$_G$ e revisione);
@@ -887,23 +890,23 @@ Questo ciclo garantisce che ogni aggiornamento sia sempre sottoposto agli stessi
 La produzione comprende tutte le attività di:
 \begin{itemize}
     \item \textbf{stesura}: scrittura di nuovi contenuti, seguendo i template e le linee guida;
-    \item \textbf{aggiornamento}: modifica di documenti esistenti per adeguarli all’evoluzione del progetto;
-    \item \textbf{manutenzione}: interventi correttivi e migliorativi successivi all’approvazione$_G$;
+    \item \textbf{aggiornamento}: modifica di documenti esistenti per adeguarli all'evoluzione del progetto;
+    \item \textbf{manutenzione}: interventi correttivi e migliorativi successivi all'approvazione$_G$;
     \item \textbf{consolidamento}: integrazione$_G$ delle versioni approvate nel ramo principale e generazione dei PDF ufficiali.
 \end{itemize}
 
 Il gruppo utilizza \LaTeX$_G$ come linguaggio di markup ufficiale per:
 \begin{itemize}
     \item garantire elevata qualità tipografica, professionale e adatta a documenti tecnici;
-    \item separare contenuto e presentazione, permettendo di concentrarsi sulla scrittura senza preoccuparsi dell’impaginazione;
+    \item separare contenuto e presentazione, permettendo di concentrarsi sulla scrittura senza preoccuparsi dell'impaginazione;
     \item facilitare il versionamento tramite Git$_G$, poiché i file \texttt{.tex} sono testo puro e quindi facilmente confrontabili;
     \item automatizzare la generazione di indici, riferimenti incrociati, bibliografia e glossario, riducendo il lavoro manuale e il rischio$_G$ di errori;
-    \item uniformare la struttura dei documenti, grazie all’uso di classi e comandi personalizzati condivisi tra tutti i documenti del gruppo.
+    \item uniformare la struttura dei documenti, grazie all'uso di classi e comandi personalizzati condivisi tra tutti i documenti del gruppo.
 \end{itemize}
 
 \paragraph{Revisione}
 
-Ogni modifica deve essere sottoposta a revisione formale prima dell'integrazione$_G$ nei branch$_G$ principali. La revisione non è un controllo superficiale, ma un’attività strutturata che segue una checklist definita.
+Ogni modifica deve essere sottoposta a revisione formale prima dell'integrazione$_G$ nei branch$_G$ principali. La revisione non è un controllo superficiale, ma un'attività strutturata che segue una checklist definita.
 
 La revisione ha lo scopo di:
 \begin{itemize}
@@ -915,12 +918,12 @@ La revisione ha lo scopo di:
 
 \paragraph{Approvazione}
 
-L'approvazione$_G$ finale dei documenti è responsabilità del Responsabile$_G$. Questi non può delegare tale compito, poiché l’approvazione$_G$ implica l’assunzione di responsabilità verso il proponente$_G$ e verso il gruppo.
+L'approvazione$_G$ finale dei documenti è responsabilità del Responsabile$_G$. Questi non può delegare tale compito, poiché l'approvazione$_G$ implica l'assunzione di responsabilità verso il proponente$_G$ e verso il gruppo.
 
 Il Responsabile$_G$:
 \begin{itemize}
     \item valuta il risultato della verifica$_G$, esaminando i commenti del verificatore$_G$ e accertandosi che tutte le osservazioni siano state risolte;
-    \item approva formalmente il documento, tramite l’accettazione della Pull Request$_G$ di approvazione$_G$;
+    \item approva formalmente il documento, tramite l'accettazione della Pull Request$_G$ di approvazione$_G$;
     \item autorizza il merge$_G$ finale, garantendo che il documento approvato venga effettivamente consolidato;
     \item richiede eventuali ulteriori modifiche, se ritiene che il documento non abbia ancora raggiunto il livello qualitativo atteso, respingendo la Pull Request$_G$ e motivando la decisione.
 \end{itemize}
@@ -930,7 +933,7 @@ Il Responsabile$_G$:
 I documenti approvati vengono:
 \begin{itemize}
     \item archiviati nel branch$_G$ \texttt{main}, che contiene esclusivamente versioni stabili e verificate;
-    \item pubblicati tramite GitHub$_G$ Pages$_G$, che rende disponibile un sito web con l’elenco dei documenti e i link ai PDF scaricabili;
+    \item pubblicati tramite GitHub$_G$ Pages$_G$, che rende disponibile un sito web con l'elenco dei documenti e i link ai PDF scaricabili;
     \item conservati come riferimento ufficiale del progetto, in modo che ogni stakeholder$_G$ possa sempre accedere alla versione più aggiornata.
 \end{itemize}
 
@@ -952,16 +955,16 @@ Nel processo documentale il Responsabile$_G$:
 L'Amministratore$_G$ supporta il processo documentale occupandosi di:
 \begin{itemize}
     \item inserire nell'ITS$_G$ le attività definite dal Responsabile$_G$, creando Issue$_G$ con descrizione, etichette e collegamenti alla milestone$_G$ appropriata;
-    \item mantenere aggiornata la documentazione organizzativa, come l’elenco dei membri, i ruoli e le procedure operative;
+    \item mantenere aggiornata la documentazione organizzativa, come l'elenco dei membri, i ruoli e le procedure operative;
     \item gestire la struttura della repository$_G$, definendo le cartelle, i permessi di accesso e le regole di protezione dei branch$_G$;
     \item monitorare stato e versioni dei documenti, assicurandosi che ogni documento abbia un numero di versione coerente e un registro delle modifiche aggiornato;
     \item coordinare il configuration management$_G$ documentale, ovvero garantire che tutte le modifiche ai documenti siano tracciate, versionate e integrabili in modo ordinato.
 \end{itemize}
 
-L'Amministratore$_G$ mantiene inoltre aggiornati i seguenti documenti, che costituiscono l’ossatura organizzativa del progetto:
+L'Amministratore$_G$ mantiene inoltre aggiornati i seguenti documenti, che costituiscono l'ossatura organizzativa del progetto:
 \begin{itemize}
     \item \textbf{Norme di Progetto$_G$}: aggiornate ogni volta che il gruppo adotta una nuova procedura, uno strumento diverso o modifica le convenzioni esistenti;
-    \item \textbf{Piano di Progetto$_G$}: rivisto a ogni modifica della pianificazione, per riflettere lo stato corrente delle attività e l’allocazione delle risorse;
+    \item \textbf{Piano di Progetto$_G$}: rivisto a ogni modifica della pianificazione, per riflettere lo stato corrente delle attività e l'allocazione delle risorse;
     \item \textbf{Piano di Qualifica$_G$}: mantenuto allineato con le metriche effettivamente raccolte e con gli obiettivi di qualità rinegoziati durante il progetto.
 \end{itemize}
 
@@ -973,21 +976,21 @@ I verbali vengono redatti a partire:
 \begin{itemize}
     \item dalle discussioni avvenute durante i meeting interni, di cui il Responsabile$_G$ prende appunti in tempo reale;
     \item dagli incontri con l'azienda proponente$_G$, per i quali è particolarmente importante registrare le decisioni e gli impegni presi;
-    \item dalle decisioni emerse durante le attività operative, come l’assegnazione$_G$ di task$_G$ o la risoluzione di problemi tecnici.
+    \item dalle decisioni emerse durante le attività operative, come l'assegnazione$_G$ di task$_G$ o la risoluzione di problemi tecnici.
 \end{itemize}
 
 La struttura standard dei verbali è definita in \ref{par:strutturaverbali}.
 
 \paragraph{Redazione dell'Analisi dei Requisiti}
 
-La redazione dell'Analisi dei Requisiti$_G$ è affidata esclusivamente all'Analista$_G$, figura con competenze specifiche nell’elicitazione, classificazione e formalizzazione dei requisiti$_G$.
+La redazione dell'Analisi dei Requisiti$_G$ è affidata esclusivamente all'Analista$_G$, figura con competenze specifiche nell'elicitazione, classificazione e formalizzazione dei requisiti$_G$.
 
 L'Analista$_G$ è responsabile$_G$ di:
 \begin{itemize}
-    \item \textbf{identificazione dei requisiti}: attraverso l’analisi del capitolato$_G$, gli incontri con il proponente$_G$ e lo studio di sistemi analoghi;
+    \item \textbf{identificazione dei requisiti}: attraverso l'analisi del capitolato$_G$, gli incontri con il proponente$_G$ e lo studio di sistemi analoghi;
     \item \textbf{classificazione}: ogni requisito viene categorizzato come funzionale, di qualità o di vincolo$_G$, e gli viene assegnato un codice univoco;
-    \item \textbf{formalizzazione}: i requisiti$_G$ sono espressi in linguaggio naturale controllato, con l’uso di verbi modali (shall, should, may) e di template predefiniti;
-    \item \textbf{validazione dei requisiti del sistema}: l’Analista$_G$ verifica$_G$ che i requisiti$_G$ siano coerenti, non ambigui, verificabili e completi, prima di sottoporli all’approvazione$_G$ del gruppo e del proponente$_G$.
+    \item \textbf{formalizzazione}: i requisiti$_G$ sono espressi in linguaggio naturale controllato, con l'uso di verbi modali (shall, should, may) e di template predefiniti;
+    \item \textbf{validazione dei requisiti del sistema}: l'Analista$_G$ verifica$_G$ che i requisiti$_G$ siano coerenti, non ambigui, verificabili e completi, prima di sottoporli all'approvazione$_G$ del gruppo e del proponente$_G$.
 \end{itemize}
 
 %========================================================================
@@ -1023,7 +1026,7 @@ Il registro delle modifiche:
 \begin{itemize}
     \item viene posizionato a partire dalla seconda pagina, immediatamente dopo il frontespizio$_G$;
     \item segue logica LIFO$_G$: la modifica più recente compare in cima alla tabella, facilitando la lettura delle ultime variazioni;
-    \item mantiene tracciabilità$_G$ delle revisioni effettuate, costituendo un riepilogo cronologico dell’evoluzione del documento.
+    \item mantiene tracciabilità$_G$ delle revisioni effettuate, costituendo un riepilogo cronologico dell'evoluzione del documento.
 \end{itemize}
 
 Per ogni modifica devono essere riportati obbligatoriamente:
@@ -1037,12 +1040,12 @@ Per ogni modifica devono essere riportati obbligatoriamente:
 
 \subparagraph{Indice}
 
-Ogni documento deve contenere un indice gerarchico$_G$ generato automaticamente da \LaTeX$_G$, dotato di collegamenti ipertestuali$_G$ alle relative sezioni. L’indice consente una navigazione rapida e viene posto dopo il registro delle modifiche.
+Ogni documento deve contenere un indice gerarchico$_G$ generato automaticamente da \LaTeX$_G$, dotato di collegamenti ipertestuali$_G$ alle relative sezioni. L'indice consente una navigazione rapida e viene posto dopo il registro delle modifiche.
 
 \paragraph{Struttura dei Verbali}
 \label{par:strutturaverbali}
 
-I verbali costituiscono un’eccezione rispetto alla struttura generale definita in \ref{subsubsec:strutturagenerale}. Essi non includono il registro delle modifiche. Per loro natura di documento puntuale che fotografa una specifica riunione, l’ultima versione approvata sostituisce integralmente le precedenti; eventuali correzioni vengono incorporate direttamente in una nuova versione del verbale, senza necessità di conservare una cronologia delle revisioni intermedie.
+I verbali costituiscono un'eccezione rispetto alla struttura generale definita in \ref{subsubsec:strutturagenerale}. Essi non includono il registro delle modifiche. Per loro natura di documento puntuale che fotografa una specifica riunione, l'ultima versione approvata sostituisce integralmente le precedenti; eventuali correzioni vengono incorporate direttamente in una nuova versione del verbale, senza necessità di conservare una cronologia delle revisioni intermedie.
 
 In aggiunta al template standard, i verbali devono presentare una struttura standard, pensata per rendere rapida la consultazione delle informazioni salienti. La struttura è composta dalle seguenti sezioni obbligatorie.
 
@@ -1067,16 +1070,16 @@ La sezione deve riportare:
 
 \subparagraph{Ordine del giorno}
 
-Deve contenere l'elenco puntato degli argomenti previsti, così come comunicato prima della riunione. Durante la riunione possono essere affrontati anche argomenti non previsti, che vanno aggiunti in un paragrafo separato “Varie ed eventuali”.
+Deve contenere l'elenco puntato degli argomenti previsti, nella forma in cui è stato come comunicato ai partecipanti prima della riunione. Durante la riunione possono essere affrontati anche argomenti non previsti, che vanno aggiunti in un paragrafo separato “Varie ed eventuali”.
 
 \subparagraph{Discussione e sintesi}
 
 Contiene:
 \begin{itemize}
-    \item resoconto delle discussioni, con una sintesi per ogni punto all’ordine del giorno;
+    \item resoconto delle discussioni, con una sintesi per ogni punto all'ordine del giorno;
     \item decisioni prese, evidenziate con un formato che le renda immediatamente individuabili (es. grassetto o rientro);
     \item brainstorming$_G$ effettuato, con la registrazione delle idee emerse e delle valutazioni preliminari;
-    \item problematiche emerse, con l’indicazione di eventuali soluzioni proposte o della necessità di approfondimenti.
+    \item problematiche emerse, con l'indicazione di eventuali soluzioni proposte o della necessità di approfondimenti.
 \end{itemize}
 
 \subparagraph{Attività da svolgere}
@@ -1086,7 +1089,7 @@ La sezione deve includere, per ogni attività individuata:
     \item task$_G$ assegnati, con una descrizione sintetica ma non ambigua;
     \item responsabili, ovvero i membri incaricati di portare a termine il compito;
     \item scadenze, espresse come data entro cui il task$_G$ deve essere completato;
-    \item riferimenti alle Issue$_G$ create sull’ITS$_G$, per consentire il tracciamento automatico dello stato di avanzamento.
+    \item riferimenti alle Issue$_G$ create sull'ITS$_G$, per consentire il tracciamento automatico dello stato di avanzamento.
 \end{itemize}
 
 \paragraph{Versionamento}
@@ -1102,7 +1105,7 @@ Il workflow$_G$ adottato prevede i seguenti passi sequenziali:
     \item \textbf{creazione del branch}: il redattore crea un branch$_G$ con nome descrittivo (es. \texttt{docs/pdp-pianificazione}) a partire da \texttt{develop};
     \item \textbf{modifica del documento}: il redattore apporta le modifiche necessarie, facendo commit frequenti e ben commentati;
     \item \textbf{commit$_G$ delle modifiche}: ogni commit è atomico e descrive in modo chiaro la modifica effettuata;
-    \item \textbf{push sul repository remoto}: il branch$_G$ viene caricato su GitHub$_G$ per consentire la condivisione e l’apertura della Pull Request$_G$;
+    \item \textbf{push sul repository remoto}: il branch$_G$ viene caricato su GitHub$_G$ per consentire la condivisione e l'apertura della Pull Request$_G$;
     \item \textbf{apertura della Pull Request$_G$}: il redattore crea una PR$_G$ verso \texttt{develop}, descrivendo le modifiche e collegando la Issue$_G$ di riferimento;
     \item \textbf{assegnazione del Verificatore$_G$}: la PR$_G$ viene assegnata al verificatore$_G$ designato, che riceve notifica e può procedere con la revisione.
 \end{enumerate}
@@ -1116,15 +1119,15 @@ Ogni documento può assumere uno dei seguenti stati, che devono essere indicati 
     \item \textbf{Approvato}: il documento ha superato verifica$_G$ e approvazione$_G$ ed è stato consolidato nel branch$_G$ \texttt{main}.
 \end{itemize}
 
-Solo i documenti in stato “Approvato” sono considerati ground truth$_G$ e possono essere utilizzati come riferimento vincolante per le attività di progetto.
+Solo i documenti in stato ''Approvato'' sono considerati ground truth$_G$ e possono essere utilizzati come riferimento vincolante per le attività di progetto.
 
 \subparagraph{Nomenclatura}
 
-Le convenzioni di nomenclatura adottate garantiscono l’immediata riconoscibilità del tipo di documento e della sua versione. Esse sono:
+Le convenzioni di nomenclatura adottate garantiscono l'immediata riconoscibilità del tipo di documento e della sua versione. Esse sono:
 
 \begin{itemize}
     \item \textbf{Verbali Interni}: \texttt{VI\_AAAA-MM-GG\_descrizione-breve.pdf}\\
-    dove \texttt{AAAA-MM-GG} è la data della riunione e la descrizione breve riassume l’oggetto principale.
+    dove \texttt{AAAA-MM-GG} è la data della riunione e la descrizione breve riassume l'oggetto principale.
     \item \textbf{Verbali Esterni}: \texttt{VE\_AAAA-MM-GG\_descrizione-breve.pdf}\\
     analogo al precedente, ma con prefisso VE.
     \item \textbf{Documenti Generali}: \texttt{nome-documento\_vX.Y.Z.pdf}\\
@@ -1159,16 +1162,16 @@ Il verificatore$_G$, durante la revisione:
     \item inserisce commenti inline direttamente sul codice \LaTeX$_G$ modificato, in modo da rendere immediato il contesto della segnalazione;
     \item approva la PR$_G$ se tutte le modifiche sono conformi, oppure richiede modifiche, indicando esattamente quali punti devono essere corretti.
 \end{itemize}
-In caso di richiesta di modifiche, il redattore le apporta, aggiorna il branch$_G$ e la PR$_G$ viene riesaminata fino all’approvazione$_G$ finale.
+In caso di richiesta di modifiche, il redattore le apporta, aggiorna il branch$_G$ e la PR$_G$ viene riesaminata fino all'approvazione$_G$ finale.
 
 \paragraph{Processo di approvazione tramite Pull Request}
 
 L'approvazione$_G$ costituisce l'atto formale che consente il rilascio ufficiale della documentazione. Si distingue dalla verifica$_G$ perché coinvolge il Responsabile$_G$, che valuta il documento nella sua interezza e ne autorizza la pubblicazione.
 
-La procedura adottata per l’approvazione$_G$ è:
+La procedura adottata per l'approvazione$_G$ è:
 \begin{enumerate}
     \item \textbf{creazione del branch}: si crea un branch$_G$ dedicato denominato \texttt{chore/approvazione-<nome-documento>} a partire da \texttt{develop};
-    \item \textbf{aggiornamento della versione Major}: all’interno del documento si incrementa la prima cifra della versione (es. da 1.2.3 a 2.0.0) per segnalare un cambiamento sostanziale, e si aggiorna il registro delle modifiche;
+    \item \textbf{aggiornamento della versione Major}: all'interno del documento si incrementa la prima cifra della versione (es. da 1.2.3 a 2.0.0) per segnalare un cambiamento sostanziale, e si aggiorna il registro delle modifiche;
     \item \textbf{apertura della Pull Request$_G$}: si apre una PR$_G$ verso \texttt{develop} descrivendo che si tratta della richiesta di approvazione$_G$;
     \item \textbf{assegnazione del Responsabile$_G$}: la PR$_G$ viene assegnata al Responsabile$_G$, unico autorizzato a effettuare il merge$_G$ di approvazione$_G$;
     \item \textbf{approvazione finale}: il Responsabile$_G$ esamina il documento (eventualmente consultando il verificatore$_G$) e, se lo ritiene adeguato, approva la PR$_G$;
@@ -1209,12 +1212,12 @@ La tabella~\ref{tab:acronimi-doc} riporta gli acronimi utilizzati in modo ricorr
 
 \LaTeX$_G$ è il linguaggio di markup adottato per la produzione della documentazione ufficiale. La scelta è motivata dalla sua capacità di produrre documenti di elevata qualità tipografica, paragonabile a quella delle pubblicazioni scientifiche.
 
-L’utilizzo di \LaTeX$_G$ consente:
+L'utilizzo di \LaTeX$_G$ consente:
 \begin{itemize}
     \item \textbf{elevata qualità tipografica}: gestione automatica della sillabazione, della giustificazione e della spaziatura, con un risultato professionale e uniforme;
     \item \textbf{gestione automatica di riferimenti e indice}: etichette e riferimenti incrociati (label/ref) eliminano il rischio$_G$ di rimandi errati quando si inseriscono o spostano sezioni;
     \item \textbf{integrazione con Git$_G$}: i file \texttt{.tex} sono testo semplice, quindi versionabili, confrontabili e mergeabili con gli stessi strumenti del codice;
-    \item \textbf{facilità di manutenzione}: la separazione tra struttura e contenuto, insieme all’uso di comandi personalizzati, permette di modificare lo stile dell’intera documentazione agendo su pochi file di configurazione.
+    \item \textbf{facilità di manutenzione}: la separazione tra struttura e contenuto, insieme all'uso di comandi personalizzati, permette di modificare lo stile dell'intera documentazione agendo su pochi file di configurazione.
 \end{itemize}
 
 \paragraph{GitHub$_G$}
@@ -1225,19 +1228,19 @@ GitHub$_G$ è la piattaforma di hosting scelta per tutti i repository$_G$ del pr
     \item \textbf{gestione delle Pull Request$_G$}: la revisione documentale si svolge interamente su PR$_G$, con commenti, approvazioni e merge$_G$;
     \item \textbf{gestione delle Issue$_G$}: le attività documentali sono tracciate come Issue$_G$, assegnate ai membri e collegate a milestone$_G$;
     \item \textbf{hosting della documentazione}: i PDF generati sono pubblicati tramite GitHub$_G$ Pages$_G$, rendendoli accessibili a tutti gli stakeholder$_G$;
-    \item \textbf{tracciamento delle modifiche}: la timeline delle attività e la history dei file consentono di ricostruire l’evoluzione di ogni documento.
+    \item \textbf{tracciamento delle modifiche}: la timeline delle attività e la history dei file consentono di ricostruire l'evoluzione di ogni documento.
 \end{itemize}
 
 Le funzionalità maggiormente utilizzate nel processo documentale sono:
 \begin{itemize}
     \item \textbf{GitHub Issues}: per la gestione dei task$_G$ di redazione, modifica e verifica$_G$;
     \item \textbf{GitHub Projects}: per la visualizzazione Kanban dello stato dei documenti (Stesura, Revisione, Approvato);
-    \item \textbf{GitHub Pages}: per la pubblicazione automatica dei PDF ufficiali e per l’hosting del sito di documentazione del progetto.
+    \item \textbf{GitHub Pages}: per la pubblicazione automatica dei PDF ufficiali e per l'hosting del sito di documentazione del progetto.
 \end{itemize}
 
 \paragraph{Visual Studio Code}
 
-Visual Studio Code è l’editor di testo scelto dal gruppo per la redazione dei documenti in \LaTeX$_G$. Grazie al suo ecosistema di estensioni e all’integrazione$_G$ nativa con Git$_G$, supporta efficacemente il workflow$_G$ documentale adottato.
+Visual Studio Code è l'editor di testo scelto dal gruppo per la redazione dei documenti in \LaTeX$_G$. Grazie al suo ecosistema di estensioni e all'integrazione$_G$ nativa con Git$_G$, supporta efficacemente il workflow$_G$ documentale adottato.
 
 \paragraph{Notion}
 
@@ -1248,16 +1251,16 @@ Notion è un ambiente collaborativo flessibile, impiegato come spazio di lavoro 
     \item \textbf{checklist documentali}: elenchi di controllo per la redazione e la verifica$_G$, consultabili e spuntabili da tutti i membri.
 \end{itemize}
 
-L’uso di Notion è limitato alla fase preparatoria e di raccolta; tutti i contenuti destinati a diventare ufficiali devono essere convertiti in \LaTeX$_G$ e inseriti nella repository$_G$ di progetto.
+L'uso di Notion è limitato alla fase preparatoria e di raccolta; tutti i contenuti destinati a diventare ufficiali devono essere convertiti in \LaTeX$_G$ e inseriti nella repository$_G$ di progetto.
 
 \subsection{Verifica}
 \label{subsec:verifica}
 
 %========================================================================
-\subsubsection{Processo}
+\subsubsection{Processo di verifica}
 %========================================================================
 
-La verifica$_G$ accompagna l'intero ciclo di vita del software, dalla progettazione fino alla manutenzione. L'obiettivo primario è garantire l'efficienza e la correttezza delle attività, istanziando per ogni prodotto un controllo mirato che attesti la conformità ai requisiti$_G$ specificati.
+La verifica$_G$ accompagna l'intero ciclo di vita del software, dalla progettazione fino alla manutenzione. L'obiettivo primario è garantire l'efficienza e la correttezza delle attività, applicando per ogni prodotto un controllo mirato che attesti la conformità ai requisiti$_G$ specificati.
 
 \begin{itemize}
     \item Il processo si avvale di tecniche di analisi e di test$_G$ per assicurare che ogni artefatto$_G$ soddisfi le attese.
@@ -1496,7 +1499,7 @@ Per automatizzare e rendere ripetibili le attività di verifica$_G$ dinamica, il
 \label{subsec:validazione}
 
 %========================================================================
-\subsubsection{Processo}
+\subsubsection{Processo di validazione}
 %========================================================================
 
 Secondo lo standard$_G$ ISO/IEC 12207:1995, la validazione$_G$ è il processo di conferma, tramite dimostrazione oggettiva, che i requisiti$_G$ specificati per un sistema$_G$ o un suo componente siano stati soddisfatti. In termini operativi, essa verifica$_G$ che il prodotto software$_G$ risponda alle esigenze e alle aspettative degli utenti finali, producendo evidenze misurabili quali test$_G$ superati, dimostrazioni funzionali o collaudi formali.
@@ -1580,7 +1583,7 @@ La validazione$_G$ si avvale degli stessi strumenti di testing utilizzati per il
 \label{subsec:gestione_configurazione}
 
 %========================================================================
-\subsubsection{Processo}
+\subsubsection{Processo di gestione della configurazione}
 \label{subsubsec:processo_configurazione}
 %========================================================================
 
@@ -1668,9 +1671,9 @@ Dopo aver completato le attività$_G$ nel proprio branch$_G$, il responsabile$_G
 La procedura per la creazione di una Pull Request$_G$ è la seguente:
 \begin{enumerate}
     \item Accedere al repository$_G$ GitHub$_G$ e cliccare sulla scheda ``Pull requests''.
-    \item Cliccare il pulsante ``New Pull Request$_G$''.
+    \item Fare clic sul pulsante ``New Pull Request$_G$''.
     \item Selezionare il branch$_G$ di partenza (quello contenente le modifiche) e il branch$_G$ target (quello di destinazione, ad esempio \texttt{develop}).
-    \item Cliccare il pulsante ``Create Pull Request$_G$''.
+    \item Fare clic sul pulsante ``Create Pull Request$_G$''.
     \item Aggiungere un titolo chiaro e descrittivo alla Pull Request$_G$, che riassuma lo scopo della modifica.
     \item Aggiungere una descrizione dettagliata, specificando il contesto, le motivazioni, l'eventuale Issue$_G$ collegata e ogni altra informazione utile per i revisori.
     \item Selezionare i verificatori$_G$ che dovranno revisionare la Pull Request$_G$.
@@ -1678,7 +1681,7 @@ La procedura per la creazione di una Pull Request$_G$ è la seguente:
     \item Selezionare le label$_G$ appropriate per categorizzare la Pull Request$_G$ (es. \texttt{documentation}, \texttt{bug}, \texttt{enhancement}).
     \item Selezionare il progetto GitHub Projects$_G$ di riferimento, per agganciare la PR$_G$ al pannello Kanban.
     \item Selezionare la milestone$_G$ di competenza, se la modifica è associata a una scadenza di progetto.
-    \item Cliccare il pulsante ``Create Pull Request$_G$'' per confermare l'apertura.
+    \item Fare clic sul pulsante ``Create Pull Request$_G$'' per confermare l'apertura.
     \item Nel caso siano presenti conflitti con il branch$_G$ target, GitHub$_G$ segnalerà la situazione e fornirà le istruzioni per risolverli prima di poter procedere con il merge$_G$. Il responsabile$_G$ dovrà risolvere manualmente i conflitti, aggiornare il branch$_G$ e richiedere nuovamente la revisione.
 \end{enumerate}
 
@@ -1741,11 +1744,11 @@ Questi strumenti, combinati tra loro, consentono di implementare un processo di 
 \label{subsec:risoluzione_problemi}
 
 %========================================================================
-\subsubsection{Processo}
+\subsubsection{Processo di risoluzione dei problemi}
 \label{subsubsec:processo_risoluzione}
 %========================================================================
 
-Il processo di risoluzione dei problemi ha lo scopo di analizzare e risolvere qualunque problematica (incluse le non conformità) di qualsiasi natura o fonte, rilevata durante lo sviluppo$_G$, la manutenzione o l'esecuzione di altri processi$_G$. L'obiettivo è fornire un mezzo tempestivo, responsabile$_G$ e documentato per garantire che tutti i problemi scoperti siano analizzati e risolti e che vengano riconosciute eventuali tendenze.
+Il processo di risoluzione dei problemi ha lo scopo di analizzare e risolvere qualsiasi problematica (incluse le non conformità) di qualsiasi natura o fonte, rilevata durante lo sviluppo$_G$, la manutenzione o l'esecuzione di altri processi$_G$. L'obiettivo è fornire un mezzo tempestivo, responsabile$_G$ e documentato per garantire che tutti i problemi scoperti siano analizzati e risolti, e che vengano riconosciute eventuali tendenze.
 
 Questo processo non si limita alla semplice correzione dei difetti, ma si propone di:
 \begin{itemize}
@@ -1868,7 +1871,7 @@ Lo sviluppo$_G$ software è un'attività complessa e multidisciplinare, che rich
 \label{subsec:gestione_processi}
 
 %========================================================================
-\subsubsection{Processo}
+\subsubsection{Processo di gestione dei processi}
 \label{subsubsec:processo_gestione}
 %========================================================================
 
@@ -2015,15 +2018,15 @@ Il ciclo di vita di una issue$_G$, dalla creazione alla chiusura, segue una proc
 \label{subsec:coordinamento}
 
 %========================================================================
-\subsubsection{Processo}
+\subsubsection{Processo di coordinamento}
 \label{subsubsec:processo_coordinamento}
 %========================================================================
 
-Il coordinamento è il processo che sovraintende alla gestione della comunicazione e all’organizzazione degli incontri tra tutti i soggetti coinvolti nel progetto. Esso abbraccia tanto la comunicazione interna al team quanto quella esterna con il proponente$_G$ e gli altri stakeholder$_G$, assicurando che il flusso informativo sia sempre tempestivo, chiaro e bidirezionale.
+Il coordinamento è il processo che sovrintende alla gestione della comunicazione e all'organizzazione degli incontri tra tutti i soggetti coinvolti nel progetto. Esso abbraccia tanto la comunicazione interna al team quanto quella esterna con il proponente$_G$ e gli altri stakeholder$_G$, assicurando che il flusso informativo sia sempre tempestivo, chiaro e bidirezionale.
 
 Gli obiettivi principali del coordinamento sono:
 \begin{itemize}
-    \item garantire l’efficienza operativa, prevenendo ritardi e incomprensioni;
+    \item garantire l'efficienza operativa, prevenendo ritardi e incomprensioni;
     \item mantenere tutte le parti costantemente informate sullo stato del progetto e sulle decisioni prese;
     \item favorire la collaborazione e la coesione del gruppo, creando un ambiente di lavoro positivo e produttivo;
     \item facilitare lo scambio di idee e la risoluzione collaborativa dei problemi.
@@ -2036,13 +2039,13 @@ Un coordinamento efficace si fonda su regole condivise, ruoli definiti e strumen
 \label{subsubsec:attivita_coordinamento}
 %========================================================================
 
-Le attività di coordinamento comprendono la gestione delle comunicazioni e l’organizzazione delle riunioni. Esse sono progettate per mantenere allineati tutti i partecipanti al progetto e per consentire un rapido scambio di informazioni.
+Le attività di coordinamento comprendono la gestione delle comunicazioni e l'organizzazione delle riunioni. Esse sono progettate per mantenere allineati tutti i partecipanti al progetto e per consentire un rapido scambio di informazioni.
 
 \paragraph{Comunicazioni sincrone}
 
 Le comunicazioni sincrone avvengono in tempo reale e permettono un confronto immediato tra i partecipanti. Si distinguono in:
 \begin{itemize}
-    \item \textbf{Comunicazioni sincrone interne}: sono dedicate al confronto informale tra i membri del team, alla discussione di problemi tecnici e al coordinamento rapido delle attività quotidiane. La loro immediatezza facilita la risoluzione di dubbi e l’allineamento in corso d’opera.
+    \item \textbf{Comunicazioni sincrone interne}: sono dedicate al confronto informale tra i membri del team, alla discussione di problemi tecnici e al coordinamento rapido delle attività quotidiane. La loro immediatezza facilita la risoluzione di dubbi e l'allineamento in corso d'opera.
     \item \textbf{Comunicazioni sincrone esterne}: sono utilizzate per gli incontri formali con il proponente$_G$, come i SAL (Stato Avanzamento Lavori). Esse richiedono un canale affidabile e accessibile anche a partecipanti esterni al gruppo, e seguono una pianificazione preventiva per garantire la presenza di tutti i soggetti necessari.
 \end{itemize}
 
@@ -2058,21 +2061,21 @@ Le comunicazioni asincrone non richiedono la presenza simultanea dei partecipant
 
 Le riunioni interne sono un pilastro del coordinamento. Il gruppo ha fissato un incontro a cadenza settimanale, indicativamente il martedì, che può svolgersi in presenza oppure in modalità telematica. La partecipazione è fortemente raccomandata; qualora la maggioranza dei membri fosse assente, la riunione viene rinviata. Ulteriori riunioni straordinarie possono essere convocate in caso di necessità.
 
-L’importanza di questi momenti risiede nella loro capacità di:
+L'importanza di questi momenti risiede nella loro capacità di:
 \begin{itemize}
     \item creare uno spazio dedicato al confronto diretto e alla condivisione di informazioni;
-    \item favorire l’emersione tempestiva di criticità e il loro superamento collettivo;
+    \item favorire l'emersione tempestiva di criticità e il loro superamento collettivo;
     \item rafforzare il senso di appartenenza al gruppo e la responsabilità condivisa verso gli obiettivi;
     \item garantire che le decisioni siano prese in modo trasparente e con il contributo di tutti.
 \end{itemize}
 
-All’interno delle riunioni interne, il \textbf{Responsabile} assume il ruolo di moderatore e coordinatore: guida la discussione, assicura che tutti i punti all’ordine del giorno vengano affrontati e, al termine, redige il verbale interno. La redazione del verbale è affidata al Responsabile$_G$ non solo per la sua visione d’insieme, ma soprattutto perché il verbale costituisce l’unico documento ufficiale che attesta le decisioni prese e gli impegni assunti. Affidarne la stesura a chi ha la massima responsabilità del progetto garantisce accuratezza, imparzialità e coerenza con la pianificazione complessiva.
+All'interno delle riunioni interne, il \textbf{Responsabile} assume il ruolo di moderatore e coordinatore: guida la discussione, assicura che tutti i punti all'ordine del giorno vengano affrontati e, al termine, redige il verbale interno. La redazione del verbale è affidata al Responsabile$_G$ non solo per la sua visione d'insieme, ma soprattutto perché il verbale costituisce l'unico documento ufficiale che attesta le decisioni prese e gli impegni assunti. Affidarne la stesura a chi ha la massima responsabilità del progetto garantisce accuratezza, imparzialità e coerenza con la pianificazione complessiva.
 
-Subito dopo il Responsabile$_G$, l’\textbf{Amministratore} svolge un ruolo organizzativo di supporto: prima della riunione collabora alla stesura dell’ordine del giorno e alla convocazione; durante la riunione tiene traccia delle presenze e annota le attività da inserire nell’ITS; al termine, si occupa di creare o aggiornare le issue$_G$ corrispondenti ai task$_G$ assegnati e di allineare la dashboard$_G$ di progetto con le decisioni emerse.
+Subito dopo il Responsabile$_G$, l'\textbf{Amministratore} svolge un ruolo organizzativo di supporto: prima della riunione collabora alla stesura dell'ordine del giorno e alla convocazione; durante la riunione tiene traccia delle presenze e annota le attività da inserire nell'ITS; al termine, si occupa di creare o aggiornare le issue$_G$ corrispondenti ai task$_G$ assegnati e di allineare la dashboard$_G$ di progetto con le decisioni emerse.
 
 \paragraph{Riunioni esterne}
 
-Gli incontri con il proponente$_G$ (o con i committenti) sono organizzati dal Responsabile$_G$, che ha il compito di convocarli, definire l’ordine del giorno e coordinare lo svolgimento della riunione. Durante l’incontro, il Responsabile$_G$ espone i punti di discussione e passa la parola ai membri del gruppo quando sono chiamati a illustrare aspetti specifici.
+Gli incontri con il proponente$_G$ (o con i committenti) sono organizzati dal Responsabile$_G$, che ha il compito di convocarli, definire l'ordine del giorno e coordinare lo svolgimento della riunione. Durante l'incontro, il Responsabile$_G$ espone i punti di discussione e passa la parola ai membri del gruppo quando sono chiamati a illustrare aspetti specifici.
 
 Tutti i membri del team si impegnano a garantire la propria presenza costante alle riunioni esterne, compatibilmente con eventuali impegni inderogabili. Se un membro non può partecipare, il Responsabile$_G$ informa tempestivamente il proponente$_G$ e, se necessario, richiede il rinvio della riunione a una data successiva.
 
@@ -2086,21 +2089,21 @@ Anche per le riunioni esterne, il verbale viene redatto dal Responsabile$_G$. La
 \paragraph{Procedura per le riunioni interne}
 
 \begin{enumerate}
-    \item \textbf{Convocazione}: il Responsabile$_G$, coadiuvato dall’Amministratore$_G$, comunica data, ora e modalità dell’incontro (presenza o telematico) attraverso i canali di comunicazione interni, con un preavviso di almeno 24 ore.
-    \item \textbf{Ordine del giorno}: prima della riunione, il Responsabile$_G$ e l’Amministratore$_G$ predispongono un elenco dei punti da discutere, tenendo conto delle segnalazioni ricevute dai membri e delle scadenze imminenti.
-    \item \textbf{Svolgimento}: il Responsabile$_G$ modera la discussione, assicurando che ogni punto venga affrontato e che tutti i partecipanti abbiano modo di esprimersi. L’Amministratore$_G$ registra le presenze e prende appunti sulle decisioni e sui task$_G$ emergenti.
+    \item \textbf{Convocazione}: il Responsabile$_G$, coadiuvato dall'Amministratore$_G$, comunica data, ora e modalità dell'incontro (presenza o telematico) attraverso i canali di comunicazione interni, con un preavviso di almeno 24 ore.
+    \item \textbf{Ordine del giorno}: prima della riunione, il Responsabile$_G$ e l'Amministratore$_G$ predispongono un elenco dei punti da discutere, tenendo conto delle segnalazioni ricevute dai membri e delle scadenze imminenti.
+    \item \textbf{Svolgimento}: il Responsabile$_G$ modera la discussione, assicurando che ogni punto venga affrontato e che tutti i partecipanti abbiano modo di esprimersi. L'Amministratore$_G$ registra le presenze e prende appunti sulle decisioni e sui task$_G$ emergenti.
     \item \textbf{Verbalizzazione}: al termine della riunione, il Responsabile$_G$ redige il verbale interno secondo la struttura standard definita nelle Norme di Progetto$_G$, riportando ordine del giorno, sintesi delle discussioni, decisioni prese e attività da svolgere con relative scadenze e assegnatari.
-    \item \textbf{Follow-up}: entro 24 ore dalla riunione, l’Amministratore$_G$ crea o aggiorna le issue$_G$ sull’ITS corrispondenti ai nuovi task$_G$ e sposta le issue$_G$ esistenti nelle colonne appropriate della dashboard$_G$ di progetto. Il verbale viene condiviso in bozza sui canali interni per eventuali commenti, quindi consolidato.
+    \item \textbf{Follow-up}: entro 24 ore dalla riunione, l'Amministratore$_G$ crea o aggiorna le issue$_G$ sull'ITS corrispondenti ai nuovi task$_G$ e sposta le issue$_G$ esistenti nelle colonne appropriate della dashboard$_G$ di progetto. Il verbale viene condiviso in bozza sui canali interni per eventuali commenti, quindi consolidato.
 \end{enumerate}
 
 \paragraph{Procedura per le riunioni esterne}
 
 \begin{enumerate}
     \item \textbf{Convocazione}: il Responsabile$_G$ contatta il proponente$_G$ via email, proponendo date e orari compatibili con gli impegni del gruppo. Ottenuta conferma, crea un evento sul calendario condiviso e notifica il team.
-    \item \textbf{Preparazione}: il Responsabile$_G$, sentiti i membri del gruppo, definisce l’ordine del giorno e prepara il materiale da presentare (stato avanzamento lavori, dimostrazioni, quesiti).
+    \item \textbf{Preparazione}: il Responsabile$_G$, sentiti i membri del gruppo, definisce l'ordine del giorno e prepara il materiale da presentare (stato avanzamento lavori, dimostrazioni, quesiti).
     \item \textbf{Svolgimento}: durante la riunione, il Responsabile$_G$ conduce la discussione. I membri del team intervengono per illustrare le parti di propria competenza. Le decisioni e gli impegni presi vengono annotati dal Responsabile$_G$.
-    \item \textbf{Verbalizzazione}: il Responsabile$_G$ redige il verbale esterno entro 48 ore dall’incontro, utilizzando il template ufficiale. Il verbale viene sottoposto all’approvazione$_G$ del proponente$_G$ prima di essere consolidato.
-    \item \textbf{Registrazione e azioni}: i task$_G$ e gli impegni emersi vengono tradotti in issue$_G$ dall’Amministratore$_G$, collegandoli al verbale e inserendoli nella milestone$_G$ di riferimento. Il verbale approvato viene archiviato nel repository$_G$ documentale.
+    \item \textbf{Verbalizzazione}: il Responsabile$_G$ redige il verbale esterno entro 48 ore dall'incontro, utilizzando il template ufficiale. Il verbale viene sottoposto all'approvazione$_G$ del proponente$_G$ prima di essere consolidato.
+    \item \textbf{Registrazione e azioni}: i task$_G$ e gli impegni emersi vengono tradotti in issue$_G$ dall'Amministratore$_G$, collegandoli al verbale e inserendoli nella milestone$_G$ di riferimento. Il verbale approvato viene archiviato nel repository$_G$ documentale.
 \end{enumerate}
 
 %========================================================================
@@ -2113,7 +2116,7 @@ Gli strumenti adottati per il coordinamento coprono tutte le esigenze di comunic
 \begin{itemize}
     \item \textbf{Discord}: piattaforma per le comunicazioni sincrone interne e per i meeting informali. I canali vocali e testuali consentono discussioni in tempo reale e conservano uno storico delle conversazioni, facilitando il reperimento di decisioni passate.
     \item \textbf{Google Meet}: strumento per le riunioni esterne con il proponente$_G$, scelto per la facilità di accesso (basta un browser) e per la qualità audio/video, che lo rendono adatto anche a incontri formali con partecipanti esterni.
-    \item \textbf{Gmail}: servizio di posta elettronica utilizzato per le comunicazioni asincrone ufficiali verso l’esterno. Viene impiegato per convocare incontri, inviare verbali, scambiare documentazione e mantenere una traccia scritta di ogni comunicazione rilevante.
+    \item \textbf{Gmail}: servizio di posta elettronica utilizzato per le comunicazioni asincrone ufficiali verso l'esterno. Viene impiegato per convocare incontri, inviare verbali, scambiare documentazione e mantenere una traccia scritta di ogni comunicazione rilevante.
     \item \textbf{WhatsApp}: applicazione di messaggistica istantanea per le comunicazioni asincrone interne rapide, come aggiornamenti urgenti, chiarimenti veloci e coordinamento logistico. Consente anche conversazioni private tra singoli membri.
     \item \textbf{Google Calendar}: strumento per la pianificazione e la condivisione degli eventi. Il calendario di progetto è accessibile a tutti i membri e include riunioni interne, scadenze e appuntamenti con il proponente$_G$, con promemoria automatici per ridurre il rischio$_G$ di dimenticanze.
     \item \textbf{GitHub}: oltre al tracciamento delle attività, supporta indirettamente il coordinamento grazie alla possibilità di collegare issue$_G$, milestone$_G$ e Pull Request$_G$ alle decisioni prese nelle riunioni, mantenendo allineati pianificazione e operatività.
@@ -2123,7 +2126,7 @@ Gli strumenti adottati per il coordinamento coprono tutte le esigenze di comunic
 \label{subsec:miglioramento}
 
 %========================================================================
-\subsubsection{Processo}
+\subsubsection{Processo di miglioramento}
 \label{subsubsec:processo_miglioramento}
 %========================================================================
 
@@ -2207,7 +2210,7 @@ La documentazione delle azioni correttive e del loro esito viene inserita nella 
 \label{subsec:formazione}
 
 %========================================================================
-\subsubsection{Processo}
+\subsubsection{Processo di formazione}
 \label{subsubsec:processo_formazione}
 %========================================================================
 
@@ -2298,7 +2301,7 @@ Durante le sessioni, i membri del team sono invitati a prendere appunti e a cond
 \section{Metriche e standard per la Qualità}
 \label{sec:metriche_qualita}
 
-Il gruppo adotta lo standard \textbf{ISO/IEC 9126} quale riferimento per la definizione delle caratteristiche che determinano la qualità del prodotto software. Tale standard individua sei macro-caratteristiche principali, ciascuna delle quali è declinata in una serie di attributi misurabili, utili a valutare in modo oggettivo il livello qualitativo raggiunto dal sistema$_G$.
+Il gruppo adotta lo standard \textbf{ISO/IEC 12207} quale riferimento per la definizione delle caratteristiche che determinano la qualità del prodotto software. Tale standard individua sei macro-caratteristiche principali, ciascuna delle quali è declinata in una serie di attributi misurabili, utili a valutare in modo oggettivo il livello qualitativo raggiunto dal sistema$_G$.
 
 \subsection{Funzionalità}
 \label{subsec:funzionalita}
@@ -2392,6 +2395,9 @@ In coerenza con lo standard \textbf{ISO/IEC 12207}, le metriche sono organizzate
 
 Per quanto riguarda il prodotto, le metriche sono invece raggruppate secondo le sei caratteristiche di qualità descritte in precedenza (funzionalità, affidabilità, efficienza, usabilità, manutenibilità$_G$, portabilità), così da valutare in modo puntuale il livello qualitativo raggiunto dal software in ciascuna area.
 
+\paragraph{Riferimenti}
+Tutte le definizioni, gli acronimi e le abbreviazioni utilizzati in questo documento sono riportati nel \textbf{Glossario}, fornito come documento separato, che garantisce una comprensione uniforme dei termini tecnici e dei concetti rilevanti per il progetto.
+
 \section{Metriche di Qualità del Processo}
 \subsection{Processi primari}
 \subsubsection{Fornitura}
@@ -2411,8 +2417,8 @@ Per quanto riguarda il prodotto, le metriche sono invece raggruppate secondo le 
             \item $BAC$: Budget$_G$ at Completion (Budget$_G$ totale previsto)
             \item $k$: Numero dello sprint$_G$ di riferimento
         \end{itemize} \\ \hline
-        Descrizione & L’indicatore Earned Value rappresenta il valore del lavoro completato al termine dello sprint$_G$ $k$ rispetto al budget$_G$ totale previsto. Viene calcolato al termine di ciascuno sprint$_G$ per monitorare il progresso reale del progetto rispetto al piano. \\ \hline
-        Utilità & L’indicatore è utile per monitorare l’andamento del progetto e valutare se il lavoro svolto è in linea con le aspettative. \\ \hline
+        Descrizione & L'indicatore Earned Value rappresenta il valore del lavoro completato al termine dello sprint$_G$ $k$ rispetto al budget$_G$ totale previsto. Viene calcolato al termine di ciascuno sprint$_G$ per monitorare il progresso reale del progetto rispetto al piano. \\ \hline
+        Utilità & L'indicatore è utile per monitorare l'andamento del progetto e valutare se il lavoro svolto è in linea con le aspettative. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPC01 - Earned Value}
 \end{minipage}
@@ -2435,8 +2441,8 @@ Per quanto riguarda il prodotto, le metriche sono invece raggruppate secondo le 
             \item $BAC$: Budget$_G$ at Completion
             \item $k$: Numero dello sprint$_G$ di riferimento
         \end{itemize} \\ \hline
-        Descrizione & L’indicatore Planned Value rappresenta il valore del lavoro pianificato che dovrebbe essere raggiunto al termine dello sprint$_G$ $k$. Viene calcolato al termine di ciascuno sprint$_G$ per monitorare l’avanzamento del progetto rispetto alla pianificazione. \\ \hline
-        Utilità & L’indicatore è utile per monitorare l’andamento del progetto e valutare se la pianificazione è rispettata. Il valore pianificato non può essere negativo e deve essere inferiore al BAC. \\ \hline
+        Descrizione & L'indicatore Planned Value rappresenta il valore del lavoro pianificato che dovrebbe essere raggiunto al termine dello sprint$_G$ $k$. Viene calcolato al termine di ciascuno sprint$_G$ per monitorare l'avanzamento del progetto rispetto alla pianificazione. \\ \hline
+        Utilità & L'indicatore è utile per monitorare l'andamento del progetto e valutare se la pianificazione è rispettata. Il valore pianificato non può essere negativo e deve essere inferiore al BAC. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPC02 - Planned Value}
 \end{minipage}
@@ -2457,8 +2463,8 @@ Per quanto riguarda il prodotto, le metriche sono invece raggruppate secondo le 
         \begin{itemize}
             \item $AC_{k}$: Actual Cost$_G$ allo sprint$_G$ $k$
         \end{itemize} \\ \hline
-        Descrizione & L’indicatore Actual Cost$_G$ rappresenta il costo effettivo sostenuto per completare il lavoro nello sprint$_G$ $k$. \\ \hline
-        Utilità & L’indicatore è utile per monitorare l’andamento del progetto e valutare se i costi sono in linea con le aspettative. \\ \hline
+        Descrizione & L'indicatore Actual Cost$_G$ rappresenta il costo effettivo sostenuto per completare il lavoro nello sprint$_G$ $k$. \\ \hline
+        Utilità & L'indicatore è utile per monitorare l'andamento del progetto e valutare se i costi sono in linea con le aspettative. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPC03 - Actual Cost$_G$}
 \end{minipage}
@@ -2583,7 +2589,7 @@ Per quanto riguarda il prodotto, le metriche sono invece raggruppate secondo le 
 \end{minipage}
 
 \subsubsection{Sviluppo}
-
+% --- MPC09 ---
 \paragraph{Requisiti Stability Index (RSI)}
 \mbox{} \\
 \noindent
@@ -2617,14 +2623,14 @@ Per quanto riguarda il prodotto, le metriche sono invece raggruppate secondo le 
 \subsection{Processi di supporto}
 
 \subsubsection{Documentazione}
-
+% --- MPC10 ---
 \paragraph{Indice di Gulpease (IG)}
 \mbox{} \\
 \noindent
 \begin{minipage}{\textwidth}
     \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
         \hline
-        Codice & MPC09 \\ \hline
+        Codice & MPC10 \\ \hline
         Formula &  
         \textit{$IG = 89 + \frac{300 \cdot N_{frasi} - 10 \cdot N_{lettere}}{N_{parole}}$} \vspace{2mm} \\
         & \small \textbf{Legenda:}
@@ -2643,19 +2649,19 @@ Per quanto riguarda il prodotto, le metriche sono invece raggruppate secondo le 
         \end{itemize} \\ \hline
         Utilità & Assicura che la documentazione sia comprensibile per il target di riferimento, riducendo ambiguità. \\ \hline
     \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPC09 - Indice di Gulpease}
+    \captionof{table}{Dettagli Metrica MPC10 - Indice di Gulpease}
 \end{minipage}
 
 \vspace{1cm}
 
-% --- MPC10 Frammentazione ---
+% --- MPC11 Frammentazione ---
 \paragraph{Indice di Frammentazione (IF)}
 \mbox{} \\
 \noindent
 \begin{minipage}{\textwidth}
     \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
         \hline
-        Codice & MPC10 \\ \hline
+        Codice & MPC11 \\ \hline
         Formula &  
         \textit{$IF = \frac{N_{sezioni} + N_{paragrafi}}{N_{linee}} \cdot 100$} \vspace{2mm} \\
         & \small \textbf{Legenda:}
@@ -2673,19 +2679,19 @@ Per quanto riguarda il prodotto, le metriche sono invece raggruppate secondo le 
         \end{itemize} \\ \hline
         Utilità & Facilita la consultazione rapida e la memorizzazione dei concetti strutturando il documento. \\ \hline
     \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPC10 - Indice di Frammentazione}
+    \captionof{table}{Dettagli Metrica MPC11 - Indice di Frammentazione}
 \end{minipage}
 
 \subsubsection{Verifica}
 
-% --- MPC11 TSR ---
+% --- MPC12 TSR ---
 \paragraph{Test Success Rate (TSR)}
 \mbox{} \\
 \noindent
 \begin{minipage}{\textwidth}
     \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
         \hline
-        Codice & MPC11 \\ \hline
+        Codice & MPC12 \\ \hline
         Formula &  
         \textit{$TSR_{k} = \frac{T_{successo}}{T_{totali}} \cdot 100$} \vspace{2mm} \\
         & \small \textbf{Legenda:}
@@ -2702,19 +2708,19 @@ Per quanto riguarda il prodotto, le metriche sono invece raggruppate secondo le 
         \end{itemize} \\ \hline
         Utilità & Misura la correttezza del software e l'efficacia delle attività di testing. \\ \hline
     \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPC11 - Test$_G$ Success Rate}
+    \captionof{table}{Dettagli Metrica MPC12 - Test$_G$ Success Rate}
 \end{minipage}
 
 \subsubsection{Gestione della Qualità}
 
-% --- MPC12 PMS ---
+% --- MPC13 PMS ---
 \paragraph{Percentuale Metriche Soddisfatte (PMS)}
 \mbox{} \\
 \noindent
 \begin{minipage}{\textwidth}
     \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
         \hline
-        Codice & MPC12 \\ \hline
+        Codice & MPC13 \\ \hline
         Formula &  
         \textit{$PMS_{k} = \frac{M_{soddisfatte}}{M_{totali}} \cdot 100$} \vspace{2mm} \\
         & \small \textbf{Legenda:}
@@ -2731,21 +2737,21 @@ Per quanto riguarda il prodotto, le metriche sono invece raggruppate secondo le 
         \end{itemize} \\ \hline
         Utilità & Offre una visione d'insieme della qualità del progetto e dell'aderenza ai requisiti$_G$. \\ \hline
     \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPC12 - Percentuale Metriche Soddisfatte}
+    \captionof{table}{Dettagli Metrica MPC13 - Percentuale Metriche Soddisfatte}
 \end{minipage}
 
 \subsection{Processi organizzativi}
 
 \subsubsection{Gestione dei processi}
 
-% --- MPC13 PRI ---
+% --- MPC14 PRI ---
 \paragraph{Percentuale Rischi Inattesi (PRI)}
 \mbox{} \\
 \noindent
 \begin{minipage}{\textwidth}
     \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
         \hline
-        Codice & MPC13 \\ \hline
+        Codice & MPC14 \\ \hline
         Formula &  
         \textit{$PRI_{k} = \frac{R_{inattesi,k}}{R_{totali,k}} \cdot 100$} \vspace{2mm} \\
         & \small \textbf{Legenda:}
@@ -2761,19 +2767,19 @@ Per quanto riguarda il prodotto, le metriche sono invece raggruppate secondo le 
         \end{itemize} \\ \hline
         Utilità & Identifica la necessità di migliorare l'attività di prevenzione e gestione delle criticità. \\ \hline
     \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPC13 - Percentuale Rischi Inattesi}
+    \captionof{table}{Dettagli Metrica MPC14 - Percentuale Rischi Inattesi}
 \end{minipage}
 
 \vspace{1cm}
 
-% --- MPC14 Labor Efficiency ---
+% --- MPC15 Labor Efficiency ---
 \paragraph{Labor Efficiency (LE)}
 \mbox{} \\
 \noindent
 \begin{minipage}{\textwidth}
     \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
         \hline
-        Codice & MPC14 \\ \hline
+        Codice & MPC15 \\ \hline
         Formula &  
         \textit{$LE_{k} = \frac{H_{pianificate,k}}{H_{effettive,k}} \cdot 100$} \vspace{2mm} \\
         & \small \textbf{Legenda:}
@@ -2789,7 +2795,7 @@ Per quanto riguarda il prodotto, le metriche sono invece raggruppate secondo le 
         \end{itemize} \\ \hline
         Utilità & Monitora la precisione delle stime temporali del team, integrando la visione economica dello SPI. \\ \hline
     \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPC14 - Labor Efficiency}
+    \captionof{table}{Dettagli Metrica MPC15 - Labor Efficiency}
 \end{minipage}
 
 \section{Metriche di Qualità del Prodotto}
