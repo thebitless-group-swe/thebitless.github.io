@@ -42,8 +42,17 @@ for documento in documenti:
     
     inizio, corpo = contenuto.split(r"\begin{document}", 1)
 
+    # Comandi i cui argomenti NON vanno pedicizzati:
+    #  - le definizioni di metadati come \newcommand{\titolo}{...} (titolo del
+    #    documento, stato, ecc.): qui va protetto anche il secondo argomento;
+    #  - in generale, qualsiasi comando LaTeX con un argomento, così i titoli di
+    #    sezione (\section, \subsection, \paragraph, ... anche con *) restano puliti.
+    protezioni = (
+        r'\\newcommand\{\\[a-zA-Z]+\}\{[^}]*\}'
+        r'|\\[a-zA-Z]+\*?\{[^}]*\}'
+    )
     for termine in termini:
-        pattern = r'\\[a-zA-Z]+\{[^}]*\}|\b' + re.escape(termine) + r'\b(?!\$_G\$)'
+        pattern = protezioni + r'|\b' + re.escape(termine) + r'\b(?!\$_G\$)'
 
         def sostituisci(match):
             if match.group(0).startswith("\\"):
