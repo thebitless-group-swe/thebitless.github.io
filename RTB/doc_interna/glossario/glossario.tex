@@ -46,13 +46,15 @@
 \begin{document}
 
 \newcommand{\tipoverbale}{Glossario}
-\newcommand{\dataversione}{2026-04-27}
-\newcommand{\versione}{0.4.0}
-\newcommand{\stato}{Stesura}
+\newcommand{\dataversione}{2026-06-18}
+\newcommand{\versione}{1.0.0}
+\newcommand{\stato}{Approvato}
 \newcommand{\destinatari}{Prof. Tullio Vardanega, prof. Riccardo Cardin, The Bitless}
+\newcommand{\dir}{../../..}
+\newcommand{\dataverbale}{}
 
 \pagenumbering{roman}
-\input{../templates/frontespizio.tex}
+\input{../../../templates/frontespizio.tex}
 \newpage
 
 \begin{center}
@@ -62,9 +64,15 @@
         \hline
         \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
         \hline
-        0.4.0 & 2026-04-27 &  A. Marini & E. De Piccoli & -- & Aggiunta termini \\
+        1.0.0 & 2026-06-18 & D. Facco & L. Battistella & E. De Piccoli & Approvazione documento \\
         \hline
-        0.3.1 & 2026-04-16 & L. Battistella & E. De Piccoli & -- & Correzione errori di battitura \\
+        0.6.0 & 2026-06-05 & D. Facco & L. Battistella & -- & Aggiunta termini \\
+        \hline
+        0.5.0 & 2026-05-18 & S. Vendramin & A. Menegaldo & -- & Aggiunta termini \\
+        \hline
+        0.4.0 & 2026-04-27 &  A. Marini & D. Facco & -- & Aggiunta termini \\
+        \hline
+        0.3.1 & 2026-04-16 & S. Zecchinato & D. Facco & -- & Correzione errori di battitura \\
         \hline
         0.3.0 & 2026-04-13 & D. Facco & A. Menegaldo & -- & Aggiunta termini \\
         \hline
@@ -97,6 +105,8 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 
 \glossaryterm{Actual Cost}{Metrica che rappresenta il costo effettivo sostenuto per completare il lavoro in un determinato periodo. Utilizzata per monitorare l'andamento economico del progetto e valutare se i costi sono allineati con le previsioni iniziali.}
 
+\glossaryterm{Affidabilità}{Caratteristica di qualità del software che esprime la capacità del prodotto di mantenere un comportamento corretto e prestazioni stabili nel tempo, anche in presenza di input non ottimali, errori di comunicazione o condizioni operative anomale.}
+
 \glossaryterm{Agile}{Filosofia di sviluppo software basata su un approccio iterativo e incrementale. Si contrappone ai modelli tradizionali "a cascata", privilegiando la flessibilità ai cambiamenti, la consegna frequente di software funzionante e la collaborazione costante tra sviluppatori e stakeholder per massimizzare il valore del prodotto.}
 
 \glossaryterm{Analisi dei Rischi}{Attività continua che consiste nell'identificazione preventiva di eventi incerti che potrebbero influenzare negativamente il progetto. Per ogni rischio vengono valutate probabilità di occorrenza e impatto (gravità), definendo strategie di mitigazione per ridurne la pericolosità.}
@@ -113,7 +123,17 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 
 \glossaryterm{Artefatto}{Qualsiasi prodotto tangibile e documentabile derivante dal processo di sviluppo. Include file di codice sorgente, documenti PDF, diagrammi UML, verbali di riunione e prototipi software.}
 
+\glossaryterm{Attore}{Entità esterna al sistema, sia essa una persona, un altro sistema o un servizio, che interagisce con esso per raggiungere un obiettivo. Negli scenari descritti dai Casi d'Uso rappresenta il ruolo ricoperto da chi avvia o partecipa a un'interazione con il sistema.}
+
+\glossaryterm{Attore Primario}{Attore che avvia l'interazione con il sistema per conseguire un proprio obiettivo, generando gli input necessari all'esecuzione del caso d'uso (ad esempio l'Utente).}
+
+\glossaryterm{Attore Secondario}{Attore che interviene in modo passivo o di supporto durante un caso d'uso, fornendo servizi o informazioni richiesti dal sistema per portare a termine l'operazione (ad esempio l'LLM o il Sistema di Persistenza).}
+
 \glossaryterm{Analisi dei Requisiti}{Fase del processo di sviluppo software in cui vengono raccolti, documentati e analizzati i requisiti funzionali e non funzionali del sistema da realizzare, al fine di definire chiaramente le aspettative e le specifiche del progetto.}
+
+\glossaryterm{Analisi Dinamica}{Tecnica di verifica che richiede l'esecuzione del prodotto software in un ambiente controllato. Attraverso l'esecuzione di test mirati permette di valutare la conformità del sistema ai requisiti funzionali e non funzionali, rilevando errori che si manifestano solo durante il funzionamento effettivo.}
+
+\glossaryterm{Analisi Statica}{Tecnica di verifica che esamina un prodotto, software o documentale, senza richiederne l'esecuzione. Comprende metodi come Walkthrough e Inspection ed è finalizzata a individuare precocemente errori sintattici, semantici, grammaticali e violazioni degli standard di codifica.}
 
 \glossaryterm{API}{Acronimo di Application Programming Interface. Insieme di definizioni, protocolli e strumenti standardizzati che permettono a diverse applicazioni software di comunicare e interagire tra loro. Agendo come uno strato di astrazione, l'API espone specifiche funzionalità o dati di un sistema senza rivelarne la logica interna o il codice sorgente, facilitando così l'integrazione di servizi esterni all'interno del prodotto.}
 
@@ -153,6 +173,12 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 
 \glossaryterm{Chatbot}{Agente software progettato per simulare una conversazione con utenti umani, interagendo attraverso un'interfaccia testuale o vocale}
 
+\glossaryterm{Commit}{Operazione di Git che registra in modo permanente nella cronologia del repository un insieme di modifiche apportate ai file. Ogni commit deve apportare modifiche significative ed essere corredato da una descrizione chiara, comprensibile a qualunque membro del team senza necessità di esaminarne il contenuto.}
+
+\glossaryterm{Consuntivo}{Rendicontazione delle ore e dei costi effettivamente sostenuti da ciascun membro del team durante uno sprint. Il confronto con il preventivo permette di valutare lo scostamento tra quanto pianificato e quanto realmente speso, fornendo un dato fondamentale per il calcolo delle metriche di progetto.}
+
+\glossaryterm{Copertura del Codice}{In inglese \textit{code coverage}, metrica che misura la percentuale di codice sorgente eseguita durante i test automatici. Fornisce un'indicazione della porzione di software effettivamente verificata, pur non garantendo da sola la correttezza del prodotto.}
+
 \newpage
 
 % --- SEZIONE D ---
@@ -174,6 +200,14 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 \glossaryterm{Distant Writing}{Modalità di scrittura in cui il contenuto viene generato o modificato con l'aiuto di strumenti digitali o intelligenza artificiale.}
 
 \glossaryterm{Dominio}{Ambito o contesto in cui opera il sistema software. Include le regole, i concetti e i problemi specifici del settore di applicazione del progetto.}
+
+\newpage
+
+% --- SEZIONE E ---
+\section*{E}
+\addcontentsline{toc}{section}{E}
+
+\glossaryterm{Efficienza}{Caratteristica di qualità del software che esprime la capacità del prodotto di fornire prestazioni adeguate in relazione alla quantità di risorse impiegate (tempo di elaborazione, memoria, capacità di calcolo) nelle condizioni d'uso previste.}
 
 \newpage
 
@@ -203,6 +237,8 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 
 \glossaryterm{GitHub Projects}{Strumento di gestione dei progetti integrato in GitHub che permette di organizzare e pianificare il lavoro in modo visuale. Attraverso l'uso di tabelle e tabelle Kanban, consente al team di tracciare l'avanzamento dei task, assegnare priorità e collegare direttamente le attività alle issue o alle Pull Request, facilitando il monitoraggio dello stato degli sprint in tempo reale.}
 
+\glossaryterm{Ground Truth}{Riferimento considerato valido e autorevole rispetto al quale si misura la correttezza di un'informazione o di un risultato. Nel contesto della documentazione, un artefatto assume valore di ground truth solo quando raggiunge lo stato di Approvato, divenendo la versione ufficiale e affidabile per il progetto.}
+
 \newpage
 
 % --- SEZIONE I ---
@@ -212,6 +248,8 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 \glossaryterm{Incrementale}{Approccio di sviluppo software in cui il prodotto viene sviluppato in piccoli incrementi, con ogni incremento che aggiunge funzionalità al prodotto finale. Questo metodo consente di rilasciare versioni funzionanti del software in tempi più brevi e di adattarsi meglio ai cambiamenti dei requisiti.}
 
 \glossaryterm{Integrazione}{Processo di unione di diverse componenti o sistemi software in un unico sistema, al fine di garantire che funzionino insieme correttamente.}
+
+\glossaryterm{Inspection}{Tecnica di analisi statica formale e rigorosa, basata sull'utilizzo di checklist predefinite. Il verificatore esamina sistematicamente il prodotto per accertarne la conformità a standard specifici, annotando ogni deviazione riscontrata senza necessariamente proporre una soluzione immediata.}
 
 \glossaryterm{Input}{Insieme dei dati, dei segnali o delle istruzioni che vengono inviati dall'esterno verso l'interno di un sistema di elaborazione}
 
@@ -245,6 +283,8 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 
 \glossaryterm{Merge}{Operazione di fusione di due branch distinti. Solitamente consiste nell'integrare le modifiche verificate di un ramo secondario nel ramo principale del progetto dopo l'approvazione di una Pull Request.}
 
+\glossaryterm{Metrica}{Misura quantitativa e oggettiva utilizzata per valutare una caratteristica di un processo o di un prodotto software. Le metriche permettono di monitorare la qualità e di confrontare i risultati ottenuti con i valori di riferimento attesi (accettabile e ottimale).}
+
 \glossaryterm{Milestone}{Pietra miliare o traguardo intermedio significativo lungo la cronologia del progetto. Serve a scandire le fasi principali e a monitorare l'andamento macroscopico del lavoro rispetto alle scadenze finali.}
 
 \glossaryterm{Minimum Viable Product (MVP)}{Versione del prodotto dotata esclusivamente delle funzionalità essenziali per permetterne l'utilizzo da parte dei primi utenti, utile per raccogliere feedback precoci e validare la direzione dello sviluppo.}
@@ -273,6 +313,12 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 \section*{P}
 \addcontentsline{toc}{section}{P}
 
+\glossaryterm{Postcondizione}{Stato in cui si trova il sistema al termine dell'esecuzione di un caso d'uso, che attesta il raggiungimento dell'obiettivo previsto dallo scenario.}
+
+\glossaryterm{Precondizione}{Condizione che deve essere soddisfatta affinché un caso d'uso possa essere avviato con successo. Definisce lo stato in cui deve trovarsi il sistema prima dell'esecuzione dello scenario.}
+
+\glossaryterm{Preventivo}{Stima delle ore e dei costi pianificati per ciascun ruolo e per ciascun membro del team in un determinato sprint. Costituisce il riferimento rispetto al quale viene successivamente misurato il consuntivo per valutare l'aderenza alla pianificazione.}
+
 \glossaryterm{Prompt Engineering}{Pratica di progettare e ottimizzare le istruzioni fornite ai modelli di intelligenza artificiale, al fine di ottenere risposte più accurate.}
 
 \glossaryterm{Progettista}{Ruolo tecnico incaricato di definire l'architettura logica e strutturale del sistema software. Il suo compito principale è tradurre i requisiti funzionali e non funzionali in specifiche tecniche dettagliate che guideranno la fase di codifica.}
@@ -291,6 +337,8 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 
 \glossaryterm{Pull Request (PR)}{Richiesta formale di integrazione di modifiche proposte da un membro del team. Avvia un processo di revisione tra pari che deve essere superato prima che il codice o il testo vengano uniti al branch principale.}
 
+\glossaryterm{Push}{Operazione di Git con cui un membro del team carica sul repository remoto i commit effettuati localmente, rendendo le proprie modifiche disponibili agli altri collaboratori e abilitando l'apertura di una Pull Request.}
+
 \glossaryterm{Proponente}{L'organizzazione o l'azienda esterna che propone il problema da risolvere (capitolato) e agisce come stakeholder principale durante le revisioni di avanzamento, fornendo feedback e chiarimenti sui requisiti.}
 
 \newpage
@@ -299,11 +347,15 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 \section*{R}
 \addcontentsline{toc}{section}{R}
 
+\glossaryterm{RAG (Retrieval Augmented Generation)}{Tecnica che potenzia le risposte di un Large Language Model fornendogli come contesto informazioni recuperate da una base di conoscenza esterna (ad esempio le note selezionate dall'utente), al fine di generare risposte più precise, informate e contestualizzate.}
+
 \glossaryterm{Requisiti}{Caratteristiche e funzionalità che un sistema deve soddisfare per essere considerato completo e funzionante.}
 
 \glossaryterm{Requisiti di Qualificazione}{Criteri che stabiliscono se un sistema è idoneo all'uso previsto, basati su standard di qualità, prestazioni e sicurezza.}
 
 \glossaryterm{Requisiti Funzionali}{Operazioni e servizi che il sistema deve fornire per soddisfare le esigenze degli utenti. Descrivono il comportamento del software.}
+
+\glossaryterm{Requisiti non Funzionali}{Requisiti che definiscono i criteri di qualità e i vincoli che il sistema deve rispettare, quali usabilità, sicurezza, affidabilità e prestazioni. Descrivono \textit{come} il sistema deve operare anziché \textit{quali} funzioni deve svolgere.}
 
 \glossaryterm{Repository}{Spazio di archiviazione digitale dove vengono conservati e gestiti i file di un progetto, come il codice sorgente, la documentazione e altri materiali correlati. Permette il controllo delle versioni e la collaborazione.}
 
@@ -316,6 +368,8 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 \glossaryterm{Responsabile}{Membro del team incaricato della gestione dello sprint, del coordinamento delle risorse e della comunicazione esterna. Ha l'autorità finale sull'approvazione dei documenti.}
 
 \glossaryterm{Reviewer}{Membro del team incaricato di esaminare il lavoro dei colleghi, segnalare errori e approvare l'integrazione finale.}
+
+\glossaryterm{Retrospettiva}{In ambito Agile, attività svolta al termine di ogni sprint (\textit{Sprint Retrospective}) in cui il team analizza criticamente il proprio modo di lavorare per individuare inefficienze e definire azioni di miglioramento da applicare negli sprint successivi.}
 
 \glossaryterm{Rotazione dei ruoli}{Pratica in cui i membri di un team assumono ruoli diversi durante un progetto al fine di acquisire nuove competenze e migliorare la collaborazione.}
 
@@ -331,13 +385,23 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 \section*{S}
 \addcontentsline{toc}{section}{S}
 
+\glossaryterm{Scalabilità}{Caratteristica di un sistema software che esprime la sua capacità di gestire un aumento del carico di lavoro, dei dati o degli utenti mantenendo prestazioni adeguate. Un'architettura scalabile può crescere in modo efficiente senza richiedere una riprogettazione complessiva.}
+
+\glossaryterm{Scenario}{Sequenza ordinata di passi che l'attore e il sistema compiono durante un caso d'uso per portare a termine un'operazione. Lo scenario principale descrive il flusso nominale, mentre le estensioni rappresentano i flussi alternativi che possono attivarsi in determinate condizioni.}
+
 \glossaryterm{Scrum}{Metodologia di sviluppo software agile adottato dal team per organizzare il lavoro. Si basa su ruoli definiti (Scrum Master, Product Owner, Team), eventi cadenzati (Sprint, Daily, Review) e artefatti trasparenti (Backlog) per gestire progetti complessi.}
+
+\glossaryterm{Semantic Versioning}{Convenzione standardizzata per la numerazione delle versioni nel formato \textsc{Major.Minor.Patch} (\textsc{X.Y.Z}). L'incremento di \textsc{Major} indica un'approvazione o una modifica non retrocompatibile, quello di \textsc{Minor} l'aggiunta di contenuti significativi e quello di \textsc{Patch} correzioni o modifiche di lieve entità.}
 
 \glossaryterm{Sprint}{Periodo di tempo prefissato e limitato durante il quale il team si impegna a completare una serie di task definiti nel Backlog. Ogni sprint si conclude con un incremento funzionale del prodotto pronto per essere revisionato.}
 
 \glossaryterm{Sei Cappelli per Pensare}{Tecnica sviluppata da Edward de Bono che analizza un problema da sei prospettive diverse, rappresentate da sei cappelli di colori differenti.}
 
+\glossaryterm{Sicurezza}{Caratteristica di qualità del software che esprime la capacità del prodotto di proteggere dati e funzionalità da accessi non autorizzati, garantendo l'integrità e la riservatezza delle informazioni gestite.}
+
 \glossaryterm{Sistema}{In informatica, un insieme di componenti interconnessi e interagenti (hardware, software e dati) che operano in modo coordinato per raggiungere un obiettivo comune: l'elaborazione di informazioni}
+
+\glossaryterm{Sistema di Persistenza}{Componente responsabile del salvataggio e del recupero dei dati, che garantisce la memorizzazione permanente delle informazioni e la loro disponibilità nelle sessioni successive. Negli scenari d'uso agisce come attore secondario.}
 
 \glossaryterm{Sysadmin}{Abbreviazione di System Administrator. È la figura tecnica responsabile della configurazione, della manutenzione e del corretto funzionamento dell'infrastruttura informatica e dei sistemi operativi utilizzati dal team. Garantisce inoltre l'integrità dei dati e la sicurezza degli accessi alle risorse digitali del gruppo.}
 
@@ -356,6 +420,14 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 \glossaryterm{Test}{Attività di verifica e validazione del corretto funzionamento di un sistema software al fine di identificare e correggere eventuali errori o difetti.}
 
 \glossaryterm{Test Unitari}{Test che verificano il corretto funzionamento di singole unità o componenti del software in modo isolato per garantire che ogni parte funzioni prima di integrarla con il resto.}
+
+\glossaryterm{Test di Integrazione}{Test che verificano la corretta collaborazione tra più componenti software quando vengono assemblati, individuando errori che non emergono dalla verifica delle singole unità in isolamento.}
+
+\glossaryterm{Test di Sistema}{Test che verificano il comportamento complessivo dell'applicazione rispetto ai requisiti funzionali e non funzionali, definiti a partire dai casi d'uso e dai requisiti raccolti nell'Analisi dei Requisiti.}
+
+\glossaryterm{Test di Regressione}{Test eseguiti dopo modifiche, correzioni di difetti o aggiunte di nuove funzionalità, allo scopo di verificare che il comportamento già validato del software non sia stato compromesso dagli interventi effettuati.}
+
+\glossaryterm{Test di Accettazione}{Test formulati dal punto di vista dell'utente finale che verificano la conformità del prodotto alle aspettative del committente e ai requisiti obbligatori del capitolato. Il loro superamento è condizione necessaria per considerare il prodotto accettabile.}
 
 \glossaryterm{Ticketing}{Sistema di gestione di richieste e problemi che consente di tracciare, assegnare e risolvere le segnalazioni in modo organizzato.}
 
@@ -376,6 +448,8 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 \glossaryterm{UML}{Acronimo di Unified Modeling Language. È un linguaggio di modellazione grafico standardizzato, ampiamente utilizzato nell'ingegneria del software per specificare, visualizzare, costruire e documentare gli artefatti di un sistema. Attraverso una serie di diagrammi, l'UML permette di rappresentare l'architettura logica, le interazioni tra i componenti e i flussi di lavoro.}
 
 \glossaryterm{Unità Software}{Singola componente o modulo di un sistema software che può essere sviluppato, testato e mantenuto in modo indipendente.}
+
+\glossaryterm{Usabilità}{Caratteristica di qualità del software che esprime la facilità con cui un utente può comprendere, apprendere e utilizzare il prodotto, anche in assenza di competenze tecniche specifiche.}
 
 \glossaryterm{UX}{Acronimo di User Experience, si riferisce all'esperienza complessiva dell'utente durante l'utilizzo di un prodotto o servizio.}
 
@@ -402,6 +476,8 @@ Per indicare che un termine è presente nel Glossario si evidenzierà la parola 
 \glossaryterm{Way of Working}{Insieme di pratiche, regole e metodi adottati da un team per organizzare e gestire il lavoro in modo efficiente e collaborativo.}
 
 \glossaryterm{WhatsApp}{Piattaforma di messaggistica istantanea centralizzata che permette lo scambio di messaggi testuali, file multimediali e chiamate vocali/video tramite connessione Internet.}
+
+\glossaryterm{Walkthrough}{Tecnica di analisi statica basata su una lettura informale del prodotto. Il verificatore esamina il documento o il codice alla ricerca di anomalie, producendo feedback per l'autore. È una procedura orientata alla scoperta dei difetti e al miglioramento della qualità tramite il confronto diretto, utile anche per l'apprendimento tra i membri del team.}
 
 \glossaryterm{Workflow}{Flusso di lavoro strutturato che definisce la sequenza di passaggi necessari per completare un'attività, garantendo ordine e tracciabilità del processo.}
 
