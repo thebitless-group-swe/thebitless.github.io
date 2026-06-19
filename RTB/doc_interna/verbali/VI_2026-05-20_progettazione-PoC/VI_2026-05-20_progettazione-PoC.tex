@@ -1,0 +1,119 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+\usepackage[a-1b]{pdfx}
+\usepackage[italian]{babel} 
+\usepackage{comment}      
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{minted} 
+\usepackage{geometry}
+\usepackage{float} 
+\usepackage{setspace}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{\titolo \ \dataverbale}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    pdfborderstyle={/S/U/W 1},
+    linkbordercolor=0 0 0,
+    urlbordercolor=0 0 0,
+    citebordercolor=0 0 0,
+    filebordercolor=0 0 0,
+    breaklinks=true,
+}
+\newcommand{\issueDoc}[1]{\href{https://github.com/thebitless-group-swe/thebitless.github.io/issues/#1}{\##1}}
+\newcommand{\issuePoC}[1]{\href{https://github.com/thebitless-group-swe/PoC/issues/#1}{\##1}}
+
+\begin{document}
+
+\newcommand{\titolo}{Interno}
+\newcommand{\dataverbale}{2026-05-20}
+\newcommand{\dataversione}{2026-05-20}
+\newcommand{\versione}{1.0.0}
+\newcommand{\stato}{Approvato}
+\newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+\def\templatedir{../../../../templates}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+\input{\templatedir/frontespizio.tex}
+\end{titlepage}
+
+\newpage
+\tableofcontents 
+
+\newpage
+\pagenumbering{arabic}
+\section{Informazioni sulla riunione}
+Il presente documento riporta la verbalizzazione della riunione interna al gruppo \textbf{The Bitless} avvenuta il \dataverbale{}. L'incontro si è svolto in modalità telematica tramite la piattaforma Discord$_G$. La riunione si è aperta alle ore 15:00 e si è conclusa alle ore 17:00.
+
+\section{Presenze}
+\begin{center}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
+\hline
+Lorenzo & Battistella & Presente \\
+Edoardo & De Piccoli & Presente \\
+Davide & Facco & Presente \\
+Anna & Marini & Presente \\
+Andrea & Menegaldo & Presente \\
+Samuele & Vendramin & Presente \\
+Simone & Zecchinato & Presente \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ordine del giorno}
+\begin{enumerate}
+    \item Riscontro errore AdR
+    \item Proposta di progettazione, tecnologie e architettura
+    \item Proposta To-Do list operativa
+    \item Assegnazione$_G$ attività singole
+\end{enumerate}
+
+\section{Discussione e decisioni}
+
+\subsection{Riscontro errore AdR}
+La collega A. Marini rende noto al gruppo di aver riscontrato un problema nella generalizzazione degli attori del documento \href{https://thebitless.live/RTB/doc_esterna/analisi-dei-requisiti/analisi-dei-requisiti.pdf}{\textbf{Analisi dei Requisiti}}. La generalizzazione non tiene infatti conto di tutti quegli utenti che non sono autenticati. Si decide quindi di aggiungere alla generalizzazione \textit{Utente}$\to$\textit{Utente autenticato} l'attore \textit{Utente non autenticato} per specificare quali azioni possono essere svolte esclusivamente dagli utenti non autenticati.
+
+Si discute poi della generalizzazione in UC 56.1 che preclude la possibilità di applicare più cappelli contemporaneamente. Ad aumentare la preoccupazione su questa modellazione, il collega S. Vendramin porta alla luce un problema di sincronizzazione dello \textit{streaming} degli'LLM$_G$ in caso di più risposte simultanee. Dato che la scelta di più cappelli contemporaneamente aveva suscitato l'interesse della proponente$_G$ si decide, in vista della visita del gruppo a Zucchetti, di chiedere direttamente al referente aziendale per il progetto.
+Il referente, informato del problema, suggerisce di abbandonare la possibilità di più cappelli selezionati in favore di un singolo cappello, più semplice da gestire.
+
+\subsection{Proposta di progettazione, tecnologie e architettura}
+Il gruppo legge il documento, redatto dai colleghi progettisti$_G$ E. De Piccoli e L. Battistella, con le proposte per le tecnologie e l'architettura del sistema$_G$\footnote{Reperibile al seguente \href{https://www.notion.so/Tecnologie-e-Architettura-del-progetto-Second-Brain-366a3da351ad800189b5fdaa5ab54902?source=copy_link}{link}}. In particolare, il collega L. Battistella ha provveduto a stilare le scelte architetturali discusse nel corso della scorsa riunione. Dopo una lettura del documento ed una riflessione circa le scelte proposte, il gruppo approva l'architettura proposta.
+I colleghi D. Facco e L. Battistella propongono alcune tecnologie aggiuntive denominate \textit{LiteLLM} (per gestire più modelli LLM$_G$ anche in caso di \textit{fallback}) e \textit{SpaCY} (per il \textit{Natural Language Processing}) che potrebbero semplificare il lavoro del gruppo. Ci si riserva di studiarne la possibile integrazione$_G$ e l'effettivo vantaggio apportato in caso affermativo.
+
+\subsection{Proposta To-Do list operativa}
+A seguito dell'approvazione$_G$ da parte del gruppo dell'architettura proposta, il collega programmatore$_G$ S. Vendramin propone la To-Do list operativa per il PoC$_G$ contentente, oltre agli obiettivi di pratici per lo sviluppo$_G$, gli obiettivi sulla verifica$_G$ del Proof of Concept$_G$.
+Il gruppo, a seguito di una discussione sugli eventuali punti da aggiungere o da modificare, approva la proposta.
+
+\subsection{Assegnazione attività singole}
+\begin{center}
+    \renewcommand{\arraystretch}{1.4}
+        \begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
+        \hline
+        \textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
+        \hline
+        S. Zecchinato & Stesura VI\_2026-05-20 & \issueDoc{154} \\
+        \hline
+        S. Zecchinato & Sistemazione attori AdR & \issueDoc{152} \\
+        \hline
+        E. De Piccoli - Battistella & Studio fattibilità$_G$ integrazioni aggiuntive & \issueDoc{153} \\
+        \hline
+        S. Vendramin & Setup infrastruttura & \issuePoC{1} \\
+        \hline
+        Tutti & Studio individuale delle tecnologie scelte & \issueDoc{144} \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\appendix
+
+\end{document}
