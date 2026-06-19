@@ -17,6 +17,9 @@ const DIARIO_RE = /^DB-?(\d+)?_?(\d{4}-\d{2}-\d{2})/;
 
 let PHASES = [];
 let ACTIVE_PHASE = "rtb";
+// Lettera di presentazione: percorso relativo sul sito (GitHub Pages serve il PDF con
+// content-type corretto, così si apre nel browser invece di scaricarsi come fa raw.githubusercontent).
+const LETTERA_PATH = "RTB/lettera-di-presentazione/lettera-di-presentazione.pdf";
 
 function humanize(s) {
   const t = s.replace(/[-_]+/g, " ").trim();
@@ -102,7 +105,7 @@ function buildDiari(pdfs, prefix) {
     const num = m && m[1] ? parseInt(m[1], 10) : 0;
     const label =
       m && m[1]
-        ? `Diario di bordo ${m[1]} — ${date}`
+        ? `Diario di Bordo ${m[1]} — ${date}`
         : file.replace(/\.pdf$/i, "").replace(/_/g, " ");
     items.push({ name: label, href: p, _sort: date || file, _num: num });
   }
@@ -150,7 +153,7 @@ function buildPhases(pdfs, texPaths) {
     },
     {
       id: "diari",
-      label: "Diari di bordo",
+      label: "Diapositive",
       docs: buildDiari(pdfs, "diapositive"),
     },
   ];
@@ -160,7 +163,7 @@ function emptyPhases() {
   return [
     { id: "rtb", label: "RTB", groups: [] },
     { id: "candidatura", label: "Candidatura", groups: [] },
-    { id: "diari", label: "Diari di bordo", docs: [] },
+    { id: "diari", label: "Diapositive", docs: [] },
   ];
 }
 
@@ -288,7 +291,32 @@ function makeGroup(group) {
   return details;
 }
 
+// Lettera di presentazione fuori dai documenti, visibile solo nella fase RTB.
+function renderLetteraBanner() {
+  const banner = document.getElementById("lettera-banner");
+  if (!banner) return;
+  banner.innerHTML = "";
+  if (ACTIVE_PHASE !== "rtb") {
+    banner.hidden = true;
+    return;
+  }
+  const a = document.createElement("a");
+  a.href = LETTERA_PATH;
+  a.className = "doc-link lettera-link";
+  a.target = "_blank";
+  a.rel = "noopener";
+
+  const label = document.createElement("span");
+  label.className = "doc-name";
+  label.textContent = "Lettera di presentazione";
+
+  a.appendChild(label);
+  banner.appendChild(a);
+  banner.hidden = false;
+}
+
 function renderActivePhase() {
+  renderLetteraBanner();
   const panel = document.getElementById("phase-panel");
   if (!panel) return;
   const phase = PHASES.find((p) => p.id === ACTIVE_PHASE);

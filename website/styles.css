@@ -241,6 +241,20 @@ body::before {
   padding: 18px 20px;
 }
 
+/* ── LETTERA DI PRESENTAZIONE (fuori dai documenti, stile come le altre sezioni) ── */
+
+.lettera-banner {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 6px 20px;
+  margin-bottom: 14px;
+}
+
+.lettera-banner[hidden] {
+  display: none;
+}
+
 /* ── MAIN ── */
 
 main {
