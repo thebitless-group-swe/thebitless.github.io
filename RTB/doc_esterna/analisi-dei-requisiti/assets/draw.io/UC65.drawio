@@ -1,0 +1,36 @@
+<mxGraphModel dx="962" dy="502" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    <mxCell id="system_boundary" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+      <mxGeometry height="310" width="440" x="310" y="220" as="geometry" />
+    </mxCell>
+    <mxCell id="system_label" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
+      <mxGeometry height="30" width="60" x="690" y="190" as="geometry" />
+    </mxCell>
+    <mxCell id="actor_user_auth" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente&lt;div&gt;autenticato&lt;/div&gt;" vertex="1">
+      <mxGeometry height="60" width="30" x="160" y="330" as="geometry" />
+    </mxCell>
+    <mxCell id="uc65" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC65 - Creazione nota nel database" vertex="1">
+      <mxGeometry height="100" width="215" x="427.5" y="230" as="geometry" />
+    </mxCell>
+    <mxCell id="uc66" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC66 - Errore creazione nota" vertex="1">
+      <mxGeometry height="100" width="215" x="520" y="420" as="geometry" />
+    </mxCell>
+    <mxCell id="edge_actor_uc65" edge="1" parent="1" source="actor_user_auth" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="uc65" value="">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="edge_uc66_uc65" edge="1" parent="1" source="uc66" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;" target="uc65" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;&lt;/font&gt;">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="condition_note" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=27;" value="&lt;b&gt;Condizione&lt;/b&gt;&lt;div&gt;La creazione della nota nel database fallisce&lt;/div&gt;" vertex="1">
+      <mxGeometry height="70" width="160" x="330" y="370" as="geometry" />
+    </mxCell>
+    <mxCell id="B5syOuqmPyqvcVkQOaBf-3" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;" value="">
+      <mxGeometry height="50" relative="1" width="50" as="geometry">
+        <mxPoint x="490" y="410" as="sourcePoint" />
+        <mxPoint x="590" y="390" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+  </root>
+</mxGraphModel>
