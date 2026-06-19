@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TheBitless</title>
+  <link rel="icon" type="image/png" href="website/assets/logo-mark.png">
   <link rel="stylesheet" href="website/styles.css">
   <script>
     (function(){var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();
@@ -21,8 +22,9 @@
 
       <div class="phases" role="tablist" aria-label="Fasi del progetto" data-home="index.html">
         <button class="phase-tab is-active" data-phase="rtb" role="tab" aria-selected="true" tabindex="0">RTB</button>
-        <button class="phase-tab" data-phase="candidatura" role="tab" aria-selected="false" tabindex="-1">Candidatura</button>
-        <button class="phase-tab" data-phase="diari" role="tab" aria-selected="false" tabindex="-1">Diari di bordo</button>
+        <!-- Sezione Candidatura nascosta (non eliminata): per riattivarla, togliere il commento dal pulsante. -->
+        <!-- <button class="phase-tab" data-phase="candidatura" role="tab" aria-selected="false" tabindex="-1">Candidatura</button> -->
+        <button class="phase-tab" data-phase="diari" role="tab" aria-selected="false" tabindex="-1">Diapositive</button>
       </div>
 
       <div class="navbar-links">
@@ -33,6 +35,9 @@
   </nav>
 
   <main>
+
+    <!-- Lettera di presentazione: messa in evidenza fuori dai documenti, popolata da javascript.js. -->
+    <div id="lettera-banner" class="lettera-banner" hidden></div>
 
     <div id="phase-panel" class="phase-panel" role="tabpanel" aria-label="Documenti della fase selezionata">
       <p class="doc-empty">Caricamento documenti…</p>
