@@ -1,0 +1,147 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+
+\usepackage{xcolor}
+\usepackage[a-1b]{pdfx}
+\usepackage[italian]{babel}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{minted}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+
+\newcommand{\titolo}{Verbale esterno}
+\newcommand{\dataverbale}{2026-06-19}
+\newcommand{\dataversione}{2026-06-19}
+\newcommand{\versione}{1.0.0}
+\newcommand{\stato}{Approvato}
+\newcommand{\destinatari}{The Bitless, prof. T. Vardanega, prof. R. Cardin, Zucchetti}
+\def\templatedir{../../../../templates}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{Verbale esterno \ \dataverbale}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    linkbordercolor=0 0 0,
+    urlbordercolor=0 0 0,
+    citebordercolor=0 0 0,
+    filebordercolor=0 0 0,
+    breaklinks=true,
+}
+
+\newcommand{\issue}[1]{\href{https://github.com/thebitless-group-swe/thebitless.github.io/issues/#1}{\##1}}
+
+\begin{document}
+
+\begin{titlepage}
+    \pagenumbering{gobble}
+\input{../../../../templates/frontespizio.tex}
+\end{titlepage}
+
+\newpage
+
+\pagenumbering{roman}
+\pagestyle{fancy}
+
+\tableofcontents
+
+\newpage
+\pagenumbering{arabic}
+
+\section{Informazioni sulla riunione}
+In data \textbf{\dataverbale} si è svolto un incontro con \textbf{Gregorio Piccoli}, referente aziendale di \textbf{Zucchetti}. L'incontro, tenuto in modalità telematica tramite \textbf{Google Meet}, è stato dedicato alla dimostrazione del Proof of Concept (PoC) sviluppato dal gruppo e alla raccolta dei relativi feedback da parte della proponente. L'incontro è iniziato alle ore 14:30 e si è concluso alle ore 15:30.
+
+\section{Partecipanti}
+
+\subsection{Interni}
+\begin{center}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
+\hline
+Lorenzo & Battistella & Assente \\
+Edoardo & De Piccoli & Presente \\
+Davide & Facco & Assente \\
+Anna & Marini & Presente \\
+Andrea & Menegaldo & Assente \\
+Samuele & Vendramin & Presente \\
+Simone & Zecchinato & Presente \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Esterni}
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Nome} & \textbf{Azienda} \\
+\hline
+Gregorio Piccoli & Zucchetti S.p.A. \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ordine del giorno}
+
+\subsection{Dimostrazione del PoC}
+Il gruppo ha presentato alla proponente il Proof of Concept sviluppato, illustrando una ad una tutte le funzionalità implementate. La proponente ha seguito la dimostrazione mostrando interesse e apprezzamento per il lavoro svolto, ritenendosi complessivamente soddisfatta del PoC realizzato.
+
+Si precisa che il PoC non costituisce un prodotto soggetto ad approvazione formale da parte della proponente: esso ha valore principalmente interno al gruppo, come strumento di validazione delle scelte tecniche e funzionali. Ciononostante, la proponente ha espresso parere positivo sul risultato raggiunto.
+
+\subsection{Osservazioni e feedback della proponente}
+Nel corso della dimostrazione la proponente ha condiviso alcune osservazioni migliorative, che il gruppo ha accolto e riconosciuto come opportune.
+
+\subsubsection{Allineamento del testo}
+È stato osservato che il testo, sia nell'editor sia nel render, risulta centrato. La proponente ha suggerito di allinearlo a sinistra, soluzione ritenuta più leggibile e adeguata. Il gruppo concorda con l'osservazione e si è effettivamente reso conto della maggiore leggibilità della soluzione proposta.
+
+\subsubsection{Barra laterale comprimibile}
+La barra laterale (sidebar) è attualmente statica e fissa, occupando una porzione rilevante dello spazio a discapito delle due colonne di contenuto, che risultano così troppo strette. Il gruppo ha chiarito che, nello sviluppo del PoC, l'aspetto estetico è stato volutamente trascurato, demandandone la cura alla successiva fase di realizzazione dell'MVP. Si conviene tuttavia sull'opportunità di rendere la barra laterale apribile e richiudibile, in modo da liberare spazio per i contenuti.
+
+\subsubsection{Rinominazione del campo ``prompt''}
+Nella sezione di generazione del testo erano presenti due modalità, etichettate rispettivamente \textit{prompt} e \textit{Da link}. La proponente ha osservato che l'accostamento di questi due termini risulta poco chiaro: mentre \textit{Da link} indica esplicitamente da dove proviene il testo, \textit{prompt} non comunica con altrettanta immediatezza che il testo viene generato a partire da un'istruzione fornita dall'utente. Si è quindi convenuto di rinominare la modalità \textit{prompt} in \textit{Da istruzione}, ottenendo così due diciture coerenti e simmetriche — \textit{Da istruzione} e \textit{Da link} — che rendono chiaro che, nel primo caso, il testo è generato a partire da un'istruzione fornita dall'utente e, nel secondo, a partire da un link caricato dall'utente.
+
+\subsubsection{Tooltip sui livelli di lunghezza}
+È stato suggerito di aggiungere un tooltip in corrispondenza delle opzioni \textit{Corto}, \textit{Medio} e \textit{Dettagliato}, che indichi a quante parole corrisponde indicativamente ciascun livello. L'attuale assenza di tale indicazione rende infatti poco chiaro all'utente il significato concreto delle tre opzioni.
+
+\subsection{Esito e prossimi obiettivi}
+Nel complesso il PoC è stato accolto positivamente e la proponente si è ritenuta soddisfatta del lavoro svolto. A seguito dell'incontro, il gruppo recepirà internamente i feedback ricevuti.
+\section{Attività da svolgere}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
+\hline
+\textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
+\hline
+A. Marini & Redazione del verbale della riunione esterna del \dataverbale & \centering \issue{203} \tabularnewline
+\hline
+L. Battistella & Fix del PoC a seguito dei feedback della proponente & \centering \issue{205} \tabularnewline
+\hline
+\end{tabular}
+\end{center}
+
+\vfill
+
+\noindent
+\begin{minipage}[t]{0.45\textwidth}
+  \textbf{Luogo e data} \\
+  \vspace{0.5cm}
+  Padova, 19 giugno 2026
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+  \raggedleft
+  \textbf{Zucchetti S.p.A.} \\
+  \vspace{1.8cm}
+  \rule{6cm}{0.4pt}
+\end{minipage}
+
+\end{document}
