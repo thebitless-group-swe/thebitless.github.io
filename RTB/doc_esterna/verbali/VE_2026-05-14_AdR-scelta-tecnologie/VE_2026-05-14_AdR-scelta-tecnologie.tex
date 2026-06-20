@@ -92,25 +92,25 @@ Gregorio Piccoli & Zucchetti S.p.A. \\
 \section{Ordine del giorno}
 
 \subsection{Revisione Analisi dei Requisiti}
-Il referente, assieme al gruppo, analizza i casi d'uso$_G$ della nuova \href{https://thebitless.live/RTB/doc_esterna/analisi-dei-requisiti/analisi-dei-requisiti.pdf}{Analisi dei Requisiti$_G$}, modificata rispetto alla versione presentata precedentemente per errori di modellazione. Vengono passati in rassegna tutti i casi d'uso$_G$ e i loro diagrammi UML$_G$ per verificare che l'analisi effettuata dal gruppo sia coerente con le aspettative della proponente$_G$. Vengono segnalate le seguenti modifiche da apportare dopo le quali l'analisi può ritenersi completa e coerente:
+Il referente, assieme al gruppo, analizza i casi d'uso$_G$ della nuova \href{https://thebitless.live/RTB/doc_esterna/analisi-dei-requisiti/analisi-dei-requisiti.pdf}{\underline{Analisi dei Requisiti$_G$}}, modificata rispetto alla versione presentata precedentemente per errori di modellazione. Vengono passati in rassegna tutti i casi d'uso$_G$ e i loro diagrammi UML$_G$ per verificare che l'analisi effettuata dal gruppo sia coerente con le aspettative della proponente$_G$. Vengono segnalate le seguenti modifiche da apportare dopo le quali l'analisi può ritenersi completa e coerente:
 
 \subsubsection{UC 56 - Selezione di un cappello}
-Il referente Gregorio Piccoli segnala che il titolo \textit{Selezione di un cappello} risulta particolarmente generico e poco incisivo: non rispecchia del tutto l'azione che l'utente deve intraprendere. Dopo una discussione si converge sull'idea di modificare il nome del caso d'uso in \textit{Selezione e applicazione di un cappello} che rispecchia appieno l'azione dell'utente che consiste nel selezionare e, di conseguenza, applicare l'analisi di un cappello. Viene poi ricordato che la selezione può essere di uno o più cappelli.
+Il referente Gregorio Piccoli segnala una criticità nella modellazione: il caso d'uso \textit{Selezione di un cappello} era stato posto come padre di ulteriori generalizzazioni (l'analisi del cappello bianco, del cappello rosso, e così via). Tale impostazione risulta concettualmente scorretta, poiché un'analisi non può essere un tipo di selezione. Si decide quindi di modellare le diverse analisi come generalizzazioni del caso d'uso padre \textit{Analisi di testo}, mantenendo la \textit{Selezione di un cappello} unicamente come inclusione necessaria al loro svolgimento. Si precisa inoltre che l'analisi riguarda un solo cappello alla volta, e non di uno o più.
 
 \subsubsection{UC 57.4 - Generazione testo a partire da link}
-Viene segnalato dal referente che l'utente dovrebbe poter inserire uno o più link e, dunque, il titolo del caso d'uso dovrebbe essere \textit{Generazione testo a partire da links}. Il gruppo decide di tenere il termine \textit{link} in quanto risulta corretto in italiano sia come singolare che come plurale (si prenda come esempio il termine \textit{film} che subisce la stessa sorte). Si decide però di contestualizzare meglio la possibilità di inserire uno o più link nel trigger del caso d'uso. 
+Per la generazione del testo a partire da un link, si discute l'idea di implementare un codice molto semplice che effettua una richiesta \texttt{GET} HTTP della pagina HTML e ne invia il contenuto all'LLM. Il gruppo evidenzia però che questo non va bene: il contenuto della pagina può infatti risultare troppo lungo da elaborare e causare il blocco della richiesta. Si rende quindi necessario valutare tecnologie diverse e più adeguate, sulle quali il gruppo dovrà riflettere.
 
-Si discute poi della possibilità di permettere al sistema$_G$ di ricercare autonomamente in internet a seconda del prompt e di generare il testo. Viene però puntualizzato quanto sia complesso poi definire quali fonti siano da considerare autorevoli. Si decide dunque di intraprendere un processo esplorativo dell'idea per capirne possibilità e limiti ma di procedere con il caso d'uso originale.
+Si discute inoltre della possibilità di permettere al sistema di ricercare autonomamente in internet a seconda del prompt e di generare il testo. Viene però puntualizzato quanto sia complesso definire quali fonti siano da considerare autorevoli. Si decide dunque di intraprendere un processo esplorativo dell'idea per capirne possibilità e limiti, procedendo nel frattempo con il caso d'uso originale.
 
 \subsubsection{Errori di battitura}
 Vengono segnalati alcuni errori di battitura che verranno sistemati per garantire la correttezza del documento.
 
 \subsection{Proposta delle tecnologie per il PoC}
 Si procede ad esporre al referente le scelte intraprese dal gruppo circa le tecnologie per il Proof of Concept$_G$. Il referente approva la scelta.
-Per maggiori dettagli si veda \href{https://thebitless.live/RTB/doc_interna/verbali/VI_2026-05-12_quarto-sprint/VI_2026-05-12_quarto-sprint.pdf}{VI\_2026-05-12\_quarto-sprint$_G$}.
+Per maggiori dettagli si veda \href{https://thebitless.live/RTB/doc_interna/verbali/VI_2026-05-12_quarto-sprint/VI_2026-05-12_quarto-sprint.pdf}{\underline{VI\_2026-05-12\_quarto-sprint$_G$}}.
 
 \subsection{Presentazione mockup}
-Vengono presentati al referente i mockup dell'interfaccia grafica sviluppati dal gruppo. Il mockup permette di esplorare alcune delle funzioni principali del sistema$_G$: vengono visualizzate una ad una per controllare la coerenza con le aspettative della proponente$_G$. La proponente$_G$ approva e pone l'accento sulla possibilità di selezionare uno o più cappelli per l'analisi.
+Vengono presentati al referente i mockup dell'interfaccia grafica sviluppati dal gruppo. Il mockup permette di esplorare alcune delle funzioni principali del sistema$_G$: vengono visualizzate una ad una per controllare la coerenza con le aspettative della proponente$_G$. La proponente$_G$ approva e pone l'accento sul fatto che l'analisi riguarda un solo cappello alla volta.
 
 \section{Attività da svolgere}
 
@@ -127,8 +127,6 @@ Analisti & Integrazione$_G$ modifiche Casi d'Uso$_G$ a seguito dei feedback$_G$ 
 Progettisti & Progettazione PoC$_G$ & \centering \issue{145} \tabularnewline
 \hline
 Tutti i componenti & Studio individuale tecnologie scelte& \centering \issue{144} \tabularnewline
-\hline
-Tutti i componenti & Invio documento completo alla proponente$_G$ per conferma definitiva & \centering -- \tabularnewline
 \hline
 \end{tabular}
 \end{center}
