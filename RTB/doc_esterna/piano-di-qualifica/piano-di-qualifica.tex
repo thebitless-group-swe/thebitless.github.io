@@ -946,13 +946,18 @@ Valutazione:
         5 & 49 & 0 & $100,0\%$ & Ottimo  \\
         \hline
 	\end{tabular}
-	\caption{TCR per sprint}
+	\caption{Task Completion Rate per sprint}
 	\label{tab:tcr}
 \end{table}
 Il \textit{Task Completion Rate} risulta ottimo in tre sprint su cinque. Notiamo subottimalità critica nelo sprint 1 ($76,9\%$) e una subottimalità lieve nello sprint 4 ($92,3\%$). Valutazione:
 \begin{itemize}
     \item \textbf{Valore accettabile:} $TCR \geq 85\%$, vincolo \textit{violato} nello sprint 1.
 \end{itemize}
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/tcr.pdf}
+    \caption{Valutazione \textit{Task Completion Rate}}
+    \label{fig:tcr}
+\end{figure}
 
 \subsection{Valutazione MPC-TS}
 \begin{table}[H]
@@ -972,11 +977,105 @@ Il \textit{Task Completion Rate} risulta ottimo in tre sprint su cinque. Notiamo
         5 & 49 & 0 & $0,0\%$ & Ottimo  \\
         \hline
 	\end{tabular}
-	\caption{TS per sprint}
+	\caption{Task Slippage per sprint}
 	\label{tab:ts}
 \end{table}
 Il \textit{Task Slippage} risulta ottimo in tre sprint su cinque. Notiamo subottimalità critica nelo sprint 1 ($23,1\%$) e una subottimalità lieve nello sprint 4 ($7,7\%$). Valutazione:
 \begin{itemize}
     \item \textbf{Valore accettabile:} $TS \leq 15\%$, vincolo \textit{violato} nello sprint 1.
 \end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/ts.pdf}
+    \caption{Valutazione \textit{Task Slippage}}
+    \label{fig:ts}
+\end{figure}
+
+\subsection{Valutazione MPC-MR}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|l|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Pull request aperte} & \textbf{PR riaperte} & \textbf{MR (\%)} & \textbf{Giudizio} \\
+		\hline
+		1 & 13 & 1 & $7,7\%$ & Accettabile\\ 
+		\hline
+        2 & 30 & 2 & $6,7\%$ & Accettabile \\
+        \hline
+        3 & 21 & 7 & $33,3\%$ & Critico \\
+        \hline
+        4 & 29 & 7 & $24,1\%$ & Critico \\
+        \hline
+        5 & 68 & 2 & $2,9\%$ & Ottimo  \\
+        \hline
+	\end{tabular}
+	\caption{Merge Rework per sprint}
+	\label{tab:mr}
+\end{table}
+Dal grafico in Figura §\ref{fig:mr} possiamo notare come la valutazione di \textit{Merge Rework}, ovvero la percentuale di Pull Request approvate nelle quali viene sovrascritto del lavoro già svolto, varia a seconda della fase del progetto. Nei primi due sprint troviamo dei valori simili ($7\%$ circa) che riteniamo accettabili. Questi valor sono dati dal fatto che tutti i membri del gruppo non avevano avuto ancora esperienza di co-working con lo strumento GitHub, né con un progetto con un gruppo così numeroso. Questo ha portato iniziali incomprensioni sul lavoro da svolgere che ha portato a riscritture di parti di documenti. Nel terzo e quarto sprint abbiamo valori critici, dovuti principalmente all'\textit{Analisi dei Requisiti} (primo grande documento condiviso da più redattori) e dalla sua riscrittura, dovuta a revisioni a seguito di numerosi difetti di modellazione riscontrati.
+Nello sprint 5 abbiamo avuto un'enorme mole di Pull Request dovute all'inizio del \textit{Proof of Concept} che però sono state minimamente sovrascritte grazie ad una progettazione adeguata. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $MR \leq 20\%$, vincolo \textit{violato} in due sprint su cinque.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/mr.pdf}
+    \caption{Valutazione \textit{Merge Rework}}
+    \label{fig:mr}
+\end{figure}
+
+\subsection{Valutazione MPC-IR}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|l|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Issues aperte} & \textbf{Issues riaperte} & \textbf{IR (\%)} & \textbf{Giudizio} \\
+		\hline
+		1 & 13 & 0 & $0,0\%$ & Ottimo\\ 
+		\hline
+        2 & 11 & 1 & $9,1\%$ & Accettabile \\
+        \hline
+        3 & 13 & 3 & $23,1\%$ & Critico \\
+        \hline
+        4 & 14 & 0 & $0,0\%$ & Ottimo \\
+        \hline
+        5 & 49 & 1 & $2,0\%$ & Accettabile  \\
+        \hline
+	\end{tabular}
+	\caption{Issue Reopening Rate per sprint}
+	\label{tab:ir}
+\end{table}
+Come è possibile notare in Figura §, l'andamento dell'\textit{Issue Reopening rate} è altalentande sebbene si mantenga quasi sempre abbondantemente sotto la soglia di accettabilità. L'unico sprint che fa è eccezione è il numero 3 che, per motivi già affrontati in questo documento, possiede un valore di MPC-IR critico. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $IR \leq 15\%$, vincolo \textit{violato} nello sprint 3.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/ir.pdf}
+    \caption{Valutazione \textit{Issue Reopenig rate}}
+    \label{fig:ir}
+\end{figure}
+
+\subsection{Indice MPC-IG}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|p{3cm}|}
+		\hline
+		\textbf{Documento} & \textbf{Indice di Gulpease} & \textbf{Giudizio} \\
+		\hline
+		AdR & 97 & Ottimo\\ 
+		\hline
+        Glossario & 75 & Ottimo \\
+        \hline
+        NdP & 100 & Ottimo \\
+        \hline
+        PdQ & 86 & Ottimo \\
+        \hline
+        PdP & 100 & Ottimo  \\
+        \hline
+	\end{tabular}
+	\caption{Indice di Gulpease per documento}
+	\label{tab:ig}
+\end{table}
+
 \end{document}
