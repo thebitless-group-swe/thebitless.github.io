@@ -42,8 +42,8 @@
 
 \newcommand{\titolo}{Piano di Qualifica$_G$}
 \newcommand{\dataverbale}{}
-\newcommand{\dataversione}{2026-06-04}
-\newcommand{\versione}{0.1.1}
+\newcommand{\dataversione}{2026-06-23}
+\newcommand{\versione}{0.4.0}
 \newcommand{\stato}{Stesura}
 \newcommand{\destinatari}{The Bitless, prof. T. Vardanega, prof. R. Cardin, Zucchetti}
 \def\templatedir{../../../templates}
@@ -69,6 +69,8 @@
     \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
     \hline
     \endhead
+    0.4.0 & 2026-06-23 & S. Zecchinato & - & - & Aggiunge valutazioni MPC-IG/MPC-CD/MPC-CR \\
+    \hline
     0.3.0 & 2026-06-08 & S. Zecchinato & - & - & Aggiunge valutazione MPC-AC/MPC-ETC \\ 
     \hline
     0.2.0 & 2026-06-07 & S. Zecchinato & - & - & Aggiunge valutazione MPC-PV/MPC-EV \\
@@ -949,7 +951,7 @@ Valutazione:
 	\caption{Task Completion Rate per sprint}
 	\label{tab:tcr}
 \end{table}
-Il \textit{Task Completion Rate} risulta ottimo in tre sprint su cinque. Notiamo subottimalità critica nelo sprint 1 ($76,9\%$) e una subottimalità lieve nello sprint 4 ($92,3\%$). Valutazione:
+Il \textit{Task Completion Rate} risulta ottimo in tre sprint su cinque. Notiamo subottimalità critica nello sprint 1 ($76,9\%$) e una subottimalità lieve nello sprint 4 ($92,3\%$). Valutazione:
 \begin{itemize}
     \item \textbf{Valore accettabile:} $TCR \geq 85\%$, vincolo \textit{violato} nello sprint 1.
 \end{itemize}
@@ -980,7 +982,7 @@ Il \textit{Task Completion Rate} risulta ottimo in tre sprint su cinque. Notiamo
 	\caption{Task Slippage per sprint}
 	\label{tab:ts}
 \end{table}
-Il \textit{Task Slippage} risulta ottimo in tre sprint su cinque. Notiamo subottimalità critica nelo sprint 1 ($23,1\%$) e una subottimalità lieve nello sprint 4 ($7,7\%$). Valutazione:
+Il \textit{Task Slippage} risulta ottimo in tre sprint su cinque. Notiamo subottimalità critica nello sprint 1 ($23,1\%$) e una subottimalità lieve nello sprint 4 ($7,7\%$). Valutazione:
 \begin{itemize}
     \item \textbf{Valore accettabile:} $TS \leq 15\%$, vincolo \textit{violato} nello sprint 1.
 \end{itemize}
@@ -1045,7 +1047,7 @@ Nello sprint 5 abbiamo avuto un'enorme mole di Pull Request dovute all'inizio de
 	\caption{Issue Reopening Rate per sprint}
 	\label{tab:ir}
 \end{table}
-Come è possibile notare in Figura §, l'andamento dell'\textit{Issue Reopening rate} è altalentande sebbene si mantenga quasi sempre abbondantemente sotto la soglia di accettabilità. L'unico sprint che fa è eccezione è il numero 3 che, per motivi già affrontati in questo documento, possiede un valore di MPC-IR critico. Valutazione:
+Come è possibile notare in Figura §, l'andamento dell'\textit{Issue Reopening rate} è altalenante sebbene si mantenga quasi sempre abbondantemente sotto la soglia di accettabilità. L'unico sprint che fa è eccezione è il numero 3 che, per motivi già affrontati in questo documento, possiede un valore di MPC-IR critico. Valutazione:
 \begin{itemize}
     \item \textbf{Valore accettabile:} $IR \leq 15\%$, vincolo \textit{violato} nello sprint 3.
 \end{itemize}
@@ -1056,7 +1058,7 @@ Come è possibile notare in Figura §, l'andamento dell'\textit{Issue Reopening 
     \label{fig:ir}
 \end{figure}
 
-\subsection{Indice MPC-IG}
+\subsection{Valutazione MPC-IG}
 \begin{table}[H]
     \centering
 	\begin{tabular}{|c|l|p{3cm}|}
@@ -1077,5 +1079,107 @@ Come è possibile notare in Figura §, l'andamento dell'\textit{Issue Reopening 
 	\caption{Indice di Gulpease per documento}
 	\label{tab:ig}
 \end{table}
+Il grafico in Figura §\ref{fig:ig} mostra l'indice di Gulpease di ogni documento prodotto nel suo stato finale (versione 1.0.0). Come possiamo notare, tutti i documenti si posizionano sopra la soglia di ottimalità. Questo certifica che i documenti prodotti sono leggibili e comprensibili da qualsiasi individuo in possesso di licenza media. Questa leggibilità elevata è data dalla preferenza di periodi semplici e brevi al posto di quelli complessi e lunghi; in più le parole usate vogliono essere il meno "tecniche" possibili, preferendo quindi una maggiore comprensibilità per i non addetti ai lavori a discapito però di una maggiore lunghezza dei documenti.
+Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $IG \geq 40\%$, vincolo sempre \textit{rispettato}.
+    \item \textbf{Valore ottimo:} $IG \geq 60\%$, vincolo sempre \textit{rispettato}.
+\end{itemize}
 
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/ig.pdf}
+    \caption{Valutazione \textit{Indice di Gulpease}}
+    \label{fig:ig}
+\end{figure}
+
+\subsection{Valutazione MPC-CO}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|l|p{3cm}|}
+		\hline
+		\textbf{Documento} & \textbf{Errori gravi (\%)} & \textbf{Errori non gravi (\%)} & \textbf{Giudizio} \\
+		\hline
+		AdR & 0\% & 1\% & Ottimo\\ 
+		\hline
+        Glossario & // & & // \\
+        \hline
+        NdP & // & & // \\
+        \hline
+        PdQ & 0\% & 0\% & Ottimo \\
+        \hline
+        PdP & // & //  \\
+        \hline
+	\end{tabular}
+	\caption{Percentuale di correttezza ortografica per documento}
+	\label{tab:co}
+\end{table}
+Com'è possibile notare dalla Figura §, l'indice di correttezza ortografica è ottimo in tutti i documenti. Questo perché ogni documento in scrittura viene automaticamente analizzato dall'editor di testo che segnala all'utente eventuali inesattezze ortografiche. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} documenti senza errori gravi, vincolo \textit{rispettato}.
+    \item \textbf{Valore ottimo:} documenti senza errori, vincolo \textit{rispettato}. \textbf{VERIFICAREEE}
+\end{itemize}
+
+\subsection{Valutazione MPC-CD}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|p{3cm}|}
+		\hline
+		\textbf{Documento} & \textbf{Rapporto completezza documentale (\%)} & \textbf{Giudizio} \\
+		\hline
+		AdR & 100\% & Ottimo\\ 
+		\hline
+        Glossario & 100\% & Ottimo \\
+        \hline
+        NdP & 100\% & Ottimo \\
+        \hline
+        PdQ & 100\% & Ottimo \\
+        \hline
+        PdP & 100\% & Ottimo  \\
+        \hline
+	\end{tabular}
+	\caption{Percentuale di completezza documentale per documento}
+	\label{tab:cd}
+\end{table}
+L'indice di completezza documentale è ottimo in tutti i documenti, com'è possibile notare in Figura §\ref{fig:cd}. Questo perché la struttura di ogni documento in scrittura viene concordata preventivamente nel team e viene verificata ogni qual volta il documento passa alla fase di verifica. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $CD \geq 90\%$ delle sezioni previste, vincolo \textit{rispettato}.
+    \item \textbf{Valore ottimo:} $CD = 100\%$ delle sezioni previste, vincolo \textit{rispettato}.
+\end{itemize}
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/cd.pdf}
+    \caption{Valutazione \textit{Completezza documentale}}
+    \label{fig:cd}
+\end{figure}
+
+\subsection{MPC-CR}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|p{3cm}|}
+		\hline
+		\textbf{Documento} & \textbf{Correttezza dei riferimenti (\%)} & \textbf{Giudizio} \\
+		\hline
+		AdR & 100\% & Ottimo\\ 
+		\hline
+        Glossario & 100\% & Ottimo \\
+        \hline
+        NdP & 100\% & Ottimo \\
+        \hline
+        PdQ & 100\% & Ottimo \\
+        \hline
+        PdP & 100\% & Ottimo  \\
+        \hline
+	\end{tabular}
+	\caption{Percentuale correttezza dei riferimenti per documento}
+	\label{tab:cr}
+\end{table}
+Dal grafico in Figura §\ref{fig:cr} è possibile notare che la percentuale di correttezza dei riferimenti è ottima in ogni documento. Questo perché la correttezza e la coerenza dei riferimenti viene stabilita dal sottogruppo a cui è assegnata la stesura del documento e verificata ogni qual volta il documento passa alla fase di verifica. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $CR \geq 95\%$ dei riferimenti validi, vincolo \textit{rispettato}.
+    \item \textbf{Valore ottimo:} $CD = 100\%$ dei riferimenti validi, vincolo \textit{rispettato}.
+\end{itemize}
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/cr.pdf}
+    \caption{Valutazione \textit{Correttezza dei riferimenti}}
+    \label{fig:cr}
+\end{figure}
 \end{document}
