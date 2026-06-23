@@ -16,10 +16,10 @@
             <mxPoint x="335.5" y="190" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="o21ZL58CcNTBUdiQOrhL-4" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=20;" value="Utente&lt;div&gt;autenticato&lt;/div&gt;" vertex="1">
+        <mxCell id="o21ZL58CcNTBUdiQOrhL-4" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=20;" value="Utente&lt;div&gt;riconosciuto&lt;/div&gt;" vertex="1">
           <mxGeometry height="150" width="75" x="20" y="500" as="geometry" />
         </mxCell>
-        <mxCell id="CnBOHJUF-qRkcFYK2OXe-1" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=20;" value="Utente non&lt;div&gt;autenticato&lt;/div&gt;" vertex="1">
+        <mxCell id="CnBOHJUF-qRkcFYK2OXe-1" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=20;" value="Utente non&lt;div&gt;riconosciuto&lt;/div&gt;" vertex="1">
           <mxGeometry height="150" width="75" x="510" y="500" as="geometry" />
         </mxCell>
         <mxCell id="CnBOHJUF-qRkcFYK2OXe-3" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;" value="">
