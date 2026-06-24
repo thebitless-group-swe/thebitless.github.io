@@ -16,7 +16,11 @@
         <mxCell id="jaEmoDdwr42s-Wh7kGPf-13" edge="1" parent="1" source="StCBPmpuHo7DJ7ayqhCM-3" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" target="jaEmoDdwr42s-Wh7kGPf-11">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+<<<<<<< HEAD
         <mxCell id="StCBPmpuHo7DJ7ayqhCM-3" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente non riconosciuto" vertex="1">
+=======
+        <mxCell id="StCBPmpuHo7DJ7ayqhCM-3" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente non autenticato" vertex="1">
+>>>>>>> origin/main
           <mxGeometry height="60" width="30" x="140" y="340" as="geometry" />
         </mxCell>
         <mxCell id="StCBPmpuHo7DJ7ayqhCM-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
