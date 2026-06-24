@@ -1,5 +1,5 @@
 <mxfile host="app.diagrams.net">
-  <diagram name="UC 11 - Gestione Codice" id="Kt2Dgr2KxfvWRwyXOeAN">
+  <diagram name="UC11 - Gestione Codice" id="Kt2Dgr2KxfvWRwyXOeAN">
     <mxGraphModel dx="1483" dy="1032" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
@@ -13,7 +13,7 @@
         <mxCell id="RaLqJGYHGWQkEpiDzxTo-596" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
           <mxGeometry height="30" width="60" x="270" y="500" as="geometry" />
         </mxCell>
-        <mxCell id="RaLqJGYHGWQkEpiDzxTo-597" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC 29.2 - Creazione nota nel Database Browser" vertex="1">
+        <mxCell id="RaLqJGYHGWQkEpiDzxTo-597" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC29.2 - Creazione nota nel Database Browser" vertex="1">
           <mxGeometry height="80" width="220" x="325" y="325" as="geometry" />
         </mxCell>
         <mxCell id="RaLqJGYHGWQkEpiDzxTo-598" edge="1" parent="1" source="RaLqJGYHGWQkEpiDzxTo-594" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="RaLqJGYHGWQkEpiDzxTo-597">

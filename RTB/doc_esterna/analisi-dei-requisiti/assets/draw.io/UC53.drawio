@@ -11,16 +11,16 @@
     <mxCell id="system-label" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=12;" value="&lt;font&gt;Sistema&lt;/font&gt;" vertex="1">
       <mxGeometry height="22" width="65" x="860" y="120" as="geometry" />
     </mxCell>
-    <mxCell id="uc52" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="&lt;font&gt;UC 53 - Traduzione contenuto&lt;/font&gt;" vertex="1">
+    <mxCell id="uc52" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="&lt;font&gt;UC53 - Traduzione contenuto&lt;/font&gt;" vertex="1">
       <mxGeometry height="60" width="160" x="490" y="315" as="geometry" />
     </mxCell>
-    <mxCell id="uc62" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="&lt;font&gt;UC 62 - Annullamento&lt;br&gt;richiesta in corso&lt;/font&gt;" vertex="1">
+    <mxCell id="uc62" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="&lt;font&gt;UC61 - Annullamento&lt;br&gt;richiesta in corso&lt;/font&gt;" vertex="1">
       <mxGeometry height="55" width="150" x="450" y="160" as="geometry" />
     </mxCell>
-    <mxCell id="uc63" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="&lt;font&gt;UC 63 - Errore&lt;br&gt;LLM&lt;/font&gt;" vertex="1">
+    <mxCell id="uc63" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="&lt;font&gt;UC62 - Errore&lt;br&gt;LLM&lt;/font&gt;" vertex="1">
       <mxGeometry height="55" width="150" x="495" y="500" as="geometry" />
     </mxCell>
-    <mxCell id="uc64" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="&lt;font&gt;UC 64 - Testo&lt;br&gt;insufficiente&lt;/font&gt;" vertex="1">
+    <mxCell id="uc64" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="&lt;font&gt;UC63 - Testo&lt;br&gt;insufficiente&lt;/font&gt;" vertex="1">
       <mxGeometry height="55" width="150" x="640" y="160" as="geometry" />
     </mxCell>
     <mxCell id="assoc-user-uc52" edge="1" parent="1" source="actor-user" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;fontSize=12;" target="uc52">
@@ -61,7 +61,7 @@
     <mxCell id="condition-uc63" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=11;align=center;verticalAlign=middle;spacing=6;" value="&lt;b&gt;Condizione&lt;/b&gt;&lt;br&gt;&lt;div&gt;La richiesta al servizio LLM fallisce per timeout, errore di rete o errore restituito dal servizio&lt;/div&gt;" vertex="1">
       <mxGeometry height="94" width="120" x="640" y="366" as="geometry" />
     </mxCell>
-    <mxCell id="condition-uc64" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=11;align=center;verticalAlign=middle;spacing=6;" value="&lt;b&gt;Condizione&lt;/b&gt;&lt;br&gt;Il testo selezionato è troppo breve" vertex="1">
+    <mxCell id="condition-uc64" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontSize=11;align=center;verticalAlign=middle;spacing=6;" value="&lt;b&gt;Condizione&lt;/b&gt;&lt;br&gt;Il testo da tradurre è troppo breve" vertex="1">
       <mxGeometry height="50" width="110" x="780" y="240" as="geometry" />
     </mxCell>
     <mxCell id="condition-line-62" edge="1" parent="1" source="condition-uc62" style="dashed=1;endArrow=none;html=1;rounded=0;strokeWidth=1;fontSize=12;" target="extend-uc62-uc52">
