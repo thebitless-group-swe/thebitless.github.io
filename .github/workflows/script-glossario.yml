@@ -1,0 +1,88 @@
+name: Glossario
+
+on:
+  push:
+    paths:
+      - '**.tex'
+
+jobs:
+  glossario:
+    if: github.actor != 'github-actions'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Installa Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Esegui script glossario
+        run: python script-glossario/main.py
+
+      - name: Installa LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            texlive-base \
+            texlive-latex-recommended \
+            texlive-fonts-recommended \
+            texlive-latex-extra \
+            texlive-lang-italian \
+            python3-pygments
+
+      - name: Compila i PDF
+        run: |
+          git diff --name-only HEAD~1 HEAD \
+            | grep '\.tex$' \
+            | grep -v 'script-glossario' \
+            | while read f; do
+              if ! grep -q '\\documentclass' "$f"; then
+                echo "Skip $f (partial, no \\documentclass)"
+                continue
+              fi
+              dir="$(dirname "$f")"
+              base="$(basename "$f")"
+              pdflatex -shell-escape -interaction=nonstopmode \
+                -output-directory="$dir" \
+                "\\PassOptionsToPackage{expansion=false}{microtype}\\pdfminorversion=7 \\input{$base}" \
+                < /dev/null
+              pdflatex -shell-escape -interaction=nonstopmode \
+                -output-directory="$dir" \
+                "\\PassOptionsToPackage{expansion=false}{microtype}\\pdfminorversion=7 \\input{$base}" \
+                < /dev/null
+            done
+
+      - name: Apri PR con le modifiche
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          if git diff --quiet && [ -z "$(git status --porcelain)" ]; then
+            echo "Nessuna modifica da committare, esco"
+            exit 0
+          fi
+          
+          BRANCH="bot/glossario-${{ github.run_id }}"
+          git checkout -b "$BRANCH"
+          git add -A
+          git commit -m "glossario: aggiunti pedici e PDF aggiornati"
+          git push origin "$BRANCH"
+          
+          gh pr create \
+            --base "${{ github.ref_name }}" \
+            --head "$BRANCH" \
+            --title "glossario: aggiunti pedici e PDF aggiornati" \
+            --body "PR automatica generata dal workflow Glossario per il commit ${{ github.sha }}.
+
+          Contiene:
+          - pedici \$_G\$ inseriti automaticamente dallo script
+          - PDF ricompilati a partire dai .tex modificati
+          
+          Generata da run [#${{ github.run_id }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})."
