@@ -43,8 +43,8 @@
 \newcommand{\titolo}{Piano di Qualifica$_G$}
 \newcommand{\dataverbale}{}
 \newcommand{\dataversione}{2026-06-23}
-\newcommand{\versione}{0.4.0}
-\newcommand{\stato}{Stesura}
+\newcommand{\versione}{1.0.0}
+\newcommand{\stato}{Approvato}
 \newcommand{\destinatari}{The Bitless, prof. T. Vardanega, prof. R. Cardin, Zucchetti}
 \def\templatedir{../../../templates}
 
@@ -69,6 +69,8 @@
     \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
     \hline
     \endhead
+    1.0.0 & 2026-06-24 & - & S. Vendramin & D. Facco & Approvazione finale \\
+    \hline
     0.5.0 & 2026-06-24 & S. Zecchinato & - & - & Aggiunge valutazione MPC-PMS e sistema le altre \\
     \hline
     0.4.0 & 2026-06-23 & S. Zecchinato & - & - & Aggiunge valutazioni MPC-IG/MPC-CD/MPC-CR \\
@@ -1102,9 +1104,9 @@ Valutazione:
 		\hline
 		AdR & 0\% & 0,50\% & 99,50\% & Ottimo\\ 
 		\hline
-        Glossario & // & & // &  \\
+        Glossario & 0\% & 1,00\%& 99,00\% & Ottimo \\
         \hline
-        NdP & 0\% & // & // & // \\
+        NdP & 0\% & 0,30\% & 99,77\% & Ottimo \\
         \hline
         PdQ & 0\% & 0,20\% & 99,80\% & Ottimo \\
         \hline
@@ -1114,11 +1116,16 @@ Valutazione:
 	\caption{Percentuale di correttezza ortografica per documento}
 	\label{tab:co}
 \end{table}
-Com'è possibile notare dalla Figura §, l'indice di correttezza ortografica è ottimo in tutti i documenti. Questo perché ogni documento in scrittura viene automaticamente analizzato dall'editor di testo che segnala all'utente eventuali inesattezze ortografiche. Valutazione:
+Com'è possibile notare dalla Figura §\ref{fig:co}, l'indice di correttezza ortografica è ottimo in tutti i documenti. Questo perché ogni documento in scrittura viene automaticamente analizzato dall'editor di testo che segnala all'utente eventuali inesattezze ortografiche. Valutazione:
 \begin{itemize}
     \item \textbf{Valore accettabile:} documenti senza errori gravi, vincolo \textit{rispettato}.
     \item \textbf{Valore ottimo:} $CO \geq 99\%$, vincolo \textit{rispettato}.
 \end{itemize}
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/co.pdf}
+    \caption{Valutazione di \textit{Correttezza Ortografica}}
+    \label{fig:co}
+\end{figure}
 
 \begin{comment}
 \subsection{Valutazione MPC-CD}
