@@ -9,6 +9,7 @@
 *.fdb_latexmk
 *.synctex.gz
 *.lof
+*.lot
 creationdate.lua
 pdfa.xmpi
 *.drawio.bkp
