@@ -48,7 +48,7 @@
 
 \newpage
 \section{Informazioni sulla riunione}
-In data \dataverbale, il gruppo \textbf{The Bitless} si è riunito in modalità telematica attraverso la piattaforma Discord. L'incontro ha avuto inizio alle ore 10:00 e si è concluso alle ore 11:15, con l'obiettivo di definire i passi operativi per la redazione della documentazione tecnica.
+In data \dataverbale, il gruppo \textbf{The Bitless} si è riunito in modalità telematica attraverso la piattaforma Discord$_G$. L'incontro ha avuto inizio alle ore 10:00 e si è concluso alle ore 11:15, con l'obiettivo di definire i passi operativi per la redazione della documentazione tecnica.
 
 \section{Presenze}
 \begin{center}
@@ -70,35 +70,35 @@ Simone & Zecchinato & Presente \\
 \section{Ordine del giorno}
 In questa riunione, il gruppo ha discusso e definito i seguenti punti:
 \begin{itemize}
-    \item Definizione dei Casi d'Uso, con particolare attenzione alla struttura dei casi d'uso da modellare;
-    \item Definizione delle Norme di Progetto, con particolare attenzione alla gestione del repository GitHub e al flusso di lavoro per le Pull Request;
+    \item Definizione dei Casi d'Uso$_G$, con particolare attenzione alla struttura dei casi d'uso$_G$ da modellare;
+    \item Definizione delle Norme di Progetto$_G$, con particolare attenzione alla gestione del repository$_G$ GitHub$_G$ e al flusso di lavoro per le Pull Request$_G$;
     \item Pianificazione delle prossime attività;
-    \item Assegnazione attività singole.
+    \item Assegnazione$_G$ attività singole.
 \end{itemize}
 
 \section{Discussione e decisioni}
 \subsection{Definizione dei Casi d'Uso}
-La riunione è iniziata con una sessione di brainstorming$_G$ focalizzata sull'identificazione dei Casi d'Uso$_G$ necessari per lo sviluppo dell'applicativo$_G$. Il gruppo ha analizzato le proposte individuali relative alle funzionalità di editing di base e all'integrazione dell'Intelligenza Artificiale.
+La riunione è iniziata con una sessione di brainstorming$_G$ focalizzata sull'identificazione dei Casi d'Uso$_G$ necessari per lo sviluppo$_G$ dell'applicativo$_G$. Il gruppo ha analizzato le proposte individuali relative alle funzionalità di editing di base e all'integrazione$_G$ dell'Intelligenza Artificiale.
 
-Il lavoro è partito dal confronto dei casi d'uso che ogni componente aveva già segnato e preparato in precedenza in autonomia. Il gruppo ha deciso di suddividere i casi d'uso in tre macro-categorie principali:
+Il lavoro è partito dal confronto dei casi d'uso$_G$ che ogni componente aveva già segnato e preparato in precedenza in autonomia. Il gruppo ha deciso di suddividere i casi d'uso$_G$ in tre macro-categorie principali:
 \begin{itemize}
     \item \textbf{Editing di base:} comprendente le funzioni di formattazione e gestione del testo Markdown$_G$;
     \item \textbf{Funzionalità AI:} relativa agli strumenti di supporto intelligente alla redazione dei contenuti;
     \item \textbf{Salvataggio e Persistenza$_G$:} riguardante il salvataggio dei dati e la gestione dei file.
 \end{itemize}
-Il team degli analisti ha posto in discussione l'opportunità di adottare o meno una struttura gerarchica complessa. A seguito di una discussione, si è scelto di escludere l'uso di molteplici relazioni di generalizzazione e l'introduzione di casi d'uso "padre" astratti. Si è preferito, al contrario, modellare le funzionalità attraverso casi d'uso singoli, atomici e ben definiti per ogni azione concreta dell'operatore. \\
-Questa scelta condivisa è stata presa considerando che l'adozione di un approccio basato su macro-contenitori astratti (come, ad esempio, un caso d'uso per la "formattazione del testo") avrebbe generato un'eccessiva scomposizione, arrivando ad avere molte generalizzazioni per ogni singolo caso d'uso. Questo livello di frammentazione avrebbe compromesso la leggibilità del diagramma UML, riducendolo a un elenco di micro-operazioni.
+Il team degli analisti ha posto in discussione l'opportunità di adottare o meno una struttura gerarchica complessa. A seguito di una discussione, si è scelto di escludere l'uso di molteplici relazioni di generalizzazione e l'introduzione di casi d'uso$_G$ "padre" astratti. Si è preferito, al contrario, modellare le funzionalità attraverso casi d'uso$_G$ singoli, atomici e ben definiti per ogni azione concreta dell'operatore. \\
+Questa scelta condivisa è stata presa considerando che l'adozione di un approccio basato su macro-contenitori astratti (come, ad esempio, un caso d'uso per la "formattazione del testo") avrebbe generato un'eccessiva scomposizione, arrivando ad avere molte generalizzazioni per ogni singolo caso d'uso. Questo livello di frammentazione avrebbe compromesso la leggibilità del diagramma UML$_G$, riducendolo a un elenco di micro-operazioni.
 
 
 \subsection{Definizione delle Norme di Progetto}
-Un'ampia parte della discussione è stata dedicata alla definizione del flusso di lavoro sul repository di GitHub, stabilendo i criteri formali che confluiranno direttamente all'interno delle \textit{Norme di Progetto} per garantire un tracciamento pulito ed evitare conflitti nel codice:
+Un'ampia parte della discussione è stata dedicata alla definizione del flusso di lavoro sul repository$_G$ di GitHub$_G$, stabilendo i criteri formali che confluiranno direttamente all'interno delle \textit{Norme di Progetto} per garantire un tracciamento pulito ed evitare conflitti nel codice:
 \begin{itemize}
-    \item \textbf{Strategia di Branching:} Si è deciso di adottare un modello strutturato in cui nessun membro del gruppo potrà effettuare commit direttamente sui branch principali. Ogni nuova funzionalità, correzione di bug o stesura di un documento dovrà essere sviluppata su un branch locale dedicato, nominato secondo una convenzione rigida che verrà delineata nelle Norme di Progetto.
-    \item \textbf{Gestione delle Pull Request:} Per poter integrare il lavoro svolto nel branch di sviluppo, sarà obbligatorio aprire una \textit{Pull Request}. Il gruppo ha stabilito che nessuna PR potrà essere fusa in autonomia dall'autore: ogni modifica dovrà ricevere l'approvazione di almeno un altro membro del team (verificatore) che verificherà il rispetto delle norme tipografiche o di codifica.
+    \item \textbf{Strategia di Branching:} Si è deciso di adottare un modello strutturato in cui nessun membro del gruppo potrà effettuare commit direttamente sui branch$_G$ principali. Ogni nuova funzionalità, correzione di bug$_G$ o stesura di un documento dovrà essere sviluppata su un branch$_G$ locale dedicato, nominato secondo una convenzione rigida che verrà delineata nelle Norme di Progetto$_G$.
+    \item \textbf{Gestione delle Pull Request:} Per poter integrare il lavoro svolto nel branch$_G$ di sviluppo$_G$, sarà obbligatorio aprire una \textit{Pull Request}. Il gruppo ha stabilito che nessuna PR$_G$ potrà essere fusa in autonomia dall'autore: ogni modifica dovrà ricevere l'approvazione$_G$ di almeno un altro membro del team (verificatore$_G$) che verificherà il rispetto delle norme tipografiche o di codifica.
 \end{itemize}
 
 \subsection{Pianificazione}
-Per quanto riguarda la pianificazione, èstata confermata la prossima riunione interna per martedì 14 aprile. In tale data si procederà alla rotazione dei ruoli come previsto dal piano di progetto, assicurando l'alternanza delle responsabilità tra i membri del team.
+Per quanto riguarda la pianificazione, èstata confermata la prossima riunione interna per martedì 14 aprile. In tale data si procederà alla rotazione dei ruoli$_G$ come previsto dal piano di progetto$_G$, assicurando l'alternanza delle responsabilità tra i membri del team.
 
 \subsection{Assegnazione attività singole}
 \begin{center}
@@ -109,7 +109,7 @@ Per quanto riguarda la pianificazione, èstata confermata la prossima riunione i
 \hline
 S. Vendramin & Redazione del verbale del 2026-04-08 & \centering \issue{73} \tabularnewline
 \hline
-A. Marini & Introduzione e Processi Primari - Norme di Progetto & \centering \issue{68} \tabularnewline
+A. Marini & Introduzione e Processi Primari - Norme di Progetto$_G$ & \centering \issue{68} \tabularnewline
 \hline
 \end{tabular}
 \end{center}
