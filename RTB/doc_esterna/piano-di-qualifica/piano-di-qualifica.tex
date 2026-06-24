@@ -69,6 +69,8 @@
     \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
     \hline
     \endhead
+    0.5.0 & 2026-06-24 & S. Zecchinato & - & - & Aggiunge valutazione MPC-PMS e sistema le altre \\
+    \hline
     0.4.0 & 2026-06-23 & S. Zecchinato & - & - & Aggiunge valutazioni MPC-IG/MPC-CD/MPC-CR \\
     \hline
     0.3.0 & 2026-06-08 & S. Zecchinato & - & - & Aggiunge valutazione MPC-AC/MPC-ETC \\ 
@@ -203,8 +205,8 @@ Le metriche relative alla fornitura misurano l'andamento del progetto rispetto a
     MPC-PV & Planned Value & $> 0$ & Coerente con la pianificazione approvata \\ \hline
     MPC-EV & Earned Value & $\geq 80\%$ del valore pianificato & $\geq$ Planned Value \\ \hline
     MPC-AC & Actual Cost$_G$ & $\leq 120\%$ del costo pianificato & $\leq$ costo pianificato \\ \hline
-    MPC-CV & Cost Variance & $\geq -10\%$ & $\geq 0$ \\ \hline
-    MPC-SV & Schedule Variance & $\geq -10\%$ & $\geq 0$ \\ \hline
+    MPC-CV & Cost Variance & $> 0$ & $= 0$ \\ \hline
+    MPC-SV & Schedule Variance & $\geq 0$ & $> 0$ \\ \hline
     MPC-EAC & Estimate At Completion & $\leq 110\%$ del budget$_G$ & $\leq$ budget$_G$ approvato \\ \hline
     MPC-ETC & Estimate To Complete & Valore definito e aggiornato & Valore coerente con il piano a finire \\ \hline
     MPC-TCR & Task$_G$ Completion Rate & $\geq 85\%$ & $100\%$ \\ \hline
@@ -254,9 +256,7 @@ Le metriche relative alla documentazione misurano la leggibilità, la correttezz
     \endhead
 
     MPC-IG & Indice di Gulpease & $\geq 40$ & $\geq 60$ \\ \hline
-    MPC-CO & Correttezza ortografica & Nessun errore grave & $0$ errori \\ \hline
-    MPC-CD & Completezza documentale & $\geq 90\%$ sezioni previste & $100\%$ sezioni previste \\ \hline
-    MPC-CR & Coerenza dei riferimenti & $\geq 95\%$ riferimenti validi & $100\%$ riferimenti validi \\ \hline
+    MPC-CO & Correttezza ortografica & Errore grave $=0\%$ & $CO \geq 99\% $ \\ \hline
 
     \caption{Metriche per la qualità della documentazione.}
     \label{tab:metriche-documentazione}
@@ -280,7 +280,7 @@ Le metriche relative alla verifica$_G$ misurano l'efficacia delle attività di c
     MPC-TSR & Test$_G$ Success Rate & $\geq 95\%$ & $100\%$ \\ \hline
     MPC-DD & Defect Density & $\leq 2$ difetti per componente & $0$ difetti aperti \\ \hline
     MPC-TR & Test$_G$ Requirements Coverage & $100\%$ requisiti$_G$ obbligatori coperti & $100\%$ requisiti$_G$ coperti \\ \hline
-    MPC-QMS & Quality Metrics Satisfied & $\geq 80\%$ & $100\%$ \\ \hline
+    MPC-PMS & Percentuale Metriche Soddisfatte & $\geq 80\%$ & $100\%$ \\ \hline
 
     \caption{Metriche per la qualità del processo di verifica.}
     \label{tab:metriche-verifica}
@@ -880,9 +880,9 @@ Dall'analisi del grafico in Figura §\ref{fig:cv-sv} possiamo notare un andament
     \item \textbf{Sprint 4:} In questo sprint il team registra una flessione dal punto di vista temporale, accumulando nuovamente ritardo rispetto al piano ideale. Di contro si rileva un eccellente recupero dell'efficenza economica.
     \item \textbf{Sprint 5:} In quest'ultima iterazione analizzata, il progetto raggiunge uno stato di equilibrio. Entrambe le metriche di varianza risultano positive consolidando un solido anticipo sulla tabella di marcia mantenendo allo stesso tempo una, seppur minima, efficienza finanziaria.
 \end{itemize}
-Valutazione: \textbf{DA RIVEDERE!}
+Valutazione: 
 \begin{itemize}
-    \item \textbf{Valore accettabile CV:} $CV>0$, vincolo \textit{violato} in due sprint su cinque con scostamenti minimi.
+    \item \textbf{Valore accettabile CV:} $CV>0$, vincolo \textit{violato} in tre sprint su cinque con scostamenti consistenti.
     \item \textbf{Valore accettabile SV:} $SV\geq 0$, vincolo \textit{violato} in due sprint su cinque con slittamenti consistenti.
 \end{itemize}
 \begin{figure}[H]
@@ -1092,22 +1092,23 @@ Valutazione:
     \label{fig:ig}
 \end{figure}
 
+
 \subsection{Valutazione MPC-CO}
 \begin{table}[H]
     \centering
-	\begin{tabular}{|c|l|l|p{3cm}|}
+	\begin{tabular}{|c|l|l|l|p{3cm}|}
 		\hline
-		\textbf{Documento} & \textbf{Errori gravi (\%)} & \textbf{Errori non gravi (\%)} & \textbf{Giudizio} \\
+		\textbf{Documento} & \textbf{Errori gravi (\%)} & \textbf{Errori non gravi (\%)} & \textbf{CO (\%)} & \textbf{Giudizio} \\
 		\hline
-		AdR & 0\% & 1\% & Ottimo\\ 
+		AdR & 0\% & 0,50\% & 99,50\% & Ottimo\\ 
 		\hline
-        Glossario & // & & // \\
+        Glossario & // & & // &  \\
         \hline
-        NdP & // & & // \\
+        NdP & 0\% & // & // & // \\
         \hline
-        PdQ & 0\% & 0\% & Ottimo \\
+        PdQ & 0\% & 0,20\% & 99,80\% & Ottimo \\
         \hline
-        PdP & // & //  \\
+        PdP & 0\% & 0,28\% & 99,72\% & Ottimo \\
         \hline
 	\end{tabular}
 	\caption{Percentuale di correttezza ortografica per documento}
@@ -1116,9 +1117,10 @@ Valutazione:
 Com'è possibile notare dalla Figura §, l'indice di correttezza ortografica è ottimo in tutti i documenti. Questo perché ogni documento in scrittura viene automaticamente analizzato dall'editor di testo che segnala all'utente eventuali inesattezze ortografiche. Valutazione:
 \begin{itemize}
     \item \textbf{Valore accettabile:} documenti senza errori gravi, vincolo \textit{rispettato}.
-    \item \textbf{Valore ottimo:} documenti senza errori, vincolo \textit{rispettato}. \textbf{VERIFICAREEE}
+    \item \textbf{Valore ottimo:} $CO \geq 99\%$, vincolo \textit{rispettato}.
 \end{itemize}
 
+\begin{comment}
 \subsection{Valutazione MPC-CD}
 \begin{table}[H]
     \centering
@@ -1181,5 +1183,39 @@ Dal grafico in Figura §\ref{fig:cr} è possibile notare che la percentuale di c
     \includegraphics[width=1\textwidth]{charts/cr.pdf}
     \caption{Valutazione \textit{Correttezza dei riferimenti}}
     \label{fig:cr}
+\end{figure}
+
+\end{comment}
+
+\subsection{Valutazione MPC-PMS}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Percentuale Metriche Soddisfatte (\%)} & \textbf{Giudizio} \\
+		\hline
+		1 & 67\% & Critico\\ 
+		\hline
+        2 & 92\% & Accettabile \\
+        \hline
+        3 & 75\% & Critico \\
+        \hline
+        4 & 83\% & Accettabile \\
+        \hline
+        5 & 100\% & Ottimo  \\
+        \hline
+	\end{tabular}
+	\caption{Percentuale Metriche Soddisfatte per sprint}
+	\label{tab:pms}
+\end{table}
+Analizzando l'andamento della \textit{Percentuale di Metriche Soddisfatte} (MPC-PMS) per la durata degli sprint in Figura §\ref{fig:pms}, notiamo un percorso discontinuo ma in miglioramento. A fronte di alcune criticità operative riscontrate negli Sprint 1 e 3 in cui i nostri risultati (67\% e 75\%) sono scesi sotto la soglia di accettabilità dell'80\% per i motivi già citati in questo documento, abbiamo messo in campo un'ottima capacità di reazione. Dopo aver recuperato l'adeguatezza nello Sprint 4 (83\%), nello sprint 5 notiamo un completamento al 100\% delle metriche che ci porta alla piena conformità agli standard qualitativi prefissati.
+Dal calcolo sono state escluse le metriche di correttezza dei documenti, in quanto queste sono calcolate a documento approvato e non a sprint. Il loro coinvolgimento nel calcolo produrrebbe uno sfasamento che non permetterebbe una stima affidabile. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $PMS \geq 80\%$, vincolo \textit{non rispettato} nello sprint 1 e 3.
+\end{itemize}
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/pms.pdf}
+    \caption{Valutazione \textit{Percentuale di Metriche Soddisfatte}}
+    \label{fig:pms}
 \end{figure}
 \end{document}
