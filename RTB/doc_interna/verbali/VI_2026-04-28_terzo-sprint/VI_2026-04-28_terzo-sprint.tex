@@ -1,0 +1,137 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+\usepackage[a-1b]{pdfx}
+\usepackage[italian]{babel} 
+\usepackage{comment}      
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{minted} 
+\usepackage{geometry}
+\usepackage{float} 
+\usepackage{setspace}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{\titolo \ \dataverbale}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    pdfborderstyle={/S/U/W 1},
+    linkbordercolor=0 0 0,
+    urlbordercolor=0 0 0,
+    citebordercolor=0 0 0,
+    filebordercolor=0 0 0,
+    breaklinks=true,
+}
+\newcommand{\issue}[1]{\href{https://github.com/thebitless-group-swe/thebitless.github.io/issues/#1}{\##1}}
+
+\begin{document}
+
+\newcommand{\titolo}{Verbale interno}
+\newcommand{\dataverbale}{2026-04-28}
+\newcommand{\dataversione}{2026-04-28}
+\newcommand{\versione}{1.0.0}
+\newcommand{\stato}{Stesura}
+\newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+\def\templatedir{../../../../templates}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+\input{../../../../templates/frontespizio.tex}
+\end{titlepage}
+\newpage
+\tableofcontents 
+
+\newpage
+\section{Informazioni sulla riunione}
+Il presente documento riporta la verbalizzazione della riunione interna al gruppo \textbf{The Bitless} avvenuta il \dataverbale{}. L'incontro si è svolto in modalità telematica tramite la piattaforma Discord. La riunione si è aperta alle ore 09:30 e si è conclusa alle ore 11:00.
+
+\section{Presenze}
+\begin{center}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
+\hline
+Lorenzo & Battistella & Presente \\
+Edoardo & De Piccoli & Assente \\
+Davide & Facco & Presente \\
+Anna & Marini & Presente \\
+Andrea & Menegaldo & Presente \\
+Samuele & Vendramin & Presente \\
+Simone & Zecchinato & Presente \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ordine del giorno}
+\begin{enumerate}
+    \item Rotazione dei ruoli;
+    \item Revisione bozza Analisi dei Requisiti;
+    \item Richiesta incontro con la proponente;
+    \item Resoconto Sprint 2 e rendicontazione ore;
+    \item Pianificazione diagrammi UML e compiti futuri;
+    \item Assegnazione attività singole.
+\end{enumerate}
+
+\section{Discussione e decisioni}
+
+\subsection{Rotazione dei ruoli}
+Il gruppo ha stabilito la nuova ripartizione dei ruoli per garantire una copertura delle attività previste dal piano di progetto. \\
+Il team ha concordato l'introduzione della figura del \textit{Progettista}, assegnando questo ruolo a due membri del gruppo. 
+Questa scelta è finalizzata a iniziare, in parallelo alla finalizzazione dell'analisi dei requisiti, la progettazione dei primi mockup dell'interfaccia utente. Inoltre, i membri incaricati avvieranno uno studio iniziale e un'analisi delle tecnologie da adottare per lo sviluppo dell'applicativo.
+\begin{center}
+    \begin{tabular}{|l|l|c|}
+        \hline
+        \textbf{Nome} & \textbf{Cognome} & \textbf{Ruolo} \\
+        \hline
+        Lorenzo & Battistella & Amministratore \\
+        \hline
+        Edoardo & De Piccoli & Analista \\
+        \hline
+        Davide & Facco & Progettista \\ 
+        \hline
+        Anna & Marini & Responsabile, Analista \\
+        \hline
+        Andrea & Menegaldo & Progettista \\
+        \hline
+        Samuele & Vendramin & Verificatore \\        
+        \hline  
+        Simone & Zecchinato & Verificatore \\
+        \hline  
+    \end{tabular}
+\end{center}
+
+\subsection{Contatto con la proponente}
+È stata redatta e inviata una comunicazione e-mail a Gregorio Piccoli, referente di Zucchetti, per richiedere un incontro; la finalità dell'incontro è sottoporre al proponente la bozza attuale dell'Analisi dei Requisiti per ottenere feedback diretti, identificare eventuali aree di miglioramento e confermare la corretta interpretazione dei requisiti prima di consolidare il documento.
+
+\subsection{Resoconto dello Sprint 2}
+Il team ha analizzato l'andamento del secondo Sprint, confrontando le attività pianificate con quelle effettivamente svolte per l'avanzamento del \textit{Piano di Progetto}. \\
+In questa fase, il gruppo ha riscontrato alcune difficoltà operative legate alla raccolta dei tempi spesi da ciascun membro. Questa criticità è emersa chiaramente con i componenti assenti alla riunione: non potendo comunicare subito le proprie ore effettive, si rischiava di rallentare la stesura dei consuntivi orari del gruppo. Si è deciso quindi di implementare un foglio di calcolo condiviso tramite la piattaforma \textit{Google Sheets}. Questo strumento permetterà di inserire i dati in modo asincrono e garantire un monitoraggio più immediato e condiviso dei costi e dei tempi di progetto.
+
+\subsection{Assegnazione attività singole}
+\begin{center}
+    \renewcommand{\arraystretch}{1.4}
+        \begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
+        \hline
+        \textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
+        \hline
+        A. Marini & Stesura verbale interno 2026-04-28 & \issue{105} \\
+        \hline
+        D. Facco & Creazione mockup & \issue{106} \\
+        \hline
+        L. Battistella & Script automazione Glossario & \issue{104} \\
+        \hline
+        A. Marini & Slide primo Diario di Bordo & \issue{107} \\
+        \hline
+        E. De Piccoli - A. Marini & Diagrammi dei Casi d'Uso & \issue{108}  \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\appendix
+
+\end{document}

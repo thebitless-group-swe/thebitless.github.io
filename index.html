@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TheBitless</title>
+  <link rel="icon" type="image/png" href="website/assets/logo-mark.png">
   <link rel="stylesheet" href="website/styles.css">
   <script>
     (function(){var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();
@@ -11,39 +12,42 @@
 </head>
 <body>
 
+  <h1 class="sr-only">TheBitless — Software Engineering Team</h1>
+
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand" aria-label="TheBitless — home">
+        <img src="website/assets/logo-mark.png" alt="TheBitless" class="brand-logo">
+      </a>
+
+      <div class="phases" role="tablist" aria-label="Fasi del progetto" data-home="index.html">
+        <button class="phase-tab is-active" data-phase="rtb" role="tab" aria-selected="true" tabindex="0">RTB</button>
+        <!-- Sezione Candidatura nascosta (non eliminata): per riattivarla, togliere il commento dal pulsante. -->
+        <!-- <button class="phase-tab" data-phase="candidatura" role="tab" aria-selected="false" tabindex="-1">Candidatura</button> -->
+        <button class="phase-tab" data-phase="diari" role="tab" aria-selected="false" tabindex="-1">Diapositive</button>
+      </div>
+
+      <div class="navbar-links">
+        <a href="#team" class="nav-link">Chi siamo</a>
+        <a href="website/glossario.html" class="nav-link">Glossario</a>
+      </div>
+    </div>
+  </nav>
+
   <main>
 
-    <div class="logo-wrap">
-      <img src="website/assets/logo.png" alt="TheBitless">
+    <!-- Lettera di presentazione: messa in evidenza fuori dai documenti, popolata da javascript.js. -->
+    <div id="lettera-banner" class="lettera-banner" hidden></div>
+
+    <div id="phase-panel" class="phase-panel" role="tabpanel" aria-label="Documenti della fase selezionata">
+      <p class="doc-empty">Caricamento documenti…</p>
     </div>
-
-    <details id="candidatura" data-section="candidatura" class="section" open>
-      <summary class="section-head">
-        <span class="section-title">Candidatura</span>
-        <span class="chevron" aria-hidden="true">+</span>
-      </summary>
-      <div class="section-body"></div>
-    </details>
-
-    <details id="rtb" data-section="rtb" class="section" open>
-      <summary class="section-head">
-        <span class="section-title">RTB</span>
-        <span class="chevron" aria-hidden="true">+</span>
-      </summary>
-      <div class="section-body"></div>
-    </details>
-
-    <details id="diapositive" data-section="diapositive" class="section" open>
-      <summary class="section-head">
-        <span class="section-title">Diapositive</span>
-        <span class="chevron" aria-hidden="true">+</span>
-      </summary>
-      <div class="section-body"></div>
-    </details>
 
   </main>
 
-  <footer>
+  <footer id="team">
+    <h2 class="team-heading">Chi siamo</h2>
+    <div class="team-grid" id="team-grid"></div>
     <div class="footer-top">
       <div class="footer-info">
         <a href="https://github.com/thebitless-group-swe" class="footer-link" target="_blank" rel="noopener">github.com/thebitless-group-swe ↗</a>
@@ -54,7 +58,6 @@
         <span class="theme-icon theme-icon--dark">☽</span>
       </button>
     </div>
-    <div class="team-grid" id="team-grid"></div>
   </footer>
 
   <script src="website/javascript.js"></script>

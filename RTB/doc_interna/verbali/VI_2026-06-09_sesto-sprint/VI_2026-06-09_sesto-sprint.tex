@@ -1,0 +1,143 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+\usepackage[a-1b]{pdfx}
+\usepackage[italian]{babel}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{minted}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{\titolo \ \dataverbale}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    pdfborderstyle={/S/U/W 1},
+    linkbordercolor=0 0 0,
+    urlbordercolor=0 0 0,
+    citebordercolor=0 0 0,
+    filebordercolor=0 0 0,
+    breaklinks=true,
+}
+\newcommand{\issue}[1]{\href{https://github.com/thebitless-group-swe/thebitless.github.io/issues/#1}{\##1}}
+
+\begin{document}
+
+\newcommand{\titolo}{Verbale interno}
+\newcommand{\dataverbale}{2026-06-09}
+\newcommand{\dataversione}{2026-06-11}
+\newcommand{\versione}{1.0.0}
+\newcommand{\stato}{Approvato}
+\newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+\def\templatedir{../../../../templates}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+\input{\templatedir/frontespizio.tex}
+\end{titlepage}
+
+\newpage
+\tableofcontents
+
+\newpage
+\pagenumbering{arabic}
+\section{Informazioni sulla riunione}
+Il presente documento riporta la verbalizzazione della riunione interna al gruppo \textbf{The Bitless} avvenuta il \dataverbale{}, in apertura del sesto sprint$_G$. L'incontro si è svolto in modalità telematica tramite la piattaforma Discord$_G$.
+
+\section{Presenze}
+\begin{center}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
+\hline
+Lorenzo & Battistella & Assente \\
+Edoardo & De Piccoli & Presente \\
+Davide & Facco & Presente \\
+Anna & Marini & Presente \\
+Andrea & Menegaldo & Presente \\
+Samuele & Vendramin & Presente \\
+Simone & Zecchinato & Presente \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ordine del giorno}
+\begin{enumerate}
+    \item Rotazione dei ruoli$_G$;
+    \item Continuazione dello sviluppo$_G$ del PoC$_G$;
+    \item Resoconto Sprint$_G$ 5 e rendicontazione ore;
+    \item Assegnazione$_G$ attività singole.
+\end{enumerate}
+
+\section{Discussione e decisioni}
+
+\subsection{Rotazione dei ruoli}
+Considerando che l'obiettivo prioritario di questo sprint$_G$ è il completamento del PoC$_G$, il gruppo ha deciso di proseguire con lo sviluppo$_G$ dello stesso. Di conseguenza, sono stati assegnati \textbf{tre Programmatori} (Davide Facco, Lorenzo Battistella e Andrea Menegaldo), così da terminare il PoC$_G$ entro la fine dello sprint$_G$ e poter quindi inoltrare la richiesta di presentazione della \textbf{Revisione di Avanzamento (RTB)} entro lo sprint$_G$ stesso.\\
+Non è stato assegnato alcun \textit{Analista}, poiché non vi è ancora la necessità di mettere mano all'Analisi dei Requisiti$_G$.\\
+Per quanto riguarda la \textit{Verifica}, oltre a Samuele Vendramin si è deciso di assegnare il ruolo di \textit{Verificatore} anche a Edoardo De Piccoli (Responsabile$_G$). Tale scelta nasce dalla constatazione che, nello scorso sprint$_G$, il Responsabile$_G$ aveva poco da gestire e impiegava le ore rimanenti svolgendo le altre attività necessarie; in questo sprint$_G$ vi è molto materiale da verificare, sia a livello di documenti sia a livello di codice, motivo per cui si è ritenuto opportuno rafforzare la figura del Verificatore$_G$.\\
+La ripartizione è stata definita come segue:
+\begin{center}
+    \begin{tabular}{|l|l|c|}
+        \hline
+        \textbf{Nome} & \textbf{Cognome} & \textbf{Ruolo} \\
+        \hline
+        Lorenzo & Battistella & Programmatore$_G$ \\
+        \hline
+        Edoardo & De Piccoli & Responsabile$_G$, Verificatore$_G$ \\
+        \hline
+        Davide & Facco & Programmatore$_G$ \\
+        \hline
+        Anna & Marini & Progettista$_G$ \\
+        \hline
+        Andrea & Menegaldo & Programmatore$_G$ \\
+        \hline
+        Samuele & Vendramin & Verificatore$_G$ \\
+        \hline
+        Simone & Zecchinato & Amministratore$_G$ \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Continuazione dello sviluppo del PoC}
+Il gruppo ha stabilito di proseguire con lo sviluppo$_G$ del PoC$_G$, ponendosi come obiettivo il completamento dello stesso entro la fine del sesto sprint$_G$, così da poter inoltrare la richiesta di presentazione della RTB$_G$ entro lo sprint$_G$.\\
+Inoltre, si è deciso di redigere un documento informale su \textit{Notion}, condiviso internamente al gruppo, relativo alle tecnologie scelte per il PoC$_G$. Tale documento verrà utilizzato come linea guida per la successiva presentazione delle tecnologie al prof. Cardin.
+
+\subsection{Resoconto dello Sprint 5}
+Il team ha analizzato l'andamento del quinto Sprint$_G$, confrontando le attività pianificate con quelle effettivamente svolte e procedendo alla rendicontazione delle ore di lavoro di ciascun componente; ulteriori informazioni sono reperibili all'interno del Piano di Progetto$_G$.\\
+Complessivamente, lo sprint$_G$ è andato molto meglio rispetto ai precedenti, in particolare a livello di comunicazione tra i vari componenti del gruppo. Sono state svolte diverse riunioni interne tra piccoli gruppi, utili a far avanzare il lavoro e a favorire l'aiuto reciproco.
+
+\subsection{Assegnazione attività singole}
+\begin{center}
+    \renewcommand{\arraystretch}{1.4}
+        \begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
+        \hline
+        \textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
+        \hline
+        S. Vendramin - E. De Piccoli & Revisione completa del documento Analisi dei Requisiti$_G$ & \issue{179} \\
+        \hline
+        A. Menegaldo - L. Battistella & Revisione completa del documento Norme di Progetto$_G$ & \issue{180} \\
+        \hline
+        S. Zecchinato & Completamento del Piano di Qualifica$_G$ & \issue{181} \\
+        \hline
+        S. Vendramin - E. De Piccoli & Revisione del Piano di Qualifica$_G$ & \issue{182} \\
+        \hline
+        A. Marini & Piano di Progetto$_G$: consuntivo Sprint$_G$ 5 e preventivo Sprint$_G$ 6 & \issue{183} \\
+        \hline
+        A. Marini - S. Vendramin - L. Battistella & Documento delle tecnologie per il PoC$_G$ (Notion) & \issue{186} \\
+        \hline
+        E. De Piccoli & Stesura verbale interno 2026-06-09 & \issue{187} \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\appendix
+
+\end{document}
