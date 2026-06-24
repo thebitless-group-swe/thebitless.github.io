@@ -14,19 +14,19 @@
     <mxCell id="system-label" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=12;" value="Sistema" vertex="1">
       <mxGeometry height="25" width="70" x="870" y="25" as="geometry" />
     </mxCell>
-    <mxCell id="uc-main" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="UC 55 - Correzione&lt;br&gt;grammaticale" vertex="1">
+    <mxCell id="uc-main" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="UC55 - Correzione&lt;br&gt;grammaticale" vertex="1">
       <mxGeometry height="65" width="200" x="520" y="300" as="geometry" />
     </mxCell>
-    <mxCell id="uc61" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="UC 61 - Annullamento&lt;br&gt;richiesta in corso" vertex="1">
+    <mxCell id="uc61" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="UC61 - Annullamento&lt;br&gt;richiesta in corso" vertex="1">
       <mxGeometry height="60" width="190" x="287.5" y="85" as="geometry" />
     </mxCell>
-    <mxCell id="uc55-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="UC 55.1 - Nessun errore&lt;br&gt;rilevato" vertex="1">
+    <mxCell id="uc55-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="UC55.1 - Nessun errore&lt;br&gt;rilevato" vertex="1">
       <mxGeometry height="60" width="190" x="520" y="70" as="geometry" />
     </mxCell>
-    <mxCell id="uc63" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="UC 63 - Testo&lt;br&gt;insufficiente" vertex="1">
+    <mxCell id="uc63" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="UC63 - Testo&lt;br&gt;insufficiente" vertex="1">
       <mxGeometry height="60" width="190" x="395" y="440" as="geometry" />
     </mxCell>
-    <mxCell id="uc62" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="UC 62 - Errore&lt;br&gt;LLM" vertex="1">
+    <mxCell id="uc62" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="UC62 - Errore&lt;br&gt;LLM" vertex="1">
       <mxGeometry height="60" width="190" x="525" y="580" as="geometry" />
     </mxCell>
     <mxCell id="assoc-user-main" edge="1" parent="1" source="actor-user" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;fontSize=12;" target="uc-main">
@@ -99,7 +99,7 @@
         <mxPoint x="680" y="450.69841269841277" as="sourcePoint" />
       </mxGeometry>
     </mxCell>
-    <mxCell id="4S_GJxI6N92lzNAu5wbE-75" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=25;" value="&lt;b style=&quot;font-size: 11px;&quot;&gt;Condizione&lt;/b&gt;&lt;br style=&quot;font-size: 11px;&quot;&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;Il testo selezionato è troppo breve&lt;/span&gt;" vertex="1">
+    <mxCell id="4S_GJxI6N92lzNAu5wbE-75" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=25;" value="&lt;b style=&quot;font-size: 11px;&quot;&gt;Condizione&lt;/b&gt;&lt;br style=&quot;font-size: 11px;&quot;&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;Il testo da correggere è troppo breve&lt;/span&gt;" vertex="1">
       <mxGeometry height="65" width="140" x="325" y="365" as="geometry" />
     </mxCell>
     <mxCell id="4S_GJxI6N92lzNAu5wbE-76" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=24;" value="&lt;span style=&quot;font-size: 11px;&quot;&gt;&lt;b&gt;Condizione&lt;/b&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;L&#39;utente decide di interrompere l&#39;elaborazione&lt;/span&gt;&lt;/div&gt;" vertex="1">
