@@ -26,8 +26,12 @@ function humanize(s) {
   return t.charAt(0).toUpperCase() + t.slice(1);
 }
 
-function pickPdf(paths) {
-  return paths.find((p) => /_firmato\.pdf$/i.test(p)) || paths[0];
+function pickPdf(paths, mainName) {
+  return (
+    paths.find((p) => /_firmato\.pdf$/i.test(p)) ||
+    (mainName && paths.find((p) => p.endsWith(`/${mainName}.pdf`))) ||
+    paths[0]
+  );
 }
 
 function rawUrl(path) {
@@ -76,7 +80,7 @@ function buildDocs(pdfs, texPaths, prefix, exclude = [], pinFirst = []) {
     if (exclude.includes(folder)) continue;
     items.push({
       name: humanize(folder),
-      href: pickPdf(paths),
+      href: pickPdf(paths, folder),
       texPath: findTex(texPaths, `${prefix}/${folder}`),
       _folder: folder,
     });
