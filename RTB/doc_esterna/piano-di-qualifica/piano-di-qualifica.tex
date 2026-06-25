@@ -40,10 +40,10 @@
 \raggedbottom
 \setlength{\emergencystretch}{2em}
 
-\newcommand{\titolo}{Piano di Qualifica}
+\newcommand{\titolo}{Piano di Qualifica$_G$}
 \newcommand{\dataverbale}{}
-\newcommand{\dataversione}{2026-05-14}
-\newcommand{\versione}{0.1.0}
+\newcommand{\dataversione}{2026-06-24}
+\newcommand{\versione}{1.0.0}
 \newcommand{\stato}{Approvato}
 \newcommand{\destinatari}{The Bitless, prof. T. Vardanega, prof. R. Cardin, Zucchetti}
 \def\templatedir{../../../templates}
@@ -69,8 +69,19 @@
     \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
     \hline
     \endhead
-
-    0.1.0 & 2026-05-14 & A. Marini & - & A. Marini & Creazione prima versione del documento Piano di Qualifica. Inserimento struttura iniziale, riferimenti, metriche di qualità e strategia di testing. \\ \hline
+    1.0.0 & 2026-06-24 & - & S. Vendramin & D. Facco & Approvazione finale \\
+    \hline
+    0.5.0 & 2026-06-24 & S. Zecchinato & - & - & Aggiunge valutazione MPC-PMS e sistema le altre \\
+    \hline
+    0.4.0 & 2026-06-23 & S. Zecchinato & - & - & Aggiunge valutazioni MPC-IG/MPC-CD/MPC-CR \\
+    \hline
+    0.3.0 & 2026-06-08 & S. Zecchinato & - & - & Aggiunge valutazione MPC-AC/MPC-ETC \\ 
+    \hline
+    0.2.0 & 2026-06-07 & S. Zecchinato & - & - & Aggiunge valutazione MPC-PV/MPC-EV \\
+    \hline
+    0.1.1 & 2026-06-04 & L. Battistella & - & - & Aggiornamento test$_G$ di sistema$_G$. \\ 
+    \hline
+    0.1.0 & 2026-05-14 & A. Marini & - & - & Creazione prima versione del documento Piano di Qualifica$_G$. Inserimento struttura iniziale, riferimenti, metriche di qualità e strategia di testing. \\ \hline
 
 \end{longtable}
 \endgroup
@@ -90,89 +101,95 @@
 
 \subsection{Scopo del documento}
 
-Il presente documento descrive il \textit{Piano di Qualifica} adottato dal gruppo \textit{The Bitless} per il progetto \textit{Second Brain}, relativo al capitolato C6 proposto dall'azienda Zucchetti.
+Il presente documento descrive il \textit{Piano di Qualifica} adottato dal gruppo \textit{The Bitless} per il progetto \textit{Second Brain}, relativo al capitolato$_G$ C6 proposto dall'azienda Zucchetti.
 
-Il Piano di Qualifica ha lo scopo di definire in modo esplicito gli obiettivi di qualità perseguiti durante lo sviluppo del prodotto software e le modalità con cui tali obiettivi vengono misurati, controllati e progressivamente migliorati.
+Il Piano di Qualifica$_G$ ha lo scopo di definire in modo esplicito gli obiettivi di qualità perseguiti durante lo sviluppo$_G$ del prodotto software e le modalità con cui tali obiettivi vengono misurati, controllati e progressivamente migliorati.
 
 Il documento raccoglie quindi:
 \begin{itemize}
     \item le metriche utilizzate per valutare la qualità dei processi interni al gruppo;
     \item le metriche utilizzate per valutare la qualità del prodotto software;
-    \item la strategia di verifica e validazione adottata;
-    \item la classificazione dei test previsti;
+    \item la strategia di verifica$_G$ e validazione$_G$ adottata;
+    \item la classificazione dei test$_G$ previsti;
     \item i criteri con cui interpretare i risultati raccolti nel cruscotto di valutazione.
 \end{itemize}
 
-Il Piano di Qualifica non ha l'obiettivo di sostituire le \textit{Norme di Progetto}, nelle quali vengono definite le procedure operative seguite dal gruppo. Esso stabilisce invece quali aspetti devono essere misurati, quali valori sono considerati accettabili e quali valori rappresentano un risultato ottimale.
+Il Piano di Qualifica$_G$ non ha l'obiettivo di sostituire le \textit{Norme di Progetto}, nelle quali vengono definite le procedure operative seguite dal gruppo. Esso stabilisce invece quali aspetti devono essere misurati, quali valori sono considerati accettabili e quali valori rappresentano un risultato ottimale.
 
 \subsection{Scopo del prodotto}
 
-Il prodotto richiesto dal capitolato C6 consiste in un'applicazione web per la scrittura e la gestione di note in formato Markdown, arricchita dall'integrazione con un Large Language Model.
+Il prodotto richiesto dal capitolato$_G$ C6 consiste in un'applicazione web per la scrittura e la gestione di note in formato Markdown, arricchita dall'integrazione$_G$ con un Large Language Model$_G$.
 
 L'applicazione deve permettere all'utente di:
 \begin{itemize}
     \item scrivere testo Markdown in un'area di editing;
     \item visualizzare il risultato formattato in una zona di rendering;
-    \item applicare operazioni basate su LLM al testo completo o a una selezione;
+    \item applicare operazioni basate su LLM$_G$ al testo completo o a una selezione;
     \item riassumere, riscrivere e tradurre il testo;
-    \item ottenere analisi critiche secondo il modello dei sei cappelli per pensare;
+    \item ottenere analisi critiche secondo il modello dei sei cappelli per pensare$_G$;
     \item generare un testo completo a partire da un prompt;
     \item salvare e recuperare note in formato testuale.
 \end{itemize}
 
-La qualità del prodotto deve quindi essere valutata non solo rispetto alla correttezza funzionale, ma anche rispetto alla facilità d'uso, alla stabilità dell'interazione con il modello linguistico, alla manutenibilità del codice e alla verificabilità delle funzionalità principali.
+La qualità del prodotto deve quindi essere valutata non solo rispetto alla correttezza funzionale, ma anche rispetto alla facilità d'uso, alla stabilità dell'interazione con il modello linguistico, alla manutenibilità$_G$ del codice e alla verificabilità delle funzionalità principali.
 
 \subsection{Glossario}
 
-Per evitare ambiguità terminologiche, i termini tecnici, di dominio o potenzialmente equivoci sono definiti nel documento \textit{Glossario}. Alla prima occorrenza significativa nel presente documento, tali termini devono essere interpretati secondo la definizione riportata nel Glossario.
+Per evitare ambiguità terminologiche, i termini tecnici, di dominio$_G$ o potenzialmente equivoci sono definiti nel documento \textit{Glossario}. Alla prima occorrenza significativa nel presente documento, tali termini devono essere interpretati secondo la definizione riportata nel Glossario.
 
 \subsection{Riferimenti}
 
 \subsubsection{Riferimenti normativi}
 
 \begin{itemize}
-    \item \textbf{Norme di Progetto v0.1.0} \\
-    \url{https://thebitless.live/RTB/doc_interna/norme-di-progetto/norme-di-progetto.pdf}
-    Ultimo accesso 14 maggio 2026
+    \item \href{https://thebitless.live/RTB/doc_interna/norme-di-progetto/norme-di-progetto.pdf}{\textbf{Norme di Progetto v1.0.0}} \\ 
+    Documento interno del gruppo \textit{The Bitless}, contenente le procedure operative, gli strumenti adottati e le convenzioni seguite nello svolgimento del progetto. \\
+    Ultimo accesso: 24 giugno 2026
 
-    \item \textbf{Piano di Progetto v0.1.0} \\
-    \url{https://thebitless.live/RTB/doc_interna/piano-di-progetto/piano-di-progetto.pdf}
-    Ultimo accesso 10 maggio 2026
+    \item \href{https://thebitless.live/RTB/doc_esterna/piano-di-progetto/piano-di-progetto.pdf}{\textbf{Piano di Progetto v1.0.0}} \\
+    Documento interno del gruppo \textit{The Bitless}, contenente la pianificazione delle attività, la stima dei costi, la gestione dei rischi e il consuntivo di avanzamento. \\
+    Ultimo accesso: 22 giugno 2026
 
-    \item \textbf{Analisi dei Requisiti v2.0.0} \\
-    \url{https://thebitless.live/RTB/doc_esterna/analisi-dei-requisiti/analisi-dei-requisiti.pdf}
-    Ultimo accesso 9 maggio 2026
+    \item \href{https://thebitless.live/RTB/doc_esterna/analisi-dei-requisiti/analisi-dei-requisiti.pdf}{\textbf{Analisi dei Requisiti v1.0.0}} \\
+    Documento esterno del gruppo \textit{The Bitless}, contenente la descrizione dei casi d'uso$_G$, dei Requisiti Funzionali$_G$, dei requisiti$_G$ non funzionali e dei vincoli di progetto. \\
+    Ultimo accesso: 22 giugno 2026
 
-    \item \textbf{Capitolato C6 - Second Brain} \\
-    
-    
+    \item \href{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C6.pdf}{\textbf{Capitolato C6 -- Second Brain}} \\
+    Capitolato$_G$ proposto dall'azienda Zucchetti per il corso di Ingegneria del Software 2025/2026. \\
+    Ultimo accesso: 24 giugno 2026
 \end{itemize}
 
 \subsubsection{Riferimenti informativi}
 
 \begin{itemize}
-    \item \textbf{Glossario v0.1.0} \\
-    \url{https://thebitless.live/RTB/doc_interna/glossario/glossario.pdf}
-    Ultimo accesso 30 marzo 2026
+    \item \href{https://thebitless.live/RTB/doc_interna/glossario/glossario.pdf}{\textbf{Glossario v1.0.0}} \\
+    Documento contenente le definizioni dei termini rilevanti utilizzati nei prodotti documentali del gruppo. \\ 
+    Ultimo accesso: 14 maggio 2026
 
-    \item \textbf{Slide T07 -- Qualità del software} \\
-    Materiale didattico del corso di Ingegneria del Software.
+    \item \href{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T07.pdf}{\textbf{Slide T07 -- Qualità del software}} \\
+    Materiale didattico del corso di Ingegneria del Software. \\
+    Ultimo accesso: 23 giugno 2026
 
-    \item \textbf{Slide T08 -- Qualità del software} \\
-    Materiale didattico del corso di Ingegneria del Software.
+    \item \href{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T08.pdf}{\textbf{Slide T08 -- Qualità del software}} \\
+    Materiale didattico del corso di Ingegneria del Software. \\
+    Ultimo accesso: 23 giugno 2026
 
     \item \textbf{ISO/IEC 25010} \\
-    Standard utilizzato come riferimento informativo per la classificazione delle caratteristiche di qualità del prodotto software.
+    Standard utilizzato come riferimento informativo per la classificazione delle caratteristiche di qualità del prodotto software. \\
+    Ultimo accesso: 08 giugno 2026
 
-    \item \textbf{Documentazione Markdown} \\
+    \item \href{https://md-tool.com/it/markdown-guide}{\textbf{Documentazione Markdown}} \\
+    Riferimento informativo per la sintassi Markdown e per le funzionalità di rendering previste dal prodotto.\\
+    Ultimo accesso: 21 giugno 2026
 
-    \item \textbf{Documentazione API compatibili con OpenAI} \\
-    Riferimento informativo per l'integrazione con modelli linguistici tramite chiamate HTTP.
+    \item \href{https://developers.openai.com/api/reference/overview}{\textbf{Documentazione API compatibili con OpenAI}} \\
+    Riferimento informativo per l'integrazione$_G$ con modelli linguistici tramite chiamate HTTP.\\
+    Ultimo accesso: 20 giugno 2026
 \end{itemize}
 
 \section{Metriche di qualità del processo}
 
-Le metriche di qualità del processo misurano l’efficacia, l’efficienza e il controllo delle attività necessarie per sviluppare, gestire e consegnare il prodotto software. Esse non misurano direttamente il comportamento del prodotto finale, ma valutano l'efficacia della pianificazione, la stabilità dei requisiti, la qualità della documentazione, l'efficienza delle verifiche e la sostenibilità del lavoro.
+Le metriche di qualità del processo permettono di controllare il modo in cui il gruppo organizza e svolge le proprie attività. Esse non misurano direttamente il comportamento del prodotto finale, ma valutano l'efficacia della pianificazione, la stabilità dei requisiti$_G$, la qualità della documentazione, l'efficienza delle verifiche e la sostenibilità del lavoro.
 
 Nel presente documento le metriche di processo sono identificate con il prefisso \textbf{MPC}, acronimo di \textit{Metrica di Processo e Controllo}. Ogni metrica è associata a:
 \begin{itemize}
@@ -199,13 +216,13 @@ Le metriche relative alla fornitura misurano l'andamento del progetto rispetto a
 
     MPC-PV & Planned Value & $> 0$ & Coerente con la pianificazione approvata \\ \hline
     MPC-EV & Earned Value & $\geq 80\%$ del valore pianificato & $\geq$ Planned Value \\ \hline
-    MPC-AC & Actual Cost & $\leq 120\%$ del costo pianificato & $\leq$ costo pianificato \\ \hline
-    MPC-CV & Cost Variance & $\geq -10\%$ & $\geq 0$ \\ \hline
-    MPC-SV & Schedule Variance & $\geq -10\%$ & $\geq 0$ \\ \hline
-    MPC-EAC & Estimate At Completion & $\leq 110\%$ del budget & $\leq$ budget approvato \\ \hline
-    MPC-ETC & Estimate To Complete & Valore definito e aggiornato & Valore coerente con il piano a finire \\ \hline
-    MPC-TCR & Task Completion Rate & $\geq 85\%$ & $100\%$ \\ \hline
-    MPC-TS & Task Slippage & $\leq 15\%$ & $0\%$ \\ \hline
+    MPC-AC & Actual Cost$_G$ & $>0\%$ & $\leq$ EAC \\ \hline
+    MPC-CV & Cost Variance & $> 0$ & $= 0$ \\ \hline
+    MPC-SV & Schedule Variance & $\geq 0$ & $> 0$ \\ \hline
+    MPC-EAC & Estimate At Completion & $\leq 110\%$ del budget$_G$ & $\leq$ budget$_G$ approvato \\ \hline
+    MPC-ETC & Estimate To Complete & $\geq 0$ & $\geq 0$ \\ \hline
+    MPC-TCR & Task$_G$ Completion Rate & $\geq 85\%$ & $100\%$ \\ \hline
+    MPC-TS & Task$_G$ Slippage & $\leq 15\%$ & $0\%$ \\ \hline
 
     \caption{Metriche per la qualità del processo di fornitura.}
     \label{tab:metriche-fornitura}
@@ -214,9 +231,9 @@ Le metriche relative alla fornitura misurano l'andamento del progetto rispetto a
 
 \subsection{Sviluppo}
 
-Le metriche relative allo sviluppo controllano la stabilità del lavoro tecnico e la capacità del gruppo di introdurre modifiche in modo ordinato, verificabile e tracciabile.
+Le metriche relative allo sviluppo$_G$ controllano la stabilità del lavoro tecnico e la capacità del gruppo di introdurre modifiche in modo ordinato, verificabile e tracciabile.
 
-Nel progetto \textit{Second Brain}, particolare attenzione viene posta alla stabilità dei requisiti collegati all'integrazione con LLM, poiché la natura esplorativa del capitolato può portare a raffinamenti progressivi dei prompt, delle funzioni disponibili e delle modalità di interazione con il testo.
+Nel progetto \textit{Second Brain}, particolare attenzione viene posta alla stabilità dei requisiti$_G$ collegati all'integrazione$_G$ con LLM$_G$, poiché la natura esplorativa del capitolato$_G$ può portare a raffinamenti progressivi dei prompt, delle funzioni disponibili e delle modalità di interazione con il testo.
 
 \begingroup
 \small
@@ -228,9 +245,9 @@ Nel progetto \textit{Second Brain}, particolare attenzione viene posta alla stab
     \endhead
 
     MPC-RSI & Requirements Stability Index & $\geq 80\%$ & $100\%$ \\ \hline
-    MPC-PRCT & Pull Request Cycle Time & $\leq 72$ ore & $\leq 24$ ore \\ \hline
-    MPC-MR & Merge Rework & $\leq 20\%$ delle pull request & $\leq 5\%$ delle pull request \\ \hline
-    MPC-IR & Issue Reopening Rate & $\leq 15\%$ & $0\%$ \\ \hline
+    MPC-PRCT & Pull Request$_G$ Cycle Time & $\leq 72$ ore & $\leq 24$ ore \\ \hline
+    MPC-MR & Merge$_G$ Rework & $\leq 20\%$ delle pull request$_G$ & $\leq 5\%$ delle pull request$_G$ \\ \hline
+    MPC-IR & Issue$_G$ Reopening Rate & $\leq 15\%$ & $0\%$ \\ \hline
 
     \caption{Metriche per la qualità del processo di sviluppo.}
     \label{tab:metriche-sviluppo}
@@ -239,7 +256,7 @@ Nel progetto \textit{Second Brain}, particolare attenzione viene posta alla stab
 
 \subsection{Documentazione}
 
-Le metriche relative alla documentazione misurano la leggibilità, la correttezza e la verificabilità dei documenti prodotti. Poiché i documenti rappresentano il principale mezzo di comunicazione verso committente, proponenti e docenti, essi devono essere chiari, aggiornati e coerenti tra loro.
+Le metriche relative alla documentazione misurano la leggibilità, la correttezza e la verificabilità dei documenti prodotti. Poiché i documenti rappresentano il principale mezzo di comunicazione verso committente$_G$, proponenti e docenti, essi devono essere chiari, aggiornati e coerenti tra loro.
 
 \begingroup
 \small
@@ -251,9 +268,7 @@ Le metriche relative alla documentazione misurano la leggibilità, la correttezz
     \endhead
 
     MPC-IG & Indice di Gulpease & $\geq 40$ & $\geq 60$ \\ \hline
-    MPC-CO & Correttezza ortografica & Nessun errore grave & $0$ errori \\ \hline
-    MPC-CD & Completezza documentale & $\geq 90\%$ sezioni previste & $100\%$ sezioni previste \\ \hline
-    MPC-CR & Coerenza dei riferimenti & $\geq 95\%$ riferimenti validi & $100\%$ riferimenti validi \\ \hline
+    MPC-CO & Correttezza ortografica & Errore grave $=0\%$ & $CO \geq 99\% $ \\ \hline
 
     \caption{Metriche per la qualità della documentazione.}
     \label{tab:metriche-documentazione}
@@ -262,7 +277,7 @@ Le metriche relative alla documentazione misurano la leggibilità, la correttezz
 
 \subsection{Verifica}
 
-Le metriche relative alla verifica misurano l'efficacia delle attività di controllo svolte sul prodotto e sui documenti. Esse permettono di valutare se gli errori vengono individuati tempestivamente e se le correzioni introdotte risultano effettivamente risolutive.
+Le metriche relative alla verifica$_G$ misurano l'efficacia delle attività di controllo svolte sul prodotto e sui documenti. Esse permettono di valutare se gli errori vengono individuati tempestivamente e se le correzioni introdotte risultano effettivamente risolutive.
 
 \begingroup
 \small
@@ -274,10 +289,10 @@ Le metriche relative alla verifica misurano l'efficacia delle attività di contr
     \endhead
 
     MPC-CC & Code Coverage & $\geq 70\%$ & $\geq 90\%$ \\ \hline
-    MPC-TSR & Test Success Rate & $\geq 95\%$ & $100\%$ \\ \hline
+    MPC-TSR & Test$_G$ Success Rate & $\geq 95\%$ & $100\%$ \\ \hline
     MPC-DD & Defect Density & $\leq 2$ difetti per componente & $0$ difetti aperti \\ \hline
-    MPC-TR & Test Requirements Coverage & $100\%$ requisiti obbligatori coperti & $100\%$ requisiti coperti \\ \hline
-    MPC-QMS & Quality Metrics Satisfied & $\geq 80\%$ & $100\%$ \\ \hline
+    MPC-TR & Test$_G$ Requirements Coverage & $100\%$ requisiti$_G$ obbligatori coperti & $100\%$ requisiti$_G$ coperti \\ \hline
+    MPC-PMS & Percentuale Metriche Soddisfatte & $\geq 80\%$ & $100\%$ \\ \hline
 
     \caption{Metriche per la qualità del processo di verifica.}
     \label{tab:metriche-verifica}
@@ -286,7 +301,7 @@ Le metriche relative alla verifica misurano l'efficacia delle attività di contr
 
 \section{Metriche di qualità del prodotto}
 
-Le metriche di qualità del prodotto misurano le caratteristiche del software realizzato. A differenza delle metriche di processo, esse valutano direttamente il comportamento dell'applicazione, la sua affidabilità, la sua facilità d'uso e la sua capacità di soddisfare i requisiti del capitolato.
+Le metriche di qualità del prodotto misurano le caratteristiche del software realizzato. A differenza delle metriche di processo, esse valutano direttamente il comportamento dell'applicazione, la sua affidabilità, la sua facilità d'uso e la sua capacità di soddisfare i requisiti$_G$ del capitolato$_G$.
 
 Nel presente documento le metriche di prodotto sono identificate con il prefisso \textbf{MPD}, acronimo di \textit{Metrica di Prodotto}. Le caratteristiche considerate sono:
 \begin{itemize}
@@ -294,13 +309,13 @@ Nel presente documento le metriche di prodotto sono identificate con il prefisso
     \item affidabilità;
     \item usabilità;
     \item efficienza;
-    \item manutenibilità;
+    \item manutenibilità$_G$;
     \item sicurezza.
 \end{itemize}
 
 \subsection{Funzionalità}
 
-Le metriche di funzionalità misurano quanto il prodotto soddisfa i requisiti individuati nell'Analisi dei Requisiti. Per il progetto \textit{Second Brain}, la copertura dei requisiti obbligatori è particolarmente importante, poiché il capitolato richiede un insieme minimo di funzionalità necessarie per considerare accettabile il prodotto.
+Le metriche di funzionalità misurano quanto il prodotto soddisfa i requisiti$_G$ individuati nell'Analisi dei Requisiti$_G$. Per il progetto \textit{Second Brain}, la copertura dei requisiti$_G$ obbligatori è particolarmente importante, poiché il capitolato$_G$ richiede un insieme minimo di funzionalità necessarie per considerare accettabile il prodotto.
 
 \begingroup
 \small
@@ -311,10 +326,10 @@ Le metriche di funzionalità misurano quanto il prodotto soddisfa i requisiti in
     \hline
     \endhead
 
-    MPD-CRO & Copertura requisiti obbligatori & $100\%$ & $100\%$ \\ \hline
-    MPD-CRD & Copertura requisiti desiderabili & $\geq 50\%$ & $\geq 80\%$ \\ \hline
-    MPD-CROp & Copertura requisiti opzionali & $\geq 0\%$ & $\geq 60\%$ \\ \hline
-    MPD-CLLM & Copertura funzioni LLM obbligatorie & $100\%$ & $100\%$ \\ \hline
+    MPD-CRO & Copertura requisiti$_G$ obbligatori & $100\%$ & $100\%$ \\ \hline
+    MPD-CRD & Copertura requisiti$_G$ desiderabili & $\geq 50\%$ & $\geq 80\%$ \\ \hline
+    MPD-CROp & Copertura requisiti$_G$ opzionali & $\geq 0\%$ & $\geq 60\%$ \\ \hline
+    MPD-CLLM & Copertura funzioni LLM$_G$ obbligatorie & $100\%$ & $100\%$ \\ \hline
     MPD-CMD & Correttezza rendering Markdown & $\geq 95\%$ casi previsti & $100\%$ casi previsti \\ \hline
     MPD-SN & Salvataggio e recupero note & $100\%$ casi obbligatori & $100\%$ casi obbligatori \\ \hline
 
@@ -325,13 +340,13 @@ Le metriche di funzionalità misurano quanto il prodotto soddisfa i requisiti in
 
 \subsection{Affidabilità}
 
-Le metriche di affidabilità misurano la capacità del prodotto di mantenere un comportamento corretto anche in presenza di input non ottimali, errori di comunicazione o risposte inattese da parte del modello linguistico.
+Le metriche di affidabilità misurano la capacità del prodotto di mantenere un comportamento corretto anche in presenza di input$_G$ non ottimali, errori di comunicazione o risposte inattese da parte del modello linguistico.
 
-Nel contesto del capitolato C6, l'affidabilità riguarda in particolare:
+Nel contesto del capitolato$_G$ C6, l'affidabilità riguarda in particolare:
 \begin{itemize}
     \item la stabilità dell'editor durante la scrittura;
     \item la conservazione del testo inserito dall'utente;
-    \item la gestione degli errori provenienti dall'LLM;
+    \item la gestione degli errori provenienti dall'LLM$_G$;
     \item la capacità di evitare perdita di dati durante salvataggio e caricamento delle note.
 \end{itemize}
 
@@ -344,10 +359,10 @@ Nel contesto del capitolato C6, l'affidabilità riguarda in particolare:
     \hline
     \endhead
 
-    MPD-DL & Data Loss & $0$ perdite nei casi principali & $0$ perdite in ogni test \\ \hline
+    MPD-DL & Data Loss & $0$ perdite nei casi principali & $0$ perdite in ogni test$_G$ \\ \hline
     MPD-EH & Error Handling & $\geq 90\%$ errori gestiti & $100\%$ errori gestiti \\ \hline
     MPD-SR & Session Recovery & Recupero testo nei casi previsti & Recupero completo e automatico \\ \hline
-    MPD-AR & Availability Rate & $\geq 95\%$ durante i test & $\geq 99\%$ durante i test \\ \hline
+    MPD-AR & Availability Rate & $\geq 95\%$ durante i test$_G$ & $\geq 99\%$ durante i test$_G$ \\ \hline
 
     \caption{Metriche per la qualità dell'affidabilità.}
     \label{tab:metriche-affidabilita}
@@ -356,14 +371,14 @@ Nel contesto del capitolato C6, l'affidabilità riguarda in particolare:
 
 \subsection{Usabilità}
 
-Le metriche di usabilità valutano la facilità con cui l'utente può comprendere e utilizzare l'applicazione. Il prodotto deve risultare accessibile anche a utenti non esperti, come richiesto dalla natura del capitolato.
+Le metriche di usabilità valutano la facilità con cui l'utente può comprendere e utilizzare l'applicazione. Il prodotto deve risultare accessibile anche a utenti non esperti, come richiesto dalla natura del capitolato$_G$.
 
 L'interfaccia deve permettere di distinguere chiaramente:
 \begin{itemize}
     \item l'area di editing Markdown;
     \item l'area di rendering;
     \item i comandi base sul testo;
-    \item i comandi collegati all'LLM;
+    \item i comandi collegati all'LLM$_G$;
     \item le funzioni di salvataggio e caricamento.
 \end{itemize}
 
@@ -392,7 +407,7 @@ Le metriche di efficienza misurano i tempi di risposta e l'uso delle risorse. Ne
 \begin{itemize}
     \item tempo di risposta dell'interfaccia locale;
     \item tempo di rendering Markdown;
-    \item tempo di risposta delle chiamate LLM.
+    \item tempo di risposta delle chiamate LLM$_G$.
 \end{itemize}
 
 \begingroup
@@ -406,7 +421,7 @@ Le metriche di efficienza misurano i tempi di risposta e l'uso delle risorse. Ne
 
     MPD-RT & Response Time interfaccia & $\leq 2$ secondi & $\leq 0{,}5$ secondi \\ \hline
     MPD-MRT & Markdown Rendering Time & $\leq 1$ secondo & $\leq 0{,}3$ secondi \\ \hline
-    MPD-LLMRT & LLM Response Time & $\leq 15$ secondi & $\leq 8$ secondi \\ \hline
+    MPD-LLMRT & LLM$_G$ Response Time & $\leq 15$ secondi & $\leq 8$ secondi \\ \hline
     MPD-LS & Loading Speed & $\leq 3$ secondi & $\leq 1$ secondo \\ \hline
 
     \caption{Metriche per la qualità dell'efficienza.}
@@ -416,7 +431,7 @@ Le metriche di efficienza misurano i tempi di risposta e l'uso delle risorse. Ne
 
 \subsection{Manutenibilità}
 
-Le metriche di manutenibilità valutano quanto il codice sia comprensibile, modificabile e testabile. Considerata la natura evolutiva del progetto, è importante che l'architettura permetta di aggiungere o modificare funzioni LLM, prompt e modalità di salvataggio senza introdurre regressioni.
+Le metriche di manutenibilità$_G$ valutano quanto il codice sia comprensibile, modificabile e testabile. Considerata la natura evolutiva del progetto, è importante che l'architettura permetta di aggiungere o modificare funzioni LLM$_G$, prompt e modalità di salvataggio senza introdurre regressioni.
 
 \begingroup
 \small
@@ -439,7 +454,7 @@ Le metriche di manutenibilità valutano quanto il codice sia comprensibile, modi
 
 \subsection{Sicurezza}
 
-Le metriche di sicurezza misurano la capacità del prodotto di proteggere dati, chiavi di accesso e contenuti dell'utente. Poiché l'applicazione interagisce con servizi LLM esterni, è necessario evitare l'esposizione impropria di credenziali e gestire con attenzione i dati inviati tramite API.
+Le metriche di sicurezza misurano la capacità del prodotto di proteggere dati, chiavi di accesso e contenuti dell'utente. Poiché l'applicazione interagisce con servizi LLM$_G$ esterni, è necessario evitare l'esposizione impropria di credenziali e gestire con attenzione i dati inviati tramite API$_G$.
 
 \begingroup
 \small
@@ -451,9 +466,9 @@ Le metriche di sicurezza misurano la capacità del prodotto di proteggere dati, 
     \endhead
 
     MPD-SK & Secret Key Exposure & $0$ chiavi esposte & $0$ chiavi esposte \\ \hline
-    MPD-IV & Input Validation & $\geq 95\%$ input validati & $100\%$ input validati \\ \hline
+    MPD-IV & Input$_G$ Validation & $\geq 95\%$ input$_G$ validati & $100\%$ input$_G$ validati \\ \hline
     MPD-DS & Data Sanitization & $\geq 95\%$ dati sanificati & $100\%$ dati sanificati \\ \hline
-    MPD-PR & Privacy Risk & Nessun dato sensibile non necessario inviato & Minimizzazione completa dei dati inviati \\ \hline
+    MPD-PR$_G$ & Privacy Risk & Nessun dato sensibile non necessario inviato & Minimizzazione completa dei dati inviati \\ \hline
 
     \caption{Metriche per la qualità della sicurezza.}
     \label{tab:metriche-sicurezza}
@@ -462,98 +477,117 @@ Le metriche di sicurezza misurano la capacità del prodotto di proteggere dati, 
 
 \section{Strategia di verifica e testing}
 
-La strategia di verifica adottata dal gruppo ha lo scopo di fornire evidenza oggettiva del corretto avanzamento del progetto e della conformità del prodotto rispetto ai requisiti individuati.
+La strategia di verifica$_G$ adottata dal gruppo ha lo scopo di fornire evidenza oggettiva del corretto avanzamento del progetto e della conformità del prodotto rispetto ai requisiti$_G$ individuati.
 
-Le attività di testing vengono organizzate in modo progressivo. Nelle fasi iniziali vengono privilegiati test e controlli sulle funzionalità fondamentali, mentre nelle fasi successive la copertura viene estesa alle interazioni tra componenti, ai flussi completi e ai requisiti non funzionali.
+Le attività di testing vengono organizzate in modo progressivo. Nelle fasi iniziali vengono privilegiati test$_G$ e controlli sulle funzionalità fondamentali, mentre nelle fasi successive la copertura viene estesa alle interazioni tra componenti, ai flussi completi e ai requisiti$_G$ non funzionali.
 
-Ogni test è identificato da un codice univoco, da una descrizione, dal requisito associato e da uno stato.
+Ogni test$_G$ è identificato da un codice univoco, da una descrizione, dal requisito associato e da uno stato.
 
 \subsection{Stati dei test}
 
-Gli stati utilizzati per classificare i test sono i seguenti:
+Gli stati utilizzati per classificare i test$_G$ sono i seguenti:
 
 \begin{itemize}
-    \item \textbf{NI -- Non Implementato}: il test è stato previsto, ma non è ancora stato implementato;
-    \item \textbf{I -- Implementato}: il test è stato implementato, ma non ancora eseguito o verificato stabilmente;
-    \item \textbf{S -- Superato}: il test è stato eseguito e ha prodotto esito positivo;
-    \item \textbf{NS -- Non Superato}: il test è stato eseguito, ma ha prodotto esito negativo;
-    \item \textbf{NA -- Non Applicabile}: il test non è applicabile alla versione corrente del prodotto.
+    \item \textbf{NI -- Non Implementato}: il test$_G$ è stato previsto, ma non è ancora stato implementato;
+    \item \textbf{I -- Implementato}: il test$_G$ è stato implementato, ma non ancora eseguito o verificato stabilmente;
+    \item \textbf{S -- Superato}: il test$_G$ è stato eseguito e ha prodotto esito positivo;
+    \item \textbf{NS -- Non Superato}: il test$_G$ è stato eseguito, ma ha prodotto esito negativo;
+    \item \textbf{NA -- Non Applicabile}: il test$_G$ non è applicabile alla versione corrente del prodotto.
 \end{itemize}
 
 \subsection{Copertura del codice}
 
-La copertura del codice misura la percentuale di codice sorgente eseguita durante l'esecuzione dei test automatici.
+La copertura del codice misura la percentuale di codice sorgente eseguita durante l'esecuzione dei test$_G$ automatici.
 
-Questa metrica viene utilizzata come indicatore della quantità di codice effettivamente verificata, ma non è sufficiente da sola a garantire la correttezza del prodotto. Per questo motivo viene interpretata insieme al tasso di successo dei test, alla copertura dei requisiti e al numero di difetti individuati.
+Questa metrica viene utilizzata come indicatore della quantità di codice effettivamente verificata, ma non è sufficiente da sola a garantire la correttezza del prodotto. Per questo motivo viene interpretata insieme al tasso di successo dei test$_G$, alla copertura dei requisiti$_G$ e al numero di difetti individuati.
 
 Il valore minimo accettabile è fissato al $70\%$, mentre il valore ottimale è pari o superiore al $90\%$.
 
 \subsection{Test unitari}
 
-I test unitari verificano singole unità software in isolamento. Nel progetto \textit{Second Brain}, tali test riguardano principalmente:
+I Test Unitari$_G$ verificano singole unità software$_G$ in isolamento. Nel progetto \textit{Second Brain}, tali test$_G$ riguardano principalmente:
 \begin{itemize}
     \item parsing e gestione del testo Markdown;
     \item funzioni di aggiornamento dello stato dell'editor;
-    \item validazione degli input;
-    \item costruzione dei prompt da inviare all'LLM;
+    \item validazione$_G$ degli input$_G$;
+    \item costruzione dei prompt da inviare all'LLM$_G$;
     \item funzioni di salvataggio e lettura delle note;
     \item gestione degli errori applicativi.
 \end{itemize}
 
-La specifica dei test unitari viene raffinata con l'avanzamento della progettazione di dettaglio. In questa fase, il Piano di Qualifica definisce la strategia e gli obiettivi di copertura, mentre l'elenco puntuale dei test sarà aggiornato quando le unità software saranno stabilizzate.
+La specifica dei Test Unitari$_G$ viene raffinata con l'avanzamento della progettazione di dettaglio. In questa fase, il Piano di Qualifica$_G$ definisce la strategia e gli obiettivi di copertura, mentre l'elenco puntuale dei test$_G$ sarà aggiornato quando le unità software$_G$ saranno stabilizzate.
 
 \subsection{Test di integrazione}
 
-I test di integrazione verificano la corretta collaborazione tra più componenti del sistema. Essi sono particolarmente importanti per controllare:
-\begin{itemize}
-    \item la comunicazione tra editor e renderer Markdown;
-    \item l'invio del testo selezionato alle funzioni LLM;
-    \item la ricezione e visualizzazione della risposta del modello;
-    \item il collegamento tra interfaccia utente e sistema di persistenza;
-    \item la gestione degli errori provenienti da API esterne.
-\end{itemize}
+\newcolumntype{D}{>{\hsize=1.45\hsize}X} % Descrizione Interfaccia
+\newcolumntype{M}{>{\hsize=0.55\hsize}X} % Moduli Coinvolti
 
-Questi test permettono di individuare errori che non emergono necessariamente durante la verifica delle singole unità, ma che si manifestano quando più componenti vengono usati insieme.
+I test$_G$ di integrazione$_G$ del PoC$_G$ verificano che i moduli dell'architettura dialoghino correttamente ai loro confini, validando interfacce, formato dei dati scambiati e propagazione degli errori lungo l'intera catena.
+\begin{table}[H]
+	\centering
+	\begin{tabularx}{\textwidth}{|l|D|M|}
+		\hline
+		\textbf{Codice} & \textbf{Descrizione Interfaccia} & \textbf{Moduli Coinvolti} \\
+		\hline
+		\textbf{TI-001} & Verifica$_G$ dello scambio dati e della gestione degli errori tra hook e FastAPI; invio della richiesta via fetch POST, ricezione dello stream SSE e gestione dell'indisponibilità del provider (HTTP 503). & Frontend$_G$ React (hook useLlmStream) $\leftrightarrow$ Backend FastAPI \\
+		\hline
+		\textbf{TI-002} & Verifica$_G$ dell'invio del prompt di sistema$_G$ e del contesto utente verso il modello LLM$_G$ e della ricezione dello stream di risposta openai-compatible dall'API$_G$ del provider, tramite client HTTP asincrono (httpx). & LLMClient / LiteLLMClient $\leftrightarrow$ Provider LiteLLM Zucchetti \\
+		\hline
+		\textbf{TI-003} & Verifica$_G$ della propagazione dell'annullamento lungo l'intera catena; dall'AbortController lato client a Request.is\_disconnected() lato server, fino alla chiusura dello stream del provider. & AbortController (client) $\leftrightarrow$ Request.is\_disconnected() (server) \\
+		\hline
+		\textbf{TI-004} & Verifica$_G$ del parsing dei chunk SSE e dell'aggiornamento progressivo dello stato globale dell'applicazione (appendChunk / streamedOutput). & useLlmStream (parsing via lib/sse.ts) $\leftrightarrow$ Store Zustand \\
+		\hline
+		\textbf{TI-005} & Verifica$_G$ del binding del testo e del re-render granulare dell'anteprima durante lo streaming, mediato dalla store globale: l'editor mantiene il focus mentre solo la preview si aggiorna. & Store Zustand (selettori granulari) $\leftrightarrow$ Editor / Preview \\
+		\hline
+		\textbf{TI-006} & Verifica$_G$ dell'applicazione a runtime della politica CORS tra i due servizi containerizzati; le richieste provenienti da un'origine non presente nella whitelist vengono bloccate, quelle da origine consentita vengono accettate. & Origine cross-origin del browser $\leftrightarrow$ CORSMiddleware (FastAPI) \\
+		\hline
+		\textbf{TI-007} & Verifica$_G$ dell'integrazione$_G$ del pannello dei comandi con la logica di streaming e lo stato globale, il click su ``Genera'' disabilita il bottone tramite isGenerating, un errore del provider compare nell'Alert tramite errorMessage e il testo presente nell'editor resta intatto. & AIPanel $\leftrightarrow$ useLlmStream $\leftrightarrow$ Store Zustand \\
+		\hline
+	\end{tabularx}
+	\caption{Test di integrazione}
+	\label{tab:test-integrazione}
+\end{table}
+
 
 \subsection{Test di sistema}
 
-I test di sistema verificano il comportamento complessivo dell'applicazione rispetto ai requisiti funzionali e non funzionali. Essi vengono definiti a partire dai casi d'uso e dai requisiti presenti nell'Analisi dei Requisiti.
+I test$_G$ di sistema$_G$ verificano il comportamento complessivo dell'applicazione rispetto ai Requisiti Funzionali$_G$ e non funzionali. Essi vengono definiti a partire dai casi d'uso$_G$ e dai requisiti$_G$ presenti nell'Analisi dei Requisiti$_G$.
 
-Per il progetto \textit{Second Brain}, i test di sistema devono coprire almeno i seguenti scenari:
+Per il progetto \textit{Second Brain}, i test$_G$ di sistema$_G$ devono coprire almeno i seguenti scenari:
 \begin{itemize}
     \item scrittura di testo Markdown nell'area di editing;
     \item visualizzazione corretta del testo formattato;
     \item applicazione della funzione di riassunto;
     \item applicazione della funzione di riscrittura;
     \item applicazione della funzione di traduzione;
-    \item applicazione delle critiche secondo i sei cappelli per pensare;
+    \item applicazione delle critiche secondo i sei cappelli per pensare$_G$;
     \item generazione di un testo completo a partire da prompt;
     \item salvataggio e caricamento di una nota.
 \end{itemize}
 
 \subsection{Test di regressione}
 
-I test di regressione vengono eseguiti dopo modifiche al codice, correzioni di difetti o introduzione di nuove funzionalità. Il loro obiettivo è verificare che il comportamento già validato non sia stato compromesso.
+I test$_G$ di regressione vengono eseguiti dopo modifiche al codice, correzioni di difetti o introduzione di nuove funzionalità. Il loro obiettivo è verificare che il comportamento già validato non sia stato compromesso.
 
-Nel caso del progetto \textit{Second Brain}, i test di regressione sono particolarmente importanti perché le funzionalità basate su LLM e prompt possono essere raffinate più volte durante lo sviluppo. Ogni modifica ai prompt, alle chiamate API o alla gestione della risposta deve quindi essere accompagnata dalla riesecuzione dei test collegati.
+Nel caso del progetto \textit{Second Brain}, i test$_G$ di regressione sono particolarmente importanti perché le funzionalità basate su LLM$_G$ e prompt possono essere raffinate più volte durante lo sviluppo$_G$. Ogni modifica ai prompt, alle chiamate API$_G$ o alla gestione della risposta deve quindi essere accompagnata dalla riesecuzione dei test$_G$ collegati.
 
 \subsection{Test di accettazione}
 
-I test di accettazione verificano che il prodotto rispetti le aspettative del committente e soddisfi i requisiti obbligatori previsti dal capitolato.
+I test$_G$ di accettazione verificano che il prodotto rispetti le aspettative del committente$_G$ e soddisfi i requisiti$_G$ obbligatori previsti dal capitolato$_G$.
 
-Essi sono formulati dal punto di vista dell'utente finale e descrivono scenari completi di utilizzo. Il superamento dei test di accettazione costituisce una condizione necessaria per considerare il prodotto conforme agli obiettivi minimi del progetto.
+Essi sono formulati dal punto di vista dell'utente finale e descrivono scenari completi di utilizzo. Il superamento dei test$_G$ di accettazione costituisce una condizione necessaria per considerare il prodotto conforme agli obiettivi minimi del progetto.
 
 \section{Tracciamento dei test}
 
-Il tracciamento dei test permette di collegare ogni verifica al requisito corrispondente. In questo modo è possibile controllare quali requisiti risultano coperti e quali richiedono ulteriori attività di verifica.
+Il tracciamento dei test$_G$ permette di collegare ogni verifica$_G$ al requisito corrispondente. In questo modo è possibile controllare quali requisiti$_G$ risultano coperti e quali richiedono ulteriori attività di verifica$_G$.
 
-Ogni test viene identificato secondo la seguente convenzione:
+Ogni test$_G$ viene identificato secondo la seguente convenzione:
 
 \begin{itemize}
-    \item \textbf{TU}: test unitario;
-    \item \textbf{TI}: test di integrazione;
-    \item \textbf{TS}: test di sistema;
-    \item \textbf{TA}: test di accettazione.
+    \item \textbf{TU}: test$_G$ unitario;
+    \item \textbf{TI}: test$_G$ di integrazione$_G$;
+    \item \textbf{TS}: test$_G$ di sistema$_G$;
+    \item \textbf{TA}: test$_G$ di accettazione.
 \end{itemize}
 
 \subsection{Test di sistema principali}
@@ -561,55 +595,188 @@ Ogni test viene identificato secondo la seguente convenzione:
 \begingroup
 \small
 \renewcommand{\arraystretch}{1.25}
-\begin{longtable}{|c|p{7cm}|c|c|}
+\begin{longtable}{|p{1.8cm}|p{9cm}|p{2.5cm}|p{1.5cm}|}
+    \hline
+    \textbf{ID} & \textbf{Descrizione} & \textbf{Requisito} & \textbf{Stato} \\
+    \hline
+    \endfirsthead
+
     \hline
     \textbf{ID} & \textbf{Descrizione} & \textbf{Requisito} & \textbf{Stato} \\
     \hline
     \endhead
 
-    TS-001 & Verificare che l'utente possa inserire testo Markdown nell'area di editing. & RF-OBB-001 & NI \\ \hline
-    TS-002 & Verificare che il testo Markdown venga renderizzato correttamente nell'area di anteprima. & RF-OBB-002 & NI \\ \hline
-    TS-003 & Verificare che l'utente possa selezionare una porzione di testo e applicare un comando LLM. & RF-OBB-003 & NI \\ \hline
-    TS-004 & Verificare che il sistema produca un riassunto del testo completo o selezionato. & RF-OBB-004 & NI \\ \hline
-    TS-005 & Verificare che il sistema produca una riscrittura del testo secondo le opzioni disponibili. & RF-OBB-005 & NI \\ \hline
-    TS-006 & Verificare che il sistema traduca il testo nella lingua scelta dall'utente. & RF-OBB-006 & NI \\ \hline
-    TS-007 & Verificare che il sistema applichi la critica del cappello bianco al testo. & RF-OBB-007 & NI \\ \hline
-    TS-008 & Verificare che il sistema applichi la critica del cappello rosso al testo. & RF-OBB-008 & NI \\ \hline
-    TS-009 & Verificare che il sistema applichi la critica del cappello giallo al testo. & RF-OBB-009 & NI \\ \hline
-    TS-010 & Verificare che il sistema applichi la critica del cappello nero al testo. & RF-OBB-010 & NI \\ \hline
-    TS-011 & Verificare che il sistema applichi la critica del cappello verde al testo. & RF-OBB-011 & NI \\ \hline
-    TS-012 & Verificare che il sistema applichi la critica del cappello blu al testo. & RF-OBB-012 & NI \\ \hline
-    TS-013 & Verificare che l'utente possa inserire un prompt per generare un testo completo. & RF-OBB-013 & NI \\ \hline
-    TS-014 & Verificare che il testo generato tramite prompt venga inserito nell'area di editing. & RF-OBB-014 & NI \\ \hline
-    TS-015 & Verificare che l'utente possa salvare una nota in formato testuale. & RF-OBB-015 & NI \\ \hline
-    TS-016 & Verificare che l'utente possa caricare una nota precedentemente salvata. & RF-OBB-016 & NI \\ \hline
+    TS-001 & Verificare che l'Utente possa inserire testo libero nell'area di editing in formato Markdown$_G$. & R-1-F-Ob & NI \\
+    \hline
+    TS-002 & Verificare che l'Utente possa selezionare una porzione di testo presente nell'editor. & R-2-F-Ob & NI \\
+    \hline
+    TS-003 & Verificare che l'Utente possa tagliare una porzione di testo selezionata, rimuovendola dall'editor e memorizzandola negli appunti di sistema$_G$. & R-3-F-Ob & NI \\
+    \hline
+    TS-004 & Verificare che l'Utente possa copiare una porzione di testo selezionata negli appunti di sistema$_G$ senza modificare il contenuto dell'editor. & R-4-F-Ob & NI \\
+    \hline
+    TS-005 & Verificare che l'Utente possa incollare nell'editor un contenuto testuale precedentemente copiato o tagliato. & R-5-F-Ob & NI \\
+    \hline
+    TS-006 & Verificare che l'Utente possa annullare l'ultima modifica effettuata nell'editor. & R-6-F-Ob & NI \\
+    \hline
+    TS-007 & Verificare che l'Utente possa ripristinare un'operazione precedentemente annullata, se non sono state effettuate nuove modifiche successive. & R-7-F-Ob & NI \\
+    \hline
+    TS-008 & Verificare che l'Utente possa applicare e rimuovere la formattazione in grassetto al testo tramite marcatori Markdown$_G$. & R-8-F-Ob & NI \\
+    \hline
+    TS-009 & Verificare che l'Utente possa applicare e rimuovere la formattazione in corsivo al testo tramite marcatori Markdown$_G$. & R-9-F-Ob & NI \\
+    \hline
+    TS-010 & Verificare che l'Utente possa applicare e rimuovere la formattazione sottolineata al testo. & R-10-F-Ob & NI \\
+    \hline
+    TS-011 & Verificare che l'Utente possa applicare e rimuovere la formattazione barrata al testo tramite marcatori Markdown$_G$. & R-11-F-Ob & NI \\
+    \hline
+    TS-012 & Verificare che l'Utente possa inserire e rimuovere titoli e sottotitoli mediante sintassi Markdown$_G$. & R-12-F-Ob & NI \\
+    \hline
+    TS-013 & Verificare che l'Utente possa inserire ed eliminare elenchi puntati o numerati. & R-13-F-Ob & NI \\
+    \hline
+    TS-014 & Verificare che l'Utente possa inserire e rimuovere blocchi di citazione. & R-14-F-Ob & NI \\
+    \hline
+    TS-015 & Verificare che l'Utente possa inserire ed eliminare blocchi di codice sorgente nel documento. & R-15-F-Ob & NI \\
+    \hline
+    TS-016 & Verificare che l'Utente possa inserire ed eliminare formule scientifiche o matematiche. & R-16-F-Ob & NI \\
+    \hline
+    TS-017 & Verificare che l'Utente possa inserire ed eliminare collegamenti ipertestuali. & R-17-F-Ob & NI \\
+    \hline
+    TS-018 & Verificare che l'Utente possa inserire, modificare ed eliminare tabelle Markdown$_G$. & R-19-F-Ob & NI \\
+    \hline
+    TS-019 & Verificare che l'Utente possa inserire, sostituire ed eliminare immagini all'interno del documento. & R-20-F-Ob & NI \\
+    \hline
+    TS-020 & Verificare che l'Utente possa alternare la visualizzazione tra solo editor, solo anteprima e visualizzazione combinata. & R-25-F-Ob & NI \\
+    \hline
+    TS-021 & Verificare che l'Utente possa ottenere un riassunto del testo selezionato tramite LLM$_G$. & R-27-F-Ob & NI \\
+    \hline
+    TS-022 & Verificare che l'Utente possa tradurre il testo selezionato in una lingua supportata tramite LLM$_G$. & R-29-F-Ob & NI \\
+    \hline
+    TS-023 & Verificare che l'Utente possa modificare lo stile linguistico del testo selezionato tramite LLM$_G$. & R-30-F-Ob & NI \\
+    \hline
+    TS-024 & Verificare che l'Utente possa correggere grammaticalmente il testo selezionato tramite LLM$_G$. & R-31-F-Ob & NI \\
+    \hline
+    TS-025 & Verificare che l'Utente riceva una comunicazione nel caso in cui l'LLM$_G$ non rilevi errori nel testo analizzato. & R-32-F-Ob & NI \\
+    \hline
+    TS-026 & Verificare che l'Utente possa analizzare criticamente il testo secondo la metodologia dei Sei Cappelli per Pensare$_G$. & R-33-F-Ob & NI \\
+    \hline
+    TS-027 & Verificare che l'Utente possa selezionare una specifica prospettiva di analisi tra Cappello Bianco, Rosso, Giallo, Nero, Verde e Blu. & R-34-F-Ob & NI \\
+    \hline
+    TS-028 & Verificare che l'Utente possa generare automaticamente un testo a partire da un prompt$_G$. & R-35-F-Ob & NI \\
+    \hline
+    TS-029 & Verificare che l'Utente possa salvare, scartare o rigenerare l'output$_G$ prodotto dall'LLM$_G$. & R-40-F-Ob & NI \\
+    \hline
+    TS-030 & Verificare che il Sistema$_G$ gestisca gli errori di comunicazione o risposta del servizio LLM$_G$, preservando il contenuto originale dell'editor. & R-42-F-Ob & NI \\
+    \hline
+    TS-031 & Verificare che il Sistema$_G$ impedisca l'invio di richieste AI quando il testo fornito è insufficiente per un'elaborazione significativa. & R-43-F-Ob & NI \\
+    \hline
+    TS-032 & Verificare che l'Utente possa creare una nuova nota vuota nell'editor. & R-44-F-Ob & NI \\
+    \hline
+    TS-033 & Verificare che il Sistema$_G$ gestisca eventuali errori durante la creazione di una nuova nota, informando l'Utente e preservando lo stato precedente. & R-46-F-Ob & NI \\
+    \hline
+    TS-034 & Verificare che l'Utente possa caricare una nota da file locale in formato .md o .txt. & R-47-F-Ob & NI \\
+    \hline
+    TS-035 & Verificare che il Sistema$_G$ gestisca eventuali errori durante il caricamento di una nota, preservando la sessione di lavoro precedente. & R-49-F-Ob & NI \\
+    \hline
+    TS-036 & Verificare che l'Utente possa salvare una nota sul File System locale. & R-50-F-Ob & NI \\
+    \hline
+    TS-037 & Verificare che il Sistema$_G$ gestisca eventuali errori durante il salvataggio di una nota, preservando l'integrità dei dati presenti nell'editor. & R-52-F-Ob & NI \\
+    \hline
+    TS-038 & Verificare che l'Utente possa eliminare una nota dal File System locale. & R-53-F-Ob & NI \\
+    \hline
+    TS-039 & Verificare che il Sistema$_G$ gestisca eventuali errori durante l'eliminazione di una nota, evitando la perdita inconsistente dei dati. & R-55-F-Ob & NI \\
+    \hline
+    TS-040 & Verificare che l'Utente possa rinominare una nota locale. & R-56-F-Ob & NI \\
+    \hline
+    TS-041 & Verificare che il Sistema$_G$ gestisca eventuali errori durante la rinominazione di una nota, mantenendo il titolo precedente. & R-58-F-Ob & NI \\
+    \hline
 
-    \caption{Test di sistema principali per i requisiti obbligatori.}
-    \label{tab:test-sistema-principali}
+    TS-042 & Verificare che l'Utente possa inserire e rimuovere ancore di navigazione interne al documento. & R-18-F-De & NI \\
+    \hline
+    TS-043 & Verificare che l'Utente possa attivare e disattivare l'autocompletamento dei simboli durante la digitazione. & R-21-F-De & NI \\
+    \hline
+    TS-044 & Verificare che l'Utente possa attivare e disattivare la sincronizzazione dello scorrimento tra editor e anteprima. & R-22-F-De & NI \\
+    \hline
+    TS-045 & Verificare che l'Utente possa alternare l'interfaccia tra tema chiaro e tema scuro. & R-23-F-De & NI \\
+    \hline
+    TS-046 & Verificare che l'Utente possa aprire e chiudere la barra laterale dell'interfaccia. & R-24-F-De & NI \\
+    \hline
+    TS-047 & Verificare che l'Utente possa inserire testo tramite dettatura vocale, se il browser supporta le Web Speech API$_G$. & R-26-F-De & NI \\
+    \hline
+    TS-048 & Verificare che l'Utente possa scegliere la percentuale di concisione del riassunto. & R-28-F-De & NI \\
+    \hline
+    TS-049 & Verificare che l'Utente possa definire la lunghezza desiderata del testo generato. & R-36-F-De & NI \\
+    \hline
+    TS-050 & Verificare che il Sistema$_G$ mostri all'Utente un riepilogo del contesto prima dell'invio della richiesta all'LLM$_G$. & R-37-F-De & NI \\
+    \hline
+    TS-051 & Verificare che l'Utente possa fornire un URL come fonte di contesto per la generazione automatica di testo. & R-38-F-De & NI \\
+    \hline
+    TS-052 & Verificare che l'Utente possa annullare una richiesta di elaborazione in corso. & R-41-F-De & NI \\
+    \hline
+    TS-053 & Verificare che l'Utente possa visualizzare le informazioni e i metadati di una nota selezionata. & R-59-F-De & NI \\
+    \hline
+
+    TS-054 & Verificare che l'Utente autenticato possa selezionare manualmente note salvate nel database$_G$ da usare come contesto per la generazione automatica. & R-39-F-Op & NI \\
+    \hline
+    TS-055 & Verificare che l'Utente autenticato possa creare una nuova nota nel database$_G$. & R-45-F-Op & NI \\
+    \hline
+    TS-056 & Verificare che l'Utente autenticato possa caricare una nota dal database$_G$. & R-48-F-Op & NI \\
+    \hline
+    TS-057 & Verificare che l'Utente autenticato possa salvare una nota nel database$_G$. & R-51-F-Op & NI \\
+    \hline
+    TS-058 & Verificare che l'Utente autenticato possa eliminare una nota dal database$_G$. & R-54-F-Op & NI \\
+    \hline
+    TS-059 & Verificare che l'Utente autenticato possa rinominare una nota salvata nel database$_G$. & R-57-F-Op & NI \\
+    \hline
+    TS-060 & Verificare che l'Utente autenticato possa cercare note nel database$_G$ per titolo. & R-60-F-Op & NI \\
+    \hline
+    TS-061 & Verificare che l'Utente autenticato possa effettuare una ricerca full-text nel contenuto delle note salvate nel database$_G$. & R-61-F-Op & NI \\
+    \hline
+    TS-062 & Verificare che l'Utente autenticato possa filtrare le note del database$_G$ per data di creazione. & R-62-F-Op & NI \\
+    \hline
+    TS-063 & Verificare che l'Utente autenticato possa filtrare le note del database$_G$ per data di ultima modifica. & R-63-F-Op & NI \\
+    \hline
+    TS-064 & Verificare che l'Utente non autenticato possa effettuare l'autenticazione tramite username e password. & R-64-F-Op & NI \\
+    \hline
+    TS-065 & Verificare che il Sistema$_G$ gestisca eventuali errori di autenticazione, mantenendo l'Utente disconnesso e mostrando un messaggio di errore. & R-65-F-Op & NI \\
+    \hline
+    TS-066 & Verificare che l'Utente non autenticato possa registrare un nuovo account. & R-66-F-Op & NI \\
+    \hline
+    TS-067 & Verificare che il Sistema$_G$ impedisca la registrazione con uno username già presente nel database$_G$. & R-67-F-Op & NI \\
+    \hline
+    TS-068 & Verificare che il Sistema$_G$ impedisca la registrazione se la password e la conferma password non coincidono. & R-68-F-Op & NI \\
+    \hline
+    TS-069 & Verificare che l'Utente autenticato possa eliminare il proprio account e i dati cloud associati. & R-69-F-Op & NI \\
+    \hline
+    TS-070 & Verificare che l'Utente autenticato possa effettuare il logout. & R-70-F-Op & NI \\
+    \hline
+   \caption{Test di sistema principali} 
 \end{longtable}
+
 \endgroup
-
 \subsection{Test di accettazione principali}
-
+I test$_G$ di accettazione validano il sistema$_G$ rispetto agli scenari d'uso previsti (Use Cases), verificando che l'utente possa completare i flussi di lavoro principali richiesti dal capitolato$_G$ d'appalto. Nella tabella seguente ogni test$_G$ è associato ai Requisiti Funzionali$_G$ obbligatori di riferimento, mentre la colonna Stato ne riporta lo stato di avanzamento.
 \begingroup
 \small
 \renewcommand{\arraystretch}{1.25}
-\begin{longtable}{|c|p{7cm}|c|c|}
-    \hline
-    \textbf{ID} & \textbf{Descrizione} & \textbf{Requisito} & \textbf{Stato} \\
-    \hline
-    \endhead
-
-    TA-001 & L'utente scrive una nota Markdown, visualizza l'anteprima formattata e salva il contenuto prodotto. & RF-OBB-001, RF-OBB-002, RF-OBB-015 & NI \\ \hline
-    TA-002 & L'utente seleziona una porzione di testo e richiede al sistema di riassumerla tramite LLM. & RF-OBB-003, RF-OBB-004 & NI \\ \hline
-    TA-003 & L'utente richiede una riscrittura del testo con tono diverso e verifica l'inserimento del risultato nell'editor. & RF-OBB-005 & NI \\ \hline
-    TA-004 & L'utente traduce una nota in una lingua diversa da quella originale. & RF-OBB-006 & NI \\ \hline
-    TA-005 & L'utente applica le analisi dei sei cappelli e riceve una risposta coerente con il punto di vista scelto. & RF-OBB-007 -- RF-OBB-012 & NI \\ \hline
-    TA-006 & L'utente fornisce un prompt e ottiene un testo completo generato dal modello linguistico. & RF-OBB-013, RF-OBB-014 & NI \\ \hline
-    TA-007 & L'utente carica una nota salvata in precedenza e riprende la modifica del contenuto. & RF-OBB-016 & NI \\ \hline
-
-    \caption{Test di accettazione principali.}
-    \label{tab:test-accettazione-principali}
+\begin{longtable}{|c|p{8.5cm}|>{\raggedright\arraybackslash}p{2.5cm}|c|}
+\hline
+\textbf{ID} & \textbf{Descrizione} & \textbf{Riferimento} & \textbf{Stato} \\
+\hline
+\endfirsthead
+\multicolumn{4}{c}{\tablename~\thetable{}~(continua)}\\
+\hline
+\textbf{ID} & \textbf{Descrizione} & \textbf{Riferimento} & \textbf{Stato} \\
+\hline
+\endhead
+\endfoot
+\caption{Test di accettazione principali.}\label{tab:test-accettazione-principali}\\
+\endlastfoot
+TA-001 & L'utente scrive una nota in formato Markdown, ne osserva l'anteprima formattata e salva il contenuto su file locale. & UC 1, UC 70 & NI \\ \hline
+TA-002 & L'utente seleziona una porzione di testo e ne richiede il riassunto all'LLM$_G$, scegliendo se porre il risultato in coda o in sostituzione della selezione. & UC 52 & NI \\ \hline
+TA-003 & L'utente richiede una riscrittura del testo specificando il tipo di intervento (sistemazione grammaticale, cambio di tono, estensione o riduzione) e la modalità di inserimento del risultato. & UC 54, UC 55 & NI \\ \hline
+TA-004 & L'utente richiede al sistema$_G$ la traduzione del testo, indicando la lingua di destinazione e la modalità di inserimento del risultato. & UC 53 & NI \\ \hline
+TA-005 & L'utente applica in sequenza al testo le sei analisi dei cappelli (bianco, rosso, giallo, nero, verde, blu). & UC 56 & NI \\ \hline
+TA-006 & L'utente inserisce un prompt nell'apposito pannello e avvia la generazione dell'intero testo da parte dell'LLM$_G$. & UC 57 & NI \\ \hline
+TA-007 & Partendo da una nota salvata in precedenza, l'utente la carica da file locale e ne riprende la modifica nell'area di editing. & UC 67 & NI \\ \hline
 \end{longtable}
 \endgroup
 
@@ -626,27 +793,507 @@ Il cruscotto viene aggiornato al termine di ogni periodo di lavoro rilevante e v
     \item verificare l'effetto delle iniziative di miglioramento.
 \end{itemize}
 
-Le misurazioni riportate nel cruscotto non devono essere interpretate come semplici dati storici, ma come strumenti di supporto alle decisioni. Ogni valore fuori soglia richiede un'analisi delle cause e, se necessario, la definizione di una misura correttiva.
+Le misurazioni che seguono fanno riferimento al periodo che intercorre tra l'aggiudicazione del capitolato, avvenuto il 28 marzo 2026, e la consegna della RTB.
 
-\subsection{Interpretazione dei valori}
+\subsection{Confronto MPC-PV e MPC-EV}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|l|l|l|}
+		\hline
+		\textbf{Sprint} & \textbf{Planned Value} & \textbf{Earned Value} & \textbf{Accumulo PV} & \textbf{Accumulo EV} \\
+		\hline
+		1 & €985,00 & €939,19 & €985,00 & €939,19 \\ 
+		\hline
+        2 & €980,00 & €1.024,55 & €1.965,00 & €1.963,73 \\
+        \hline
+        3 & €955,00 & €1.085,23 & €2.929,00 & €3.048,96 \\
+        \hline
+        4 & €880,00 & €832,43 & €3.800,00 & €3.881,39 \\
+        \hline
+        5 & €1.075,00 & €1.126,19 & €4.875,00 & €5.007,58 \\
+        \hline
+	\end{tabular}
+	\caption{MPC-PV e MPC-EV per sprint}
+	\label{tab:pv-ev}
+\end{table}
 
-Per ogni metrica vengono individuate tre possibili situazioni:
+Come possiamo notare dalla figura §\ref{fig:pv-ev}, il \textit{Planned Value} cresce di pari passo con l'avanzare degli sprint. Vediamo poi come nel primo sprint l'\textit{Earned Value} sia minore rispetto alla stima pianificata: questo è dovuto da una inesperienza nella programmazione del lavoro che, a partire dallo sprint 2 è stata migliorata. 
+Questo lo si può notare anche dall'accumulo di EV che, dallo sprint 3, comincia ad essere maggiore dell'accumulo di PV, che riporta quindi un avanzamento del progetto di poco in anticipo rispetto a quanto pianificato. Valutazione:
 \begin{itemize}
-    \item \textbf{valore non accettabile}: il dato rilevato è sotto la soglia minima e richiede intervento;
-    \item \textbf{valore accettabile}: il dato è compatibile con gli obiettivi minimi del gruppo;
-    \item \textbf{valore ottimale}: il dato indica una condizione pienamente soddisfacente.
+    \item \textbf{Valore accettabile:} PV$>0$€, vincolo \textit{rispettato}.
+    \item \textbf{Valore ottimo:} PV pari alla pianificazione concordata, vincolo \textit{rispettato}.
+    \item \textbf{Valore accettabile:} EV$\geq 80\% * PV$, vincolo \textit{rispettato}.
+    \item \textbf{Valore ottimo:} EV$\geq PV$, vincolo \textit{violato} in uno sprint su cinque.
+\end{itemize}
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/pv-ev.pdf}
+    \caption{Comparazione \textit{Planned Value - Earned Value}}
+    \label{fig:pv-ev}
+\end{figure}
+
+\subsection{Confronto MPC-AC e MPC-ETC}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|l|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Actual Cost} & \textbf{Accumulo AC} & \textbf{Estimate to Complete} & \textbf{EAC} \\
+		\hline
+		1 & €945,00 & €945,00 & €11.994,61 & €12.939,61 \\ 
+		\hline
+        2 & €980,00 & €1.925,0 & €10.375,87 & €12.300,87 \\
+        \hline
+        3 & €1.105,00 & €3.030,00 & €10.064,31 & €13.094,31 \\
+        \hline
+        4 & €780,00 & €3.810,00 & €8.239,99 & €12.049,99 \\
+        \hline
+        5 & €1.120,00 & €4.930,00 & €7.859,31 & €12.789,31 \\
+        \hline
+	\end{tabular}
+	\caption{MPC-AC, MPC-ETC e MPC-EAC per sprint}
+	\label{tab:ac-etc}
+\end{table}
+L'analisi del grafico in Figura \ref{fig:ac-etc} evidenzia, come atteso, un incremento progressivo dell'\textit{Actual Cost}, fisiologico e coerente con il continuo assorbimento delle risorse economiche durante l'avanzamento del progetto.
+Relativamente alle metriche previsionali \textit{Estimate to Complete} ed \textit{Estimate at Completion}, osserviamo un trend decrescente fino al secondo sprint. Tale dinamica rappresenta un indicatore di elevata efficienza iniziale, avendo posizionato la stima del costo a finire (EAC) significativamente al di sotto del budget stanziato.
+Tra il secondo e il terzo sprint, tuttavia, rileviamo una flessione nelle performance di progetto: all'incremento dei costi sostenuti non corrisponde una proporzionale riduzione del lavoro residuo stimato (ETC). Conseguentemente, l'EAC subisce un innalzamento, approssimandosi al limite critico definito dal BAC. Questa deviazione è imputabile principalmente alla fase di revisione dell'\textit{Analisi dei Requisiti}, un'attività che ha richiesto un notevole impiego di risorse in termini di \textit{effort} senza tuttavia generare un proporzionale incremento del valore maturato (\textit{Earned Value}). A tale criticità si è sommata un'iniziale inesperienza nella pianificazione operativa e nel coordinamento delle attività del team, con inevitabili ricadute negative sull'efficienza economica complessiva dello sprint.
+A partire dal terzo sprint si registra, in controtendenza, un marcato recupero dell'efficienza operativa, con una riduzione dell'ETC. Ciò determina una conseguente e significativa riduzione della stima del costo totale a finire. Pur riscontrando un lieve incremento dell'EAC in corrispondenza del quinto sprint, la proiezione di chiusura si stabilizza al di sotto del limite imposto dal BAC. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} AC$>0$€, vincolo \textit{rispettato}.
+    \item \textbf{Valore ottimo:} AC$\leq$EAC, vincolo \textit{rispettato}.
+    \item \textbf{Valore accettabile:} ETC$\geq 0$, vincolo \textit{rispettato}.
+    \item \textbf{Valore ottimo:} ETC$\geq 0$, vincolo \textit{rispettato}.
+\end{itemize}
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/ac-etc.pdf}
+    \caption{Comparazione \textit{Actual Cost - Estimate to Complete - Estimated at Completion}}
+    \label{fig:ac-etc}
+\end{figure}
+
+\subsection{Confronto MPC-CV e MPC-SV}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|l|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Cost Variance (€)} & \textbf{Schedule Variance (€)} & \textbf{Giudizio} \\
+		\hline
+		1 & -5,81 & -45,81 & In ritardo e lievemente sopra il budget\\ 
+		\hline
+        2 & +44,55 & +44,55 & In anticipo e sotto il budget \\
+        \hline
+        3 & -19,77 & +130,23 & In anticipo ma sopra il budget \\
+        \hline
+        4 & +52,43 & -47,57 & In ritardo ma sotto il budget \\
+        \hline
+        5 & +6,19 & +51,19 & In anticipo e lievemente sotto il budget \\
+        \hline
+	\end{tabular}
+	\caption{MPC-CV e MPC-SV per sprint}
+	\label{tab:cv-sv}
+\end{table}
+Dall'analisi del grafico in Figura §\ref{fig:cv-sv} possiamo notare un andamento altalenante che, tuttavia, culmina in una convergenza verso l'efficienza ottimale:
+\begin{itemize}
+    \item \textbf{Sprint 1:} In questa fase il progetto si avvia con performance al di sotto del livello di ottimalità. Questa dinamica è del tutto coerente con le difficoltà iniziali di calibrazione del team.
+    \item \textbf{Sprint 2:} In questo sprint il team recupera il ritardo iniziale con un ottimo slancio portandosi in anticipo sulle consegne. Questo slancio, però, comporta un impiego di risorse economiche superiore al previsto, che porta ad uno scenario di anticipo temporale a fronte di un sovraccosto.
+    \item \textbf{Sprint 3:} La tendenza all'accelerazione vista nello scorso sprint si consolida generando il picco massimo di vantaggio sulla schedulazione. Questo ritmo veloce produce un ulteriore, seppur contenuto, sforamento del budget.
+    \item \textbf{Sprint 4:} In questo sprint il team registra una flessione dal punto di vista temporale, accumulando nuovamente ritardo rispetto al piano ideale. Di contro si rileva un eccellente recupero dell'efficenza economica.
+    \item \textbf{Sprint 5:} In quest'ultima iterazione analizzata, il progetto raggiunge uno stato di equilibrio. Entrambe le metriche di varianza risultano positive consolidando un solido anticipo sulla tabella di marcia mantenendo allo stesso tempo una, seppur minima, efficienza finanziaria.
+\end{itemize}
+Valutazione: 
+\begin{itemize}
+    \item \textbf{Valore accettabile CV:} $CV>0$, vincolo \textit{violato} in due sprint su cinque con scostamenti lievi.
+    \item \textbf{Valore accettabile SV:} $SV\geq 0$, vincolo \textit{violato} in due sprint su cinque con slittamenti consistenti.
+\end{itemize}
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/cv-sv.pdf}
+    \caption{Comparazione \textit{Cost Variance - Schedule Variance}}
+    \label{fig:cv-sv}
+\end{figure}
+
+\subsection{Confronto MPC-EAC e MPC-BAC}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|l|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Estimate At Completion} & \textbf{Budget At Completion} & \textbf{Stato} \\
+		\hline
+		1 & €12.939,61 & €12.860,00 & EAC$>$BAC \\ 
+		\hline
+        2 & €12.300,87 & €12.860,00 & EAC$<$BAC \\
+        \hline
+        3 & €13.094,00 & €12.860,00 & EAC$>$BAC \\
+        \hline
+        4 & €12.049,99 & €12.860,00& EAC$<$BAC \\
+        \hline
+        5 & €12.789,31 & €12.860,00 & EAC$<$BAC \\
+        \hline
+	\end{tabular}
+	\caption{MPC-EAC e BAC per sprint}
+	\label{tab:eac-bac}
+\end{table}
+
+Dall'aggiudicazione del capitolato fino alla revisione della RTB, l'\textit{Estimate At Completion} oscilla attorno al \textit{Budget At Completion}. L'EAC supera il BAC solo in due occasioni:
+\begin{itemize}
+    \item \textbf{Sprint 1:} come detto anche nelle altre sezioni, il promo sprint ha sofferto dell'inesperienza del gruppo nell'organizzare le task, dimensionarle e portarle a compimento, Questo ha provocato un leggero sforamento di budget.
+    \item \textbf{Sprint 3:} in questo sprint il gruppo si è dovuto confrontare con la revisione dell'\textit{Analisi dei Requisiti}, che ha portato ad un rallentamento del progetto e ad un conseguente minore valore aggiunto.
+\end{itemize} 
+Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} EAC$\leq 110\%$ budget, vincolo \textit{rispettato}.
+    \item \textbf{Valore ottimale:} EAC$\leq$ budget, vincolo \textit{violato} in due sprint su cinque.
 \end{itemize}
 
-\subsection{Frequenza di aggiornamento}
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/eac-bac.pdf}
+    \caption{Comparazione \textit{Estimate At Completion - Budget At Completion}}
+    \label{fig:eac-bac}
+\end{figure}
 
-Le metriche di processo vengono aggiornate a ogni periodo di avanzamento, mentre le metriche di prodotto vengono aggiornate in corrispondenza delle attività di verifica, rilascio o consolidamento delle funzionalità.
-
-In particolare:
+\subsection{Valutazione MPC-TCR}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|l|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Task completate} & \textbf{Task in ritardo} & \textbf{TCR (\%)} & \textbf{Giudizio} \\
+		\hline
+		1 & 13 & 3 & $76,9\%$ & Critico\\ 
+		\hline
+        2 & 11 & 0 & $100,0\%$ & Ottimo \\
+        \hline
+        3 & 13 & 0 & $100,0\%$ & Ottimo \\
+        \hline
+        4 & 13 & 1 & $92,3\%$ & Accettabile \\
+        \hline
+        5 & 49 & 0 & $100,0\%$ & Ottimo  \\
+        \hline
+	\end{tabular}
+	\caption{Task Completion Rate per sprint}
+	\label{tab:tcr}
+\end{table}
+Il \textit{Task Completion Rate} risulta ottimo in tre sprint su cinque. Notiamo subottimalità critica nello sprint 1 ($76,9\%$) e una subottimalità lieve nello sprint 4 ($92,3\%$). Valutazione:
 \begin{itemize}
-    \item le metriche di pianificazione vengono aggiornate alla chiusura di ogni sprint o periodo equivalente;
-    \item le metriche documentali vengono aggiornate a ogni rilascio verificato dei documenti;
-    \item le metriche di testing vengono aggiornate a ogni esecuzione significativa della suite di test;
-    \item le metriche di prodotto vengono aggiornate a ogni incremento stabile del software.
+    \item \textbf{Valore accettabile:} $TCR \geq 85\%$, vincolo \textit{violato} nello sprint 1.
+\end{itemize}
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/tcr.pdf}
+    \caption{Valutazione \textit{Task Completion Rate}}
+    \label{fig:tcr}
+\end{figure}
+
+\subsection{Valutazione MPC-TS}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|l|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Task completate} & \textbf{Task in ritardo} & \textbf{TS (\%)} & \textbf{Giudizio} \\
+		\hline
+		1 & 13 & 3 & $23,1\%$ & Critico\\ 
+		\hline
+        2 & 11 & 0 & $0,0\%$ & Ottimo \\
+        \hline
+        3 & 13 & 0 & $0,0\%$ & Ottimo \\
+        \hline
+        4 & 13 & 1 & $7,7\%$ & Accettabile \\
+        \hline
+        5 & 49 & 0 & $0,0\%$ & Ottimo  \\
+        \hline
+	\end{tabular}
+	\caption{Task Slippage per sprint}
+	\label{tab:ts}
+\end{table}
+Il \textit{Task Slippage} risulta ottimo in tre sprint su cinque. Notiamo subottimalità critica nello sprint 1 ($23,1\%$) e una subottimalità lieve nello sprint 4 ($7,7\%$). Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $TS < 15\%$, vincolo \textit{violato} nello sprint 1.
 \end{itemize}
 
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/ts.pdf}
+    \caption{Valutazione \textit{Task Slippage}}
+    \label{fig:ts}
+\end{figure}
+
+\subsection{Valutazione MPC-MR}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|l|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Pull request aperte} & \textbf{PR riaperte} & \textbf{MR (\%)} & \textbf{Giudizio} \\
+		\hline
+		1 & 13 & 1 & $7,7\%$ & Accettabile\\ 
+		\hline
+        2 & 30 & 2 & $6,7\%$ & Accettabile \\
+        \hline
+        3 & 21 & 7 & $33,3\%$ & Critico \\
+        \hline
+        4 & 29 & 7 & $24,1\%$ & Critico \\
+        \hline
+        5 & 68 & 2 & $2,9\%$ & Ottimo  \\
+        \hline
+	\end{tabular}
+	\caption{Merge Rework per sprint}
+	\label{tab:mr}
+\end{table}
+Dal grafico in Figura §\ref{fig:mr} possiamo notare come la valutazione di \textit{Merge Rework}, ovvero la percentuale di Pull Request approvate nelle quali viene sovrascritto del lavoro già svolto, varia a seconda della fase del progetto. Nei primi due sprint troviamo dei valori simili ($7\%$ circa) che riteniamo accettabili. Questi valor sono dati dal fatto che tutti i membri del gruppo non avevano avuto ancora esperienza di co-working con lo strumento GitHub, né con un progetto con un gruppo così numeroso. Questo ha portato iniziali incomprensioni sul lavoro da svolgere che ha portato a riscritture di parti di documenti. Nel terzo e quarto sprint abbiamo valori critici, dovuti principalmente all'\textit{Analisi dei Requisiti} (primo grande documento condiviso da più redattori) e dalla sua riscrittura, dovuta a revisioni a seguito di numerosi difetti di modellazione riscontrati.
+Nello sprint 5 abbiamo avuto un'enorme mole di Pull Request dovute all'inizio del \textit{Proof of Concept} che però sono state minimamente sovrascritte grazie ad una progettazione adeguata. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $MR \leq 20\%$, vincolo \textit{violato} in due sprint su cinque.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/mr.pdf}
+    \caption{Valutazione \textit{Merge Rework}}
+    \label{fig:mr}
+\end{figure}
+
+\subsection{Valutazione MPC-IR}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|l|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Issues aperte} & \textbf{Issues riaperte} & \textbf{IR (\%)} & \textbf{Giudizio} \\
+		\hline
+		1 & 13 & 0 & $0,0\%$ & Ottimo\\ 
+		\hline
+        2 & 11 & 1 & $9,1\%$ & Accettabile \\
+        \hline
+        3 & 13 & 3 & $23,1\%$ & Critico \\
+        \hline
+        4 & 14 & 0 & $0,0\%$ & Ottimo \\
+        \hline
+        5 & 49 & 1 & $2,0\%$ & Accettabile  \\
+        \hline
+	\end{tabular}
+	\caption{Issue Reopening Rate per sprint}
+	\label{tab:ir}
+\end{table}
+Come è possibile notare in Figura §\ref{fig:ir}, l'andamento dell'\textit{Issue Reopening rate} è altalenante sebbene si mantenga quasi sempre abbondantemente sotto la soglia di accettabilità. L'unico sprint che fa è eccezione è il numero 3 che, per motivi già affrontati in questo documento, possiede un valore di MPC-IR critico. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $IR \leq 15\%$, vincolo \textit{violato} nello sprint 3.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/ir.pdf}
+    \caption{Valutazione \textit{Issue Reopening rate}}
+    \label{fig:ir}
+\end{figure}
+
+\subsection{Valutazione MPC-IG}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|p{3cm}|}
+		\hline
+		\textbf{Documento} & \textbf{Indice di Gulpease} & \textbf{Giudizio} \\
+		\hline
+		AdR & 97 & Ottimo\\ 
+		\hline
+        Glossario & 75 & Ottimo \\
+        \hline
+        NdP & 100 & Ottimo \\
+        \hline
+        PdQ & 86 & Ottimo \\
+        \hline
+        PdP & 100 & Ottimo  \\
+        \hline
+	\end{tabular}
+	\caption{Indice di Gulpease per documento}
+	\label{tab:ig}
+\end{table}
+Il grafico in Figura §\ref{fig:ig} mostra l'indice di Gulpease di ogni documento prodotto nel suo stato finale (versione 1.0.0). Come possiamo notare, tutti i documenti si posizionano sopra la soglia di ottimalità. Questo certifica che i documenti prodotti sono leggibili e comprensibili da qualsiasi individuo in possesso di licenza media. Questa leggibilità elevata è data dalla preferenza di periodi semplici e brevi al posto di quelli complessi e lunghi; in più le parole usate vogliono essere il meno "tecniche" possibili, preferendo quindi una maggiore comprensibilità per i non addetti ai lavori a discapito però di una maggiore lunghezza dei documenti.
+Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $IG \geq 40$, vincolo sempre \textit{rispettato}.
+    \item \textbf{Valore ottimo:} $IG \geq 60$, vincolo sempre \textit{rispettato}.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/ig.pdf}
+    \caption{Valutazione \textit{Indice di Gulpease}}
+    \label{fig:ig}
+\end{figure}
+
+
+\subsection{Valutazione MPC-CO}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|l|l|p{3cm}|}
+		\hline
+		\textbf{Documento} & \textbf{Errori gravi (\%)} & \textbf{Errori non gravi (\%)} & \textbf{CO (\%)} & \textbf{Giudizio} \\
+		\hline
+		AdR & 0\% & 0,50\% & 99,50\% & Ottimo\\ 
+		\hline
+        Glossario & 0\% & 1,00\%& 99,00\% & Ottimo \\
+        \hline
+        NdP & 0\% & 0,30\% & 99,77\% & Ottimo \\
+        \hline
+        PdQ & 0\% & 0,20\% & 99,80\% & Ottimo \\
+        \hline
+        PdP & 0\% & 0,28\% & 99,72\% & Ottimo \\
+        \hline
+	\end{tabular}
+	\caption{Percentuale di correttezza ortografica per documento}
+	\label{tab:co}
+\end{table}
+Com'è possibile notare dalla Figura §\ref{fig:co}, l'indice di correttezza ortografica è ottimo in tutti i documenti. Questo perché ogni documento in scrittura viene automaticamente analizzato dall'editor di testo che segnala all'utente eventuali inesattezze ortografiche. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} documenti senza errori gravi, vincolo \textit{rispettato}.
+    \item \textbf{Valore ottimo:} $CO \geq 99\%$, vincolo \textit{rispettato}.
+\end{itemize}
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/co.pdf}
+    \caption{Valutazione di \textit{Correttezza Ortografica}}
+    \label{fig:co}
+\end{figure}
+
+\begin{comment}
+\subsection{Valutazione MPC-CD}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|p{3cm}|}
+		\hline
+		\textbf{Documento} & \textbf{Rapporto completezza documentale (\%)} & \textbf{Giudizio} \\
+		\hline
+		AdR & 100\% & Ottimo\\ 
+		\hline
+        Glossario & 100\% & Ottimo \\
+        \hline
+        NdP & 100\% & Ottimo \\
+        \hline
+        PdQ & 100\% & Ottimo \\
+        \hline
+        PdP & 100\% & Ottimo  \\
+        \hline
+	\end{tabular}
+	\caption{Percentuale di completezza documentale per documento}
+	\label{tab:cd}
+\end{table}
+L'indice di completezza documentale è ottimo in tutti i documenti, com'è possibile notare in Figura §\ref{fig:cd}. Questo perché la struttura di ogni documento in scrittura viene concordata preventivamente nel team e viene verificata ogni qual volta il documento passa alla fase di verifica. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $CD \geq 90\%$ delle sezioni previste, vincolo \textit{rispettato}.
+    \item \textbf{Valore ottimo:} $CD = 100\%$ delle sezioni previste, vincolo \textit{rispettato}.
+\end{itemize}
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/cd.pdf}
+    \caption{Valutazione \textit{Completezza documentale}}
+    \label{fig:cd}
+\end{figure}
+
+\subsection{MPC-CR}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|p{3cm}|}
+		\hline
+		\textbf{Documento} & \textbf{Correttezza dei riferimenti (\%)} & \textbf{Giudizio} \\
+		\hline
+		AdR & 100\% & Ottimo\\ 
+		\hline
+        Glossario & 100\% & Ottimo \\
+        \hline
+        NdP & 100\% & Ottimo \\
+        \hline
+        PdQ & 100\% & Ottimo \\
+        \hline
+        PdP & 100\% & Ottimo  \\
+        \hline
+	\end{tabular}
+	\caption{Percentuale correttezza dei riferimenti per documento}
+	\label{tab:cr}
+\end{table}
+Dal grafico in Figura §\ref{fig:cr} è possibile notare che la percentuale di correttezza dei riferimenti è ottima in ogni documento. Questo perché la correttezza e la coerenza dei riferimenti viene stabilita dal sottogruppo a cui è assegnata la stesura del documento e verificata ogni qual volta il documento passa alla fase di verifica. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $CR \geq 95\%$ dei riferimenti validi, vincolo \textit{rispettato}.
+    \item \textbf{Valore ottimo:} $CD = 100\%$ dei riferimenti validi, vincolo \textit{rispettato}.
+\end{itemize}
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/cr.pdf}
+    \caption{Valutazione \textit{Correttezza dei riferimenti}}
+    \label{fig:cr}
+\end{figure}
+
+\end{comment}
+
+\subsection{Valutazione MPC-PMS}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Percentuale Metriche Soddisfatte (\%)} & \textbf{Giudizio} \\
+		\hline
+		1 & 67\% & Critico\\ 
+		\hline
+        2 & 100\% & Ottimo \\
+        \hline
+        3 & 75\% & Critico \\
+        \hline
+        4 & 83\% & Accettabile \\
+        \hline
+        5 & 100\% & Ottimo  \\
+        \hline
+	\end{tabular}
+	\caption{Percentuale Metriche Soddisfatte per sprint}
+	\label{tab:pms}
+\end{table}
+Analizzando l'andamento della \textit{Percentuale di Metriche Soddisfatte} (MPC-PMS) per la durata degli sprint in Figura §\ref{fig:pms}, notiamo un percorso discontinuo ma in miglioramento. A fronte di alcune criticità operative riscontrate negli Sprint 1 e 3 in cui i nostri risultati (67\% e 75\%) sono scesi sotto la soglia di accettabilità dell'80\% per i motivi già citati in questo documento, abbiamo messo in campo un'ottima capacità di reazione. Dopo aver recuperato l'adeguatezza nello Sprint 4 (83\%), nello sprint 5 notiamo un completamento al 100\% delle metriche che ci porta alla piena conformità agli standard qualitativi prefissati.
+Dal calcolo sono state escluse le metriche di correttezza dei documenti, in quanto queste sono calcolate a documento approvato e non a sprint. Il loro coinvolgimento nel calcolo produrrebbe uno sfasamento che non permetterebbe una stima affidabile. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $PMS \geq 80\%$, vincolo \textit{non rispettato} nello sprint 1 e 3.
+\end{itemize}
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/pms.pdf}
+    \caption{Valutazione \textit{Percentuale di Metriche Soddisfatte}}
+    \label{fig:pms}
+\end{figure}
+
+\section{Iniziative di miglioramento} \label{sec:iniziative-miglioramento}
+Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del progetto, soprattutto i problemi, e applicare correzioni incrementali sia ai processi interni che al prodotto. Il gruppo adotta un approccio basato sul miglioramento continuo per minimizzare i rischi e massimizzare l'efficienza.
+
+\subsection{Valutazione sull'organizzazione}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{3.5cm}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+        \hline
+        \textbf{Problema} & \textbf{Descrizione} & \textbf{Azioni di correzione} \\ \hline
+        
+        Pianificazione e dimensionamento task & Inesperienza iniziale (Sprint 1) nell'organizzare, dimensionare e portare a compimento le task, con conseguente abbassamento del Task Completion Rate (TCR) e scostamenti nei costi (EAC). & Migliore calibrazione del team e scomposizione delle task in unità più piccole per facilitarne il completamento nei tempi previsti (come dimostrato nei recuperi degli sprint successivi). \\ \hline
+        
+        Gestione e modellazione dei Requisiti & Numerosi difetti di modellazione nel documento di Analisi dei Requisiti hanno causato pesanti rallentamenti nello Sprint 3, alzando drasticamente il Merge Rework e l'Issue Reopening Rate. & Organizzazione di sessioni di revisione congiunta prima della stesura definitiva per evitare corpose riscritture strutturali e minimizzare la riapertura delle issue. \\ \hline
+        
+        Calibrazione dell'effort economico & Tendenza ad accelerare il lavoro (Sprint 2 e 3) accumulando anticipo sulla schedulazione ma causando frequenti sforamenti del budget e Cost Variance negative. & Maggiore attenzione al bilanciamento tra l'Earned Value e l'Actual Cost, stabilizzando l'impiego delle ore produttive per non superare il costo pianificato (risolto nello Sprint 5). \\ \hline
+    \end{tabularx}
+    \caption{Azioni adottate per migliorare l'organizzazione.}
+    \label{tab:azioni-org}
+\end{table}
+
+\subsection{Valutazione sui ruoli}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{3.5cm}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+        \hline
+        \textbf{Problema} & \textbf{Descrizione} & \textbf{Azioni di correzione} \\ \hline
+        
+        Coordinamento dei redattori in gruppi numerosi & Iniziali incomprensioni sul lavoro da svolgere a causa della mancanza di esperienza pregressa in un team così numeroso, sfociate in sovrascritture di porzioni di documenti. & Definizione di confini più rigidi nell'assegnazione dei compiti ai singoli redattori per prevenire la sovrapposizione del lavoro e l'annullamento delle Pull Request. \\ \hline
+        
+        Verifica formale e controllo logico & I verificatori si sono inizialmente affidati eccessivamente ai correttori ortografici, tralasciando discrepanze logiche (formule smentite dai dati testuali) e sviste nel "copia e incolla" delle didascalie. & Integrazione di una checklist di verifica semantica e strutturale (matching dei dati tra tabelle e testo, controllo incrociato delle definizioni metriche) obbligatoria per il ruolo del Verificatore. \\ \hline
+    \end{tabularx}
+    \caption{Azioni adottate per migliorare la gestione dei ruoli.}
+    \label{tab:azioni-ruoli}
+\end{table}
+
+\subsection{Valutazione sugli strumenti}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{3.5cm}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+        \hline
+        \textbf{Problema} & \textbf{Descrizione} & \textbf{Azioni di correzione} \\ \hline
+        
+        Co-working tramite GitHub & L'inesperienza iniziale di tutti i membri con lo strumento di versioning GitHub ha portato a conflitti e difficoltà nella gestione collaborativa (alto Merge Rework iniziale). & Adozione di workflow condivisi e rigidi per l'apertura, revisione e approvazione delle Pull Request, uniti alla fisiologica esperienza maturata dal team sul campo. \\ \hline
+        
+        ITS inesistente & All'inizio del progetto il gruppo non adoperava strumenti di \textit{Issue Tracking System} che non permettevano quindi di sapere chi-fa-cosa-quando in tempi ragionevoli e alzava la probabilità di conflitti di merge. & Adozione dell'ITS GitHub Project per l'assegnazione, la misurazione e la rendicontazione delle issue. \\ \hline
+    \end{tabularx}
+    \caption{Azioni adottate per migliorare l'uso degli strumenti.}
+    \label{tab:azioni-str}
+\end{table}
 \end{document}
