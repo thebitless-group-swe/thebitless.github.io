@@ -255,6 +255,46 @@ body::before {
   display: none;
 }
 
+.poc-banner {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 20px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.poc-banner[hidden] {
+  display: none;
+}
+
+.poc-banner-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.poc-banner .doc-name {
+  font-size: 16px;
+  color: var(--fg);
+}
+
+.poc-note {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.poc-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
 /* ── MAIN ── */
 
 main {
@@ -470,6 +510,11 @@ details[open] .chevron {
 /* Link verso risorse esterne (es. il repository del PoC) */
 .doc-link--external::after {
   content: '↗';
+}
+
+/* Pulsante di download (es. l'archivio ZIP del PoC) */
+.doc-link--download::after {
+  content: '↓';
 }
 
 /* ── SUBSECTIONS ── */

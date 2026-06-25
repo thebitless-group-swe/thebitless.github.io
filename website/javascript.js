@@ -11,6 +11,8 @@ const MEMBERS = [
 const REPO = "thebitless-group-swe/thebitless.github.io";
 const RAW_BASE = `https://raw.githubusercontent.com/${REPO}/main/`;
 const POC_URL = "https://github.com/thebitless-group-swe/PoC";
+// GitHub genera al volo lo ZIP del branch di default della repo del PoC.
+const POC_ZIP_URL = "https://github.com/thebitless-group-swe/PoC/archive/refs/heads/main.zip";
 const REPO_URL = `https://github.com/${REPO}`;
 const VERBALE_RE = /^(VE|VI|V)_(\d{4}-\d{2}-\d{2})_(.+)$/;
 const DIARIO_RE = /^DB-?(\d+)?_?(\d{4}-\d{2}-\d{2})/;
@@ -118,8 +120,7 @@ function buildDiari(pdfs, prefix) {
   return items.map(({ _sort, _num, ...r }) => r);
 }
 
-// Voce speciale: il PoC è un repository esterno, non un PDF della repo.
-const POC_DOC = { name: "Proof of Concept (PoC)", href: POC_URL, external: true };
+// Il PoC è mostrato in un riquadro a parte in alto (vedi renderPocBanner), non tra i documenti.
 
 function buildPhases(pdfs, texPaths) {
   return [
@@ -129,7 +130,7 @@ function buildPhases(pdfs, texPaths) {
       groups: [
         {
           label: "Documentazione esterna",
-          docs: [...buildDocs(pdfs, texPaths, "RTB/doc_esterna", ["verbali"]), POC_DOC],
+          docs: buildDocs(pdfs, texPaths, "RTB/doc_esterna", ["verbali"]),
           verbali: { label: "Verbali esterni", items: buildVerbali(pdfs, "RTB/doc_esterna/verbali") },
         },
         {
@@ -319,8 +320,49 @@ function renderLetteraBanner() {
   banner.hidden = false;
 }
 
+// PoC: riquadro a parte in alto (come la lettera), con download dell'archivio ZIP del codice. Solo fase RTB.
+function renderPocBanner() {
+  const banner = document.getElementById("poc-banner");
+  if (!banner) return;
+  banner.innerHTML = "";
+  if (ACTIVE_PHASE !== "rtb") {
+    banner.hidden = true;
+    return;
+  }
+
+  const text = document.createElement("div");
+  text.className = "poc-banner-text";
+  const name = document.createElement("span");
+  name.className = "doc-name";
+  name.textContent = "Proof of Concept (PoC)";
+  text.appendChild(name);
+
+  const actions = document.createElement("div");
+  actions.className = "poc-actions";
+
+  const zip = document.createElement("a");
+  zip.href = POC_ZIP_URL;
+  zip.className = "doc-link doc-link--download";
+  zip.textContent = "Scarica ZIP";
+
+  const repo = document.createElement("a");
+  repo.href = POC_URL;
+  repo.className = "doc-link doc-link--external";
+  repo.target = "_blank";
+  repo.rel = "noopener";
+  repo.textContent = "Vedi repository";
+
+  actions.appendChild(zip);
+  actions.appendChild(repo);
+
+  banner.appendChild(text);
+  banner.appendChild(actions);
+  banner.hidden = false;
+}
+
 function renderActivePhase() {
   renderLetteraBanner();
+  renderPocBanner();
   const panel = document.getElementById("phase-panel");
   if (!panel) return;
   const phase = PHASES.find((p) => p.id === ACTIVE_PHASE);
