@@ -1,4 +1,4 @@
-\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\documentclass[a4paper, 10pt]{article}
 \usepackage[table]{xcolor}
 \usepackage[italian]{babel} 
 \usepackage{comment}      
@@ -28,13 +28,14 @@
 
 \usepackage{hyperref}
 \hypersetup{
-    colorlinks=true,
-    linkcolor=black, 
-    urlcolor=bluBitless,     
-    citecolor=black,  
-    filecolor=black,
+    colorlinks=false,
+    pdfborderstyle={/S/U/W 1},
+    urlbordercolor=0 0 0,
+    linkbordercolor=1 1 1,
+    citebordercolor=1 1 1,
+    filebordercolor=1 1 1,
     breaklinks=true,
-    pdfpagemode=UseNone    
+    pdfpagemode=UseNone
 }
 
 \begin{document}
@@ -168,24 +169,24 @@ termine\textsubscript{G} % in alternativa: termine\ped{G}
 \subsubsection{Riferimenti Normativi}
 \begin{itemize}
     \item \textbf{Capitolato C6 - Second Brain}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C6.pdf} \allowbreak \\
-    Ultimo accesso 14 aprile 2026
+    Ultimo accesso 20 maggio 2026
     \item \textbf{Regolamento del Progetto Didattico}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf} \allowbreak \\
-    Ultimo accesso 14 aprile 2026
-    \item \textbf{Norme di Progetto v0.5.0}: \\ \url{https://thebitless.live/RTB/doc_interna/norme-di-progetto/norme-di-progetto.pdf} \allowbreak \\
-    Ultimo accesso 21 aprile 2026
+    Ultimo accesso 23 maggio 2026
+    \item \textbf{Norme di Progetto v1.0.0}: \\ \url{https://thebitless.live/RTB/doc_interna/norme-di-progetto/norme-di-progetto.pdf} \allowbreak \\
+    Ultimo accesso 8 giugno 2026
 \end{itemize}
 
 \subsubsection{Riferimenti Informativi}
 \begin{itemize}
-    \item \textbf{Glossario v0.5.0}: \\
+    \item \textbf{Glossario v1.0.0}: \\
     \url{https://thebitless.live/RTB/doc_interna/glossario/glossario.pdf} \allowbreak \\
-    Ultimo accesso 30 aprile 2026
+    Ultimo accesso 12 giugno 2026
     \item \textbf{Dispense Analisi dei requisiti}: \\
-    \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf}
-    Ultimo accesso 14 aprile 2026
+    \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf} \\
+    Ultimo accesso 27 maggio 2026
     \item \textbf{Dispense Casi d'uso}: \\
     \url{https://www.math.unipd.it/~rcardin/swea/2022/Diagrammi%20Use%20Case.pdf} \\
-    Ultimo accesso 21 aprile 2026
+    Ultimo accesso 23 maggio 2026
 \end{itemize}
 
 \newpage
@@ -198,7 +199,7 @@ Il progetto consiste nello sviluppo di un \textbf{editor di testo intelligente} 
 Il software fornisce strumenti avanzati per l'elaborazione dei testi, tra cui:
 \begin{itemize}
     \item \textbf{Sintesi Automatica:} Capacità di riassumere testi complessi estraendo i concetti chiave.
-    \item \textbf{Traduzione Contestuale:} Traduzione di contenuti tra diverse lingue, mantenendo la coerenza con il dominio tecnico dell'utente.
+    \item \textbf{Traduzione Contestuale:} Traduzione di contenuti in diverse lingue, mantenendo la coerenza con il dominio tecnico dell'utente.
     \item \textbf{Generazione e Revisione:} Produzione di nuove sezioni di testo e critica intelligente di quanto già scritto, per migliorarne la chiarezza o la logica.
 \end{itemize}
 
@@ -298,7 +299,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
 \end{itemize}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{assets/img/attori.pdf}
+    \includegraphics[width=0.7\textwidth]{assets/img/attori.pdf}
     \caption{Attori del sistema}
     \label{fig:attori}
 \end{figure}
@@ -308,7 +309,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
 \hypertarget{uc:1}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC1.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC1.pdf}
     \caption{UC1 - Scrittura testo nell'editor}
     \label{fig:uc1}
 \end{figure}
@@ -337,7 +338,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
 \hypertarget{uc:2}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC2.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC2.pdf}
     \caption{UC2 - Selezione di un'area di testo con cursore}
     \label{fig:uc2}
 \end{figure}
@@ -367,7 +368,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
 \hypertarget{uc:3}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC3.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC3.pdf}
     \caption{UC3 - Taglia}
     \label{fig:uc3}
 \end{figure}
@@ -396,7 +397,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
 \hypertarget{uc:4}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC4.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC4.pdf}
     \caption{UC4 - Copia}
     \label{fig:uc4}
 \end{figure}
@@ -424,7 +425,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
 \hypertarget{uc:5}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC5.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC5.pdf}
     \caption{UC5 - Incolla}
     \label{fig:uc5}
 \end{figure}
@@ -453,7 +454,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
 \hypertarget{uc:6}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{assets/img/UC6.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC6.pdf}
     \caption{UC6 - Undo}
     \label{fig:uc6}
 \end{figure}
@@ -481,7 +482,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
 \subsubsection{UC7 - Redo}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{assets/img/UC7.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC7.pdf}
     \caption{UC7 - Redo}
     \label{fig:uc7}
 \end{figure}
@@ -509,7 +510,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
 \subsubsection{UC8 - Applicazione stile Grassetto}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{assets/img/UC8.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC8.pdf}
     \caption{UC8 - Applicazione stile Grassetto}
     \label{fig:uc8}
 \end{figure}
@@ -537,7 +538,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
 \subsubsection{UC9 - Rimozione stile Grassetto}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{assets/img/UC9.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC9.pdf}
     \caption{UC9 - Rimozione stile Grassetto}
     \label{fig:uc9}
 \end{figure}
@@ -565,7 +566,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
 \subsubsection{UC10 - Applicazione stile Corsivo}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{assets/img/UC10.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC10.pdf}
     \caption{UC10 - Applicazione stile Corsivo}
     \label{fig:uc10}
 \end{figure}
@@ -593,7 +594,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
 \subsubsection{UC11 - Rimozione stile Corsivo}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{assets/img/UC11.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC11.pdf}
     \caption{UC11 - Rimozione stile Corsivo}
     \label{fig:uc11}
 \end{figure}
@@ -619,7 +620,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
 \subsubsection{UC12 - Applicazione stile Sottolineato}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{assets/img/UC12.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC12.pdf}
     \caption{UC12 - Applicazione stile Sottolineato}
     \label{fig:uc12}
 \end{figure}
@@ -648,7 +649,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
 \subsubsection{UC13 - Rimozione stile Sottolineato}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{assets/img/UC13.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC13.pdf}
     \caption{UC13 - Rimozione stile Sottolineato}
     \label{fig:uc13}
 \end{figure}
@@ -676,7 +677,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
 \subsubsection{UC14 - Applicazione stile Barrato}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{assets/img/UC14.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC14.pdf}
     \caption{UC14 - Applicazione stile Barrato}
     \label{fig:uc14}
 \end{figure}
@@ -706,7 +707,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
 \hypertarget{uc:15}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC15.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC15.pdf}
     \caption{UC15 - Rimozione stile Barrato}
     \label{fig:uc15}
 \end{figure}
@@ -734,7 +735,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
 \hypertarget{uc:16}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC16.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC16.pdf}
     \caption{UC16 - Inserimento titolo}
     \label{fig:uc16}
 \end{figure}
@@ -764,7 +765,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
 \hypertarget{uc:17}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC17.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC17.pdf}
     \caption{UC17 - Rimozione titolo}
     \label{fig:uc17}
 \end{figure}
@@ -792,7 +793,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
 \hypertarget{uc:18}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC18.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC18.pdf}
     \caption{UC18 - Inserimento sottotitolo}
     \label{fig:uc18}
 \end{figure}
@@ -820,7 +821,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
 \hypertarget{uc:19}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC19.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC19.pdf}
     \caption{UC19 - Rimozione sottotitolo}
     \label{fig:uc19}
 \end{figure}
@@ -847,7 +848,7 @@ All'interno del sistema$_G$ Second Brain, abbiamo identificato le seguenti tipol
 \hypertarget{uc:20}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC20.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC20.pdf}
     \caption{UC20 - Inserimento elenco}
     \label{fig:uc20}
 \end{figure}
@@ -880,7 +881,7 @@ Il Caso d'Uso UC20 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:20.1}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC20.1.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC20.1.pdf}
     \caption{UC20.1 - Inclusione di UC20}
     \label{fig:uc20.1}
 \end{figure}
@@ -909,7 +910,7 @@ Il Caso d'Uso UC20 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:21}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC21.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC21.pdf}
     \caption{UC21 - Rimozione elenco}
     \label{fig:uc21}
 \end{figure}    
@@ -936,7 +937,7 @@ Il Caso d'Uso UC20 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:22}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC22.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC22.pdf}
     \caption{UC22 - Inserimento citazione}
     \label{fig:uc22}
 \end{figure}    
@@ -965,7 +966,7 @@ Il Caso d'Uso UC20 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:23}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC23.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC23.pdf}
     \caption{UC23 - Rimozione citazione}
     \label{fig:uc23}
 \end{figure}
@@ -992,7 +993,7 @@ Il Caso d'Uso UC20 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:24}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC24.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC24.pdf}
     \caption{UC24 - Inserimento blocco di codice}
     \label{fig:uc24}
 \end{figure}
@@ -1021,7 +1022,7 @@ Il Caso d'Uso UC20 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:25}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC25.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC25.pdf}
     \caption{UC25 - Rimozione blocco di codice}
     \label{fig:uc25}
 \end{figure}
@@ -1050,7 +1051,7 @@ Il Caso d'Uso UC20 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:26}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC26.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC26.pdf}
     \caption{UC26 - Inserimento formula scientifica}
     \label{fig:uc26}
 \end{figure}
@@ -1079,7 +1080,7 @@ Il Caso d'Uso UC20 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:27}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC27.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC27.pdf}
     \caption{UC27 - Rimozione formula scientifica}
     \label{fig:uc27}
 \end{figure}
@@ -1108,7 +1109,7 @@ Il Caso d'Uso UC20 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:28}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC28.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC28.pdf}
     \caption{UC28 - Inserimento link ipertestuale}
     \label{fig:uc28}
 \end{figure}
@@ -1138,7 +1139,7 @@ Il Caso d'Uso UC20 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:29}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC29.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC29.pdf}
     \caption{UC29 - Rimozione link ipertestuale}
     \label{fig:uc29}
 \end{figure}
@@ -1167,7 +1168,7 @@ Il Caso d'Uso UC20 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:30}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC30.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC30.pdf}
     \caption{UC30 - Inserimento ancora di navigazione}
     \label{fig:uc30}
 \end{figure}
@@ -1196,7 +1197,7 @@ Il Caso d'Uso UC20 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:31}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC31.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC31.pdf}
     \caption{UC31 - Rimozione ancora di navigazione}
     \label{fig:uc31}
 \end{figure}
@@ -1223,7 +1224,7 @@ Il Caso d'Uso UC20 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:32}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC32.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC32.pdf}
     \caption{UC32 - Inserimento tabella}
     \label{fig:uc32}
 \end{figure}
@@ -1255,7 +1256,7 @@ Il Caso d'Uso UC32 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:32.1}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC32.1.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC32.1.pdf}
     \caption{UC32.1 - Inclusione di UC32}
     \label{fig:uc32.1}
 \end{figure}
@@ -1285,7 +1286,7 @@ Il Caso d'Uso UC32 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:33}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC33.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC33.pdf}
     \caption{UC33 - Inserimento riga nella tabella}
     \label{fig:uc33}
 \end{figure}
@@ -1313,7 +1314,7 @@ Il Caso d'Uso UC32 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:34}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC34.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC34.pdf}
     \caption{UC34 - Rimozione riga dalla tabella}
     \label{fig:uc34}
 \end{figure}
@@ -1340,7 +1341,7 @@ Il Caso d'Uso UC32 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:35}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC35.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC35.pdf}
     \caption{UC35 - Inserimento colonna nella tabella}
     \label{fig:uc35}
 \end{figure}
@@ -1367,7 +1368,7 @@ Il Caso d'Uso UC32 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:36}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC36.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC36.pdf}
     \caption{UC36 - Rimozione colonna dalla tabella}
     \label{fig:uc36}
 \end{figure}    
@@ -1394,7 +1395,7 @@ Il Caso d'Uso UC32 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:37}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC37.pdf}
+    \includegraphics[width=0.8\textwidth]{assets/img/UC37.pdf}
     \caption{UC37 - Inserimento immagine}
     \label{fig:uc37}
 \end{figure}
@@ -1420,17 +1421,17 @@ Il Caso d'Uso UC32 include un ulteriore Caso d'Uso come raffigurato nella seguen
         \end{enumerate}
     \item \textbf{Scenario secondario:}
         \begin{itemize}
-            \item L'URL o il percorso fornito non è valido o la risorsa non è raggiungibile → \textbf{Vedi \uclink{uc:37.1}{UC37.1}}.
+            \item L'URL o il percorso fornito non è valido o la risorsa non è raggiungibile → Vedi \uclink{uc:38}{UC38}.
         \end{itemize}
     \item \textbf{Estensioni:}
         \begin{itemize}
-            \item \uclink{uc:37.1}{UC37.1 - Errore URL non valido}.
+            \item \uclink{uc:38}{UC38 - Errore URL non valido}.
         \end{itemize}
     \item \textbf{Trigger:} L'utente attiva il comando di inserimento di un'immagine.
 \end{itemize}
 
-\paragraph{UC37.1 - Errore URL non valido}
-\hypertarget{uc:37.1}{}
+\subsubsection{UC38 - Errore URL non valido}
+\hypertarget{uc:38}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:}
@@ -1452,41 +1453,11 @@ Il Caso d'Uso UC32 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \end{itemize}
 
 
-\subsubsection{UC38 - Sostituzione immagine}
-\hypertarget{uc:38}{}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC38.pdf}
-    \caption{UC38 - Sostituzione immagine}
-    \label{fig:uc38}
-\end{figure}
-\begin{itemize}
-    \item \textbf{Attore principale:} Utente
-    \item \textbf{Pre-condizioni:}
-        \begin{itemize}
-            \item Un'immagine è già presente nell'editor tramite \uclink{uc:37}{UC37}.
-        \end{itemize}
-    \item \textbf{Post-condizioni:}
-        \begin{itemize}
-            \item Il percorso dell'immagine esistente viene aggiornato.
-            \item L'anteprima mostra la nuova immagine.
-        \end{itemize}
-    \item \textbf{Scenario principale:}
-        \begin{enumerate}
-            \item L'utente seleziona il markup dell'immagine presente nel documento.
-            \item L'utente fornisce un nuovo URL o percorso locale.
-            \item Il sistema sostituisce il riferimento precedente con quello aggiornato.
-            \item Il sistema aggiorna l'anteprima di rendering.
-        \end{enumerate}
-    \item \textbf{Trigger:} L'utente attiva il comando di sostituzione di un'immagine.
-\end{itemize}
-
-
 \subsubsection{UC39 - Rimozione immagine}
 \hypertarget{uc:39}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC39.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC39.pdf}
     \caption{UC39 - Rimozione immagine}
     \label{fig:uc39}
 \end{figure}
@@ -1515,7 +1486,7 @@ Il Caso d'Uso UC32 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:40}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC40.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC40.pdf}
     \caption{UC40 - Attivazione auto-completamento simboli}
     \label{fig:uc40}
 \end{figure}
@@ -1543,7 +1514,7 @@ Il Caso d'Uso UC32 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:41}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC41.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC41.pdf}
     \caption{UC41 - Disattivazione auto-completamento simboli}
     \label{fig:uc41}
 \end{figure}
@@ -1570,7 +1541,7 @@ Il Caso d'Uso UC32 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:42}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC42.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC42.pdf}
     \caption{UC42 - Attivazione Sincronizzazione Scorrimento (Sync Scroll)}
     \label{fig:uc42}
 \end{figure}
@@ -1597,7 +1568,7 @@ Il Caso d'Uso UC32 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:43}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC43.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC43.pdf}
     \caption{UC43 - Disattivazione Sincronizzazione Scorrimento (Sync Scroll)}
     \label{fig:uc43}
 \end{figure}
@@ -1624,7 +1595,7 @@ Il Caso d'Uso UC32 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:44}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC44.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC44.pdf}
     \caption{UC44 - Attivazione Dark Mode}
     \label{fig:uc44}
 \end{figure}
@@ -1651,7 +1622,7 @@ Il Caso d'Uso UC32 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:45}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC45.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC45.pdf}
     \caption{UC45 - Attivazione Light Mode}
     \label{fig:uc45}
 \end{figure}
@@ -1678,7 +1649,7 @@ Il Caso d'Uso UC32 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:46}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC46.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC46.pdf}
     \caption{UC46 - Apertura Sidebar}
     \label{fig:uc46}
 \end{figure}
@@ -1705,7 +1676,7 @@ Il Caso d'Uso UC32 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:47}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC47.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC47.pdf}
     \caption{UC47 - Chiusura Sidebar}
     \label{fig:uc47}
 \end{figure}
@@ -1732,7 +1703,7 @@ Il Caso d'Uso UC32 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:48}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC48.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC48.pdf}
     \caption{UC48 - Attivazione visualizzazione esclusiva Editor}
     \label{fig:uc48}
 \end{figure}
@@ -1760,7 +1731,7 @@ Il Caso d'Uso UC32 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:49}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC49.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC49.pdf}
     \caption{UC49 - Attivazione visualizzazione esclusiva Render}
     \label{fig:uc49}
 \end{figure}
@@ -1788,7 +1759,7 @@ Il Caso d'Uso UC32 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:50}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC50.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC50.pdf}
     \caption{UC50 - Attivazione visualizzazione combinata (Split View)}
     \label{fig:uc50}
 \end{figure}
@@ -1814,7 +1785,7 @@ Il Caso d'Uso UC32 include un ulteriore Caso d'Uso come raffigurato nella seguen
 \hypertarget{uc:51}{}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{assets/img/UC51.pdf}
+    \includegraphics[width=0.60\textwidth]{assets/img/UC51.pdf}
     \caption{UC51 - Inserimento testo tramite dettatura vocale}
     \label{fig:uc51}
 \end{figure}
@@ -1895,7 +1866,7 @@ Il Caso d’Uso UC52 include un ulteriore Caso d’Uso come raffigurato nella se
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{assets/img/UC52.1.pdf}
+    \includegraphics[width=0.65\textwidth]{assets/img/UC52.1.pdf}
     \caption{UC52.1 - Inclusione di UC52}
     \label{fig:uc52.1}
 \end{figure}
@@ -1963,7 +1934,7 @@ Il Caso d’Uso UC53 include un ulteriore Caso d’Uso come raffigurato nella se
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{assets/img/UC53.1.pdf}
+    \includegraphics[width=0.7\textwidth]{assets/img/UC53.1.pdf}
     \caption{UC53.1 - Inclusione di UC53}
     \label{fig:uc53.1}
 \end{figure}
@@ -2013,9 +1984,9 @@ Il Caso d’Uso UC53 include un ulteriore Caso d’Uso come raffigurato nella se
         \end{enumerate}
     \item \textbf{Scenari secondari:}
     \begin{itemize}
-        \item Il testo da rielaborare è troppo breve o privo di contenuto semantico → \textbf{Vedi \uclink{uc:63}{UC63}}.
-        \item L'utente decide di annullare l'operazione chiudendo il menu di selezione o interrompendo l'attesa del responso → \textbf{Vedi \uclink{uc:61}{UC61}}.
-        \item Durante l'invio o l'elaborazione dei dati il server $LLM_G$ restituisce un errore → \textbf{Vedi \uclink{uc:62}{UC62}}.
+        \item Il testo da rielaborare è troppo breve o privo di contenuto semantico → Vedi \uclink{uc:63}{UC63}.
+        \item L'utente decide di annullare l'operazione chiudendo il menu di selezione o interrompendo l'attesa del responso → Vedi \uclink{uc:61}{UC61}.
+        \item Durante l'invio o l'elaborazione dei dati il server $LLM_G$ restituisce un errore → Vedi \uclink{uc:62}{UC62}.
     \end{itemize}
     \item \textbf{Inclusioni:} 
         \begin{itemize}
@@ -2033,7 +2004,7 @@ Il Caso d’Uso UC53 include un ulteriore Caso d’Uso come raffigurato nella se
 Il Caso d’Uso UC54 include un ulteriore Caso d’Uso come raffigurato nella seguente immagine:
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{assets/img/UC54.1.pdf}
+    \includegraphics[width=0.7\textwidth]{assets/img/UC54.1.pdf}
     \caption{UC54.1 - Inclusione di UC54}
     \label{fig:uc54.1}
 \end{figure}
@@ -2142,9 +2113,9 @@ Il Caso d’Uso UC54 include un ulteriore Caso d’Uso come raffigurato nella se
     \end{enumerate}
     \item \textbf{Scenari secondari:}
     \begin{itemize}
-        \item Il testo da analizzare è troppo breve, composto solo da spazi vuoti o caratteri speciali che non permettono un'analisi semantica sensata → \textbf{Vedi \uclink{uc:63}{UC63}}.
-        \item L'utente decide di annullare l'operazione chiudendo il menu di selezione o interrompendo l'attesa del responso → \textbf{Vedi \uclink{uc:61}{UC61}}.
-        \item Durante l'invio o l'elaborazione dei dati il server $LLM_G$ restituisce un errore  → \textbf{Vedi \uclink{uc:62}{UC62}}.
+        \item Il testo da analizzare è troppo breve, composto solo da spazi vuoti o caratteri speciali che non permettono un'analisi semantica sensata → Vedi \uclink{uc:63}{UC63}.
+        \item L'utente decide di annullare l'operazione chiudendo il menu di selezione o interrompendo l'attesa del responso → Vedi \uclink{uc:61}{UC61}.
+        \item Durante l'invio o l'elaborazione dei dati il server $LLM_G$ restituisce un errore  → Vedi \uclink{uc:62}{UC62}.
     \end{itemize}
     \item \textbf{Inclusioni:}
     \begin{itemize}
@@ -2168,7 +2139,7 @@ Il Caso d’Uso UC54 include un ulteriore Caso d’Uso come raffigurato nella se
     \item \textbf{Trigger:} L'utente attiva la funzione di analisi critica.
 \end{itemize}
 
-Il caso d'uso UC56 prevede l'inclusione dell'UC56.1 e si specializza in sei generalizzazioni (da \textbf{UC56.2} a \textbf{UC56.7}), ciascuna corrispondente allo specifico approccio scelto per l'analisi. Di seguito il relativo diagramma UML:
+Il caso d'uso UC56 prevede l'inclusione dell'UC56.1 e si specializza in sei generalizzazioni (da UC56.2 a UC56.7), ciascuna corrispondente allo specifico approccio scelto per l'analisi. Di seguito il relativo diagramma UML:
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{assets/img/UC56.2-6.pdf}
@@ -2316,10 +2287,10 @@ Il caso d'uso UC56 prevede l'inclusione dell'UC56.1 e si specializza in sei gene
     \end{enumerate}
     \item \textbf{Scenari secondari:}
     \begin{itemize}
-        \item L'utente può scegliere di arricchire il contesto tramite URL → \textbf{Vedi \uclink{uc:57.4}{UC57.4}}.
-        \item L'utente può scegliere di arricchire il contesto selezionando manualmente una o più note personali → \textbf{Vedi \uclink{uc:57.5}{UC57.5}}.
-        \item L'utente decide di non attendere la risposta e interrompe la richiesta pendente → \textbf{Vedi \uclink{uc:61}{UC61}}.
-        \item Il servizio LLM$_G$ non è raggiungibile o restituisce un errore durante l'elaborazione → \textbf{Vedi \uclink{uc:62}{UC62}}.
+        \item L'utente può scegliere di arricchire il contesto tramite URL → Vedi \uclink{uc:57.4}{UC57.4}.
+        \item L'utente può scegliere di arricchire il contesto selezionando manualmente una o più note personali → Vedi \uclink{uc:57.5}{UC57.5}.
+        \item L'utente decide di non attendere la risposta e interrompe la richiesta pendente → Vedi \uclink{uc:61}{UC61}.
+        \item Il servizio LLM$_G$ non è raggiungibile o restituisce un errore durante l'elaborazione → Vedi \uclink{uc:62}{UC62}.
     \end{itemize}
     \item \textbf{Inclusioni:}
     \begin{itemize}
@@ -2417,7 +2388,7 @@ Il Caso d’Uso UC57 include due ulteriori Caso d’Uso come raffigurato nella s
 \subsubsection{UC58 - Accettazione output}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{assets/img/UC58.pdf}
+    \includegraphics[width=0.7\textwidth]{assets/img/UC58.pdf}
     \caption{UC58 - Accettazione output}
     \label{fig:uc58}
 \end{figure}
@@ -2446,7 +2417,7 @@ Il Caso d’Uso UC57 include due ulteriori Caso d’Uso come raffigurato nella s
 \subsubsection{UC59 - Rifiuto output}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{assets/img/UC59.pdf}
+    \includegraphics[width=0.7\textwidth]{assets/img/UC59.pdf}
     \caption{UC59 - Rifiuto output}
     \label{fig:uc59}
 \end{figure}
@@ -2587,7 +2558,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
         \end{enumerate}
     \item \textbf{Scenario secondario:}
         \begin{itemize}
-            \item Si verifica un'eccezione imprevista nell'allocazione della memoria o nel caricamento dei componenti dell'interfaccia → \textbf{Vedi \uclink{uc:66}{UC66}}.
+            \item Si verifica un'eccezione imprevista nell'allocazione della memoria o nel caricamento dei componenti dell'interfaccia → Vedi \uclink{uc:66}{UC66}.
         \end{itemize}
     \item \textbf{Estensioni:} 
         \begin{itemize}
@@ -2624,7 +2595,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
         \end{enumerate}
     \item \textbf{Scenario secondario:}
         \begin{itemize}
-            \item La creazione fallisce a causa di un titolo già esistente, timeout della richiesta o assenza improvvisa di connessione → \textbf{Vedi \uclink{uc:66}{UC66}}.
+            \item La creazione fallisce a causa di un titolo già esistente, timeout della richiesta o assenza improvvisa di connessione → Vedi \uclink{uc:66}{UC66}.
         \end{itemize}
     \item \textbf{Estensioni:} 
         \begin{itemize}
@@ -2682,7 +2653,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
         \end{enumerate}
     \item \textbf{Scenario secondario:}
         \begin{itemize}
-            \item Si verifica un errore di lettura causato da un file corrotto, un formato non supportato o restrizioni di accesso del sistema operativo → \textbf{Vedi \uclink{uc:69}{UC69}}.
+            \item Si verifica un errore di lettura causato da un file corrotto, un formato non supportato o restrizioni di accesso del sistema operativo → Vedi \uclink{uc:69}{UC69}.
         \end{itemize}
     \item \textbf{Estensioni:} 
         \begin{itemize}
@@ -2718,7 +2689,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
         \end{enumerate}
     \item \textbf{Scenario secondario:}
         \begin{itemize}
-            \item Si verifica un errore di ricezione dovuto a instabilità della rete, sessione scaduta o record non trovato sul server → \textbf{Vedi \uclink{uc:69}{UC69}}.
+            \item Si verifica un errore di ricezione dovuto a instabilità della rete, sessione scaduta o record non trovato sul server → Vedi \uclink{uc:69}{UC69}.
         \end{itemize} 
     \item \textbf{Estensioni:} 
         \begin{itemize}
@@ -2777,7 +2748,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
         \end{enumerate}
     \item \textbf{Scenario secondario:}
         \begin{itemize}
-            \item Si verifica un errore di scrittura dovuto a disco pieno, percorso non valido o permessi di accesso insufficienti → \textbf{Vedi \uclink{uc:72}{UC72}}.
+            \item Si verifica un errore di scrittura dovuto a disco pieno, percorso non valido o permessi di accesso insufficienti → Vedi \uclink{uc:72}{UC72}.
         \end{itemize}
     \item \textbf{Estensioni:} 
         \begin{itemize}
@@ -2813,7 +2784,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
         \end{enumerate}
     \item \textbf{Scenario secondario:}
         \begin{itemize}
-            \item Si verifica un errore di persistenza causato da instabilità di rete, errore del server o sessione non valida → \textbf{Vedi \uclink{uc:72}{UC72}}.
+            \item Si verifica un errore di persistenza causato da instabilità di rete, errore del server o sessione non valida → Vedi \uclink{uc:72}{UC72}.
         \end{itemize}
     \item \textbf{Estensioni:} 
         \begin{itemize}
@@ -2874,7 +2845,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
         \end{enumerate}
     \item \textbf{Scenario secondario:}
         \begin{itemize}
-            \item Si verifica un errore di accesso al disco o il file risulta già rimosso da un processo esterno → \textbf{Vedi \uclink{uc:75}{UC75}}.
+            \item Si verifica un errore di accesso al disco o il file risulta già rimosso da un processo esterno → Vedi \uclink{uc:75}{UC75}.
         \end{itemize}
     \item \textbf{Estensioni:} 
         \begin{itemize}
@@ -2913,7 +2884,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
         \end{enumerate}
     \item \textbf{Scenario secondario:}
         \begin{itemize}
-            \item La cancellazione fallisce per instabilità della rete, sessione scaduta o errore interno del server → \textbf{Vedi \uclink{uc:75}{UC75}}.
+            \item La cancellazione fallisce per instabilità della rete, sessione scaduta o errore interno del server → Vedi \uclink{uc:75}{UC75}.
         \end{itemize}
     \item \textbf{Estensioni:} 
         \begin{itemize}
@@ -2975,7 +2946,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
         \end{enumerate}
     \item \textbf{Scenario secondario:}
         \begin{itemize}
-            \item Il nome inserito contiene caratteri non validi per il File System o esiste già un file con lo stesso nome → \textbf{Vedi \uclink{uc:78}{UC78}}.
+            \item Il nome inserito contiene caratteri non validi per il File System o esiste già un file con lo stesso nome → Vedi \uclink{uc:78}{UC78}.
         \end{itemize}
     \item \textbf{Estensioni:} 
         \begin{itemize}
@@ -3013,7 +2984,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
         \end{enumerate}
     \item \textbf{Scenario secondario:}
         \begin{itemize}
-            \item La richiesta fallisce a causa di un titolo duplicato nel database, timeout di rete o sessione scaduta → \textbf{Vedi \uclink{uc:78}{UC78}}.
+            \item La richiesta fallisce a causa di un titolo duplicato nel database, timeout di rete o sessione scaduta → Vedi \uclink{uc:78}{UC78}.
         \end{itemize}
     \item \textbf{Estensioni:} 
         \begin{itemize}
@@ -3231,7 +3202,7 @@ In questa sezione ci occuperemo dei casi d'uso$_G$ riguardanti il salvataggio e 
         \end{enumerate}
     \item \textbf{Scenario secondario:}
         \begin{itemize}
-            \item Il sistema$_G$ rileva un fallimento nella procedura di autenticazione, sia per credenziali errate che per problemi di comunicazione con il database$_G$ → \textbf{Vedi \uclink{uc:85}{UC85}}.
+            \item Il sistema$_G$ rileva un fallimento nella procedura di autenticazione, sia per credenziali errate che per problemi di comunicazione con il database$_G$ → Vedi \uclink{uc:85}{UC85}.
         \end{itemize}
     \item \textbf{Inclusioni:} 
         \begin{itemize}
@@ -3354,8 +3325,8 @@ Il Caso d'Uso UC84 include due ulteriori Casi d'Uso come raffigurato nella segue
         \end{enumerate}
     \item \textbf{Scenario secondario:}
         \begin{itemize}
-            \item Lo username scelto è già presente nel database$_G$ → \textbf{Vedi \uclink{uc:87}{UC87}}.
-            \item Le password inserite non coincidono → \textbf{Vedi \uclink{uc:88}{UC88}}.
+            \item Lo username scelto è già presente nel database$_G$ → Vedi \uclink{uc:87}{UC87}.
+            \item Le password inserite non coincidono → Vedi \uclink{uc:88}{UC88}.
         \end{itemize}
     \item \textbf{Inclusioni:} 
         \begin{itemize}
@@ -3448,12 +3419,12 @@ Il Caso d'Uso UC86 include tre ulteriori Casi d'Uso come raffigurato nella segue
     \item \textbf{Trigger:} Il sistema$_G$ rileva una discrepanza tra i due campi password inseriti.
 \end{itemize}
 
-\subsubsection{UC89 - Rimozione account}
+\subsubsection{UC89 - Eliminazione account}
 \hypertarget{uc:89}{}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{assets/img/UC89.pdf}
-    \caption{UC89 - Rimozione account}
+    \caption{UC89 - Eliminazione account}
     \label{fig:uc89}
 \end{figure}
 \begin{itemize}
@@ -3628,152 +3599,148 @@ R-38-F-De & L'Utente deve poter rimuovere una colonna da una tabella esistente. 
 
 R-39-F-De & L'Utente deve poter inserire un'immagine nel documento tramite URL o percorso locale. & UC37 \\ \hline
 
-R-40-F-De & Il Sistema deve gestire l'inserimento di un'immagine con URL o percorso non valido, informando l'Utente e non inserendo l'immagine. & UC37.1 \\ \hline
+R-40-F-De & Il Sistema deve gestire l'inserimento di un'immagine con URL o percorso non valido, informando l'Utente e non inserendo l'immagine. & UC38 \\ \hline
 
-R-41-F-De & L'Utente deve poter sostituire un'immagine presente nel documento. & UC38 \\ \hline
+R-41-F-De & L'Utente deve poter rimuovere un'immagine dal documento. & UC39 \\ \hline
 
-R-42-F-De & L'Utente deve poter rimuovere un'immagine dal documento. & UC39 \\ \hline
+R-42-F-De & L'Utente deve poter attivare l'auto-completamento dei simboli durante la digitazione. & UC40 \\ \hline
 
-R-43-F-De & L'Utente deve poter attivare l'auto-completamento dei simboli durante la digitazione. & UC40 \\ \hline
+R-43-F-De & L'Utente deve poter disattivare l'auto-completamento dei simboli durante la digitazione. & UC41 \\ \hline
 
-R-44-F-De & L'Utente deve poter disattivare l'auto-completamento dei simboli durante la digitazione. & UC41 \\ \hline
+R-44-F-De & L'Utente deve poter attivare la sincronizzazione dello scorrimento tra editor e anteprima. & UC42 \\ \hline
 
-R-45-F-De & L'Utente deve poter attivare la sincronizzazione dello scorrimento tra editor e anteprima. & UC42 \\ \hline
+R-45-F-De & L'Utente deve poter disattivare la sincronizzazione dello scorrimento tra editor e anteprima. & UC43 \\ \hline
 
-R-46-F-De & L'Utente deve poter disattivare la sincronizzazione dello scorrimento tra editor e anteprima. & UC43 \\ \hline
+R-46-F-De & L'Utente deve poter attivare il tema scuro dell'interfaccia. & UC44 \\ \hline
 
-R-47-F-De & L'Utente deve poter attivare il tema scuro dell'interfaccia. & UC44 \\ \hline
+R-47-F-De & L'Utente deve poter attivare il tema chiaro dell'interfaccia. & UC45 \\ \hline
 
-R-48-F-De & L'Utente deve poter attivare il tema chiaro dell'interfaccia. & UC45 \\ \hline
+R-48-F-De & L'Utente deve poter aprire la barra laterale dell'interfaccia. & UC46 \\ \hline
 
-R-49-F-De & L'Utente deve poter aprire la barra laterale dell'interfaccia. & UC46 \\ \hline
+R-49-F-De & L'Utente deve poter chiudere la barra laterale dell'interfaccia. & UC47 \\ \hline
 
-R-50-F-De & L'Utente deve poter chiudere la barra laterale dell'interfaccia. & UC47 \\ \hline
+R-50-F-Ob & L'Utente deve poter attivare la visualizzazione esclusiva dell'editor. & UC48 \\ \hline
 
-R-51-F-Ob & L'Utente deve poter attivare la visualizzazione esclusiva dell'editor. & UC48 \\ \hline
+R-51-F-Ob & L'Utente deve poter attivare la visualizzazione esclusiva dell'anteprima. & UC49 \\ \hline
 
-R-52-F-Ob & L'Utente deve poter attivare la visualizzazione esclusiva dell'anteprima. & UC49 \\ \hline
+R-52-F-Ob & L'Utente deve poter attivare la visualizzazione combinata di editor e anteprima. & UC50 \\ \hline
 
-R-53-F-Ob & L'Utente deve poter attivare la visualizzazione combinata di editor e anteprima. & UC50 \\ \hline
+R-53-F-De & L'Utente deve poter inserire testo tramite dettatura vocale, se il browser supporta le Web Speech API. & UC51 \\ \hline
 
-R-54-F-De & L'Utente deve poter inserire testo tramite dettatura vocale, se il browser supporta le Web Speech API. & UC51 \\ \hline
+R-54-F-Ob & Il Sistema deve permettere l'accesso a un LLM$_G$ per elaborare una porzione di testo selezionata oppure l'intero documento. & UC52, UC53, UC54, UC55, UC56, UC57 \\ \hline
 
-R-55-F-Ob & Il Sistema deve permettere l'accesso a un LLM$_G$ per elaborare una porzione di testo selezionata oppure l'intero documento. & UC52, UC53, UC54, UC55, UC56, UC57 \\ \hline
+R-55-F-Ob & L'Utente deve poter ottenere un riassunto del testo selezionato o dell'intero documento tramite LLM$_G$. & UC52 \\ \hline
 
-R-56-F-Ob & L'Utente deve poter ottenere un riassunto del testo selezionato o dell'intero documento tramite LLM$_G$. & UC52 \\ \hline
+R-56-F-De & L'Utente deve poter scegliere la tipologia di riassunto. & UC52.1 \\ \hline
 
-R-57-F-De & L'Utente deve poter scegliere la tipologia di riassunto. & UC52.1 \\ \hline
+R-57-F-Ob & L'Utente deve poter tradurre il testo selezionato o l'intero documento tramite LLM$_G$. & UC53 \\ \hline
 
-R-58-F-Ob & L'Utente deve poter tradurre il testo selezionato o l'intero documento tramite LLM$_G$. & UC53 \\ \hline
+R-58-F-Ob & L'Utente deve poter scegliere la lingua di destinazione della traduzione. & UC53.1 \\ \hline
 
-R-59-F-Ob & L'Utente deve poter scegliere la lingua di destinazione della traduzione. & UC53.1 \\ \hline
+R-59-F-Ob & L'Utente deve poter richiedere al LLM$_G$ una riscrittura del testo, modificandone tono, stile o registro linguistico. & UC54 \\ \hline
 
-R-60-F-Ob & L'Utente deve poter richiedere al LLM$_G$ una riscrittura del testo, modificandone tono, stile o registro linguistico. & UC54 \\ \hline
+R-60-F-Ob & L'Utente deve poter scegliere lo stile da applicare nella riscrittura del testo. & UC54.1 \\ \hline
 
-R-61-F-Ob & L'Utente deve poter scegliere lo stile da applicare nella riscrittura del testo. & UC54.1 \\ \hline
+R-61-F-Ob & L'Utente deve poter correggere grammaticalmente il testo selezionato o l'intero documento tramite LLM$_G$. & UC55 \\ \hline
 
-R-62-F-Ob & L'Utente deve poter correggere grammaticalmente il testo selezionato o l'intero documento tramite LLM$_G$. & UC55 \\ \hline
+R-62-F-De & L'Utente deve ricevere una comunicazione nel caso in cui l'LLM$_G$ non rilevi errori nel testo analizzato. & UC55.1 \\ \hline
 
-R-63-F-De & L'Utente deve ricevere una comunicazione nel caso in cui l'LLM$_G$ non rilevi errori nel testo analizzato. & UC55.1 \\ \hline
+R-63-F-Ob & L'Utente deve poter analizzare criticamente il testo secondo la metodologia dei Sei Cappelli per Pensare. & UC56 \\ \hline
 
-R-64-F-Ob & L'Utente deve poter analizzare criticamente il testo secondo la metodologia dei Sei Cappelli per Pensare. & UC56 \\ \hline
+R-64-F-Ob & L'Utente deve poter selezionare una prospettiva di analisi tra i Sei Cappelli. & UC56.1 \\ \hline
 
-R-65-F-Ob & L'Utente deve poter selezionare una prospettiva di analisi tra i Sei Cappelli. & UC56.1 \\ \hline
+R-65-F-Ob & L'Utente deve poter ottenere un'analisi critica del testo secondo la prospettiva del Cappello Bianco, orientata a dati, fatti, neutralità e imparzialità. & UC56.2 \\ \hline
 
-R-66-F-Ob & L'Utente deve poter ottenere un'analisi critica del testo secondo la prospettiva del Cappello Bianco, orientata a dati, fatti, neutralità e imparzialità. & UC56.2 \\ \hline
+R-66-F-Ob & L'Utente deve poter ottenere un'analisi critica del testo secondo la prospettiva del Cappello Rosso, orientata a emozioni, sensazioni e percezioni. & UC56.3 \\ \hline
 
-R-67-F-Ob & L'Utente deve poter ottenere un'analisi critica del testo secondo la prospettiva del Cappello Rosso, orientata a emozioni, sensazioni e percezioni. & UC56.3 \\ \hline
+R-67-F-Ob & L'Utente deve poter ottenere un'analisi critica del testo secondo la prospettiva del Cappello Giallo, orientata a benefici, opportunità e aspetti positivi. & UC56.4 \\ \hline
 
-R-68-F-Ob & L'Utente deve poter ottenere un'analisi critica del testo secondo la prospettiva del Cappello Giallo, orientata a benefici, opportunità e aspetti positivi. & UC56.4 \\ \hline
+R-68-F-Ob & L'Utente deve poter ottenere un'analisi critica del testo secondo la prospettiva del Cappello Nero, orientata a rischi, criticità e punti deboli. & UC56.5 \\ \hline
 
-R-69-F-Ob & L'Utente deve poter ottenere un'analisi critica del testo secondo la prospettiva del Cappello Nero, orientata a rischi, criticità e punti deboli. & UC56.5 \\ \hline
+R-69-F-Ob & L'Utente deve poter ottenere un'analisi critica del testo secondo la prospettiva del Cappello Verde, orientata a creatività, alternative e soluzioni innovative. & UC56.6 \\ \hline
 
-R-70-F-Ob & L'Utente deve poter ottenere un'analisi critica del testo secondo la prospettiva del Cappello Verde, orientata a creatività, alternative e soluzioni innovative. & UC56.6 \\ \hline
+R-70-F-Ob & L'Utente deve poter ottenere un'analisi critica del testo secondo la prospettiva del Cappello Blu, orientata a logica, struttura e organizzazione del contenuto. & UC56.7 \\ \hline
 
-R-71-F-Ob & L'Utente deve poter ottenere un'analisi critica del testo secondo la prospettiva del Cappello Blu, orientata a logica, struttura e organizzazione del contenuto. & UC56.7 \\ \hline
+R-71-F-Ob & Il Sistema deve associare a ciascuna prospettiva dei Sei Cappelli un prompt$_G$ specifico, adatto a guidare l'LLM$_G$ nell'analisi critica del testo. & UC56.1, UC56.2, UC56.3, UC56.4, UC56.5, UC56.6, UC56.7 \\ \hline
 
-R-72-F-Ob & Il Sistema deve associare a ciascuna prospettiva dei Sei Cappelli un prompt$_G$ specifico, adatto a guidare l'LLM$_G$ nell'analisi critica del testo. & UC56.1, UC56.2, UC56.3, UC56.4, UC56.5, UC56.6, UC56.7 \\ \hline
+R-72-F-Ob & L'Utente deve poter generare automaticamente un testo a partire da un prompt$_G$. & UC57, UC57.1 \\ \hline
 
-R-73-F-Ob & L'Utente deve poter generare automaticamente un testo a partire da un prompt$_G$. & UC57, UC57.1 \\ \hline
+R-73-F-De & L'Utente deve poter definire la lunghezza desiderata del testo generato. & UC57.2 \\ \hline
 
-R-74-F-De & L'Utente deve poter definire la lunghezza desiderata del testo generato. & UC57.2 \\ \hline
+R-74-F-De & L'Utente deve poter fornire un URL come fonte di contesto per la generazione automatica di testo. & UC57.4 \\ \hline
 
-R-75-F-De & L'Utente deve poter fornire un URL come fonte di contesto per la generazione automatica di testo. & UC57.4 \\ \hline
+R-75-F-Op & L'Utente riconosciuto deve poter selezionare manualmente note salvate nel database$_G$ da usare come contesto per la generazione automatica di testo. & UC57.5 \\ \hline
 
-R-76-F-Op & L'Utente riconosciuto deve poter selezionare manualmente note salvate nel database$_G$ da usare come contesto per la generazione automatica di testo. & UC57.5 \\ \hline
+R-76-F-Ob & L'Utente deve poter accettare l'output prodotto dall'LLM$_G$ e integrarlo nella nota corrente. & UC58 \\ \hline
 
-R-77-F-Ob & L'Utente deve poter accettare l'output prodotto dall'LLM$_G$ e integrarlo nella nota corrente. & UC58 \\ \hline
+R-77-F-De & L'Utente deve poter scartare l'output prodotto dall'LLM$_G$ senza modificare la nota corrente. & UC59 \\ \hline
 
-R-78-F-De & L'Utente deve poter scartare l'output prodotto dall'LLM$_G$ senza modificare la nota corrente. & UC59 \\ \hline
+R-78-F-De & L'Utente deve poter rigenerare l'output prodotto dall'LLM$_G$ mantenendo la richiesta e i parametri precedenti. & UC60 \\ \hline
 
-R-79-F-De & L'Utente deve poter rigenerare l'output prodotto dall'LLM$_G$ mantenendo la richiesta e i parametri precedenti. & UC60 \\ \hline
+R-79-F-De & L'Utente deve poter annullare una richiesta di elaborazione in corso. & UC61 \\ \hline
 
-R-80-F-De & L'Utente deve poter annullare una richiesta di elaborazione in corso. & UC61 \\ \hline
+R-80-F-Ob & Il Sistema deve gestire gli errori di comunicazione o risposta del servizio LLM$_G$, preservando il contenuto originale dell'editor. & UC62 \\ \hline
 
-R-81-F-Ob & Il Sistema deve gestire gli errori di comunicazione o risposta del servizio LLM$_G$, preservando il contenuto originale dell'editor. & UC62 \\ \hline
+R-81-F-Ob & Il Sistema deve impedire l'invio di richieste AI quando il testo fornito è insufficiente per un'elaborazione significativa. & UC63 \\ \hline
 
-R-82-F-Ob & Il Sistema deve impedire l'invio di richieste AI quando il testo fornito è insufficiente per un'elaborazione significativa. & UC63 \\ \hline
+R-82-F-Ob & L'Utente deve poter creare una nuova nota vuota nell'editor. & UC64 \\ \hline
 
-R-83-F-Ob & L'Utente deve poter creare una nuova nota vuota nell'editor. & UC64 \\ \hline
+R-83-F-Op & L'Utente riconosciuto deve poter creare una nuova nota nel database$_G$. & UC65 \\ \hline
 
-R-84-F-Op & L'Utente riconosciuto deve poter creare una nuova nota nel database$_G$. & UC65 \\ \hline
+R-84-F-Ob & Il Sistema deve gestire eventuali errori durante la creazione di una nota, informando l'Utente e preservando lo stato precedente. & UC66 \\ \hline
 
-R-85-F-Ob & Il Sistema deve gestire eventuali errori durante la creazione di una nota, informando l'Utente e preservando lo stato precedente. & UC66 \\ \hline
+R-85-F-Ob & L'Utente deve poter caricare una nota da file locale in formato testuale, come \texttt{.md} o \texttt{.txt}. & UC67 \\ \hline
 
-R-86-F-Ob & L'Utente deve poter caricare una nota da file locale in formato testuale, come \texttt{.md} o \texttt{.txt}. & UC67 \\ \hline
+R-86-F-Op & L'Utente riconosciuto deve poter caricare una nota dal database$_G$. & UC68 \\ \hline
 
-R-87-F-Op & L'Utente riconosciuto deve poter caricare una nota dal database$_G$. & UC68 \\ \hline
+R-87-F-Ob & Il Sistema deve gestire eventuali errori durante il caricamento di una nota, preservando la sessione di lavoro precedente. & UC69 \\ \hline
 
-R-88-F-Ob & Il Sistema deve gestire eventuali errori durante il caricamento di una nota, preservando la sessione di lavoro precedente. & UC69 \\ \hline
+R-88-F-Ob & L'Utente deve poter salvare una nota sul File System locale in formato testuale. & UC70 \\ \hline
 
-R-89-F-Ob & L'Utente deve poter salvare una nota sul File System locale in formato testuale. & UC70 \\ \hline
+R-89-F-Op & L'Utente riconosciuto deve poter salvare una nota nel database$_G$. & UC71 \\ \hline
 
-R-90-F-Op & L'Utente riconosciuto deve poter salvare una nota nel database$_G$. & UC71 \\ \hline
+R-90-F-Ob & Il Sistema deve gestire eventuali errori durante il salvataggio di una nota, preservando l'integrità dei dati presenti nell'editor. & UC72 \\ \hline
 
-R-91-F-Ob & Il Sistema deve gestire eventuali errori durante il salvataggio di una nota, preservando l'integrità dei dati presenti nell'editor. & UC72 \\ \hline
+R-91-F-De & L'Utente deve poter rimuovere una nota dal File System locale. & UC73 \\ \hline
 
-R-92-F-De & L'Utente deve poter rimuovere una nota dal File System locale. & UC73 \\ \hline
+R-92-F-Op & L'Utente riconosciuto deve poter rimuovere una nota dal database$_G$. & UC74 \\ \hline
 
-R-93-F-Op & L'Utente riconosciuto deve poter rimuovere una nota dal database$_G$. & UC74 \\ \hline
+R-93-F-De & Il Sistema deve gestire eventuali errori durante la rimozione di una nota, evitando la perdita inconsistente dei dati. & UC75 \\ \hline
 
-R-94-F-De & Il Sistema deve gestire eventuali errori durante la rimozione di una nota, evitando la perdita inconsistente dei dati. & UC75 \\ \hline
+R-94-F-De & L'Utente deve poter rinominare una nota locale. & UC76 \\ \hline
 
-R-95-F-De & L'Utente deve poter rinominare una nota locale. & UC76 \\ \hline
+R-95-F-Op & L'Utente riconosciuto deve poter rinominare una nota salvata nel database$_G$. & UC77 \\ \hline
 
-R-96-F-Op & L'Utente riconosciuto deve poter rinominare una nota salvata nel database$_G$. & UC77 \\ \hline
+R-96-F-De & Il Sistema deve gestire eventuali errori durante la rinominazione di una nota, mantenendo il titolo precedente. & UC78 \\ \hline
 
-R-97-F-De & Il Sistema deve gestire eventuali errori durante la rinominazione di una nota, mantenendo il titolo precedente. & UC78 \\ \hline
+R-97-F-De & L'Utente deve poter visualizzare le informazioni e i metadati di una nota selezionata. & UC79 \\ \hline
 
-R-98-F-De & L'Utente deve poter visualizzare le informazioni e i metadati di una nota selezionata. & UC79 \\ \hline
+R-98-F-Op & L'Utente riconosciuto deve poter cercare note nel database$_G$ per titolo. & UC80 \\ \hline
 
-R-99-F-Op & L'Utente riconosciuto deve poter cercare note nel database$_G$ per titolo. & UC80 \\ \hline
+R-99-F-Op & L'Utente riconosciuto deve poter effettuare una ricerca full-text nel contenuto delle note salvate nel database$_G$. & UC81 \\ \hline
 
-R-100-F-Op & L'Utente riconosciuto deve poter effettuare una ricerca full-text nel contenuto delle note salvate nel database$_G$. & UC81 \\ \hline
+R-100-F-Op & L'Utente riconosciuto deve poter filtrare le note del database$_G$ per data di creazione. & UC82 \\ \hline
 
-R-101-F-Op & L'Utente riconosciuto deve poter filtrare le note del database$_G$ per data di creazione. & UC82 \\ \hline
+R-101-F-Op & L'Utente riconosciuto deve poter filtrare le note del database$_G$ per data di ultima modifica. & UC83 \\ \hline
 
-R-102-F-Op & L'Utente riconosciuto deve poter filtrare le note del database$_G$ per data di ultima modifica. & UC83 \\ \hline
+R-102-F-Op & L'Utente deve poter autenticarsi tramite username e password per accedere alle funzionalità opzionali legate alla persistenza server-side. & UC84, UC84.1, UC84.2 \\ \hline
 
-R-103-F-Op & L'Utente deve poter autenticarsi tramite username e password per accedere alle funzionalità opzionali legate alla persistenza server-side. & UC84, UC84.1, UC84.2 \\ \hline
+R-103-F-Op & Il Sistema deve gestire eventuali errori di autenticazione, mantenendo l'Utente disconnesso e mostrando un messaggio di errore. & UC85 \\ \hline
 
-R-104-F-Op & Il Sistema deve gestire eventuali errori di autenticazione, mantenendo l'Utente disconnesso e mostrando un messaggio di errore. & UC85 \\ \hline
+R-104-F-Op & L'Utente deve poter registrare un nuovo account per utilizzare le funzionalità opzionali di salvataggio e recupero delle note nel database$_G$. & UC86, UC84.1, UC84.2, UC86.1 \\ \hline
 
-R-105-F-Op & L'Utente deve poter registrare un nuovo account per utilizzare le funzionalità opzionali di salvataggio e recupero delle note nel database$_G$. & UC86, UC84.1, UC84.2, UC86.1 \\ \hline
+R-105-F-Op & Il Sistema deve impedire la registrazione con uno username già presente nel database$_G$. & UC87 \\ \hline
 
-R-106-F-Op & Il Sistema deve impedire la registrazione con uno username già presente nel database$_G$. & UC87 \\ \hline
+R-106-F-Op & Il Sistema deve impedire la registrazione se la password e la conferma password non coincidono. & UC88 \\ \hline
 
-R-107-F-Op & Il Sistema deve impedire la registrazione se la password e la conferma password non coincidono. & UC88 \\ \hline
+R-107-F-Op & L'Utente riconosciuto deve poter rimuovere il proprio account e i dati cloud associati. & UC89 \\ \hline
 
-R-108-F-Op & L'Utente riconosciuto deve poter rimuovere il proprio account e i dati cloud associati. & UC89 \\ \hline
-
-R-109-F-Op & L'Utente riconosciuto deve poter effettuare il logout. & UC90 \\ \hline
-
-R-110-F-Op & L'Utente riconosciuto deve poter collegare tra loro le note tramite link nel markup, così da utilizzarle come contesto associato per la generazione o la modifica dei testi tramite LLM$_G$. & UC57.5 \\ \hline
+R-108-F-Op & L'Utente riconosciuto deve poter effettuare il logout. & UC90 \\ \hline
 
 \end{longtable}
 \endgroup
 
-\newcommand{\fonteCapitolato}[1]{\href{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C6.pdf}{Capitolato di progetto}\newline\textit{Sezione: #1}}
+\newcommand{\fonteCapitolato}[1]{\href{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C6.pdf}{Capitolato di progetto}}
 \newcommand{\fonteInterna}[1]{Interna}
 
 \subsection{Requisiti di Qualità}
@@ -3789,7 +3756,7 @@ I requisiti di qualità stabiliscono criteri legati a usabilità, verificabilit�
 \textbf{Codice} & \textbf{Descrizione} & \textbf{Fonte} \\ \hline
 \endhead
 
-R-1-Q-Ob & Il prodotto deve essere un sistema organico, autocontenuto e semplice da utilizzare anche per un utente non esperto. & \fonteCapitolato{Caratteristiche e requisiti obbligatori} \\ \hline
+R-1-Q-Ob & Il prodotto deve essere un sistema organico e autocontenuto, eseguibile tramite browser senza installazioni o dipendenze esterne non documentate; le operazioni principali (editing, formattazione, funzionalità AI) devono poter essere completate da un utente non esperto senza ricorrere a documentazione esterna. & \fonteCapitolato{Caratteristiche e requisiti obbligatori} \\ \hline
 
 R-2-Q-Ob & L'MVP deve realizzare tutti i requisiti funzionali obbligatori individuati nell'analisi dei requisiti. & \fonteCapitolato{PoC, MVP e prodotto finale} \\ \hline
 
@@ -3797,29 +3764,25 @@ R-3-Q-Ob & Il prodotto deve essere accompagnato da test automatici la cui copert
 
 R-4-Q-Ob & I casi d'uso principali devono essere verificabili tramite test automatici ripetibili. & \fonteCapitolato{PoC, MVP e prodotto finale} \\ \hline
 
-R-5-Q-Ob & Il prodotto deve adottare soluzioni architetturali duttili e robuste, adeguate a supportare revisioni, estensioni e incrementi successivi. & \fonteCapitolato{PoC, MVP e prodotto finale} \\ \hline
+R-5-Q-Ob & L'architettura del prodotto deve essere modulare e a basso accoppiamento, così che l'aggiunta o la modifica di una funzionalità non richieda interventi sui moduli esistenti non direttamente coinvolti; la proprietà è verificabile tramite revisione dell'architettura. & \fonteCapitolato{PoC, MVP e prodotto finale} \\ \hline
 
 R-6-Q-Ob & Il codice deve essere revisionato a ogni iterazione significativa del progetto, in modo da garantire qualità, coerenza e manutenibilità. & \fonteCapitolato{PoC, MVP e prodotto finale} \\ \hline
 
-R-7-Q-Ob & Il progetto deve prestare particolare attenzione alla realizzazione e alla sperimentazione dei prompt usati per stimolare le operazioni desiderate del LLM$_G$. & \fonteCapitolato{Scopo del progetto} \\ \hline
+R-7-Q-De & Per le operazioni che comportano un'attesa percepibile (superiore a circa un secondo), come l'elaborazione da parte del LLM$_G$, il Sistema dovrebbe mostrare un indicatore di avanzamento o di attesa per l'intera durata dell'operazione; la presenza dell'indicatore è verificabile durante tali operazioni. & \fonteInterna{Funzionalità AI} \\ \hline
 
-R-8-Q-De & Durante le operazioni che richiedono attesa, come l'elaborazione da parte del LLM$_G$, il Sistema dovrebbe mostrare all'Utente un indicatore di avanzamento o di attesa. & \fonteInterna{Funzionalità AI} \\ \hline
+R-8-Q-Ob & Ogni messaggio di errore mostrato all'Utente deve indicare, in linguaggio naturale, la causa dell'errore e l'eventuale azione correttiva, senza esporre dettagli tecnici (es. stack trace) o informazioni di sicurezza; la conformità è verificabile tramite revisione dei messaggi prodotti nei casi di errore. & \fonteInterna{Gestione errori} \\ \hline
 
-R-9-Q-Ob & I messaggi di errore devono essere comprensibili per l'Utente e non devono esporre dettagli tecnici o di sicurezza non necessari. & \fonteInterna{Gestione errori} \\ \hline
+R-9-Q-Ob & Il progetto deve essere accompagnato dalla documentazione minima richiesta dal corso di Ingegneria del Software. & \fonteCapitolato{Documentazione} \\ \hline
 
-R-10-Q-Ob & Il progetto deve essere accompagnato dalla documentazione minima richiesta dal corso di Ingegneria del Software. & \fonteCapitolato{Documentazione} \\ \hline
+R-10-Q-Ob & Deve essere fornito un manuale per l'utilizzo dell'applicazione da parte dell'utente finale. & \fonteCapitolato{Documentazione} \\ \hline
 
-R-11-Q-Ob & Deve essere fornito un manuale per l'utilizzo dell'applicazione da parte dell'utente finale. & \fonteCapitolato{Documentazione} \\ \hline
+R-11-Q-Ob & Deve essere fornito un manuale per chiunque voglia estendere l'applicazione. & \fonteCapitolato{Documentazione} \\ \hline
 
-R-12-Q-Ob & Deve essere fornito un manuale per chiunque voglia estendere l'applicazione. & \fonteCapitolato{Documentazione} \\ \hline
+R-12-Q-De & Il progetto dovrebbe essere pubblicato su GitHub o su un altro repository pubblico, così da favorire la continuità del prodotto risultante. & \fonteCapitolato{Garanzia e manutenzione} \\ \hline
 
-R-13-Q-De & Il progetto dovrebbe essere pubblicato su GitHub o su un altro repository pubblico, così da favorire la continuità del prodotto risultante. & \fonteCapitolato{Garanzia e manutenzione} \\ \hline
+R-13-Q-De & Il progetto dovrebbe essere pubblicato secondo requisiti compatibili con la natura open-source del repository scelto. & \fonteCapitolato{Garanzia e manutenzione} \\ \hline
 
-R-14-Q-De & Il progetto dovrebbe essere pubblicato secondo requisiti compatibili con la natura open-source del repository scelto. & \fonteCapitolato{Garanzia e manutenzione} \\ \hline
-
-R-15-Q-De & Il progetto dovrebbe essere pubblicato secondo requisiti compatibili con la natura open-source del repository scelto. & \fonteCapitolato{Garanzia e manutenzione} \\ \hline
-
-R-16-Q-Ob & Il prodotto deve rispettare le Norme di Progetto definite dal gruppo. & \fonteInterna{Norme di Progetto} \\ \hline
+R-14-Q-Ob & Il prodotto deve rispettare le Norme di Progetto definite dal gruppo. & \fonteInterna{Norme di Progetto} \\ \hline
 
 \end{longtable}
 \endgroup
