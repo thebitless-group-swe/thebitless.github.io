@@ -16,6 +16,21 @@
         <mxCell id="system-label" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontSize=12;" value="&lt;font&gt;Sistema&lt;/font&gt;" vertex="1">
           <mxGeometry height="22" width="65" x="920" y="60" as="geometry" />
         </mxCell>
+<<<<<<< HEAD
+        <mxCell id="uc55" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="&lt;font&gt;UC57 - Generazione automatica di testo&lt;br&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="170" x="535" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="uc55-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="&lt;font&gt;UC57.4 - Generazione testo a partire da link&lt;/font&gt;" vertex="1">
+          <mxGeometry height="55" width="180" x="530" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="uc62" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="&lt;font&gt;UC61 - Annullamento&lt;br&gt;richiesta in corso&lt;/font&gt;" vertex="1">
+          <mxGeometry height="55" width="160" x="430" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="uc63" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="&lt;font&gt;UC62 - Errore&lt;br&gt;LLM&lt;/font&gt;" vertex="1">
+          <mxGeometry height="55" width="150" x="545" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="uc64" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="&lt;font&gt;UC57.5 - Selezione manuale delle note&lt;/font&gt;" vertex="1">
+=======
         <mxCell id="uc55" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="&lt;font&gt;UC 57 - Generazione automatica di testo&lt;br&gt;&lt;/font&gt;" vertex="1">
           <mxGeometry height="60" width="170" x="535" y="330" as="geometry" />
         </mxCell>
@@ -29,6 +44,7 @@
           <mxGeometry height="55" width="150" x="545" y="580" as="geometry" />
         </mxCell>
         <mxCell id="uc64" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="&lt;font&gt;UC 57.5 - Selezione manuale delle note&lt;/font&gt;" vertex="1">
+>>>>>>> origin/main
           <mxGeometry height="55" width="170" x="650" y="190" as="geometry" />
         </mxCell>
         <mxCell id="assoc-user-uc55" edge="1" parent="1" source="actor-user" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;fontSize=12;" target="uc55">
