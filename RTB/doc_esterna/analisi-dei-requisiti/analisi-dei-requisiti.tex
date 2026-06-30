@@ -2287,8 +2287,8 @@ Il caso d'uso UC56 prevede l'inclusione dell'UC56.1 e si specializza in sei gene
     \end{enumerate}
     \item \textbf{Scenari secondari:}
     \begin{itemize}
-        \item L'utente può scegliere di arricchire il contesto tramite URL → Vedi \uclink{uc:57.4}{UC57.4}.
-        \item L'utente può scegliere di arricchire il contesto selezionando manualmente una o più note personali → Vedi \uclink{uc:57.5}{UC57.5}.
+        \item L'utente può scegliere di arricchire il contesto tramite URL → Vedi \uclink{uc:57.3}{UC57.3}.
+        \item L'utente può scegliere di arricchire il contesto selezionando manualmente una o più note personali → Vedi \uclink{uc:57.4}{UC57.4}.
         \item L'utente decide di non attendere la risposta e interrompe la richiesta pendente → Vedi \uclink{uc:61}{UC61}.
         \item Il servizio LLM$_G$ non è raggiungibile o restituisce un errore durante l'elaborazione → Vedi \uclink{uc:62}{UC62}.
     \end{itemize}
@@ -2299,8 +2299,8 @@ Il caso d'uso UC56 prevede l'inclusione dell'UC56.1 e si specializza in sei gene
     \end{itemize}
     \item \textbf{Estensioni:}
     \begin{itemize}
-        \item \uclink{uc:57.4}{UC57.4 - Generazione testo a partire da link}.
-        \item \uclink{uc:57.5}{UC57.5 - Selezione manuale delle note}.
+        \item \uclink{uc:57.3}{UC57.3 - Generazione testo a partire da link}.
+        \item \uclink{uc:57.4}{UC57.4 - Selezione manuale delle note}.
         \item \uclink{uc:61}{UC61 - Annullamento richiesta in corso}.
         \item \uclink{uc:62}{UC62 - Errore LLM}.
     \end{itemize}
@@ -2314,7 +2314,7 @@ Il Caso d’Uso UC57 include due ulteriori Caso d’Uso come raffigurato nella s
     \caption{UC57.1, UC57.2 - Inclusioni di UC57}
 \end{figure}
 
-\subsubsection{UC57.1 - Inserimento del prompt}
+\paragraph{UC57.1 - Inserimento del prompt}
 \hypertarget{uc:57.1}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
@@ -2328,7 +2328,7 @@ Il Caso d’Uso UC57 include due ulteriori Caso d’Uso come raffigurato nella s
     \item \textbf{Trigger:} L'utente inserisce il prompt per la generazione.
 \end{itemize}
 
-\subsubsection{UC57.2 - Selezione della lunghezza del testo}
+\paragraph{UC57.2 - Selezione della lunghezza del testo}
 \hypertarget{uc:57.2}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
@@ -2343,8 +2343,8 @@ Il Caso d’Uso UC57 include due ulteriori Caso d’Uso come raffigurato nella s
     \item \textbf{Trigger:} L'utente seleziona la lunghezza dell'output da generare.
 \end{itemize}
 
-\subsubsection{UC57.4 - Generazione testo a partire da link}
-\hypertarget{uc:57.4}{}
+\paragraph{UC57.3 - Generazione testo a partire da link}
+\hypertarget{uc:57.3}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} L'utente ha avviato la configurazione della generazione automatica di testo (\uclink{uc:57}{UC57}).
@@ -2359,8 +2359,8 @@ Il Caso d’Uso UC57 include due ulteriori Caso d’Uso come raffigurato nella s
 \end{itemize}
 
 
-\subsubsection{UC57.5 - Selezione manuale delle note}
-\hypertarget{uc:57.5}{}
+\paragraph{UC57.4 - Selezione manuale delle note}
+\hypertarget{uc:57.4}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente riconosciuto
     \item \textbf{Pre-condizioni:} 
