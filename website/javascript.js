@@ -112,7 +112,7 @@ function buildDiari(pdfs, prefix) {
     const label =
       m && m[1]
         ? `Diario di Bordo ${m[1]} — ${date}`
-        : file.replace(/\.pdf$/i, "").replace(/_/g, " ");
+        : file.replace(/\.(pdf|pptx?)$/i, "").replace(/_/g, " ");
     items.push({ name: label, href: p, _sort: date || file, _num: num });
   }
   // Ordine LIFO: i diari più recenti per primi; a parità di data, numero più alto prima.
@@ -122,7 +122,7 @@ function buildDiari(pdfs, prefix) {
 
 // Il PoC è mostrato in un riquadro a parte in alto (vedi renderPocBanner), non tra i documenti.
 
-function buildPhases(pdfs, texPaths) {
+function buildPhases(pdfs, texPaths, slides = pdfs) {
   return [
     {
       id: "rtb",
@@ -159,7 +159,7 @@ function buildPhases(pdfs, texPaths) {
     {
       id: "diari",
       label: "Diapositive",
-      docs: buildDiari(pdfs, "diapositive"),
+      docs: buildDiari(slides, "diapositive"),
     },
   ];
 }
@@ -180,7 +180,9 @@ async function loadPhases() {
     const blobs = data.tree.filter((e) => e.type === "blob");
     const pdfs = blobs.filter((e) => e.path.toLowerCase().endsWith(".pdf")).map((e) => e.path);
     const texPaths = blobs.filter((e) => e.path.toLowerCase().endsWith(".tex")).map((e) => e.path);
-    return buildPhases(pdfs, texPaths);
+    // I diari di bordo possono essere PDF o presentazioni PowerPoint (.ppt/.pptx).
+    const slides = blobs.filter((e) => /\.(pdf|pptx?)$/i.test(e.path)).map((e) => e.path);
+    return buildPhases(pdfs, texPaths, slides);
   } catch (err) {
     console.warn("Impossibile recuperare la lista documenti:", err);
     return emptyPhases();
