@@ -73,9 +73,9 @@
     \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
     \hline
     \endhead
-    1.0.0 & 2026-06-24 & A. Zecchinato & S. Vendramin & D. Facco & Approvazione finale per RTB\\
+    1.0.0 & 2026-06-24 & A. Zecchinato & S. Vendramin & D. Facco & Approvazione$_G$ finale per RTB$_G$\\
     \hline
-    0.9.0 & 2026-06-23 & S. Zecchinato & S. Vendramin & - & Aggiunge valutazione MPC-PMS e sistema le altre \\
+    0.9.0 & 2026-06-23 & S. Zecchinato & S. Vendramin & - & Aggiunge valutazione MPC-PMS e sistema$_G$ le altre \\
     \hline
     0.8.0 & 2026-06-22 & S. Zecchinato & S. Vendramin & - & Aggiunge valutazioni MPC-IG/MPC-CO \\
     \hline
@@ -146,7 +146,7 @@ L'applicazione deve permettere all'utente di:
 La qualità del prodotto deve quindi essere valutata non solo rispetto alla correttezza funzionale, ma anche rispetto alla facilità d'uso, alla stabilità dell'interazione con il modello linguistico, alla manutenibilità$_G$ del codice e alla verificabilità delle funzionalità principali.
 
 \subsection{Glossario}
-Al fine di evitare ambiguità e prevenire incomprensioni durante la lettura della documentazione, è stato redatto un \textbf{Glossario}. Questo documento ha la funzione di raccogliere e fornire una definizione chiara e univoca per tutti i termini tecnici, gli acronimi e i vocaboli specifici del dominio applicativo di progetto.
+Al fine di evitare ambiguità e prevenire incomprensioni durante la lettura della documentazione, è stato redatto un \textbf{Glossario}. Questo documento ha la funzione di raccogliere e fornire una definizione chiara e univoca per tutti i termini tecnici, gli acronimi e i vocaboli specifici del dominio$_G$ applicativo di progetto.
 Per agevolare la consultazione e segnalare tempestivamente la presenza di un termine all'interno del Glossario, è stata adottata una specifica convenzione tipografica per l'intera documentazione. 
 Ogni vocabolo definito nel Glossario verrà contrassegnato con la lettera maiuscola ``G'' a pedice la prima volta che esso compare all'interno di un documento.
 \vspace{0.3cm}
@@ -485,7 +485,7 @@ Le metriche di sicurezza misurano la capacità del prodotto di proteggere dati, 
     MPD-SK & Secret Key Exposure & $0$ chiavi esposte & $0$ chiavi esposte \\ \hline
     MPD-IV & Input$_G$ Validation & $\geq 95\%$ input$_G$ validati & $100\%$ input$_G$ validati \\ \hline
     MPD-DS & Data Sanitization & $\geq 95\%$ dati sanificati & $100\%$ dati sanificati \\ \hline
-    MPD-PR & Privacy$_G$ Risk & Nessun dato sensibile non necessario inviato & Minimizzazione completa dei dati inviati \\ \hline
+    MPD-PR$_G$ & Privacy$_G$ Risk & Nessun dato sensibile non necessario inviato & Minimizzazione completa dei dati inviati \\ \hline
 
     \caption{Metriche per la qualità della sicurezza.}
     \label{tab:metriche-sicurezza}
@@ -810,7 +810,7 @@ Il cruscotto viene aggiornato al termine di ogni periodo di lavoro rilevante e v
     \item verificare l'effetto delle iniziative di miglioramento.
 \end{itemize}
 
-Le misurazioni che seguono fanno riferimento al periodo che intercorre tra l'aggiudicazione del capitolato, avvenuto il 28 marzo 2026, e la consegna della RTB.
+Le misurazioni che seguono fanno riferimento al periodo che intercorre tra l'aggiudicazione del capitolato$_G$, avvenuto il 28 marzo 2026, e la consegna della RTB$_G$.
 
 \subsection{Confronto MPC-PV e MPC-EV}
 \begin{table}[H]
@@ -834,13 +834,13 @@ Le misurazioni che seguono fanno riferimento al periodo che intercorre tra l'agg
 	\label{tab:pv-ev}
 \end{table}
 
-Come possiamo notare dalla figura \ref{fig:pv-ev}, il \textit{Planned Value} cresce di pari passo con l'avanzare degli sprint. Vediamo poi come nel primo sprint l'\textit{Earned Value} sia minore rispetto alla stima pianificata: questo è dovuto a una inesperienza nella programmazione del lavoro che, a partire dallo sprint 2, è stata migliorata. 
-Questo lo si può notare anche dall'accumulo di EV che, dallo sprint 3, comincia ad essere maggiore dell'accumulo di PV, che riporta quindi un avanzamento del progetto di poco in anticipo rispetto a quanto pianificato. Valutazione:
+Come possiamo notare dalla figura \ref{fig:pv-ev}, il \textit{Planned Value} cresce di pari passo con l'avanzare degli sprint$_G$. Vediamo poi come nel primo sprint$_G$ l'\textit{Earned Value} sia minore rispetto alla stima pianificata: questo è dovuto a una inesperienza nella programmazione del lavoro che, a partire dallo sprint$_G$ 2, è stata migliorata. 
+Questo lo si può notare anche dall'accumulo di EV che, dallo sprint$_G$ 3, comincia ad essere maggiore dell'accumulo di PV, che riporta quindi un avanzamento del progetto di poco in anticipo rispetto a quanto pianificato. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} PV$>0$€, vincolo \textit{rispettato}.
-    \item \textbf{Valore ottimo:} PV pari alla pianificazione concordata, vincolo \textit{rispettato}.
-    \item \textbf{Valore accettabile:} EV$\geq 80\% * PV$, vincolo \textit{rispettato}.
-    \item \textbf{Valore ottimo:} EV$\geq PV$, vincolo \textit{violato} in uno sprint su cinque.
+    \item \textbf{Valore accettabile:} PV$>0$€, vincolo$_G$ \textit{rispettato}.
+    \item \textbf{Valore ottimo:} PV pari alla pianificazione concordata, vincolo$_G$ \textit{rispettato}.
+    \item \textbf{Valore accettabile:} EV$\geq 80\% * PV$, vincolo$_G$ \textit{rispettato}.
+    \item \textbf{Valore ottimo:} EV$\geq PV$, vincolo$_G$ \textit{violato} in uno sprint$_G$ su cinque.
 \end{itemize}
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/pv-ev.pdf}
@@ -870,14 +870,14 @@ Questo lo si può notare anche dall'accumulo di EV che, dallo sprint 3, comincia
 	\label{tab:ac-etc}
 \end{table}
 L'analisi del grafico in Figura \ref{fig:ac-etc} evidenzia, come atteso, un incremento progressivo dell'\textit{Actual Cost}, fisiologico e coerente con il continuo assorbimento delle risorse economiche durante l'avanzamento del progetto.
-Relativamente alle metriche previsionali \textit{Estimate to Complete} ed \textit{Estimate at Completion}, osserviamo un trend decrescente fino al secondo sprint. Tale dinamica rappresenta un indicatore di elevata efficienza iniziale, avendo posizionato la stima del costo a finire (EAC) significativamente al di sotto del budget stanziato.
-Tra il secondo e il terzo sprint, tuttavia, rileviamo una flessione nelle performance di progetto: all'incremento dei costi sostenuti non corrisponde una proporzionale riduzione del lavoro residuo stimato (ETC). Conseguentemente, l'EAC subisce un innalzamento, approssimandosi al limite critico definito dal BAC. Questa deviazione è imputabile principalmente alla fase di revisione dell'\textit{Analisi dei Requisiti}, un'attività che ha richiesto un notevole impiego di risorse in termini di \textit{effort} senza tuttavia generare un proporzionale incremento del valore maturato (\textit{Earned Value}). A tale criticità si è sommata un'iniziale inesperienza nella pianificazione operativa e nel coordinamento delle attività del team, con inevitabili ricadute negative sull'efficienza economica complessiva dello sprint.
-A partire dal terzo sprint si registra, in controtendenza, un marcato recupero dell'efficienza operativa, con una riduzione dell'ETC. Ciò determina una conseguente e significativa riduzione della stima del costo totale a finire. Pur riscontrando un lieve incremento dell'EAC in corrispondenza del quinto sprint, la proiezione di chiusura si stabilizza al di sotto del limite imposto dal BAC. Valutazione:
+Relativamente alle metriche previsionali \textit{Estimate to Complete} ed \textit{Estimate at Completion}, osserviamo un trend decrescente fino al secondo sprint$_G$. Tale dinamica rappresenta un indicatore di elevata efficienza iniziale, avendo posizionato la stima del costo a finire (EAC) significativamente al di sotto del budget$_G$ stanziato.
+Tra il secondo e il terzo sprint$_G$, tuttavia, rileviamo una flessione nelle performance di progetto: all'incremento dei costi sostenuti non corrisponde una proporzionale riduzione del lavoro residuo stimato (ETC). Conseguentemente, l'EAC subisce un innalzamento, approssimandosi al limite critico definito dal BAC. Questa deviazione è imputabile principalmente alla fase di revisione dell'\textit{Analisi dei Requisiti}, un'attività che ha richiesto un notevole impiego di risorse in termini di \textit{effort} senza tuttavia generare un proporzionale incremento del valore maturato (\textit{Earned Value}). A tale criticità si è sommata un'iniziale inesperienza nella pianificazione operativa e nel coordinamento delle attività del team, con inevitabili ricadute negative sull'efficienza economica complessiva dello sprint$_G$.
+A partire dal terzo sprint$_G$ si registra, in controtendenza, un marcato recupero dell'efficienza operativa, con una riduzione dell'ETC. Ciò determina una conseguente e significativa riduzione della stima del costo totale a finire. Pur riscontrando un lieve incremento dell'EAC in corrispondenza del quinto sprint$_G$, la proiezione di chiusura si stabilizza al di sotto del limite imposto dal BAC. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} AC$>0$€, vincolo \textit{rispettato}.
-    \item \textbf{Valore ottimo:} AC$\leq$EAC, vincolo \textit{rispettato}.
-    \item \textbf{Valore accettabile:} ETC$\geq 0$, vincolo \textit{rispettato}.
-    \item \textbf{Valore ottimo:} ETC$\geq 0$, vincolo \textit{rispettato}.
+    \item \textbf{Valore accettabile:} AC$>0$€, vincolo$_G$ \textit{rispettato}.
+    \item \textbf{Valore ottimo:} AC$\leq$EAC, vincolo$_G$ \textit{rispettato}.
+    \item \textbf{Valore accettabile:} ETC$\geq 0$, vincolo$_G$ \textit{rispettato}.
+    \item \textbf{Valore ottimo:} ETC$\geq 0$, vincolo$_G$ \textit{rispettato}.
 \end{itemize}
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/ac-etc.pdf}
@@ -892,15 +892,15 @@ A partire dal terzo sprint si registra, in controtendenza, un marcato recupero d
 		\hline
 		\textbf{Sprint} & \textbf{Cost Variance (€)} & \textbf{Schedule Variance (€)} & \textbf{Giudizio} \\
 		\hline
-		1 & -5,81 & -45,81 & In ritardo e lievemente sopra il budget\\ 
+		1 & -5,81 & -45,81 & In ritardo e lievemente sopra il budget$_G$\\ 
 		\hline
-        2 & +44,55 & +44,55 & In anticipo e sotto il budget \\
+        2 & +44,55 & +44,55 & In anticipo e sotto il budget$_G$ \\
         \hline
-        3 & -19,77 & +130,23 & In anticipo ma sopra il budget \\
+        3 & -19,77 & +130,23 & In anticipo ma sopra il budget$_G$ \\
         \hline
-        4 & +52,43 & -47,57 & In ritardo ma sotto il budget \\
+        4 & +52,43 & -47,57 & In ritardo ma sotto il budget$_G$ \\
         \hline
-        5 & +6,19 & +51,19 & In anticipo e lievemente sotto il budget \\
+        5 & +6,19 & +51,19 & In anticipo e lievemente sotto il budget$_G$ \\
         \hline
 	\end{tabular}
 	\caption{MPC-CV e MPC-SV per sprint}
@@ -909,15 +909,15 @@ A partire dal terzo sprint si registra, in controtendenza, un marcato recupero d
 Dall'analisi del grafico in Figura \ref{fig:cv-sv} possiamo notare un andamento altalenante che, tuttavia, culmina in una convergenza verso l'efficienza ottimale:
 \begin{itemize}
     \item \textbf{Sprint 1:} In questa fase il progetto si avvia con performance al di sotto del livello di ottimalità. Questa dinamica è del tutto coerente con le difficoltà iniziali di calibrazione del team.
-    \item \textbf{Sprint 2:} In questo sprint il team recupera il ritardo iniziale con un ottimo slancio portandosi in anticipo sulle consegne. Questo slancio, però, comporta un impiego di risorse economiche superiore al previsto, che porta ad uno scenario di anticipo temporale a fronte di un sovraccosto.
-    \item \textbf{Sprint 3:} La tendenza all'accelerazione vista nello scorso sprint si consolida generando il picco massimo di vantaggio sulla schedulazione. Questo ritmo veloce produce un ulteriore, seppur contenuto, sforamento del budget.
-    \item \textbf{Sprint 4:} In questo sprint il team registra una flessione dal punto di vista temporale, accumulando nuovamente ritardo rispetto al piano ideale. Di contro si rileva un eccellente recupero dell'efficienza economica.
+    \item \textbf{Sprint 2:} In questo sprint$_G$ il team recupera il ritardo iniziale con un ottimo slancio portandosi in anticipo sulle consegne. Questo slancio, però, comporta un impiego di risorse economiche superiore al previsto, che porta ad uno scenario di anticipo temporale a fronte di un sovraccosto.
+    \item \textbf{Sprint 3:} La tendenza all'accelerazione vista nello scorso sprint$_G$ si consolida generando il picco massimo di vantaggio sulla schedulazione. Questo ritmo veloce produce un ulteriore, seppur contenuto, sforamento del budget$_G$.
+    \item \textbf{Sprint 4:} In questo sprint$_G$ il team registra una flessione dal punto di vista temporale, accumulando nuovamente ritardo rispetto al piano ideale. Di contro si rileva un eccellente recupero dell'efficienza economica.
     \item \textbf{Sprint 5:} In quest'ultima iterazione analizzata, il progetto raggiunge uno stato di equilibrio. Entrambe le metriche di varianza risultano positive consolidando un solido anticipo sulla tabella di marcia mantenendo allo stesso tempo una, seppur minima, efficienza finanziaria.
 \end{itemize}
 Valutazione: 
 \begin{itemize}
-    \item \textbf{Valore accettabile CV:} $CV>0$, vincolo \textit{violato} in due sprint su cinque con scostamenti lievi.
-    \item \textbf{Valore accettabile SV:} $SV\geq 0$, vincolo \textit{violato} in due sprint su cinque con slittamenti consistenti.
+    \item \textbf{Valore accettabile CV:} $CV>0$, vincolo$_G$ \textit{violato} in due sprint$_G$ su cinque con scostamenti lievi.
+    \item \textbf{Valore accettabile SV:} $SV\geq 0$, vincolo$_G$ \textit{violato} in due sprint$_G$ su cinque con slittamenti consistenti.
 \end{itemize}
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/cv-sv.pdf}
@@ -947,15 +947,15 @@ Valutazione:
 	\label{tab:eac-bac}
 \end{table}
 
-Dall'aggiudicazione del capitolato fino alla revisione della RTB, l'\textit{Estimate At Completion} oscilla attorno al \textit{Budget At Completion}. L'EAC supera il BAC solo in due occasioni:
+Dall'aggiudicazione del capitolato$_G$ fino alla revisione della RTB$_G$, l'\textit{Estimate At Completion} oscilla attorno al \textit{Budget At Completion}. L'EAC supera il BAC solo in due occasioni:
 \begin{itemize}
-    \item \textbf{Sprint 1:} come detto anche nelle altre sezioni, il primo sprint ha sofferto dell'inesperienza del gruppo nell'organizzare le task, dimensionarle e portarle a compimento. Questo ha provocato un leggero sforamento di budget.
-    \item \textbf{Sprint 3:} in questo sprint il gruppo si è dovuto confrontare con la revisione dell'\textit{Analisi dei Requisiti}, che ha portato ad un rallentamento del progetto e ad un conseguente minore valore aggiunto.
+    \item \textbf{Sprint 1:} come detto anche nelle altre sezioni, il primo sprint$_G$ ha sofferto dell'inesperienza del gruppo nell'organizzare le task$_G$, dimensionarle e portarle a compimento. Questo ha provocato un leggero sforamento di budget$_G$.
+    \item \textbf{Sprint 3:} in questo sprint$_G$ il gruppo si è dovuto confrontare con la revisione dell'\textit{Analisi dei Requisiti}, che ha portato ad un rallentamento del progetto e ad un conseguente minore valore aggiunto.
 \end{itemize} 
 Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} EAC$\leq 110\%$ budget, vincolo \textit{rispettato}.
-    \item \textbf{Valore ottimale:} EAC$\leq$ budget, vincolo \textit{violato} in due sprint su cinque.
+    \item \textbf{Valore accettabile:} EAC$\leq 110\%$ budget$_G$, vincolo$_G$ \textit{rispettato}.
+    \item \textbf{Valore ottimale:} EAC$\leq$ budget$_G$, vincolo$_G$ \textit{violato} in due sprint$_G$ su cinque.
 \end{itemize}
 
 \begin{figure}[H]
@@ -985,9 +985,9 @@ Valutazione:
 	\caption{Task Completion Rate per sprint}
 	\label{tab:tcr}
 \end{table}
-Il \textit{Task Completion Rate} risulta ottimo in tre sprint su cinque. Notiamo subottimalità critica nello sprint 1 ($76,9\%$) e una subottimalità lieve nello sprint 4 ($92,3\%$). Valutazione:
+Il \textit{Task Completion Rate} risulta ottimo in tre sprint$_G$ su cinque. Notiamo subottimalità critica nello sprint$_G$ 1 ($76,9\%$) e una subottimalità lieve nello sprint$_G$ 4 ($92,3\%$). Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $TCR \geq 85\%$, vincolo \textit{violato} nello sprint 1.
+    \item \textbf{Valore accettabile:} $TCR \geq 85\%$, vincolo$_G$ \textit{violato} nello sprint$_G$ 1.
 \end{itemize}
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/tcr.pdf}
@@ -1016,9 +1016,9 @@ Il \textit{Task Completion Rate} risulta ottimo in tre sprint su cinque. Notiamo
 	\caption{Task Slippage per sprint}
 	\label{tab:ts}
 \end{table}
-Il \textit{Task Slippage} risulta ottimo in tre sprint su cinque. Notiamo subottimalità critica nello sprint 1 ($23,1\%$) e una subottimalità lieve nello sprint 4 ($7,7\%$). Valutazione:
+Il \textit{Task Slippage} risulta ottimo in tre sprint$_G$ su cinque. Notiamo subottimalità critica nello sprint$_G$ 1 ($23,1\%$) e una subottimalità lieve nello sprint$_G$ 4 ($7,7\%$). Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $TS < 15\%$, vincolo \textit{violato} nello sprint 1.
+    \item \textbf{Valore accettabile:} $TS < 15\%$, vincolo$_G$ \textit{violato} nello sprint$_G$ 1.
 \end{itemize}
 
 \begin{figure}[H]
@@ -1048,10 +1048,10 @@ Il \textit{Task Slippage} risulta ottimo in tre sprint su cinque. Notiamo subott
 	\caption{Merge Rework per sprint}
 	\label{tab:mr}
 \end{table}
-Dal grafico in Figura \ref{fig:mr} possiamo notare come la valutazione di \textit{Merge Rework}, ovvero la percentuale di Pull Request approvate nelle quali viene sovrascritto del lavoro già svolto, varia a seconda della fase del progetto. Nei primi due sprint troviamo dei valori simili ($7\%$ circa) che riteniamo accettabili. Questi valori sono dati dal fatto che tutti i membri del gruppo non avevano avuto ancora esperienza di co-working con lo strumento GitHub, né con un progetto con un gruppo così numeroso. Questo ha portato a iniziali incomprensioni sul lavoro da svolgere e, di conseguenza, a riscritture di parti di documenti. Nel terzo e quarto sprint abbiamo valori critici, dovuti principalmente all'\textit{Analisi dei Requisiti} (primo grande documento condiviso da più redattori) e dalla sua riscrittura, dovuta a revisioni a seguito di numerosi difetti di modellazione riscontrati.
-Nello sprint 5 abbiamo avuto un'enorme mole di Pull Request dovute all'inizio del \textit{Proof of Concept} che però sono state minimamente sovrascritte grazie ad una progettazione adeguata. Valutazione:
+Dal grafico in Figura \ref{fig:mr} possiamo notare come la valutazione di \textit{Merge Rework}, ovvero la percentuale di Pull Request$_G$ approvate nelle quali viene sovrascritto del lavoro già svolto, varia a seconda della fase del progetto. Nei primi due sprint$_G$ troviamo dei valori simili ($7\%$ circa) che riteniamo accettabili. Questi valori sono dati dal fatto che tutti i membri del gruppo non avevano avuto ancora esperienza di co-working con lo strumento GitHub$_G$, né con un progetto con un gruppo così numeroso. Questo ha portato a iniziali incomprensioni sul lavoro da svolgere e, di conseguenza, a riscritture di parti di documenti. Nel terzo e quarto sprint$_G$ abbiamo valori critici, dovuti principalmente all'\textit{Analisi dei Requisiti} (primo grande documento condiviso da più redattori) e dalla sua riscrittura, dovuta a revisioni a seguito di numerosi difetti di modellazione riscontrati.
+Nello sprint$_G$ 5 abbiamo avuto un'enorme mole di Pull Request$_G$ dovute all'inizio del \textit{Proof of Concept} che però sono state minimamente sovrascritte grazie ad una progettazione adeguata. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $MR \leq 20\%$, vincolo \textit{violato} in due sprint su cinque.
+    \item \textbf{Valore accettabile:} $MR \leq 20\%$, vincolo$_G$ \textit{violato} in due sprint$_G$ su cinque.
 \end{itemize}
 
 \begin{figure}[H]
@@ -1081,9 +1081,9 @@ Nello sprint 5 abbiamo avuto un'enorme mole di Pull Request dovute all'inizio de
 	\caption{Issue Reopening Rate per sprint}
 	\label{tab:ir}
 \end{table}
-Come è possibile notare in Figura \ref{fig:ir}, l'andamento dell'\textit{Issue Reopening Rate} è altalenante sebbene si mantenga quasi sempre abbondantemente sotto la soglia di accettabilità. L'unico sprint che fa eccezione è il numero 3 che, per motivi già affrontati in questo documento, possiede un valore di MPC-IR critico. Valutazione:
+Come è possibile notare in Figura \ref{fig:ir}, l'andamento dell'\textit{Issue Reopening Rate} è altalenante sebbene si mantenga quasi sempre abbondantemente sotto la soglia di accettabilità. L'unico sprint$_G$ che fa eccezione è il numero 3 che, per motivi già affrontati in questo documento, possiede un valore di MPC-IR critico. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $IR \leq 15\%$, vincolo \textit{violato} nello sprint 3.
+    \item \textbf{Valore accettabile:} $IR \leq 15\%$, vincolo$_G$ \textit{violato} nello sprint$_G$ 3.
 \end{itemize}
 
 \begin{figure}[H]
@@ -1116,8 +1116,8 @@ Come è possibile notare in Figura \ref{fig:ir}, l'andamento dell'\textit{Issue 
 Il grafico in Figura \ref{fig:ig} mostra l'indice di Gulpease di ogni documento prodotto nel suo stato finale (versione 1.0.0). Come possiamo notare, tutti i documenti si posizionano sopra la soglia di ottimalità. Questo certifica che i documenti prodotti sono leggibili e comprensibili da qualsiasi individuo in possesso di licenza media. Questa leggibilità elevata è data dalla preferenza di periodi semplici e brevi al posto di quelli complessi e lunghi; in più le parole usate vogliono essere il meno "tecniche" possibili, preferendo quindi una maggiore comprensibilità per i non addetti ai lavori a discapito però di una maggiore lunghezza dei documenti.
 Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $IG \geq 40$, vincolo sempre \textit{rispettato}.
-    \item \textbf{Valore ottimo:} $IG \geq 60$, vincolo sempre \textit{rispettato}.
+    \item \textbf{Valore accettabile:} $IG \geq 40$, vincolo$_G$ sempre \textit{rispettato}.
+    \item \textbf{Valore ottimo:} $IG \geq 60$, vincolo$_G$ sempre \textit{rispettato}.
 \end{itemize}
 
 \begin{figure}[H]
@@ -1150,8 +1150,8 @@ Valutazione:
 \end{table}
 Com'è possibile notare dalla Figura \ref{fig:co}, l'indice di correttezza ortografica è ottimo in tutti i documenti. Questo perché ogni documento in scrittura viene automaticamente analizzato dall'editor di testo che segnala all'utente eventuali inesattezze ortografiche. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} documenti senza errori gravi, vincolo \textit{rispettato}.
-    \item \textbf{Valore ottimo:} $CO \geq 99\%$, vincolo \textit{rispettato}.
+    \item \textbf{Valore accettabile:} documenti senza errori gravi, vincolo$_G$ \textit{rispettato}.
+    \item \textbf{Valore ottimo:} $CO \geq 99\%$, vincolo$_G$ \textit{rispettato}.
 \end{itemize}
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/co.pdf}
@@ -1181,10 +1181,10 @@ Com'è possibile notare dalla Figura \ref{fig:co}, l'indice di correttezza ortog
 	\caption{Percentuale di completezza documentale per documento}
 	\label{tab:cd}
 \end{table}
-L'indice di completezza documentale è ottimo in tutti i documenti, com'è possibile notare in Figura \ref{fig:cd}. Questo perché la struttura di ogni documento in scrittura viene concordata preventivamente nel team e viene verificata ogni qual volta il documento passa alla fase di verifica. Valutazione:
+L'indice di completezza documentale è ottimo in tutti i documenti, com'è possibile notare in Figura \ref{fig:cd}. Questo perché la struttura di ogni documento in scrittura viene concordata preventivamente nel team e viene verificata ogni qual volta il documento passa alla fase di verifica$_G$. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $CD \geq 90\%$ delle sezioni previste, vincolo \textit{rispettato}.
-    \item \textbf{Valore ottimo:} $CD = 100\%$ delle sezioni previste, vincolo \textit{rispettato}.
+    \item \textbf{Valore accettabile:} $CD \geq 90\%$ delle sezioni previste, vincolo$_G$ \textit{rispettato}.
+    \item \textbf{Valore ottimo:} $CD = 100\%$ delle sezioni previste, vincolo$_G$ \textit{rispettato}.
 \end{itemize}
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/cd.pdf}
@@ -1213,10 +1213,10 @@ L'indice di completezza documentale è ottimo in tutti i documenti, com'è possi
 	\caption{Percentuale correttezza dei riferimenti per documento}
 	\label{tab:cr}
 \end{table}
-Dal grafico in Figura \ref{fig:cr} è possibile notare che la percentuale di correttezza dei riferimenti è ottima in ogni documento. Questo perché la correttezza e la coerenza dei riferimenti viene stabilita dal sottogruppo a cui è assegnata la stesura del documento e verificata ogni qual volta il documento passa alla fase di verifica. Valutazione:
+Dal grafico in Figura \ref{fig:cr} è possibile notare che la percentuale di correttezza dei riferimenti è ottima in ogni documento. Questo perché la correttezza e la coerenza dei riferimenti viene stabilita dal sottogruppo a cui è assegnata la stesura del documento e verificata ogni qual volta il documento passa alla fase di verifica$_G$. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $CR \geq 95\%$ dei riferimenti validi, vincolo \textit{rispettato}.
-    \item \textbf{Valore ottimo:} $CD = 100\%$ dei riferimenti validi, vincolo \textit{rispettato}.
+    \item \textbf{Valore accettabile:} $CR \geq 95\%$ dei riferimenti validi, vincolo$_G$ \textit{rispettato}.
+    \item \textbf{Valore ottimo:} $CD = 100\%$ dei riferimenti validi, vincolo$_G$ \textit{rispettato}.
 \end{itemize}
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/cr.pdf}
@@ -1247,10 +1247,10 @@ Dal grafico in Figura \ref{fig:cr} è possibile notare che la percentuale di cor
 	\caption{Percentuale Metriche Soddisfatte per sprint}
 	\label{tab:pms}
 \end{table}
-Analizzando l'andamento della \textit{Percentuale di Metriche Soddisfatte} (MPC-PMS) per la durata degli sprint in Figura \ref{fig:pms}, notiamo un percorso discontinuo ma in miglioramento. A fronte di alcune criticità operative riscontrate negli Sprint 1 e 3 in cui i nostri risultati (67\% e 75\%) sono scesi sotto la soglia di accettabilità dell'80\% per i motivi già citati in questo documento, abbiamo messo in campo un'ottima capacità di reazione. Dopo aver recuperato l'adeguatezza nello Sprint 4 (83\%), nello sprint 5 notiamo un completamento al 100\% delle metriche che ci porta alla piena conformità agli standard qualitativi prefissati.
-Dal calcolo sono state escluse le metriche di correttezza dei documenti, in quanto queste sono calcolate a documento approvato e non a sprint. Il loro coinvolgimento nel calcolo produrrebbe uno sfasamento che non permetterebbe una stima affidabile. Valutazione:
+Analizzando l'andamento della \textit{Percentuale di Metriche Soddisfatte} (MPC-PMS) per la durata degli sprint$_G$ in Figura \ref{fig:pms}, notiamo un percorso discontinuo ma in miglioramento. A fronte di alcune criticità operative riscontrate negli Sprint$_G$ 1 e 3 in cui i nostri risultati (67\% e 75\%) sono scesi sotto la soglia di accettabilità dell'80\% per i motivi già citati in questo documento, abbiamo messo in campo un'ottima capacità di reazione. Dopo aver recuperato l'adeguatezza nello Sprint$_G$ 4 (83\%), nello sprint$_G$ 5 notiamo un completamento al 100\% delle metriche che ci porta alla piena conformità agli standard qualitativi prefissati.
+Dal calcolo sono state escluse le metriche di correttezza dei documenti, in quanto queste sono calcolate a documento approvato e non a sprint$_G$. Il loro coinvolgimento nel calcolo produrrebbe uno sfasamento che non permetterebbe una stima affidabile. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $PMS \geq 80\%$, vincolo \textit{non rispettato} nello sprint 1 e 3.
+    \item \textbf{Valore accettabile:} $PMS \geq 80\%$, vincolo$_G$ \textit{non rispettato} nello sprint$_G$ 1 e 3.
 \end{itemize}
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/pms.pdf}
@@ -1270,11 +1270,11 @@ Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del prog
         \hline
         \textbf{Problema} & \textbf{Descrizione} & \textbf{Azioni di correzione} \\ \hline
         
-        Pianificazione e dimensionamento task & Inesperienza iniziale (Sprint 1) nell'organizzare, dimensionare e portare a compimento le task, con conseguente abbassamento del Task Completion Rate (TCR) e scostamenti nei costi (EAC). & Migliore calibrazione del team e scomposizione delle task in unità più piccole per facilitarne il completamento nei tempi previsti (come dimostrato nei recuperi degli sprint successivi). \\ \hline
+        Pianificazione e dimensionamento task$_G$ & Inesperienza iniziale (Sprint$_G$ 1) nell'organizzare, dimensionare e portare a compimento le task$_G$, con conseguente abbassamento del Task$_G$ Completion Rate (TCR) e scostamenti nei costi (EAC). & Migliore calibrazione del team e scomposizione delle task$_G$ in unità più piccole per facilitarne il completamento nei tempi previsti (come dimostrato nei recuperi degli sprint$_G$ successivi). \\ \hline
         
-        Gestione e modellazione dei Requisiti & Numerosi difetti di modellazione nel documento di Analisi dei Requisiti hanno causato pesanti rallentamenti nello Sprint 3, alzando drasticamente il Merge Rework e l'Issue Reopening Rate. & Organizzazione di sessioni di revisione congiunta prima della stesura definitiva per evitare corpose riscritture strutturali e minimizzare la riapertura delle issue. \\ \hline
+        Gestione e modellazione dei Requisiti$_G$ & Numerosi difetti di modellazione nel documento di Analisi dei Requisiti$_G$ hanno causato pesanti rallentamenti nello Sprint$_G$ 3, alzando drasticamente il Merge$_G$ Rework e l'Issue$_G$ Reopening Rate. & Organizzazione di sessioni di revisione congiunta prima della stesura definitiva per evitare corpose riscritture strutturali e minimizzare la riapertura delle issue$_G$. \\ \hline
         
-        Calibrazione dell'effort economico & Tendenza ad accelerare il lavoro (Sprint 2 e 3) accumulando anticipo sulla schedulazione ma causando frequenti sforamenti del budget e Cost Variance negative. & Maggiore attenzione al bilanciamento tra l'Earned Value e l'Actual Cost, stabilizzando l'impiego delle ore produttive per non superare il costo pianificato (risolto nello Sprint 5). \\ \hline
+        Calibrazione dell'effort economico & Tendenza ad accelerare il lavoro (Sprint$_G$ 2 e 3) accumulando anticipo sulla schedulazione ma causando frequenti sforamenti del budget$_G$ e Cost Variance negative. & Maggiore attenzione al bilanciamento tra l'Earned Value e l'Actual Cost$_G$, stabilizzando l'impiego delle ore produttive per non superare il costo pianificato (risolto nello Sprint$_G$ 5). \\ \hline
     \end{tabularx}
     \caption{Azioni adottate per migliorare l'organizzazione.}
     \label{tab:azioni-org}
@@ -1289,9 +1289,9 @@ Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del prog
         \hline
         \textbf{Problema} & \textbf{Descrizione} & \textbf{Azioni di correzione} \\ \hline
         
-        Coordinamento dei redattori in gruppi numerosi & Iniziali incomprensioni sul lavoro da svolgere a causa della mancanza di esperienza pregressa in un team così numeroso, sfociate in sovrascritture di porzioni di documenti. & Definizione di confini più rigidi nell'assegnazione dei compiti ai singoli redattori per prevenire la sovrapposizione del lavoro e l'annullamento delle Pull Request. \\ \hline
+        Coordinamento dei redattori in gruppi numerosi & Iniziali incomprensioni sul lavoro da svolgere a causa della mancanza di esperienza pregressa in un team così numeroso, sfociate in sovrascritture di porzioni di documenti. & Definizione di confini più rigidi nell'assegnazione$_G$ dei compiti ai singoli redattori per prevenire la sovrapposizione del lavoro e l'annullamento delle Pull Request$_G$. \\ \hline
         
-        Verifica formale e controllo logico & I verificatori si sono inizialmente affidati eccessivamente ai correttori ortografici, tralasciando discrepanze logiche (formule smentite dai dati testuali) e sviste nel "copia e incolla" delle didascalie. & Integrazione di una checklist di verifica semantica e strutturale (matching dei dati tra tabelle e testo, controllo incrociato delle definizioni metriche) obbligatoria per il ruolo del Verificatore. \\ \hline
+        Verifica$_G$ formale e controllo logico & I verificatori si sono inizialmente affidati eccessivamente ai correttori ortografici, tralasciando discrepanze logiche (formule smentite dai dati testuali) e sviste nel "copia e incolla" delle didascalie. & Integrazione$_G$ di una checklist di verifica$_G$ semantica e strutturale (matching dei dati tra tabelle e testo, controllo incrociato delle definizioni metriche) obbligatoria per il ruolo del Verificatore$_G$. \\ \hline
     \end{tabularx}
     \caption{Azioni adottate per migliorare la gestione dei ruoli.}
     \label{tab:azioni-ruoli}
@@ -1306,9 +1306,9 @@ Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del prog
         \hline
         \textbf{Problema} & \textbf{Descrizione} & \textbf{Azioni di correzione} \\ \hline
         
-        Co-working tramite GitHub & L'inesperienza iniziale di tutti i membri con lo strumento di versioning GitHub ha portato a conflitti e difficoltà nella gestione collaborativa (alto Merge Rework iniziale). & Adozione di workflow condivisi e rigidi per l'apertura, revisione e approvazione delle Pull Request, uniti alla fisiologica esperienza maturata dal team sul campo. \\ \hline
+        Co-working tramite GitHub$_G$ & L'inesperienza iniziale di tutti i membri con lo strumento di versioning GitHub$_G$ ha portato a conflitti e difficoltà nella gestione collaborativa (alto Merge$_G$ Rework iniziale). & Adozione di workflow$_G$ condivisi e rigidi per l'apertura, revisione e approvazione$_G$ delle Pull Request$_G$, uniti alla fisiologica esperienza maturata dal team sul campo. \\ \hline
         
-        ITS inesistente & All'inizio del progetto il gruppo non adoperava strumenti di \textit{Issue Tracking System} che non permettevano quindi di sapere chi-fa-cosa-quando in tempi ragionevoli e alzava la probabilità di conflitti di merge. & Adozione dell'ITS GitHub Project per l'assegnazione, la misurazione e la rendicontazione delle issue. \\ \hline
+        ITS inesistente & All'inizio del progetto il gruppo non adoperava strumenti di \textit{Issue Tracking System} che non permettevano quindi di sapere chi-fa-cosa-quando in tempi ragionevoli e alzava la probabilità di conflitti di merge$_G$. & Adozione dell'ITS GitHub$_G$ Project per l'assegnazione$_G$, la misurazione e la rendicontazione delle issue$_G$. \\ \hline
     \end{tabularx}
     \caption{Azioni adottate per migliorare l'uso degli strumenti.}
     \label{tab:azioni-str}
