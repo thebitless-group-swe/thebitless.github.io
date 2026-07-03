@@ -315,7 +315,7 @@ function renderLetteraBanner() {
 
   const label = document.createElement("span");
   label.className = "doc-name";
-  label.textContent = "Lettera di presentazione";
+  label.textContent = "Lettera di presentazione (docente Cardin)";
 
   a.appendChild(label);
   banner.appendChild(a);
