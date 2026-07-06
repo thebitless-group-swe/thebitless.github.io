@@ -14,6 +14,8 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  # Necessario per eliminare eventuali artefatti "github-pages" residui prima dell'upload
+  actions: write
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
@@ -33,6 +35,27 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      # Elimina eventuali artefatti "github-pages" lasciati da run precedenti:
+      # se ne restano più di uno, deploy-pages fallisce con
+      # "Multiple artifacts named github-pages were unexpectedly found".
+      - name: Rimuovi artefatti "github-pages" residui
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const res = await github.rest.actions.listArtifactsForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: 'github-pages',
+              per_page: 100,
+            });
+            for (const art of res.data.artifacts) {
+              core.info(`Elimino artifact github-pages id=${art.id}`);
+              await github.rest.actions.deleteArtifact({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                artifact_id: art.id,
+              });
+            }
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
