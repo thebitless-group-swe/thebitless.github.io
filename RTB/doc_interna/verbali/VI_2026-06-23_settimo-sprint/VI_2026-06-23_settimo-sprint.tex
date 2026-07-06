@@ -1,0 +1,135 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+\usepackage[a-1b]{pdfx}
+\usepackage[italian]{babel}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{minted}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{\titolo \ \dataverbale}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    pdfborderstyle={/S/U/W 1},
+    linkbordercolor=0 0 0,
+    urlbordercolor=0 0 0,
+    citebordercolor=0 0 0,
+    filebordercolor=0 0 0,
+    breaklinks=true,
+}
+\newcommand{\issue}[1]{\href{https://github.com/thebitless-group-swe/thebitless.github.io/issues/#1}{\##1}}
+
+\begin{document}
+
+\newcommand{\titolo}{Verbale interno}
+\newcommand{\dataverbale}{2026-06-23}
+\newcommand{\dataversione}{2026-06-25}
+\newcommand{\versione}{1.0.0}
+\newcommand{\stato}{Approvato}
+\newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+\def\templatedir{../../../../templates}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+\input{\templatedir/frontespizio.tex}
+\end{titlepage}
+
+\newpage
+\tableofcontents
+
+\newpage
+\pagenumbering{arabic}
+\section{Informazioni sulla riunione}
+Il presente documento riporta la verbalizzazione della riunione interna al gruppo \textbf{The Bitless} avvenuta il \dataverbale{}, in apertura del settimo sprint$_G$. L'incontro si è svolto tramite la piattaforma Discord$_G$ ed è stato dedicato principalmente alla rotazione dei ruoli$_G$, alla retrospettiva$_G$ del sesto sprint$_G$ e alla pianificazione delle attività. La riunione è avvenuta dalle ore 15:00 alle ore 16:30. \\
+
+\section{Presenze}
+\begin{center}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
+\hline
+Lorenzo & Battistella & Presente \\
+Edoardo & De Piccoli & Presente \\
+Davide & Facco & Presente \\
+Anna & Marini & Presente \\
+Andrea & Menegaldo & Presente \\
+Samuele & Vendramin & Presente \\
+Simone & Zecchinato & Presente \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ordine del giorno}
+\begin{enumerate}
+    \item Rotazione dei ruoli$_G$;
+    \item Retrospettiva$_G$ del sesto sprint$_G$;
+    \item Pianificazione del settimo sprint$_G$;
+    \item Assegnazione$_G$ delle attività singole.
+\end{enumerate}
+
+\section{Discussione e decisioni}
+
+\subsection{Rotazione dei ruoli}
+In apertura del settimo sprint$_G$ il gruppo ha effettuato la rotazione dei ruoli$_G$. Si tratta di ruoli per certi versi ``poco incisivi'': le attività previste per lo sprint$_G$ sono infatti l'incontro con il prof. Cardin e l'attesa di un suo riscontro, oltre all'aggiornamento continuo dei documenti in evoluzione, in particolare il Piano di Progetto$_G$ e il Piano di Qualifica$_G$. Il gruppo ha stabilito di dedicare i momenti liberi ad attività di "palestra", per ottimizzare i tempi di attesa e massimizzare l'efficienza. La ripartizione è stata definita come segue:
+\begin{center}
+    \begin{tabular}{|l|l|c|}
+        \hline
+        \textbf{Nome} & \textbf{Cognome} & \textbf{Ruolo} \\
+        \hline
+        Lorenzo & Battistella & Progettista$_G$ \\
+        \hline
+        Edoardo & De Piccoli & Verificatore$_G$ \\
+        \hline
+        Davide & Facco & Responsabile$_G$ \\
+        \hline
+        Anna & Marini & Verificatore$_G$ \\
+        \hline
+        Andrea & Menegaldo & Amministratore$_G$ \\
+        \hline
+        Samuele & Vendramin & Progettista$_G$ \\
+        \hline
+        Simone & Zecchinato & Programmatore$_G$ \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Retrospettiva del sesto sprint}
+Il team ha analizzato l'andamento del sesto sprint$_G$, che si è concluso complessivamente in modo positivo. L'unica criticità di rilievo è stata un lieve ritardo nella richiesta di presentazione RTB$_G$ (prima parte, con il prof. Cardin), inizialmente prevista entro il sesto sprint e slittata di pochi giorni a causa della mole di documentazione da verificare$_G$ e della sessione d'esami dei componenti del gruppo. Dopo un breve confronto, si è deciso di posticipare la richiesta al 25 giugno. Ulteriori dettagli sull'andamento dello sprint$_G$ sono reperibili nel Piano di Progetto$_G$.
+
+\subsection{Pianificazione del settimo sprint}
+Il gruppo ha constatato che in questo sprint$_G$ non vi sono attività di sviluppo$_G$ o di documentazione consistenti da svolgere, essendo il lavoro concentrato sulla revisione della RTB$_G$. Le attività principali del periodo sono quindi:
+\begin{itemize}
+    \item lo svolgimento del colloquio con il prof. Cardin per la presentazione delle tecnologie scelte e del PoC$_G$;
+    \item l'attesa dell'esito del colloquio e, in caso di semaforo verde, la seconda parte della presentazione al prof. Tullio Vardanega.
+\end{itemize}
+Poiché i task$_G$ operativi risultano ridotti, il gruppo ha deciso di sfruttare il tempo a disposizione come attività di ``palestra'': da un lato per approfondire lo studio delle tecnologie che verranno impiegate nello sviluppo$_G$ della Product Baseline$_G$ (PB), dall'altro per un ripasso e un consolidamento generale dei documenti e delle attività di progetto, in modo da arrivare alla fase successiva con basi più solide.
+
+\subsection{Assegnazione delle attività singole}
+\begin{center}
+    \renewcommand{\arraystretch}{1.4}
+        \begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
+        \hline
+        \textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
+        \hline
+        D. Facco & Aggiornamento data della Lettera di Presentazione RTB$_G$ al 25 giugno & \issue{264} \\
+        \hline
+        A. Marini & Invio mail per la richiesta di presentazione RTB$_G$ con il prof. Cardin & \issue{263} \\
+        \hline
+        Tutti i componenti & Studio individuale per la presentazione delle tecnologie scelte & --- \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\appendix
+
+\end{document}
