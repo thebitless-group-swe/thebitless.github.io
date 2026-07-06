@@ -19,9 +19,13 @@ const DIARIO_RE = /^DB-?(\d+)?_?(\d{4}-\d{2}-\d{2})/;
 
 let PHASES = [];
 let ACTIVE_PHASE = "rtb";
-// Lettera di presentazione: percorso relativo sul sito (GitHub Pages serve il PDF con
-// content-type corretto, così si apre nel browser invece di scaricarsi come fa raw.githubusercontent).
-const LETTERA_PATH = "RTB/lettera-di-presentazione/lettera-di-presentazione.pdf";
+// Lettere di presentazione RTB (percorsi relativi sul sito): la prima parte è indirizzata al
+// prof. Cardin, la seconda al prof. Vardanega. GitHub Pages serve i PDF con content-type corretto,
+// così si aprono nel browser invece di scaricarsi come fa raw.githubusercontent.
+const LETTERE = [
+  { name: "Lettera di presentazione (docente Cardin)", path: "RTB/lettera-di-presentazione/lettera-di-presentazione.pdf" },
+  { name: "Lettera di presentazione (docente Vardanega)", path: "RTB/lettera-di-presentazione/lettera-di-presentazione-vardanega.pdf" },
+];
 
 function humanize(s) {
   const t = s.replace(/[-_]+/g, " ").trim();
@@ -307,18 +311,20 @@ function renderLetteraBanner() {
     banner.hidden = true;
     return;
   }
-  const a = document.createElement("a");
-  a.href = LETTERA_PATH;
-  a.className = "doc-link lettera-link";
-  a.target = "_blank";
-  a.rel = "noopener";
+  LETTERE.forEach(({ name, path }) => {
+    const a = document.createElement("a");
+    a.href = path;
+    a.className = "doc-link lettera-link";
+    a.target = "_blank";
+    a.rel = "noopener";
 
-  const label = document.createElement("span");
-  label.className = "doc-name";
-  label.textContent = "Lettera di presentazione (docente Cardin)";
+    const label = document.createElement("span");
+    label.className = "doc-name";
+    label.textContent = name;
 
-  a.appendChild(label);
-  banner.appendChild(a);
+    a.appendChild(label);
+    banner.appendChild(a);
+  });
   banner.hidden = false;
 }
 
