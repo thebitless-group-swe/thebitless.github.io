@@ -2685,13 +2685,13 @@ I Casi d'Uso UC67.1 e UC67.2 specializzano UC67 come raffigurato nella seguente 
         \end{itemize}
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item L'utente inserisce l'URL di una pagina web → \uclink{uc:67.6}{UC67.6}.
+        \item L'utente inserisce l'URL di una pagina web → \uclink{uc:67.5}{UC67.5}.
         \item Il sistema recupera il contenuto della pagina e ne estrae il testo rilevante.
         \item Il sistema inoltra il contenuto estratto all'LLM$_G$ e ne mostra l'output.
     \end{enumerate}
     \item \textbf{Inclusioni:}
     \begin{itemize}
-        \item \uclink{uc:67.6}{UC67.6 - Inserimento del link}.
+        \item \uclink{uc:67.5}{UC67.5 - Inserimento del link}.
     \end{itemize}
     \item \textbf{Trigger:} L'utente avvia la generazione fornendo un link come fonte.
 \end{itemize}
@@ -2725,8 +2725,8 @@ I Casi d'Uso UC67.1 e UC67.2 specializzano UC67 come raffigurato nella seguente 
     \item \textbf{Trigger:} L'utente inserisce il prompt per la generazione.
 \end{itemize}
 
-\paragraph{UC67.6 - Inserimento del link}
-\hypertarget{uc:67.6}{}
+\paragraph{UC67.5 - Inserimento del link}
+\hypertarget{uc:67.5}{}
 \begin{itemize}
     \item \textbf{Attore principale:} Utente
     \item \textbf{Pre-condizioni:} L'utente ha avviato la generazione a partire da link (\uclink{uc:67.2}{UC67.2}).
@@ -4106,9 +4106,7 @@ R-72-F-Ob & L'Utente deve poter generare automaticamente un testo a partire da u
 
 R-73-F-De & L'Utente deve poter definire la lunghezza desiderata del testo generato. & UC67.3 \\ \hline
 
-R-74-F-De & L'Utente deve poter fornire un URL come fonte di contesto per la generazione automatica di testo. & UC67.2, UC67.6 \\ \hline
-
-R-75-F-Op & L'Utente riconosciuto deve poter selezionare manualmente note salvate nel database$_G$ da usare come contesto per la generazione automatica di testo. & UC67.5 \\ \hline
+R-74-F-De & L'Utente deve poter fornire un URL come fonte di contesto per la generazione automatica di testo. & UC67.2, UC67.5 \\ \hline
 
 R-76-F-Ob & L'Utente deve poter accettare l'output prodotto dall'LLM$_G$ e integrarlo nella nota corrente. & UC68 \\ \hline
 
@@ -4381,8 +4379,7 @@ La seguente tabella traccia, per ciascun caso d'uso\textsubscript{G} analizzato,
         UC67.2 & R-74-F-De \\ \hline
         UC67.3 & R-73-F-De \\ \hline
         UC67.4 & R-72-F-Ob \\ \hline
-        UC67.5 & R-75-F-Op \\ \hline
-        UC67.6 & R-74-F-De \\ \hline
+        UC67.5 & R-74-F-De \\ \hline
         UC68 & R-76-F-Ob \\ \hline
         UC69 & R-77-F-De \\ \hline
         UC70 & R-78-F-De \\ \hline
