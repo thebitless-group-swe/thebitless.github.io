@@ -70,7 +70,7 @@
         \hline
         1.0.0 & 2026-07-07 & S. Vendramin & A. Marini & D. Facco & Approvazione del documento per RTB \\
         \hline
-        0.15.0 & 2026-07-06 & S. Vendramin & A. Marini & - & Revisione stima dei costi (riallocazione ore Amministratore/Progettista) e stima temporale \\
+        0.15.0 & 2026-07-06 & S. Vendramin & A. Marini & - & Revisione stima dei costi (riduzione ore Progettista nel preventivo a finire) e stima temporale \\
         \hline
         0.14.0 & 2026-07-02 & A. Marini & E. De Piccoli & - & Rettifica consuntivo Sprint \#6, stesura preventivoSprint \#7 \\
         \hline
@@ -571,7 +571,7 @@ Questo approccio consente di mantenere il Piano di Progetto coerente con l'andam
 \section{Stima dei costi}
 Alla luce dell'analisi del capitolato \textit{Second Brain}, dei rischi individuati e delle attività previste per lo sviluppo del prodotto, il gruppo ha elaborato una stima preliminare delle ore necessarie alla realizzazione del progetto.
 La stima considera le attività associate ai diversi ruoli previsti dal progetto: Responsabile\textsubscript{G}, Amministratore\textsubscript{G}, Analista\textsubscript{G}, Progettista\textsubscript{G}, Programmatore\textsubscript{G} e Verificatore\textsubscript{G}. La distribuzione delle ore è stata definita in modo da garantire una ripartizione equilibrata del carico di lavoro tra i membri del gruppo e una copertura adeguata di tutte le fasi del ciclo di vita del software\textsubscript{G}.
-Il gruppo stima un impegno complessivo pari a \textbf{644 ore}. Inoltre, viene adottato un modello di rotazione dei ruoli ogni due settimane, così da permettere a ciascun componente di acquisire esperienza trasversale nelle diverse attività progettuali. Il preventivo viene rivalutato e, se necessario, aggiornato migliorativamente al termine di ogni sprint\textsubscript{G}.
+Il gruppo stima un impegno complessivo pari a \textbf{623 ore}. Tale valore recepisce la revisione effettuata al termine dello Sprint\textsubscript{G} \#7: rispetto alla stima iniziale (644 ore), il monte ore del ruolo Progettista\textsubscript{G} è stato ridotto in quanto ritenuto sovrastimato, essendo la progettazione stata in gran parte completata durante la fase di RTB\textsubscript{G}. Inoltre, viene adottato un modello di rotazione dei ruoli ogni due settimane, così da permettere a ciascun componente di acquisire esperienza trasversale nelle diverse attività progettuali. Il preventivo viene rivalutato e, se necessario, aggiornato migliorativamente al termine di ogni sprint\textsubscript{G}.
 
 \textbf{Ultimo aggiornamento: 2026-07-07}
 
@@ -586,13 +586,13 @@ La tabella seguente riassume, per ciascun ruolo, il monte ore complessivo, il co
         \textbf{Ruolo} & \textbf{Ore per ruolo} & \textbf{\shortstack{Costo orario\\(in €)}} & \textbf{\shortstack{Costo totale\\(in €)}} \\
         \hline
         Responsabile di progetto & 48 & 30,00 & 1.440,00 \\ \hline
-        Amministratore & 76 & 20,00 & 1.520,00 \\ \hline
+        Amministratore & 60 & 20,00 & 1.200,00 \\ \hline
         Analista & 62 & 25,00 & 1.550,00 \\ \hline
-        Progettista & 140 & 25,00 & 3.500,00 \\ \hline
+        Progettista & 135 & 25,00 & 3.375,00 \\ \hline
         Programmatore & 158 & 15,00 & 2.370,00 \\ \hline
         Verificatore & 160 & 15,00 & 2.400,00 \\ \hline
         \rowcolor[HTML]{EFEFEF}
-        \textbf{Totale} & \textbf{644} & \textbf{--} & \textbf{12.780,00} \\ \hline
+        \textbf{Totale} & \textbf{623} & \textbf{--} & \textbf{12.335,00} \\ \hline
     \end{tabular}
     \caption{Stima dei costi per ruolo}
 \end{table}
@@ -601,7 +601,7 @@ La tabella seguente riassume, per ciascun ruolo, il monte ore complessivo, il co
 \label{tab:preventivo-finire}
 \textbf{Ultimo aggiornamento: 2026-07-07}
 
-Di seguito è riportato il preventivo ``a finire'', ovvero la stima delle ore e dei costi ancora necessari al completamento del progetto, soggetto a miglioramento continuo in base alle considerazioni del consuntivo di periodo. Al termine dello Sprint\textsubscript{G} \#7 risultano consuntivate complessivamente 322 ore delle 644 preventivate, con 322 ore residue.
+Di seguito è riportato il preventivo ``a finire'', ovvero la stima delle ore e dei costi ancora necessari al completamento del progetto, soggetto a miglioramento continuo in base alle considerazioni del consuntivo di periodo. Al termine dello Sprint\textsubscript{G} \#7 risultano consuntivate complessivamente 322 ore delle 623 preventivate, con 301 ore residue.
 
 \begin{table}[H]
     \centering
@@ -611,25 +611,25 @@ Di seguito è riportato il preventivo ``a finire'', ovvero la stima delle ore e 
         \rowcolor[HTML]{EFEFEF}
         \textbf{Membro} & \textbf{RE} & \textbf{AM} & \textbf{AN} & \textbf{PT} & \textbf{PR} & \textbf{VE} & \textbf{Totale} \\
         \hline
-        L. Battistella & 2 & 4 & 3 & 14 & 15 & 12 & 50 \\
+        L. Battistella & 2 & 2 & 3 & 13 & 15 & 12 & 47 \\
         \hline
-        E. De Piccoli & 4 & 6 & 1 & 11 & 15 & 11 & 48 \\
+        E. De Piccoli & 4 & 4 & 1 & 10 & 15 & 11 & 45 \\
         \hline
-        D. Facco & 4 & 3 & 7 & 13 & 4 & 18 & 49 \\
+        D. Facco & 4 & 1 & 7 & 12 & 4 & 18 & 46 \\
         \hline
-        A. Marini & 3 & 3 & -2 & 10 & 11 & 15 & 40 \\
+        A. Marini & 3 & 1 & -2 & 9 & 11 & 15 & 37 \\
         \hline
-        A. Menegaldo & 5 & 6 & 1 & 13 & 13 & 15 & 53 \\
+        A. Menegaldo & 5 & 3 & 1 & 13 & 13 & 15 & 50 \\
         \hline
-        S. Vendramin & 1 & 3 & -4 & 19 & 14 & 7 & 40 \\
+        S. Vendramin & 1 & 1 & -4 & 18 & 14 & 7 & 37 \\
         \hline
-        S. Zecchinato & 2 & 3 & 2 & 14 & 12 & 9 & 42 \\
-        \hline
-        \rowcolor[HTML]{EFEFEF}
-        \textbf{Totale per ruolo} & \textbf{21} & \textbf{28} & \textbf{8} & \textbf{94} & \textbf{84} & \textbf{87} & \textbf{322} \\
+        S. Zecchinato & 2 & 0 & 2 & 14 & 12 & 9 & 39 \\
         \hline
         \rowcolor[HTML]{EFEFEF}
-        \textbf{Costo totale (in €)} & \textbf{630,00} & \textbf{560,00} & \textbf{200,00} & \textbf{2.350,00} & \textbf{1.260,00} & \textbf{1.305,00} & \textbf{6.305,00} \\
+        \textbf{Totale per ruolo} & \textbf{21} & \textbf{12} & \textbf{8} & \textbf{89} & \textbf{84} & \textbf{87} & \textbf{301} \\
+        \hline
+        \rowcolor[HTML]{EFEFEF}
+        \textbf{Costo totale (in €)} & \textbf{630,00} & \textbf{240,00} & \textbf{200,00} & \textbf{2.225,00} & \textbf{1.260,00} & \textbf{1.305,00} & \textbf{5.860,00} \\
         \hline
     \end{tabularx}
     \caption{Preventivo a finire al termine dello Sprint \#7}
@@ -837,7 +837,7 @@ Il preventivo viene elaborato considerando il costo orario associato a ciascun r
     \item un areogramma che rappresenta la distribuzione delle ore tra i diversi ruoli di progetto.
 \end{itemize}
 
-Il carico di lavoro complessivo previsto per ciascun componente del gruppo è pari a 92 ore, distribuite tra i diversi ruoli di progetto, per un totale di 644 ore produttive. La ripartizione delle mansioni viene gestita tramite un meccanismo di rotazione, con l'obiettivo di garantire a ogni membro del team la possibilità di ricoprire ruoli differenti e acquisire una visione più completa del processo di sviluppo.
+Il carico di lavoro complessivo previsto per ciascun componente del gruppo è pari a 89 ore, distribuite tra i diversi ruoli di progetto, per un totale di 623 ore produttive. La ripartizione delle mansioni viene gestita tramite un meccanismo di rotazione, con l'obiettivo di garantire a ogni membro del team la possibilità di ricoprire ruoli differenti e acquisire una visione più completa del processo di sviluppo.
 
 Per rendere le tabelle più leggibili e compatte, i ruoli di progetto vengono indicati mediante le seguenti abbreviazioni\textsubscript{G}:
 
@@ -3121,7 +3121,7 @@ Di seguito è riportato il consuntivo economico del sesto sprint\textsubscript{G
         \textbf{Totale} & \textbf{58} & \textbf{+1} & \textbf{1.040,00} & \textbf{+15,00} \\ \hline
 
         Sprint pregressi & 256 & / & 5.250,00 & / \\ \hline
-        Restante & 330 & / & 6.490,00 & / \\ \hline
+        Restante & 330 & / & 6.570,00 & / \\ \hline
     \end{tabular}
     \caption{\textit{Consuntivo economico Sprint \#6}}
 \end{table}
@@ -3136,15 +3136,15 @@ Di seguito sono riportate le ore rimanenti per la coppia risorsa-ruolo:
         \rowcolor{bluBitless!15}
         \textbf{Membro del team} & \textbf{Re} & \textbf{Am} & \textbf{An} & \textbf{Pt} & \textbf{Pr} & \textbf{Ve} & \textbf{Totale per persona} \\
         \hline
-        L. Battistella & 2 & 4 & 3 & 14 & 15 & 14 & 52 \\ \hline
-        E. De Piccoli & 4 & 6 & 1 & 11 & 15 & 11 & 48 \\ \hline
-        D. Facco & 7 & 3 & 7 & 13 & 4 & 18 & 52 \\ \hline
-        A. Marini & 3 & 3 & -2 & 10 & 11 & 15 & 40 \\ \hline
-        A. Menegaldo & 5 & 8 & 1 & 13 & 13 & 15 & 55 \\ \hline
-        S. Vendramin & 1 & 3 & -4 & 20 & 14 & 7 & 41 \\ \hline
-        S. Zecchinato & 2 & 3 & 2 & 14 & 12 & 9 & 42 \\ \hline
+        L. Battistella & 2 & 2 & 3 & 16 & 15 & 14 & 52 \\ \hline
+        E. De Piccoli & 4 & 4 & 1 & 13 & 15 & 11 & 48 \\ \hline
+        D. Facco & 7 & 1 & 7 & 15 & 4 & 18 & 52 \\ \hline
+        A. Marini & 3 & 1 & -2 & 12 & 11 & 15 & 40 \\ \hline
+        A. Menegaldo & 5 & 5 & 1 & 16 & 13 & 15 & 55 \\ \hline
+        S. Vendramin & 1 & 1 & -4 & 22 & 14 & 7 & 41 \\ \hline
+        S. Zecchinato & 2 & 0 & 2 & 17 & 12 & 9 & 42 \\ \hline
         \rowcolor{bluBitless!8}
-        \textbf{Totale per ruolo} & \textbf{24} & \textbf{30} & \textbf{8} & \textbf{95} & \textbf{84} & \textbf{89} & \textbf{330} \\
+        \textbf{Totale per ruolo} & \textbf{24} & \textbf{14} & \textbf{8} & \textbf{111} & \textbf{84} & \textbf{89} & \textbf{330} \\
         \hline
     \end{tabular}
     \caption{\textit{Ore rimanenti per coppia risorsa-ruolo dopo lo Sprint \#6}}
@@ -3181,9 +3181,7 @@ A seguire le analisi a posteriori del sesto sprint\textsubscript{G}:
 Le attività residue di verifica\textsubscript{G} dei documenti e la formalizzazione della consegna della RTB\textsubscript{G} sono state riprogrammate nei primissimi giorni dello Sprint\textsubscript{G} \#7. Il completamento del \textit{Proof of Concept} consente di considerare conclusa la fase di sviluppo prevista per la RTB\textsubscript{G} e di concentrare il periodo successivo sul consolidamento della documentazione e sulla preparazione della presentazione.
 
 \paragraph{Preventivo a finire (\hyperref[tab:preventivo-finire]{Sezione \S5.1})}
-A valle dell'esperienza maturata nei primi sprint\textsubscript{G}, il gruppo ha rivisto la stima complessiva della distribuzione delle ore per ruolo (\hyperref[tab:preventivo-finire]{Sezione \S5.1}), spostando 16 ore dal Progettista (da 156 a 140 ore) all'Amministratore (da 60 a 76 ore), a monte ore totale invariato (644). La scelta nasce dalla constatazione che le attività di amministrazione (gestione del repository\textsubscript{G}, configurazione e manutenzione dell'integrazione continua, aggiornamento del sito pubblico e gestione dei rilasci) hanno richiesto sistematicamente più tempo del previsto, mentre le attività di progettazione, potendo appoggiarsi alla base consolidata dal \textit{Proof of Concept}, hanno richiesto un impegno inferiore alla stima iniziale. La revisione lascia invariati i consuntivi degli sprint\textsubscript{G} già conclusi e si riflette unicamente sul preventivo a finire.
-
-Al termine dello Sprint\textsubscript{G} \#6 risultano consuntivate complessivamente 314 ore delle 644 preventivate, con 330 ore residue per un valore di 6.490,00 €. Il preventivo a finire aggiornato è riportato nella \hyperref[tab:preventivo-finire]{Sezione \S5.1}.
+Al termine dello Sprint\textsubscript{G} \#6 il preventivo a finire non presenta variazioni nella distribuzione delle ore per ruolo; i consuntivi degli sprint\textsubscript{G} già conclusi restano invariati. Risultano consuntivate complessivamente 314 ore delle 644 preventivate, con 330 ore residue per un valore di 6.570,00 €. Il preventivo a finire aggiornato è riportato nella \hyperref[tab:preventivo-finire]{Sezione \S5.1}.
 
 \paragraph{Gestione dei rischi (\hyperref[tab:gestione-rischi]{Sezione \S2})}
 Nel corso dello Sprint\textsubscript{G} \#6 si sono manifestati due rischi già previsti nel documento, entrambi gestiti senza compromettere gli obiettivi principali:
@@ -3334,7 +3332,7 @@ Di seguito è riportato il consuntivo economico del settimo sprint\textsubscript
         \textbf{Totale} & \textbf{8} & \textbf{0} & \textbf{185,00} & \textbf{0,00} \\ \hline
 
         Sprint pregressi & 314 & / & 6.290,00 & / \\ \hline
-        Restante & 322 & / & 6.305,00 & / \\ \hline
+        Restante & 301 & / & 5.860,00 & / \\ \hline
     \end{tabular}
     \caption{\textit{Consuntivo economico Sprint \#7}}
 \end{table}
@@ -3349,15 +3347,15 @@ Di seguito sono riportate le ore rimanenti per la coppia risorsa-ruolo:
         \rowcolor{bluBitless!15}
         \textbf{Membro del team} & \textbf{Re} & \textbf{Am} & \textbf{An} & \textbf{Pt} & \textbf{Pr} & \textbf{Ve} & \textbf{Totale per persona} \\
         \hline
-        L. Battistella & 2 & 4 & 3 & 14 & 15 & 12 & 50 \\ \hline
-        E. De Piccoli & 4 & 6 & 1 & 11 & 15 & 11 & 48 \\ \hline
-        D. Facco & 4 & 3 & 7 & 13 & 4 & 18 & 49 \\ \hline
-        A. Marini & 3 & 3 & -2 & 10 & 11 & 15 & 40 \\ \hline
-        A. Menegaldo & 5 & 6 & 1 & 13 & 13 & 15 & 53 \\ \hline
-        S. Vendramin & 1 & 3 & -4 & 19 & 14 & 7 & 40 \\ \hline
-        S. Zecchinato & 2 & 3 & 2 & 14 & 12 & 9 & 42 \\ \hline
+        L. Battistella & 2 & 2 & 3 & 13 & 15 & 12 & 47 \\ \hline
+        E. De Piccoli & 4 & 4 & 1 & 10 & 15 & 11 & 45 \\ \hline
+        D. Facco & 4 & 1 & 7 & 12 & 4 & 18 & 46 \\ \hline
+        A. Marini & 3 & 1 & -2 & 9 & 11 & 15 & 37 \\ \hline
+        A. Menegaldo & 5 & 3 & 1 & 13 & 13 & 15 & 50 \\ \hline
+        S. Vendramin & 1 & 1 & -4 & 18 & 14 & 7 & 37 \\ \hline
+        S. Zecchinato & 2 & 0 & 2 & 14 & 12 & 9 & 39 \\ \hline
         \rowcolor{bluBitless!8}
-        \textbf{Totale per ruolo} & \textbf{21} & \textbf{28} & \textbf{8} & \textbf{94} & \textbf{84} & \textbf{87} & \textbf{322} \\
+        \textbf{Totale per ruolo} & \textbf{21} & \textbf{12} & \textbf{8} & \textbf{89} & \textbf{84} & \textbf{87} & \textbf{301} \\
         \hline
     \end{tabular}
     \caption{\textit{Ore rimanenti per coppia risorsa-ruolo dopo lo Sprint \#7}}
@@ -3380,7 +3378,7 @@ Nel corso del settimo sprint\textsubscript{G} il team ha lavorato alla consegna 
 A seguire le analisi a posteriori del settimo sprint\textsubscript{G}:
 \begin{itemize}
     \item Le ore preventivate (8) e quelle effettivamente consuntivate (8) hanno coinciso, senza scostamenti: la pianificazione dello sprint\textsubscript{G} si è rivelata accurata;
-    \item Oltre ai ruoli di coordinamento e amministrazione, lo sprint\textsubscript{G} ha coinvolto il Progettista per l'avvio della progettazione dell'MVP\textsubscript{G} e il Verificatore per il controllo dei documenti portati in baseline\textsubscript{G}: le due ore di verifica\textsubscript{G} sono state svolte da L. Battistella e A. Marini;
+    \item Oltre ai ruoli di coordinamento e amministrazione, lo sprint\textsubscript{G} ha coinvolto il Progettista per l'avvio della progettazione dell'MVP\textsubscript{G} e il Verificatore per il controllo dei documenti portati in baseline\textsubscript{G}: le due ore di verifica\textsubscript{G} sono state svolte da L. Battistella;
     \item Coerentemente con la natura dello sprint\textsubscript{G}, gran parte dell'impegno del gruppo è stato dedicato alle ore di palestra, non rendicontate come produttive ma fondamentali per acquisire la padronanza tecnica necessaria all'avvio della fase successiva;
     \item Guardando indietro, il gruppo riconosce che sarebbe stato utile affrontare con maggiore anticipo lo studio dei documenti della Product Baseline\textsubscript{G}: averne compreso prima struttura e contenuti avrebbe reso più fluido l'avvio della progettazione;
     \item Il clima di lavoro è rimasto collaborativo e non si sono manifestate criticità di rilievo.
@@ -3392,7 +3390,7 @@ A seguire le analisi a posteriori del settimo sprint\textsubscript{G}:
 Con la consegna della RTB\textsubscript{G} e l'avvio dell'interazione con il prof. Cardin, nel periodo successivo il gruppo si concentrerà sulla fase di Progettazione e Codifica, mettendo a frutto le competenze consolidate durante le ore di palestra.
 
 \paragraph{Preventivo a finire (\hyperref[tab:preventivo-finire]{Sezione \S5.1})}
-Al termine dello Sprint\textsubscript{G} \#7 risultano consuntivate complessivamente 322 ore delle 644 preventivate, con 322 ore residue per un valore di 6.305,00 €. Il preventivo a finire aggiornato è riportato nella \hyperref[tab:preventivo-finire]{Sezione \S5.1}.
+Al termine dello Sprint\textsubscript{G} \#7 il gruppo ha rivisto la stima delle ore ancora necessarie al completamento del progetto. La progettazione è stata infatti in gran parte completata durante la fase di RTB\textsubscript{G}: le funzionalità residue sono prevalentemente da estendere e richiederanno soprattutto attività di codifica anziché di progettazione. Inoltre, i consuntivi dei primi sprint\textsubscript{G} sono stati contenuti a causa della rilevante attività di ``palestra'' e apprendimento, che nei prossimi sprint\textsubscript{G} diminuirà a favore di un maggior numero di ore produttive per periodo. Per questi motivi sono state rimosse 21 ore dal ruolo Progettista\textsubscript{G}, ritenute sovrastimate, lasciando invariati gli altri ruoli. Risultano quindi consuntivate complessivamente 322 ore delle 623 preventivate, con 301 ore residue per un valore di 5.860,00 €. Il preventivo a finire aggiornato è riportato nella \hyperref[tab:preventivo-finire]{Sezione \S5.1}.
 
 \paragraph{Gestione dei rischi (\hyperref[tab:gestione-rischi]{Sezione \S2})}
 Nel corso dello Sprint\textsubscript{G} \#7 non si sono manifestati rischi di rilievo. Il periodo, dedicato principalmente all'attesa del riscontro sulla presentazione e alle attività di palestra, si è svolto senza scostamenti significativi rispetto a quanto pianificato.
