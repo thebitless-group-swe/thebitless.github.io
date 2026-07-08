@@ -77,11 +77,11 @@
     \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
     \hline
     \endhead
-    1.0.0 & 2026-07-08 & A. Marini & S. Vendramin & S. Vendramin & Approvazione$_G$ del documento per RTB \\ \hline
+    1.0.0 & 2026-07-08 & A. Marini & S. Vendramin & S. Vendramin & Approvazione$_G$ del documento per RTB$_G$ \\ \hline
 
     0.19.0 & 2026-07-07 & A. Marini & S. Vendramin & - & Correzione del valore del BAC e revisione stilistica (terminologia) \\ \hline
 
-    0.18.0 & 2026-07-06 & A. Menegaldo & A. Marini & - & Aggiunta delle metriche MPC-MR (Merge Rework) e MPC-IR (Issue Reopening Rate) \\ \hline
+    0.18.0 & 2026-07-06 & A. Menegaldo & A. Marini & - & Aggiunta delle metriche MPC-MR (Merge$_G$ Rework) e MPC-IR (Issue$_G$ Reopening Rate) \\ \hline
 
     0.17.0 & 2026-06-04 & S. Zecchinato & A. Menegaldo & - & Aggiornamento sezione Metriche di Qualità del prodotto \\ \hline
 
@@ -2623,7 +2623,7 @@ Tutte le definizioni, gli acronimi e le abbreviazioni utilizzati in questo docum
         Descrizione & Budget$_G$ totale preventivato per l'intero progetto. Questo valore è fissato alla stipula del contratto e può solo diminuire nel tempo. \\ \hline
         Unità di misura & Euro (€). \\ \hline
     \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPC-BAC - Budget At Completion}
+    \captionof{table}{Dettagli Metrica MPC-BAC - Budget$_G$ At Completion}
 \end{minipage}
 
 
@@ -2655,7 +2655,7 @@ Tutte le definizioni, gli acronimi e le abbreviazioni utilizzati in questo docum
             \item $40 \le IG < 60$: testo abbastanza difficile, istruzione superiore;
             \item $IG < 40$: testo difficile, istruzione universitaria.
         \end{itemize}
-        \textit{Nota:} la metrica viene calcolata esclusivamente in fase di approvazione del documento. \\ \hline
+        \textit{Nota:} la metrica viene calcolata esclusivamente in fase di approvazione$_G$ del documento. \\ \hline
         Utilità & Assicura che la documentazione sia comprensibile per il target di riferimento, riducendo ambiguità. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPC-IG - Indice di Gulpease}
@@ -2681,7 +2681,7 @@ Tutte le definizioni, gli acronimi e le abbreviazioni utilizzati in questo docum
             \item $CO$: Correttezza Ortografica
             \item $N_{errori}$: Numero di errori ortografici rilevati
         \end{itemize} \\ \hline
-        Descrizione & Numero di errori grammaticali o di battitura rilevati nei documenti tramite strumenti automatici di controllo ortografico. \textit{Nota:} la metrica viene calcolata esclusivamente in fase di approvazione del documento. \\ \hline
+        Descrizione & Numero di errori grammaticali o di battitura rilevati nei documenti tramite strumenti automatici di controllo ortografico. \textit{Nota:} la metrica viene calcolata esclusivamente in fase di approvazione$_G$ del documento. \\ \hline
         Unità di misura & Numero intero (conteggio assoluto). \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPC-CO - Correttezza Ortografica}
@@ -2711,14 +2711,14 @@ Tutte le definizioni, gli acronimi e le abbreviazioni utilizzati in questo docum
         \textit{$TCR_{k} = \frac{T_{tempo}}{T_{tempo} + T_{ritardo}} \times 100$} \vspace{2mm} \\
         & \small \textbf{Legenda:}
         \begin{itemize}
-            \item $TCR_{k}$: Task Completion Rate allo sprint$_G$ $k$
-            \item $T_{tempo}$: Numero di task completati in tempo
-            \item $T_{ritardo}$: Numero di task completati in ritardo
+            \item $TCR_{k}$: Task$_G$ Completion Rate allo sprint$_G$ $k$
+            \item $T_{tempo}$: Numero di task$_G$ completati in tempo
+            \item $T_{ritardo}$: Numero di task$_G$ completati in ritardo
         \end{itemize} \\ \hline
-        Descrizione & Percentuale di task completati entro la scadenza dello sprint$_G$ rispetto al totale dei task chiusi nello sprint$_G$ (in tempo e in ritardo). Misura la capacità del team di rispettare le scadenze prefissate. Un task è considerato ``completato in tempo'' se la sua End Date è precedente o uguale alla Target Date dello sprint$_G$. \\ \hline
+        Descrizione & Percentuale di task$_G$ completati entro la scadenza dello sprint$_G$ rispetto al totale dei task$_G$ chiusi nello sprint$_G$ (in tempo e in ritardo). Misura la capacità del team di rispettare le scadenze prefissate. Un task$_G$ è considerato ``completato in tempo'' se la sua End Date è precedente o uguale alla Target Date dello sprint$_G$. \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
     \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPC-TCR - Task Completion Rate}
+    \captionof{table}{Dettagli Metrica MPC-TCR - Task$_G$ Completion Rate}
 \end{minipage}
 
 \vspace{1cm}
@@ -2735,14 +2735,14 @@ Tutte le definizioni, gli acronimi e le abbreviazioni utilizzati in questo docum
         \textit{$TS_{k} = \frac{T_{posticipati}}{T_{totali}} \times 100$} \vspace{2mm} \\
         & \small \textbf{Legenda:}
         \begin{itemize}
-            \item $TS_{k}$: Task Slippage allo sprint$_G$ $k$
-            \item $T_{posticipati}$: Numero di task posticipati allo sprint$_G$ successivo
-            \item $T_{totali}$: Numero totale di task pianificati per lo sprint$_G$
+            \item $TS_{k}$: Task$_G$ Slippage allo sprint$_G$ $k$
+            \item $T_{posticipati}$: Numero di task$_G$ posticipati allo sprint$_G$ successivo
+            \item $T_{totali}$: Numero totale di task$_G$ pianificati per lo sprint$_G$
         \end{itemize} \\ \hline
-        Descrizione & Percentuale di task pianificati per lo sprint$_G$ corrente che non sono stati portati a termine entro la sua conclusione e vengono posticipati allo sprint$_G$ successivo. Un task è considerato ``posticipato'' se alla chiusura dello sprint$_G$ il suo stato è diverso da ``Done''. \\ \hline
+        Descrizione & Percentuale di task$_G$ pianificati per lo sprint$_G$ corrente che non sono stati portati a termine entro la sua conclusione e vengono posticipati allo sprint$_G$ successivo. Un task$_G$ è considerato ``posticipato'' se alla chiusura dello sprint$_G$ il suo stato è diverso da ``Done''. \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
     \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPC-TS - Task Slippage}
+    \captionof{table}{Dettagli Metrica MPC-TS - Task$_G$ Slippage}
 \end{minipage}
 
 \vspace{1cm}
@@ -2759,11 +2759,11 @@ Tutte le definizioni, gli acronimi e le abbreviazioni utilizzati in questo docum
         \textit{$MR_{k} = \frac{L_{rilavorato}}{L_{totale}} \times 100$} \vspace{2mm} \\
         & \small \textbf{Legenda:}
         \begin{itemize}
-            \item $MR_{k}$: Merge Rework allo sprint$_G$ $k$
+            \item $MR_{k}$: Merge$_G$ Rework allo sprint$_G$ $k$
             \item $L_{rilavorato}$: Unità o ore di lavoro rilavorato nello sprint$_G$ $k$
             \item $L_{totale}$: Lavoro totale prodotto nello sprint$_G$ $k$
         \end{itemize} \\ \hline
-        Descrizione & La metrica Merge Rework misura la percentuale di lavoro che è stato necessario ripetere rispetto al lavoro totale svolto. Indica l'efficienza del processo produttivo e la qualità delle attività a monte.
+        Descrizione & La metrica Merge$_G$ Rework misura la percentuale di lavoro che è stato necessario ripetere rispetto al lavoro totale svolto. Indica l'efficienza del processo produttivo e la qualità delle attività a monte.
         \begin{itemize}
             \item $MR = 0\%$: nessuna rilavorazione (situazione ottimale);
             \item $MR$ basso: rilavorazione contenuta (situazione accettabile);
@@ -2771,7 +2771,7 @@ Tutte le definizioni, gli acronimi e le abbreviazioni utilizzati in questo docum
         \end{itemize} \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
     \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPC-MR - Merge Rework}
+    \captionof{table}{Dettagli Metrica MPC-MR - Merge$_G$ Rework}
 \end{minipage}
 
 \vspace{1cm}
@@ -2788,18 +2788,18 @@ Tutte le definizioni, gli acronimi e le abbreviazioni utilizzati in questo docum
         \textit{$IR_{k} = \frac{I_{riaperti}}{I_{risolti}} \times 100$} \vspace{2mm} \\
         & \small \textbf{Legenda:}
         \begin{itemize}
-            \item $IR_{k}$: Issue Reopening Rate allo sprint$_G$ $k$
+            \item $IR_{k}$: Issue$_G$ Reopening Rate allo sprint$_G$ $k$
             \item $I_{riaperti}$: Numero di problemi riaperti nello sprint$_G$ $k$
             \item $I_{risolti}$: Numero totale di problemi risolti nello sprint$_G$ $k$
         \end{itemize} \\ \hline
-        Descrizione & La metrica Issue Reopening Rate misura la percentuale di problemi che, dopo essere stati contrassegnati come risolti, vengono riaperti. Un valore elevato può indicare carenze nel processo di verifica$_G$ o nella qualità delle correzioni applicate.
+        Descrizione & La metrica Issue$_G$ Reopening Rate misura la percentuale di problemi che, dopo essere stati contrassegnati come risolti, vengono riaperti. Un valore elevato può indicare carenze nel processo di verifica$_G$ o nella qualità delle correzioni applicate.
         \begin{itemize}
             \item $IR \leq 15\%$: valore accettabile;
             \item $IR > 15\%$: valore critico, necessario intervento correttivo.
         \end{itemize} \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
     \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPC-IR - Issue Reopening Rate}
+    \captionof{table}{Dettagli Metrica MPC-IR - Issue$_G$ Reopening Rate}
 \end{minipage}
 
 \vspace{1cm}
@@ -2832,7 +2832,7 @@ Tutte le definizioni, gli acronimi e le abbreviazioni utilizzati in questo docum
 
 \section{Metriche di Qualità del Prodotto}
 
-Le metriche di qualità del prodotto misurano le caratteristiche del software realizzato: valutano direttamente il comportamento dell'applicazione, la sua affidabilità, la sua facilità d'uso e la sua capacità di soddisfare i requisiti\textsubscript{G} del capitolato\textsubscript{G}. Sono identificate con il prefisso \textbf{MPD}. In questo documento se ne fornisce la definizione (descrizione, formula, unità di misura ed eventuale strumento di rilevazione); le soglie di accettabilità e i valori ottimali sono definiti nel \textit{Piano di Qualifica}\textsubscript{G}.
+Le metriche di qualità del prodotto misurano le caratteristiche del software realizzato: valutano direttamente il comportamento dell'applicazione, la sua affidabilità, la sua facilità d'uso e la sua capacità di soddisfare i requisiti$_G$\textsubscript{G} del capitolato$_G$\textsubscript{G}. Sono identificate con il prefisso \textbf{MPD}. In questo documento se ne fornisce la definizione (descrizione, formula, unità di misura ed eventuale strumento di rilevazione); le soglie di accettabilità e i valori ottimali sono definiti nel \textit{Piano di Qualifica}\textsubscript{G}.
 
 \subsection{Funzionalità}
 
@@ -2844,10 +2844,10 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-CRO \\ \hline
         Formula &
         \textit{$CRO = \frac{RO_{soddisfatti}}{RO_{totali}} \times 100$} \\ \hline
-        Descrizione & Percentuale di requisiti\textsubscript{G} obbligatori correttamente implementati e verificati rispetto al totale dei requisiti\textsubscript{G} obbligatori individuati nell'Analisi dei Requisiti\textsubscript{G}. Un requisito\textsubscript{G} è considerato ``soddisfatto'' quando il relativo test\textsubscript{G} di sistema\textsubscript{G} risulta superato. \\ \hline
+        Descrizione & Percentuale di requisiti$_G$\textsubscript{G} obbligatori correttamente implementati e verificati rispetto al totale dei requisiti$_G$\textsubscript{G} obbligatori individuati nell'Analisi dei Requisiti$_G$\textsubscript{G}. Un requisito\textsubscript{G} è considerato ``soddisfatto'' quando il relativo test$_G$\textsubscript{G} di sistema$_G$\textsubscript{G} risulta superato. \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
     \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPD-CRO - Copertura Requisiti Obbligatori}
+    \captionof{table}{Dettagli Metrica MPD-CRO - Copertura Requisiti$_G$ Obbligatori}
 \end{minipage}
 
 \vspace{0.8cm}
@@ -2860,10 +2860,10 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-CRD \\ \hline
         Formula &
         \textit{$CRD = \frac{RD_{soddisfatti}}{RD_{totali}} \times 100$} \\ \hline
-        Descrizione & Percentuale di requisiti\textsubscript{G} desiderabili correttamente implementati e verificati rispetto al totale dei requisiti\textsubscript{G} desiderabili individuati. \\ \hline
+        Descrizione & Percentuale di requisiti$_G$\textsubscript{G} desiderabili correttamente implementati e verificati rispetto al totale dei requisiti$_G$\textsubscript{G} desiderabili individuati. \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
     \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPD-CRD - Copertura Requisiti Desiderabili}
+    \captionof{table}{Dettagli Metrica MPD-CRD - Copertura Requisiti$_G$ Desiderabili}
 \end{minipage}
 
 \vspace{0.8cm}
@@ -2876,10 +2876,10 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-CROp \\ \hline
         Formula &
         \textit{$CROp = \frac{ROp_{soddisfatti}}{ROp_{totali}} \times 100$} \\ \hline
-        Descrizione & Percentuale di requisiti\textsubscript{G} opzionali correttamente implementati e verificati rispetto al totale dei requisiti\textsubscript{G} opzionali individuati. \\ \hline
+        Descrizione & Percentuale di requisiti$_G$\textsubscript{G} opzionali correttamente implementati e verificati rispetto al totale dei requisiti$_G$\textsubscript{G} opzionali individuati. \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
     \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPD-CROp - Copertura Requisiti Opzionali}
+    \captionof{table}{Dettagli Metrica MPD-CROp - Copertura Requisiti$_G$ Opzionali}
 \end{minipage}
 
 \vspace{0.8cm}
@@ -2892,10 +2892,10 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-CLLM \\ \hline
         Formula &
         \textit{$CLLM = \frac{F_{implementate}}{F_{obbligatorie}} \times 100$} \\ \hline
-        Descrizione & Percentuale di funzioni basate sull'LLM\textsubscript{G} obbligatorie (es. generazione, riassunto, traduzione) correttamente implementate e verificate rispetto al totale di quelle richieste dal capitolato\textsubscript{G}. \\ \hline
+        Descrizione & Percentuale di funzioni basate sull'LLM$_G$\textsubscript{G} obbligatorie (es. generazione, riassunto, traduzione) correttamente implementate e verificate rispetto al totale di quelle richieste dal capitolato$_G$\textsubscript{G}. \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
     \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPD-CLLM - Copertura Funzioni LLM Obbligatorie}
+    \captionof{table}{Dettagli Metrica MPD-CLLM - Copertura Funzioni LLM$_G$ Obbligatorie}
 \end{minipage}
 
 \vspace{0.8cm}
@@ -2942,7 +2942,7 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-DL \\ \hline
         Formula &
         \textit{$DL = N_{perdite}$} \\ \hline
-        Descrizione & Numero di occorrenze in cui, durante i test\textsubscript{G} di salvataggio e caricamento, il contenuto di una nota risulta perso o alterato. Misura l'affidabilità della catena di persistenza dei dati. \\ \hline
+        Descrizione & Numero di occorrenze in cui, durante i test$_G$\textsubscript{G} di salvataggio e caricamento, il contenuto di una nota risulta perso o alterato. Misura l'affidabilità della catena di persistenza dei dati. \\ \hline
         Unità di misura & Numero intero (conteggio assoluto). \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-DL - Data Loss}
@@ -2958,7 +2958,7 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-EH \\ \hline
         Formula &
         \textit{$EH = \frac{E_{gestiti}}{E_{totali}} \times 100$} \\ \hline
-        Descrizione & Percentuale di condizioni di errore (errori dell'LLM\textsubscript{G}, di rete, di input\textsubscript{G} non valido) gestite correttamente dal sistema\textsubscript{G} rispetto al totale delle condizioni di errore sottoposte a test\textsubscript{G}. \\ \hline
+        Descrizione & Percentuale di condizioni di errore (errori dell'LLM$_G$\textsubscript{G}, di rete, di input$_G$\textsubscript{G} non valido) gestite correttamente dal sistema$_G$\textsubscript{G} rispetto al totale delle condizioni di errore sottoposte a test$_G$\textsubscript{G}. \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-EH - Error Handling}
@@ -2990,7 +2990,7 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-AR \\ \hline
         Formula &
         \textit{$AR = \frac{T_{disponibile}}{T_{osservato}} \times 100$} \\ \hline
-        Descrizione & Percentuale di tempo in cui l'applicazione risulta disponibile e operativa durante le sessioni di test\textsubscript{G} rispetto al tempo totale osservato. \\ \hline
+        Descrizione & Percentuale di tempo in cui l'applicazione risulta disponibile e operativa durante le sessioni di test$_G$\textsubscript{G} rispetto al tempo totale osservato. \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-AR - Availability Rate}
@@ -3008,7 +3008,7 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-LT \\ \hline
         Formula &
         \textit{$LT = \frac{\sum_{i=1}^{n} T_{i}}{n}$} \\ \hline
-        Descrizione & Tempo medio necessario a un utente per completare con successo una funzionalità per la prima volta, senza assistenza esterna; $T_{i}$ è il tempo impiegato dall'$i$-esimo utente e $n$ il numero di utenti coinvolti nella sessione di test\textsubscript{G} di usabilità. Misura l'apprendibilità dell'interfaccia. \\ \hline
+        Descrizione & Tempo medio necessario a un utente per completare con successo una funzionalità per la prima volta, senza assistenza esterna; $T_{i}$ è il tempo impiegato dall'$i$-esimo utente e $n$ il numero di utenti coinvolti nella sessione di test$_G$\textsubscript{G} di usabilità. Misura l'apprendibilità dell'interfaccia. \\ \hline
         Unità di misura & Minuti. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-LT - Learning Time}
@@ -3024,7 +3024,7 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-NE \\ \hline
         Formula &
         \textit{$NE = \frac{\sum_{i=1}^{n} E_{i}}{n}$} \\ \hline
-        Descrizione & Numero medio di errori di navigazione (azioni errate o percorsi sbagliati) commessi dagli utenti per scenario di test\textsubscript{G}; $E_{i}$ è il numero di errori nell'$i$-esimo scenario e $n$ il numero di scenari valutati. \\ \hline
+        Descrizione & Numero medio di errori di navigazione (azioni errate o percorsi sbagliati) commessi dagli utenti per scenario di test$_G$\textsubscript{G}; $E_{i}$ è il numero di errori nell'$i$-esimo scenario e $n$ il numero di scenari valutati. \\ \hline
         Unità di misura & Numero di errori per scenario. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-NE - Navigation Errors}
@@ -3074,9 +3074,9 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-RT \\ \hline
         Formula &
         \textit{$RT = \frac{\sum_{i=1}^{n} (T_{risposta,i} - T_{richiesta,i})}{n}$} \\ \hline
-        Descrizione & Tempo medio di risposta dell'interfaccia locale a un input\textsubscript{G} dell'utente, misurato come intervallo tra l'invio della richiesta e la ricezione della risposta completa. \\ \hline
+        Descrizione & Tempo medio di risposta dell'interfaccia locale a un input$_G$\textsubscript{G} dell'utente, misurato come intervallo tra l'invio della richiesta e la ricezione della risposta completa. \\ \hline
         Unità di misura & Secondi (s). \\ \hline
-        Strumento di rilevazione & Test\textsubscript{G} automatici di performance. \\ \hline
+        Strumento di rilevazione & Test$_G$\textsubscript{G} automatici di performance. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-RT - Response Time Interfaccia}
 \end{minipage}
@@ -3093,7 +3093,7 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         \textit{$MRT = \frac{\sum_{i=1}^{n} T_{i}}{n}$} \\ \hline
         Descrizione & Tempo medio necessario a rendere in anteprima il testo Markdown\textsubscript{G} dopo una modifica; $T_{i}$ è il tempo di rendering della $i$-esima misurazione. \\ \hline
         Unità di misura & Secondi (s). \\ \hline
-        Strumento di rilevazione & Test\textsubscript{G} automatici di performance. \\ \hline
+        Strumento di rilevazione & Test$_G$\textsubscript{G} automatici di performance. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-MRT - Markdown Rendering Time}
 \end{minipage}
@@ -3108,11 +3108,11 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-LLMRT \\ \hline
         Formula &
         \textit{$LLMRT = \frac{\sum_{i=1}^{n} T_{i}}{n}$} \\ \hline
-        Descrizione & Tempo medio tra l'invio di una richiesta al servizio LLM\textsubscript{G} e la ricezione della risposta completa; $T_{i}$ è il tempo dell'$i$-esima richiesta. \\ \hline
+        Descrizione & Tempo medio tra l'invio di una richiesta al servizio LLM$_G$\textsubscript{G} e la ricezione della risposta completa; $T_{i}$ è il tempo dell'$i$-esima richiesta. \\ \hline
         Unità di misura & Secondi (s). \\ \hline
-        Strumento di rilevazione & Test\textsubscript{G} automatici di performance. \\ \hline
+        Strumento di rilevazione & Test$_G$\textsubscript{G} automatici di performance. \\ \hline
     \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPD-LLMRT - LLM Response Time}
+    \captionof{table}{Dettagli Metrica MPD-LLMRT - LLM$_G$ Response Time}
 \end{minipage}
 
 \vspace{0.8cm}
@@ -3127,7 +3127,7 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         \textit{$LS = T_{caricamento}$} \\ \hline
         Descrizione & Tempo necessario al caricamento iniziale completo dell'applicazione nel browser, dal primo accesso fino a quando l'interfaccia è pronta all'uso. \\ \hline
         Unità di misura & Secondi (s). \\ \hline
-        Strumento di rilevazione & Test\textsubscript{G} automatici di performance. \\ \hline
+        Strumento di rilevazione & Test$_G$\textsubscript{G} automatici di performance. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-LS - Loading Speed}
 \end{minipage}
@@ -3144,7 +3144,7 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-CYC \\ \hline
         Formula &
         \textit{$M = E - N + 2P$} \\ \hline
-        Descrizione & Numero di percorsi linearmente indipendenti nel flusso di controllo, dove $E$ è il numero di archi, $N$ il numero di nodi e $P$ il numero di componenti connesse (solitamente 1 per singola funzione). Il valore riportato è la media della complessità ciclomatica su tutte le funzioni del sistema\textsubscript{G}. \\ \hline
+        Descrizione & Numero di percorsi linearmente indipendenti nel flusso di controllo, dove $E$ è il numero di archi, $N$ il numero di nodi e $P$ il numero di componenti connesse (solitamente 1 per singola funzione). Il valore riportato è la media della complessità ciclomatica su tutte le funzioni del sistema$_G$\textsubscript{G}. \\ \hline
         Unità di misura & Numero intero (adimensionale). \\ \hline
         Strumento di rilevazione & Analizzatore statico del codice (es. \texttt{gocyclo} per Go, ESLint per TypeScript). \\ \hline
     \end{tabularx}
@@ -3161,7 +3161,7 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-CS \\ \hline
         Formula &
         \textit{$CS = \frac{N_{smell}}{N_{componenti}}$} \\ \hline
-        Descrizione & Numero medio di code smell (indicatori di progettazione debole, come metodi troppo lunghi, classi troppo grandi o duplicazioni) rilevati per componente del sistema\textsubscript{G}. \\ \hline
+        Descrizione & Numero medio di code smell (indicatori di progettazione debole, come metodi troppo lunghi, classi troppo grandi o duplicazioni) rilevati per componente del sistema$_G$\textsubscript{G}. \\ \hline
         Unità di misura & Numero di code smell per componente. \\ \hline
         Strumento di rilevazione & Analizzatore statico del codice (es. SonarQube, ESLint, \texttt{golangci-lint}). \\ \hline
     \end{tabularx}
@@ -3178,7 +3178,7 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-DUP \\ \hline
         Formula &
         \textit{$DUP = \frac{L_{duplicate}}{L_{totali}} \times 100$} \\ \hline
-        Descrizione & Percentuale di righe di codice duplicate rispetto al totale delle righe di codice del sistema\textsubscript{G}. Una duplicazione elevata riduce la manutenibilità\textsubscript{G}. \\ \hline
+        Descrizione & Percentuale di righe di codice duplicate rispetto al totale delle righe di codice del sistema$_G$\textsubscript{G}. Una duplicazione elevata riduce la manutenibilità$_G$\textsubscript{G}. \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
         Strumento di rilevazione & Analizzatore statico del codice (es. SonarQube). \\ \hline
     \end{tabularx}
@@ -3195,7 +3195,7 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-MOD \\ \hline
         Formula &
         \textit{$MOD = \frac{D_{effettive}}{n \times (n-1)}$} \\ \hline
-        Descrizione & Grado di accoppiamento tra i moduli del sistema\textsubscript{G}, dove $D_{effettive}$ è il numero di dipendenze direzionali effettive e $n \times (n-1)$ il numero massimo di dipendenze possibili tra $n$ moduli. Valori più bassi indicano moduli più indipendenti e quindi una maggiore modularità. \\ \hline
+        Descrizione & Grado di accoppiamento tra i moduli del sistema$_G$\textsubscript{G}, dove $D_{effettive}$ è il numero di dipendenze direzionali effettive e $n \times (n-1)$ il numero massimo di dipendenze possibili tra $n$ moduli. Valori più bassi indicano moduli più indipendenti e quindi una maggiore modularità. \\ \hline
         Unità di misura & Adimensionale (scala 0--1). \\ \hline
         Strumento di rilevazione & Analisi delle dipendenze tramite strumenti di analisi statica. \\ \hline
     \end{tabularx}
@@ -3231,10 +3231,10 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-IV \\ \hline
         Formula &
         \textit{$IV = \frac{I_{validati}}{I_{totali}} \times 100$} \\ \hline
-        Descrizione & Percentuale di punti di ingresso dei dati (input\textsubscript{G} dell'utente, parametri delle chiamate API\textsubscript{G}) sottoposti a validazione rispetto al totale dei punti di ingresso individuati. \\ \hline
+        Descrizione & Percentuale di punti di ingresso dei dati (input$_G$\textsubscript{G} dell'utente, parametri delle chiamate API$_G$\textsubscript{G}) sottoposti a validazione$_G$ rispetto al totale dei punti di ingresso individuati. \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
     \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPD-IV - Input Validation}
+    \captionof{table}{Dettagli Metrica MPD-IV - Input$_G$ Validation}
 \end{minipage}
 
 \end{document}
