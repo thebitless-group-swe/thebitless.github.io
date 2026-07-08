@@ -1,0 +1,25 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Pagina-1" id="xQkobMQ6OQ0ODcRfu5QX">
+    <mxGraphModel dx="1475" dy="893" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-679" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="160" width="270" x="380.0033333333333" y="440.0033333333333" as="geometry" />
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-680" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC84 - Visualizzazione informazioni della nota" vertex="1">
+          <mxGeometry height="100" width="215" x="410.0033333333333" y="465.0033333333333" as="geometry" />
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-681" edge="1" parent="1" source="HCdEVDdO6MzIm06qFmDV-682" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="HCdEVDdO6MzIm06qFmDV-680">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-682" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente" vertex="1">
+          <mxGeometry height="60" width="30" x="180.00333333333327" y="485.00333333333333" as="geometry" />
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-683" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
+          <mxGeometry height="30" width="60" x="590.0033333333333" y="410.0033333333333" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
