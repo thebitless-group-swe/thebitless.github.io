@@ -249,6 +249,9 @@ body::before {
   border-radius: 14px;
   padding: 6px 20px;
   margin-bottom: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 28px;
 }
 
 .lettera-banner[hidden] {
