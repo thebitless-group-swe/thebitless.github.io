@@ -1,4 +1,4 @@
-﻿\documentclass[a4paper, 10pt]{article} 
+\documentclass[a4paper, 10pt]{article} 
 
 \usepackage[italian]{babel}  
 \usepackage{comment}      
@@ -77,7 +77,11 @@
     \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
     \hline
     \endhead
-    1.0.0 & 2026-06-16 & S. Zecchinato & A. Menegaldo & E. De Piccoli & Approvazione$_G$ del documento \\ \hline
+    1.0.0 & 2026-07-08 & A. Marini & S. Vendramin & S. Vendramin & Approvazione$_G$ del documento per RTB \\ \hline
+
+    0.19.0 & 2026-07-07 & A. Marini & S. Vendramin & - & Correzione del valore del BAC e revisione stilistica (terminologia) \\ \hline
+
+    0.18.0 & 2026-07-06 & A. Menegaldo & A. Marini & - & Aggiunta delle metriche MPC-MR (Merge Rework) e MPC-IR (Issue Reopening Rate) \\ \hline
 
     0.17.0 & 2026-06-04 & S. Zecchinato & A. Menegaldo & - & Aggiornamento sezione Metriche di Qualità del prodotto \\ \hline
 
@@ -315,7 +319,7 @@ In conformità alla subclause 5.3 dello standard, il processo di sviluppo$_G$ si
 
     \item \textbf{Software architectural design}: trasformazione dei requisiti$_G$ software in una struttura gerarchica di moduli. In questa attività si producono il design preliminare delle interfacce applicative, lo schema logico del \textbf{database}\textsubscript{G} e la distribuzione delle responsabilità tra i layer architetturali.
 
-    \item \textbf{Software detailed design}: scomposizione delle componenti architetturali in \textbf{unità software}\textsubscript{G} elementari. Viene completato il design di dettaglio — comprensivo di diagrammi UML$_G$ delle classi, sequenze e stati — in modo da rendere ogni unità direttamente codificabile in modo indipendente.
+    \item \textbf{Software detailed design}: scomposizione delle componenti architetturali in \textbf{unità software}\textsubscript{G} elementari. Viene completato il design di dettaglio (comprensivo di diagrammi UML$_G$ delle classi, sequenze e stati) in modo da rendere ogni unità direttamente codificabile in modo indipendente.
 
     \item \textbf{Software coding and testing}: realizzazione del codice sorgente e delle strutture dati. Ogni sviluppatore esegue i \textbf{test unitari}\textsubscript{G} sulla propria unità per verificarne la conformità alle specifiche di dettaglio prima dell'integrazione$_G$.
 
@@ -440,9 +444,9 @@ Ogni requisito è costituito dai seguenti elementi:
     \begin{itemize}
         \item \textbf{Tipologia}:
         \begin{itemize}
-            \item \textbf{RF} — Requisito Funzionale;
-            \item \textbf{RQ} — Requisito Qualitativo;
-            \item \textbf{RV} — Requisito di Vincolo$_G$.
+            \item \textbf{RF}: Requisito Funzionale;
+            \item \textbf{RQ}: Requisito Qualitativo;
+            \item \textbf{RV}: Requisito di Vincolo$_G$.
         \end{itemize}
         \item \textbf{Codice}: identificativo numerico progressivo univoco all'interno della tipologia di appartenenza.
     \end{itemize}
@@ -1695,13 +1699,13 @@ Il controllo di configurazione è il processo che disciplina le richieste di mod
     Ogni richiesta di modifica viene identificata e registrata formalmente attraverso la creazione di una Issue$_G$ nell'ITS$_G$ con label$_G$ \texttt{Change request}. La Issue$_G$ deve contenere informazioni dettagliate sulla natura della modifica richiesta, l'urgenza, l'impatto stimato sul sistema$_G$ esistente e, se possibile, una proposta di soluzione. L'identificazione univoca della richiesta tramite Issue$_G$ ne garantisce la tracciabilità$_G$ per tutta la durata del processo.
     
     \item \textbf{Valutazione e analisi}\\
-    La Change Request viene valutata dal team (in particolare dal Responsabile$_G$ e dagli Analisti$_G$) per determinarne la fattibilità$_G$ tecnica, l'importanza rispetto agli obiettivi di progetto e l'impatto sugli altri CI. Si analizzano i costi e i benefici associati all'implementazione della modifica, considerando l'effort necessario, i rischi introdotti e le eventuali ricadute su pianificazione e budget$_G$.
+    La Change Request viene valutata dal team (in particolare dal Responsabile$_G$ e dagli Analisti$_G$) per determinarne la fattibilità$_G$ tecnica, l'importanza rispetto agli obiettivi di progetto e l'impatto sugli altri CI. Si analizzano i costi e i benefici associati all'implementazione della modifica, considerando l'impegno necessario, i rischi introdotti e le eventuali ricadute su pianificazione e budget$_G$.
     
     \item \textbf{Approvazione o rifiuto}\\
     Sulla base dell'analisi condotta, il Responsabile$_G$ decide se approvare o respingere la Change Request. La decisione viene motivata e documentata all'interno della Issue$_G$. I criteri di valutazione includono la coerenza con gli obiettivi del capitolato$_G$, la disponibilità di risorse, il rispetto delle scadenze e le priorità espresse dagli stakeholder$_G$.
     
     \item \textbf{Pianificazione delle modifiche}\\
-    Se la Change Request viene approvata, essa viene pianificata e integrata nel ciclo di sviluppo$_G$. Ciò comporta la sua assegnazione$_G$ a una milestone$_G$, la stima dell'effort, l'allocazione delle risorse necessarie e l'eventuale aggiornamento del \emph{Piano di Progetto}$_G$ per riflettere le nuove attività. Nei casi più impattanti, può rendersi necessaria la rinegoziazione dei tempi di consegna con il proponente$_G$.
+    Se la Change Request viene approvata, essa viene pianificata e integrata nel ciclo di sviluppo$_G$. Ciò comporta la sua assegnazione$_G$ a una milestone$_G$, la stima dell'impegno, l'allocazione delle risorse necessarie e l'eventuale aggiornamento del \emph{Piano di Progetto}$_G$ per riflettere le nuove attività. Nei casi più impattanti, può rendersi necessaria la rinegoziazione dei tempi di consegna con il proponente$_G$.
     
     \item \textbf{Implementazione delle modifiche}\\
     Le modifiche vengono effettivamente implementate seguendo il normale flusso di sviluppo$_G$ (branch$_G$ dedicato, commit$_G$ atomici, test$_G$). Durante questa fase, è fondamentale mantenere una traccia accurata di tutto ciò che viene modificato, per consentire una corretta documentazione e, se necessario, la possibilità di un rollback$_G$ a uno stato precedente.
@@ -1972,7 +1976,7 @@ La pianificazione segue un flusso strutturato, condotto dal Responsabile$_G$ in 
 
 \begin{enumerate}
     \item \textbf{Identificazione delle attività}: a partire dagli obiettivi di periodo e dagli impegni presi con il proponente$_G$, il Responsabile$_G$ individua tutte le attività da svolgere.
-    \item \textbf{Stima dell'effort e delle risorse}: per ogni attività viene stimato il tempo necessario e vengono identificate le competenze richieste.
+    \item \textbf{Stima dell'impegno e delle risorse}: per ogni attività viene stimato il tempo necessario e vengono identificate le competenze richieste.
     \item \textbf{Assegnazione dei ruoli}: il Responsabile$_G$ assegna i ruoli ai membri del gruppo, garantendo la rotazione e il bilanciamento dei carichi di lavoro.
     \item \textbf{Redazione del Piano di Progetto}: le attività, le stime e le assegnazioni vengono formalizzate nel \emph{Piano di Progetto}$_G$, che viene versionato e sottoposto a verifica$_G$.
     \item \textbf{Creazione delle issue}: l'Amministratore$_G$ traduce le attività pianificate in issue$_G$ su GitHub$_G$, assegnandole ai membri designati e impostando le scadenze.
@@ -2614,8 +2618,8 @@ Tutte le definizioni, gli acronimi e le abbreviazioni utilizzati in questo docum
         \hline
         Sigla & MPC-BAC \\ \hline
         Formula &
-        \textit{$BAC = 12.825$ €} \vspace{2mm} \\
-        & \small Nota: il valore considerato fino allo sprint$_G$ 9 è di 12.975 € (vd. Piano di Progetto, sezione 4.1). \\ \hline
+        \textit{$BAC = 12.860,00$ €} \vspace{2mm} \\
+        & \small Valore fissato alla stipula del contratto, coerente con il \textit{Piano di Qualifica}$_G$. \\ \hline
         Descrizione & Budget$_G$ totale preventivato per l'intero progetto. Questo valore è fissato alla stipula del contratto e può solo diminuire nel tempo. \\ \hline
         Unità di misura & Euro (€). \\ \hline
     \end{tabularx}
@@ -2741,192 +2745,496 @@ Tutte le definizioni, gli acronimi e le abbreviazioni utilizzati in questo docum
     \captionof{table}{Dettagli Metrica MPC-TS - Task Slippage}
 \end{minipage}
 
-\section{Metriche di Qualità del Prodotto}
+\vspace{1cm}
 
-\subsection{Funzionalità}
-
-% --- MPD01 ---
-\subsubsection{Percentuale Requisiti Obbligatori Soddisfatti (PROS)}
+% --- MPC-MR ---
+\paragraph{Merge Rework (MR)}
+\mbox{} \\
 \noindent
 \begin{minipage}{\textwidth}
     \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
         \hline
-        Sigla & MPD01 \\ \hline
-        Formula &  
-        \textit{$PROS = \frac{RO_{soddisfatti}}{RO_{totali}} \times 100$} \vspace{2mm} \\
+        Sigla & MPC-MR \\ \hline
+        Formula &
+        \textit{$MR_{k} = \frac{L_{rilavorato}}{L_{totale}} \times 100$} \vspace{2mm} \\
         & \small \textbf{Legenda:}
         \begin{itemize}
-            \item $PROS$: Percentuale Requisiti$_G$ Obbligatori Soddisfatti
-            \item $RO_{soddisfatti}$: Numero di requisiti$_G$ obbligatori implementati correttamente
-            \item $RO_{totali}$: Numero totale di requisiti$_G$ obbligatori definiti
+            \item $MR_{k}$: Merge Rework allo sprint$_G$ $k$
+            \item $L_{rilavorato}$: Unità o ore di lavoro rilavorato nello sprint$_G$ $k$
+            \item $L_{totale}$: Lavoro totale prodotto nello sprint$_G$ $k$
         \end{itemize} \\ \hline
-        Descrizione & Misura la completezza del prodotto rispetto alle funzionalità essenziali. Interpretazione:
+        Descrizione & La metrica Merge Rework misura la percentuale di lavoro che è stato necessario ripetere rispetto al lavoro totale svolto. Indica l'efficienza del processo produttivo e la qualità delle attività a monte.
         \begin{itemize}
-            \item $PROS = 100\%$: Prodotto completo e rilasciabile;
-            \item $70\% \le PROS < 90\%$: Prodotto parzialmente funzionante;
-            \item $PROS < 70\%$: Prodotto incompleto, non rilasciabile.
+            \item $MR = 0\%$: nessuna rilavorazione (situazione ottimale);
+            \item $MR$ basso: rilavorazione contenuta (situazione accettabile);
+            \item $MR$ alto: elevata rilavorazione (situazione sfavorevole, da investigare).
         \end{itemize} \\ \hline
-        Utilità & Determina se il software ha raggiunto il livello minimo di funzionalità necessario per il rilascio. \\ \hline
+        Unità di misura & Percentuale (\%). \\ \hline
     \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPD01 - Requisiti$_G$ Obbligatori}
+    \captionof{table}{Dettagli Metrica MPC-MR - Merge Rework}
+\end{minipage}
+
+\vspace{1cm}
+
+% --- MPC-IR ---
+\paragraph{Issue Reopening Rate (IR)}
+\mbox{} \\
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPC-IR \\ \hline
+        Formula &
+        \textit{$IR_{k} = \frac{I_{riaperti}}{I_{risolti}} \times 100$} \vspace{2mm} \\
+        & \small \textbf{Legenda:}
+        \begin{itemize}
+            \item $IR_{k}$: Issue Reopening Rate allo sprint$_G$ $k$
+            \item $I_{riaperti}$: Numero di problemi riaperti nello sprint$_G$ $k$
+            \item $I_{risolti}$: Numero totale di problemi risolti nello sprint$_G$ $k$
+        \end{itemize} \\ \hline
+        Descrizione & La metrica Issue Reopening Rate misura la percentuale di problemi che, dopo essere stati contrassegnati come risolti, vengono riaperti. Un valore elevato può indicare carenze nel processo di verifica$_G$ o nella qualità delle correzioni applicate.
+        \begin{itemize}
+            \item $IR \leq 15\%$: valore accettabile;
+            \item $IR > 15\%$: valore critico, necessario intervento correttivo.
+        \end{itemize} \\ \hline
+        Unità di misura & Percentuale (\%). \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPC-IR - Issue Reopening Rate}
+\end{minipage}
+
+\vspace{1cm}
+
+% --- MPC-PMS ---
+\paragraph{Percentuale Metriche Soddisfatte (PMS)}
+\mbox{} \\
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPC-PMS \\ \hline
+        Formula &
+        \textit{$PMS_{k} = \frac{M_{soddisfatte}}{M_{totali}} \times 100$} \vspace{2mm} \\
+        & \small \textbf{Legenda:}
+        \begin{itemize}
+            \item $PMS_{k}$: Percentuale Metriche Soddisfatte allo sprint$_G$ $k$
+            \item $M_{soddisfatte}$: Numero di metriche che rientrano nei valori accettabili allo sprint$_G$ $k$
+            \item $M_{totali}$: Numero totale di metriche misurate allo sprint$_G$ $k$
+        \end{itemize} \\ \hline
+        Descrizione & La metrica Percentuale Metriche Soddisfatte misura la quota di metriche di qualità che rientrano nei valori accettabili definiti nel Piano di Qualifica$_G$. Dal calcolo sono escluse le metriche di correttezza dei documenti, in quanto calcolate a documento approvato e non a sprint$_G$, il cui coinvolgimento produrrebbe uno sfasamento che non permetterebbe una stima affidabile.
+        \begin{itemize}
+            \item $PMS \geq 80\%$: valore accettabile;
+            \item $PMS < 80\%$: valore critico, necessario intervento correttivo.
+        \end{itemize} \\ \hline
+        Unità di misura & Percentuale (\%). \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPC-PMS - Percentuale Metriche Soddisfatte}
+\end{minipage}
+
+\section{Metriche di Qualità del Prodotto}
+
+Le metriche di qualità del prodotto misurano le caratteristiche del software realizzato: valutano direttamente il comportamento dell'applicazione, la sua affidabilità, la sua facilità d'uso e la sua capacità di soddisfare i requisiti\textsubscript{G} del capitolato\textsubscript{G}. Sono identificate con il prefisso \textbf{MPD}. In questo documento se ne fornisce la definizione (descrizione, formula, unità di misura ed eventuale strumento di rilevazione); le soglie di accettabilità e i valori ottimali sono definiti nel \textit{Piano di Qualifica}\textsubscript{G}.
+
+\subsection{Funzionalità}
+
+\subsubsection{Copertura Requisiti Obbligatori (MPD-CRO)}
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPD-CRO \\ \hline
+        Formula &
+        \textit{$CRO = \frac{RO_{soddisfatti}}{RO_{totali}} \times 100$} \\ \hline
+        Descrizione & Percentuale di requisiti\textsubscript{G} obbligatori correttamente implementati e verificati rispetto al totale dei requisiti\textsubscript{G} obbligatori individuati nell'Analisi dei Requisiti\textsubscript{G}. Un requisito\textsubscript{G} è considerato ``soddisfatto'' quando il relativo test\textsubscript{G} di sistema\textsubscript{G} risulta superato. \\ \hline
+        Unità di misura & Percentuale (\%). \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPD-CRO - Copertura Requisiti Obbligatori}
 \end{minipage}
 
 \vspace{0.8cm}
 
-% --- MPD02 ---
-\subsubsection{Percentuale Requisiti Desiderabili Soddisfatti (PRDS)}
+\subsubsection{Copertura Requisiti Desiderabili (MPD-CRD)}
 \noindent
 \begin{minipage}{\textwidth}
     \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
         \hline
-        Sigla & MPD02 \\ \hline
-        Formula &  
-        \textit{$PRDS = \frac{RD_{soddisfatti}}{RD_{totali}} \times 100$} \vspace{2mm} \\
-        & \small \textbf{Legenda:}
-        \begin{itemize}
-            \item $PRDS$: Percentuale Requisiti$_G$ Desiderabili Soddisfatti
-            \item $RD_{soddisfatti}$: Requisiti$_G$ desiderabili implementati
-            \item $RD_{totali}$: Requisiti$_G$ desiderabili definiti
-        \end{itemize} \\ \hline
-        Descrizione & Misura il grado di soddisfacimento dei requisiti$_G$ che migliorano l'esperienza utente ma non sono critici. \\ \hline
-        Utilità & Valuta il valore aggiunto fornito oltre le funzionalità minime obbligatorie. \\ \hline
+        Sigla & MPD-CRD \\ \hline
+        Formula &
+        \textit{$CRD = \frac{RD_{soddisfatti}}{RD_{totali}} \times 100$} \\ \hline
+        Descrizione & Percentuale di requisiti\textsubscript{G} desiderabili correttamente implementati e verificati rispetto al totale dei requisiti\textsubscript{G} desiderabili individuati. \\ \hline
+        Unità di misura & Percentuale (\%). \\ \hline
     \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPD02 - Requisiti$_G$ Desiderabili}
+    \captionof{table}{Dettagli Metrica MPD-CRD - Copertura Requisiti Desiderabili}
 \end{minipage}
+
+\vspace{0.8cm}
+
+\subsubsection{Copertura Requisiti Opzionali (MPD-CROp)}
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPD-CROp \\ \hline
+        Formula &
+        \textit{$CROp = \frac{ROp_{soddisfatti}}{ROp_{totali}} \times 100$} \\ \hline
+        Descrizione & Percentuale di requisiti\textsubscript{G} opzionali correttamente implementati e verificati rispetto al totale dei requisiti\textsubscript{G} opzionali individuati. \\ \hline
+        Unità di misura & Percentuale (\%). \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPD-CROp - Copertura Requisiti Opzionali}
+\end{minipage}
+
+\vspace{0.8cm}
+
+\subsubsection{Copertura Funzioni LLM Obbligatorie (MPD-CLLM)}
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPD-CLLM \\ \hline
+        Formula &
+        \textit{$CLLM = \frac{F_{implementate}}{F_{obbligatorie}} \times 100$} \\ \hline
+        Descrizione & Percentuale di funzioni basate sull'LLM\textsubscript{G} obbligatorie (es. generazione, riassunto, traduzione) correttamente implementate e verificate rispetto al totale di quelle richieste dal capitolato\textsubscript{G}. \\ \hline
+        Unità di misura & Percentuale (\%). \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPD-CLLM - Copertura Funzioni LLM Obbligatorie}
+\end{minipage}
+
+\vspace{0.8cm}
+
+\subsubsection{Correttezza Rendering Markdown (MPD-CMD)}
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPD-CMD \\ \hline
+        Formula &
+        \textit{$CMD = \frac{C_{corretti}}{C_{previsti}} \times 100$} \\ \hline
+        Descrizione & Percentuale di casi di rendering Markdown\textsubscript{G} resi correttamente rispetto ai casi previsti (intestazioni, elenchi, stili, blocchi di codice, tabelle, formule, ecc.). \\ \hline
+        Unità di misura & Percentuale (\%). \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPD-CMD - Correttezza Rendering Markdown}
+\end{minipage}
+
+\vspace{0.8cm}
+
+\subsubsection{Salvataggio e Recupero Note (MPD-SN)}
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPD-SN \\ \hline
+        Formula &
+        \textit{$SN = \frac{C_{superati}}{C_{obbligatori}} \times 100$} \\ \hline
+        Descrizione & Percentuale di casi obbligatori di salvataggio e successivo recupero delle note superati con successo rispetto al totale dei casi obbligatori previsti, senza perdita o alterazione del contenuto. \\ \hline
+        Unità di misura & Percentuale (\%). \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPD-SN - Salvataggio e Recupero Note}
+\end{minipage}
+
+\vspace{0.8cm}
 
 \subsection{Affidabilità}
 
-% --- MPD04 ---
-\subsubsection{Line Coverage (LC)}
+\subsubsection{Data Loss (MPD-DL)}
 \noindent
 \begin{minipage}{\textwidth}
     \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
         \hline
-        Sigla & MPD04 \\ \hline
-        Formula &  
-        \textit{$LC = \frac{L_{eseguite}}{L_{totali}} \times 100$} \vspace{2mm} \\
-        & \small \textbf{Legenda:}
-        \begin{itemize}
-            \item $LC$: Line Coverage
-            \item $L_{eseguite}$: Linee di codice eseguite dai test$_G$ automatici
-            \item $L_{totali}$: Linee di codice totali del sistema$_G$
-        \end{itemize} \\ \hline
-        Descrizione & Indica la percentuale di codice testata. Range ottimali:
-        \begin{itemize}
-            \item $LC \ge 80\%$: Copertura eccellente;
-            \item $60\% \le LC < 80\%$: Copertura buona;
-            \item $LC < 40\%$: Copertura critica, rischio$_G$ elevato di bug$_G$.
-        \end{itemize} \\ \hline
-        Utilità & Quantifica l'efficacia dei test$_G$ nell'individuare difetti e garantire la correttezza logica. \\ \hline
+        Sigla & MPD-DL \\ \hline
+        Formula &
+        \textit{$DL = N_{perdite}$} \\ \hline
+        Descrizione & Numero di occorrenze in cui, durante i test\textsubscript{G} di salvataggio e caricamento, il contenuto di una nota risulta perso o alterato. Misura l'affidabilità della catena di persistenza dei dati. \\ \hline
+        Unità di misura & Numero intero (conteggio assoluto). \\ \hline
     \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPD04 - Line Coverage}
+    \captionof{table}{Dettagli Metrica MPD-DL - Data Loss}
 \end{minipage}
+
+\vspace{0.8cm}
+
+\subsubsection{Error Handling (MPD-EH)}
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPD-EH \\ \hline
+        Formula &
+        \textit{$EH = \frac{E_{gestiti}}{E_{totali}} \times 100$} \\ \hline
+        Descrizione & Percentuale di condizioni di errore (errori dell'LLM\textsubscript{G}, di rete, di input\textsubscript{G} non valido) gestite correttamente dal sistema\textsubscript{G} rispetto al totale delle condizioni di errore sottoposte a test\textsubscript{G}. \\ \hline
+        Unità di misura & Percentuale (\%). \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPD-EH - Error Handling}
+\end{minipage}
+
+\vspace{0.8cm}
+
+\subsubsection{Session Recovery (MPD-SR)}
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPD-SR \\ \hline
+        Formula &
+        \textit{$SR = \frac{R_{riusciti}}{R_{previsti}} \times 100$} \\ \hline
+        Descrizione & Percentuale di casi previsti di ripristino della sessione (recupero del testo non salvato dopo un'interruzione o una chiusura imprevista) andati a buon fine rispetto al totale dei casi previsti. \\ \hline
+        Unità di misura & Percentuale (\%). \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPD-SR - Session Recovery}
+\end{minipage}
+
+\vspace{0.8cm}
+
+\subsubsection{Availability Rate (MPD-AR)}
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPD-AR \\ \hline
+        Formula &
+        \textit{$AR = \frac{T_{disponibile}}{T_{osservato}} \times 100$} \\ \hline
+        Descrizione & Percentuale di tempo in cui l'applicazione risulta disponibile e operativa durante le sessioni di test\textsubscript{G} rispetto al tempo totale osservato. \\ \hline
+        Unità di misura & Percentuale (\%). \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPD-AR - Availability Rate}
+\end{minipage}
+
+\vspace{0.8cm}
 
 \subsection{Usabilità}
 
-% --- MPD07 ---
-\subsubsection{Profondità Massima di Navigazione (PMN)}
+\subsubsection{Learning Time (MPD-LT)}
 \noindent
 \begin{minipage}{\textwidth}
     \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
         \hline
-        Sigla & MPD07 \\ \hline
-        Formula &  
-        \textit{$PMN = \max_{i=1,\dots,k} \{C_{i}\}$} \vspace{2mm} \\
-        & \small \textbf{Legenda:}
-        \begin{itemize}
-            \item $PMN$: Profondità Massima di Navigazione
-            \item $C_{i}$: Numero di click per completare l'operazione $i$-esima
-            \item $k$: Numero totale di operazioni analizzate
-        \end{itemize} \\ \hline
-        Descrizione & Misura il massimo numero di click necessari per completare un'attività. Analizza il "caso peggiore".
-        \begin{itemize}
-            \item $PMN \le 3$: Eccellente;
-            \item $5 < PMN \le 7$: Accettabile ma migliorabile;
-            \item $PMN > 7$: Inefficiente.
-        \end{itemize} \\ \hline
-        Utilità & Garantisce che nessuna funzionalità sia troppo "sepolta" nell'interfaccia. \\ \hline
+        Sigla & MPD-LT \\ \hline
+        Formula &
+        \textit{$LT = \frac{\sum_{i=1}^{n} T_{i}}{n}$} \\ \hline
+        Descrizione & Tempo medio necessario a un utente per completare con successo una funzionalità per la prima volta, senza assistenza esterna; $T_{i}$ è il tempo impiegato dall'$i$-esimo utente e $n$ il numero di utenti coinvolti nella sessione di test\textsubscript{G} di usabilità. Misura l'apprendibilità dell'interfaccia. \\ \hline
+        Unità di misura & Minuti. \\ \hline
     \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPD07 - Profondità Navigazione}
+    \captionof{table}{Dettagli Metrica MPD-LT - Learning Time}
 \end{minipage}
+
+\vspace{0.8cm}
+
+\subsubsection{Navigation Errors (MPD-NE)}
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPD-NE \\ \hline
+        Formula &
+        \textit{$NE = \frac{\sum_{i=1}^{n} E_{i}}{n}$} \\ \hline
+        Descrizione & Numero medio di errori di navigazione (azioni errate o percorsi sbagliati) commessi dagli utenti per scenario di test\textsubscript{G}; $E_{i}$ è il numero di errori nell'$i$-esimo scenario e $n$ il numero di scenari valutati. \\ \hline
+        Unità di misura & Numero di errori per scenario. \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPD-NE - Navigation Errors}
+\end{minipage}
+
+\vspace{0.8cm}
+
+\subsubsection{UI Consistency (MPD-UI)}
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPD-UI \\ \hline
+        Formula &
+        \textit{$UI = \frac{El_{coerenti}}{El_{totali}} \times 100$} \\ \hline
+        Descrizione & Percentuale di elementi dell'interfaccia coerenti con le convenzioni grafiche e comportamentali definite rispetto al totale degli elementi valutati. \\ \hline
+        Unità di misura & Percentuale (\%). \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPD-UI - UI Consistency}
+\end{minipage}
+
+\vspace{0.8cm}
+
+\subsubsection{Feature Understandability (MPD-FU)}
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPD-FU \\ \hline
+        Formula &
+        \textit{$FU = \frac{F_{comprese}}{F_{totali}} \times 100$} \\ \hline
+        Descrizione & Percentuale di funzioni che l'utente comprende e utilizza correttamente senza ricorrere a una guida rispetto al totale delle funzioni valutate. \\ \hline
+        Unità di misura & Percentuale (\%). \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPD-FU - Feature Understandability}
+\end{minipage}
+
+\vspace{0.8cm}
 
 \subsection{Efficienza}
 
-% --- MPD08 ---
-\subsubsection{Tempo Medio di Risposta (TMR)}
+\subsubsection{Response Time Interfaccia (MPD-RT)}
 \noindent
 \begin{minipage}{\textwidth}
     \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
         \hline
-        Sigla & MPD08 \\ \hline
-        Formula &  
-        \textit{$TMR = \frac{\sum_{i=1}^{k} T_{i}}{k}$} \vspace{2mm} \\
-        & \small \textbf{Legenda:}
-        \begin{itemize}
-            \item $TMR$: Tempo Medio di Risposta
-            \item $T_{i}$: Tempo di risposta per la richiesta $i$-esima
-            \item $k$: Numero di richieste testate
-        \end{itemize} \\ \hline
-        Descrizione & Tempo medio tra l'invio di una richiesta e la ricezione della risposta.
-        \begin{itemize}
-            \item $TMR \le 1s$: Eccellente;
-            \item $3 < TMR \le 5s$: Accettabile;
-            \item $TMR > 5s$: Inaccettabile (lentezza percepita).
-        \end{itemize} \\ \hline
-        Utilità & Garantisce che il sistema$_G$ soddisfi le aspettative di fluidità dell'utente. \\ \hline
+        Sigla & MPD-RT \\ \hline
+        Formula &
+        \textit{$RT = \frac{\sum_{i=1}^{n} (T_{risposta,i} - T_{richiesta,i})}{n}$} \\ \hline
+        Descrizione & Tempo medio di risposta dell'interfaccia locale a un input\textsubscript{G} dell'utente, misurato come intervallo tra l'invio della richiesta e la ricezione della risposta completa. \\ \hline
+        Unità di misura & Secondi (s). \\ \hline
+        Strumento di rilevazione & Test\textsubscript{G} automatici di performance. \\ \hline
     \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPD08 - Tempo Risposta}
+    \captionof{table}{Dettagli Metrica MPD-RT - Response Time Interfaccia}
 \end{minipage}
+
+\vspace{0.8cm}
+
+\subsubsection{Markdown Rendering Time (MPD-MRT)}
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPD-MRT \\ \hline
+        Formula &
+        \textit{$MRT = \frac{\sum_{i=1}^{n} T_{i}}{n}$} \\ \hline
+        Descrizione & Tempo medio necessario a rendere in anteprima il testo Markdown\textsubscript{G} dopo una modifica; $T_{i}$ è il tempo di rendering della $i$-esima misurazione. \\ \hline
+        Unità di misura & Secondi (s). \\ \hline
+        Strumento di rilevazione & Test\textsubscript{G} automatici di performance. \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPD-MRT - Markdown Rendering Time}
+\end{minipage}
+
+\vspace{0.8cm}
+
+\subsubsection{LLM Response Time (MPD-LLMRT)}
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPD-LLMRT \\ \hline
+        Formula &
+        \textit{$LLMRT = \frac{\sum_{i=1}^{n} T_{i}}{n}$} \\ \hline
+        Descrizione & Tempo medio tra l'invio di una richiesta al servizio LLM\textsubscript{G} e la ricezione della risposta completa; $T_{i}$ è il tempo dell'$i$-esima richiesta. \\ \hline
+        Unità di misura & Secondi (s). \\ \hline
+        Strumento di rilevazione & Test\textsubscript{G} automatici di performance. \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPD-LLMRT - LLM Response Time}
+\end{minipage}
+
+\vspace{0.8cm}
+
+\subsubsection{Loading Speed (MPD-LS)}
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPD-LS \\ \hline
+        Formula &
+        \textit{$LS = T_{caricamento}$} \\ \hline
+        Descrizione & Tempo necessario al caricamento iniziale completo dell'applicazione nel browser, dal primo accesso fino a quando l'interfaccia è pronta all'uso. \\ \hline
+        Unità di misura & Secondi (s). \\ \hline
+        Strumento di rilevazione & Test\textsubscript{G} automatici di performance. \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPD-LS - Loading Speed}
+\end{minipage}
+
+\vspace{0.8cm}
 
 \subsection{Manutenibilità}
 
-% --- MPD09 ---
-\subsubsection{Complessità Ciclomatica (CC)}
+\subsubsection{Complessità Ciclomatica (MPD-CYC)}
 \noindent
 \begin{minipage}{\textwidth}
     \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
         \hline
-        Sigla & MPD09 \\ \hline
-        Formula &  
-        \textit{$CC = E - N + 2P$} \vspace{2mm} \\
-        & \small \textbf{Legenda:}
-        \begin{itemize}
-            \item $CC$: Cyclomatic Complexity
-            \item $E$: Numero di archi del grafo di controllo
-            \item $N$: Numero di nodi del grafo
-            \item $P$: Numero di componenti connesse (solitamente 1)
-        \end{itemize} \\ \hline
-        Descrizione & Misura il numero di percorsi indipendenti nel codice.
-        \begin{itemize}
-            \item $CC \le 10$: Codice semplice e manutenibile;
-            \item $CC > 30$: Complessità critica, necessario refactoring.
-        \end{itemize} \\ \hline
-        Utilità & Previene la creazione di funzioni eccessivamente intricate e difficili da testare. \\ \hline
+        Sigla & MPD-CYC \\ \hline
+        Formula &
+        \textit{$M = E - N + 2P$} \\ \hline
+        Descrizione & Numero di percorsi linearmente indipendenti nel flusso di controllo, dove $E$ è il numero di archi, $N$ il numero di nodi e $P$ il numero di componenti connesse (solitamente 1 per singola funzione). Il valore riportato è la media della complessità ciclomatica su tutte le funzioni del sistema\textsubscript{G}. \\ \hline
+        Unità di misura & Numero intero (adimensionale). \\ \hline
+        Strumento di rilevazione & Analizzatore statico del codice (es. \texttt{gocyclo} per Go, ESLint per TypeScript). \\ \hline
     \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPD09 - Complessità Ciclomatica}
+    \captionof{table}{Dettagli Metrica MPD-CYC - Complessità Ciclomatica}
 \end{minipage}
 
-\subsection{Portabilità}
+\vspace{0.8cm}
 
-% --- MPD10 ---
-\subsubsection{Compatibilità Cross-Browser (CCB)}
+\subsubsection{Code Smell (MPD-CS)}
 \noindent
 \begin{minipage}{\textwidth}
     \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
         \hline
-        Sigla & MPD10 \\ \hline
-        Formula &  
-        \textit{$CCB = \frac{B_{supportati}}{B_{target}} \times 100$} \vspace{2mm} \\
-        & \small \textbf{Legenda:}
-        \begin{itemize}
-            \item $CCB$: Compatibilità Cross-Browser
-            \item $B_{supportati}$: Browser su cui il prodotto funziona correttamente
-            \item $B_{target}$: Totale dei browser target definiti
-        \end{itemize} \\ \hline
-        Descrizione & Percentuale di browser su cui il software mantiene piena operatività. \\ \hline
-        Utilità & Garantisce che il prodotto sia accessibile alla più ampia base di utenti possibile. \\ \hline
+        Sigla & MPD-CS \\ \hline
+        Formula &
+        \textit{$CS = \frac{N_{smell}}{N_{componenti}}$} \\ \hline
+        Descrizione & Numero medio di code smell (indicatori di progettazione debole, come metodi troppo lunghi, classi troppo grandi o duplicazioni) rilevati per componente del sistema\textsubscript{G}. \\ \hline
+        Unità di misura & Numero di code smell per componente. \\ \hline
+        Strumento di rilevazione & Analizzatore statico del codice (es. SonarQube, ESLint, \texttt{golangci-lint}). \\ \hline
     \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPD10 - Compatibilità Browser}
+    \captionof{table}{Dettagli Metrica MPD-CS - Code Smell}
+\end{minipage}
+
+\vspace{0.8cm}
+
+\subsubsection{Duplicazione del Codice (MPD-DUP)}
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPD-DUP \\ \hline
+        Formula &
+        \textit{$DUP = \frac{L_{duplicate}}{L_{totali}} \times 100$} \\ \hline
+        Descrizione & Percentuale di righe di codice duplicate rispetto al totale delle righe di codice del sistema\textsubscript{G}. Una duplicazione elevata riduce la manutenibilità\textsubscript{G}. \\ \hline
+        Unità di misura & Percentuale (\%). \\ \hline
+        Strumento di rilevazione & Analizzatore statico del codice (es. SonarQube). \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPD-DUP - Duplicazione del Codice}
+\end{minipage}
+
+\vspace{0.8cm}
+
+\subsubsection{Modularità (MPD-MOD)}
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPD-MOD \\ \hline
+        Formula &
+        \textit{$MOD = \frac{D_{effettive}}{n \times (n-1)}$} \\ \hline
+        Descrizione & Grado di accoppiamento tra i moduli del sistema\textsubscript{G}, dove $D_{effettive}$ è il numero di dipendenze direzionali effettive e $n \times (n-1)$ il numero massimo di dipendenze possibili tra $n$ moduli. Valori più bassi indicano moduli più indipendenti e quindi una maggiore modularità. \\ \hline
+        Unità di misura & Adimensionale (scala 0--1). \\ \hline
+        Strumento di rilevazione & Analisi delle dipendenze tramite strumenti di analisi statica. \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPD-MOD - Modularità}
+\end{minipage}
+
+\vspace{0.8cm}
+
+\subsection{Sicurezza}
+
+\subsubsection{Secret Key Exposure (MPD-SK)}
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPD-SK \\ \hline
+        Formula &
+        \textit{$SK = N_{chiavi\ esposte}$} \\ \hline
+        Descrizione & Numero di chiavi di accesso, credenziali o segreti esposti in chiaro nel codice sorgente, nei log o nei file di configurazione versionati. \\ \hline
+        Unità di misura & Numero intero (conteggio assoluto). \\ \hline
+        Strumento di rilevazione & Strumenti di \textit{secret scanning} e analisi statica. \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPD-SK - Secret Key Exposure}
+\end{minipage}
+
+\vspace{0.8cm}
+
+\subsubsection{Input Validation (MPD-IV)}
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPD-IV \\ \hline
+        Formula &
+        \textit{$IV = \frac{I_{validati}}{I_{totali}} \times 100$} \\ \hline
+        Descrizione & Percentuale di punti di ingresso dei dati (input\textsubscript{G} dell'utente, parametri delle chiamate API\textsubscript{G}) sottoposti a validazione rispetto al totale dei punti di ingresso individuati. \\ \hline
+        Unità di misura & Percentuale (\%). \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPD-IV - Input Validation}
 \end{minipage}
 
 \end{document}
