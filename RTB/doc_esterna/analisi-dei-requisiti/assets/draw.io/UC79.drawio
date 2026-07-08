@@ -1,25 +1,45 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
-  <diagram name="Page-1" id="4xtho81ADt9NAkVEL4nd">
-    <mxGraphModel dx="976" dy="656" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
-      <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
-        <mxCell id="StCBPmpuHo7DJ7ayqhCM-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
-          <mxGeometry height="160" width="270" x="310" y="290" as="geometry" />
-        </mxCell>
-        <mxCell id="StCBPmpuHo7DJ7ayqhCM-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC79 - Visualizzazione informazioni della nota" vertex="1">
-          <mxGeometry height="100" width="215" x="340" y="315" as="geometry" />
-        </mxCell>
-        <mxCell id="StCBPmpuHo7DJ7ayqhCM-4" edge="1" parent="1" source="StCBPmpuHo7DJ7ayqhCM-3" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="StCBPmpuHo7DJ7ayqhCM-2">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="StCBPmpuHo7DJ7ayqhCM-3" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente" vertex="1">
-          <mxGeometry height="60" width="30" x="110" y="335" as="geometry" />
-        </mxCell>
-        <mxCell id="StCBPmpuHo7DJ7ayqhCM-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
-          <mxGeometry height="30" width="60" x="520" y="260" as="geometry" />
-        </mxCell>
-      </root>
-    </mxGraphModel>
-  </diagram>
-</mxfile>
+<mxGraphModel dx="1457" dy="717" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    <mxCell id="testo_sistema" parent="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;" value="Sistema" vertex="1">
+      <mxGeometry height="30" width="70" x="930" y="30" as="geometry" />
+    </mxCell>
+    <mxCell id="frame_sistema" parent="1" style="whiteSpace=wrap;html=1;pointerEvents=0;fillColor=none;strokeColor=#000000;" value="" vertex="1">
+      <mxGeometry height="580" width="880" x="150" y="60" as="geometry" />
+    </mxCell>
+    <mxCell id="actor_utente" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=14;" value="Utente&lt;br&gt;riconosciuto" vertex="1">
+      <mxGeometry height="80" width="40" x="50" y="300" as="geometry" />
+    </mxCell>
+    <mxCell id="uc_79" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" value="UC79 - Ricerca nota&lt;br&gt;nel database" vertex="1">
+      <mxGeometry height="80" width="220" x="250" y="300" as="geometry" />
+    </mxCell>
+    <mxCell id="uc_79_1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" value="UC79.1 - Ricerca nota per&lt;br&gt;titolo nel database" vertex="1">
+      <mxGeometry height="80" width="240" x="650" y="100" as="geometry" />
+    </mxCell>
+    <mxCell id="uc_79_2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" value="UC79.2 - Ricerca Full-Text&lt;br&gt;nel database" vertex="1">
+      <mxGeometry height="80" width="240" x="650" y="220" as="geometry" />
+    </mxCell>
+    <mxCell id="uc_79_3" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" value="UC79.3 - Ricerca per&lt;br&gt;data di creazione" vertex="1">
+      <mxGeometry height="80" width="240" x="650" y="380" as="geometry" />
+    </mxCell>
+    <mxCell id="uc_79_4" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" value="UC79.4 - Ricerca per&lt;br&gt;data di ultima modifica" vertex="1">
+      <mxGeometry height="80" width="240" x="650" y="500" as="geometry" />
+    </mxCell>
+    <mxCell id="assoc_utente" edge="1" parent="1" source="actor_utente" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="uc_79" value="">
+      <mxGeometry height="50" relative="1" width="50" as="geometry" />
+    </mxCell>
+    <mxCell id="gen_1" edge="1" parent="1" source="uc_79_1" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.85;entryY=0.15;entryDx=0;entryDy=0;entryPerimeter=0;" target="uc_79" value="">
+      <mxGeometry height="50" relative="1" width="50" as="geometry" />
+    </mxCell>
+    <mxCell id="gen_2" edge="1" parent="1" source="uc_79_2" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.3;entryDx=0;entryDy=0;" target="uc_79" value="">
+      <mxGeometry height="50" relative="1" width="50" as="geometry" />
+    </mxCell>
+    <mxCell id="gen_3" edge="1" parent="1" source="uc_79_3" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.7;entryDx=0;entryDy=0;" target="uc_79" value="">
+      <mxGeometry height="50" relative="1" width="50" as="geometry" />
+    </mxCell>
+    <mxCell id="gen_4" edge="1" parent="1" source="uc_79_4" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.85;entryY=0.85;entryDx=0;entryDy=0;entryPerimeter=0;" target="uc_79" value="">
+      <mxGeometry height="50" relative="1" width="50" as="geometry" />
+    </mxCell>
+  </root>
+</mxGraphModel>
