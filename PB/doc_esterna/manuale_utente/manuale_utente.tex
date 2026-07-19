@@ -1,0 +1,141 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+\definecolor{verdeBitless}{HTML}{2E8B57}
+\usepackage[italian]{babel} 
+\usepackage{comment}      
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{tikz}
+\usepackage{geometry}
+\renewcommand{\arraystretch}{1.2}
+\newcommand{\ucref}[1]{UC \ref{#1}}
+\usepackage[table]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\newcommand{\euro}{\texteuro}
+\usepackage{float} 
+\usepackage{setspace}
+\definecolor{bluBitless}{HTML}{3A75C4}
+\usepackage{tabularx}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{Manuale Utente}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black, 
+    urlcolor=black,     
+    citecolor=0 0 0 0,  
+    filecolor=0 0 0 0,
+    breaklinks=true,
+    pdfpagemode=UseNone    
+}
+
+% Link dei riferimenti: sottolineati, monospace e leggermente ridotti così da stare su una riga (come nel Piano di Qualifica).
+\newcommand{\reflink}[1]{{\footnotesize\underline{\url{#1}}}}
+
+\begin{document}
+\setlength{\emergencystretch}{3em}
+
+\newcommand{\titolo}{Manuale Utente}
+\newcommand{\dataverbale}{}
+\newcommand{\dataversione}{2026-07-18}
+\newcommand{\versione}{0.1.0}
+\newcommand{\stato}{Stesura}
+\newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+\def\templatedir{../../../templates}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+\input{../../../templates/frontespizio.tex}
+\end{titlepage}
+
+\newpage
+\begin{center}
+    \small
+    \renewcommand{\arraystretch}{1.25}
+    \begin{tabularx}{\textwidth}{|c|c|c|c|c|X|}
+        \hline
+        \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
+        \hline
+        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
+        \hline
+        0.1.0 & 2026-07-18 & A. Menegaldo & A. Marini & - & Struttura del documento \#1 \\
+        \hline
+    \end{tabularx}
+\end{center}
+\newpage
+
+\newpage
+\pagenumbering{roman} % Numerazione romana per le pagine iniziali (opzionale)
+\tableofcontents
+\newpage
+\newpage
+
+\pagenumbering{arabic}
+
+
+\newpage
+
+\section{Introduzione}
+Con il presente documento il gruppo The Bitless intende guidare l'utente nellutilizzo del
+sistema \textbf{Second Brain}, da noi sviluppato e proposto dall'azienda \textit{Zucchetti S.p.A.}, allo scopo di
+fornire un supporto completo sull'installazione del prodotto e sul suo utilizzo funzionale,
+descrivendo le funzionalita e i processi necessari per eseguirle.
+\subsection{Scopo del documento}
+
+\section{Introduzione}
+
+\subsection{Requisiti di sistema}
+
+\subsubsection{Verifica dell'installazione}
+
+\subsection{Configurazione}
+
+\section{Guida}
+
+\subsection{Interfaccia principale}
+
+\subsubsection{Zona scrittura}
+
+\paragraph{Barra degli strumenti}
+
+\subsubsection{Zona di rendering}
+
+\subsubsection{Zona selezione note}
+
+\subsection{Azioni sul testo}
+
+\subsubsection{Generare testo}
+
+\subsubsection{Ottenere un riassunto}
+
+\subsubsection{Migliorare il testo}
+
+\subsubsection{Ottenere una traduzione}
+
+\subsubsection{Analisi critica tramite i sei cappelli di De Bono}
+
+\subsubsection{Messaggi di errore}
+
+\subsubsection{Codici di errore}
+
+\subsection{Azioni sulle note}
+
+\subsubsection{Creazione note}
+
+\subsubsection{Uploading note}
+
+\subsubsection{Salvataggio note in locale}
+
+\subsubsection{Eliminazione note}
+
+\end{document}
