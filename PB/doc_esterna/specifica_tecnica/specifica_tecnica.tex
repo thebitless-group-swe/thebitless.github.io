@@ -1,0 +1,162 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+\definecolor{verdeBitless}{HTML}{2E8B57}
+\usepackage[italian]{babel} 
+\usepackage{comment}      
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+\usepackage{graphicx} 
+\usepackage{multirow}
+\usepackage{tikz}
+\usepackage{geometry}
+\renewcommand{\arraystretch}{1.2}
+\newcommand{\ucref}[1]{UC \ref{#1}}
+\usepackage[table]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\newcommand{\euro}{\texteuro}
+\usepackage{float} 
+\usepackage{setspace}
+\definecolor{bluBitless}{HTML}{3A75C4}
+\usepackage{tabularx}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{Specifica Tecnica}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black, 
+    urlcolor=black,     
+    citecolor=0 0 0 0,  
+    filecolor=0 0 0 0,
+    breaklinks=true,
+    pdfpagemode=UseNone    
+}
+
+% Link dei riferimenti: sottolineati, monospace e leggermente ridotti così da stare su una riga (come nel Piano di Qualifica).
+\newcommand{\reflink}[1]{{\footnotesize\underline{\url{#1}}}}
+
+\begin{document}
+\setlength{\emergencystretch}{3em}
+
+\newcommand{\titolo}{Specifica Tecnica}
+\newcommand{\dataverbale}{}
+\newcommand{\dataversione}{2026-07-18}
+\newcommand{\versione}{0.1.0}
+\newcommand{\stato}{Stesura}
+\newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+\def\templatedir{../../../templates}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+\input{../../../templates/frontespizio.tex}
+\end{titlepage}
+
+\newpage
+\begin{center}
+    \small
+    \renewcommand{\arraystretch}{1.25}
+    \begin{tabularx}{\textwidth}{|c|c|c|c|c|X|}
+        \hline
+        \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
+        \hline
+        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
+        \hline
+        0.1.0 & 2026-07-18 & A. Menegaldo & A. Marini & - & Struttura del documento \#1 \\
+        \hline
+    \end{tabularx}
+\end{center}
+\newpage
+
+\newpage
+\pagenumbering{roman} % Numerazione romana per le pagine iniziali (opzionale)
+\tableofcontents
+\newpage
+\newpage
+
+\pagenumbering{arabic}
+
+
+\newpage
+
+\section{Introduzione}
+Il documento ha come scopo la descrizione dettagliata dell'architettura del sistema, delle tecnolo-
+gie utilizzate e delle API, esposte. Viene inoltre fornita una panoramica dei requisiti funzionalie
+soddisfatti dal prodotto, software.
+\subsection{Scopo del documento}
+
+\subsection{Riferimenti}
+
+\subsubsection{Riferimenti normativi}
+
+\subsubsection{Riferimenti informativi}
+
+\section{Tecnologie}
+
+\subsection{Framework Frontend}
+
+\subsection{Librerie Frontend}
+
+\subsection{Tecnologie di build}
+
+\subsection{Linguaggio Frontend}
+
+\subsection{Tecnologie di test}
+
+\subsection{Framework API Backend}
+
+\subsection{Server Backend}
+
+\subsection{Linguaggio Backend}
+
+\subsection{Tecnologie di deployment}
+
+\subsection{Large Language Model}
+
+\section{Architettura}
+
+\subsection{Architettura logica}
+
+\subsubsection{Architettura logica Backend}
+
+\subsection{Architettura di deployment}
+
+\subsubsection{Confronto con architettura a microservizi}
+
+\subsubsection{Confronto con architettura a monolite}
+
+\subsection{UML Frontend}
+
+\subsection{Architettura Frontend}
+
+\subsection{UML Backend}
+
+\subsection{Architettura Backend}
+
+\subsection{Design Pattern}
+
+\section{Data Flow}
+
+\subsection{Architettura di Sistema}
+
+\subsection{Fasi del Data Flow}
+
+\subsubsection{Macro-Fase 1: Request Flow}
+
+\subsubsection{Macro-Fase 2: Processing}
+
+\subsubsection{Macro-Fase 3: Response Flow}
+
+\section{Stato dei requisiti funzionali}
+
+\subsection{Stato di requisito}
+
+\subsection{Grafici riassuntivi}
+
+\end{document}
