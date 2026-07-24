@@ -1,0 +1,153 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+\usepackage[a-1b]{pdfx}
+\usepackage[italian]{babel}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{minted}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{\titolo \ \dataverbale}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    pdfborderstyle={/S/U/W 1},
+    linkbordercolor=0 0 0,
+    urlbordercolor=0 0 0,
+    citebordercolor=0 0 0,
+    filebordercolor=0 0 0,
+    breaklinks=true,
+}
+\newcommand{\issue}[1]{\href{https://github.com/thebitless-group-swe/thebitless.github.io/issues/#1}{\##1}}
+
+\begin{document}
+
+\newcommand{\titolo}{Verbale interno}
+\newcommand{\dataverbale}{2026-07-21}
+\newcommand{\dataversione}{2026-07-21}
+\newcommand{\versione}{1.0.0}
+\newcommand{\stato}{Approvato}
+\newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+\def\templatedir{../../../../templates}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+\input{\templatedir/frontespizio.tex}
+\end{titlepage}
+
+\newpage
+\tableofcontents
+
+\newpage
+\pagenumbering{arabic}
+\section{Informazioni sulla riunione}
+Il presente documento riporta la verbalizzazione della riunione interna al gruppo \textbf{The Bitless} avvenuta il \dataverbale{}, in apertura del nono sprint$_G$. L'incontro si è svolto tramite la piattaforma Discord$_G$ ed è stato dedicato principalmente alla rotazione dei ruoli$_G$, alla discussione dei riscontri sulla valutazione dei documenti e della presentazione, alla comunicazione con il proponente$_G$ e alla pianificazione delle attività. La riunione è avvenuta dalle ore 16:00 alle ore 17:30. \\
+
+\section{Presenze}
+\begin{center}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
+\hline
+Lorenzo & Battistella & Presente \\
+Edoardo & De Piccoli & Presente \\
+Davide & Facco & Presente \\
+Anna & Marini & Presente \\
+Andrea & Menegaldo & Presente \\
+Samuele & Vendramin & Presente \\
+Simone & Zecchinato & Presente \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ordine del giorno}
+\begin{enumerate}
+    \item Rotazione dei ruoli$_G$;
+    \item Riscontri sulla valutazione dei documenti e della presentazione RTB$_G$;
+    \item Comunicazione con il proponente$_G$;
+    \item Pianificazione del nono sprint$_G$;
+    \item Assegnazione$_G$ delle attività singole.
+\end{enumerate}
+
+\section{Discussione e decisioni}
+
+\subsection{Rotazione dei ruoli}
+In apertura del nono sprint$_G$ il gruppo ha effettuato la rotazione dei ruoli$_G$. La ripartizione è stata definita come segue:
+\begin{center}
+    \begin{tabular}{|l|l|c|}
+        \hline
+        \textbf{Nome} & \textbf{Cognome} & \textbf{Ruolo} \\
+        \hline
+        Lorenzo & Battistella & Programmatore$_G$ \\
+        \hline
+        Edoardo & De Piccoli & Programmatore$_G$ \\
+        \hline
+        Davide & Facco & Amministratore$_G$ \\
+        \hline
+        Anna & Marini & Progettista$_G$ \\
+        \hline
+        Andrea & Menegaldo & Verificatore$_G$ \\
+        \hline
+        Samuele & Vendramin & Responsabile$_G$ \\
+        \hline
+        Simone & Zecchinato & Progettista$_G$ \\
+        \hline
+    \end{tabular}
+\end{center}
+
+Rispetto agli sprint$_G$ precedenti, il gruppo ha deciso di introdurre \textbf{due programmatori$_G$}: dopo la fase di progettazione$_G$, è infatti necessario avanzare con l'implementazione$_G$ effettiva dell'MVP$_G$, attività onerosa che beneficia della presenza di due figure dedicate. In parallelo, i due progettisti$_G$ proseguono la progettazione$_G$ di dettaglio e la definizione dei pattern$_G$ architetturali, così da fornire ai programmatori$_G$ una base implementabile.
+
+\subsection{Riscontri sulla valutazione dei documenti e della presentazione RTB}
+Il gruppo ha analizzato i riscontri ricevuti sulla valutazione dei documenti e della presentazione RTB$_G$ da parte del prof. Tullio Vardanega, con l'obiettivo di comprendere gli aspetti da migliorare e di metterli subito in atto. In particolare:
+\begin{itemize}
+    \item \textbf{Norme di Progetto$_G$:} è emersa la necessità di rivedere il documento passando più marcatamente da uno stile descrittivo a uno stile procedurale nella trattazione delle attività. Parte del nono sprint$_G$ sarà quindi dedicata alla riscrittura parziale delle Norme di Progetto$_G$ secondo questa indicazione.
+    \item \textbf{Registro delle modifiche$_G$:} il gruppo ha discusso il significato del registro delle modifiche$_G$, che finora era stato compilato in modo errato. È stato chiarito il corretto utilizzo dello strumento, così da non ripetere lo stesso errore d'ora in avanti.
+\end{itemize}
+
+\subsection{Comunicazione con il proponente}
+Il gruppo ha ritenuto opportuno inviare una mail al proponente$_G$ per aggiornarlo sullo stato di avanzamento del progetto, comunicando che si procederà con la realizzazione della Product Baseline$_G$ (PB). Si è inoltre stabilito che, finché non emergeranno dubbi sostanziali o domande specifiche da porre, non sarà necessario richiedere un colloquio: l'aggiornamento via mail è sufficiente per procedere con le attività previste.
+
+\subsection{Pianificazione del nono sprint}
+Il gruppo ha definito le attività da svolgere nel nono sprint$_G$:
+\begin{itemize}
+    \item proseguire con la progettazione$_G$ di dettaglio dell'MVP$_G$;
+    \item iniziare a stendere la struttura dei documenti in avvio, in particolare il Manuale Utente$_G$ e la Specifica Tecnica$_G$;
+    \item per i progettisti$_G$, individuare i design pattern$_G$ da utilizzare e le relative motivazioni, concentrandosi sul significato e sul \emph{perché} di determinate scelte prima di procedere con la stesura dei documenti;
+    \item procedere con l'implementazione$_G$ dell'MVP$_G$;
+    \item continuare a estendere il Piano di Progetto$_G$ e il Piano di Qualifica$_G$ in base alle necessità degli sprint$_G$ che proseguono.
+\end{itemize}
+
+\subsection{Assegnazione delle attività singole}
+\begin{center}
+    \renewcommand{\arraystretch}{1.4}
+        \begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
+        \hline
+        \textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
+        \hline
+        D. Facco & Consuntivo$_G$ dello Sprint 8 e preventivo$_G$ del nuovo sprint$_G$ & \issue{300} \\
+        \hline
+        D. Facco, S. Vendramin & Riscrittura parziale delle Norme di Progetto$_G$ & \issue{301} \\
+        \hline
+        A. Marini, S. Zecchinato & Progettazione$_G$ di dettaglio dell'MVP$_G$ a partire dal PoC$_G$ & \issue{302} \\
+        \hline
+        A. Marini, S. Zecchinato & Selezione dei design pattern$_G$ (Specifica Tecnica) & \issue{303} \\
+        \hline
+        L. Battistella, E. De Piccoli & Inizio dell'implementazione$_G$ dell'MVP$_G$ \issue{304}, \issue{305} \\
+        \hline
+        S. Vendramin & Stesura del verbale$_G$ interno della riunione del 2026-07-21 & \issue{306} \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\appendix
+
+\end{document}
