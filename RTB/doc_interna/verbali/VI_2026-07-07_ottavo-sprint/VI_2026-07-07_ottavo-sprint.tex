@@ -1,0 +1,154 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+\usepackage[a-1b]{pdfx}
+\usepackage[italian]{babel}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{minted}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{\titolo \ \dataverbale}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    pdfborderstyle={/S/U/W 1},
+    linkbordercolor=0 0 0,
+    urlbordercolor=0 0 0,
+    citebordercolor=0 0 0,
+    filebordercolor=0 0 0,
+    breaklinks=true,
+}
+\newcommand{\issue}[1]{\href{https://github.com/thebitless-group-swe/thebitless.github.io/issues/#1}{\##1}}
+
+\begin{document}
+
+\newcommand{\titolo}{Verbale interno}
+\newcommand{\dataverbale}{2026-07-07}
+\newcommand{\dataversione}{2026-07-07}
+\newcommand{\versione}{1.0.0}
+\newcommand{\stato}{Approvato}
+\newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+\def\templatedir{../../../../templates}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+\input{\templatedir/frontespizio.tex}
+\end{titlepage}
+
+\newpage
+\tableofcontents
+
+\newpage
+\pagenumbering{arabic}
+\section{Informazioni sulla riunione}
+Il presente documento riporta la verbalizzazione della riunione interna al gruppo \textbf{The Bitless} avvenuta il \dataverbale{}, in apertura dell'ottavo sprint$_G$. L'incontro si è svolto tramite la piattaforma Discord$_G$ ed è stato dedicato principalmente alla rotazione dei ruoli$_G$, alla retrospettiva$_G$ del settimo sprint$_G$, alla discussione dell'esito del colloquio con il prof. Cardin e alla pianificazione delle attività. La riunione è avvenuta dalle ore 10:00 alle ore 11:00. \\
+
+\section{Presenze}
+\begin{center}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
+\hline
+Lorenzo & Battistella & Presente \\
+Edoardo & De Piccoli & Presente \\
+Davide & Facco & Presente \\
+Anna & Marini & Presente \\
+Andrea & Menegaldo & Presente \\
+Samuele & Vendramin & Presente \\
+Simone & Zecchinato & Presente \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ordine del giorno}
+\begin{enumerate}
+    \item Rotazione dei ruoli$_G$;
+    \item Retrospettiva$_G$ del settimo sprint$_G$;
+    \item Esito del colloquio con il prof. Cardin e miglioramenti all'Analisi dei Requisiti$_G$;
+    \item Pianificazione dell'ottavo sprint$_G$;
+    \item Assegnazione$_G$ delle attività singole.
+\end{enumerate}
+
+\section{Discussione e decisioni}
+
+\subsection{Rotazione dei ruoli}
+In apertura dell'ottavo sprint$_G$ il gruppo ha effettuato la rotazione dei ruoli$_G$. La ripartizione è stata definita tenendo conto delle attività previste per il periodo, ovvero la richiesta e lo svolgimento della seconda parte della presentazione RTB$_G$ con il prof. Tullio Vardanega, la sistemazione dell'Analisi dei Requisiti$_G$ a seguito dei rilievi del prof. Cardin e l'avvio della progettazione$_G$ di dettaglio dell'MVP$_G$. La ripartizione è stata definita come segue:
+\begin{center}
+    \begin{tabular}{|l|l|c|}
+        \hline
+        \textbf{Nome} & \textbf{Cognome} & \textbf{Ruolo} \\
+        \hline
+        Lorenzo & Battistella & Verificatore$_G$ \\
+        \hline
+        Edoardo & De Piccoli & Progettista$_G$ \\
+        \hline
+        Davide & Facco & Analista$_G$ \\
+        \hline
+        Anna & Marini & Responsabile$_G$ \\
+        \hline
+        Andrea & Menegaldo & Amministratore$_G$ \\
+        \hline
+        Samuele & Vendramin & Progettista$_G$ \\
+        \hline
+        Simone & Zecchinato & Analista$_G$ \\
+        \hline
+    \end{tabular}
+\end{center}
+
+Le scelte effettuate sono state motivate come segue:
+\begin{itemize}
+    \item \textbf{Due Analisti$_G$ (D. Facco, S. Zecchinato):} il gruppo ha ritenuto necessario assegnare due persone a questo ruolo per sistemare in modo approfondito i rilievi mossi dal prof. Cardin sull'Analisi dei Requisiti$_G$, in particolare sui requisiti$_G$ non funzionali. La revisione richiede una rilettura critica e incrociata dei requisiti$_G$ già stesi, motivo per cui due figure permettono un controllo più accurato e una suddivisione efficace del lavoro.
+    \item \textbf{Due Progettisti$_G$ (S. Vendramin, E. De Piccoli):} lo sprint$_G$ prevede l'avvio della progettazione$_G$ di dettaglio dell'MVP$_G$, attività consistente e destinata a proseguire negli sprint$_G$ successivi. Assegnare due persone consente di iniziare a definire e ``buttare giù'' le prime scelte progettuali confrontandosi, riducendo il rischio di decisioni affrettate.
+    \item \textbf{Programmatore$_G$:} per questo sprint$_G$ non è stato assegnato alcun programmatore$_G$, in quanto non è ancora prevista attività di codifica$_G$: la progettazione$_G$ dell'MVP$_G$ è infatti solo in fase di avvio e non fornisce ancora una base sufficiente per iniziare lo sviluppo$_G$. Il ruolo verrà reintrodotto nei prossimi sprint$_G$, quando la progettazione$_G$ sarà sufficientemente matura.
+\end{itemize}
+
+\subsection{Retrospettiva del settimo sprint}
+Il team ha effettuato il resoconto del settimo sprint$_G$, analizzando le ore consuntivate$_G$ e i problemi riscontrati. Complessivamente lo sprint$_G$ si è concluso in modo positivo. Dal confronto è emersa la presenza di alcuni ``tempi morti'', dovuti al fatto che lo sprint$_G$ era in buona parte dedicato all'attesa del riscontro del prof. Cardin e ad attività di consolidamento. Il dettaglio delle ore consuntivate$_G$ e dei relativi scostamenti$_G$ è riportato nel Piano di Progetto$_G$.
+
+\subsection{Esito del colloquio con il prof. Cardin e miglioramenti all'Analisi dei Requisiti}
+Il gruppo ha discusso l'esito del colloquio con il prof. Cardin, che ha dato ``semaforo verde'' alla RTB$_G$, consentendo di procedere con la richiesta della seconda parte della presentazione al prof. Tullio Vardanega. Il prof. Cardin ha tuttavia segnalato alcuni aspetti da migliorare nell'Analisi dei Requisiti$_G$, in particolare nella parte dei requisiti$_G$ non funzionali. Il gruppo ha ritenuto opportuno intervenire rendendo tali requisiti$_G$ più chiari, misurabili e verificabili$_G$: in fase di stesura essi risultavano infatti in alcuni casi troppo generici e privi di metriche o criteri oggettivi che ne consentissero la verifica$_G$. La sistemazione di questi requisiti$_G$ è stata individuata come una delle attività prioritarie dello sprint$_G$ ed è stata affidata agli analisti$_G$.
+
+\subsection{Pianificazione dell'ottavo sprint}
+Sulla base dell'esito positivo del colloquio con il prof. Cardin, il gruppo ha definito gli obiettivi dell'ottavo sprint$_G$:
+\begin{itemize}
+    \item inoltrare al prof. Tullio Vardanega la richiesta per la seconda parte della presentazione RTB$_G$, prevista per il 9 luglio, e svolgere la presentazione stessa;
+    \item proseguire la progettazione$_G$ di dettaglio dell'MVP$_G$;
+    \item portare avanti le attività preparatorie in vista della Product Baseline$_G$ (PB);
+    \item sistemare i requisiti$_G$ non funzionali dell'Analisi dei Requisiti$_G$ a seguito dei rilievi del prof. Cardin.
+\end{itemize}
+Il gruppo ha inoltre fatto il punto sull'andamento generale del progetto rispetto ai tempi. È emersa la necessità di iniziare a preventivare$_G$ un numero maggiore di ore per ciascuno sprint$_G$, in modo da evitare i ``tempi morti'' riscontrati nei periodi precedenti e sfruttare al massimo il tempo a disposizione. Una pianificazione$_G$ più densa consente infatti di avanzare in modo più regolare sulle attività di progettazione$_G$ e documentazione, riducendo il rischio di accumulare ritardi in prossimità delle scadenze.
+
+\subsection{Assegnazione delle attività singole}
+\begin{center}
+    \renewcommand{\arraystretch}{1.4}
+        \begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
+        \hline
+        \textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
+        \hline
+        S. Vendramin & Aggiunta degli sprint$_G$ 6 e 7 al Piano di Qualifica$_G$ & \issue{269} \\
+        \hline
+        L. Battistella & Aggiunta del consuntivo$_G$ dello sprint$_G$ 6 e del preventivo$_G$ e consuntivo$_G$ dello sprint$_G$ 7 al Piano di Progetto$_G$ & \issue{268} \\
+        \hline
+        A. Marini & Preparazione delle slide per la seconda parte della presentazione RTB$_G$ & \issue{296} \\
+        \hline
+        S. Vendramin, E. De Piccoli & Inizio della progettazione$_G$ di dettaglio dell'MVP$_G$ & \issue{297} \\
+        \hline
+        A. Marini & Stesura del verbale$_G$ interno del 2026-07-07 & \issue{298} \\
+        \hline
+        D. Facco, S. Zecchinato & Sistemazione degli errori dell'Analisi dei Requisiti$_G$ a seguito del feedback del prof. Cardin & \issue{299} \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\appendix
+
+\end{document}
