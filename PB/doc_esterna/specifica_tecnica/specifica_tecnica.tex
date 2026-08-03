@@ -1,162 +1,885 @@
-\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
-\usepackage{xcolor}
-\definecolor{verdeBitless}{HTML}{2E8B57}
-\usepackage[italian]{babel} 
-\usepackage{comment}      
-\setcounter{secnumdepth}{4}
-\setcounter{tocdepth}{4}
-\usepackage{graphicx} 
-\usepackage{multirow}
-\usepackage{tikz}
-\usepackage{geometry}
-\renewcommand{\arraystretch}{1.2}
-\newcommand{\ucref}[1]{UC \ref{#1}}
-\usepackage[table]{xcolor}
-\usepackage[utf8]{inputenc}
-\usepackage{textcomp}
-\newcommand{\euro}{\texteuro}
-\usepackage{float} 
-\usepackage{setspace}
-\definecolor{bluBitless}{HTML}{3A75C4}
-\usepackage{tabularx}
-\newcolumntype{L}{>{\raggedright\arraybackslash}X}
-\usepackage{fancyhdr}
+\documentclass[a4paper, 10pt]{article}
 
+% ---------------------------------------------------------------------------
+% Codifica, lingua e tipografia
+% ---------------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[italian]{babel}
+
+% ---------------------------------------------------------------------------
+% Colori
+% xcolor va caricato una sola volta e prima di ogni pacchetto che lo richiami
+% a sua volta: un secondo \usepackage con opzioni diverse produce l'errore
+% "Option clash for package xcolor" e, nei casi in cui l'errore non viene
+% sollevato, fa sì che l'opzione [table] non abbia effetto.
+% ---------------------------------------------------------------------------
+\usepackage[table]{xcolor}
+
+% ---------------------------------------------------------------------------
+% Figure, tabelle e impaginazione
+% ---------------------------------------------------------------------------
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{geometry}
+\usepackage{setspace}   % richiesto dall'ambiente spacing di templates/frontespizio.tex
+\usepackage{longtable}
+\usepackage{enumitem}
+\renewcommand{\arraystretch}{1.2}
+
+% ---------------------------------------------------------------------------
+% Blocchi "Alternative considerate".
+% Ogni alternativa è una voce di elenco: l'etichetta occupa una riga propria e
+% il corpo riprende a filo di margine sulla riga successiva, senza rientro.
+% ---------------------------------------------------------------------------
+\newenvironment{alternative}{%
+  \begin{description}[
+    style=nextline,
+    leftmargin=0pt,
+    labelindent=0pt,
+    labelsep=0pt,
+    font=\normalfont\bfseries,
+    topsep=0.6em,
+    itemsep=0.9em,
+    parsep=0pt
+  ]%
+}{%
+  \end{description}%
+}
+\newcommand{\altitem}[1]{\item[\textbullet\enspace #1]}
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+\usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{The Bitless}
 \fancyhead[R]{Specifica Tecnica}
 \fancyfoot[C]{\thepage}
 
+% ---------------------------------------------------------------------------
+% Collegamenti ipertestuali
+% Convenzione adottata nel documento:
+%   - riferimenti interni (sezioni, tabelle, figure): neri, per non
+%     frammentare visivamente il corpo del testo;
+%   - collegamenti esterni: blu, così da risultare riconoscibili come tali.
+% Negli elenchi di riferimenti l'indirizzo è riportato per esteso con \url,
+% che consente l'interruzione di riga sugli indirizzi lunghi; nel corpo del
+% testo si impiega \href su un'etichetta in corsivo.
+% ---------------------------------------------------------------------------
+\usepackage{xurl}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
-    linkcolor=black, 
-    urlcolor=black,     
-    citecolor=0 0 0 0,  
-    filecolor=0 0 0 0,
+    linkcolor=black,
+    urlcolor=blue,
+    citecolor=black,
+    filecolor=black,
     breaklinks=true,
-    pdfpagemode=UseNone    
+    pdfpagemode=UseNone
 }
 
-% Link dei riferimenti: sottolineati, monospace e leggermente ridotti così da stare su una riga (come nel Piano di Qualifica).
-\newcommand{\reflink}[1]{{\footnotesize\underline{\url{#1}}}}
+% ---------------------------------------------------------------------------
+% Versioni delle tecnologie citate più di una volta nel documento.
+% Sono definite qui una sola volta così che un aggiornamento non lasci il
+% documento internamente incoerente.
+% ---------------------------------------------------------------------------
+\newcommand{\vTS}{6.0.3}        % TypeScript: sezioni Frontend e Analisi statica
+\newcommand{\vPython}{3.12}     % Python: sezione Backend e immagine di base
+\newcommand{\vNode}{24}         % immagine di base del frontend
+
+% Strumenti dell'ambiente di sviluppo. Non sono vincolati da alcun file del
+% PoC: Docker e Docker Compose non vi compaiono affatto, mentre pnpm e uv sono
+% installati senza vincolo di versione (`npm install -g pnpm` in web/Dockerfile,
+% `pip install uv` in api/Dockerfile) e il campo "packageManager" è assente da
+% web/package.json. I quattro valori sono quindi rilevati dall'ambiente di
+% sviluppo, non dal repository, e la nota in coda alla tabella di §2.6 lo
+% dichiara al lettore. Rilevati il 2026-07-27.
+% \vDocker è la versione riportata da `docker --version`, cioè quella del
+% CLI/Engine, non quella del prodotto Docker Desktop.
+\newcommand{\vDocker}{29.4.3}
+\newcommand{\vCompose}{5.1.4}
+\newcommand{\vPnpm}{11.4.0}
+\newcommand{\vUv}{0.11.16}
+
+% NON PRESENTE NEL PoC — Ruff e mypy non sono fra le dipendenze dichiarate in
+% api/pyproject.toml né risolti in api/uv.lock. Da introdurre nel repository di
+% prodotto; le versioni si rileveranno allora da uv.lock.
+\newcommand{\vRuff}{---}
+\newcommand{\vMypy}{---}
+
+% ---------------------------------------------------------------------------
+% REGOLA: finché nel documento è presente anche un solo marcatore
+% "NON PRESENTE NEL PoC", il documento non passa in verifica e non cambia
+% stato.
+%
+% Il PoC (https://github.com/thebitless-group-swe/PoC) è l'artefatto consegnato
+% alla RTB ed è una baseline immutabile: è l'unico repository di codice
+% esistente al momento della stesura. Le affermazioni marcate descrivono
+% pertanto lo stato atteso del PRODOTTO, non quello del PoC: non sono errori di
+% redazione da riformulare, ma lavoro da realizzare nel repository di prodotto.
+% Finché quel repository non esiste o non le realizza, restano vere come
+% intenzione e false come descrizione dello stato presente.
+%
+% Tutte le altre affermazioni fattuali di §2 sono state confrontate con il PoC
+% il 2026-07-27 e risultano confermate, incluse tutte le versioni delle quattro
+% tabelle tecnologiche, verificate contro web/pnpm-lock.yaml e api/uv.lock.
+% ---------------------------------------------------------------------------
+
+% Tabella tecnologica: tre colonne (Tecnologia, Versione, Descrizione e ruolo)
+% impaginate su più pagine. La riga di intestazione viene ripetuta a ogni
+% cambio pagina tramite \endhead.
+\newenvironment{tabellatec}[2]{%
+  \begingroup
+  \small
+  \setlength{\tabcolsep}{4pt}
+  \begin{longtable}{|p{2.8cm}|p{1.5cm}|p{9.2cm}|}
+    \caption{#1}\label{#2}\\
+    \hline
+    \textbf{Tecnologia} & \textbf{Versione} & \textbf{Descrizione e ruolo nel progetto} \\
+    \hline
+    \endfirsthead
+    \hline
+    \textbf{Tecnologia} & \textbf{Versione} & \textbf{Descrizione e ruolo nel progetto} \\
+    \hline
+    \endhead
+}{%
+  \end{longtable}
+  \endgroup
+}
 
 \begin{document}
 \setlength{\emergencystretch}{3em}
 
 \newcommand{\titolo}{Specifica Tecnica}
 \newcommand{\dataverbale}{}
-\newcommand{\dataversione}{2026-07-18}
-\newcommand{\versione}{0.1.0}
+\newcommand{\dataversione}{2026-07-27}
+\newcommand{\versione}{0.4.0}
 \newcommand{\stato}{Stesura}
-\newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+% La Specifica Tecnica è documentazione esterna: fra i destinatari figura anche
+% la proponente, coerentemente con Analisi dei Requisiti e Piano di Qualifica.
+\newcommand{\destinatari}{The Bitless, prof. T. Vardanega, prof. R. Cardin, Zucchetti}
+% \templatedir è consumato da frontespizio.tex per risolvere il percorso del
+% logo: la profondità predefinita (\providecommand nel template) non è quella
+% di questa cartella, quindi la definizione seguente è necessaria.
 \def\templatedir{../../../templates}
 
 \begin{titlepage}
 \pagenumbering{gobble}
-\input{../../../templates/frontespizio.tex}
+\input{\templatedir/frontespizio.tex}
 \end{titlepage}
 
 \newpage
-\begin{center}
-    \small
-    \renewcommand{\arraystretch}{1.25}
-    \begin{tabularx}{\textwidth}{|c|c|c|c|c|X|}
-        \hline
-        \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
-        \hline
-        \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
-        \hline
-        0.1.0 & 2026-07-18 & A. Menegaldo & A. Marini & - & Struttura del documento \#1 \\
-        \hline
-    \end{tabularx}
-\end{center}
-\newpage
-
-\newpage
-\pagenumbering{roman} % Numerazione romana per le pagine iniziali (opzionale)
-\tableofcontents
-\newpage
-\newpage
-
 \pagenumbering{arabic}
 
+\begingroup
+\small
+% Il registro non è una tabella numerata del documento: si assegna un'àncora
+% hyperref dedicata per non collidere con quella della prima tabella con didascalia.
+\renewcommand{\theHtable}{registro-modifiche}
+\begin{longtable}{|c|c|c|c|c|p{3cm}|}
+    \hline
+    \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
+    \hline
+    \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
+    \hline
+    \endhead
+    0.4.0 & 2026-07-27 & A. Marini & A. Menegaldo & - & Integrazione continua e analisi statica del backend, tracciamento dei requisiti nella sezione Tecnologie, riorganizzazione della struttura delle sezioni Architettura, Flusso dei dati e Tracciamento \\ \hline
+
+    0.3.0 & 2026-07-27 & A. Marini & A. Menegaldo & - & Stesura della sezione Tecnologie \\ \hline
+
+    0.2.0 & 2026-07-27 & A. Marini & A. Menegaldo & - & Riorganizzazione della struttura del documento e stesura della sezione Introduzione \\ \hline
+
+    0.1.0 & 2026-07-18 & A. Menegaldo & A. Marini & - & Struttura del documento \#1 \\ \hline
+
+\end{longtable}
+\endgroup
+
+% Il registro delle modifiche non è una tabella numerata del documento:
+% si riporta il contatore a zero così che la numerazione dell'elenco delle
+% tabelle parta dalla prima tabella dotata di didascalia.
+\setcounter{table}{0}
+
+\newpage
+\tableofcontents
+\newpage
+
+\listoftables
+\newpage
+
+% Da riattivare quando la sezione 3 conterrà i primi diagrammi: al momento
+% \listoffigures produrrebbe una pagina con la sola intestazione.
+% \listoffigures
+% \newpage
+
+
+\section{Introduzione}
+\label{sec:introduzione}
+
+\subsection{Scopo del documento}
+\label{sec:scopo-documento}
+Il presente documento descrive l'architettura del sistema\textsubscript{G} \textbf{Second Brain}, prodotto realizzato dal gruppo \textbf{The Bitless} in risposta al capitolato\textsubscript{G} \textbf{C6} proposto da \textbf{Zucchetti S.p.A.}. Mentre l'Analisi dei Requisiti\textsubscript{G} stabilisce \textit{che cosa} il sistema\textsubscript{G} deve fare, la Specifica Tecnica stabilisce \textit{come} il sistema\textsubscript{G} è costruito per farlo.
+
+Nello specifico, il documento persegue i seguenti obiettivi:
+
+\begin{itemize}
+    \item \textbf{Motivazione delle scelte tecnologiche:} espone le tecnologie adottate per ciascun livello del prodotto, i bisogni tecnici che ne hanno determinato la selezione e le alternative valutate e scartate, con le relative motivazioni.
+
+    \item \textbf{Descrizione dell'architettura:} illustra la scomposizione del sistema\textsubscript{G} nelle sue componenti, le responsabilità attribuite a ciascuna di esse e le interazioni che ne regolano la collaborazione, sia in termini logici sia in termini di distribuzione delle parti in esecuzione.
+
+    \item \textbf{Documentazione dei design pattern:} riporta i pattern architetturali e di progettazione adottati, motivandone l'impiego rispetto al problema specifico che risolvono all'interno del prodotto.
+
+    \item \textbf{Tracciamento dei requisiti\textsubscript{G}:} correla le componenti architetturali ai requisiti\textsubscript{G} individuati nell'Analisi dei Requisiti\textsubscript{G}, così da rendere verificabile la copertura del perimetro funzionale concordato con la proponente\textsubscript{G}.
+\end{itemize}
+
+Il documento costituisce il riferimento progettuale per le successive fasi di realizzazione e di manutenzione del prodotto: ogni intervento sul codice deve risultare coerente con quanto qui descritto e, qualora introduca una variazione architetturale, deve essere preceduto dall'aggiornamento della presente specifica.
+
+La Specifica Tecnica dà inoltre continuità al \textbf{Proof of Concept\textsubscript{G}} sviluppato per la \textbf{Requirements and Technology Baseline\textsubscript{G}}: le tecnologie e le soluzioni architetturali qui documentate sono quelle sperimentate e validate in quella sede, ora consolidate e portate al livello di dettaglio necessario allo sviluppo\textsubscript{G} del prodotto completo.
+
+Come gli altri documenti del gruppo, la stesura segue un approccio \textbf{incrementale\textsubscript{G}}: il documento viene raffinato a ogni iterazione, in modo da riflettere costantemente lo stato effettivo del prodotto.
+
+\subsection{Scopo del prodotto}
+\label{sec:scopo-prodotto}
+Il capitolato\textsubscript{G} \textbf{C6} di \textbf{Zucchetti S.p.A.} richiede la realizzazione di \textbf{Second Brain}, un'applicazione web per la scrittura e la gestione di note in formato \textbf{Markdown\textsubscript{G}}, assistita da modelli linguistici di grandi dimensioni (\textbf{LLM\textsubscript{G}}).
+
+L'interfaccia si articola in due pannelli affiancati: a sinistra un editor in cui l'utente compone il testo nella sintassi Markdown\textsubscript{G}, a destra un'anteprima che ne mostra il rendering aggiornato in tempo reale. Su questa base si innestano le funzioni assistite dall'LLM\textsubscript{G}, che operano sul testo selezionato o sull'intera nota: riassunto, riscrittura e adattamento del tono, correzione, traduzione multilingue, analisi critica secondo la tecnica dei \textbf{Sei Cappelli per Pensare\textsubscript{G}} di Edward de Bono e generazione di testo secondo il paradigma del \textbf{Distant Writing\textsubscript{G}}, in cui l'utente descrive sinteticamente il contenuto desiderato e delega al modello la stesura. Le note prodotte sono salvate e ricaricate sul file system locale dell'utente in formato Markdown\textsubscript{G}.
+
+Il valore del prodotto non risiede quindi nella sola redazione del testo, ma nel ruolo attivo assunto dal sistema\textsubscript{G}, che affianca l'utente nelle fasi di ideazione, revisione e riorganizzazione dei contenuti.
+
+Per la trattazione completa del perimetro funzionale, dei casi d'uso\textsubscript{G} e della classificazione dei requisiti\textsubscript{G} in obbligatori, desiderabili e opzionali si rimanda all'\href{https://thebitless.live/RTB/doc_esterna/analisi-dei-requisiti/analisi-dei-requisiti.pdf}{\textit{Analisi dei Requisiti}}, di cui il presente documento non intende costituire una duplicazione.
+
+\subsection{Glossario}
+\label{sec:glossario}
+La creazione e lo sviluppo\textsubscript{G} di un sistema\textsubscript{G} software richiedono una complessa operazione di progettazione e analisi del dominio\textsubscript{G}, attività che deve necessariamente precedere la stesura del codice. Il gruppo si impegna a raccogliere e organizzare tali informazioni in modo che siano facilmente accessibili, al fine di favorire la massima asincronia ed efficienza nelle attività di progetto.
+
+La principale fonte di ambiguità nello svolgimento delle attività è rappresentata dall'incomprensione dei termini tecnici o specialistici adottati. A tale scopo, la nomenclatura di riferimento viene raccolta nel \href{https://thebitless.live/RTB/doc_interna/glossario/glossario.pdf}{\textit{glossario}}, un documento incrementale\textsubscript{G} volto a definire ogni termine rilevante per il dominio\textsubscript{G} del progetto.
+
+Il gruppo si impegna a contrassegnare ogni occorrenza di un termine presente nel glossario mediante l'apposizione di una lettera \textbf{G} a pedice, come esemplificato di seguito:
+
+\noindent parola\textsubscript{G}
+
+Al fine di garantire una corretta comprensione del dominio\textsubscript{G}, è fondamentale che ogni membro del gruppo consulti periodicamente il glossario, assicurando così il costante allineamento sulle definizioni e sui concetti chiave.
+
+\subsection{Riferimenti}
+\label{sec:riferimenti}
+
+\subsubsection{Riferimenti normativi}
+\label{sec:riferimenti-normativi}
+\begin{itemize}
+    \item \textbf{Capitolato C6 - Second Brain}: \\
+    \url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C6.pdf} \\
+    \textit{Ultimo accesso:} 20 maggio 2026.
+
+    \item \textbf{Regolamento del Progetto Didattico}: \\
+    \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf} \\
+    \textit{Ultimo accesso:} 23 maggio 2026.
+
+    \item \textbf{Norme di Progetto v1.0.0}: \\
+    \url{https://thebitless.live/RTB/doc_interna/norme-di-progetto/norme-di-progetto.pdf} \\
+    \textit{Ultimo accesso:} 8 giugno 2026.
+\end{itemize}
+
+\subsubsection{Riferimenti informativi}
+\label{sec:riferimenti-informativi}
+
+\paragraph{Documentazione di progetto}
+\begin{itemize}
+    \item \textbf{Glossario v1.0.0}: \\
+    \url{https://thebitless.live/RTB/doc_interna/glossario/glossario.pdf} \\
+    \textit{Ultimo accesso:} 12 giugno 2026.
+
+    \item \textbf{Analisi dei Requisiti v2.0.0}: \\
+    \url{https://thebitless.live/RTB/doc_esterna/analisi-dei-requisiti/analisi-dei-requisiti.pdf} \\
+    \textit{Ultimo accesso:} 27 luglio 2026.
+
+    \item \textbf{Verbale interno VI\_2026-05-12 -- Scelta delle tecnologie per il PoC\textsubscript{G}}: \\
+    \url{https://thebitless.live/RTB/doc_interna/verbali/VI_2026-05-12_quarto-sprint/VI_2026-05-12_quarto-sprint.pdf} \\
+    \textit{Ultimo accesso:} 27 luglio 2026.
+
+    \item \textbf{Verbale interno VI\_2026-05-20 -- Progettazione del PoC\textsubscript{G}}: \\
+    \url{https://thebitless.live/RTB/doc_interna/verbali/VI_2026-05-20_progettazione-PoC/VI_2026-05-20_progettazione-PoC.pdf} \\
+    \textit{Ultimo accesso:} 27 luglio 2026.
+
+    \item \textbf{Verbale esterno VE\_2026-05-14 -- Approvazione delle tecnologie da parte della proponente\textsubscript{G}}: \\
+    \url{https://thebitless.live/RTB/doc_esterna/verbali/VE_2026-05-14_AdR-scelta-tecnologie/VE_2026-05-14_AdR-scelta-tecnologie.pdf} \\
+    \textit{Ultimo accesso:} 27 luglio 2026.
+\end{itemize}
+
+\paragraph{Documentazione delle tecnologie adottate}
+Documentazione ufficiale delle tecnologie descritte nella sezione \ref{sec:tecnologie}. \textit{Ultimo accesso} a tutte le risorse elencate di seguito: 27 luglio 2026.
+
+\begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \item \textbf{TypeScript}: \url{https://www.typescriptlang.org/docs/}
+    \item \textbf{React}: \url{https://react.dev/}
+    \item \textbf{Zustand}: \url{https://zustand.docs.pmnd.rs/}
+    \item \textbf{react-markdown}: \url{https://github.com/remarkjs/react-markdown}
+    \item \textbf{Tailwind CSS}: \url{https://tailwindcss.com/docs}
+    \item \textbf{shadcn/ui}: \url{https://ui.shadcn.com/}
+    \item \textbf{Radix UI Primitives}: \url{https://www.radix-ui.com/primitives}
+    \item \textbf{CodeMirror 6}: \url{https://codemirror.net/docs/}
+    \item \textbf{Vite}: \url{https://vite.dev/}
+    \item \textbf{Python 3.12}: \url{https://docs.python.org/3.12/}
+    \item \textbf{FastAPI}: \url{https://fastapi.tiangolo.com/}
+    \item \textbf{Pydantic}: \url{https://docs.pydantic.dev/}
+    \item \textbf{httpx}: \url{https://www.python-httpx.org/}
+    \item \textbf{Uvicorn}: \url{https://www.uvicorn.org/}
+    \item \textbf{Tavily}: \url{https://docs.tavily.com/}
+    \item \textbf{LiteLLM}: \url{https://docs.litellm.ai/}
+    \item \textbf{Server-Sent Events (MDN)}: \url{https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events}
+    \item \textbf{File System Access API (MDN)}: \url{https://developer.mozilla.org/en-US/docs/Web/API/File_System_API}
+    \item \textbf{Specifica OpenAPI}: \url{https://spec.openapis.org/oas/latest.html}
+    \item \textbf{openapi-typescript}: \url{https://openapi-ts.dev/}
+    \item \textbf{ESLint}: \url{https://eslint.org/docs/latest/}
+    \item \textbf{Ruff}: \url{https://docs.astral.sh/ruff/}
+    \item \textbf{mypy}: \url{https://mypy.readthedocs.io/}
+    \item \textbf{Vitest}: \url{https://vitest.dev/}
+    \item \textbf{Copertura del codice in Vitest}: \url{https://vitest.dev/guide/coverage}
+    \item \textbf{Testing Library}: \url{https://testing-library.com/docs/react-testing-library/intro/}
+    \item \textbf{pytest}: \url{https://docs.pytest.org/}
+    \item \textbf{Docker}: \url{https://docs.docker.com/}
+    \item \textbf{Docker Compose}: \url{https://docs.docker.com/compose/}
+    \item \textbf{GitHub Actions}: \url{https://docs.github.com/actions}
+    \item \textbf{pnpm}: \url{https://pnpm.io/}
+    \item \textbf{uv}: \url{https://docs.astral.sh/uv/}
+    \item \textbf{Node.js -- calendario di supporto delle versioni}: \url{https://github.com/nodejs/release}
+    \item \textbf{File API -- interfaccia \texttt{File} (MDN)}: \url{https://developer.mozilla.org/en-US/docs/Web/API/File}
+\end{itemize}
+
+\paragraph{Riferimenti metodologici}
+\begin{itemize}
+    \item \textbf{E. Gamma, R. Helm, R. Johnson, J. Vlissides}, \textit{Design Patterns: Elements of Reusable Object-Oriented Software}, Addison-Wesley, 1994.
+
+    \item \textbf{C4 model for visualising software architecture}: \\
+    \url{https://c4model.com/} \\
+    \textit{Ultimo accesso:} 27 luglio 2026.
+\end{itemize}
 
 \newpage
 
-\section{Introduzione}
-Il documento ha come scopo la descrizione dettagliata dell'architettura del sistema, delle tecnolo-
-gie utilizzate e delle API, esposte. Viene inoltre fornita una panoramica dei requisiti funzionalie
-soddisfatti dal prodotto, software.
-\subsection{Scopo del documento}
-
-\subsection{Riferimenti}
-
-\subsubsection{Riferimenti normativi}
-
-\subsubsection{Riferimenti informativi}
 
 \section{Tecnologie}
+\label{sec:tecnologie}
 
-\subsection{Framework Frontend}
+\subsection{Criteri di scelta}
+\label{sec:criteri-scelta}
+Le tecnologie descritte in questa sezione non sono state selezionate in astratto, sulla base della sola diffusione o popolarità, ma in risposta a bisogni tecnici precisi derivati dal capitolato\textsubscript{G} e dall'Analisi dei Requisiti\textsubscript{G}. Ciascuno dei bisogni elencati di seguito vincola una o più delle scelte successive, e costituisce il criterio rispetto al quale tali scelte vanno valutate.
 
-\subsection{Librerie Frontend}
+\paragraph{1. Risposta progressiva.}
+Un riassunto o una generazione di testo richiedono al modello linguistico un tempo di elaborazione dell'ordine dei secondi. Mantenere l'utente davanti a un semplice indicatore di attesa per tutta la durata dell'operazione non è accettabile sul piano dell'usabilità\textsubscript{G}: il testo deve comparire progressivamente mentre viene prodotto (\textit{streaming}). Questo bisogno determina la scelta di un livello server asincrono, di un client HTTP che supporti la lettura incrementale della risposta e di un protocollo di trasporto adatto al flusso unidirezionale di dati testuali. Il criterio discende dal requisito\textsubscript{G} \textbf{R-109-F-De}, che impone un indicatore di avanzamento per l'intera durata delle operazioni con attesa percepibile, e da \textbf{R-79-F-De}, che richiede la possibilità di annullare un'elaborazione in corso: entrambi presuppongono che il server mantenga il controllo dell'operazione mentre questa procede, e non si limiti a restituirne l'esito finale.
 
-\subsection{Tecnologie di build}
+\paragraph{2. Riservatezza delle credenziali dei fornitori esterni.}
+L'accesso ai modelli linguistici avviene tramite una chiave di autenticazione fornita dalla proponente\textsubscript{G}, in attuazione del requisito di vincolo\textsubscript{G} \textbf{R-2-V-Ob}, che prescrive l'interfacciamento con i servizi LLM\textsubscript{G} tramite API\textsubscript{G}. Tale chiave non deve in alcun caso raggiungere il browser, dove sarebbe leggibile da chiunque ispezioni il traffico o il codice dell'applicazione. È quindi necessaria una componente server intermediaria che detenga la chiave e sia l'unico soggetto a comunicare con il fornitore; la medesima componente risolve anche il vincolo\textsubscript{G} \textbf{R-3-V-Ob} sulla \textit{same-origin policy}, poiché è essa a esporre al browser un'origine controllata, configurata mediante la politica CORS.
 
-\subsection{Linguaggio Frontend}
+Il criterio si estende a ogni fornitore esterno contattato dal prodotto, non al solo fornitore dei modelli. La funzione di generazione a partire da un collegamento (\textbf{R-74-F-De}) richiede l'estrazione del contenuto di una pagina web indicata dall'utente, operazione affidata a un secondo servizio esterno dotato di una propria chiave: anche questa è custodita dal backend e non transita dal browser. Va dichiarato, per trasparenza verso l'utente e verso la proponente\textsubscript{G}, \textbf{quali dati lasciano il perimetro del sistema\textsubscript{G}}: verso il fornitore dei modelli linguistici transitano il testo sottoposto all'operazione --- la porzione selezionata o l'intera nota --- e le istruzioni costruite dall'applicazione; verso il servizio di estrazione transita il solo indirizzo fornito dall'utente. Nessuno dei due riceve dati identificativi dell'utente, che il prodotto non raccoglie.
 
-\subsection{Tecnologie di test}
+Il confine è dato da ciò che l'utente sottopone, non dalla provenienza del testo: \textbf{nessun file è trasmesso automaticamente}. Una nota aperta da disco resta nel browser finché l'utente non ne affida il contenuto a un'operazione assistita; da quel momento esce dal perimetro come qualunque altro testo. Aprire un file non comporta dunque alcuna trasmissione, chiederne il riassunto sì: la differenza sta in un'azione che l'utente compie deliberatamente.
 
-\subsection{Framework API Backend}
+\paragraph{3. Rendering sicuro del Markdown\textsubscript{G}.}
+Il requisito\textsubscript{G} \textbf{R-113-F-Ob} prevede una componente di rendering che trasformi il testo Markdown\textsubscript{G} in una presentazione grafica formattata. Il testo restituito dal modello linguistico non è però contenuto fidato: è generato da un sistema\textsubscript{G} esterno a partire da input\textsubscript{G} che l'utente controlla solo in parte. Deve essere mostrato all'utente come HTML formattato senza che ciò apra la strada a vulnerabilità di tipo \textit{cross-site scripting} (XSS). La tecnologia di rendering deve quindi essere sicura per costruzione, non affidarsi a una sanificazione applicata a posteriori. Al medesimo criterio si riconduce \textbf{R-110-F-Ob}, che impone messaggi di errore in linguaggio naturale privi di dettagli tecnici: la gestione degli errori del modello non deve riversare nell'interfaccia contenuto proveniente dall'esterno.
 
-\subsection{Server Backend}
+\paragraph{4. Editor ricco ma stabile.}
+L'editor deve offrire evidenziazione della sintassi, cronologia delle modifiche con annullamento e ripristino (\textbf{R-7-F-De}, \textbf{R-8-F-De}), e un comportamento accessibile da tastiera e da lettore di schermo; \textbf{R-111-F-Ob} ne prescrive la realizzazione come componente capace di ospitare testo su più righe. Deve inoltre mantenere invariati cursore e posizione di scorrimento mentre il pannello di anteprima si aggiorna in streaming, condizione che esclude soluzioni in cui la ricostruzione della vista coinvolge l'intera area di lavoro.
 
-\subsection{Linguaggio Backend}
+\paragraph{5. Manutenibilità\textsubscript{G} con un gruppo di sette persone.}
+Il prodotto è sviluppato in parallelo da sette persone con livelli di esperienza eterogenei. Ciò richiede codice tipizzato, in cui gli errori di interfaccia emergano in fase di compilazione anziché in esecuzione, confini netti fra i livelli dell'applicazione e verifica\textsubscript{G} automatica delle modifiche prima della loro integrazione\textsubscript{G}. Il criterio è vincolato da tre requisiti\textsubscript{G} di qualità: \textbf{R-4-Q-Ob} richiede che ogni pull request\textsubscript{G} sia sottoposta a revisione tra pari e superi i test\textsubscript{G} automatici prima dell'integrazione\textsubscript{G} nel ramo principale, \textbf{R-2-Q-Ob} richiede una copertura del codice\textsubscript{G} conforme alle soglie del Piano di Qualifica, \textbf{R-10-Q-Ob} impone il rispetto delle Norme di Progetto\textsubscript{G}. Serve quindi un'infrastruttura di \textit{Continuous Integration\textsubscript{G}} che applichi questi controlli in modo automatico e uniforme sui due livelli.
 
-\subsection{Tecnologie di deployment}
+\paragraph{6. Perimetro tecnologico ammesso dal capitolato\textsubscript{G}.}
+Il requisito di vincolo\textsubscript{G} \textbf{R-7-V-Op} stabilisce che la componente server-side, se realizzata, possa essere sviluppata utilizzando \textbf{Java} o \textbf{Python}. La scelta di Python ricade quindi all'interno del perimetro tecnologico ammesso dalla proponente\textsubscript{G}. Sul versante client, \textbf{R-1-V-Ob} circoscrive il perimetro alle Tecnologie Web\textsubscript{G} e ne fissa gli ambienti di esecuzione di riferimento: le versioni recenti di \textbf{Google Chrome}, \textbf{Mozilla Firefox} e \textbf{Microsoft Edge}. Questo vincolo\textsubscript{G} ha conseguenza diretta sulla strategia di persistenza descritta nella sezione \ref{sec:persistenza}, poiché le tre famiglie di browser non offrono le medesime interfacce di accesso al file system.
 
-\subsection{Large Language Model}
+\paragraph{Filosofia trasversale.}
+Le scelte che seguono rispondono a un unico criterio di fondo: l'\textbf{equilibrio fra controllo e velocità di sviluppo\textsubscript{G}}. Il gruppo ha preferito tecnologie che lasciano visibile e modificabile ciò che accade, evitando tanto le soluzioni che nascondono il comportamento dietro astrazioni ampie e opinate, quanto quelle che impongono di riscrivere da zero funzionalità già disponibili. A parità di adeguatezza tecnica, la preferenza è andata agli ecosistemi maturi, con documentazione estesa e ampia disponibilità di risorse: fattore determinante per un gruppo che affronta gran parte di queste tecnologie per la prima volta.
 
+\subsection{Frontend}
+\label{sec:tecnologie-frontend}
+Il frontend\textsubscript{G} è un'applicazione a pagina singola eseguita interamente nel browser. Le tecnologie sono presentate nell'ordine con cui si sovrappongono: il linguaggio, la libreria che struttura la vista, l'ecosistema di librerie che ne realizza le funzioni specifiche e, infine, gli strumenti che ne governano la costruzione.
+
+\begin{tabellatec}{Tecnologie adottate per il frontend}{tab:tec-frontend}
+    \textbf{TypeScript} & \vTS & Linguaggio di sviluppo\textsubscript{G} dell'intero frontend\textsubscript{G}. Estende JavaScript con un sistema di tipi statici che viene rimosso in fase di compilazione (\textit{type erasure}): i tipi non esistono a tempo di esecuzione e non introducono alcun costo prestazionale. Il loro contributo è spostare in compilazione errori che si manifesterebbero altrimenti in produzione, in particolare sulle interfacce fra componenti. La validazione dei dati provenienti dall'esterno resta a carico del backend, poiché i tipi non sopravvivono alla compilazione e non possono verificare nulla a tempo di esecuzione. \\ \hline
+
+    \textbf{React} & 19.2.7 & Libreria per la costruzione dell'interfaccia, organizzata a componenti. Editor, anteprima, barra degli strumenti e pannelli delle funzioni assistite dall'LLM\textsubscript{G} sono componenti React distinti. Il meccanismo di \textit{reconciliation} confronta la rappresentazione dell'interfaccia prima e dopo un cambiamento di stato e applica al DOM le sole modifiche effettivamente necessarie: durante lo streaming, in cui lo stato cambia decine di volte al secondo, questo evita la ricostruzione dell'intera pagina. L'applicazione \textbf{non impiega alcun router}: l'interazione si svolge in una sola vista, priva di navigazione fra pagine distinte, e l'introduzione di un instradamento lato client sarebbe una complessità non giustificata. \\ \hline
+
+    \textbf{Zustand} & 5.0.14 & Gestione dello stato applicativo condiviso fra i componenti (testo della nota, selezione corrente, testo in arrivo dallo streaming, stato di errore, modalità di visualizzazione). Espone selettori granulari, ciascuno dei quali osserva una singola porzione di stato: durante lo streaming la ridipintura interessa il solo pannello di anteprima, mentre l'editor resta immobile e conserva cursore e posizione di scorrimento. \\ \hline
+
+    \textbf{react-markdown} & 10.1.0 & Rendering del Markdown\textsubscript{G} nel pannello di anteprima. Il testo viene analizzato e trasformato in un albero sintattico astratto, dal quale la libreria costruisce direttamente gli elementi React corrispondenti. In nessun punto della catena viene iniettato HTML grezzo nel documento: la libreria è quindi sicura per costruzione rispetto agli attacchi XSS, senza necessità di un passaggio di sanificazione. Il requisito è critico, poiché il testo da rendere proviene in larga parte dal modello linguistico. \\ \hline
+
+    \textbf{remark-gfm} & 4.0.1 & Estensione della pipeline di analisi con le costruzioni \textit{GitHub Flavored Markdown} (tabelle, elenchi di attività, testo barrato, collegamenti automatici), attese dall'utenza di riferimento del prodotto. Le tabelle in particolare non appartengono al Markdown\textsubscript{G} di base: l'estensione è la condizione perché i requisiti\textsubscript{G} \textbf{R-34-F-De} \dots\ \textbf{R-38-F-De} (inserimento di una tabella e gestione di righe e colonne, UC44 \dots\ UC48) trovino una resa nell'anteprima. \\ \hline
+
+    \textbf{remark-math \newline rehype-katex \newline KaTeX} & 6.0.0 \newline 7.0.1 \newline 0.17.0 & Riconoscimento delle espressioni matematiche nel sorgente Markdown\textsubscript{G} e loro composizione tipografica nell'anteprima. Realizzano i requisiti\textsubscript{G} \textbf{R-28-F-De} e \textbf{R-29-F-De} (inserimento e rimozione di una formula scientifica o matematica, UC35 e UC37), che senza un motore di composizione dedicato non sarebbero verificabili\textsubscript{G} sul lato dell'anteprima. Operano come estensioni della stessa pipeline ad albero sintattico, preservandone la proprietà di non iniettare HTML grezzo. \\ \hline
+
+    \textbf{rehype-highlight \newline highlight.js} & 7.0.2 \newline 11.11.1 & Evidenziazione della sintassi all'interno dei blocchi di codice mostrati nell'anteprima. Discende dai requisiti\textsubscript{G} \textbf{R-26-F-De}, \textbf{R-27-F-De} e \textbf{R-119-F-De} (inserimento, rimozione e modifica di un blocco di codice sorgente, UC32, UC34 e UC33), che presuppongono una resa del blocco di codice distinta dal testo ordinario. \\ \hline
+
+    \textbf{Tailwind CSS} & 4.3.1 & Sistema di stile \textit{utility-first}: la presentazione è espressa mediante classi elementari applicate direttamente al marcatore, anziché tramite fogli di stile separati. Ne deriva un insieme chiuso di valori (spaziature, colori, dimensioni tipografiche) che mantiene l'aspetto uniforme fra le parti dell'interfaccia scritte da persone diverse. Il plugin \texttt{@tailwindcss/typo\-graphy} (0.5.20) fornisce gli stili tipografici applicati al risultato del rendering Markdown\textsubscript{G}. \\ \hline
+
+    \textbf{shadcn/ui \newline Radix UI} & --- \newline 1.5.0 & Insieme di componenti di interfaccia (pulsanti, aree di testo, finestre di dialogo, avvisi). shadcn/ui non è una dipendenza installata ma un catalogo da cui il codice sorgente dei componenti viene copiato nel progetto: resta quindi interamente leggibile e modificabile dal gruppo, senza vincolo di adozione verso un fornitore esterno. I componenti poggiano su Radix UI, che fornisce le primitive di comportamento accessibile --- navigazione da tastiera, gestione del focus, attributi per i lettori di schermo --- la cui realizzazione manuale corretta sarebbe onerosa e soggetta a errori. \\ \hline
+
+    \textbf{CodeMirror 6} & 6.0.2 & Editor di testo del pannello sinistro. Fornisce nativamente evidenziazione della sintassi Markdown\textsubscript{G} (modulo \texttt{@codemirror/lang-mark\-down} 6.5.0), cronologia delle modifiche con annullamento e ripristino (\texttt{@codemirror/com\-mands} 6.10.3) e supporto all'accessibilità, a fronte di un ingombro dell'ordine del centinaio di kilobyte. L'architettura modulare consente di includere le sole estensioni effettivamente utilizzate. \\ \hline
+
+    \textbf{lucide-react} & 1.18.0 & Insieme di icone vettoriali impiegate nella barra degli strumenti e nei comandi dell'interfaccia. \\ \hline
+
+    \textbf{Vite} & 8.0.16 & Strumento di sviluppo\textsubscript{G} e costruzione del frontend\textsubscript{G}. In sviluppo\textsubscript{G} serve i moduli ES nativamente al browser, senza ricostruire l'intero pacchetto a ogni modifica, e aggiorna i moduli modificati mantenendo lo stato dell'applicazione; in produzione genera il pacchetto ottimizzato. Costituisce inoltre la base di configurazione riutilizzata dall'infrastruttura di test descritta nella sezione \ref{sec:tecnologie-test}. \\ \hline
+\end{tabellatec}
+
+\paragraph{Alternative considerate}\mbox{}
+
+\begin{alternative}
+
+\altitem{Angular, Vue e Svelte al posto di React}
+Il confronto documentato nel verbale interno del 12 maggio 2026 ha contrapposto React e Svelte. Svelte adotta un approccio a compilatore: elimina il Virtual DOM spostando in fase di compilazione il lavoro che React svolge in esecuzione, con prestazioni superiori e minore ingombro del pacchetto prodotto. Il suo ecosistema è però più giovane, con minore disponibilità di librerie mature per le esigenze specifiche del prodotto e minore reperibilità di risorse di apprendimento, fattore rilevante per un gruppo che affronta la tecnologia per la prima volta. Vue è a sua volta maturo, ma la via più diffusa per il rendering del Markdown\textsubscript{G} nel suo ecosistema consiste nel produrre HTML e iniettarlo nel documento, esattamente il rischio che il criterio 3 impone di evitare. Angular offre un quadro strutturale completo e fortemente prescrittivo, sovradimensionato per un'applicazione a vista singola e con una curva di apprendimento incompatibile con i tempi del progetto. La determinante è che le librerie richieste --- rendering Markdown\textsubscript{G} sicuro, componenti accessibili, integrazione\textsubscript{G} dell'editor --- individuano React come primo ambiente di destinazione.
+
+\altitem{Redux, Context API e Jotai al posto di Zustand}
+Redux impone una quantità di codice di supporto (azioni, riduttori, selettori memorizzati) sproporzionata rispetto alla dimensione dello stato da gestire. La Context API, disponibile nativamente in React, non offre sottoscrizioni granulari: ogni variazione del valore del contesto provoca la ridipintura di tutti i componenti che vi accedono, comportamento penalizzante durante lo streaming, in cui lo stato cambia con frequenza elevata e ridipingere l'editor comporterebbe la perdita della posizione del cursore. Jotai adotta un modello ad atomi tecnicamente adeguato, ma richiede di scomporre lo stato in unità elementari fin dall'inizio: Zustand ottiene il medesimo risultato con un modello concettuale più semplice e una superficie di apprendimento minore.
+
+\altitem{marked e markdown-it al posto di react-markdown}
+Entrambe le librerie convertono il Markdown\textsubscript{G} in una stringa HTML, che dovrebbe poi essere inserita nel documento tramite un meccanismo di iniezione diretta. Ciò renderebbe obbligatorio un passaggio esplicito di sanificazione, la cui correttezza dipenderebbe dalla configurazione adottata e andrebbe verificata\textsubscript{G} separatamente. react-markdown rende il problema inesistente per costruzione.
+
+\altitem{MUI e Chakra UI al posto di shadcn/ui}
+Offrono un numero maggiore di componenti già pronti, ma impongono un linguaggio visivo marcato, la cui personalizzazione richiede di intervenire contro le impostazioni predefinite della libreria; inoltre il codice dei componenti resta all'interno della dipendenza, non modificabile. L'alternativa opposta, i CSS Modules, non aggiunge alcuna dipendenza ma non fornisce né un sistema di valori condiviso né componenti accessibili, che andrebbero realizzati integralmente dal gruppo.
+
+\altitem{Monaco e \texttt{textarea} nativa al posto di CodeMirror}
+Monaco è l'editor impiegato in Visual Studio Code: è progettato per la scrittura di codice sorgente e la sua dotazione di funzioni --- completamento automatico, analisi del linguaggio, riquadro di anteprima --- eccede quanto richiesto dalla redazione di note, a fronte di un ingombro di oltre un ordine di grandezza superiore. L'elemento \texttt{textarea} nativo non comporta alcuna dipendenza, ma è privo di evidenziazione della sintassi e di una cronologia delle modifiche strutturata.
+
+\altitem{Webpack e Create React App al posto di Vite}
+Ricostruiscono l'intero pacchetto a ogni modifica, con tempi di attesa in sviluppo\textsubscript{G} sensibilmente superiori, e richiedono una configurazione più estesa e frammentata. Create React App non è inoltre più oggetto di manutenzione attiva.
+
+\end{alternative}
+
+\subsection{Backend}
+\label{sec:tecnologie-backend}
+Il backend è una componente server che espone alcune API\textsubscript{G} tramite HTTP. Le sue responsabilità sono quattro:
+
+\begin{enumerate}
+    \setlength{\itemsep}{0pt}
+    \item custodire le chiavi di accesso ai fornitori esterni, così che non raggiungano mai il browser (criterio 2);
+    \item comporre le istruzioni da inviare al modello linguistico;
+    \item ritrasmettere al browser il testo prodotto man mano che diviene disponibile (criterio 1);
+    \item acquisire il contenuto testuale di una pagina web indicata dall'utente, quando la generazione avviene a partire da un collegamento.
+\end{enumerate}
+
+\noindent La quarta responsabilità discende dal requisito\textsubscript{G} \textbf{R-74-F-De} (UC67.2 e UC67.5) e non è riducibile alle altre tre: comporta un secondo fornitore esterno, distinto da quello dei modelli, e per questo è trattata separatamente nel paragrafo \textit{Estrazione del contenuto delle pagine web}. Come per il frontend\textsubscript{G}, le tecnologie sono presentate nell'ordine linguaggio, framework\textsubscript{G}, librerie, strumenti.
+
+\begin{tabellatec}{Tecnologie adottate per il backend}{tab:tec-backend}
+    \textbf{Python} & \vPython & Linguaggio di sviluppo\textsubscript{G} del backend. Rientra nel perimetro tecnologico ammesso dal requisito\textsubscript{G} R-7-V-Op. Dispone del supporto nativo alla programmazione asincrona (\texttt{async}/\texttt{await}), condizione necessaria per gestire attese di rete prolungate senza bloccare il processo, e dell'ecosistema più esteso per l'integrazione\textsubscript{G} con i modelli linguistici. \\ \hline
+
+    \textbf{FastAPI} & 0.136.1 & Framework\textsubscript{G} web su cui è costruita l'API\textsubscript{G}. È asincrono per impostazione, requisito imprescindibile per lo streaming; deriva la validazione dei corpi delle richieste direttamente dalle annotazioni di tipo, senza codice di controllo scritto a mano; genera automaticamente lo schema OpenAPI dell'interfaccia esposta. La risposta in streaming è realizzata mediante \texttt{StreamingResponse}, che consuma un generatore asincrono e gestisce la trasmissione a blocchi lungo la connessione HTTP. \\ \hline
+
+    \textbf{Pydantic} & 2.13.4 & Validazione e serializzazione dei dati in ingresso e in uscita. Gli schemi Pydantic costituiscono la \textbf{fonte unica di verità} dei contratti dell'API\textsubscript{G}: da essi FastAPI deriva lo schema OpenAPI e, da quest'ultimo, vengono generati i tipi TypeScript utilizzati dal frontend\textsubscript{G} (si veda la sezione \ref{sec:tecnologie-infrastruttura}). Il contratto è definito quindi una volta sola, in un solo punto del sistema\textsubscript{G}. \\ \hline
+
+    \textbf{pydantic-settings} & 2.14.1 & Lettura e validazione della configurazione applicativa (indirizzo del gateway dei modelli, identificativo del modello, chiave di accesso, origini ammesse dalla politica CORS) a partire dalle variabili d'ambiente. Le impostazioni sono esposte tramite un'unica istanza per processo. \\ \hline
+
+    \textbf{httpx} & 0.28.1 & Client HTTP asincrono impiegato per la comunicazione verso il provider dei modelli linguistici. Supporta la lettura della risposta a blocchi man mano che arriva, senza attenderne il completamento, e propaga l'annullamento lungo l'intera catena: se l'utente interrompe la generazione, la chiusura si trasmette dal browser al backend e da questo alla connessione verso il provider, senza che rimangano richieste attive prive di destinatario. \\ \hline
+
+    \textbf{tavily-python} & 0.7.26 & Estrazione del contenuto testuale delle pagine web nella funzione di generazione a partire da un collegamento (requisito\textsubscript{G} \textbf{R-74-F-De}, UC67.2 e UC67.5). Restituisce il solo testo della pagina, già ripulito dal marcatore e dagli elementi accessori, e ne consente il troncamento a una lunghezza massima prima dell'invio al modello. È un client verso un servizio esterno: si veda il paragrafo \textit{Estrazione del contenuto delle pagine web} per il perimetro dei dati trasmessi e per l'alternativa scartata. \\ \hline
+
+    \textbf{Uvicorn} & 0.47.0 & Server ASGI sul quale l'applicazione FastAPI è posta in esecuzione. Costituisce l'implementazione dell'interfaccia asincrona fra il server HTTP e il codice applicativo. \\ \hline
+
+    \textbf{Server-Sent Events} & --- & Protocollo di trasporto dei blocchi testuali dal backend al browser. È un formato testuale unidirezionale che viaggia su una normale connessione HTTP mantenuta aperta, in cui ogni evento è una riga con prefisso \texttt{data:} e la fine del flusso è segnalata da un marcatore convenzionale. La direzione unica --- dal server al client --- corrisponde esattamente alla natura del problema. \\ \hline
+\end{tabellatec}
+
+\paragraph{Accesso ai modelli linguistici.}
+L'accesso ai modelli avviene attraverso un \textbf{gateway LiteLLM}, componente esterna che espone un'interfaccia compatibile con quella di OpenAI e uniforma l'accesso a fornitori diversi. Poiché si tratta di un servizio contattato via HTTP e non di una libreria installata nel progetto, non figura fra le dipendenze del backend e non è associato a una versione dichiarata nei file di progetto.
+
+La comunicazione con il gateway è confinata dietro l'astrazione \textbf{\texttt{LLMClient}}, una classe astratta che dichiara la sola operazione di produzione incrementale del testo. L'implementazione concreta che dialoga con LiteLLM --- interpretandone il formato di risposta e traducendone gli errori --- ne è l'unico realizzatore, secondo il pattern Adapter descritto nella sezione dedicata all'architettura. \textbf{Né i router né la logica di dominio\textsubscript{G} invocano direttamente LiteLLM}: conoscono unicamente l'interfaccia astratta. La sostituzione del gateway con un fornitore diverso comporta pertanto la scrittura di una nuova implementazione dell'interfaccia, e nessuna modifica al resto del backend.
+
+\paragraph{Estrazione del contenuto delle pagine web.}
+Il requisito\textsubscript{G} \textbf{R-74-F-De} consente all'utente di indicare un URL come fonte di contesto per la generazione automatica di testo (UC67.2). Poiché il modello linguistico non accede alla rete, il contenuto della pagina deve essere acquisito dal prodotto e passato al modello come parte delle istruzioni. L'operazione è affidata a \textbf{Tavily}, servizio esterno che restituisce il testo di una pagina già ripulito dal marcatore, dalla navigazione e dagli elementi accessori.
+
+Si tratta del \textbf{secondo fornitore esterno} del sistema\textsubscript{G}, dotato di una propria chiave di accesso. Coerentemente con il criterio 2, la chiave è custodita dal backend e non raggiunge il browser; verso il servizio transita esclusivamente l'indirizzo indicato dall'utente, non il testo della nota. Il contenuto restituito è troncato a una lunghezza massima prima di essere inoltrato al modello, così da mantenere prevedibile la dimensione delle istruzioni.
+
+L'alternativa considerata è l'\textbf{estrazione lato server con una libreria locale}: \texttt{trafilatura} e le realizzazioni Python dell'algoritmo \textit{Readability} scaricano la pagina con il client HTTP già presente nel progetto e ne isolano il contenuto principale senza coinvolgere alcun terzo. Eliminerebbero un fornitore, una chiave e un punto di uscita dei dati --- vantaggio non trascurabile --- ma sposterebbero sul gruppo la qualità dell'estrazione, che su pagine costruite dinamicamente tramite JavaScript risulta sensibilmente inferiore, e richiederebbero di gestire in proprio reindirizzamenti, codifiche e tempi di risposta dei siti contattati. Poiché R-74-F-De è desiderabile e non obbligatorio, il gruppo ha preferito la soluzione che ne rende prevedibile il completamento, accettando la dipendenza esterna.
+
+Rispetto all'accesso ai modelli linguistici c'è però un'\textbf{asimmetria}, che va detta per non attribuire all'estrazione una sostituibilità che oggi non ha. L'accesso al gateway passa dall'interfaccia astratta \texttt{LLMClient} e arriva ai router per iniezione della dipendenza; l'estrazione, invece, è affidata a una funzione che costruisce e invoca direttamente il client del fornitore, ed è il router a chiamarla. \textbf{Per l'estrazione non esiste quindi una porta del dominio\textsubscript{G} analoga a \texttt{LLMClient}}: cambiare fornitore richiederebbe oggi di modificare il modulo di estrazione, non di scrivere soltanto un nuovo adattatore.
+% NON PRESENTE NEL PoC — la porta per l'estrazione. Nel PoC api/app/llm/fetch_url.py
+% importa e istanzia TavilyClient direttamente in _get_client() e non dichiara
+% alcuna classe astratta o Protocol; api/app/routes/generate_link.py importa
+% fetch_and_extract dal modulo e la invoca direttamente, senza Depends. Da
+% introdurre nel repository di prodotto per allineare l'estrazione al trattamento
+% già riservato all'accesso ai modelli.
+Introdurre quella porta è un intervento circoscritto --- un'interfaccia astratta, un adattatore che racchiuda il fornitore attuale e l'iniezione della dipendenza nel router --- e allineerebbe l'estrazione al trattamento già riservato all'accesso ai modelli. Finché non avviene, cambiare fornitore di estrazione resta più oneroso che cambiare gateway.
+
+\paragraph{Alternative considerate}\mbox{}
+
+\begin{alternative}
+
+\altitem{Node.js con TypeScript e Go al posto di Python}
+Entrambi sarebbero tecnicamente adeguati: Node.js consentirebbe di adottare un unico linguaggio sui due livelli, Go offrirebbe prestazioni superiori nella gestione di connessioni concorrenti prolungate. Nessuno dei due rientra però nel perimetro tecnologico ammesso dal requisito\textsubscript{G} R-7-V-Op, che indica Java e Python. Java rientra nel perimetro ed è stato valutato, ma è stato scartato per la minore immediatezza del suo ecosistema nell'integrazione\textsubscript{G} con i modelli linguistici e per la maggiore verbosità rispetto alla dimensione contenuta del backend, che espone poche interfacce e non contiene logica di dominio\textsubscript{G} estesa.
+
+\altitem{Flask e Django al posto di FastAPI}
+Flask è sincrono per impostazione: il supporto allo streaming asincrono richiederebbe estensioni aggiuntive e una configurazione non prevista dal suo modello di base, oltre a un livello di validazione scritto separatamente. Django è orientato ad applicazioni complete, con mappatore relazionale a oggetti, sistema di autenticazione e pannello di amministrazione integrati: componenti che il prodotto non utilizza, dato che non prevede persistenza su base di dati (si veda la sezione \ref{sec:persistenza}), e che ne renderebbero l'adozione sproporzionata.
+
+\altitem{requests e aiohttp al posto di httpx}
+La libreria \texttt{requests} è lo standard di fatto per le richieste HTTP in Python, ma è esclusivamente sincrona: bloccherebbe il processo per l'intera durata della risposta del modello, vanificando la scelta di un framework\textsubscript{G} asincrono. La libreria \texttt{aiohttp} è asincrona e supporta lo streaming, ma espone un'ergonomia meno lineare nella gestione della chiusura anticipata delle connessioni, aspetto centrale per la funzione di annullamento della generazione.
+
+\altitem{SDK diretto del fornitore e LangChain al posto del gateway}
+L'impiego dell'SDK proprietario di un singolo fornitore legherebbe il codice a quel fornitore, in un ambito in cui modelli e condizioni di accesso cambiano con frequenza elevata. LangChain, all'estremo opposto, introduce un livello di astrazione ampio e fortemente opinato --- catene, agenti, memoria, strumenti --- di cui il prodotto non utilizzerebbe che una frazione minima, a fronte di un aumento sensibile della superficie di dipendenza e di una minore prevedibilità del comportamento. Il gateway, unito all'interfaccia \texttt{LLMClient}, offre l'indipendenza dal fornitore senza alcuno dei due inconvenienti.
+
+\altitem{WebSocket e polling al posto dei Server-Sent Events}
+I WebSocket stabiliscono un canale bidirezionale, con un protocollo di negoziazione dedicato e la necessità di gestire esplicitamente riconnessioni e stato della connessione: capacità superflue, poiché nel prodotto i dati scorrono in una sola direzione. Il \textit{polling} periodico richiederebbe di accumulare il testo prodotto lato server in attesa di essere richiesto, introducendo latenza e complessità di gestione dello stato intermedio.
+
+\end{alternative}
+
+\subsection{Persistenza delle note}
+\label{sec:persistenza}
+Il gruppo ha deliberato di non realizzare la persistenza delle note su base di dati. Le note sono salvate e ricaricate esclusivamente sul \textbf{file system locale} della macchina dell'utente, per il tramite del browser.
+
+\paragraph{Meccanismo adottato.}
+Le operazioni di salvataggio e di caricamento sono realizzate con una strategia a due vie, selezionata a tempo di esecuzione in base alle capacità del browser ospite.
+
+Quando il browser espone la \textbf{File System Access API} --- verificata mediante la presenza dei metodi \texttt{showOpenFilePicker} e \texttt{showSaveFilePicker} sull'oggetto globale della finestra --- l'applicazione apre la finestra di selezione file nativa del sistema\textsubscript{G} operativo. Il caricamento ottiene un riferimento al file scelto e ne legge il contenuto testuale; il salvataggio ottiene un riferimento al percorso di destinazione e vi scrive un flusso di byte. L'annullamento da parte dell'utente è riconosciuto e trattato come esito legittimo, non come errore.
+
+Quando l'interfaccia non è disponibile --- condizione che ricorre su \textbf{Firefox} e \textbf{Safari}, che non la implementano --- l'applicazione ricade su meccanismi supportati universalmente. La doppia via non è una precauzione generica: il requisito di vincolo\textsubscript{G} \textbf{R-1-V-Ob} include Firefox fra gli ambienti di esecuzione di riferimento, quindi una realizzazione fondata sulla sola File System Access API lascerebbe scoperto uno dei tre browser prescritti. In caricamento crea un elemento \texttt{input} di tipo file e ne legge il contenuto tramite un lettore di file; in salvataggio costruisce un oggetto \texttt{Blob} con il contenuto della nota, ne ricava un indirizzo temporaneo e lo assegna a un collegamento di scaricamento attivato per via programmatica, delegando al browser la scelta della destinazione secondo le impostazioni dell'utente. L'indirizzo temporaneo viene rilasciato al termine dell'operazione.
+
+Il criterio di selezione è quindi la disponibilità effettiva dell'interfaccia nel browser in uso, non l'identificazione del browser stesso: l'applicazione non interroga l'agente utente, ma verifica direttamente la presenza dei metodi richiesti. La funzione resta pertanto disponibile su ogni browser, con la sola differenza che sui browser dotati dell'interfaccia nativa l'utente sceglie esplicitamente il percorso di destinazione, mentre sugli altri il file segue le impostazioni di scaricamento predefinite.
+
+\paragraph{Formato dei file.}
+Le note sono salvate in \textbf{Markdown\textsubscript{G}}, con estensione \texttt{.md} e tipo MIME \texttt{text/markdown}; in caricamento sono accettate anche le estensioni \texttt{.txt}. La scelta del testo semplice attua il requisito di vincolo\textsubscript{G} \textbf{R-4-V-Ob}, che prescrive la memorizzazione delle note salvate localmente come file di testo. Il file contiene il solo testo della nota, senza intestazioni o marcatori aggiuntivi: resta quindi leggibile e modificabile con qualsiasi altro strumento, e non introduce alcun vincolo\textsubscript{G} verso il prodotto.
+
+\paragraph{Metadati della nota.}
+I metadati che l'applicazione associa alla nota --- identificativo, titolo, istante di creazione e istante di ultima modifica --- non sono scritti nel file, che resta un documento Markdown\textsubscript{G} puro. Il titolo è veicolato dal nome del file: in salvataggio il nome proposto deriva dal titolo della nota, in caricamento il titolo è ricavato dal nome del file privato dell'estensione.
+% NON PRESENTE NEL PoC — la derivazione del titolo dal nome del file nel ramo di
+% ripiego. Nel PoC web/src/lib/fileSystem.ts la ricava correttamente nel ramo
+% File System Access API (fileName = file.name), ma nel ramo <input type="file">
+% la variabile fileName è inizializzata a stringa vuota e non è mai riassegnata
+% dentro onchange: il titolo diventa la costante 'Imported note'. Il ramo di
+% ripiego è quello di Firefox, incluso fra i browser prescritti da R-1-V-Ob.
+% Da correggere nel repository di prodotto.
+
+Questa impostazione ha una conseguenza sul requisito\textsubscript{G} \textbf{R-97-F-De} (UC84), che richiede la visualizzazione delle informazioni e dei metadati di una nota selezionata: un identificativo e un istante di creazione assegnati in memoria non sopravvivono alla chiusura della sessione, e ricaricando il file da disco andrebbero perduti. Trattandosi di un requisito\textsubscript{G} \textbf{desiderabile} e non opzionale, la copertura non può essere rinviata.
+
+% NON PRESENTE NEL PoC — l'intero meccanismo descritto nel capoverso che segue.
+% Nel PoC web/src/lib/fileSystem.ts non legge né file.lastModified né file.size
+% in nessuno dei due rami: openNoteFromFile imposta createdAt e updatedAt
+% entrambi a Date.now(), cioè all'istante di apertura. La copertura di
+% R-97-F-De, che è desiderabile e non opzionale, dipende da questo intervento.
+% Da realizzare nel repository di prodotto.
+Il recupero è ottenuto senza modificare il formato del file, sfruttando i metadati che il file system già espone. L'oggetto \texttt{File} restituito sia dalla File System Access API sia dall'elemento \texttt{input} di tipo file riporta gli attributi \texttt{name}, \texttt{lastModified} e \texttt{size}: all'apertura di una nota l'applicazione li impiega per popolare rispettivamente titolo, istante di ultima modifica e dimensione del contenuto. Il numero di caratteri e il numero di parole sono derivati dal testo caricato. Resta non ricostruibile il solo \textbf{istante di creazione}, che il file system espone in modo non uniforme fra le piattaforme e che le interfacce del browser non rendono disponibile: per le note ricaricate da disco tale informazione è presentata come non disponibile anziché con un valore convenzionale, così che l'interfaccia non affermi un dato che il prodotto non possiede. L'identificativo continua a essere assegnato per la durata della sessione, non avendo significato al di fuori di essa in assenza di persistenza server-side.
+
+\paragraph{Motivazione dell'esclusione della base di dati.}
+La persistenza server-side è prevista dal capitolato\textsubscript{G} come estensione facoltativa. I requisiti\textsubscript{G} funzionali che ne derivano sono classificati come opzionali nell'Analisi dei Requisiti\textsubscript{G} e riguardano quattro capacità distinte:
+
+\begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \item \textbf{operazioni sull'archivio remoto}: R-83-F-Op (creazione di una nota nella base di dati, UC74.2), R-86-F-Op (caricamento, UC76.2), R-89-F-Op (salvataggio, UC78.2), R-92-F-Op (rimozione, UC80.2), R-95-F-Op (rinomina, UC82.2). Sono il nucleo di ciò che l'esclusione comporta: le quattro operazioni di base sulle note, più la rinomina;
+    \item \textbf{ricerca e filtro}: R-98-F-Op (ricerca per titolo), R-99-F-Op (ricerca full-text), R-100-F-Op e R-101-F-Op (filtro per data di creazione e di ultima modifica);
+    \item \textbf{autenticazione}: R-102-F-Op (accesso con credenziali), R-103-F-Op (gestione degli errori di autenticazione), R-108-F-Op (disconnessione);
+    \item \textbf{gestione dell'account}: R-104-F-Op (registrazione), R-105-F-Op (unicità dello username), R-106-F-Op (conferma della password), R-107-F-Op (rimozione dell'account e dei dati associati).
+\end{itemize}
+
+\noindent Sono opzionali anche i requisiti\textsubscript{G} di vincolo\textsubscript{G} corrispondenti: \textbf{R-5-V-Op} (memorizzazione delle note in una base di dati raggiungibile dal sistema\textsubscript{G}), \textbf{R-6-V-Op} (componente server raggiungibile tramite chiamate HTTP) e \textbf{R-7-V-Op} (linguaggio della componente server-side). Si segnala che dei tre soltanto R-7-V-Op è già soddisfatto dall'architettura attuale, poiché la componente server esiste per le funzioni assistite da LLM\textsubscript{G} indipendentemente dalla persistenza; R-5-V-Op e R-6-V-Op restano scoperti insieme alla funzionalità che li condiziona.
+
+Il gruppo ha scelto di concentrare le risorse della presente iterazione sul completamento dei requisiti\textsubscript{G} obbligatori e desiderabili, in particolare sulle funzionalità assistite da LLM\textsubscript{G}, che costituiscono il nucleo del prodotto richiesto dalla proponente\textsubscript{G}. Lo stato di copertura di ciascun requisito\textsubscript{G} è riportato nella sezione \ref{sec:tracciamento}.
+
+Va precisato l'effettivo margine di estensione, per non attribuire all'architettura una predisposizione che non possiede. Nel perimetro attuale la persistenza delle note risiede \textbf{interamente nel frontend\textsubscript{G}}: le note non raggiungono in alcun momento il backend, e nel dominio\textsubscript{G} del backend non esiste una porta per le note in attesa di essere implementata. Introdurre la persistenza su base di dati comporterebbe quindi lavoro nuovo e non marginale: entità di dominio\textsubscript{G} per la nota e per l'utente, le porte corrispondenti, gli endpoint che le espongono, un adattatore verso il sistema\textsubscript{G} di gestione della base di dati e l'intero blocco di autenticazione richiesto da R-102-F-Op \dots\ R-108-F-Op.
+
+Ciò che l'architettura esagonale garantisce è un'altra proprietà, più circoscritta ma sufficiente: la persistenza sarebbe aggiunta \textbf{come nuova porta e nuovo adattatore}, senza perturbare il dominio\textsubscript{G} delle funzioni assistite da LLM\textsubscript{G} già realizzato. Il costo dell'estensione ricade sulle componenti nuove, non sulla riscrittura di quelle esistenti.
+
+\subsection{Tecnologie di test e analisi}
+\label{sec:tecnologie-test}
+Le attività di verifica\textsubscript{G} previste dalle Norme di Progetto\textsubscript{G} si articolano in analisi statica\textsubscript{G}, condotta sul codice sorgente senza porlo in esecuzione, e analisi dinamica\textsubscript{G}, condotta eseguendo il codice su casi di prova predisposti.
+
+\subsubsection{Analisi statica}
+\label{sec:analisi-statica}
+L'analisi statica\textsubscript{G} intercetta gli errori prima che il codice venga eseguito, spostandone il rilevamento dalla fase di prova a quella di scrittura.
+
+\begin{tabellatec}{Strumenti di analisi statica}{tab:tec-statica}
+    \textbf{Compilatore TypeScript} & \vTS & Verifica\textsubscript{G} della coerenza dei tipi sull'intero codice del frontend\textsubscript{G}. La compilazione è eseguita in modo esplicito come primo passo del comando di costruzione (\texttt{tsc -b \&\& vite build}): un errore di tipo interrompe la costruzione e impedisce la produzione del pacchetto. La configurazione attiva inoltre la segnalazione di variabili e parametri dichiarati e non utilizzati, dei casi non terminati nei costrutti di selezione multipla e delle costruzioni non rimovibili per sola cancellazione dei tipi. \\ \hline
+
+    \textbf{ESLint} & 10.5.0 & Analisi statica\textsubscript{G} del codice del frontend\textsubscript{G} rispetto a un insieme di regole configurate. Individua costrutti sintatticamente validi ma problematici, che il compilatore non segnala. \\ \hline
+
+    \textbf{typescript-eslint} & 8.61.0 & Estensione di ESLint alla sintassi TypeScript e alle regole specifiche del linguaggio. \\ \hline
+
+    \textbf{eslint-plugin-\newline react-hooks} & 7.1.1 & Verifica\textsubscript{G} del rispetto delle regole di impiego degli \textit{hook} di React, in particolare della completezza degli elenchi di dipendenze. Si tratta di una classe di errori che non produce alcun messaggio in esecuzione ma si manifesta come stato dell'interfaccia non aggiornato, di difficile diagnosi. \\ \hline
+
+    \textbf{eslint-plugin-\newline react-refresh} & 0.5.2 & Verifica\textsubscript{G} che i moduli rispettino le condizioni necessarie all'aggiornamento a caldo dei componenti durante lo sviluppo\textsubscript{G}. \\ \hline
+
+% NON PRESENTE NEL PoC — Ruff non è fra le dipendenze di api/pyproject.toml e
+% nessuna sua configurazione vi compare. Da introdurre nel repository di prodotto.
+    \textbf{Ruff} & \vRuff & Analisi statica\textsubscript{G} e formattazione automatica del codice del backend. Riunisce in un solo strumento le regole di più analizzatori dell'ecosistema Python (fra cui quelle di \texttt{pyflakes}, \texttt{pycodestyle} e \texttt{isort}), segnalando importazioni e variabili non utilizzate, ordinamento delle importazioni, costrutti sintatticamente validi ma problematici e violazioni delle convenzioni di stile. Il formattatore integrato riproduce lo stile di \texttt{black}, indicato dalle Norme di Progetto\textsubscript{G} per la formattazione del codice Python: la conformità è quindi mantenuta senza introdurre un secondo strumento. La configurazione risiede in \texttt{pyproject.toml}, accanto a quella delle dipendenze. \\ \hline
+
+% NON PRESENTE NEL PoC — mypy non è fra le dipendenze di api/pyproject.toml e la
+% modalità rigorosa qui descritta non vi è configurata. Da introdurre nel
+% repository di prodotto.
+    \textbf{mypy} & \vMypy & Verifica\textsubscript{G} statica delle annotazioni di tipo del backend, in modalità rigorosa. Controlla la coerenza fra le firme dichiarate e le chiamate effettive, la completezza delle annotazioni e la correttezza dei tipi dei generatori asincroni impiegati nello streaming --- classe di errori che, in un linguaggio a tipizzazione dinamica, si manifesterebbe altrimenti solo in esecuzione e, nel caso dello streaming, a operazione già avviata. Porta il backend al medesimo livello di controllo che il compilatore TypeScript garantisce sul frontend\textsubscript{G}. \\ \hline
+\end{tabellatec}
+
+% NON PRESENTE NEL PoC — nel PoC l'analisi statica è applicata al solo frontend.
+% Il paragrafo che segue è vero solo dopo l'introduzione di Ruff e mypy: finché
+% non avviene, afferma una conformità alle Norme che non sussiste. Da introdurre
+% nel repository di prodotto.
+\noindent L'analisi statica\textsubscript{G} è quindi applicata a \textbf{entrambi} i livelli del prodotto, come richiesto dalle Norme di Progetto\textsubscript{G} e, per il loro tramite, dal requisito\textsubscript{G} di qualità \textbf{R-10-Q-Ob}. La simmetria fra i due livelli è voluta: al compilatore TypeScript ed ESLint sul frontend\textsubscript{G} corrispondono mypy e Ruff sul backend, con la medesima ripartizione fra verifica\textsubscript{G} dei tipi e verifica\textsubscript{G} delle regole di scrittura.
+
+Si osserva che la validazione operata dagli schemi \textbf{Pydantic} non appartiene a questa categoria e non ne costituisce un sostituto: Pydantic controlla i \textit{dati} che attraversano i confini dell'applicazione a tempo di esecuzione, mentre l'analisi statica\textsubscript{G} controlla il \textit{codice} senza eseguirlo. Le due verifiche\textsubscript{G} intercettano difetti disgiunti --- un corpo di richiesta malformato nel primo caso, un'incoerenza fra firme di funzione nel secondo --- e sono pertanto complementari.
+
+\subsubsection{Analisi dinamica}
+\label{sec:analisi-dinamica}
+L'analisi dinamica\textsubscript{G} è organizzata su test\textsubscript{G} di unità e di integrazione\textsubscript{G} dei due livelli, eseguiti separatamente dalle rispettive catene di strumenti.
+
+\begin{tabellatec}{Strumenti di analisi dinamica}{tab:tec-dinamica}
+    \textbf{Vitest} & 4.1.8 & Esecutore dei test\textsubscript{G} di unità e di integrazione\textsubscript{G} del frontend\textsubscript{G}. Riutilizza integralmente la configurazione di Vite --- risoluzione dei moduli, alias dei percorsi, trasformazione di TypeScript e JSX --- evitando la manutenzione di una seconda catena di strumenti allineata alla prima. \\ \hline
+
+% NON PRESENTE NEL PoC — @vitest/coverage-v8 non è fra le devDependencies di
+% web/package.json e non è risolto in web/pnpm-lock.yaml, dove compare solo come
+% peerDependency opzionale di vitest. Nessuna soglia di copertura è dichiarata
+% nel blocco `test` di web/vite.config.ts. Da introdurre nel repository di
+% prodotto; la versione dovrà coincidere con quella di Vitest (4.1.8 nel PoC).
+    \textbf{@vitest/\newline coverage-v8} & --- & Misurazione della copertura del codice\textsubscript{G} raggiunta dai test\textsubscript{G} del frontend\textsubscript{G}. Si appoggia allo strumento di copertura nativo del motore V8, senza richiedere una strumentazione del codice sorgente. Le soglie minime sono dichiarate nella configurazione di Vitest, così che il superamento sia verificato\textsubscript{G} dall'esecutore stesso e non affidato alla lettura del rapporto. È la controparte di \texttt{pytest-cov} sul versante frontend\textsubscript{G}: senza di essa il Piano di Qualifica non potrebbe riportare una metrica\textsubscript{G} di copertura su questo livello, come richiesto da \textbf{R-2-Q-Ob}. \\ \hline
+
+    \textbf{jsdom} & 29.1.1 & Realizzazione del DOM in ambiente Node.js, che consente di eseguire i test\textsubscript{G} dei componenti senza avviare un browser. \\ \hline
+
+    \textbf{Testing Library \newline (React)} & 16.3.2 & Interrogazione dei componenti resi attraverso ruoli, etichette e testo visibile, così come vi accederebbe una persona che utilizza il prodotto, anziché attraverso la struttura interna del marcatore. I test\textsubscript{G} restano quindi validi a fronte di riorganizzazioni interne dei componenti e verificano indirettamente l'accessibilità dell'interfaccia. \\ \hline
+
+    \textbf{jest-dom \newline user-event} & 6.9.1 \newline 14.6.1 & Asserzioni specifiche per gli elementi del DOM e simulazione delle interazioni dell'utente (digitazione, selezione, attivazione di comandi) con la sequenza di eventi effettivamente prodotta da un browser. \\ \hline
+
+    \textbf{pytest} & 9.0.3 & Esecutore dei test\textsubscript{G} del backend. Il sistema delle \textit{fixture} consente di comporre e riutilizzare le precondizioni dei test\textsubscript{G} in modo esplicito. \\ \hline
+
+    \textbf{pytest-asyncio} & 1.4.0 & Esecuzione dei test\textsubscript{G} su funzioni asincrone, condizione necessaria data la natura asincrona dell'intero backend. La modalità automatica configurata nel progetto rende superflua l'annotazione di ogni singolo test\textsubscript{G}. \\ \hline
+
+    \textbf{pytest-cov} & 7.1.0 & Misurazione della copertura del codice\textsubscript{G} raggiunta dai test\textsubscript{G} del backend. \\ \hline
+
+    \textbf{respx} & 0.23.1 & Interposizione sulle richieste HTTP effettuate tramite httpx. Consente di verificare\textsubscript{G} il comportamento del client verso il provider dei modelli --- flusso corretto, risposta malformata, errore di connessione, scadenza del tempo massimo --- senza contattare alcun servizio esterno, rendendo i test\textsubscript{G} deterministici e indipendenti dalla rete. \\ \hline
+\end{tabellatec}
+
+\paragraph{Alternative considerate}\mbox{}
+
+\begin{alternative}
+
+\altitem{Jest al posto di Vitest}
+Jest è lo standard storico dei test\textsubscript{G} in ambiente JavaScript, con la comunità più ampia e la maggiore disponibilità di documentazione. Richiederebbe però una configurazione separata e mantenuta in parallelo a quella di Vite, in particolare per la trasformazione di TypeScript e per i moduli ES, che Jest non supporta nativamente. Il disallineamento fra le due configurazioni è una fonte di errori ricorrente, e non è compensato da alcun vantaggio funzionale: l'interfaccia di programmazione di Vitest è deliberatamente compatibile con quella di Jest, e i test\textsubscript{G} risultano pressoché identici.
+
+\altitem{unittest al posto di pytest}
+Il modulo \texttt{unittest} è incluso nella libreria standard di Python e non aggiunge dipendenze. Impone però una struttura a classi che rende i test\textsubscript{G} più verbosi e, soprattutto, non dispone né di un sistema di \textit{fixture} componibili paragonabile a quello di pytest né dell'ecosistema di estensioni sul quale il progetto si appoggia per l'esecuzione asincrona, la misurazione della copertura del codice\textsubscript{G} e l'interposizione sulle richieste HTTP.
+
+\end{alternative}
+
+\subsection{Infrastruttura}
+\label{sec:tecnologie-infrastruttura}
+Le tecnologie di questa sezione non concorrono al comportamento del prodotto in esecuzione, ma governano il modo in cui esso viene costruito, avviato, verificato\textsubscript{G} e mantenuto coerente fra i due livelli.
+
+\paragraph{Organizzazione della repository\textsubscript{G}.}
+Prima delle tecnologie va richiamata una decisione organizzativa che le condiziona tutte: il gruppo ha adottato un'unica repository\textsubscript{G} (\textit{mono-repo}) per i due livelli del prodotto. Il codice del frontend\textsubscript{G} risiede in \texttt{/web} e quello del backend in \texttt{/api}, ciascuno con il proprio gestore di pacchetti, il proprio file di dipendenze e il proprio file di lock. Restano quindi due progetti distinti, con costruzioni e dipendenze proprie: condividono la repository\textsubscript{G} e la cronologia delle modifiche, non divengono un unico artefatto\textsubscript{G}.
+
+La scelta ha due conseguenze dirette sulle tecnologie descritte di seguito. La prima è che una variazione del contratto dell'API\textsubscript{G} e il corrispondente adeguamento del client possono essere integrati\textsubscript{G} con una sola pull request\textsubscript{G}, che li sottopone alla medesima verifica\textsubscript{G} automatica: non esiste un intervallo in cui i due livelli risultino disallineati. La seconda è che la configurazione di verifica\textsubscript{G} è definita una volta sola, in un solo insieme di flussi di lavoro.
+
+\begin{tabellatec}{Tecnologie di infrastruttura}{tab:tec-infrastruttura}
+% NON PRESENTE NEL PoC — la sola immagine di base del frontend dichiarata in
+% questa voce: web/Dockerfile del PoC usa `node:20-alpine`. Da portare a
+% `node:\vNode{}-alpine` nel repository di prodotto.
+% Il resto della voce è confermato dal PoC: docker-compose.yml descrive i due
+% servizi `web` e `api`, la rete `second-brain-net`, le porte 5173 e 8000 e le
+% variabili d'ambiente; api/Dockerfile usa `python:\vPython{}-slim`.
+    \textbf{Docker \newline Docker Compose} & \vDocker \newline \vCompose & Ambiente di sviluppo\textsubscript{G} ed esecuzione riproducibile. Il file \texttt{docker-compose.yml} descrive i due servizi \texttt{web} e \texttt{api}, la rete che li collega, le porte esposte verso la macchina ospite e le variabili d'ambiente, e li avvia con un solo comando. Le immagini di base sono fissate dai rispettivi \texttt{Dockerfile}: \texttt{node:\vNode{}-alpine} per il frontend\textsubscript{G} e \texttt{python:\vPython{}-slim} per il backend. La versione di Node.js è quella dell'ultima linea a supporto esteso: il perimetro tecnologico del frontend\textsubscript{G} (Vite 8, ESLint 10, TypeScript \vTS) dichiara vincoli sul motore che le linee precedenti non soddisfano più. \\ \hline
+
+% NON PRESENTE NEL PoC — la cartella .github/ non esiste nel PoC: non vi è
+% configurato alcun flusso di lavoro, quindi nessuno dei controlli descritti in
+% questa voce viene eseguito automaticamente. Da introdurre nel repository di
+% prodotto.
+    \textbf{GitHub Actions} & --- & Infrastruttura di \textit{Continuous Integration\textsubscript{G}}. Su ogni pull request\textsubscript{G} verso il ramo principale esegue, separatamente per i due livelli, l'analisi statica\textsubscript{G}, la verifica\textsubscript{G} dei tipi, la suite di test\textsubscript{G} con misurazione della copertura del codice\textsubscript{G} e la costruzione del pacchetto di produzione. È il luogo in cui gli strumenti delle sezioni \ref{sec:analisi-statica} e \ref{sec:analisi-dinamica} vengono effettivamente applicati: senza di esso la loro esecuzione dipenderebbe dalla diligenza individuale. Trattandosi di un servizio della piattaforma e non di una dipendenza installata, non è associato a una versione dichiarata nei file di progetto; le versioni fissate sono quelle delle singole azioni richiamate dai flussi di lavoro. \\ \hline
+
+% NON PRESENTE NEL PoC — il solo campo "packageManager" citato in questa voce:
+% è assente da web/package.json, e web/Dockerfile installa pnpm senza vincolo di
+% versione (`npm install -g pnpm`), quindi nel PoC il medesimo risolutore fra
+% sviluppo locale e integrazione continua non è garantito. Da introdurre nel
+% repository di prodotto. Il resto della voce è confermato: web/pnpm-lock.yaml
+% esiste e fissa l'intero albero delle dipendenze.
+    \textbf{pnpm} & \vPnpm & Gestore dei pacchetti del frontend\textsubscript{G}. Memorizza ogni versione di ogni pacchetto una sola volta e la collega per riferimento, riducendo occupazione di spazio e tempi di installazione. Il file \texttt{pnpm-lock.yaml} fissa le versioni risolte dell'intero albero delle dipendenze; la versione dello strumento stesso è vincolata dal campo \texttt{packageManager} di \texttt{package.json}, così che sviluppo\textsubscript{G} locale e integrazione\textsubscript{G} continua adoperino il medesimo risolutore. \\ \hline
+
+    \textbf{uv} & \vUv & Gestore dei pacchetti e dell'ambiente virtuale del backend. Risolve le dipendenze dichiarate in \texttt{pyproject.toml} e ne fissa le versioni in \texttt{uv.lock}; l'installazione in fase di costruzione dell'immagine avviene in modalità vincolata al file di lock, così che l'ambiente sia identico su ogni macchina. \\ \hline
+
+    \textbf{openapi-\newline typescript} & 7.13.0 & Generazione dei tipi TypeScript del client a partire dallo schema OpenAPI prodotto da FastAPI. Il frontend\textsubscript{G} non dichiara autonomamente la forma dei dati scambiati con il backend: la deriva dal contratto pubblicato dal backend stesso. Una modifica di uno schema Pydantic si propaga così ai tipi del client e, se incompatibile con l'uso che il frontend\textsubscript{G} ne fa, si manifesta come errore di compilazione anziché come guasto in esecuzione. Il file generato è escluso dall'analisi di ESLint, non essendo codice scritto a mano. \\ \hline
+\end{tabellatec}
+
+% NON PRESENTE NEL PoC — l'intero paragrafo che segue. Descrive due processi e
+% passi puntuali, verificabili da chiunque apra .github/workflows/, che nel PoC
+% non esiste. È il passo più esposto del documento. Da realizzare nel repository
+% di prodotto: va reso vero, non riformulato.
+\paragraph{Nota sulle versioni degli strumenti di sviluppo.}
+Le versioni indicate per \textbf{Docker}, \textbf{Docker Compose}, \textbf{pnpm} e \textbf{uv} vanno lette diversamente da tutte le altre del documento. Quelle delle librerie sono fissate dai file di lock e risultano identiche su ogni macchina; queste quattro no, perché nessun file del progetto le vincola: le immagini installano i due gestori di pacchetti senza indicare una versione, e Docker e Compose sono presupposti dall'ambiente anziché dichiarati. I valori riportati sono quindi quelli \textbf{in uso sull'ambiente di sviluppo del gruppo} alla data del documento, e non un vincolo\textsubscript{G} verificabile\textsubscript{G}: su un'altra macchina, o in un altro momento, l'installazione può risolvere versioni diverse. Per Docker il numero è quello di CLI e motore riportato da \texttt{docker -{}-version}, che non coincide con la versione di Docker Desktop, la quale segue una numerazione propria.
+
+\paragraph{Verifica automatica delle pull request\textsubscript{G}.}
+I controlli eseguiti dall'integrazione\textsubscript{G} continua sono la condizione che ogni modifica deve soddisfare prima di essere integrata\textsubscript{G} nel ramo principale. Sono organizzati in due processi indipendenti, uno per livello, ciascuno con i propri passi:
+
+\begin{itemize}
+    \setlength{\itemsep}{2pt}
+    \item \textbf{frontend\textsubscript{G}}: installazione vincolata al file di lock, ESLint, compilazione dei tipi con \texttt{tsc}, esecuzione di Vitest con misurazione della copertura del codice\textsubscript{G} e verifica\textsubscript{G} delle soglie, costruzione del pacchetto di produzione con Vite;
+    \item \textbf{backend}: installazione vincolata a \texttt{uv.lock}, Ruff (regole e formattazione), mypy, esecuzione di pytest con \texttt{pytest-cov} e verifica\textsubscript{G} delle soglie.
+\end{itemize}
+
+\noindent L'esito negativo di un qualunque passo impedisce l'integrazione\textsubscript{G}. Questi controlli soddisfano il requisito\textsubscript{G} \textbf{R-4-Q-Ob}, che subordina l'integrazione\textsubscript{G} nel ramo principale al superamento dei test\textsubscript{G} automatici oltre che alla revisione tra pari, e rendono \textbf{verificabile} quanto la voce openapi-typescript afferma: perché un'incompatibilità di contratto si manifesti ``come errore di compilazione'' occorre che una compilazione avvenga a ogni modifica, in un ambiente che non si possa aggirare. La rigenerazione dei tipi dallo schema OpenAPI è essa stessa un passo del processo del frontend\textsubscript{G}, seguito dal controllo che il file generato coincida con quello versionato: se i due differiscono, lo schema del backend è cambiato senza che il client sia stato aggiornato, e la verifica\textsubscript{G} fallisce.
+
+\paragraph{Nota sui container.}
+Un container non è una macchina virtuale, bensì un normale processo del sistema\textsubscript{G} operativo ospite, isolato mediante funzionalità del kernel: i \textit{namespaces} gli attribuiscono una vista propria di processi, rete e file system, i \textit{cgroups} ne limitano il consumo di risorse. Poiché il kernel è condiviso con la macchina ospite, anziché replicato come in una macchina virtuale, l'ingombro è sensibilmente inferiore e l'avvio richiede secondi anziché minuti.
+
+\paragraph{Alternative considerate}\mbox{}
+
+\begin{alternative}
+
+\altitem{Configurazione manuale dell'ambiente al posto di Docker}
+Richiederebbe a ciascun membro del gruppo di installare e allineare manualmente le versioni di Node.js, di Python e delle rispettive dipendenze di sistema\textsubscript{G} su tre famiglie di sistemi\textsubscript{G} operativi differenti. Le configurazioni divergerebbero inevitabilmente, con la conseguenza che un comportamento osservato su una macchina non sarebbe riproducibile sulle altre --- circostanza che rende la diagnosi dei guasti sproporzionatamente onerosa e vanifica il valore probatorio dei test\textsubscript{G}.
+
+\altitem{Podman al posto di Docker}
+Podman è compatibile con i formati e i comandi di Docker e presenta un vantaggio di sicurezza\textsubscript{G} non trascurabile: non richiede un processo demone privilegiato in esecuzione permanente e consente di eseguire i container senza privilegi amministrativi. È stato scartato per ragioni di diffusione, ampiezza della documentazione e familiarità pregressa dei membri del gruppo, elementi che riducono il tempo speso in attività non produttive.
+
+\altitem{Poly-repo al posto del mono-repo}
+La separazione di frontend\textsubscript{G} e backend in repository\textsubscript{G} distinte è appropriata quando i due componenti sono sviluppati da gruppi diversi e rilasciati in modo indipendente. Non è il caso del progetto: le due parti sono sviluppate dallo stesso gruppo e rilasciate congiuntamente. La separazione imporrebbe due pull request\textsubscript{G} coordinate a ogni variazione del contratto dell'API\textsubscript{G}, con una finestra temporale in cui le due repository\textsubscript{G} risultano disallineate, oltre alla duplicazione della configurazione di verifica\textsubscript{G}.
+
+\altitem{Tipi TypeScript scritti a mano al posto della generazione da OpenAPI}
+È l'alternativa che non aggiunge alcuno strumento, ma introduce una duplicazione del contratto dell'API\textsubscript{G} in due punti del sistema\textsubscript{G} mantenuti separatamente. Le due definizioni divergono inevitabilmente non appena il backend evolve senza che il frontend\textsubscript{G} venga aggiornato di conseguenza; poiché i tipi TypeScript sono rimossi in compilazione, la divergenza non produce alcun errore e si manifesta come guasto silenzioso in esecuzione. La generazione a partire dallo schema elimina la duplicazione alla radice.
+
+\end{alternative}
+
+\newpage
+
+
+% ===========================================================================
+% SEZIONE 3 -- ARCHITETTURA
+% I diagrammi UML non costituiscono sezioni a sé: la notazione non è un
+% argomento. Ogni diagramma è collocato accanto al testo che lo commenta,
+% all'interno della sottosezione che tratta la componente raffigurata.
+% ===========================================================================
 \section{Architettura}
+\label{sec:architettura}
 
-\subsection{Architettura logica}
-
-\subsubsection{Architettura logica Backend}
+\subsection{Vista d'insieme}
+\label{sec:architettura-insieme}
+% Contenuto previsto: descrizione dei confini del sistema e delle entità
+% esterne con cui interagisce (utente, gateway LiteLLM, servizio di
+% estrazione, file system locale), secondo i livelli di contesto e di
+% container del modello C4. Diagramma dei container con didascalia.
 
 \subsection{Architettura di deployment}
+\label{sec:architettura-deployment}
+% Contenuto previsto: i due servizi in container, la rete che li collega,
+% le porte esposte, la provenienza della configurazione. Diagramma di
+% deployment UML.
 
-\subsubsection{Confronto con architettura a microservizi}
+\subsubsection{Confronto con l'architettura a microservizi}
+\label{sec:confronto-microservizi}
 
-\subsubsection{Confronto con architettura a monolite}
+\subsubsection{Confronto con l'architettura monolitica}
+\label{sec:confronto-monolite}
 
-\subsection{UML Frontend}
+\subsection{Architettura del frontend}
+\label{sec:architettura-frontend}
+% Contenuto previsto: scomposizione in componenti React con le rispettive
+% responsabilità, corredata dal diagramma delle classi/componenti; il
+% confine fra componenti di presentazione e accesso allo stato; la
+% collocazione del client generato da OpenAPI.
 
-\subsection{Architettura Frontend}
+\subsubsection{Scomposizione in componenti}
+\label{sec:frontend-componenti}
 
-\subsection{UML Backend}
+\subsubsection{Gestione dello stato applicativo}
+\label{sec:frontend-stato}
 
-\subsection{Architettura Backend}
+\subsection{Architettura del backend}
+\label{sec:architettura-backend}
+% Contenuto previsto: architettura esagonale -- dominio al centro, porte
+% come interfacce astratte, adattatori verso il gateway LLM, verso il
+% servizio di estrazione e verso HTTP. Diagramma delle classi accanto alla
+% descrizione delle porte, non in una sezione separata.
 
-\subsection{Design Pattern}
+\subsubsection{Porte e adattatori}
+\label{sec:backend-porte-adattatori}
 
-\section{Data Flow}
+\subsubsection{Scomposizione in moduli}
+\label{sec:backend-moduli}
 
-\subsection{Architettura di Sistema}
+\subsection{Design pattern adottati}
+\label{sec:design-pattern}
+% Contenuto previsto: per ciascun pattern, il problema specifico che
+% risolve nel prodotto, le classi coinvolte e il diagramma relativo.
+% Adapter (LLMClient e client di estrazione), Strategy (selezione della
+% strategia di persistenza in base alle capacità del browser), Dependency
+% Injection (fornitura delle dipendenze nei router FastAPI), Observer
+% (selettori Zustand).
 
-\subsection{Fasi del Data Flow}
+\subsection{Idiomi e convenzioni di codifica}
+\label{sec:idiomi-convenzioni}
+% Contenuto previsto: le convenzioni trasversali che non appartengono a una
+% singola componente ma governano la scrittura del codice su entrambi i
+% livelli. È la sede del ragionamento sui generatori asincroni.
 
-\subsubsection{Macro-Fase 1: Request Flow}
+\subsubsection{Generatori asincroni e propagazione dell'annullamento}
+\label{sec:idiomi-generatori}
 
-\subsubsection{Macro-Fase 2: Processing}
+\subsubsection{Tipizzazione dei confini fra i livelli}
+\label{sec:idiomi-tipizzazione}
 
-\subsubsection{Macro-Fase 3: Response Flow}
+\subsubsection{Denominazione, struttura dei file e gestione degli errori}
+\label{sec:idiomi-denominazione}
 
-\section{Stato dei requisiti funzionali}
 
-\subsection{Stato di requisito}
+% ===========================================================================
+% SEZIONE 4 -- FLUSSO DEI DATI
+% Organizzata per casi d'uso realmente presenti nel prodotto, non per fasi
+% astratte: ogni sottosezione segue un'interazione dall'evento che la avvia
+% fino al suo esito, attraversando le componenti descritte nella sezione 3.
+% ===========================================================================
+\section{Flusso dei dati}
+\label{sec:flusso-dati}
+
+\subsection{Generazione assistita da LLM\textsubscript{G} con risposta in streaming}
+\label{sec:flusso-streaming}
+% Contenuto previsto: diagramma di sequenza dall'azione dell'utente alla
+% comparsa progressiva del testo nell'anteprima, con i confini di
+% responsabilità attraversati. Requisiti coinvolti: R-54-F-Ob, R-72-F-Ob,
+% R-109-F-De.
+
+\subsection{Annullamento di un'operazione in corso}
+\label{sec:flusso-annullamento}
+% Contenuto previsto: propagazione della chiusura dal browser al backend e
+% da questo alla connessione verso il gateway. Requisito: R-79-F-De.
+
+\subsection{Generazione a partire da un collegamento}
+\label{sec:flusso-collegamento}
+% Contenuto previsto: estrazione del contenuto della pagina, troncamento,
+% composizione delle istruzioni. Requisito: R-74-F-De.
+
+\subsection{Salvataggio e caricamento di una nota}
+\label{sec:flusso-persistenza}
+% Contenuto previsto: le due vie di persistenza e il punto in cui la
+% strategia viene selezionata; recupero dei metadati dall'oggetto File.
+% Requisiti: R-4-V-Ob, R-97-F-De.
+
+\subsection{Propagazione e presentazione degli errori}
+\label{sec:flusso-errori}
+% Contenuto previsto: traduzione degli errori del gateway in messaggi
+% conformi a R-110-F-Ob, senza esposizione di dettagli tecnici.
+
+
+% ===========================================================================
+% SEZIONE 5 -- TRACCIAMENTO DEI REQUISITI
+% L'Analisi dei Requisiti classifica i requisiti in funzionali, di qualità
+% e di vincolo: il tracciamento copre tutte e tre le tipologie, non i soli
+% requisiti funzionali.
+% ===========================================================================
+\section{Tracciamento dei requisiti\textsubscript{G}}
+\label{sec:tracciamento}
+
+\subsection{Criteri di tracciamento}
+\label{sec:tracciamento-criteri}
+% Contenuto previsto: significato attribuito a ciascuno stato di copertura e
+% modalità di verifica.
+% Gli stati sono DUE, non tre: soddisfatto (S) e non soddisfatto (NS). Uno
+% stato intermedio "parzialmente soddisfatto" su un requisito obbligatorio
+% viene letto in revisione come non soddisfatto, con l'aggravante
+% dell'ambiguità: se un requisito non è coperto per intero, è NS.
+
+\subsection{Requisiti\textsubscript{G} funzionali}
+\label{sec:tracciamento-funzionali}
+
+\subsection{Requisiti\textsubscript{G} di qualità}
+\label{sec:tracciamento-qualita}
+
+\subsection{Requisiti\textsubscript{G} di vincolo\textsubscript{G}}
+\label{sec:tracciamento-vincolo}
+% Promemoria: R-8-V-Op (funzionalità RAG) è opzionale e non implementato. Non
+% riguarda la persistenza, quindi resta fuori dalla sezione 2.4, ma va tracciato
+% come NS qui.
 
 \subsection{Grafici riassuntivi}
+\label{sec:tracciamento-grafici}
 
 \end{document}
