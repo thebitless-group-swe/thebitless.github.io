@@ -1,0 +1,68 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Pagina-1" id="xQkobMQ6OQ0ODcRfu5QX">
+    <mxGraphModel dx="1164" dy="893" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-631" parent="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=14;" value="Sistema" vertex="1">
+          <mxGeometry height="30" width="70" x="1040" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-632" parent="1" style="whiteSpace=wrap;html=1;pointerEvents=0;fillColor=none;strokeColor=#000000;" value="" vertex="1">
+          <mxGeometry height="500" width="730" x="380" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-633" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=14;" value="Utente&lt;br&gt;riconosciuto" vertex="1">
+          <mxGeometry height="80" width="40" x="260" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-634" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" value="UC78 - Salvataggio nota" vertex="1">
+          <mxGeometry height="80" width="240" x="450" y="565" as="geometry" />
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-635" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" value="UC78.1 - Salvataggio nota da File&lt;br&gt;System" vertex="1">
+          <mxGeometry height="80" width="260" x="440" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-636" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" value="UC78.2 - Salvataggio nota da&lt;br&gt;database" vertex="1">
+          <mxGeometry height="80" width="260" x="440" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-637" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" value="&lt;div&gt;UC79 - Errore salvataggio nota&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="260" x="820" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-638" edge="1" parent="1" source="HCdEVDdO6MzIm06qFmDV-646" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="HCdEVDdO6MzIm06qFmDV-634" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-639" edge="1" parent="1" source="HCdEVDdO6MzIm06qFmDV-635" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="HCdEVDdO6MzIm06qFmDV-634" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-640" edge="1" parent="1" source="HCdEVDdO6MzIm06qFmDV-636" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="HCdEVDdO6MzIm06qFmDV-634" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry" />
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-641" edge="1" parent="1" source="HCdEVDdO6MzIm06qFmDV-637" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="HCdEVDdO6MzIm06qFmDV-634" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;&lt;/font&gt;">
+          <mxGeometry relative="1" x="-0.0769" y="-20" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-642" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fontSize=12;align=center;size=25;" value="&lt;b&gt;Condizione&lt;/b&gt;&lt;br&gt;Il sistema non riesce a&lt;br&gt;salvare la nota" vertex="1">
+          <mxGeometry height="60" width="180" x="720" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-643" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;rounded=0;entryX=0;entryY=0;entryDx=65;entryDy=0;entryPerimeter=0;" target="HCdEVDdO6MzIm06qFmDV-642" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="770" y="600" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-644" edge="1" parent="1" source="HCdEVDdO6MzIm06qFmDV-633" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="HCdEVDdO6MzIm06qFmDV-636" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="330" y="810" as="sourcePoint" />
+            <mxPoint x="480" y="838" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-645" edge="1" parent="1" source="HCdEVDdO6MzIm06qFmDV-633" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="280" y="710" as="sourcePoint" />
+            <mxPoint x="280" y="670" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-646" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=14;" value="Utente" vertex="1">
+          <mxGeometry height="70" width="40" x="260" y="570" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

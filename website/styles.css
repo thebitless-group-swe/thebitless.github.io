@@ -258,7 +258,7 @@ body::before {
   display: none;
 }
 
-.poc-banner {
+.mvp-banner {
   background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 14px;
@@ -271,27 +271,27 @@ body::before {
   flex-wrap: wrap;
 }
 
-.poc-banner[hidden] {
+.mvp-banner[hidden] {
   display: none;
 }
 
-.poc-banner-text {
+.mvp-banner-text {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
-.poc-banner .doc-name {
+.mvp-banner .doc-name {
   font-size: 16px;
   color: var(--fg);
 }
 
-.poc-note {
+.mvp-note {
   font-size: 13px;
   color: var(--muted);
 }
 
-.poc-actions {
+.mvp-actions {
   display: inline-flex;
   align-items: center;
   gap: 20px;

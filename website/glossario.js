@@ -192,7 +192,7 @@ const FALLBACK_GLOSSARIO = [
 
 // URL del glossario.tex nel branch main del repository: la fonte di verità.
 const GLOSSARIO_TEX_URL =
-  "https://raw.githubusercontent.com/thebitless-group-swe/thebitless.github.io/main/RTB/doc_interna/glossario/glossario.tex";
+  "https://raw.githubusercontent.com/thebitless-group-swe/thebitless.github.io/main/PB/doc_interna/glossario/glossario.tex";
 
 // Lista mostrata a video: parte dalla copia di riserva e viene rimpiazzata
 // dai termini letti dal glossario.tex non appena il fetch va a buon fine.

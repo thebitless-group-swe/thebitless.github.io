@@ -10,22 +10,22 @@ const MEMBERS = [
 
 const REPO = "thebitless-group-swe/thebitless.github.io";
 const RAW_BASE = `https://raw.githubusercontent.com/${REPO}/main/`;
-const POC_URL = "https://github.com/thebitless-group-swe/PoC";
-// GitHub genera al volo lo ZIP del branch di default della repo del PoC.
-const POC_ZIP_URL = "https://github.com/thebitless-group-swe/PoC/archive/refs/heads/main.zip";
+const MVP_URL = "https://github.com/thebitless-group-swe/MVP";
+// GitHub genera al volo lo ZIP del branch di default della repo dell'MVP.
+const MVP_ZIP_URL = "https://github.com/thebitless-group-swe/MVP/archive/refs/heads/main.zip";
 const REPO_URL = `https://github.com/${REPO}`;
 const VERBALE_RE = /^(VE|VI|V)_(\d{4}-\d{2}-\d{2})_(.+)$/;
 const DIARIO_RE = /^DB-?(\d+)?_?(\d{4}-\d{2}-\d{2})/;
 
 let PHASES = [];
-let ACTIVE_PHASE = "rtb";
-// Lettere di presentazione RTB (percorsi relativi sul sito): la prima parte è indirizzata al
-// prof. Cardin, la seconda al prof. Vardanega. GitHub Pages serve i PDF con content-type corretto,
-// così si aprono nel browser invece di scaricarsi come fa raw.githubusercontent.
-const LETTERE = [
-  { name: "Lettera di presentazione (docente Cardin)", path: "RTB/lettera-di-presentazione/lettera-di-presentazione.pdf" },
-  { name: "Lettera di presentazione (docente Vardanega)", path: "RTB/lettera-di-presentazione/lettera-di-presentazione-vardanega.pdf" },
-];
+let ACTIVE_PHASE = "pb";
+// Fase in cui mostrare il riquadro delle lettere di presentazione, oppure null per non mostrarlo.
+// Con il passaggio a PB le lettere RTB non sono più esposte: quando sarà pronta la lettera di
+// presentazione della PB, basta popolare LETTERE e riportare qui "pb".
+const LETTERE_PHASE = null;
+// Percorsi relativi sul sito: GitHub Pages serve i PDF con content-type corretto, così si aprono
+// nel browser invece di scaricarsi come fa raw.githubusercontent.
+const LETTERE = [];
 
 function humanize(s) {
   const t = s.replace(/[-_]+/g, " ").trim();
@@ -124,23 +124,23 @@ function buildDiari(pdfs, prefix) {
   return items.map(({ _sort, _num, ...r }) => r);
 }
 
-// Il PoC è mostrato in un riquadro a parte in alto (vedi renderPocBanner), non tra i documenti.
+// L'MVP è mostrato in un riquadro a parte in alto (vedi renderMvpBanner), non tra i documenti.
 
 function buildPhases(pdfs, texPaths, slides = pdfs) {
   return [
     {
-      id: "rtb",
-      label: "RTB",
+      id: "pb",
+      label: "PB",
       groups: [
         {
           label: "Documentazione esterna",
-          docs: buildDocs(pdfs, texPaths, "RTB/doc_esterna", ["verbali"]),
-          verbali: { label: "Verbali esterni", items: buildVerbali(pdfs, "RTB/doc_esterna/verbali") },
+          docs: buildDocs(pdfs, texPaths, "PB/doc_esterna", ["verbali"]),
+          verbali: { label: "Verbali esterni", items: buildVerbali(pdfs, "PB/doc_esterna/verbali") },
         },
         {
           label: "Documentazione interna",
-          docs: buildDocs(pdfs, texPaths, "RTB/doc_interna", ["verbali"]),
-          verbali: { label: "Verbali interni", items: buildVerbali(pdfs, "RTB/doc_interna/verbali") },
+          docs: buildDocs(pdfs, texPaths, "PB/doc_interna", ["verbali"]),
+          verbali: { label: "Verbali interni", items: buildVerbali(pdfs, "PB/doc_interna/verbali") },
         },
       ],
     },
@@ -170,7 +170,7 @@ function buildPhases(pdfs, texPaths, slides = pdfs) {
 
 function emptyPhases() {
   return [
-    { id: "rtb", label: "RTB", groups: [] },
+    { id: "pb", label: "PB", groups: [] },
     { id: "candidatura", label: "Candidatura", groups: [] },
     { id: "diari", label: "Diapositive", docs: [] },
   ];
@@ -302,12 +302,12 @@ function makeGroup(group) {
   return details;
 }
 
-// Lettera di presentazione fuori dai documenti, visibile solo nella fase RTB.
+// Lettera di presentazione fuori dai documenti, visibile solo nella fase indicata da LETTERE_PHASE.
 function renderLetteraBanner() {
   const banner = document.getElementById("lettera-banner");
   if (!banner) return;
   banner.innerHTML = "";
-  if (ACTIVE_PHASE !== "rtb") {
+  if (LETTERE_PHASE === null || ACTIVE_PHASE !== LETTERE_PHASE || LETTERE.length === 0) {
     banner.hidden = true;
     return;
   }
@@ -328,33 +328,33 @@ function renderLetteraBanner() {
   banner.hidden = false;
 }
 
-// PoC: riquadro a parte in alto (come la lettera), con download dell'archivio ZIP del codice. Solo fase RTB.
-function renderPocBanner() {
-  const banner = document.getElementById("poc-banner");
+// MVP: riquadro a parte in alto (come la lettera), con download dell'archivio ZIP del codice. Solo fase PB.
+function renderMvpBanner() {
+  const banner = document.getElementById("mvp-banner");
   if (!banner) return;
   banner.innerHTML = "";
-  if (ACTIVE_PHASE !== "rtb") {
+  if (ACTIVE_PHASE !== "pb") {
     banner.hidden = true;
     return;
   }
 
   const text = document.createElement("div");
-  text.className = "poc-banner-text";
+  text.className = "mvp-banner-text";
   const name = document.createElement("span");
   name.className = "doc-name";
-  name.textContent = "Proof of Concept (PoC)";
+  name.textContent = "Minimum Viable Product (MVP)";
   text.appendChild(name);
 
   const actions = document.createElement("div");
-  actions.className = "poc-actions";
+  actions.className = "mvp-actions";
 
   const zip = document.createElement("a");
-  zip.href = POC_ZIP_URL;
+  zip.href = MVP_ZIP_URL;
   zip.className = "doc-link doc-link--download";
   zip.textContent = "Scarica ZIP";
 
   const repo = document.createElement("a");
-  repo.href = POC_URL;
+  repo.href = MVP_URL;
   repo.className = "doc-link doc-link--external";
   repo.target = "_blank";
   repo.rel = "noopener";
@@ -370,7 +370,7 @@ function renderPocBanner() {
 
 function renderActivePhase() {
   renderLetteraBanner();
-  renderPocBanner();
+  renderMvpBanner();
   const panel = document.getElementById("phase-panel");
   if (!panel) return;
   const phase = PHASES.find((p) => p.id === ACTIVE_PHASE);
@@ -503,7 +503,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   PHASES = await loadPhases();
 
-  // Se si arriva dal glossario con #rtb / #candidatura / #diari, apri quella fase.
+  // Se si arriva dal glossario con #pb / #candidatura / #diari, apri quella fase.
   const fromHash = location.hash.replace("#", "");
   if (PHASES.some((p) => p.id === fromHash)) {
     setActivePhase(fromHash);

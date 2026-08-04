@@ -1,0 +1,37 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Pagina-1" id="xQkobMQ6OQ0ODcRfu5QX">
+    <mxGraphModel dx="1475" dy="893" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-697" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="333.13" width="340" x="490" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-698" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC86.1 - Inserimento username" vertex="1">
+          <mxGeometry height="100" width="215" x="560" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-699" edge="1" parent="1" source="HCdEVDdO6MzIm06qFmDV-701" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="HCdEVDdO6MzIm06qFmDV-698">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-700" edge="1" parent="1" source="HCdEVDdO6MzIm06qFmDV-701" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" target="HCdEVDdO6MzIm06qFmDV-705">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-701" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Utente&amp;nbsp;&lt;div&gt;non riconosciuto&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="30" x="320" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-702" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Sistema" vertex="1">
+          <mxGeometry height="30" width="60" x="770" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-703" parent="1" style="shape=card;whiteSpace=wrap;html=1;rotation=-90;flipH=0;legacyAnchorPoints=0;flipV=1;size=33;" value="" vertex="1">
+          <mxGeometry height="180" width="33.45" x="563.29" y="376.74" as="geometry" />
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-704" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=12;" value="UC86 - Autenticazione" vertex="1">
+          <mxGeometry height="30" width="190" x="470" y="451.74" as="geometry" />
+        </mxCell>
+        <mxCell id="HCdEVDdO6MzIm06qFmDV-705" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC86.2 - Inserimento password" vertex="1">
+          <mxGeometry height="100" width="215" x="560" y="650" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
