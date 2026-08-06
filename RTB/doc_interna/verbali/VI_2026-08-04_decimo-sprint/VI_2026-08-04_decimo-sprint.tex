@@ -51,7 +51,7 @@
 \newpage
 \pagenumbering{arabic}
 \section{Informazioni sulla riunione}
-Il presente documento riporta la verbalizzazione della riunione interna al gruppo \textbf{The Bitless} avvenuta in apertura del decimo sprint$_G$. L'incontro si è svolto tramite la piattaforma Discord$_G$ ed è stato dedicato principalmente alla rotazione dei ruoli$_G$, alla ridefinizione della durata degli sprint, alla definizione dell'architettura e dei design pattern, e alla pianificazione delle attività in vista delle consegne finali.
+Il presente documento riporta la verbalizzazione della riunione interna al gruppo \textbf{The Bitless} avvenuta in apertura del decimo sprint$_G$. L'incontro si è svolto tramite la piattaforma Discord$_G$ ed è stato dedicato principalmente alla rotazione dei ruoli$_G$, alla ridefinizione della durata degli sprint$_G$, alla definizione dell'architettura e dei design pattern, e alla pianificazione delle attività in vista delle consegne finali.
 
 \section{Presenze}
 \begin{center}
@@ -72,12 +72,12 @@ Simone & Zecchinato & Presente \\
 
 \section{Ordine del giorno}
 \begin{enumerate}
-    \item Rotazione dei ruoli per lo Sprint 10;
-    \item Pianificazione dello sprint;
-    \item Decisioni sull'architettura e sul database per l'MVP;
+    \item Rotazione dei ruoli$_G$ per lo Sprint$_G$ 10;
+    \item Pianificazione dello sprint$_G$;
+    \item Decisioni sull'architettura e sul database$_G$ per l'MVP$_G$;
     \item Scelta dei design pattern ;
     \item Prossimo diario di bordo e invio comunicazioni;
-    \item Assegnazione delle attività singole.
+    \item Assegnazione$_G$ delle attività singole.
 \end{enumerate}
 
 \section{Discussione e decisioni}
@@ -107,17 +107,17 @@ In apertura del decimo sprint$_G$ il gruppo ha effettuato una nuova rotazione de
 \end{center}
 
 \subsection{Pianificazione dello sprint e Diario di Bordo}
-Il team ha deciso di accorciare la durata degli sprint portandoli da due settimane a una settimana, questo permette al gruppo di coordinarsi più agilmente nel periodo finale del progetto. Per questo lo Sprint 10 si concluderà l'11 agosto. Questa modifica è stata apportata inoltre per ottimizzare i tempi in vista dell'incontro con il prof. Cardin, previsto intorno al 22-23 agosto, e della consegna finale al prof. Vardanega pianificata per il 28-30 agosto.
+Il team ha deciso di accorciare la durata degli sprint$_G$ portandoli da due settimane a una settimana, questo permette al gruppo di coordinarsi più agilmente nel periodo finale del progetto. Per questo lo Sprint$_G$ 10 si concluderà l'11 agosto. Questa modifica è stata apportata inoltre per ottimizzare i tempi in vista dell'incontro con il prof. Cardin, previsto intorno al 22-23 agosto, e della consegna finale al prof. Vardanega pianificata per il 28-30 agosto.
 
 Il gruppo poi discusso le informazioni da inserire nel prossimo Diario di Bordo: non emergono dubbi o difficoltà da riportare.
 
 \subsection{Architettura, Database e Design Pattern}
 Durante la riunione, il gruppo ha finalizzato importanti scelte tecnologiche e progettuali da riportare nella Specifica Tecnica:
 \begin{itemize}
-    \item \textbf{Architettura:} È stata scelta in via definitiva l'architettura a monolite esagonale. L'adozione dei microservizi è stata ufficialmente scartata, in quanto valutata come eccessiva e sprecata per lo scopo e il dominio del progetto.
-    \item \textbf{Database per l'MVP:} Il team ha stabilito di non implementare un database per l'MVP, privilegiando la qualità complessiva del sistema rispetto a funzionalità opzionali.
-    \item \textbf{Design Pattern confermati:} Sono stati già implementati, o sono in via di finalizzazione, i pattern Adapter (per frontend e backend), Observer (frontend), Singleton e Dependency Injection.
-    \item \textbf{Design Pattern da aggiungere:} Sarà implementato il pattern Facade all'interno del frontend, al fine di disaccoppiare in modo efficace le finestre dagli endpoint e dai campi del backend.
+    \item \textbf{Architettura:} È stata scelta in via definitiva l'architettura a monolite esagonale. L'adozione dei microservizi è stata ufficialmente scartata, in quanto valutata come eccessiva e sprecata per lo scopo e il dominio$_G$ del progetto.
+    \item \textbf{Database per l'MVP:} Il team ha stabilito di non implementare un database$_G$ per l'MVP$_G$, privilegiando la qualità complessiva del sistema$_G$ rispetto a funzionalità opzionali.
+    \item \textbf{Design Pattern confermati:} Sono stati già implementati, o sono in via di finalizzazione, i pattern Adapter (per frontend$_G$ e backend), Observer (frontend$_G$), Singleton e Dependency Injection.
+    \item \textbf{Design Pattern da aggiungere:} Sarà implementato il pattern Facade all'interno del frontend$_G$, al fine di disaccoppiare in modo efficace le finestre dagli endpoint e dai campi del backend.
     \item \textbf{Design Pattern scartati:} I pattern Strategy e Template Method sono stati scartati perché il flusso applicativo è univoco e non presenta duplicazioni logiche da rimuovere. Anche il pattern Builder, inizialmente valutato per la costruzione dei prompt, è stato accantonato poiché l'overhead generato non è ritenuto giustificato.
 \end{itemize}
 Prima di dichiarare formalmente l'architettura esagonale nei documenti, i programmatori verificheranno con attenzione il livello di accoppiamento dei moduli nel codice sorgente.
@@ -131,15 +131,15 @@ Prima di dichiarare formalmente l'architettura esagonale nei documenti, i progra
         \hline
         L. Battistella & Stesura del manuale utente (introduzione e sezioni iniziali) & \issue{322} \\
         \hline
-        A. Marini & Aggiornamento del Piano di Progetto (sprint 8-9 e preventivo sprint 10) & \issue{318} \\
+        A. Marini & Aggiornamento del Piano di Progetto$_G$ (sprint$_G$ 8-9 e preventivo sprint$_G$ 10) & \issue{318} \\
         \hline
         S. Zecchinato & Stesura e invio del nuovo diario di bordo & \issue{321} \\
         \hline
         S. Zecchinato & Stesura del verbale della riunione odierna & \issue{320} \\
         \hline
-        S. Zecchinato & Aggiornamento del Piano di Qualifica & \issue{319} \\
+        S. Zecchinato & Aggiornamento del Piano di Qualifica$_G$ & \issue{319} \\
         \hline
-        A. Menegaldo e S. Vendramin & Verifica accoppiamento moduli e implementazione Facade (frontend) & \issueMVP{27} e \issueMVP{29} \\
+        A. Menegaldo e S. Vendramin & Verifica$_G$ accoppiamento moduli e implementazione Facade (frontend$_G$) & \issueMVP{27} e \issueMVP{29} \\
         \hline
         D. Facco ed E. De Piccoli & Stesura della sezione architettura e design pattern nella Specifica Tecnica & \issue{303} \\
         \hline
