@@ -1,0 +1,151 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+\usepackage[a-1b]{pdfx}
+\usepackage[italian]{babel}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{minted}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{\titolo \ \dataverbale}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    pdfborderstyle={/S/U/W 1},
+    linkbordercolor=0 0 0,
+    urlbordercolor=0 0 0,
+    citebordercolor=0 0 0,
+    filebordercolor=0 0 0,
+    breaklinks=true,
+}
+\newcommand{\issue}[1]{\href{https://github.com/thebitless-group-swe/thebitless.github.io/issues/#1}{\##1}}
+\newcommand{\issueMVP}[1]{\href{https://github.com/thebitless-group-swe/MVP/issues/#1}{\##1}}
+
+\begin{document}
+
+\newcommand{\titolo}{Verbale interno}
+\newcommand{\dataverbale}{2026-08-04}
+\newcommand{\dataversione}{2026-08-04}
+\newcommand{\versione}{1.0.0}
+\newcommand{\stato}{Approvato}
+\newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+\def\templatedir{../../../../templates}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+\input{\templatedir/frontespizio.tex}
+\end{titlepage}
+
+\newpage
+\tableofcontents
+
+\newpage
+\pagenumbering{arabic}
+\section{Informazioni sulla riunione}
+Il presente documento riporta la verbalizzazione della riunione interna al gruppo \textbf{The Bitless} avvenuta in apertura del decimo sprint$_G$. L'incontro si è svolto tramite la piattaforma Discord$_G$ ed è stato dedicato principalmente alla rotazione dei ruoli$_G$, alla ridefinizione della durata degli sprint, alla definizione dell'architettura e dei design pattern, e alla pianificazione delle attività in vista delle consegne finali.
+
+\section{Presenze}
+\begin{center}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
+\hline
+Lorenzo & Battistella & Presente \\
+Edoardo & De Piccoli & Assente \\
+Davide & Facco & Presente \\
+Anna & Marini & Presente \\
+Andrea & Menegaldo & Presente \\
+Samuele & Vendramin & Presente \\
+Simone & Zecchinato & Presente \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ordine del giorno}
+\begin{enumerate}
+    \item Rotazione dei ruoli per lo Sprint 10;
+    \item Pianificazione dello sprint;
+    \item Decisioni sull'architettura e sul database per l'MVP;
+    \item Scelta dei design pattern ;
+    \item Prossimo diario di bordo e invio comunicazioni;
+    \item Assegnazione delle attività singole.
+\end{enumerate}
+
+\section{Discussione e decisioni}
+
+\subsection{Rotazione dei ruoli}
+In apertura del decimo sprint$_G$ il gruppo ha effettuato una nuova rotazione dei ruoli$_G$. La ripartizione, estratta in modo casuale durante la riunione, è stata definita come segue:
+\begin{center}
+    \begin{tabular}{|l|l|c|}
+        \hline
+        \textbf{Nome} & \textbf{Cognome} & \textbf{Ruolo} \\
+        \hline
+        Lorenzo & Battistella & Amministratore$_G$ \\
+        \hline
+        Edoardo & De Piccoli & Progettista$_G$ \\
+        \hline
+        Davide & Facco & Progettista$_G$ \\
+        \hline
+        Anna & Marini & Verificatrice$_G$ \\
+        \hline
+        Andrea & Menegaldo & Programmatore$_G$ \\
+        \hline
+        Samuele & Vendramin & Programmatore$_G$ \\
+        \hline
+        Simone & Zecchinato & Responsabile$_G$ \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Pianificazione dello sprint e Diario di Bordo}
+Il team ha deciso di accorciare la durata degli sprint portandoli da due settimane a una settimana, questo permette al gruppo di coordinarsi più agilmente nel periodo finale del progetto. Per questo lo Sprint 10 si concluderà l'11 agosto. Questa modifica è stata apportata inoltre per ottimizzare i tempi in vista dell'incontro con il prof. Cardin, previsto intorno al 22-23 agosto, e della consegna finale al prof. Vardanega pianificata per il 28-30 agosto.
+
+Il gruppo poi discusso le informazioni da inserire nel prossimo Diario di Bordo: non emergono dubbi o difficoltà da riportare.
+
+\subsection{Architettura, Database e Design Pattern}
+Durante la riunione, il gruppo ha finalizzato importanti scelte tecnologiche e progettuali da riportare nella Specifica Tecnica:
+\begin{itemize}
+    \item \textbf{Architettura:} È stata scelta in via definitiva l'architettura a monolite esagonale. L'adozione dei microservizi è stata ufficialmente scartata, in quanto valutata come eccessiva e sprecata per lo scopo e il dominio del progetto.
+    \item \textbf{Database per l'MVP:} Il team ha stabilito di non implementare un database per l'MVP, privilegiando la qualità complessiva del sistema rispetto a funzionalità opzionali.
+    \item \textbf{Design Pattern confermati:} Sono stati già implementati, o sono in via di finalizzazione, i pattern Adapter (per frontend e backend), Observer (frontend), Singleton e Dependency Injection.
+    \item \textbf{Design Pattern da aggiungere:} Sarà implementato il pattern Facade all'interno del frontend, al fine di disaccoppiare in modo efficace le finestre dagli endpoint e dai campi del backend.
+    \item \textbf{Design Pattern scartati:} I pattern Strategy e Template Method sono stati scartati perché il flusso applicativo è univoco e non presenta duplicazioni logiche da rimuovere. Anche il pattern Builder, inizialmente valutato per la costruzione dei prompt, è stato accantonato poiché l'overhead generato non è ritenuto giustificato.
+\end{itemize}
+Prima di dichiarare formalmente l'architettura esagonale nei documenti, i programmatori verificheranno con attenzione il livello di accoppiamento dei moduli nel codice sorgente.
+
+\subsection{Assegnazione delle attività singole}
+\begin{center}
+    \renewcommand{\arraystretch}{1.4}
+        \begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
+        \hline
+        \textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
+        \hline
+        L. Battistella & Stesura del manuale utente (introduzione e sezioni iniziali) & \issue{322} \\
+        \hline
+        A. Marini & Aggiornamento del Piano di Progetto (sprint 8-9 e preventivo sprint 10) & \issue{318} \\
+        \hline
+        S. Zecchinato & Stesura e invio del nuovo diario di bordo & \issue{321} \\
+        \hline
+        S. Zecchinato & Stesura del verbale della riunione odierna & \issue{320} \\
+        \hline
+        S. Zecchinato & Aggiornamento del Piano di Qualifica & \issue{319} \\
+        \hline
+        A. Menegaldo e S. Vendramin & Verifica accoppiamento moduli e implementazione Facade (frontend) & \issueMVP{27} e \issueMVP{29} \\
+        \hline
+        D. Facco ed E. De Piccoli & Stesura della sezione architettura e design pattern nella Specifica Tecnica & \issue{303} \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\appendix
+
+\end{document}
