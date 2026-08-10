@@ -93,8 +93,8 @@
 
 \newcommand{\titolo}{Manuale Utente}
 \newcommand{\dataverbale}{}
-\newcommand{\dataversione}{2026-08-07}
-\newcommand{\versione}{0.1.0}
+\newcommand{\dataversione}{2026-08-10}
+\newcommand{\versione}{0.7.0}
 \newcommand{\stato}{Stesura}
 % Il Manuale Utente è documentazione esterna: fra i destinatari figura anche
 % la proponente, coerentemente con Analisi dei Requisiti, Piano di Qualifica e
@@ -153,7 +153,19 @@
     \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Descrizione} \\
     \hline
     \endhead
-    0.1.0 & 2026-08-07 & A. Marini, L. Battistella & \daverificarenudo & Stesura delle sezioni Introduzione e Installazione e avvio \\ \hline
+    0.7.0 & 2026-08-10 & A. Marini & L. Battistella & Aggiunta dell'analisi critica secondo i Sei Cappelli, della Guida all'interfaccia, della Risoluzione dei problemi e del Glossario; allineamento delle etichette dell'interfaccia al prodotto \\ \hline
+
+    0.6.0 & 2026-08-09 & L. Battistella & A. Marini & Funzionalità di intelligenza artificiale: flusso comune alle azioni, inserimento del risultato nella nota e descrizione delle singole azioni dell'assistente \\ \hline
+
+    0.5.0 & 2026-08-08 & A. Marini & L. Battistella & Scrivere e formattare il testo: comandi della barra degli strumenti, titoli, elenchi, collegamenti e immagini \\ \hline
+
+    0.4.0 & 2026-08-08 & L. Battistella & A. Marini & Gestione delle note: creazione, apertura, rinomina, salvataggio su file e conservazione nel browser \\ \hline
+
+    0.3.0 & 2026-08-07 & A. Marini & L. Battistella & Installazione e avvio: requisiti di sistema, verifica dell'installazione, configurazione del file \texttt{.env}, avvio e arresto \\ \hline
+
+    0.2.0 & 2026-08-06 & L. Battistella & A. Marini & Introduzione: scopo del prodotto, finalità e destinatari, convenzioni tipografiche, riferimenti e formati del manuale \\ \hline
+
+    0.1.0 & 2026-08-06 & A. Marini & L. Battistella & Impostazione del documento: preambolo \LaTeX{}, frontespizio, tabella di redazione e registro delle modifiche \\ \hline
 
 \end{longtable}
 \endgroup
@@ -190,6 +202,8 @@ L'assistente opera sul testo prodotto dall'utente e mette a disposizione le segu
     \item \textbf{Riscrittura}: riformula il testo mantenendone il contenuto.
 
     \item \textbf{Correzione grammaticale}: corregge gli errori grammaticali presenti nel testo.
+
+    \item \textbf{Analisi critica}: esamina il testo secondo una fra sei prospettive, ispirate alla tecnica dei Sei Cappelli per Pensare\textsubscript{G}.
 
     \item \textbf{Generazione di nuovo testo}: redige un testo a partire dalle istruzioni fornite dall'utente.
 \end{itemize}
@@ -235,7 +249,7 @@ $ docker --version
 
     Nei sistemi Windows lo stesso simbolo è reso con \texttt{>}: anch'esso non fa parte del comando e non va digitato.
 
-    \item \textbf{Combinazioni di tasti}: le combinazioni di tasti sono rappresentate con i nomi dei tasti uniti dal segno \texttt{+}, a indicare che vanno premuti insieme. Per esempio, \texttt{Ctrl+Z} annulla l'ultima operazione.
+    \item \textbf{Combinazioni di tasti}: le combinazioni di tasti sono rappresentate con i nomi dei tasti uniti dal segno \texttt{+}, a indicare che vanno premuti insieme. Per esempio, \texttt{Ctrl+C} arresta l'applicazione dal terminale in cui è in esecuzione.
 \end{itemize}
 
 \subsection{Riferimenti}
@@ -394,32 +408,470 @@ $ docker compose down
 
 \subsection{Il primo avvio}
 \label{sec:primo-avvio}
-Aprendo l'applicazione per la prima volta, la schermata si presenta suddivisa in poche aree distinte.
+Aprendo l'applicazione per la prima volta, la schermata si presenta suddivisa in poche aree distinte: una barra laterale sul lato sinistro, una barra del titolo in alto e, al centro, lo spazio dedicato alla scrittura. La mappa completa delle aree è riportata nella Sezione~\ref{sec:guida-interfaccia}.
 
-Sul lato sinistro si trova una barra laterale intitolata ``My Workspace''. La barra può essere ridotta e riaperta tramite l'apposito pulsante. Nella sua parte superiore sono raccolti i pulsanti ``Nuova nota'', ``Apri file\ldots'' e ``Salva file''; al di sotto compare l'elenco ``Tutte le note''. Al primo avvio l'elenco è vuoto e riporta la scritta ``Nessuna nota''.
+Al primo avvio non esiste ancora alcuna nota: l'elenco della barra laterale riporta la scritta ``Nessuna nota''. Per cominciare a scrivere, premere ``Nuova nota'': viene creata una nota intitolata ``Senza titolo'' e con contenuto vuoto, pronta per essere compilata.
 
-Nella parte alta della schermata si trova una barra che riporta il titolo della nota corrente. In assenza di una nota, il titolo visualizzato è ``Nota senza titolo''. Sotto al titolo sono disposti i pulsanti delle azioni di intelligenza artificiale. Più in basso si trovano i tre comandi che consentono di scegliere la modalità di visualizzazione, disposti nell'ordine ``Editor'', ``Diviso'' e ``Render''. Il primo mostra la sola area di scrittura, il secondo la mostra affiancata all'anteprima, il terzo la sola anteprima. La modalità predefinita è ``Diviso''. Se la finestra del browser è stretta, le due aree non vengono affiancate ma disposte una sopra l'altra.
-
-Al centro della schermata si trovano la barra degli strumenti di formattazione e, sotto di essa, l'area di scrittura, nella quale si compone il testo della nota. Sul lato destro si trova l'area di anteprima, che mostra il testo formattato.
-
-Premendo ``Nuova nota'' viene creata una nota intitolata ``Senza titolo'' e con contenuto vuoto, pronta per essere compilata. Le note restano memorizzate nel browser fra una sessione e l'altra: non è quindi necessaria alcuna registrazione, né alcun accesso, per ritrovarle all'avvio successivo.
+Le note restano memorizzate nel browser fra una sessione e l'altra: non è quindi necessaria alcuna registrazione, né alcun accesso, per ritrovarle all'avvio successivo.
 
 Le sezioni seguenti del manuale descrivono nel dettaglio le singole funzionalità dell'applicazione.
 
 % ---------------------------------------------------------------------------
-% PROMEMORIA PER LA SEZIONE 4 (operazioni sulle note) — non ancora redatta.
+% NOTA. La differenza di comportamento del salvataggio su file fra i browser
+% supportati è ora documentata esplicitamente in §4.5.
 %
-% Il salvataggio su file non si comporta allo stesso modo su tutti i browser
-% supportati da R-1-V-Ob. saveNoteToFile impiega showSaveFilePicker, che
-% Firefox non implementa: in quel caso l'operazione ricade su un download
-% automatico nella cartella predefinita del browser.
-%
-% Ne consegue che una frase del tipo "viene chiesto in quale cartella
-% salvare", naturale da scrivere nella sezione 4, sarebbe falsa su Firefox.
-% Alla stesura della sezione 4 occorre quindi scegliere fra:
-%   - documentare esplicitamente la differenza di comportamento fra browser;
-%   - restringere l'elenco dei browser supportati in §2.1, il che però
-%     richiede prima una modifica di R-1-V-Ob, che deriva dal Capitolato.
+% Resta aperta l'alternativa scartata: restringere l'elenco dei browser
+% supportati in §2.1, il che però richiede prima una modifica di R-1-V-Ob,
+% che deriva dal Capitolato.
 % ---------------------------------------------------------------------------
+
+
+\section{Guida all'interfaccia}
+\label{sec:guida-interfaccia}
+La presente sezione descrive le aree in cui è suddivisa la schermata dell'applicazione e i comandi che ciascuna mette a disposizione.
+
+\daverificare{immagini della schermata, da acquisire e inserire a corredo delle sottosezioni seguenti}
+
+\subsection{La barra laterale ``My Workspace''}
+\label{sec:area-barra-laterale}
+Sul lato sinistro si trova una barra laterale intitolata ``My Workspace''. Nella sua parte superiore sono raccolti i pulsanti ``Nuova nota'', ``Apri file\ldots'' e ``Salva file''; al di sotto compare l'elenco ``Tutte le note'', che riporta le note presenti. Quando non esiste alcuna nota, l'elenco riporta la scritta ``Nessuna nota''.
+
+La barra può essere ridotta con il comando ``Chiudi barra laterale'' e riaperta con il comando ``Apri barra laterale''.
+
+Le operazioni disponibili sulle note sono descritte nella Sezione~\ref{sec:gestione-note}.
+
+\subsection{La barra del titolo e le azioni di intelligenza artificiale}
+\label{sec:area-barra-titolo}
+Nella parte alta della schermata si trova una barra che riporta il titolo della nota corrente. In assenza di una nota, il titolo visualizzato è ``Nota senza titolo''.
+
+Sotto al titolo sono disposti i pulsanti delle azioni di intelligenza artificiale, nell'ordine ``Genera'', ``Riassumi'', ``Riscrivi'', ``Traduci'', ``Grammatica'' e ``Analisi''. Le singole azioni sono descritte nella Sezione~\ref{sec:funzionalita-intelligenza-artificiale}.
+
+\subsection{La barra degli strumenti di formattazione}
+\label{sec:area-barra-strumenti}
+Al centro della schermata, sopra l'area di scrittura, si trova la barra degli strumenti di formattazione, che inserisce i marcatori Markdown al posto dell'utente. I singoli comandi sono descritti nella Sezione~\ref{sec:barra-strumenti-formattazione}.
+
+\subsection{L'area di scrittura e l'area di anteprima}
+\label{sec:area-scrittura-anteprima}
+Sotto la barra degli strumenti si trova l'area di scrittura, nella quale si compone il testo della nota. Sul lato destro si trova l'area di anteprima, che ne mostra il risultato formattato e si aggiorna a ogni modifica del testo.
+
+\subsection{Le modalità di visualizzazione}
+\label{sec:modalita-visualizzazione}
+Tre comandi consentono di scegliere quali aree tenere a schermo. Sono disposti nell'ordine seguente:
+
+\begin{itemize}
+    \item ``Editor'': mostra la sola area di scrittura;
+
+    \item ``Diviso'': mostra l'area di scrittura affiancata all'area di anteprima;
+
+    \item ``Render'': mostra la sola area di anteprima.
+\end{itemize}
+
+La modalità predefinita è ``Diviso''. Se la finestra del browser è stretta, le due aree non vengono affiancate ma disposte una sopra l'altra.
+
+
+\section{Gestione delle note}
+\label{sec:gestione-note}
+Le note sono elencate nella barra laterale ``My Workspace'', dalla quale si creano, si aprono, si rinominano e si salvano su file. La presente sezione descrive tali operazioni.
+
+\subsection{Creare una nota}
+\label{sec:creare-nota}
+Il pulsante ``Nuova nota'' crea una nota con titolo ``Senza titolo'' e contenuto vuoto. La nota così creata diventa immediatamente la nota corrente.
+
+Prima di creare la nuova nota, il contenuto della nota su cui si stava lavorando viene salvato automaticamente: nulla va perso.
+
+\subsection{Passare da una nota all'altra}
+\label{sec:passare-nota}
+L'elenco ``Tutte le note'' riporta tutte le note presenti. Quando l'elenco è vuoto compare la scritta ``Nessuna nota''.
+
+Un clic sul nome apre la nota nell'area di scrittura. La nota corrente è evidenziata nell'elenco.
+
+Anche in questo caso il contenuto della nota precedente viene salvato automaticamente prima del passaggio.
+
+\subsection{Rinominare una nota}
+\label{sec:rinominare-nota}
+Per rinominare una nota, fare doppio clic sul nome della nota nell'elenco: il nome diventa un campo di testo modificabile. Da questo momento:
+
+\begin{itemize}
+    \item \texttt{Invio}, oppure un clic al di fuori del campo, conferma il nuovo nome;
+
+    \item \texttt{Esc} annulla la modifica e ripristina il nome precedente.
+\end{itemize}
+
+Se si conferma un nome vuoto, il titolo torna a ``Senza titolo''. Il nuovo nome viene proposto come nome del file al successivo salvataggio.
+
+Se la rinomina non riesce, compare il messaggio ``Impossibile rinominare la nota. Riprova.''
+
+\subsection{Aprire una nota da file}
+\label{sec:aprire-nota-file}
+Il pulsante ``Apri file\ldots'' apre la finestra di selezione dei file del sistema operativo. Sono ammessi file di testo con estensione \texttt{.md} o \texttt{.txt}.
+
+Il contenuto del file diventa il contenuto della nota; il titolo della nota è il nome del file privato dell'estensione. La nota viene aggiunta all'elenco e diventa la nota corrente.
+
+Chiudendo la finestra senza scegliere alcun file, non viene apportata alcuna modifica.
+
+Se l'apertura non riesce, compare il messaggio ``Impossibile aprire il file. Riprova.'' e la nota corrente resta invariata.
+
+\subsection{Salvare una nota su file}
+\label{sec:salvare-nota-file}
+Il pulsante ``Salva file'' salva la nota corrente sul dispositivo in formato Markdown, con estensione \texttt{.md}. Il nome proposto per il file coincide con il titolo della nota.
+
+Il pulsante è disponibile solo quando esiste una nota corrente: in assenza di note appare disattivato.
+
+Se il salvataggio non riesce, compare il messaggio ``Impossibile salvare il file. Riprova.'' e il contenuto della nota resta invariato.
+
+Su alcuni browser viene chiesto in quale cartella salvare il file. Su altri --- fra cui Mozilla Firefox --- la richiesta non compare e il file viene scaricato direttamente nella cartella predefinita del browser.
+
+\subsection{Dove sono conservate le note}
+\label{sec:conservazione-note}
+Le note restano memorizzate nel browser e si ritrovano alla riapertura dell'applicazione, senza bisogno di registrazione né di accesso.
+
+Sono però legate al browser e al dispositivo in uso: non sono accessibili da un altro computer né da un altro browser.
+
+\vspace{0.5em}
+
+\noindent
+\textbf{Avviso.} La cancellazione dei dati di navigazione del browser rimuove anche le note. Per conservarle in modo duraturo, o per spostarle su un altro dispositivo, utilizzare ``Salva file''.
+
+\section{Scrivere e formattare il testo}
+\label{sec:scrivere-formattare}
+Il testo si compone nell'area di scrittura in Markdown; l'area di anteprima ne mostra il risultato formattato, aggiornandosi a ogni modifica.
+
+\subsection{La barra degli strumenti di formattazione}
+\label{sec:barra-strumenti-formattazione}
+La barra degli strumenti posta sopra l'area di scrittura inserisce i marcatori Markdown al posto dell'utente. Le sottosezioni seguenti ne descrivono i comandi.
+
+\subsubsection{Come si comportano i comandi di formattazione}
+\label{sec:comandi-formattazione}
+I comandi di stile della barra degli strumenti rispondono tutti alla stessa regola:
+
+\begin{itemize}
+    \item con del testo selezionato, il comando racchiude la selezione fra i marcatori corrispondenti;
+
+    \item senza testo selezionato, il comando inserisce la coppia di marcatori e posiziona il cursore fra i due, pronto per la digitazione;
+
+    \item applicato a un testo che è già formattato in quel modo, il comando rimuove i marcatori.
+\end{itemize}
+
+Ogni comando funziona quindi come un interruttore.
+
+\subsubsection{Stili del testo}
+\label{sec:stili-testo}
+I comandi di stile disponibili nella barra degli strumenti sono riportati nella Tabella~\ref{tab:stili-testo}.
+
+\begingroup
+\small
+% Larghezze fissate esplicitamente, come per la tabella delle variabili di
+% configurazione: la somma delle colonne deve restare entro \textwidth.
+\begin{longtable}{|p{2.8cm}|p{3cm}|p{6.5cm}|}
+    \caption{Comandi di stile della barra degli strumenti}
+    \label{tab:stili-testo} \\
+    \hline
+    \textbf{Comando} & \textbf{Marcatori} & \textbf{Risultato} \\
+    \hline
+    \endfirsthead
+    \hline
+    \textbf{Comando} & \textbf{Marcatori} & \textbf{Risultato} \\
+    \hline
+    \endhead
+    ``Grassetto'' & \texttt{**testo**} & Testo in grassetto. \\ \hline
+
+    ``Corsivo'' & \texttt{*testo*} & Testo in corsivo. \\ \hline
+
+    ``Sottolineato'' & \texttt{++testo++} & Testo sottolineato. \\ \hline
+
+    ``Barrato'' & \texttt{\textasciitilde\textasciitilde testo\textasciitilde\textasciitilde} & Testo barrato. \\ \hline
+
+    ``Codice'' & \texttt{\textasciigrave testo\textasciigrave} & Testo a spaziatura fissa, per frammenti di codice all'interno di una frase. \\ \hline
+
+\end{longtable}
+\endgroup
+
+\subsubsection{Titoli}
+\label{sec:titoli}
+Il pulsante ``Titolo'' apre un menu con quattro voci, che si applicano alla riga su cui si trova il cursore:
+
+\begin{itemize}
+    \item ``Titolo'': titolo di primo livello, marcatore \texttt{\#};
+
+    \item ``Sottotitolo'': titolo di secondo livello, marcatore \texttt{\#\#};
+
+    \item ``Titolo di terzo livello'': marcatore \texttt{\#\#\#};
+
+    \item ``Normale'': rimuove il titolo e riporta la riga a testo ordinario.
+\end{itemize}
+
+\subsubsection{Elenchi}
+\label{sec:elenchi}
+Il pulsante ``Elenco'' apre un menu con due voci: ``Elenco puntato'' ed ``Elenco numerato''. Il comando si applica a tutte le righe toccate dalla selezione, oppure alla sola riga su cui si trova il cursore.
+
+\begin{itemize}
+    \item ``Elenco puntato'' antepone il marcatore \texttt{-} a ogni riga interessata;
+
+    \item ``Elenco numerato'' antepone a ogni riga interessata un numero progressivo a partire da 1, nella forma \texttt{1.}, \texttt{2.} e così via.
+\end{itemize}
+
+Anche questi comandi funzionano come un interruttore: le righe che riportano già il marcatore corrispondente lo perdono. La valutazione avviene riga per riga, quindi in una selezione mista le righe non ancora formattate ricevono il marcatore e quelle già formattate lo perdono.
+
+\subsubsection{Collegamenti e immagini}
+\label{sec:collegamenti-immagini}
+Il pulsante ``Link'' inserisce un collegamento ipertestuale\textsubscript{G} nella forma \texttt{[testo](https://)}, dove \texttt{testo} è il testo selezionato. L'indirizzo predefinito \texttt{https://} resta selezionato, pronto per essere sostituito digitando l'indirizzo desiderato. Lo stesso comando è disponibile con la combinazione \texttt{Ctrl+K}.
+
+Il comando ``Link'' funziona come un interruttore: applicato a un collegamento già presente, ne rimuove la sintassi e conserva il solo testo.
+
+Il pulsante ``Immagine'' inserisce il riferimento a un'immagine nella forma \texttt{![testo]\allowbreak(https://)}, dove \texttt{testo} è il testo selezionato e diventa la descrizione dell'immagine. Anche in questo caso l'indirizzo predefinito resta selezionato, pronto per essere sostituito.
+
+\subsection{Annullare e ripristinare una modifica}
+\label{sec:annullare-ripristinare}
+L'area di scrittura conserva la cronologia delle modifiche. La combinazione \texttt{Ctrl+Z} annulla l'ultima modifica.
+
+La barra degli strumenti non espone comandi corrispondenti: annullamento e ripristino si impartiscono soltanto da tastiera.
+
+\daverificare{combinazione di tasti che ripristina una modifica annullata}
+
+
+\section{Funzionalità di intelligenza artificiale}
+\label{sec:funzionalita-intelligenza-artificiale}
+
+\subsection{Come funziona l'assistente}
+\label{sec:come-funziona-assistente}
+L'assistente elabora il testo della nota tramite un servizio esterno: per utilizzarlo è quindi necessaria una connessione a Internet.
+
+Le azioni ``Riassumi'', ``Traduci'', ``Riscrivi'', ``Grammatica'' e ``Analisi'' elaborano il testo selezionato nell'area di scrittura; se non è selezionato nulla, elaborano l'intero contenuto della nota. L'azione ``Genera'' non parte invece dal testo della nota, ma dalle istruzioni che l'utente scrive nella finestra.
+
+Il risultato compare in una finestra dedicata e non entra nella nota finché non si preme ``Accetta''. Finché non lo si fa, la nota resta invariata.
+
+\vspace{0.5em}
+
+\noindent
+\textbf{Avviso.} L'assistente può produrre risultati imprecisi o inesatti: il testo va sempre riletto prima di accettarlo. Il testo viene inoltre trasmesso a un servizio esterno per l'elaborazione: si sconsiglia pertanto di utilizzare le funzionalità di intelligenza artificiale su informazioni riservate.
+
+\subsection{Il funzionamento comune a tutte le azioni}
+\label{sec:funzionamento-comune-azioni}
+Tutte le azioni dell'assistente seguono lo stesso flusso:
+
+\begin{enumerate}
+    \item premere il pulsante dell'azione nella barra in alto; si apre una finestra che riporta il nome dell'azione;
+
+    \item la finestra contiene, quando previsti, i campi di inserimento e i selettori dei parametri, e un'area intitolata ``Anteprima output'';
+
+    \item premere il pulsante ``Genera'' della finestra per avviare l'elaborazione;
+
+    \item il testo compare progressivamente nell'area di anteprima, man mano che viene prodotto; durante l'elaborazione è visibile un indicatore di attività;
+
+    \item mentre l'elaborazione è in corso, il pulsante ``Genera'' della finestra e i pulsanti delle azioni nella barra in alto non sono disponibili; compare invece il pulsante ``Interrompi'', che ferma subito la generazione conservando il testo prodotto fino a quel momento;
+
+    \item al termine si sceglie fra ``Accetta'', che inserisce il testo nella nota e chiude la finestra, e ``Rifiuta'', che scarta il risultato e chiude la finestra lasciando la nota invariata.
+\end{enumerate}
+
+Al flusso appena descritto si aggiungono le precisazioni seguenti:
+
+\begin{itemize}
+    \item il testo prodotto fino all'interruzione resta nell'area di anteprima e può essere accettato con ``Accetta'' o scartato con ``Rifiuta'', esattamente come un risultato completo;
+
+    \item se si preme di nuovo il pulsante senza aver cambiato né il testo né i parametri, esso riporta la dicitura ``Rigenera'': l'assistente produce un nuovo risultato a partire dagli stessi dati;
+
+    \item ``Accetta'' non è disponibile mentre l'elaborazione è in corso, né quando l'anteprima è vuota;
+
+    \item la finestra si chiude, scartando il risultato, anche premendo \texttt{Esc} o facendo clic al di fuori di essa;
+
+    \item le azioni si distinguono per il modo in cui il risultato entra nella nota: il dettaglio è riportato nella Sezione~\ref{sec:cosa-viene-modificato};
+
+    \item l'azione ``Analisi'' richiede di scegliere una prospettiva prima di avviare l'elaborazione: senza una scelta la richiesta non viene inviata;
+
+    \item le azioni che lavorano sul testo della nota richiedono almeno 10 caratteri, mentre ``Genera'' richiede almeno 3 caratteri di istruzioni. Se il testo è più corto, la richiesta non viene inviata;
+
+    \item il testo elaborato dall'assistente non può superare 12000 caratteri, mentre le istruzioni dell'azione ``Genera'' non possono superare 2000 caratteri. Oltre tali limiti la richiesta viene rifiutata: occorre ridurre il testo oppure elaborarlo in più parti.
+\end{itemize}
+
+Prima di inviare la richiesta, l'applicazione controlla che il testo e i parametri siano validi. Se il controllo non passa, la generazione non parte e il motivo compare all'interno della finestra. I messaggi indicano sempre la causa del problema e l'azione correttiva da compiere:
+
+\begin{itemize}
+    \item se il testo è più corto del minimo richiesto, compare il messaggio ``Servono almeno N caratteri di testo.'', dove N vale 10 per le azioni che lavorano sul testo della nota e 3 per l'azione ``Genera'';
+
+    \item se il testo supera la lunghezza massima consentita, compare il messaggio ``Il testo supera il massimo di N caratteri (attuali: M). Riducilo o elaboralo in più parti.'', dove N è il limite e M il numero di caratteri presenti;
+
+    \item se si avvia l'azione ``Analisi'' senza aver scelto una prospettiva, compare il messaggio ``Seleziona un cappello per l'analisi.''
+\end{itemize}
+
+Gli errori che si verificano dopo l'invio della richiesta, durante l'elaborazione, compaiono anch'essi all'interno della finestra.
+
+\daverificare{testo dei messaggi mostrati in caso di servizio non raggiungibile o di interruzione della connessione}
+
+I problemi più frequenti e i relativi rimedi sono raccolti nella Sezione~\ref{sec:risoluzione-problemi}.
+
+\subsection{Che cosa viene modificato nella nota}
+\label{sec:cosa-viene-modificato}
+Il modo in cui il risultato entra nella nota, premendo ``Accetta'', dipende dall'azione impiegata e da ciò che era selezionato al momento dell'avvio dell'elaborazione.
+
+Le azioni ``Riassumi'', ``Traduci'', ``Riscrivi'' e ``Grammatica'' sostituiscono il testo su cui hanno lavorato. Per esse valgono i due casi seguenti:
+
+\begin{itemize}
+    \item se al momento dell'avvio era selezionata una porzione di testo, ``Accetta'' sostituisce soltanto quella porzione e lascia intatto il resto della nota;
+
+    \item se non era selezionato nulla, ``Accetta'' sostituisce l'intero contenuto della nota con il risultato prodotto.
+\end{itemize}
+
+Le azioni ``Analisi'' e ``Genera'' non sostituiscono invece alcun testo: il risultato viene aggiunto in fondo alla nota, separato da una riga vuota, e il contenuto esistente non viene mai toccato. Nel caso di ``Analisi'' ciò è coerente con la natura dell'azione, che produce un commento sul testo e non una sua riscrittura.
+
+\vspace{0.5em}
+
+\noindent
+\textbf{Avviso.} In due casi la sostituzione non interessa la porzione attesa. Se dopo l'avvio dell'elaborazione la porzione selezionata viene modificata o eliminata, l'applicazione non è più in grado di ritrovarla e il risultato sostituisce l'intero contenuto della nota. Se invece la porzione selezionata compare più volte identica nella nota, la sostituzione interessa la prima occorrenza, che può non essere quella effettivamente selezionata. Si consiglia pertanto di non modificare la nota mentre l'elaborazione è in corso.
+
+\subsection{Riassumi}
+\label{sec:azione-riassumi}
+L'azione ``Riassumi'' produce una sintesi del testo.
+
+Il parametro ``Lunghezza output'' consente di scegliere fra ``Breve'', ``Medio'' e ``Dettagliato''. Il valore predefinito è ``Medio''.
+
+Il riassunto sostituisce il testo di partenza.
+
+\vspace{0.5em}
+
+\noindent
+\textbf{Esempio.} Testo di partenza: ``La biblioteca comunale ha inaugurato una nuova sala di lettura al primo piano. Lo spazio resta aperto nei giorni feriali dalle nove alle diciannove e ospita quaranta posti.'' Parametro scelto: ``Lunghezza output'' impostato su ``Breve''. Risultato: \daverificare{risultato prodotto dall'assistente, da rilevare eseguendo l'azione}.
+
+\subsection{Traduci}
+\label{sec:azione-traduci}
+L'azione ``Traduci'' riporta il testo in un'altra lingua.
+
+Il parametro ``Lingua di destinazione'' consente di scegliere fra le quattro opzioni seguenti:
+
+\begin{itemize}
+    \item ``Inglese'';
+
+    \item ``Francese'';
+
+    \item ``Tedesco'';
+
+    \item ``Spagnolo''.
+\end{itemize}
+
+L'opzione preselezionata all'apertura della finestra è ``Inglese''.
+
+La traduzione sostituisce il testo di partenza.
+
+\vspace{0.5em}
+
+\noindent
+\textbf{Esempio.} Testo di partenza: ``La biblioteca comunale ha inaugurato una nuova sala di lettura al primo piano. Lo spazio resta aperto nei giorni feriali dalle nove alle diciannove e ospita quaranta posti.'' Parametro scelto: ``Lingua di destinazione'' impostata su ``Inglese''. Risultato: \daverificare{risultato prodotto dall'assistente, da rilevare eseguendo l'azione}.
+
+\subsection{Riscrivi}
+\label{sec:azione-riscrivi}
+L'azione ``Riscrivi'' riformula il testo mantenendone il contenuto e adattandone il registro.
+
+Il parametro ``Stile'' consente di scegliere fra le tre opzioni seguenti:
+
+\begin{itemize}
+    \item ``Formale'';
+
+    \item ``Informale'';
+
+    \item ``Accademico''.
+\end{itemize}
+
+L'opzione preselezionata all'apertura della finestra è ``Formale''.
+
+Il testo riscritto sostituisce quello di partenza.
+
+\vspace{0.5em}
+
+\noindent
+\textbf{Esempio.} Testo di partenza: ``La biblioteca comunale ha inaugurato una nuova sala di lettura al primo piano. Lo spazio resta aperto nei giorni feriali dalle nove alle diciannove e ospita quaranta posti.'' Parametro scelto: ``Stile'' impostato su ``Formale''. Risultato: \daverificare{risultato prodotto dall'assistente, da rilevare eseguendo l'azione}.
+
+\subsection{Grammatica}
+\label{sec:azione-grammatica}
+L'azione ``Grammatica'' corregge gli errori grammaticali presenti nel testo. Non prevede parametri.
+
+Il testo corretto sostituisce quello di partenza.
+
+Se non vengono rilevati errori, l'anteprima riporta ``Nessun errore rilevato.'' e il pulsante ``Accetta'' resta non disponibile, perché non c'è nulla da sostituire. In tal caso, per chiudere la finestra occorre premere ``Rifiuta''.
+
+\vspace{0.5em}
+
+\noindent
+\textbf{Esempio.} Testo di partenza: ``La biblioteca comunale ha inaugurato una nuova sala di lettura al primo piano. Lo spazio resta aperto nei giorni feriali dalle nove alle diciannove e ospita quaranta posti.'' Parametro scelto: nessuno, poiché l'azione non prevede parametri. Risultato: \daverificare{risultato prodotto dall'assistente, da rilevare eseguendo l'azione}.
+
+\subsection{Analisi}
+\label{sec:azione-analisi}
+L'azione ``Analisi'' esamina il testo secondo una fra sei prospettive, ispirate alla tecnica dei Sei Cappelli per Pensare. Non riscrive il testo: ne produce un commento.
+
+Il parametro ``Prospettiva (cappello)'' consente di scegliere fra le sei opzioni riportate nella Tabella~\ref{tab:prospettive-analisi}, presentate nell'ordine in cui compaiono nella finestra.
+
+\begingroup
+\small
+\begin{longtable}{|p{3.4cm}|p{9.4cm}|}
+    \caption{Opzioni del parametro ``Prospettiva (cappello)''}
+    \label{tab:prospettive-analisi} \\
+    \hline
+    \textbf{Opzione} & \textbf{Orientamento dell'analisi} \\
+    \hline
+    \endfirsthead
+    \hline
+    \textbf{Opzione} & \textbf{Orientamento dell'analisi} \\
+    \hline
+    \endhead
+    ``Informativo'' & Fatti, dati e informazioni oggettive. \\ \hline
+
+    ``Emotivo'' & Intuizioni, emozioni e sensazioni. \\ \hline
+
+    ``Critico'' & Difficoltà, rischi e punti deboli. \\ \hline
+
+    ``Ottimista'' & Vantaggi, benefici e opportunità. \\ \hline
+
+    ``Creativo'' & Nuove idee, alternative e soluzioni. \\ \hline
+
+    ``Organizzativo'' & Processo, struttura e prossimi passi. \\ \hline
+
+\end{longtable}
+\endgroup
+
+Nessuna opzione è preselezionata: la prospettiva va scelta esplicitamente prima di premere il pulsante ``Genera'' della finestra. Senza una scelta la richiesta non viene inviata e compare il messaggio ``Seleziona un cappello per l'analisi.''
+
+Il commento prodotto viene aggiunto in fondo alla nota, separato da una riga vuota: il testo analizzato non viene modificato.
+
+\vspace{0.5em}
+
+\noindent
+\textbf{Esempio.} Testo di partenza: ``La biblioteca comunale ha inaugurato una nuova sala di lettura al primo piano. Lo spazio resta aperto nei giorni feriali dalle nove alle diciannove e ospita quaranta posti.'' Parametro scelto: ``Prospettiva (cappello)'' impostata su ``Critico''. Risultato: \daverificare{risultato prodotto dall'assistente, da rilevare eseguendo l'azione}.
+
+\subsection{Genera}
+\label{sec:azione-genera}
+L'azione ``Genera'' redige un testo nuovo a partire dalle istruzioni fornite.
+
+La finestra presenta il campo ``Istruzioni / Contesto'', con il testo guida ``Descrivi cosa generare\ldots'', in cui descrivere ciò che si desidera ottenere. Sono richiesti almeno 3 caratteri di istruzioni e non se ne possono superare 2000.
+
+Il parametro ``Lunghezza output'' consente di scegliere fra ``Breve'', ``Medio'' e ``Dettagliato''. Il valore predefinito è ``Medio''.
+
+Il testo prodotto viene aggiunto in fondo alla nota, separato da una riga vuota: il contenuto già presente non viene toccato.
+
+\vspace{0.5em}
+
+\noindent
+\textbf{Esempio.} Istruzioni fornite: ``Scrivi tre righe di presentazione della nuova sala di lettura della biblioteca comunale''. Parametro scelto: ``Lunghezza output'' impostato su ``Breve''. Risultato: \daverificare{risultato prodotto dall'assistente, da rilevare eseguendo l'azione}.
+
+\subsection{Buone pratiche}
+\label{sec:buone-pratiche-assistente}
+Nell'uso dell'assistente si consiglia di:
+
+\begin{itemize}
+    \item selezionare la porzione di testo su cui si vuole intervenire, per un risultato più mirato;
+
+    \item rileggere sempre il risultato prima di premere ``Accetta'';
+
+    \item in caso di risultato non soddisfacente, modificare i parametri e premere ``Rigenera'';
+
+    \item ricordare che ``Rifiuta'' lascia la nota esattamente com'era.
+\end{itemize}
+
+
+\section{Risoluzione dei problemi}
+\label{sec:risoluzione-problemi}
+\daverificare{sezione da redigere: problemi più frequenti e relativi rimedi}
+
+
+\section{Glossario}
+\label{sec:glossario}
+\daverificare{elenco dei termini marcati con pedice G nel documento e relative definizioni}
 
 \end{document}
