@@ -1,0 +1,146 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+\usepackage[a-1b]{pdfx}
+\usepackage[italian]{babel}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{minted}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{\titolo \ \dataverbale}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    pdfborderstyle={/S/U/W 1},
+    linkbordercolor=0 0 0,
+    urlbordercolor=0 0 0,
+    citebordercolor=0 0 0,
+    filebordercolor=0 0 0,
+    breaklinks=true,
+}
+\newcommand{\issue}[1]{\href{https://github.com/thebitless-group-swe/thebitless.github.io/issues/#1}{\##1}}
+\newcommand{\issueMVP}[1]{\href{https://github.com/thebitless-group-swe/MVP/issues/#1}{\##1}}
+
+\begin{document}
+
+\newcommand{\titolo}{Verbale interno}
+\newcommand{\dataverbale}{2026-08-11}
+\newcommand{\dataversione}{2026-08-11}
+\newcommand{\versione}{1.0.0}
+\newcommand{\stato}{Approvato}
+\newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+\def\templatedir{../../../../templates}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+\input{\templatedir/frontespizio.tex}
+\end{titlepage}
+
+\newpage
+\tableofcontents
+
+\newpage
+\pagenumbering{arabic}
+\section{Informazioni sulla riunione}
+Il presente documento riporta la verbalizzazione della riunione interna al gruppo \textbf{The Bitless} avvenuta in apertura del undicesimo sprint$_G$. L'incontro si è svolto tramite la piattaforma Discord$_G$ ed è stato dedicato principalmente alla rotazione dei ruoli$_G$, al completamento del MVP$_G$, alla pianificazione delle attività di testing$_G$ e alla definizione dello stato di avanzamento della documentazione. La riunione è avvenuta dalle ore 11:00 alle ore 11:40.
+
+\section{Presenze}
+\begin{center}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
+\hline
+Lorenzo & Battistella & Presente \\
+Edoardo & De Piccoli & Presente \\
+Davide & Facco & Assente \\
+Anna & Marini & Presente \\
+Andrea & Menegaldo & Presente \\
+Samuele & Vendramin & Presente \\
+Simone & Zecchinato & Presente \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ordine del giorno}
+\begin{enumerate}
+    \item Rotazione dei ruoli$_G$;
+    \item Stato del MVP$_G$;
+    \item Pianificazione delle attività di testing$_G$ e correzione bug$_G$;
+    \item Stato della documentazione: Specifica Tecnica$_G$, Piano di Qualifica$_G$, Manuale Utente$_G$;
+    \item Pianificazione dell'undicesimo sprint$_G$;
+    \item Assegnazione delle attività singole.
+\end{enumerate}
+
+\section{Discussione e decisioni}
+
+\subsection{Rotazione dei ruoli}
+In apertura del undicesimo sprint$_G$ il gruppo ha effettuato la rotazione dei ruoli$_G$. La ripartizione è stata definita come segue:
+\begin{center}
+    \begin{tabular}{|l|l|c|}
+        \hline
+        \textbf{Nome} & \textbf{Cognome} & \textbf{Ruolo} \\
+        \hline
+        Lorenzo & Battistella & Amministratore e Progettista \\
+        \hline
+        Edoardo & De Piccoli & Verificatore \\
+        \hline
+        Davide & Facco & Verificatore \\
+        \hline
+        Anna & Marini & Programmatore \\
+        \hline
+        Andrea & Menegaldo & Responsabile \\
+        \hline
+        Samuele & Vendramin & Progettista \\
+        \hline
+        Simone & Zecchinato & Progettista \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Avanzamento dello sviluppo}
+L'MVP$_G$ è in fase di testing$_G$: le funzionalità principali sono state implementate e risultano funzionanti. L'attenzione si sposta ora dalla scrittura del codice alla verifica$_G$ sistematica e alla correzione dei bug$_G$.
+
+\subsection{Pianificazione dell'undicesimo sprint}
+Obiettivi principali:
+\begin{itemize}
+    \item testing$_G$ funzionale e correzione bug$_G$;
+    \item ottimizzazione delle prestazioni e della user experience$_G$;
+    \item completamento documentazione: Specifica Tecnica$_G$, Piano di Qualifica$_G$, Manuale Utente$_G$;
+    \item preparazione dei documenti per la Product Baseline$_G$ (PB).
+\end{itemize}
+
+\subsection{Assegnazione delle attività singole}
+\begin{center}
+    \renewcommand{\arraystretch}{1.4}
+        \begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
+        \hline
+        \textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
+        
+        \hline
+        A. Marini, A. Menegaldo ed E. De Piccoli & Stesura Specifica Tecnica$_G$  & \issue{291} \\
+        \hline
+        S. Ventrone e S. Zecchinato & Sistemazione Piano di Qualifica$_G$ & \issue{319} \\
+        \hline
+        L. Battistella & Completamento Manuale Utente$_G$ & \issue{322} \\
+        \hline
+        A. Menegaldo & Stesura del verbale$_G$ interno della riunione del 2026-08-11 & \issueMVP{335} \\
+        \hline
+        D. Facco & Riscrittura README della repository$_G$ & \issue{336} \\
+        \hline
+        D. Facco & Stesura mail per il Diario di Bordo$_G$ di venerdì & \issue{337} \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\appendix
+
+\end{document}
