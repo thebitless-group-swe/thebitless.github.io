@@ -226,7 +226,7 @@
 \newcommand{\titolo}{Specifica Tecnica}
 \newcommand{\dataverbale}{}
 \newcommand{\dataversione}{2026-08-13}
-\newcommand{\versione}{0.7.0}
+\newcommand{\versione}{0.8.0}
 \newcommand{\stato}{Stesura}
 % La Specifica Tecnica è documentazione esterna: fra i destinatari figura anche
 % la proponente, coerentemente con Analisi dei Requisiti e Piano di Qualifica.
@@ -256,6 +256,8 @@
     \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
     \hline
     \endhead
+    0.8.0 & 2026-08-13 & E. De Piccoli &  & - & Stesura dei flussi di generazione a partire da un collegamento e di propagazione degli errori \\ \hline
+
     0.7.0 & 2026-08-13 & E. De Piccoli &  & - & Stesura di Idiomi e convenzioni di codifica \\ \hline
 
     0.6.0 & 2026-08-13 & E. De Piccoli &  & - & Stesura dell'Architettura del backend \\ \hline
@@ -1545,6 +1547,51 @@ Ne discende la regola pratica: \textbf{un errore non attraversa mai un confine n
 \label{sec:flusso-collegamento}
 % Contenuto previsto: estrazione del contenuto della pagina, troncamento,
 % composizione delle istruzioni. Requisito: R-74-F-De.
+Il requisito\textsubscript{G} \textbf{R-74-F-De} (UC67.2, UC67.5) consente all'utente di indicare l'indirizzo di una pagina web come fonte per la generazione di un testo. Poiché il modello linguistico non accede alla rete, il contenuto della pagina deve essere acquisito dal prodotto e consegnato al modello insieme alle istruzioni.
+
+La presente sezione segue quel percorso dalla richiesta fino alle istruzioni composte. Il modo in cui l'utente sceglie la sorgente nell'interfaccia appartiene alla sezione \ref{sec:frontend-componenti}; il ritorno del testo generato non ha nulla di proprio rispetto alle altre operazioni assistite ed è descritto nella sezione \ref{sec:flusso-streaming}. Quanto sta in mezzo è invece specifico di questa funzione, ed è l'unica delle sette a coinvolgere un secondo fornitore esterno.
+
+\paragraph{Un collegamento può essere rifiutato in tre modi, e i tre stati sono distinti.}
+La distinzione dà struttura all'intero flusso, perché ciascun rifiuto avviene prima di un confine diverso e costa perciò una quantità diversa di lavoro.
+
+\begin{enumerate}
+    \setlength{\itemsep}{3pt}
+    \item \textbf{Indirizzo malformato}: lo schema della richiesta dichiara il campo come indirizzo web, e un valore che non lo è viene respinto dalla validazione con stato 422. Il rifiuto avviene al confine HTTP e \textbf{non raggiunge il dominio\textsubscript{G}}.
+    \item \textbf{Indirizzo troppo lungo}: il caso d'uso lo scarta con un errore proprio, che la rotta traduce in stato 400. Il rifiuto avviene nel dominio\textsubscript{G} e \textbf{non tocca la rete}: nessuna richiesta viene inoltrata al servizio di estrazione.
+    \item \textbf{Estrazione fallita}: la pagina è irraggiungibile, inesistente o priva di testo. L'adattatore solleva l'errore dichiarato dalla porta, il caso d'uso lo riconduce al proprio e la rotta lo traduce in stato 503. Il rifiuto avviene dopo la rete e \textbf{non raggiunge il modello}.
+\end{enumerate}
+
+\noindent I tre messaggi che accompagnano questi stati rispettano il requisito\textsubscript{G} \textbf{R-110-F-Ob} e non riportano il testo delle eccezioni che li hanno originati, secondo la convenzione della sezione \ref{sec:idiomi-denominazione}.
+
+\paragraph{L'ordine in cui la rotta intercetta i due errori non è indifferente.}
+L'errore del collegamento scartato è un sottotipo di quello dell'estrazione fallita, scelta motivata nella sezione \ref{sec:backend-nucleo} dal fatto che un chiamante può volerli trattare insieme. La conseguenza è che nella rotta il sottotipo va intercettato per primo: invertendo i due blocchi, un indirizzo troppo lungo riceverebbe lo stato dell'estrazione fallita, e all'utente verrebbe detto che la pagina non è leggibile quando in realtà nessuno ha provato a leggerla.
+
+\paragraph{Un limite dell'ordine dei rifiuti, che va dichiarato.}
+La sequenza appena descritta vale quando la chiave del servizio di estrazione è configurata. Se manca, il costruttore della dipendenza rifiuta di produrre l'adattatore, e poiché il framework\textsubscript{G} web risolve le dipendenze \textbf{prima} di validare il corpo della richiesta, ogni chiamata riceve lo stato 503 del servizio indisponibile, \textbf{anche quando l'indirizzo è malformato e meriterebbe un 422}. È una conseguenza dell'ordine di risoluzione, non una scelta, e riguarda il solo caso in cui il prodotto sia messo in esercizio senza quella chiave. La differenza rispetto alla chiave del gateway dei modelli, la cui assenza impedisce direttamente l'avvio del processo, è argomentata nella sezione \ref{sec:deployment-unita}.
+
+\paragraph{Dalla richiesta accolta alle istruzioni composte.}
+Superati i controlli, il percorso attraversa i confini descritti nella sezione \ref{sec:architettura-backend} nell'ordine seguente.
+
+\begin{enumerate}
+    \setlength{\itemsep}{3pt}
+    \item Il caso d'uso verifica la lunghezza dell'indirizzo e interroga la porta di estrazione.
+    \item L'adattatore che la realizza inoltra la richiesta al servizio esterno. L'operazione di rete del client di quel servizio è sincrona, quindi viene eseguita su un thread separato per non fermare il ciclo di eventi, secondo la ragione riportata nella sezione \ref{sec:backend-adattatori-secondari}.
+    \item Il contenuto restituito viene troncato dall'adattatore secondo la propria politica, e poi di nuovo dal caso d'uso alla soglia del dominio\textsubscript{G}.
+    \item Il testo estratto viene reso inerte nei suoi marcatori e racchiuso fra i delimitatori, poi collocato nel messaggio destinato al materiale.
+    \item Il costruttore delle istruzioni compone il messaggio di sistema con le regole proprie di questa funzione, fra cui quelle che dichiarano non autorevole il contenuto ricevuto.
+    \item Il caso d'uso interroga la porta del modello linguistico e restituisce il flusso, che da questo punto in avanti si comporta come quello di ogni altra operazione assistita.
+\end{enumerate}
+
+\paragraph{Il troncamento avviene due volte, e la ripetizione è voluta.}
+Le due soglie coincidono nel valore, il che rende la doppia applicazione facile da scambiare per una svista. Non lo è, e la ragione sta in ciò che la porta dichiara. La porta di estrazione \textbf{non promette alcun limite di lunghezza} sul risultato, secondo la scelta motivata nella sezione \ref{sec:backend-nucleo}: il troncamento dell'adattatore è una sua politica, che un realizzatore diverso o un doppio predisposto per un test\textsubscript{G} non sarebbero tenuti a rispettare. Il caso d'uso applica quindi la propria soglia perché è la sola di cui risponde. Se un giorno le due divergessero, o se subentrasse un secondo realizzatore più generoso, il dominio\textsubscript{G} resterebbe entro il limite che dichiara di rispettare.
+
+\paragraph{Il contenuto di terze parti entra confinato, e si vede dove.}
+Le tre difese contro le istruzioni ostili contenute in una pagina sono descritte nella sezione \ref{sec:backend-nucleo}, con il loro limite. Qui rileva il punto della sequenza in cui ciascuna interviene, perché è l'ordine a renderle efficaci. La separazione dei ruoli agisce al passo 4, collocando il contenuto nel messaggio del materiale e mai fra le istruzioni. La neutralizzazione dei delimitatori agisce nello stesso passo e \textbf{prima} che il testo sia racchiuso, altrimenti una pagina potrebbe chiudere il recinto per conto proprio. La dichiarazione di non autorevolezza agisce al passo 5, nel messaggio di sistema, l'unico luogo che la pagina non può raggiungere.
+
+Va notato che la neutralizzazione avviene \textbf{dopo} il troncamento del passo 3, e che sostituisce i caratteri senza aggiungerne: se allungasse il testo, le istruzioni supererebbero un limite che il dominio\textsubscript{G} crede ancora rispettato.
+
+\paragraph{L'estrazione avviene prima che il flusso cominci, ed è ciò che rende possibili i tre stati.}
+Questo caso d'uso è l'unico dei sette dichiarato come funzione asincrona con restituzione anziché come generatore, e la sezione \ref{sec:backend-nucleo} ne enuncia il motivo. Il flusso appena descritto è il luogo in cui quel motivo si vede. Il corpo di un generatore resta fermo finché nessuno ne consuma il risultato: con quella forma, i passi da 1 a 5 sarebbero avvenuti dentro l'adattatore di trasporto, cioè dopo che lo stato della risposta è stato inviato. \textbf{Nessuno dei tre stati di rifiuto sarebbe stato ancora possibile}, e un collegamento troppo lungo o una pagina irraggiungibile si sarebbero presentati all'utente come un flusso che si interrompe invece che come un errore. Con la forma adottata l'estrazione avviene subito e ciò che viene restituito resta comunque un flusso non ancora consumato, la proprietà che la sezione \ref{sec:idiomi-generatori} chiede a entrambi i livelli.
 
 \subsection{Salvataggio e caricamento di una nota}
 \label{sec:flusso-persistenza}
@@ -1564,6 +1611,60 @@ Ne discende la regola pratica: \textbf{un errore non attraversa mai un confine n
 \label{sec:flusso-errori}
 % Contenuto previsto: traduzione degli errori del gateway in messaggi
 % conformi a R-110-F-Ob, senza esposizione di dettagli tecnici.
+Le sezioni precedenti seguono le interazioni che riescono. Questa segue quelle che falliscono, dal punto in cui il guasto si manifesta fino alla frase che l'utente legge. I requisiti\textsubscript{G} coinvolti sono \textbf{R-110-F-Ob}, che impone messaggi in linguaggio naturale privi di dettagli tecnici, e \textbf{R-80-F-Ob} (UC72), che chiede all'utente di essere avvisato quando un'operazione non si completa.
+
+\paragraph{Lo spartiacque è un istante, non una specie di guasto.}
+Il medesimo guasto del gateway dei modelli produce due esiti del tutto diversi a seconda del momento in cui si manifesta, e il momento che li separa è l'invio dell'intestazione di stato della risposta. Prima di quell'istante lo stato è ancora modificabile e il guasto diventa una risposta di errore ordinaria. Dopo, lo stato inviato è già quello di una risposta riuscita, e non esiste modo di ritrattarlo: l'unica via che resta è dirlo dentro il flusso.
+
+La conseguenza va enunciata perché è controintuitiva: \textbf{la stessa causa produce due rappresentazioni diverse}, e non per una scelta di comodo, ma perché il protocollo non consente altro. È anche la ragione per cui l'adattatore di trasporto preleva il primo frammento prima di restituire la risposta, secondo quanto argomentato nelle sezioni \ref{sec:backend-adattatori-primari} e \ref{sec:idiomi-generatori}: quel prelievo sposta il maggior numero possibile di guasti dalla seconda categoria alla prima.
+
+\paragraph{Prima dell'intestazione: una forma sola per ogni errore.}
+Tutte le risposte di errore del servizio applicativo hanno la stessa forma, un solo campo testuale destinato a essere mostrato. Vi confluiscono esiti di origine diversa: la validazione della richiesta, che compone la propria frase a partire dal campo che non ha superato il controllo (stato 422); i rifiuti propri di una singola operazione, come quelli descritti nella sezione \ref{sec:flusso-collegamento} (stati 400 e 503); l'indisponibilità del gateway all'apertura del flusso (stato 503, UC62). L'uniformità non è cosmetica: consente all'applicazione web di leggere un campo solo, e al contratto di dichiarare una forma sola, così che i tipi generati non descrivano risposte che il servizio non produce.
+
+\paragraph{Dopo l'intestazione: l'evento terminale d'errore.}
+Quando il guasto sopraggiunge a flusso già avviato, il servizio applicativo emette un evento terminale che dichiara il fallimento, e registra l'accaduto nel proprio registro di esecuzione. Il formato di quell'evento appartiene alla sezione \ref{sec:flusso-streaming} e qui non viene ripetuto.
+
+Ciò che appartiene a questa sezione è la ragione per cui esiste. Senza un evento dedicato, un flusso interrotto e un flusso completato sarebbero \textbf{indistinguibili per il client}, che in entrambi i casi osserverebbe soltanto la chiusura della connessione. L'utente avrebbe ricevuto un testo mozzo presentandoglisi come completo, senza alcun segnale: è esattamente la condizione che \textbf{R-80-F-Ob} vieta. La distinzione, quindi, è ottenuta per affermazione e non per implicazione.
+
+\paragraph{I tre esiti che il client distingue.}
+Il consumo di una risposta progressiva termina in uno di tre modi, e l'applicazione web li tratta diversamente.
+
+\begin{itemize}
+    \setlength{\itemsep}{3pt}
+    \item \textbf{Terminatore di completamento}: l'operazione è riuscita, il testo accumulato è integro.
+    \item \textbf{Evento terminale d'errore}: l'operazione è fallita dopo essere cominciata. Il testo già arrivato resta visibile, ma accanto compare il messaggio che ne dichiara l'incompletezza.
+    \item \textbf{Chiusura senza alcun terminatore}: la connessione è caduta e il servizio non ha detto nulla. Questo è l'unico caso in cui il messaggio d'errore \textbf{nasce nell'applicazione web}, perché è l'unico in cui non ne esiste uno proveniente dal servizio. Anche quel messaggio dichiara causa e azione correttiva senza dettagli tecnici, come tutti gli altri.
+\end{itemize}
+
+\noindent Il terzo caso è quello che una realizzazione ingenua trascura, ed è anche il più insidioso, perché una connessione che cade è indistinguibile da un completamento se non si è deciso in anticipo che il completamento debba essere dichiarato.
+
+\paragraph{Il riconoscimento avviene sul nome del campo, non sul testo della riga.}
+È un dettaglio del consumo della risposta che costituisce una scelta di progetto e non un'ottimizzazione. Riconoscere l'evento d'errore confrontando il testo della riga con una stringa nota funzionerebbe fino al giorno in cui il modello linguistico producesse quella stessa stringa dentro il testo generato: a quel punto un frammento del contenuto verrebbe scambiato per la dichiarazione di un fallimento, e l'operazione risulterebbe interrotta senza esserlo. Su un prodotto che genera Markdown arbitrario, e fra le cui funzioni c'è la scrittura di blocchi di codice, la collisione è verosimile. Il riconoscimento per nome del campo rende la collisione impossibile per costruzione.
+
+\paragraph{Dal punto in cui nasce a quello in cui l'utente lo legge.}
+Il percorso di un messaggio d'errore attraversa quattro passaggi, e nessuno lo riformula.
+
+\begin{enumerate}
+    \setlength{\itemsep}{3pt}
+    \item Il servizio applicativo lo produce, nella forma unica descritta sopra oppure dentro l'evento terminale.
+    \item La funzione dell'applicazione web che contatta il servizio ne estrae il testo e lo solleva come errore ordinario, unificando i due casi: da qui in avanti un fallimento prima e uno dopo l'intestazione sono la stessa cosa.
+    \item Lo stato condiviso registra il messaggio e spegne insieme l'indicatore di avanzamento. I due effetti sono deliberatamente inseparabili: un errore a video con l'indicatore ancora acceso descriverebbe una situazione che non esiste, un'operazione insieme fallita e in corso.
+    \item L'interfaccia lo presenta in un riquadro di avviso collocato in un'area annunciata dai lettori di schermo, così che l'esito raggiunga anche chi non guarda lo schermo.
+\end{enumerate}
+
+\noindent Un caso resta fuori da questo percorso, ed è quello dell'annullamento volontario. Il browser lo segnala con un errore, ma un'operazione che l'utente ha interrotto di proposito non è un fallimento e non produce alcun messaggio: il riconoscimento che lo distingue, e la ragione per cui avviene per nome e non per classe, sono nella sezione \ref{sec:idiomi-generatori}.
+
+\paragraph{Che cosa non trapela, nei tre punti in cui potrebbe.}
+Il requisito\textsubscript{G} \textbf{R-110-F-Ob} vieta i dettagli tecnici nei messaggi rivolti all'utente. Il divieto è rispettato in tre punti distinti, e ciascuno tratteneva qualcosa di diverso.
+
+\begin{itemize}
+    \setlength{\itemsep}{3pt}
+    \item \textbf{Validazione della richiesta}: la forma predefinita del framework\textsubscript{G} web espone il tipo dell'errore, la posizione del campo e il contesto del controllo, e soprattutto rimanda al mittente il valore ricevuto, cioè \textbf{il testo che l'utente ha scritto}. Nessuno dei quattro raggiunge la risposta.
+    \item \textbf{Guasto del fornitore}: la formulazione dell'eccezione, prodotta da un sistema\textsubscript{G} esterno e in lingua non controllata, resta nel registro di esecuzione. Nel corpo della risposta va un messaggio del prodotto.
+    \item \textbf{Annullamento}: il testo con cui il browser segnala l'interruzione è tecnico e in lingua inglese, e non raggiunge l'interfaccia.
+\end{itemize}
+
+\noindent I tre casi condividono la stessa struttura: l'informazione utile alla diagnosi viene conservata dove serve a chi mette in esercizio il sistema\textsubscript{G}, e sostituita da una frase del prodotto dove il destinatario è l'utente. È l'applicazione, ai messaggi di errore, della distinzione fra le due specie stabilita nella sezione \ref{sec:idiomi-denominazione}.
 
 
 % ===========================================================================
