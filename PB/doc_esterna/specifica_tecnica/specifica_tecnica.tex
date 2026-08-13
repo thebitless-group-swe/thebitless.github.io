@@ -198,6 +198,20 @@
   \end{figure}%
 }
 
+% ---------------------------------------------------------------------------
+% Elenchi di firme delle sezioni di architettura.
+% Il carattere a spaziatura fissa non ammette dilatazione degli spazi, quindi
+% una voce composta prevalentemente in \texttt non e' giustificabile e
+% sborderebbe nel margine. L'ambiente disattiva la giustificazione per questi
+% soli elenchi, lasciando intatto il resto del documento.
+% ---------------------------------------------------------------------------
+\newenvironment{firme}{%
+  \begin{itemize}[leftmargin=1.4em, topsep=4pt, itemsep=4pt, parsep=0pt]
+  \raggedright
+}{%
+  \end{itemize}%
+}
+
 \newcommand{\diagrammamancante}[3]{%
   \begin{figure}[H]
     \centering
@@ -1077,7 +1091,7 @@ La direzione delle dipendenze è scritta in \texttt{api/.importlinter} come un i
 \begingroup
 \small
 \setlength{\tabcolsep}{4pt}
-\begin{longtable}{|p{3.3cm}|p{2.2cm}|p{8.5cm}|}
+\begin{longtable}{|p{3.2cm}|p{2.1cm}|p{8.2cm}|}
     \caption{Contratti di dipendenza dichiarati in \texttt{api/.importlinter}}\label{tab:contratti-dipendenza}\\
     \hline
     \textbf{Contratto} & \textbf{Tipo} & \textbf{Che cosa stabilisce} \\
@@ -1098,7 +1112,7 @@ La direzione delle dipendenze è scritta in \texttt{api/.importlinter} come un i
 \endgroup
 
 \paragraph{Ciò che il contratto \texttt{layers} consente, e ciò che nessuna rotta fa.}
-Va evitato un equivoco che la sola lettura della tabella renderebbe possibile. L'ordinamento in livelli \textbf{consente} a un adattatore primario di importare da \texttt{app/infrastructure/}, ed è ciò che accade: ogni rotta importa \texttt{sse\_response}, il modulo che dà forma alla risposta in streaming. Ciò che nessun adattatore primario fa è \textbf{istanziare un adattatore di fornitore}: i nomi \texttt{LiteLLMClient} e \texttt{TavilyExtractor} non compaiono in alcuna rotta. La rotta dichiara la porta di cui ha bisogno e la riceve dall'esterno; l'unico modulo che sappia quale adattatore la soddisfi è il composition root, descritto nella sezione \ref{sec:backend-composition-root}.
+Va evitato un equivoco che la sola lettura della tabella renderebbe possibile. L'ordinamento in livelli \textbf{consente} a un adattatore primario di importare da \texttt{app/infrastructure/}, ed è ciò che accade: ognuna delle sette rotte assistite importa \texttt{sse\_response}, il modulo che dà forma alla risposta in streaming. Ciò che nessun adattatore primario fa è \textbf{istanziare un adattatore di fornitore}: i nomi \texttt{LiteLLMClient} e \texttt{TavilyExtractor} non compaiono in alcuna rotta. La rotta dichiara la porta di cui ha bisogno e la riceve dall'esterno; l'unico modulo che sappia quale adattatore la soddisfi è il composition root, descritto nella sezione \ref{sec:backend-composition-root}.
 
 La distinzione non è formale. Il primo caso è una dipendenza da un modulo di trasporto che l'applicazione possiede per intero; il secondo sarebbe una dipendenza dal fornitore esterno, cioè esattamente ciò che l'esagono esiste per impedire.
 
@@ -1137,8 +1151,7 @@ La funzione \texttt{sse\_response} converte il flusso di frammenti prodotto dal 
 Ciò che appartiene a questa sezione è invece la ragione della sua firma. La funzione \textbf{estrae il primo frammento prima di restituire la risposta}, e questo non è un dettaglio realizzativo: il server invia l'intestazione di stato prima di iniziare a iterare il flusso, e dopo quel momento non è più possibile rispondere con uno stato di errore. Un guasto del fornitore che si manifesti all'apertura del flusso viene perciò intercettato mentre lo stato della risposta è ancora modificabile, e tradotto in 503 (UC 62); un guasto che sopraggiunga a metà flusso richiede un trattamento diverso, descritto nella sezione \ref{sec:flusso-errori}. La funzione verifica inoltre a ogni frammento se il client si è disconnesso, e in tal caso chiude il flusso: è il tratto terminale della propagazione dell'annullamento trattata nella sezione \ref{sec:idiomi-generatori}.
 
 \paragraph{Firme.}
-\begin{itemize}
-    \setlength{\itemsep}{3pt}
+\begin{firme}
     \item \texttt{summarize(payload: TextRequest, request: Request, client: LLMClient): StreamingResponse} --- e con la medesima forma \texttt{generate}, \texttt{translate}, \texttt{rewrite}, \texttt{grammar} e \texttt{critique}, ciascuna con il proprio DTO. Il parametro \texttt{client} è dichiarato con \texttt{Depends(get\_llm\_client)}.
 
     \item \texttt{generate\_from\_link(payload: LinkRequest, request: Request, client: LLMClient, extractor: ContentExtractor): StreamingResponse} --- unica rotta a dichiarare due porte fra i propri parametri; il flusso che ne deriva è descritto nella sezione \ref{sec:flusso-collegamento}.
@@ -1148,7 +1161,7 @@ Ciò che appartiene a questa sezione è invece la ragione della sua firma. La fu
     \item \texttt{describe\_validation\_error(error: dict): str} --- traduce un singolo errore di validazione nella frase rivolta all'utente.
 
     \item \texttt{sse\_response(request: Request, stream: AsyncGenerator[str, None], log\_label: str, logger: Logger | None): StreamingResponse} --- adattatore di trasporto.
-\end{itemize}
+\end{firme}
 
 \diagrammamancante{Adattatori primari e schemi di validazione}{backend-adattatori-primari}{Diagramma delle classi: gli otto router di \texttt{api/routes/}, i sette DTO di \texttt{api/schemas.py} con i rispettivi campi e vincoli, lo schema \texttt{ErrorResponse}, le dipendenze verso le porte del nucleo e verso \texttt{sse\_response}.}
 
@@ -1190,21 +1203,21 @@ Il modulo \texttt{core/domain/values.py} raccoglie ciò che le funzioni assistit
 Il modulo contiene inoltre il value object \texttt{Message}, immutabile, con i due campi \texttt{role} e \texttt{content}. Rappresenta un messaggio della conversazione con il modello, ed è il tipo che le porte e le istruzioni si scambiano. La sua introduzione ha una motivazione precisa: al suo posto vi era un dizionario privo di tipo, nel quale un nome di chiave sbagliato non veniva segnalato da nulla e arrivava fino al rifiuto del fornitore. \textbf{Il difetto era l'assenza del tipo, non la coppia ruolo-contenuto}: una conversazione fatta di messaggi con un ruolo è vocabolario di dominio\textsubscript{G} legittimo per un'applicazione che compone istruzioni, non una forma imposta dal fornitore. Mancavano soltanto un nome e un punto in cui tradurla, e il modello del dominio\textsubscript{G} si ferma lì --- nessuna entità che rappresenti la conversazione intera, nessun tipo enumerato per il ruolo, nessun involucro attorno ai frammenti in uscita, dove la stringa è già il tipo giusto. Il criterio per accorgersi di aver modellato troppo è verificabile\textsubscript{G} e viene richiamato nella sezione \ref{sec:backend-adattatori-secondari}: se la traduzione dentro l'adattatore smette di stare in una riga, si è ecceduto.
 
 \paragraph{La composizione delle istruzioni destinate al modello.}
-Il package \texttt{core/domain/prompts/} costruisce le istruzioni, ed è dominio\textsubscript{G} a tutti gli effetti: che cosa il modello possa dire e in che forma debba scriverlo è una decisione di prodotto, non una proprietà del fornitore. Quattro moduli con quattro compiti distinti:
+Il package \texttt{core/\allowbreak domain/\allowbreak prompts/} costruisce le istruzioni, ed è dominio\textsubscript{G} a tutti gli effetti: che cosa il modello possa dire e in che forma debba scriverlo è una decisione di prodotto e non una proprietà del fornitore. Quattro moduli, con quattro compiti distinti:
 
 \begin{itemize}
     \setlength{\itemsep}{3pt}
-    \item \texttt{rules.py} dichiara ogni regola \textbf{una volta sola}, come costante nominata. Prima della sua introduzione le stesse regole erano riscritte parola per parola in ciascuna delle tredici istruzioni: la sola proibizione dei preamboli compariva undici volte, e cambiarne la formulazione significava correggere undici punti senza dimenticarne nessuno. Il beneficio ottenuto è la definizione in un punto unico \textbf{e nient'altro}: non è il principio aperto-chiuso, perché aggiungere un'ottava funzione assistita continua a richiedere uno schema, una rotta, un caso d'uso e un provider. Il prezzo va dichiarato: le regole che portavano un esempio proprio dell'operazione hanno dovuto assumere una formulazione generica, e quell'esempio si è perso.
+    \item \texttt{rules.py} dichiara ogni regola \textbf{una volta sola}, come costante nominata. Prima della sua introduzione le stesse regole erano riscritte parola per parola in ciascuna delle istruzioni: la sola proibizione dei preamboli compariva undici volte, e cambiarne la formulazione significava correggere undici punti senza dimenticarne nessuno. Il beneficio ottenuto è la definizione in un punto unico \textbf{e nient'altro}: non è il principio aperto-chiuso, perché aggiungere un'ottava funzione assistita continua a richiedere uno schema, una rotta, un caso d'uso e un provider. Il prezzo va dichiarato: le regole che portavano un esempio proprio dell'operazione hanno dovuto assumere una formulazione generica, e quell'esempio si è perso.
 
     \item \texttt{composer.py} mette in fila le parti --- il ruolo attribuito al modello, le regole di contenuto, le regole di forma e, dove l'utente può sceglierla, la lunghezza richiesta --- e ne ricava i due messaggi da inviare. \textbf{Non è il pattern Builder}, e la sezione \ref{sec:pattern-scartati} argomenta perché non vada chiamato così.
 
-    \item \texttt{templates.py} contiene i tredici costruttori, uno per ciascuna variante delle sette funzioni. Vi resta scritto ciò che è proprio della singola operazione: la frase che dichiara il ruolo del modello e le regole che nessun'altra istruzione impiega. La convenzione è esplicita: \textbf{una regola che comparisse in due costruttori appartiene a \texttt{rules.py}}.
+    \item \texttt{templates.py} contiene i \textbf{sette costruttori}, uno per ciascuna funzione assistita. Le istruzioni distinte che ne risultano sono dodici, perché l'analisi critica ne produce una per ciascuno dei sei cappelli mentre le altre sei operazioni ne hanno una ciascuna; la distinzione è verificata\textsubscript{G} da un test\textsubscript{G} dedicato, perché due operazioni che condividono quasi tutte le regole collassano sul medesimo testo appena una di quelle proprie viene dimenticata. Nel modulo resta scritto ciò che è proprio della singola operazione: la frase che dichiara il ruolo del modello e le regole che nessun'altra istruzione impiega. La convenzione è esplicita: \textbf{una regola che comparisse in due costruttori appartiene a \texttt{rules.py}}.
 
     \item \texttt{untrusted.py} contiene la sola trasformazione che agisce sul contenuto di terze parti, descritta di seguito.
 \end{itemize}
 
 \paragraph{Il contenuto non fidato è confinato, e il confine è dichiarato.}
-Due proprietà governano il trattamento del testo che il prodotto non ha scritto. La prima vale per ogni operazione: \textbf{il testo dell'utente finisce esclusivamente nel messaggio destinato all'utente}, mai fra le istruzioni di prodotto. È la proprietà che tiene separate le istruzioni dal materiale su cui esse operano, ed è verificata\textsubscript{G} dai test\textsubscript{G} su tutte e tredici le istruzioni.
+Due proprietà governano il trattamento del testo che il prodotto non ha scritto. La prima vale per ogni operazione: \textbf{il testo dell'utente finisce esclusivamente nel messaggio destinato all'utente}, mai fra le istruzioni di prodotto. È la proprietà che tiene separate le istruzioni dal materiale su cui esse operano, ed è verificata\textsubscript{G} dai test\textsubscript{G} su tutti e sette i costruttori, per ciascun valore dei parametri che ne modificano l'esito.
 
 La seconda riguarda la sola generazione a partire da un collegamento, dove il materiale proviene da una pagina web e quindi da un terzo che il prodotto non controlla. Quel contenuto viene racchiuso fra due marcatori, così che il modello sappia dove comincia e dove finisce ciò che non è autorevole, e i marcatori che comparissero \textit{dentro} il contenuto vengono resi inerti: senza questo passaggio una pagina potrebbe chiudere il recinto per conto proprio, e tutto ciò che segue si presenterebbe di nuovo come istruzione. La sostituzione avviene carattere per carattere e non allunga il testo --- proprietà necessaria, perché il troncamento alla lunghezza massima avviene \textit{prima} della composizione, e un contenuto che si allungasse dopo farebbe superare all'istruzione un limite che il dominio\textsubscript{G} crede ancora rispettato.
 
@@ -1216,8 +1229,7 @@ Sono dichiarate in \texttt{core/ports/} come classi astratte, ciascuna con una s
 Nessuna delle due porte dichiara un'operazione di chiusura, benché entrambi i realizzatori concreti possiedano risorse da rilasciare. La ragione è che il ciclo di vita di quelle risorse è un fatto dell'adattatore: dichiararlo nella porta obbligherebbe ogni doppio predisposto per un test\textsubscript{G} a implementare un metodo che non ha nulla da chiudere. Chi lo esegue è il composition root, che è l'unico a sapere quale adattatore stia dietro a quale porta.
 
 \paragraph{Firme.}
-\begin{itemize}
-    \setlength{\itemsep}{3pt}
+\begin{firme}
     \item \texttt{+stream(messages: Sequence[Message]): AsyncIterator[str]} --- unica operazione della porta \texttt{LLMClient}. Solleva \texttt{LLMProviderError}. Il parametro è una sequenza di \texttt{Message} e non di dizionari: la forma di filo del fornitore sta oltre la porta. È dichiarato come sequenza e non come lista perché la porta legge e non modifica.
 
     \item \texttt{+extract(url: str): str} --- unica operazione della porta \texttt{ContentExtractor}. Solleva \texttt{ContentExtractorError}. La porta \textbf{non promette alcun limite di lunghezza} sul risultato: il troncamento è politica del realizzatore, e dichiararlo qui significherebbe vincolare\textsubscript{G} a rispettarla anche i doppi dei test\textsubscript{G}.
@@ -1234,12 +1246,16 @@ Nessuna delle due porte dichiara un'operazione di chiusura, benché entrambi i r
 
     \item \texttt{critique(text: str, hat: Hat, llm: LLMClient): AsyncIterator[str]}
 
-    \item \texttt{generate\_from\_link(url: str, length: Length, extractor: ContentExtractor, llm: LLMClient): AsyncIterator[str]} --- le due porte sono gli ultimi parametri, nell'ordine in cui vengono impiegate. Solleva \texttt{InvalidLinkError} e \texttt{FetchError}.
+    \item \texttt{generate\_from\_link(url: str, length: Length, extractor: ContentExtractor, llm: LLMClient): AsyncIterator[str]} --- le due porte sono gli ultimi parametri, nell'ordine in cui vengono impiegate. Solleva \texttt{InvalidLinkError} e \texttt{FetchError}, dove il primo tipo è sottotipo del secondo: i due fallimenti hanno esiti HTTP distinti --- collegamento scartato senza toccare la rete, estrazione fallita --- ma chi non volesse distinguerli può intercettare il solo tipo generale.
+
+    \item \texttt{validate\_link(url: str): None} --- scarta il collegamento inutilizzabile prima di qualunque richiesta di rete.
+
+    \item \texttt{fetch\_and\_extract(url: str, extractor: ContentExtractor): str} --- interroga la porta di estrazione e riconduce il suo errore al tipo del caso d'uso, troncando il risultato alla lunghezza massima ammessa dal dominio\textsubscript{G}.
 
     \item \texttt{compose(role: str, user: str, content\_rules: Sequence[str], form\_rules: Sequence[str], content\_heading: str, length: Length | None): list[Message]} --- solleva \texttt{ValueError} se il ruolo o il testo dell'utente sono vuoti, che sono i due elementi senza i quali l'istruzione non è una richiesta.
 
     \item \texttt{wrap\_extracted\_content(content: str): str} --- neutralizza i marcatori e racchiude fra essi il contenuto estratto.
-\end{itemize}
+\end{firme}
 
 \diagrammamancante{Porte e casi d'uso del nucleo}{backend-nucleo}{Diagramma delle classi: le due porte \texttt{LLMClient} e \texttt{ContentExtractor} con la rispettiva operazione e il rispettivo tipo di errore; i sette casi d'uso di \texttt{core/services/} con le dipendenze verso le porte; il value object \texttt{Message} e i tipi di \texttt{core/domain/values.py}; i quattro moduli di \texttt{core/domain/prompts/}.}
 
@@ -1251,7 +1267,7 @@ Nessuna delle due porte dichiara un'operazione di chiusura, benché entrambi i r
 % risorse di trasporto che possiedono; il vincolo che vieta a un adattatore di
 % importarne un altro.
 % NON CONTIENE: le chiavi di accesso e la loro provenienza (§3.2.1).
-Il package \texttt{app/infrastructure/adapters/} contiene ciò che il nucleo invoca per parlare con il mondo. Ciascuna delle due porte ha \textbf{un solo realizzatore concreto}, e ciascuno di essi è responsabile di due traduzioni: dalla chiamata del dominio\textsubscript{G} al protocollo del proprio fornitore, e dagli errori del fornitore al tipo di errore che la porta dichiara. Le due traduzioni sono ciò che consente al nucleo di ignorare l'esistenza dei fornitori. La provenienza delle chiavi di accesso non appartiene a questa sezione: è descritta nella sezione \ref{sec:deployment-unita}.
+Il package \texttt{app/infrastructure/adapters/} contiene ciò che il nucleo invoca per parlare con il mondo. Ciascuna delle due porte ha \textbf{un solo realizzatore concreto}, e ciascuno di essi è responsabile di due traduzioni: dalla chiamata del dominio\textsubscript{G} al protocollo del proprio fornitore, e dagli errori del fornitore al tipo di errore che la porta dichiara. Le due traduzioni sono ciò che consente al nucleo di ignorare l'esistenza dei fornitori. Entrambi i moduli realizzano il pattern definito nella sezione \ref{sec:pattern-adapter}. La provenienza delle chiavi di accesso non appartiene a questa sezione: è descritta nella sezione \ref{sec:deployment-unita}.
 
 \paragraph{\texttt{LiteLLMClient} --- realizzatore di \texttt{LLMClient}.}
 Possiede un client HTTP asincrono, configurato con l'indirizzo del gateway, un tempo massimo di attesa e l'intestazione di autorizzazione. L'operazione di flusso apre una richiesta di completamento chiedendo esplicitamente la risposta progressiva, legge la risposta riga per riga man mano che arriva e restituisce i frammenti di testo che ne estrae.
@@ -1275,8 +1291,7 @@ Nessuno dei due adattatori legge la configurazione del processo: la riceve da ch
 Il contratto \texttt{adapter-indipendente} della tabella \ref{tab:contratti-dipendenza} vieta a ciascuno dei tre moduli del package di importare gli altri due. L'elenco comprende anche l'adattatore di trasporto descritto nella sezione \ref{sec:backend-adattatori-primari}: pur non realizzando alcuna porta, esso risiede in questo package perché conosce un protocollo, e soggiace perciò allo stesso vincolo\textsubscript{G}.
 
 \paragraph{Firme.}
-\begin{itemize}
-    \setlength{\itemsep}{3pt}
+\begin{firme}
     \item \texttt{+LiteLLMClient(settings: Settings)} --- costruisce il client HTTP con indirizzo, tempo massimo e intestazione di autorizzazione ricavati dalla configurazione ricevuta.
 
     \item \texttt{+stream(messages: Sequence[Message]): AsyncIterator[str]} --- realizzazione dell'operazione dichiarata dalla porta \texttt{LLMClient}.
@@ -1290,7 +1305,7 @@ Il contratto \texttt{adapter-indipendente} della tabella \ref{tab:contratti-dipe
     \item \texttt{+extract(url: str): str} --- realizzazione dell'operazione dichiarata dalla porta \texttt{ContentExtractor}.
 
     \item \texttt{+aclose(): None} --- smonta il pool di connessioni del client del fornitore.
-\end{itemize}
+\end{firme}
 
 \diagrammamancante{Porte e adattatori secondari}{backend-adattatori-secondari}{Diagramma delle classi: le porte \texttt{LLMClient} e \texttt{ContentExtractor} con i rispettivi tipi di errore; le classi \texttt{LiteLLMClient} e \texttt{TavilyExtractor} che le realizzano, con attributi e operazioni; le dipendenze verso i due fornitori esterni e la conversione degli errori.}
 
@@ -1334,8 +1349,7 @@ I due aspetti risiedono in moduli distinti, e la separazione è deliberata. Il m
 Non si tratta di una separazione formale. Vincolare la validità della configurazione allo schema che la descrive --- imponendo, ad esempio, che una chiave non possa essere vuota --- renderebbe impossibile costruire l'applicazione negli ambienti che quelle chiavi non hanno, e l'esportazione del contratto dell'API\textsubscript{G} in integrazione\textsubscript{G} continua fallirebbe prima ancora di arrivare ai test\textsubscript{G}. Tenendo la validazione fuori dallo schema, il documento che descrive la configurazione resta indipendente dal momento in cui essa viene richiesta.
 
 \paragraph{Firme.}
-\begin{itemize}
-    \setlength{\itemsep}{3pt}
+\begin{firme}
     \item \texttt{get\_settings(): Settings} --- provider memoizzato della configurazione del processo.
 
     \item \texttt{get\_llm\_client(): LLMClient} --- provider memoizzato dell'adattatore del modello linguistico. Il tipo restituito è \textbf{la porta}, non il realizzatore.
@@ -1347,7 +1361,7 @@ Non si tratta di una separazione formale. Vincolare la validità della configura
     \item \texttt{close\_llm\_client(): None} e \texttt{close\_content\_extractor(): None} --- rilasciano le risorse dell'adattatore corrispondente, se ne è stato costruito uno.
 
     \item \texttt{Settings} --- attributi \texttt{+litellm\_base\_url: str}, \texttt{+litellm\_model: str}, \texttt{+litellm\_api\_key: str}, \texttt{+tavily\_api\_key: str}, \texttt{+cors\_origins: list[str]}.
-\end{itemize}
+\end{firme}
 
 \subsection{Design pattern adottati}
 \label{sec:design-pattern}
