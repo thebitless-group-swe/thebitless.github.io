@@ -226,7 +226,7 @@
 \newcommand{\titolo}{Specifica Tecnica}
 \newcommand{\dataverbale}{}
 \newcommand{\dataversione}{2026-08-13}
-\newcommand{\versione}{0.6.0}
+\newcommand{\versione}{0.7.0}
 \newcommand{\stato}{Stesura}
 % La Specifica Tecnica è documentazione esterna: fra i destinatari figura anche
 % la proponente, coerentemente con Analisi dei Requisiti e Piano di Qualifica.
@@ -256,6 +256,8 @@
     \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
     \hline
     \endhead
+    0.7.0 & 2026-08-13 & E. De Piccoli &  & - & Stesura di Idiomi e convenzioni di codifica \\ \hline
+
     0.6.0 & 2026-08-13 & E. De Piccoli &  & - & Stesura dell'Architettura del backend \\ \hline
 
     0.5.0 & 2026-08-11 & A. Marini &  & - & Allineamento della sezione Tecnologie al repository di prodotto, stesura della Panoramica architetturale e riorganizzazione dello scheletro delle sezioni di Architettura \\ \hline
@@ -1419,6 +1421,9 @@ Non si tratta di una separazione formale. Vincolare la validità della configura
 % governano la scrittura del codice indipendentemente dalla componente.
 % NON CONTIENE: nulla che appartenga a una singola componente, che va
 % descritto nella sezione di quella componente.
+Le convenzioni raccolte qui governano la scrittura del codice su entrambi i livelli del prodotto. Il criterio di ammissione alla sezione è stretto: vi entra soltanto ciò che vale al di qua e al di là del confine HTTP, mentre quanto riguarda una sola componente resta descritto nella sezione di quella componente, cioè in \ref{sec:architettura-frontend} o in \ref{sec:architettura-backend}.
+
+Le tre convenzioni che seguono hanno una caratteristica comune: nessuna delle due componenti potrebbe rispettarle da sola. Un flusso si annulla soltanto se ogni anello della catena propaga la chiusura; un contratto è definito una volta sola soltanto se nessuno dei due lati lo riscrive; un errore resta comprensibile all'utente soltanto se ogni punto in cui viene tradotto rispetta lo stesso divieto. Sono perciò convenzioni di progetto e non abitudini di scrittura.
 
 \subsubsection{Generatori asincroni e propagazione dell'annullamento}
 \label{sec:idiomi-generatori}
@@ -1427,6 +1432,34 @@ Non si tratta di una separazione formale. Vincolare la validità della configura
 % stream non ancora consumato e la ragione per cui il primo elemento è estratto
 % dove un errore è ancora traducibile in uno stato HTTP; la propagazione della
 % chiusura lungo l'intera catena quando l'utente annulla.
+Un testo prodotto nel tempo è rappresentato sui due livelli dallo stesso costrutto, il \textbf{generatore asincrono}: \texttt{AsyncIterator[str]} nel servizio applicativo, \texttt{AsyncIterable<string>} nell'applicazione web. La coincidenza non dipende dai due linguaggi, che offrirebbero anche altre strade, ma da una scelta compiuta due volte allo stesso modo: chi consuma un risultato progressivo lo itera, e non attende che sia completo per riceverlo.
+
+\paragraph{Chi produce un flusso non lo consuma.}
+Un caso d'uso del servizio applicativo restituisce il flusso della porta senza averne prelevato alcun elemento, e la funzione dell'applicazione web che contatta il servizio si comporta allo stesso modo verso il componente che la invoca. La proprietà, argomentata nella sezione \ref{sec:backend-nucleo}, ha una conseguenza che si vede soltanto guardando i due livelli insieme: \textbf{su ciascuno di essi il flusso viene toccato per la prima volta dove un guasto è ancora rappresentabile come esito della richiesta}, e mai più avanti. Sul servizio applicativo quel punto è l'adattatore di trasporto, che preleva il primo frammento finché lo stato della risposta non è stato inviato e può quindi ancora tradurre un guasto in 503. Sull'applicazione web è il controllo sullo stato della risposta, che precede la lettura del corpo e trasforma uno stato negativo in un errore ordinario, invece di lasciare che si presenti come un flusso interrotto.
+
+\paragraph{L'annullamento è una catena, e vale quanto il suo anello più debole.}
+Il requisito\textsubscript{G} \textbf{R-79-F-De} (UC71) chiede che un'elaborazione in corso possa essere interrotta. Interromperla davvero significa che nessuna delle parti coinvolte continui a lavorare, e questo richiede che la chiusura attraversi quattro passaggi, tutti necessari.
+
+\begin{enumerate}
+    \setlength{\itemsep}{3pt}
+    \item L'aggancio che governa il flusso nell'applicazione web possiede un \texttt{AbortController} e lo attiva quando l'utente annulla.
+    \item La funzione che contatta il servizio applicativo passa il segnale alla richiesta HTTP. \textbf{Senza questo passaggio l'annullamento sarebbe apparente}: fermava il consumo dei frammenti e lasciava la richiesta aperta, cosicché il servizio non vedeva alcuna disconnessione e continuava a produrre fino al terminatore. È la prima postcondizione di UC71, e prima di essere soddisfatta era il difetto che rendeva inutile tutto il resto della catena.
+    \item L'adattatore di trasporto del servizio applicativo verifica a ogni frammento se il client si è disconnesso, e in tal caso interrompe l'invio.
+    \item La chiusura del generatore restituito dal caso d'uso fa uscire l'adattatore secondario dal contesto della propria richiesta, e la connessione verso il fornitore cade.
+\end{enumerate}
+
+\noindent Il quarto passaggio merita attenzione perché avviene senza che alcuno lo scriva: chiudere un generatore asincrono ne interrompe il corpo nel punto in cui era sospeso, e il costrutto che governa la richiesta verso il fornitore rilascia la connessione uscendo. \textbf{La propagazione non attraversa la porta come un'operazione dichiarata}, e infatti nessuna delle due porte espone un metodo di chiusura, secondo la ragione riportata nella sezione \ref{sec:backend-nucleo}.
+
+\paragraph{Il segnale copre l'annullamento voluto, il resto lo copre l'uscita del generatore.}
+Un consumatore può abbandonare un flusso senza annullarlo: interrompendo il ciclo, restituendo un valore, sollevando un errore a valle. In quei casi il segnale non viene attivato e la catena appena descritta non parte. Per questo la funzione che contatta il servizio applicativo rilascia il lettore del corpo della risposta in un blocco conclusivo, che viene eseguito comunque. L'eventuale rifiuto di quel rilascio viene ignorato deliberatamente, e va spiegato perché: su un flusso già annullato il rilascio fallisce, e lasciarlo propagare sostituirebbe l'errore vero in uscita con uno che descrive soltanto la pulizia.
+
+\paragraph{Un annullamento va riconosciuto, non trattato come guasto.}
+L'ultimo anello della catena riguarda ciò che l'utente vede. Quando il segnale interrompe la richiesta, il browser segnala l'evento con un errore, e distinguerlo da un guasto reale è quanto separa un'interfaccia che torna in attesa da una che mostra un messaggio di errore per un'operazione che l'utente ha annullato di proposito.
+
+Il riconoscimento avviene \textbf{per nome e non per classe}. La classe con cui il browser rappresenta quell'errore appartiene al proprio ambiente di esecuzione, e il confronto per classe fallisce attraversando i confini fra ambienti, quelli dei riquadri incorporati, dei processi di servizio e dell'ambiente in cui girano i test\textsubscript{G}. La conseguenza è stata misurata e non ipotizzata: un annullamento reale produce un errore per il quale il confronto per classe è falso, quindi sarebbe caduto nel ramo dei guasti generici, e il messaggio tecnico del browser, per giunta in lingua inglese, sarebbe comparso nell'interfaccia contro il requisito\textsubscript{G} \textbf{R-110-F-Ob}. La convenzione era già adottata dal modulo che accede al file system per lo stesso motivo, e questa è la seconda occorrenza della stessa regola.
+
+\paragraph{Il segnale è un parametro, mai una cattura.}
+La funzione che avvia un'elaborazione riceve il segnale come argomento invece di catturarlo dall'ambiente in cui è stata costruita. La differenza non riguarda lo stile. La stessa funzione viene conservata per essere rieseguita dal comando che ripete l'ultima operazione, e un segnale catturato alla costruzione sarebbe già stato attivato al secondo giro: \textbf{ripetere un'operazione dopo averla annullata non sarebbe mai ripartito}.
 
 \subsubsection{Tipizzazione dei confini fra i livelli}
 \label{sec:idiomi-tipizzazione}
@@ -1434,6 +1467,23 @@ Non si tratta di una separazione formale. Vincolare la validità della configura
 % la validazione a tempo di esecuzione sui dati in ingresso e la verifica
 % statica sui tipi del client; la regola che vieta di scrivere a mano un tipo
 % derivabile dallo schema.
+Le due unità si scambiano dati su HTTP, e la forma di quei dati è l'unica cosa che devono conoscere l'una dell'altra. Il modo in cui quella forma viene stabilita è la convenzione più vincolante del prodotto, perché è l'unico punto in cui una divergenza fra i due livelli passerebbe inosservata fino all'esecuzione.
+
+\paragraph{Il contratto si definisce una volta sola e si deriva.}
+La catena parte dagli schemi di validazione del servizio applicativo, che sono la fonte, e arriva ai tipi impiegati dall'applicazione web attraverso tre passaggi automatici: dagli schemi il framework\textsubscript{G} web ricava il documento OpenAPI, che è versionato nella repository\textsubscript{G} invece di essere prodotto al bisogno; da quel documento uno strumento genera le dichiarazioni di tipo; queste ultime vengono riesportate da un unico modulo di raccolta, dal quale il resto dell'applicazione web importa.
+
+Il modulo di raccolta non è un passaggio superfluo, ed è la parte della catena che si tende a saltare. Il file generato ha una struttura interna che dipende dal generatore, non dal contratto: importarlo direttamente significherebbe legare ogni componente a quella struttura, e una rigenerazione si propagherebbe ovunque. Con il modulo di raccolta \textbf{la rigenerazione si assorbe in un punto solo}.
+
+Che il documento OpenAPI sia versionato ha due conseguenze pratiche che giustificano la scelta: i tipi si rigenerano senza avere un servizio in esecuzione, e una modifica del contratto compare nel confronto di una \textit{pull request}\textsubscript{G} invece di restare invisibile.
+
+\paragraph{Due verifiche disgiunte, e nessuna sostituisce l'altra.}
+Sui dati in ingresso agisce la validazione a tempo di esecuzione, che rifiuta un corpo malformato prima che raggiunga il dominio\textsubscript{G}. Sui tipi impiegati dall'applicazione web agisce la verifica\textsubscript{G} statica, che intercetta in compilazione l'uso di un campo che il contratto non prevede più. Le due intercettano difetti disgiunti, e va detto perché nessuna copre l'altra: la prima controlla \textit{valori} che arrivano da fuori e che nessuna analisi del codice può conoscere in anticipo; la seconda controlla \textit{codice}, e i suoi tipi non sopravvivono alla compilazione, quindi a tempo di esecuzione non verificano nulla.
+
+\paragraph{Un tipo derivabile dallo schema non si scrive a mano.}
+È il divieto che tiene in piedi tutta la costruzione, e riguarda anche i valori, non i soli tipi. Le soglie di lunghezza e il sentinella con cui la correzione grammaticale segnala di non aver trovato errori sono pubblicati dal contratto come valori letterali, e nel modulo di raccolta la costante corrispondente è annotata con il tipo che proviene dal contratto stesso. \textbf{Cambiare quel valore da un lato solo non compila}, ed è esattamente il difetto che senza questa convenzione resterebbe silenzioso: una sentinella disallineata non produce alcun errore, produce un'interfaccia che non riconosce più la risposta del servizio.
+
+\paragraph{Le due guardie che rendono la convenzione verificabile\textsubscript{G}.}
+Una convenzione che nessuno controlla è un proposito. I due processi dell'integrazione\textsubscript{G} continua descritti nella sezione \ref{sec:tecnologie-infrastruttura} la controllano da entrambi i capi, in modo simmetrico: quello del servizio applicativo riesporta il documento OpenAPI dal codice e pretende che coincida con il file versionato, quello dell'applicazione web rigenera le dichiarazioni di tipo e pretende che coincidano con quelle versionate. Il primo confronto fallisce quando il contratto pubblicato non corrisponde più al codice che lo produce; il secondo quando il contratto è cambiato senza che il client sia stato adeguato. Nei due casi la verifica\textsubscript{G} si interrompe prima che il disallineamento raggiunga il ramo principale.
 
 \subsubsection{Denominazione, struttura dei file e gestione degli errori}
 \label{sec:idiomi-denominazione}
@@ -1442,6 +1492,32 @@ Non si tratta di una separazione formale. Vincolare la validità della configura
 % degli errori, con la distinzione fra messaggi rivolti all'utente e messaggi
 % rivolti a chi opera il sistema, e il divieto di far trapelare nei primi il
 % testo di un'eccezione.
+
+\paragraph{Un nome dichiara un ruolo, non una tecnologia.}
+È la regola di denominazione da cui discendono le altre, e il prodotto la rispetta al prezzo di una riorganizzazione: il servizio applicativo conteneva un package che portava il nome di una delle tecnologie che componeva, e per questo attirava a sé moduli che con quella tecnologia non avevano rapporto. Oggi nessun package di nessuno dei due livelli prende nome da uno strumento o da un fornitore.
+
+Sotto quella regola stanno alcune corrispondenze fisse, che rendono superflua ogni convenzione ulteriore per sapere dove cercare: un caso d'uso prende il nome dell'operazione che realizza e vive in un modulo che porta lo stesso nome; i costruttori di dipendenze del servizio applicativo cominciano tutti con lo stesso prefisso, e altrettanto fanno gli agganci dell'applicazione web. Il segno di sottolineatura iniziale marca su entrambi i livelli ciò che un modulo non espone all'esterno: è una convenzione di Python, adottata anche nel codice TypeScript dove il linguaggio non la impone. Costa nulla e vale il fatto che le due basi di codice si leggano con lo stesso occhio.
+
+\paragraph{Un modulo per unità di responsabilità, anche quando il modulo è breve.}
+La regola si applica soprattutto dove separare costa qualche riga in più e non sembra ripagare. Due casi la illustrano meglio di un enunciato generale. Il primo: lo schema che descrive \textit{che cosa} sia la configurazione del processo e il costruttore che dice \textit{come} la si ottenga stanno in moduli distinti, benché insieme farebbero una ventina di righe. Il secondo: la traduzione degli errori di validazione in frasi rivolte all'utente non vive nel modulo che costruisce l'applicazione, dove verrebbe naturale metterla, ma accanto agli schemi di cui conosce i campi.
+
+In entrambi i casi il criterio è lo stesso, e vale la pena enunciarlo perché è quello che si applica ai casi futuri: \textbf{stanno insieme le cose che cambiano per la stessa ragione}. Lo schema della configurazione cambia quando cambia ciò che il processo deve sapere, il suo costruttore quando cambia il modo di ottenerlo; la traduzione degli errori cambia quando cambiano i campi, non quando cambia il modo in cui l'applicazione viene montata.
+
+\paragraph{I messaggi di errore sono di due specie, e non vanno confuse.}
+La distinzione attraversa entrambi i livelli e ha una conseguenza operativa in ogni punto in cui un errore viene scritto.
+
+\begin{itemize}
+    \setlength{\itemsep}{3pt}
+    \item I messaggi \textbf{rivolti all'utente} sono in linguaggio naturale italiano, dichiarano la causa e l'azione correttiva e non contengono alcun dettaglio tecnico. Li impone il requisito\textsubscript{G} \textbf{R-110-F-Ob}, e comprendono tanto le risposte del servizio applicativo quanto i pochi messaggi che nascono nell'applicazione web.
+    \item I messaggi \textbf{rivolti a chi mette in esercizio il sistema\textsubscript{G}} vivono nel registro di esecuzione e nella diagnostica di avvio, e seguono la regola opposta: nominano per esteso variabili d'ambiente, operazioni e cause, perché a quel destinatario servono esattamente i dettagli che all'altro sono rumore. Il caso limite è il rifiuto di avviare il processo per una chiave mancante, discusso nella sezione \ref{sec:backend-composition-root}.
+\end{itemize}
+
+\noindent Fra le due specie corre un divieto netto: \textbf{il testo di un'eccezione non entra mai in un messaggio della prima specie}. Il divieto è più stringente di quanto sembri, perché ciò che trapelerebbe non è soltanto una formulazione tecnica. Un errore di validazione non filtrato rimanderebbe al mittente il testo che l'utente ha scritto; un errore del fornitore riporterebbe nel corpo della risposta la formulazione di un sistema\textsubscript{G} esterno, in lingua non controllata; un errore del browser comparirebbe in inglese. I tre casi sono trattati nei rispettivi punti del prodotto e riepilogati nella sezione \ref{sec:flusso-errori}.
+
+\paragraph{Un errore si converte al confine che lo dichiara.}
+L'ultima convenzione riguarda i tipi e non i messaggi. Ogni tipo di errore è dichiarato accanto al \textbf{contratto} che ne prevede la possibilità, non accanto all'implementazione che lo solleva: le eccezioni delle due porte stanno con le porte, quelle di un caso d'uso con il caso d'uso. La ragione, argomentata nella sezione \ref{sec:backend-nucleo}, è che chi consuma un contratto deve poter trattare un fallimento previsto senza conoscere chi lo produce.
+
+Ne discende la regola pratica: \textbf{un errore non attraversa mai un confine nella forma in cui è nato}. L'adattatore secondario converte l'eccezione della libreria di trasporto nel tipo dichiarato dalla porta, il caso d'uso converte quella della porta nel proprio, l'adattatore primario converte quella del caso d'uso in uno stato HTTP, e l'applicazione web converte lo stato HTTP in uno stato dell'interfaccia. A ogni passaggio l'informazione si riduce, e la riduzione è il punto: quanto serve al passaggio precedente non serve al successivo.
 
 
 % ===========================================================================
