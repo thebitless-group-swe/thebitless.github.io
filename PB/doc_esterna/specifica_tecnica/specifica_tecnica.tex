@@ -856,7 +856,7 @@ La regola seguita nel collocare lo stato è graduale: \textbf{stato locale al co
 
 I componenti si sottoscrivono a \textbf{singole porzioni} di stato, non allo stato intero: ciascuno store espone un selettore per ogni porzione osservabile, e il componente che ne dichiara uno viene ridisegnato solo quando quella porzione cambia. È la proprietà che rende sostenibile lo streaming: mentre il testo arriva a frammenti e la porzione che lo raccoglie cambia molte volte al secondo, si ridisegna la sola parte di interfaccia che presenta l'esito in arrivo, mentre l'editor --- sottoscritto a una porzione distinta, il testo della nota --- non viene toccato. Una sottoscrizione allo stato nel suo complesso, o a un oggetto che ne aggreghi più porzioni, riporterebbe il ridisegno sull'intera area di lavoro a ogni frammento ricevuto.
 
-I due store si dividono le responsabilità in questo modo: \texttt{useEditorStore} custodisce lo stato della sessione di scrittura, cioè il testo corrente, la selezione, l'esito in arrivo dal servizio applicativo, la condizione di errore e di avanzamento e la modalità di visualizzazione; \texttt{useNotesStore} custodisce la raccolta delle note e l'indicazione di quale sia quella corrente. La loro composizione interna appartiene alla sezione sull'architettura logica dell'applicazione web.
+I due store si dividono le responsabilità in questo modo: \texttt{useEditorStore} custodisce lo stato della sessione di scrittura, cioè il testo corrente, la selezione, l'esito in arrivo dal servizio applicativo, la condizione di errore e di avanzamento e la modalità di visualizzazione; \texttt{notes} custodisce la raccolta delle note e l'indicazione di quale sia quella corrente. La loro composizione interna appartiene alla sezione sull'architettura logica dell'applicazione web.
 
 \subsubsection{Vocabolario}
 \label{sec:panoramica-vocabolario}
@@ -941,6 +941,11 @@ I termini fissati nella tabella \ref{tab:vocabolario-architetturale} sono impieg
 % formato degli eventi di streaming e la sequenza delle interazioni (capitolo
 % 4); le definizioni dei design pattern (§3.5), da richiamare per nome.
 
+L'applicazione web è organizzata secondo il principio dichiarato in §3.1.3: componenti React che compongono l'interfaccia per annidamento, stato condiviso esterno all'albero in due store distinti, flusso dei dati unidirezionale. La presente sezione descrive l'articolazione interna in sei aspetti: organizzazione dei sorgenti, scomposizione in componenti, gestione dello stato, integrazione dell'editor, accesso al servizio applicativo e persistenza lato client.
+
+Due precisazioni preliminari. Primo: il «flusso unidirezionale» vale a livello generale — React legge dallo store, le azioni lo modificano, i componenti sottoscritti si ridisegnano. Secondo: l'integrazione con CodeMirror, descritta in §3.3.4, è un'eccezione controllata. L'API di CodeMirror è imperativa, richiede una sincronizzazione bidirezionale tra l'istanza dell'editor e lo store. La sezione spiega come questa eccezione è gestita in modo da non rompere il principio generale.
+
+% [INSERIRE DIAGRAMMA: UML-componenti-frontend — diagramma dei componenti principali dell'applicazione web: App, Sidebar, TopBar, Editor, Preview, AiActionDialog, EditorToolbar, ViewToggle, MarkdownView — con le dipendenze verso store, hooks, lib e types]
 \subsubsection{Organizzazione dei sorgenti}
 \label{sec:frontend-organizzazione}
 % CONTIENE: la suddivisione di web/src in components, store, lib, hooks,
@@ -949,6 +954,22 @@ I termini fissati nella tabella \ref{tab:vocabolario-architetturale} sono impieg
 % percorsi.
 % NON CONTIENE: l'elenco esaustivo dei file.
 
+La cartella \texttt{web/src/} è organizzata per \textbf{ruolo}, non per feature. Ogni cartella contiene file che condividono la stessa responsabilità architetturale, indipendentemente dalla funzione di prodotto. Nel livello radice di \texttt{src/} risiedono i file di ingresso dell'applicazione: \texttt{main.tsx} (entry point del bundle, che monta l'applicazione nel DOM), \texttt{App.tsx} (componente radice, che definisce il layout principale e la griglia dinamica dell'area di lavoro), e \texttt{index.css} (foglio di stile globale, che include le direttive di Tailwind CSS e le variabili di tema). I moduli organizzati per ruolo sono invece distribuiti nelle seguenti cartelle:
+
+\begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \item \texttt{components/}: componenti React. \texttt{ui/} contiene primitivi (\texttt{alert}, \texttt{button}, \texttt{textarea}) realizzati con \texttt{radix-ui} e \texttt{class-variance-authority}; i file direttamente in \texttt{components/} contengono i componenti compositi: \texttt{Sidebar}, \texttt{TopBar}, \texttt{Editor}, \texttt{EditorToolbar}, \texttt{Preview}, \texttt{ViewToggle}, \texttt{AiActionDialog}, \texttt{MarkdownView}. All'interno di \texttt{AiActionDialog.tsx} sono definiti i componenti interni \texttt{PillSelector} e \texttt{HatSelector}, non esportati separatamente.
+    \item \texttt{hooks/}: hook personalizzati: \texttt{useAiStream} (logica di streaming), \texttt{useTypewriter} (effetto di battitura progressiva). L'hook \texttt{useAiStream} soddisfa R-109-F-De (indicatore di avanzamento per operazioni lunghe) e R-79-F-De (annullamento di una richiesta in corso).
+    \item \texttt{store/}: i due store Zustand: \texttt{useEditorStore.ts} (stato della sessione di scrittura), \texttt{notes.ts} (raccolta delle note).
+    \item \texttt{lib/}: utility e servizi: \texttt{api.ts} (facade API), \texttt{sse.ts} (parser SSE), \texttt{fileSystem.ts} (importazione/esportazione), \texttt{abort.ts} (gestione abort), \texttt{id.ts} (generazione ID), \texttt{editorCommands.ts} (comandi CodeMirror), \texttt{aiActions.ts} (registry delle azioni AI), \texttt{remarkUnderline.ts} (plugin Remark), \texttt{utils.ts} (funzione \texttt{cn}).
+    \item \texttt{types/}: definizioni dei tipi. \texttt{api.ts} è auto-generato da \texttt{openapi-typescript} dallo schema OpenAPI; \texttt{models.ts} lo re-esporta isolando il resto dell'applicazione dalla struttura generata. 
+    \item \texttt{test/}: contiene il \texttt{setup.ts} dei test (Vitest, Testing Library, \texttt{jsdom}), soddisfacendo R-2-Q-Ob e R-3-Q-Ob (test automatici e copertura).
+    \item \texttt{assets/}: risorse statiche: \texttt{hero.png}, \texttt{react.svg}, \texttt{vite.svg}.
+\end{itemize}
+
+Questa organizzazione rende prevedibile la collocazione di un nuovo file. Facilita inoltre la verifica automatica delle dipendenze: un linter può controllare che i componenti non importino direttamente i tipi generati dall'OpenAPI senza passare dal barrel, e che gli store non importino i componenti.
+
+% [INSERIRE DIAGRAMMA: UML-package-frontend — diagramma dei package: components, hooks, store, lib, types — con le dipendenze effettive tra di essi e verso React, Zustand, CodeMirror, Radix UI]
 \subsubsection{Scomposizione in componenti}
 \label{sec:frontend-componenti}
 % CONTIENE: i componenti React e le rispettive responsabilità, il confine fra
@@ -957,13 +978,112 @@ I termini fissati nella tabella \ref{tab:vocabolario-architetturale} sono impieg
 % Prevedere qui il segnaposto per il diagramma dei componenti.
 % NON CONTIENE: la gestione dello stato, che è della sottosezione seguente.
 
-\subsubsection{Gestione dello stato applicativo}
+L'albero dei componenti ha radice in \texttt{App}, che definisce il layout a tre colonne e la griglia dinamica dell'area di lavoro.
+
+\texttt{App} legge \texttt{viewMode} da \texttt{useEditorStore} tramite il selettore \texttt{useViewMode}. La struttura del \texttt{main} cambia in base al valore: in modalità \texttt{split} viene resa una griglia a due colonne (\texttt{md:grid-cols-2}); in modalità \texttt{editor} o \texttt{render} un singolo pannello a tutta larghezza. La presenza di \texttt{Editor} e \texttt{Preview} è determinata dalla stessa condizione. Questa logica soddisfa i requisiti R-50-F-Ob, R-51-F-Ob e R-52-F-Ob (visualizzazioni esclusiva editor, esclusiva render e combinata).
+
+I componenti compositi sono i seguenti:
+
+\begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \item \textbf{Sidebar}: elenca le note da \texttt{notes} tramite \texttt{useNotesList}. Espone un pulsante per creare una nuova nota (\texttt{createEmpty}) che soddisfa R-82-F-Ob e R-114-F-Ob. Gestisce la selezione (\texttt{select}). Ogni voce mostra il titolo e supporta la ridenominazione tramite doppio click, che attiva un campo di input (R-94-F-De). Offre i pulsanti «Apri file…» e «Salva file», che invocano \texttt{openNoteFromFile} e \texttt{saveNoteToFile} (§3.3.6), soddisfacendo R-85-F-Ob e R-88-F-Ob. Un pulsante di collasso riduce la barra a una colonna stretta.
+    
+    \item \textbf{TopBar}: presenta il titolo della nota corrente (da \texttt{useCurrentNote}) e i pulsanti delle azioni AI. Alla pressione di un pulsante, invoca \texttt{setAiModal} per aprire il dialogo corrispondente. Durante lo streaming (\texttt{isGenerating}), mostra un pulsante di interruzione (\texttt{abortStream}) e un indicatore di caricamento (R-109-F-De). In caso di errore, visualizza \texttt{errorMessage} in un alert (R-110-F-Ob).
+    
+    \item \textbf{ViewToggle}: tre pulsanti che impostano \texttt{viewMode} su \texttt{editor}, \texttt{split} o \texttt{render}. È sempre visibile, in qualsiasi modalità, per consentire il passaggio diretto a una vista diversa.
+    
+    \item \textbf{EditorToolbar}: contiene i controlli per la formattazione del testo Markdown. Le operazioni corrispondono ai casi d'uso UC8-UC10 (grassetto, R-9-F-Ob, R-10-F-Ob), UC11-UC13 (corsivo, R-11-F-Ob, R-12-F-Ob), UC14-UC16 (sottolineato, R-13-F-Ob, R-14-F-Ob), UC17-UC19 (barrato, R-15-F-De, R-16-F-De), UC20 (inserimento titolo, R-17-F-Ob), UC22 (rimozione titolo, R-18-F-Ob), UC23 (inserimento sottotitolo, R-19-F-Ob), UC25 (rimozione sottotitolo, R-20-F-Ob), UC26 (inserimento elenco, R-21-F-De, R-22-F-De), UC28 (rimozione elenco, R-23-F-De), UC38 (inserimento link, R-30-F-De), UC49 (inserimento immagine, R-39-F-De), e UC52/UC53 (attivazione/disattivazione auto-completamento, R-42-F-De, R-43-F-De). Ogni comando invoca la corrispondente funzione da \texttt{lib/editorCommands.ts} sull'istanza \texttt{editorView} conservata nello store.
+    
+    \item \textbf{Editor}: il componente che istanzia CodeMirror e gestisce la sincronizzazione bidirezionale con \texttt{useEditorStore} (§3.3.4). Soddisfa i requisiti R-1-F-Ob (inserimento testo) e R-2-F-Ob (visualizzazione grafica del Markdown).
+    
+    \item \textbf{Preview}: rende il contenuto Markdown della nota corrente usando \texttt{MarkdownView}. Applica i plugin \texttt{remark-gfm}, \texttt{remark-math}, \texttt{rehype-katex} e \texttt{rehype-highlight}. Soddisfa R-2-F-Ob e R-113-F-Ob.
+    
+    \item \textbf{MarkdownView}: componente condiviso da \texttt{Preview} e dall'anteprima dell'\texttt{AiActionDialog}. Applica la stessa pipeline Markdown a entrambi i contesti, garantendo coerenza visiva. Non abilita HTML raw. Utilizza \texttt{remarkUnderline} per supportare la sintassi \texttt{++sottolineato++}.
+    
+    \item \textbf{AiActionDialog}: il dialogo modale che si apre quando \texttt{aiModal} non è \texttt{null}. La sua implementazione è articolata:
+    
+    \begin{itemize}
+        \setlength{\itemsep}{0pt}
+        \item \textbf{Registry delle azioni}: le azioni AI sono registrate in \texttt{lib/aiActions.ts} (pattern \textit{Registry}, §3.5). Il registry mappa ciascun \texttt{AiActionId} alla funzione API, al titolo del dialogo, ai campi del form, alla sorgente del testo (\texttt{text}, \texttt{prompt} o \texttt{url}), alla lunghezza minima e massima del testo in input, e alla modalità di inserimento dell'output (\texttt{replace} per trasformazioni, \texttt{append} per generazioni). Il dialogo soddisfa R-54-F-Ob (accesso al LLM).
+        
+        \item \textbf{Funzione \texttt{getActiveText}}: determina il testo da sottoporre all'AI. Se l'utente ha una selezione attiva in \texttt{selectedText}, viene usata quella. Altrimenti, l'intero \texttt{currentText}. La logica è centralizzata per garantire uniformità tra le azioni.
+        
+        \item \textbf{Parametri e validazione}: il dialogo presenta un campo di input (textarea per prompt, input per URL, o nessun campo per le azioni sul testo) e selettori per i parametri specifici di ciascuna azione. I selettori soddisfano R-56-F-De (tipologia di riassunto), R-58-F-Ob (lingua di destinazione), R-60-F-Ob (stile di riscrittura), R-64-F-Ob (prospettiva di analisi), R-73-F-De (lunghezza del testo generato) e R-74-F-De (URL come fonte). I selettori sono \texttt{PillSelector} e \texttt{HatSelector}, definiti all'interno del file \texttt{AiActionDialog.tsx}. La validazione controlla che il testo in input soddisfi \texttt{minLength} e \texttt{maxLength} (R-81-F-Ob), e che i parametri obbligatori siano selezionati. Gli errori di validazione sono visualizzati in un alert (R-110-F-Ob).
+        
+        \item \textbf{Stato locale}: il dialogo mantiene uno stato locale (\texttt{input}, \texttt{params}, \texttt{validationError}, \texttt{lastCall}) gestito tramite \texttt{useState}. \texttt{lastCall} conserva l'input e i parametri dell'ultima chiamata. Il pulsante di generazione mostra «Rigenera» invece di «Genera» quando i parametri non sono cambiati (R-78-F-De).
+        
+        \item \textbf{Anteprima e accettazione}: l'output in streaming è visualizzato in un'anteprima che usa \texttt{MarkdownView} e l'effetto di battitura \texttt{useTypewriter}. Il pulsante «Accetta» invoca \texttt{insertOutputIntoNote} (R-76-F-Ob). «Rifiuta» invoca \texttt{discardOutput} (R-77-F-De). Il pulsante «Accetta» è disabilitato finché l'output è vuoto, in generazione, o nel caso particolare di \texttt{grammar} che restituisce \texttt{NO\_ERRORS\_MARKER} (nessun errore rilevato, R-62-F-De).
+        
+        \item \textbf{Terminazione}: la chiusura del dialogo tramite overlay o tasto ESC invoca \texttt{handleReject}, che abortisce lo streaming e scarta l'output.
+        
+        \item \textbf{Esaustività del contratto}: il file \texttt{AiActionDialog.tsx} contiene vincoli di tipo che garantiscono che tutti i valori enumerati del contratto OpenAPI siano presenti nei selettori. La riga \texttt{type LanguagesCoverContract = Exclude<Language, (typeof LANGUAGES)[number]['value']>} produce un errore di compilazione se il backend aggiunge una lingua che il frontend non espone, o se il frontend espone una lingua che il backend non prevede. La divergenza tra contratto e interfaccia diventa una mancata compilazione, non un difetto in produzione.
+    \end{itemize}
+\end{itemize}
+
+% [INSERIRE DIAGRAMMA: UML-classi-frontend — diagramma delle classi/tipi principali: Note, NotesState, EditorState, ViewMode, AiModal — con attributi e metodi]
+
+\subsubsection{Gestione dello stato}
 \label{sec:frontend-stato}
 % CONTIENE: i due store e la loro divisione di responsabilità; i selettori
 % atomici e la ragione per cui non si espongono oggetti compositi; la regola
 % che stabilisce quando uno stato resta locale, quando è sollevato al genitore
 % e quando è promosso a store; il flusso unidirezionale.
 % NON CONTIENE: la definizione del pattern Observer (§3.5.3).
+
+Lo stato condiviso è custodito in due store Zustand. Entrambi rispettano la regola dei \textbf{selettori atomici} (descritta in §3.5): ogni store espone selettori che estraggono una singola porzione di stato; i componenti si sottoscrivono solo a questi, mai allo stato aggregato. Un componente viene ridisegnato solo quando la porzione a cui è sottoscritto cambia. Questa proprietà rende sostenibile lo streaming: \texttt{Preview}, sottoscritto a \texttt{useCurrentText}, non viene ridisegnato a ogni chunk ricevuto; solo il componente che presenta \texttt{streamedOutput} viene aggiornato.
+
+La regola di collocazione dello stato è graduale: stato locale al componente per difetto, sollevato al genitore quando due componenti vicini devono concordare, promosso a store soltanto quando componenti lontani nell'albero devono condividerlo. Lo store non è il deposito di tutto lo stato: le condizioni puramente locali di un componente restano nel componente che le possiede.
+
+\paragraph{\texttt{useEditorStore}.}
+
+Custodisce lo stato della sessione di scrittura e delle interazioni AI:
+
+\begin{itemize}
+    \setlength{\itemsep}{0pt}
+     \item \texttt{currentText}: il testo corrente della nota, aggiornato da \texttt{setCurrentText} a ogni modifica dell'editor.
+    \item \texttt{\_loadVersion}: contatore incrementato a ogni caricamento di una nuova nota. Serve a invalidare le operazioni asincrone in corso.
+    \item \texttt{selectedText}: il testo selezionato dall'utente nell'editor (R-3-F-Ob), aggiornato da \texttt{setSelectedText} tramite un listener di CodeMirror.
+    \item \texttt{streamedOutput}: il testo in arrivo dal servizio applicativo, accumulato chunk per chunk da \texttt{appendChunk}.
+    \item \texttt{isGenerating}: flag che indica se uno streaming è in corso. \texttt{startStreaming} lo imposta a \texttt{true}; \texttt{finishStreaming} e \texttt{setError} lo imposta a \texttt{false}.
+    \item \texttt{errorMessage}: messaggio di errore da visualizzare all'utente (R-110-F-Ob); \texttt{setError} lo imposta e disabilita \texttt{isGenerating}.
+    \item \texttt{viewMode}: la modalità di visualizzazione dell'area di lavoro (\texttt{editor}, \texttt{render}, \texttt{split}), impostata da \texttt{setViewMode}.
+    \item \texttt{aiModal}: l'identificatore dell'azione AI attualmente aperta nel dialogo, impostato da \texttt{setAiModal}.
+    \item \texttt{editorView}: riferimento all'istanza di CodeMirror, utilizzato per operazioni di manipolazione diretta. \texttt{setEditorView} lo imposta al montaggio dell'editor.
+    \item \texttt{\_abortController}: riferimento all'\texttt{AbortController} dello streaming in corso.
+    \item \texttt{lastCall}: conserva l'ultima richiesta AI effettuata, con input, parametri, modalità, identificatore dell'azione e la funzione eseguibile. È utilizzato per la rigenerazione (R-78-F-De) e per la gestione dello stato «Rigenera» nel dialogo. \texttt{setLastCall} e \texttt{clearLastCall} ne gestiscono il ciclo di vita.
+\end{itemize}
+
+L'azione \texttt{abortStream} interrompe la comunicazione tramite \texttt{abort()} sul controller (R-79-F-De) e, contemporaneamente, spegne l'indicatore di attesa (\texttt{isGenerating} a \texttt{false}). La proprietà è intenzionale: R-109-F-De richiede che l'indicatore di avanzamento copra l'intera durata percepita dell'operazione; al momento dell'annullamento, la durata percepita termina immediatamente, e l'indicatore si spegne senza attendere che il loop di streaming si accorga dell'interruzione.
+
+L'azione \texttt{insertOutputIntoNote} determina la semantica di inserimento in base al parametro \texttt{insertMode}:
+
+\begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \item \texttt{replace}: sostituisce il \texttt{selectedText} se presente e se ancora trovabile in \texttt{currentText}; altrimenti sostituisce l'intero \texttt{currentText}. È la semantica usata per le azioni di trasformazione (riassunto, riscrittura, traduzione, grammatica, analisi).
+    \item \texttt{append}: accoda l'output alla fine di \texttt{currentText}, aggiungendo un separatore \texttt{\textbackslash n\textbackslash n} se necessario. È la semantica usata per la generazione da prompt o da link.
+\end{itemize}
+
+\paragraph{\texttt{notes}.}
+
+Custodisce la raccolta delle note e l'indicazione di quale sia quella corrente:
+
+\begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \item \texttt{list}: array di oggetti \texttt{Note} (con \texttt{id}, \texttt{title}, \texttt{content}, \texttt{createdAt}, \texttt{updatedAt}).
+    \item \texttt{currentId}: \texttt{id} della nota correntemente selezionata, o \texttt{null}.
+    \item \texttt{createEmpty}: crea una nuova nota con titolo «Senza titolo» e contenuto vuoto (R-82-F-Ob, R-114-F-Ob). Se una nota è già aperta, salva il suo contenuto corrente in \texttt{useEditorStore} prima di crearne una nuova. Incrementa \texttt{\_loadVersion} e imposta \texttt{currentText} a \texttt{''}. Soddisfa UC74.1.
+    \item \texttt{select}: cambia la nota corrente. Prima di cambiare, salva il contenuto corrente della nota attuale in \texttt{list}; poi carica il contenuto della nuova nota in \texttt{useEditorStore} tramite \texttt{loadDocument}.
+    \item \texttt{updateCurrent}: aggiorna \texttt{title} e/o \texttt{content} della nota corrente, aggiornando \texttt{updatedAt}.
+    \item \texttt{deleteNote}: rimuove la nota dall'elenco (R-91-F-De). Se la nota eliminata era quella corrente, seleziona la prima nota rimanente, se presente.
+    \item \texttt{loadNote}: carica una nota proveniente da un'importazione (R-85-F-Ob), aggiornandola se già presente (per \texttt{id}) o aggiungendola se nuova.
+\end{itemize}
+
+La sincronizzazione tra i due store è gestita dalle azioni di \texttt{notes}: ogni volta che l'utente cambia nota o ne crea una nuova, il contenuto della nota corrente viene prima salvato in \texttt{useEditorStore} e poi la nuova nota viene caricata. Il flag \texttt{\_loadVersion} impedisce che aggiornamenti asincroni dell'editor sovrascrivano il contenuto di una nota diversa da quella che l'utente stava effettivamente modificando.
+
+\paragraph{Persistenza dello store.}
+
+\texttt{notes} utilizza il middleware \texttt{persist} di Zustand (pattern descritto in §3.5) per salvare automaticamente \texttt{list} e \texttt{currentId} in \texttt{localStorage}. Il middleware serializza lo stato su ogni modifica e lo ripristina all'avvio dell'applicazione. Durante il ripristino (\texttt{onRehydrateStorage}), \texttt{loadDocument} viene chiamato per caricare il contenuto della nota corrente nell'editor. Questa persistenza soddisfa R-80-F-Ob, R-84-F-Ob, R-87-F-Ob, R-90-F-Ob, R-93-F-De, R-96-F-De e UC75.
+% [INSERIRE DIAGRAMMA: UML-sequenza-cambio-nota — diagramma di sequenza della sincronizzazione tra notes e useEditorStore durante la selezione di una nuova nota]
 
 \subsubsection{Integrazione dell'editor}
 \label{sec:frontend-editor}
@@ -977,6 +1097,66 @@ I termini fissati nella tabella \ref{tab:vocabolario-architetturale} sono impieg
 % NON CONTIENE: le funzioni offerte dalla libreria dell'editor, che sono del
 % capitolo 2.
 
+L'editor è realizzato con CodeMirror 6. È integrato con lo store tramite un meccanismo di sincronizzazione bidirezionale controllata. Come anticipato in apertura, questa è un'eccezione al principio del flusso unidirezionale, dovuta all'API imperativa di CodeMirror.
+
+\paragraph{Creazione dell'istanza.}
+
+L'istanza di \texttt{EditorView} viene creata una sola volta, al montaggio del componente \texttt{Editor}. Le estensioni sono configurate in un array stabile per evitare il ricaricamento dell'editor:
+
+\begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \item \texttt{lineNumbers()}: numeri di riga.
+    \item \texttt{history()}: cronologia di undo/redo (R-7-F-De, R-8-F-De).
+    \item \texttt{markdown()}: supporto alla sintassi Markdown (R-112-F-Ob).
+    \item \texttt{closeBrackets()}: chiusura automatica di parentesi e virgolette (R-42-F-De, R-43-F-De).
+    \item \texttt{EditorView.lineWrapping}: a capo automatico delle righe lunghe.
+    \item \texttt{search(\{ top: true \})}: barra di ricerca.
+    \item \texttt{keymap.of([...defaultKeymap, ...historyKeymap, ...closeBracketsKeymap, ...searchKeymap, \{ key: 'Mod-k', run: toggleLinkCommand \}])}: scorciatoie da tastiera.
+\end{itemize}
+
+L'istanza viene salvata nello store tramite \texttt{setEditorView} e rimossa al momento dello smontaggio.
+
+\paragraph{Sincronizzazione store → editor.}
+
+Quando il contenuto della nota cambia nello store (\texttt{currentText}), l'editor deve rifletterlo. Il meccanismo:
+
+\begin{enumerate}
+    \setlength{\itemsep}{0pt}
+    \item Il componente \texttt{Editor} si sottoscrive a \texttt{useCurrentText} e a \texttt{\_loadVersion}.
+    \item Quando il valore cambia, il componente verifica se il nuovo testo è diverso da quello attualmente visualizzato (\texttt{view.state.doc.toString()}).
+    \item In caso affermativo, costruisce una \texttt{Transaction} che sostituisce l'intero documento e la invia all'editor tramite \texttt{view.dispatch()}.
+    \item La transazione è annotata con \texttt{StoreSync.of(true)}. Questa annotazione segnala all'updateListener che la modifica proviene dallo store e non deve essere re-inviata allo store, evitando il ciclo.
+    \item Se il cambiamento è dovuto a \texttt{\_loadVersion} (caricamento di una nuova nota), la transazione riceve anche \texttt{Transaction.addToHistory.of(false)}. Questa annotazione impedisce che il caricamento di una nota venga registrato nella cronologia di undo, soddisfacendo R-7-F-De e R-8-F-De.
+\end{enumerate}
+
+\paragraph{Sincronizzazione editor → store.}
+
+Quando l'utente modifica il testo nell'editor, lo store deve aggiornare \texttt{currentText}. Il meccanismo:
+
+\begin{enumerate}
+    \setlength{\itemsep}{0pt}
+    \item L'estensione \texttt{EditorView.updateListener} intercetta ogni transazione che modifica il documento.
+    \item Se la transazione ha l'annotazione \texttt{StoreSync}, viene ignorata.
+    \item Se la transazione ha modificato il documento (\texttt{update.docChanged}), l'estensione estrae il nuovo testo completo (\texttt{update.state.doc.toString()}) e invoca \texttt{setCurrentText} con esso.
+    \item Lo stesso listener monitora anche i cambiamenti di selezione (\texttt{update.selectionSet}) e aggiorna \texttt{selectedText} nello store (R-3-F-Ob).
+\end{enumerate}
+
+\paragraph{Evitare il ciclo.}
+
+La sincronizzazione bidirezionale potrebbe generare un ciclo: modifica editor → \texttt{setCurrentText} → re-render del componente → \texttt{view.dispatch()} → modifica editor → ... Il ciclo è evitato da due meccanismi:
+
+\begin{enumerate}
+    \setlength{\itemsep}{0pt}
+    \item \textbf{Confronto}: il dispatch store→editor è eseguito solo se il testo corrente dell'editor è diverso da \texttt{currentText}. L'updateListener editor→store esegue \texttt{setCurrentText} solo se il testo appena modificato è diverso dal valore già in store.
+    \item \textbf{Annotazione \texttt{StoreSync}}: le transazioni store→editor sono marcate; l'updateListener le ignora, interrompendo il ciclo alla radice.
+\end{enumerate}
+
+\paragraph{Selezione.}
+
+La selezione dell'utente nell'editor è monitorata dall'estensione di update, che estrae l'intervallo selezionato e invoca \texttt{setSelectedText}. Il valore è usato da \texttt{getActiveText} per determinare il testo da sottoporre all'AI (R-3-F-Ob).
+
+% [INSERIRE DIAGRAMMA: UML-sequenza-sync-editor — diagramma di sequenza della sincronizzazione bidirezionale: due scenari, modifica utente e caricamento di nuova nota]
+
 \subsubsection{Accesso al servizio applicativo}
 \label{sec:frontend-accesso-servizio}
 % CONTIENE: il modulo unico attraverso cui l'applicazione web contatta il
@@ -987,6 +1167,50 @@ I termini fissati nella tabella \ref{tab:vocabolario-architetturale} sono impieg
 % NON CONTIENE: il formato degli eventi e la loro decodifica (capitolo 4); la
 % definizione del pattern Facade (§3.5.2).
 
+L'accesso al servizio applicativo è incapsulato in tre livelli: una \textbf{facade API} in \texttt{lib/api.ts} (pattern \textit{Facade}, §3.5), un \textbf{parser SSE} in \texttt{lib/sse.ts}, e un \textbf{hook custom} \texttt{useAiStream} in \texttt{hooks/useAiStream.ts}.
+
+\paragraph{Facade API.}
+
+La facade espone una funzione per ciascuna operazione del servizio applicativo: \texttt{summarize}, \texttt{translate}, \texttt{rewrite}, \texttt{grammar}, \texttt{critique}, \texttt{generate}, \texttt{generateFromLink}. Ogni funzione costruisce il corpo della richiesta con i tipi definiti in \texttt{types/models.ts} e invoca la funzione interna \texttt{stream}, che:
+
+\begin{enumerate}
+    \setlength{\itemsep}{0pt}
+    \item Esegue una richiesta POST all'endpoint corrispondente (con base URL da variabile d'ambiente \texttt{VITE\_API\_BASE\_URL}).
+    \item Se lo stato HTTP non è 2xx, estrae \texttt{detail} dal corpo JSON e solleva un errore.
+    \item Se la risposta ha un corpo leggibile, crea un reader e itera sugli eventi restituiti da \texttt{parseSseStream}.
+    \item La funzione ritorna un \texttt{AsyncIterable<string>} che produce i frammenti in sequenza.
+\end{enumerate}
+
+L'uso dei tipi generati da OpenAPI (\texttt{types/api.ts}) garantisce la conformità al contratto tra frontend e backend, soddisfacendo R-2-V-Ob (interfacciamento con servizi LLM tramite API).
+
+\paragraph{Parser SSE: \texttt{parseSseStream}.}
+
+Il parser \texttt{parseSseStream} (in \texttt{lib/sse.ts}) trasforma il \texttt{ReadableStreamDefaultReader} in un \texttt{AsyncIterable<SseEvent>}, dove \texttt{SseEvent} è definito come \texttt{\{ type: 'chunk'; data: string \} | \{ type: 'error'; message: string \}}. La sua implementazione si basa sulla struttura della specifica SSE e distingue tre terminatori:
+
+\begin{enumerate}
+    \setlength{\itemsep}{0pt}
+    \item \texttt{data: [DONE]}: il generatore termina senza eventi di errore (successo).
+    \item \texttt{event: error}: il backend segnala un errore. Il parser produce un evento \texttt{\{ type: 'error', message: ... \}}.
+    \item Chiusura del reader senza nessuno dei due: il parser produce un evento di errore con il messaggio \texttt{STREAM\_INTERRUPTED\_MESSAGE} («La generazione si è interrotta prima di completarsi. Riprova.»). Questo messaggio è generato lato client (R-110-F-Ob).
+\end{enumerate}
+
+Il parser gestisce il buffering delle righe e le terminazioni CRLF. È una \textbf{pure function}: non ha dipendenze da React o dallo store; può essere testata in isolamento.
+
+\paragraph{Hook \texttt{useAiStream}.}
+
+\texttt{useAiStream} incapsula il ciclo di vita di uno streaming: avvio, accumulo dei frammenti, gestione degli errori e interruzione. È descritto in dettaglio in §3.5 come esempio del pattern \textit{Custom Hook}.
+
+\begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \item \texttt{start<T>}: riceve una funzione che ritorna un \texttt{AsyncIterable<T>}. Crea un nuovo \texttt{AbortController}, lo salva nello store (\texttt{\_setAbortController}) e avvia l'iterazione. Per ogni frammento, controlla se il controller è stato interrotto. Al termine, imposta \texttt{isGenerating} a \texttt{false} e rimuove il riferimento al controller.
+    \item \texttt{abort}: interrompe la comunicazione tramite \texttt{controller.abort()} (R-79-F-De).
+    \item \texttt{status}: uno stato \texttt{'idle' | 'streaming' | 'done' | 'error'} che il componente può utilizzare per mostrare indicatori visivi (R-109-F-De).
+\end{itemize}
+
+L'hook è progettato per essere usato in un solo componente alla volta (l'\texttt{AiActionDialog}). L'aborto è accessibile anche da altri componenti (la \texttt{TopBar}) tramite il riferimento salvato nello store, che espone \texttt{abortStream} come azione pubblica.
+
+% [INSERIRE DIAGRAMMA: UML-sequenza-streaming-AI — diagramma di sequenza del flusso di generazione AI: da AiActionDialog a useAiStream a api.generate a parseSseStream, con interruzione e accettazione]
+
 \subsubsection{Persistenza lato client}
 \label{sec:frontend-persistenza}
 % CONTIENE: le due vie di persistenza descritte in §2.4 — accesso al file
@@ -996,6 +1220,40 @@ I termini fissati nella tabella \ref{tab:vocabolario-architetturale} sono impieg
 % base alle capacità del browser, quale porzione di stato è resa persistente e
 % in quale momento vi viene scritta.
 % NON CONTIENE: la motivazione dell'esclusione della base di dati (§2.4).
+
+La persistenza dei dati lato client è realizzata con due meccanismi distinti, complementari e non sovrapposti.
+
+\paragraph{Persistenza automatica (Zustand \texttt{persist}).}
+
+Come descritto in §3.3.3, \texttt{notes} utilizza il middleware \texttt{persist} di Zustand per salvare automaticamente \texttt{list} e \texttt{currentId} nel \texttt{localStorage} del browser. Il salvataggio avviene a ogni modifica dello store. Il ripristino avviene al caricamento dell'applicazione. Questo meccanismo soddisfa R-4-V-Ob (salvataggio come file di testo) e R-85-F-Ob (caricamento da file locale), garantendo la continuità della sessione.
+
+\paragraph{Importazione ed esportazione (\texttt{lib/fileSystem.ts}).}
+
+Il modulo \texttt{lib/fileSystem.ts} fornisce funzioni per l'importazione e l'esportazione delle note come file Markdown. I due rami di funzionalità:
+
+\begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \item \textbf{Esportazione} (\texttt{saveNoteToFile}):
+    \begin{itemize}
+        \setlength{\itemsep}{0pt}
+        \item Ramo preferenziale: utilizza l'API \texttt{showSaveFilePicker} (Chrome/Edge).
+        \item Ramo di fallback (Firefox): crea un link fittizio (\texttt{<a download>}) e avvia il download automatico del file \texttt{.md}. Questo ramo soddisfa R-1-V-Ob (supporto a Firefox).
+    \end{itemize}
+    
+    \item \textbf{Importazione} (\texttt{openNoteFromFile}):
+    \begin{itemize}
+        \setlength{\itemsep}{0pt}
+        \item Ramo preferenziale: utilizza l'API \texttt{showOpenFilePicker} (Chrome/Edge).
+        \item Ramo di fallback (Firefox): crea un \texttt{<input type="file">}, lo apre programmaticamente e legge il contenuto tramite \texttt{FileReader}. Gestisce due vie di uscita per l'annullamento: l'evento \texttt{oncancel} e il ritorno del focus alla finestra con un timer di tolleranza (\texttt{GRAZIA\_ANNULLAMENTO\_MS = 300ms}). Questo doppio meccanismo garantisce che la Promise non resti pendente per sempre in Firefox.
+        \item Restituisce una \texttt{Note} con \texttt{id} generato da \texttt{crypto.randomUUID()}, \texttt{title} derivato dal nome del file, \texttt{content} come testo letto, e \texttt{createdAt}/\texttt{updatedAt} al momento dell'importazione. Soddisfa R-85-F-Ob.
+    \end{itemize}
+    
+    \item \textbf{Ridenominazione} (\texttt{renameNote}): aggiorna il titolo di una nota e l'\texttt{updatedAt}. La funzione è asincrona e restituisce la nota modificata. Soddisfa R-94-F-De.
+\end{itemize}
+
+I due meccanismi non sono sovrapposti. Il middleware \texttt{persist} gestisce il salvataggio automatico e il ripristino della sessione. \texttt{fileSystem} gestisce l'operazione esplicita di importazione ed esportazione richiesta dall'utente. Questa separazione soddisfa R-1-V-Ob (supporto a Firefox) e R-4-V-Ob (salvataggio come file di testo).
+
+% [INSERIRE DIAGRAMMA: UML-attivita-note-persistenza — diagramma di attività dei tre percorsi: creazione di una nuova nota, esportazione di una nota, importazione di una nota]
 
 \subsection{Architettura del backend}
 \label{sec:architettura-backend}
@@ -1172,6 +1430,146 @@ I termini fissati nella tabella \ref{tab:vocabolario-architetturale} sono impieg
 % Recupero dei metadati dall'oggetto File: si veda il marcatore in §2.4, che
 % dichiara la parte non ancora realizzata.
 % Requisiti: R-4-V-Ob, R-97-F-De.
+
+La presente sezione descrive le modalità con cui l'applicazione web persiste le note lato client, in attuazione della strategia esposta in §2.4. Come dichiarato in quella sede, i meccanismi sono due, distinti per scopo e complementari: l'accesso al file system per l'esportazione e l'importazione deliberate, e l'archivio locale del browser per la continuità della sessione. La sezione descrive entrambi, il momento e il modo in cui ciascuno viene attivato, e il recupero dei metadati dall'oggetto File.
+
+% [INSERIRE DIAGRAMMA: UML-sequenza-salvataggio-caricamento]
+
+\subsubsection{Persistenza su file system}
+\label{sec:file-system-persistenza}
+
+Le operazioni di salvataggio e caricamento su file sono realizzate nel modulo \texttt{lib/fileSystem.ts}, che espone le funzioni \texttt{saveNoteToFile} e \texttt{openNoteFromFile}. Entrambe adottano una strategia a due vie, selezionata a tempo di esecuzione in base alle capacità del browser ospite.
+
+\paragraph{Selezione della via.}
+
+Il criterio di selezione è la disponibilità effettiva dell'interfaccia nel browser in uso, non l'identificazione dell'agente utente. L'applicazione verifica direttamente la presenza dei metodi richiesti sull'oggetto globale della finestra:
+
+\begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \item Se \texttt{showOpenFilePicker} e \texttt{showSaveFilePicker} sono presenti, viene utilizzata la \textbf{File System Access API} (disponibile su Chrome/Edge).
+    \item In caso contrario, l'applicazione ricade sui \textbf{meccanismi universali} (input file e download link, utilizzati su Firefox e Safari).
+\end{itemize}
+
+La doppia via non è una precauzione generica: il requisito di vincolo R-1-V-Ob include Firefox fra gli ambienti di esecuzione di riferimento, quindi una realizzazione fondata sulla sola File System Access API lascerebbe scoperto uno dei tre browser prescritti.
+
+\paragraph{Salvataggio su file (\texttt{saveNoteToFile}).}
+
+La funzione riceve una \texttt{Note} e ne scrive il contenuto su file:
+
+\begin{enumerate}
+    \setlength{\itemsep}{0pt}
+    \item Il nome del file è derivato dal titolo della nota, con estensione \texttt{.md} (soddisfa R-4-V-Ob).
+    \item Il contenuto è il solo testo della nota, senza intestazioni o marcatori aggiuntivi: il file è un documento Markdown puro.
+    \item Se la File System Access API è disponibile, la funzione invoca \texttt{showSaveFilePicker} con il nome suggerito e il tipo MIME \texttt{text/markdown}; l'utente sceglie il percorso di destinazione; il file viene scritto tramite \texttt{FileSystemWritableFileStream}.
+    \item Se l'API non è disponibile, la funzione costruisce un \texttt{Blob} con il contenuto della nota, ne ricava un indirizzo temporaneo tramite \texttt{URL.createObjectURL}, lo assegna a un collegamento di scaricamento (\texttt{<a download>}) e lo attiva per via programmatica; l'indirizzo temporaneo viene rilasciato al termine dell'operazione con \texttt{URL.revokeObjectURL}.
+    \item L'annullamento da parte dell'utente (chiusura del selettore senza selezione) è riconosciuto tramite il controllo \texttt{eAnnullamento} su \texttt{AbortError} e trattato come esito legittimo, non come errore.
+\end{enumerate}
+
+\paragraph{Caricamento da file (\texttt{openNoteFromFile}).}
+
+La funzione restituisce una \texttt{Note} a partire da un file selezionato:
+
+\begin{enumerate}
+    \setlength{\itemsep}{0pt}
+    \item Se la File System Access API è disponibile, la funzione invoca \texttt{showOpenFilePicker} con i tipi accettati \texttt{.md} e \texttt{.txt}; ottiene un riferimento al file scelto e ne legge il contenuto testuale tramite \texttt{File.text()}.
+    \item Se l'API non è disponibile, la funzione crea un elemento \texttt{input} di tipo \texttt{file} con gli stessi tipi accettati; ne legge il contenuto tramite \texttt{FileReader.readAsText}. Questo ramo gestisce due vie di uscita per l'annullamento: l'evento \texttt{oncancel} (disponibile in alcuni browser) e il ritorno del focus alla finestra con un timer di tolleranza (\texttt{GRAZIA\_ANNULLAMENTO\_MS = 300ms}) che controlla se \texttt{input.files} è vuoto. Il doppio meccanismo garantisce che la Promise non resti pendente per sempre su Firefox.
+    \item La funzione restituisce una \texttt{Note} con:
+    \begin{itemize}
+        \setlength{\itemsep}{0pt}
+        \item \texttt{id}: generato da \texttt{crypto.randomUUID()};
+        \item \texttt{title}: derivato dal nome del file, privato dell'estensione (\texttt{.md} o \texttt{.txt}); se il nome del file non è utilizzabile, viene usato il titolo di ripiego «Nota importata»;
+        \item \texttt{content}: il testo letto dal file;
+        \item \texttt{createdAt}: l'istante di importazione;
+        \item \texttt{updatedAt}: l'istante di importazione.
+    \end{itemize}
+    \item L'annullamento è riconosciuto e trattato come esito legittimo in entrambi i rami.
+\end{enumerate}
+
+La derivazione del titolo dal nome del file avviene in entrambi i rami, garantendo la parità fra i due percorsi. È necessaria perché il ramo di ripiego è il percorso primario su Firefox, incluso fra i browser prescritti da R-1-V-Ob.
+
+% [INSERIRE DIAGRAMMA: UML-attivita-file-system]
+
+\subsubsection{Continuità della sessione}
+\label{sec:continuita-sessione}
+
+La continuità della sessione è realizzata tramite il middleware \texttt{persist} di Zustand, applicato a \texttt{notes} come descritto in §3.3.3. Il meccanismo non richiede alcuna azione dell'utente.
+
+\paragraph{Scrittura nell'archivio locale.}
+
+Il middleware \texttt{persist} serializza lo stato di \texttt{notes} e lo riversa nel \texttt{localStorage} del browser sotto la chiave \texttt{'notes\_persistence'}. Lo stato conservato comprende:
+
+\begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \item \texttt{list}: l'elenco delle note, con \texttt{id}, \texttt{title}, \texttt{content}, \texttt{createdAt}, \texttt{updatedAt};
+    \item \texttt{currentId}: l'identificativo della nota correntemente selezionata.
+\end{itemize}
+
+\paragraph{Quando viene scritto il contenuto dell'editor.}
+
+Va precisato quando il testo in lavorazione raggiunge l'archivio. Il contenuto dell'editor è riversato nella nota corrente nei seguenti momenti:
+
+\begin{enumerate}
+    \setlength{\itemsep}{0pt}
+    \item \textbf{Al cambio di nota} (\texttt{notes.select}): il contenuto corrente viene salvato nella nota che si sta abbandonando.
+    \item \textbf{Alla creazione di una nuova nota} (\texttt{notes.createEmpty}): il contenuto corrente viene salvato nella nota precedente prima di crearne una nuova.
+    \item \textbf{All'accettazione di un output AI} (UC68, \texttt{insertOutputIntoNote}): il contenuto modificato viene immediatamente scritto nella nota corrente.
+\end{enumerate}
+
+Il contenuto \textbf{non} è riversato a ogni modifica del testo né alla chiusura della scheda. Le modifiche successive all'ultimo cambio di nota non sono conservate: è un limite noto della realizzazione attuale, non una proprietà del supporto. La scelta è deliberata: il costo di scrivere in \texttt{localStorage} a ogni battitura sarebbe inaccettabile per le prestazioni; il salvataggio nei momenti di transizione garantisce la sopravvivenza delle note complete, a costo di perdere le modifiche non ancora "finalizzate" da un cambio di contesto.
+
+\paragraph{Lettura all'avvio.}
+
+All'avvio dell'applicazione, il middleware \texttt{persist} rilegge lo stato dal \texttt{localStorage} prima del primo render. Durante il ripristino (\texttt{onRehydrateStorage}), viene chiamato \texttt{loadDocument} per caricare il contenuto della nota corrente nell'editor. L'applicazione riparte dallo stato in cui l'utente l'aveva lasciata: l'elenco delle note, la nota corrente e il suo contenuto sono quelli della sessione precedente.
+
+\paragraph{Limiti del supporto.}
+
+Il \texttt{localStorage} ha limiti propri, che vanno dichiarati:
+
+\begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \item \textbf{Spazio}: è soggetto a una quota (tipicamente 5-10 MB per origine). Il superamento fa fallire la scrittura; l'applicazione lo tratta come condizione prevista e ripristina lo stato precedente.
+    \item \textbf{Isolamento}: i dati sono confinati all'origine e al profilo del browser in uso. Non sono raggiungibili da un altro browser, da un altro dispositivo o da una finestra di navigazione anonima.
+    \item \textbf{Cancellazione}: la cancellazione dei dati di navigazione rimuove i dati.
+\end{itemize}
+
+Questo meccanismo non è un sostituto della persistenza server-side: resta interamente lato client, come dichiarato in §2.4.
+
+% [INSERIRE DIAGRAMMA: UML-sequenza-continuita-sessione]
+
+\subsubsection{Recupero dei metadati dall'oggetto File}
+\label{sec:recupero-metadati}
+
+Il requisito R-97-F-De (UC84) richiede la visualizzazione delle informazioni e dei metadati di una nota selezionata. Come dichiarato in §2.4, la copertura del requisito distingue due casi.
+
+\paragraph{Nota creata nel prodotto.}
+
+Per le note create all'interno dell'applicazione, i metadati sono posseduti e conservati:
+
+\begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \item \texttt{id}: generato da \texttt{newId()} (da \texttt{lib/id.ts}) al momento della creazione;
+    \item \texttt{title}: assegnato dall'utente o impostato a «Senza titolo»;
+    \item \texttt{createdAt}: istante di creazione;
+    \item \texttt{updatedAt}: istante dell'ultima modifica;
+    \item \texttt{content}: il testo della nota.
+\end{itemize}
+
+Questi metadati sono affidati alla persistenza locale descritta in §4.4.2: il middleware \texttt{persist} li scrive immediatamente in \texttt{localStorage} e li rilegge all'avvio. Per queste note, R-97-F-De è già coperto.
+
+\paragraph{Nota importata da disco.}
+
+Per le note importate da file locale (UC76.1), il file contiene il solo testo. I metadati sono attualmente popolati come segue:
+
+\begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \item \texttt{id}: generato da \texttt{newId()};
+    \item \texttt{title}: derivato dal nome del file, privato dell'estensione; se il nome non è utilizzabile, viene usato il titolo di ripiego «Nota importata»;
+    \item \texttt{createdAt} e \texttt{updatedAt}: entrambi impostati all'istante di importazione.
+\end{itemize}
+
+Come dichiarato in §2.4, questa realizzazione sarà estesa per sfruttare gli attributi \texttt{lastModified} e \texttt{size} dell'oggetto \texttt{File}, in modo da popolare rispettivamente l'istante di ultima modifica e la dimensione del contenuto. L'istante di creazione (\texttt{createdAt}) non è ricostruibile in modo affidabile dalle informazioni disponibili; per le note importate da disco sarà presentato come «non disponibile».
+
+% [INSERIRE DIAGRAMMA: UML-sequenza-importazione-metadati]
 
 \subsection{Propagazione e presentazione degli errori}
 \label{sec:flusso-errori}
