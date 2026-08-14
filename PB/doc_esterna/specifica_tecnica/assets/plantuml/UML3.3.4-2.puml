@@ -1,0 +1,42 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam componentStyle rectangle
+skinparam linetype ortho
+
+== Scenario 2: Caricamento nota (Store → Editor)==
+
+participant notes as NS
+participant useEditorStore as ES
+participant Editor as ED
+
+NS -> ES : loadDocument(newContent)
+activate ES
+
+ES -> ES : currentText = newContent
+ES -> ES : _loadVersion++
+ES -> ED : Notifica cambiamento\n(currentText, _loadVersion)
+activate ED
+
+ED -> ED : Verifica differenza
+
+ED -> ED : Costruisce Transaction
+
+ED -> ED : view.dispatch(transaction)
+
+ED -> ED : Editor aggiornato
+
+ED -> ES : updateListener intercetta
+activate ES
+
+ES -> ES : StoreSync true → ignora
+
+ES --> ED : ok
+deactivate ES
+ED --> ES : ok
+deactivate ED
+
+deactivate ES
+
+@enduml

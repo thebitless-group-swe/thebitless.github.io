@@ -1,0 +1,36 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam componentStyle rectangle
+skinparam linetype ortho
+
+class Editor {
+  - currentText: string
+  - _loadVersion: number
+  - containerRef: RefObject<HTMLDivElement>
+  - viewRef: RefObject<EditorView | null>
+  - prevLoadVersionRef: RefObject<number>
+  __
+  + useEffect(): void
+}
+
+class useEditorStore {
+  - currentText: string
+  - _loadVersion: number
+  - editorView: EditorView | null
+  __
+  + setCurrentText(text: string): void
+  + loadDocument(text: string): void
+  + setSelectedText(text: string): void
+  + setEditorView(view: EditorView | null): void
+}
+
+class EditorView {
+}
+
+Editor ..> useEditorStore : utilizza
+Editor -- EditorView : istanzia
+useEditorStore ..> EditorView : contiene
+
+@enduml

@@ -207,6 +207,11 @@
     \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
     \hline
     \endhead
+
+    0.5.0 & 2026-08-11 & A. Menegaldo &  & - & Inserimento diagrammi UML nella sezioni Architettura Frontend \\ \hline
+
+    0.6.0 & 2026-08-11 & A. Menegaldo &  & - & Stesura sezioni Architettura Frontend \\ \hline
+
     0.5.0 & 2026-08-11 & A. Marini &  & - & Allineamento della sezione Tecnologie al repository di prodotto, stesura della Panoramica architetturale e riorganizzazione dello scheletro delle sezioni di Architettura \\ \hline
 
     0.4.0 & 2026-07-27 & A. Marini & A. Menegaldo & - & Integrazione continua e analisi statica del backend, tracciamento dei requisiti nella sezione Tecnologie, riorganizzazione della struttura delle sezioni Architettura, Flusso dei dati e Tracciamento \\ \hline
@@ -945,7 +950,20 @@ L'applicazione web è organizzata secondo il principio dichiarato in §3.1.3: co
 
 Due precisazioni preliminari. Primo: il «flusso unidirezionale» vale a livello generale — React legge dallo store, le azioni lo modificano, i componenti sottoscritti si ridisegnano. Secondo: l'integrazione con CodeMirror, descritta in §3.3.4, è un'eccezione controllata. L'API di CodeMirror è imperativa, richiede una sincronizzazione bidirezionale tra l'istanza dell'editor e lo store. La sezione spiega come questa eccezione è gestita in modo da non rompere il principio generale.
 
-% [INSERIRE DIAGRAMMA: UML-componenti-frontend — diagramma dei componenti principali dell'applicazione web: App, Sidebar, TopBar, Editor, Preview, AiActionDialog, EditorToolbar, ViewToggle, MarkdownView — con le dipendenze verso store, hooks, lib e types]
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{assets/img/UML3.3-1.pdf}
+    \caption{figura:Diagramma UML 3.3-1 - Componenti UI e Store}
+    \label{fig:uml331}
+    \end{figure}
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{assets/img/UML3.3-2.pdf}
+    \caption{figura: Diagramma UML 3.3-2 -Hooks, Librerie e Dipendenze Esterne}
+    \label{fig:uml332}
+    \end{figure}
+
 \subsubsection{Organizzazione dei sorgenti}
 \label{sec:frontend-organizzazione}
 % CONTIENE: la suddivisione di web/src in components, store, lib, hooks,
@@ -969,7 +987,13 @@ La cartella \texttt{web/src/} è organizzata per \textbf{ruolo}, non per feature
 
 Questa organizzazione rende prevedibile la collocazione di un nuovo file. Facilita inoltre la verifica automatica delle dipendenze: un linter può controllare che i componenti non importino direttamente i tipi generati dall'OpenAPI senza passare dal barrel, e che gli store non importino i componenti.
 
-% [INSERIRE DIAGRAMMA: UML-package-frontend — diagramma dei package: components, hooks, store, lib, types — con le dipendenze effettive tra di essi e verso React, Zustand, CodeMirror, Radix UI]
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{assets/img/UML3.3.1.pdf}
+    \caption{figura: Diagramma UML 3.3.1 - Organizzazione dei sorgenti del frontend}
+    \label{fig:uml3311}
+    \end{figure}
+
 \subsubsection{Scomposizione in componenti}
 \label{sec:frontend-componenti}
 % CONTIENE: i componenti React e le rispettive responsabilità, il confine fra
@@ -988,18 +1012,67 @@ I componenti compositi sono i seguenti:
     \setlength{\itemsep}{0pt}
     \item \textbf{Sidebar}: elenca le note da \texttt{notes} tramite \texttt{useNotesList}. Espone un pulsante per creare una nuova nota (\texttt{createEmpty}) che soddisfa R-82-F-Ob e R-114-F-Ob. Gestisce la selezione (\texttt{select}). Ogni voce mostra il titolo e supporta la ridenominazione tramite doppio click, che attiva un campo di input (R-94-F-De). Offre i pulsanti «Apri file…» e «Salva file», che invocano \texttt{openNoteFromFile} e \texttt{saveNoteToFile} (§3.3.6), soddisfacendo R-85-F-Ob e R-88-F-Ob. Un pulsante di collasso riduce la barra a una colonna stretta.
     
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{assets/img/UML3.3.2-1.pdf}
+    \caption{figura: Diagramma UML 3.3.2-1 - Sidebar}
+    \label{fig:uml3321}
+    \end{figure}
+
     \item \textbf{TopBar}: presenta il titolo della nota corrente (da \texttt{useCurrentNote}) e i pulsanti delle azioni AI. Alla pressione di un pulsante, invoca \texttt{setAiModal} per aprire il dialogo corrispondente. Durante lo streaming (\texttt{isGenerating}), mostra un pulsante di interruzione (\texttt{abortStream}) e un indicatore di caricamento (R-109-F-De). In caso di errore, visualizza \texttt{errorMessage} in un alert (R-110-F-Ob).
     
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{assets/img/UML3.3.2-2.pdf}
+    \caption{figura: Diagramma UML 3.3.2-2 - TopBar}
+    \label{fig:uml3322}
+    \end{figure}
+
     \item \textbf{ViewToggle}: tre pulsanti che impostano \texttt{viewMode} su \texttt{editor}, \texttt{split} o \texttt{render}. È sempre visibile, in qualsiasi modalità, per consentire il passaggio diretto a una vista diversa.
     
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{assets/img/UML3.3.2-3.pdf}
+    \caption{figura: Diagramma UML 3.3.2-3 - ViewToggle}
+    \label{fig:uml3323}
+    \end{figure}
+
     \item \textbf{EditorToolbar}: contiene i controlli per la formattazione del testo Markdown. Le operazioni corrispondono ai casi d'uso UC8-UC10 (grassetto, R-9-F-Ob, R-10-F-Ob), UC11-UC13 (corsivo, R-11-F-Ob, R-12-F-Ob), UC14-UC16 (sottolineato, R-13-F-Ob, R-14-F-Ob), UC17-UC19 (barrato, R-15-F-De, R-16-F-De), UC20 (inserimento titolo, R-17-F-Ob), UC22 (rimozione titolo, R-18-F-Ob), UC23 (inserimento sottotitolo, R-19-F-Ob), UC25 (rimozione sottotitolo, R-20-F-Ob), UC26 (inserimento elenco, R-21-F-De, R-22-F-De), UC28 (rimozione elenco, R-23-F-De), UC38 (inserimento link, R-30-F-De), UC49 (inserimento immagine, R-39-F-De), e UC52/UC53 (attivazione/disattivazione auto-completamento, R-42-F-De, R-43-F-De). Ogni comando invoca la corrispondente funzione da \texttt{lib/editorCommands.ts} sull'istanza \texttt{editorView} conservata nello store.
     
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{assets/img/UML3.3.2-4.pdf}
+    \caption{figura: Diagramma UML 3.3.2-4 - EditorToolbar}
+    \label{fig:uml3324}
+    \end{figure}
+
     \item \textbf{Editor}: il componente che istanzia CodeMirror e gestisce la sincronizzazione bidirezionale con \texttt{useEditorStore} (§3.3.4). Soddisfa i requisiti R-1-F-Ob (inserimento testo) e R-2-F-Ob (visualizzazione grafica del Markdown).
     
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{assets/img/UML3.3.2-5.pdf}
+    \caption{figura: Diagramma UML 3.3.2-5 - Editor}
+    \label{fig:uml3325}
+    \end{figure}
+
     \item \textbf{Preview}: rende il contenuto Markdown della nota corrente usando \texttt{MarkdownView}. Applica i plugin \texttt{remark-gfm}, \texttt{remark-math}, \texttt{rehype-katex} e \texttt{rehype-highlight}. Soddisfa R-2-F-Ob e R-113-F-Ob.
     
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{assets/img/UML3.3.2-6.pdf}
+    \caption{figura: Diagramma UML 3.3.2-6 - Preview}
+    \label{fig:uml3326}
+    \end{figure}
+
     \item \textbf{MarkdownView}: componente condiviso da \texttt{Preview} e dall'anteprima dell'\texttt{AiActionDialog}. Applica la stessa pipeline Markdown a entrambi i contesti, garantendo coerenza visiva. Non abilita HTML raw. Utilizza \texttt{remarkUnderline} per supportare la sintassi \texttt{++sottolineato++}.
     
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{assets/img/UML3.3.2-7.pdf}
+    \caption{figura: Diagramma UML 3.3.2-7 - MarkdownView}
+    \label{fig:uml3327}
+    \end{figure}
+
     \item \textbf{AiActionDialog}: il dialogo modale che si apre quando \texttt{aiModal} non è \texttt{null}. La sua implementazione è articolata:
     
     \begin{itemize}
@@ -1020,7 +1093,12 @@ I componenti compositi sono i seguenti:
     \end{itemize}
 \end{itemize}
 
-% [INSERIRE DIAGRAMMA: UML-classi-frontend — diagramma delle classi/tipi principali: Note, NotesState, EditorState, ViewMode, AiModal — con attributi e metodi]
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{assets/img/UML3.3.2-8.pdf}
+    \caption{figura: Diagramma UML 3.3.2-8 - AiActionDialog}
+    \label{fig:uml3328}
+    \end{figure}
 
 \subsubsection{Gestione dello stato}
 \label{sec:frontend-stato}
@@ -1063,6 +1141,13 @@ L'azione \texttt{insertOutputIntoNote} determina la semantica di inserimento in 
     \item \texttt{append}: accoda l'output alla fine di \texttt{currentText}, aggiungendo un separatore \texttt{\textbackslash n\textbackslash n} se necessario. È la semantica usata per la generazione da prompt o da link.
 \end{itemize}
 
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{assets/img/UML3.3.3-1.pdf}
+    \caption{figura: Diagramma UML 3.3.3-1 - useEditorStore}
+    \label{fig:uml3331}
+    \end{figure}
+
 \paragraph{\texttt{notes}.}
 
 Custodisce la raccolta delle note e l'indicazione di quale sia quella corrente:
@@ -1083,7 +1168,13 @@ La sincronizzazione tra i due store è gestita dalle azioni di \texttt{notes}: o
 \paragraph{Persistenza dello store.}
 
 \texttt{notes} utilizza il middleware \texttt{persist} di Zustand (pattern descritto in §3.5) per salvare automaticamente \texttt{list} e \texttt{currentId} in \texttt{localStorage}. Il middleware serializza lo stato su ogni modifica e lo ripristina all'avvio dell'applicazione. Durante il ripristino (\texttt{onRehydrateStorage}), \texttt{loadDocument} viene chiamato per caricare il contenuto della nota corrente nell'editor. Questa persistenza soddisfa R-80-F-Ob, R-84-F-Ob, R-87-F-Ob, R-90-F-Ob, R-93-F-De, R-96-F-De e UC75.
-% [INSERIRE DIAGRAMMA: UML-sequenza-cambio-nota — diagramma di sequenza della sincronizzazione tra notes e useEditorStore durante la selezione di una nuova nota]
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{assets/img/UML3.3.3-2.pdf}
+    \caption{figura: Diagramma UML 3.3.3-2 - notes}
+    \label{fig:uml3332}
+    \end{figure}
 
 \subsubsection{Integrazione dell'editor}
 \label{sec:frontend-editor}
@@ -1129,6 +1220,13 @@ Quando il contenuto della nota cambia nello store (\texttt{currentText}), l'edit
     \item Se il cambiamento è dovuto a \texttt{\_loadVersion} (caricamento di una nuova nota), la transazione riceve anche \texttt{Transaction.addToHistory.of(false)}. Questa annotazione impedisce che il caricamento di una nota venga registrato nella cronologia di undo, soddisfacendo R-7-F-De e R-8-F-De.
 \end{enumerate}
 
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{assets/img/UML3.3.4-1.pdf}
+    \caption{figura: Diagramma UML 3.3.4-1 - Sincronizzazione store → editor}
+    \label{fig:uml3341}
+    \end{figure}
+
 \paragraph{Sincronizzazione editor → store.}
 
 Quando l'utente modifica il testo nell'editor, lo store deve aggiornare \texttt{currentText}. Il meccanismo:
@@ -1155,7 +1253,12 @@ La sincronizzazione bidirezionale potrebbe generare un ciclo: modifica editor �
 
 La selezione dell'utente nell'editor è monitorata dall'estensione di update, che estrae l'intervallo selezionato e invoca \texttt{setSelectedText}. Il valore è usato da \texttt{getActiveText} per determinare il testo da sottoporre all'AI (R-3-F-Ob).
 
-% [INSERIRE DIAGRAMMA: UML-sequenza-sync-editor — diagramma di sequenza della sincronizzazione bidirezionale: due scenari, modifica utente e caricamento di nuova nota]
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{assets/img/UML3.3.4-2.pdf}
+    \caption{figura: Diagramma UML 3.3.4-2 - Sincronizzazione editor → store}
+    \label{fig:uml3342}
+    \end{figure}
 
 \subsubsection{Accesso al servizio applicativo}
 \label{sec:frontend-accesso-servizio}
@@ -1209,7 +1312,12 @@ Il parser gestisce il buffering delle righe e le terminazioni CRLF. È una \text
 
 L'hook è progettato per essere usato in un solo componente alla volta (l'\texttt{AiActionDialog}). L'aborto è accessibile anche da altri componenti (la \texttt{TopBar}) tramite il riferimento salvato nello store, che espone \texttt{abortStream} come azione pubblica.
 
-% [INSERIRE DIAGRAMMA: UML-sequenza-streaming-AI — diagramma di sequenza del flusso di generazione AI: da AiActionDialog a useAiStream a api.generate a parseSseStream, con interruzione e accettazione]
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{assets/img/UML3.3.5.pdf}
+    \caption{figura: Diagramma UML 3.3.5 - Accesso al servizio applicativo}
+    \label{fig:uml335}
+    \end{figure}
 
 \subsubsection{Persistenza lato client}
 \label{sec:frontend-persistenza}
@@ -1253,7 +1361,12 @@ Il modulo \texttt{lib/fileSystem.ts} fornisce funzioni per l'importazione e l'es
 
 I due meccanismi non sono sovrapposti. Il middleware \texttt{persist} gestisce il salvataggio automatico e il ripristino della sessione. \texttt{fileSystem} gestisce l'operazione esplicita di importazione ed esportazione richiesta dall'utente. Questa separazione soddisfa R-1-V-Ob (supporto a Firefox) e R-4-V-Ob (salvataggio come file di testo).
 
-% [INSERIRE DIAGRAMMA: UML-attivita-note-persistenza — diagramma di attività dei tre percorsi: creazione di una nuova nota, esportazione di una nota, importazione di una nota]
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{assets/img/UML3.3.6.pdf}
+    \caption{figura: Diagramma UML 3.3.6 - Persistenza lato client}
+    \label{fig:uml336}
+    \end{figure}
 
 \subsection{Architettura del backend}
 \label{sec:architettura-backend}

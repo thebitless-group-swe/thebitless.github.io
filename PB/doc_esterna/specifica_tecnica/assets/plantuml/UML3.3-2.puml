@@ -1,0 +1,202 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam componentStyle rectangle
+skinparam linetype ortho
+skinparam defaultFontSize 20
+
+' ============================================================
+' 1. HOOKS
+' ============================================================
+
+together {
+  class useAiStream {
+    - status: 'idle' | 'streaming' | 'done' | 'error'
+    - abortControllerRef: RefObject<AbortController | null>
+    - isAbortedRef: RefObject<boolean>
+    __
+    + start<T>(fn: () => AsyncIterable<T>): Promise<void>
+    + abort(): void
+  }
+
+  class useTypewriter {
+    + useTypewriter(text: string,\n isGenerating: boolean): string
+  }
+}
+
+' ============================================================
+' 2. LIBRERIE E UTILITY
+' ============================================================
+
+
+  class api {
+    + summarize(text: string,\n length: Length): AsyncIterable<string>
+    + translate(text: string,\n target: Language): AsyncIterable<string>
+    + rewrite(text: string,\n style: Style): AsyncIterable<string>
+    + grammar(text: string): AsyncIterable<string>
+    + critique(text: string,\n hat: Hat): AsyncIterable<string>
+    + generate(prompt: string,\n length: Length): AsyncIterable<string>
+    + generateFromLink(url: string,\n length: Length): AsyncIterable<string>
+    - stream(endpoint: string,\n body: unknown): AsyncIterable<string>
+  }
+
+  class sse {
+    + parseSseStream(reader:\n ReadableStreamDefaultReader<Uint8Array>):\n AsyncIterable<SseEvent>
+    + STREAM_INTERRUPTED_MESSAGE: string
+  }
+
+  class fileSystem {
+    + openNoteFromFile(): Promise<Note | null>
+    + saveNoteToFile(note: Note): Promise<void>
+    + renameNote(note: Note,\n name: string): Promise<Note>
+    + GRAZIA_ANNULLAMENTO_MS: number
+    + TITOLO_DI_RIPIEGO: string
+    - scegliFileConInput(): Promise<{text: string,\n fileName: string} | null>
+    - eAnnullamento(err: unknown): boolean
+  }
+
+  class editorCommands {
+    + toggleBoldCommand(view: EditorView): void
+    + toggleItalicCommand(view: EditorView): void
+    + toggleUnderlineCommand(view: EditorView): void
+    + toggleStrikethroughCommand(view: EditorView): void
+    + toggleLinkCommand(view: EditorView): void
+    + insertImageCommand(view: EditorView): void
+    + toggleInlineCodeCommand(view: EditorView): void
+    + setHeadingCommand(view: EditorView,\n level: HeadingLevel): void
+    + toggleListCommand(view: EditorView): void
+    + toggleOrderedListCommand(view: EditorView): void
+  }
+
+  class aiActions {
+    + AI_ACTIONS: Record<AiActionId,\n AiActionConfig>
+    + getActiveText(): string
+  }
+
+  class abort {
+    + isAbortError(err: unknown): boolean
+  }
+
+  class id {
+    + newId(): string
+  }
+
+  class utils {
+    + cn(...inputs: ClassValue[]): string
+  }
+
+  class remarkUnderline {
+    + remarkUnderline(): Plugin
+  }
+
+
+' ============================================================
+' 3. TIPI DI SUPPORTO
+' ============================================================
+
+  class AiParams <<interface>> {
+    + length?: Length
+    + target_language?: Language
+    + style?: Style
+    + hat?: Hat
+  }
+
+  class AiActionConfig <<type>> {
+    id: AiActionId
+    label: string
+    source: 'text' | 'prompt' | 'url'
+    minLength: number
+    maxLength: number | null
+    insertMode: 'replace' | 'append'
+    params: AiParams
+  }
+
+  class SseEvent <<type>> {
+    + {type: 'chunk', data: string}
+    + {type: 'error', message: string}
+  }
+
+
+' Forza i tipi in verticale (dall'alto verso il basso)
+AiParams -[hidden]- AiActionConfig
+AiActionConfig -[hidden]- SseEvent
+
+' ============================================================
+' 4. LIBRERIE ESTERNE
+' ============================================================
+
+together {
+  class EditorView {
+    - state: EditorState
+    + dispatch(tr: Transaction): void
+    + focus(): void
+    + destroy(): void
+  }
+
+  class Zustand {
+    + create<T>(fn): StoreApi<T>
+    + persist<T>(fn, config): StoreApi<T>
+  }
+
+  class React {
+    + useState<T>(initial): [T, Dispatch<T>]
+    + useEffect(effect, deps): void
+    + useRef<T>(initial): RefObject<T>
+    + createContext<T>(default): Context<T>
+  }
+
+  class react-markdown {
+    + ReactMarkdown(props): JSX
+  }
+}
+
+' ============================================================
+' 5. RELAZIONI
+' ============================================================
+
+' Componenti → Hooks
+AiActionDialog ..> useAiStream : utilizza
+AiActionDialog ..> useTypewriter : utilizza
+
+' Hooks → Store
+useAiStream ..> useEditorStore : utilizza
+
+' Hooks → Lib
+useAiStream ..> api : utilizza
+useAiStream ..> abort : utilizza
+
+' Componenti → Librerie esterne
+Editor -- EditorView : istanzia
+MarkdownView -- react-markdown : utilizza
+MarkdownView ..> remarkUnderline : utilizza
+
+' Componenti → Lib
+AiActionDialog ..> aiActions : utilizza
+AiActionDialog ..> api : utilizza
+EditorToolbar ..> editorCommands : utilizza
+Sidebar ..> fileSystem : utilizza
+
+' Lib → Lib
+api ..> sse : utilizza
+fileSystem ..> id : utilizza
+aiActions ..> AiActionConfig : utilizza
+
+' Store → Lib
+useNotesStore ..> fileSystem : utilizza (tramite Note)
+useNotesStore ..> id : utilizza
+
+' Store → External
+useEditorStore ..> Zustand : utilizza (persist)
+useNotesStore ..> Zustand : utilizza (persist)
+
+' Componenti → External
+App ..> React : utilizza
+Sidebar ..> React : utilizza
+TopBar ..> React : utilizza
+Editor ..> React : utilizza
+Preview ..> React : utilizza
+MarkdownView ..> React : utilizza
+AiActionDialog ..> React : utilizza
+
+@enduml

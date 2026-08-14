@@ -1,0 +1,239 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam componentStyle rectangle
+skinparam linetype ortho
+skinparam defaultFontSize 14
+
+' ============================================================
+' 1. TIPI E ENUMERAZIONI
+' ============================================================
+
+enum ViewMode {
+  editor
+  render
+  split
+}
+
+enum AiActionId {
+  summarize
+  translate
+  rewrite
+  grammar
+  critique
+  generate
+  generate-link
+}
+
+class AiModal <<type>> {
+  null | AiActionId
+}
+
+class LastCall <<type>> {
+  input: string
+  params: AiParams
+  mode?: 'prompt' | 'link'
+  actionId: AiActionId
+  execute(signal: AbortSignal): AsyncIterable<string>
+}
+
+' ============================================================
+' 2. ENTITÀ E STORE
+' ============================================================
+
+class Note <<entity>> {
+  - id: string
+  - title: string
+  - content: string
+  - createdAt: number
+  - updatedAt: number
+}
+
+class useNotesStore <<store>> {
+  - list: Note[]
+  - currentId: string | null
+  __
+  + createEmpty(): Note
+  + select(id: string): void
+  + updateCurrent(patch: Partial<Pick<Note, 'title' | 'content'>>): void
+  + deleteNote(id: string): void
+  + loadNote(note: Omit<Note, 'createdAt' | 'updatedAt'>): void
+}
+
+class useEditorStore <<store>> {
+  - currentText: string
+  - _loadVersion: number
+  - selectedText: string
+  - streamedOutput: string
+  - isGenerating: boolean
+  - errorMessage: string | null
+  - viewMode: ViewMode
+  - aiModal: AiModal
+  - editorView: EditorView | null
+  - _abortController: AbortController | null
+  - lastCall: LastCall | null
+  __
+  + setCurrentText(text: string): void
+  + loadDocument(text: string): void
+  + setSelectedText(text: string): void
+  + reset(): void
+  + startStreaming(): void
+  + appendChunk(chunk: string): void
+  + finishStreaming(): void
+  + setError(msg: string): void
+  + clearError(): void
+  + setViewMode(mode: ViewMode): void
+  + setAiModal(modal: AiModal): void
+  + insertOutputIntoNote(insertMode?: 'replace' | 'append'): void
+  + discardOutput(): void
+  + setEditorView(view: EditorView | null): void
+  + _setAbortController(c: AbortController | null): void
+  + abortStream(): void
+  + setLastCall(call: LastCall): void
+  + clearLastCall(): void
+}
+
+' ============================================================
+' 3. COMPONENTI REACT
+' ============================================================
+
+class App {
+  + render(): JSX
+}
+
+class Sidebar {
+  - notes: Note[]
+  - currentId: string | null
+  - collapsed: boolean
+  - editingId: string | null
+  - editingTitle: string
+  - fileError: string | null
+  __
+  + createEmpty(): void
+  + select(id: string): void
+  + loadNote(note: Note): void
+  + handleOpenFile(): void
+  + handleSaveFile(): void
+  + startRename(note: Note): void
+  + commitRename(note: Note): void
+}
+
+class TopBar {
+  - noteTitle?: string
+  - isGenerating: boolean
+  - errorMessage: string | null
+  - aiModal: AiModal
+  - currentNote: Note | null
+  __
+  + openModal(modal: AiActionId): void
+  + handleAbort(): void
+}
+
+class ViewToggle {
+  - viewMode: ViewMode
+  __
+  + setViewMode(mode: ViewMode): void
+}
+
+class EditorToolbar {
+  - editorView: EditorView | null
+  __
+  + handleAction(label: string): void
+  + handleHeading(level: HeadingLevel): void
+  + handleList(ordered: boolean): void
+}
+
+class Editor {
+  - currentText: string
+  - _loadVersion: number
+  - containerRef: RefObject<HTMLDivElement>
+  - viewRef: RefObject<EditorView | null>
+  - prevLoadVersionRef: RefObject<number>
+  __
+  + useEffect(): void
+}
+
+class Preview {
+  - currentText: string
+  __
+  + render(): JSX
+}
+
+class MarkdownView {
+  - children: string
+  - className?: string
+  __
+  + render(): JSX
+}
+
+class AiActionDialog {
+  - actionId: AiActionId
+  - isGenerating: boolean
+  - streamedOutput: string
+  - errorMessage: string | null
+  - displayed: string
+  - params: AiParams
+  - input: string
+  - validationError: string | null
+  - lastCall: LastCall | null
+  __
+  + handleGenerate(): void
+  + handleAccept(): void
+  + handleReject(): void
+  + handleStop(): void
+}
+
+class PillSelector {
+  - label: string
+  - options: Option[]
+  - value: T
+  - onChange: (v: T) => void
+  __
+  + render(): JSX
+}
+
+class HatSelector {
+  - value: Hat | null
+  - onChange: (v: Hat) => void
+  __
+  + render(): JSX
+}
+
+' ============================================================
+' 4. RELAZIONI
+' ============================================================
+
+' Componenti → Store
+App ..> useEditorStore : utilizza
+Sidebar ..> useNotesStore : utilizza
+Sidebar ..> useEditorStore : utilizza
+TopBar ..> useNotesStore : utilizza
+TopBar ..> useEditorStore : utilizza
+Editor ..> useEditorStore : utilizza
+Preview ..> useEditorStore : utilizza
+AiActionDialog ..> useEditorStore : utilizza
+AiActionDialog ..> useNotesStore : utilizza
+ViewToggle ..> useEditorStore : utilizza
+EditorToolbar ..> useEditorStore : utilizza
+
+' Componenti → Componenti interni
+AiActionDialog *-- PillSelector : contiene
+AiActionDialog *-- HatSelector : contiene
+
+' App → Componenti (composizione)
+App *-- Sidebar : contiene
+App *-- TopBar : contiene
+App *-- ViewToggle : contiene
+App *-- EditorToolbar : contiene
+App *-- Editor : contiene
+App *-- Preview : contiene
+App *-- AiActionDialog : contiene
+
+' Store → Types
+useNotesStore ..> Note : utilizza
+useEditorStore ..> ViewMode : utilizza
+useEditorStore ..> AiModal : utilizza
+useEditorStore ..> LastCall : utilizza
+
+@enduml

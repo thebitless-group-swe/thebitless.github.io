@@ -1,0 +1,48 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam componentStyle rectangle
+skinparam linetype ortho
+
+class Sidebar {
+  - notes: Note[]
+  - currentId: string | null
+  - collapsed: boolean
+  - editingId: string | null
+  - editingTitle: string
+  - fileError: string | null
+  __
+  + createEmpty(): void
+  + select(id: string): void
+  + loadNote(note: Note): void
+  + handleOpenFile(): void
+  + handleSaveFile(): void
+  + startRename(note: Note): void
+  + commitRename(note: Note): void
+}
+
+class useNotesStore {
+  - list: Note[]
+  - currentId: string | null
+  __
+  + createEmpty(): Note
+  + select(id: string): void
+  + loadNote(note: Note): void
+}
+
+class useEditorStore {
+}
+
+class fileSystem {
+}
+
+class Note {
+}
+
+Sidebar ..> useNotesStore : utilizza
+Sidebar ..> useEditorStore : utilizza
+Sidebar ..> fileSystem : utilizza
+useNotesStore ..> Note : gestisce
+
+@enduml
