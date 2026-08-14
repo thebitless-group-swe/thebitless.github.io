@@ -153,6 +153,8 @@
     \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Descrizione} \\
     \hline
     \endhead
+    0.8.0 & 2026-08-13 & L. Battistella & A. Marini & Aggiunta sezioni Risoluzione dei problemi e Glossario \\ \hline
+
     0.7.0 & 2026-08-10 & A. Marini & L. Battistella & Aggiunta dell'analisi critica secondo i Sei Cappelli, della Guida all'interfaccia, della Risoluzione dei problemi e del Glossario; allineamento delle etichette dell'interfaccia al prodotto \\ \hline
 
     0.6.0 & 2026-08-09 & L. Battistella & A. Marini & Funzionalità di intelligenza artificiale: flusso comune alle azioni, inserimento del risultato nella nota e descrizione delle singole azioni dell'assistente \\ \hline
@@ -430,11 +432,23 @@ Le sezioni seguenti del manuale descrivono nel dettaglio le singole funzionalit�
 \label{sec:guida-interfaccia}
 La presente sezione descrive le aree in cui è suddivisa la schermata dell'applicazione e i comandi che ciascuna mette a disposizione.
 
-\daverificare{immagini della schermata, da acquisire e inserire a corredo delle sottosezioni seguenti}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{assets/interfaccia-base.png}
+    \caption{Interfaccia all'avvio dell'applicazione.}
+    \label{fig:guida-interfaccia}
+\end{figure}
 
-\subsection{La barra laterale ``My Workspace''}
+\subsection{La barra laterale}
 \label{sec:area-barra-laterale}
-Sul lato sinistro si trova una barra laterale intitolata ``My Workspace''. Nella sua parte superiore sono raccolti i pulsanti ``Nuova nota'', ``Apri file\ldots'' e ``Salva file''; al di sotto compare l'elenco ``Tutte le note'', che riporta le note presenti. Quando non esiste alcuna nota, l'elenco riporta la scritta ``Nessuna nota''.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{assets/barra-laterale.png}
+    \label{fig:barra-laterale}
+\end{figure}
+
+Sul lato sinistro si trova una barra laterale. Nella sua parte superiore sono raccolti i pulsanti ``Nuova nota'', ``Apri file\ldots'' e ``Salva file''; al di sotto compare l'elenco ``Tutte le note'', che riporta le note presenti. Quando non esiste alcuna nota, l'elenco riporta la scritta ``Nessuna nota''.
 
 La barra può essere ridotta con il comando ``Chiudi barra laterale'' e riaperta con il comando ``Apri barra laterale''.
 
@@ -442,12 +456,26 @@ Le operazioni disponibili sulle note sono descritte nella Sezione~\ref{sec:gesti
 
 \subsection{La barra del titolo e le azioni di intelligenza artificiale}
 \label{sec:area-barra-titolo}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{assets/barra-strumenti-AI.png}
+    \label{fig:barra-titolo}
+\end{figure}
+
 Nella parte alta della schermata si trova una barra che riporta il titolo della nota corrente. In assenza di una nota, il titolo visualizzato è ``Nota senza titolo''.
 
 Sotto al titolo sono disposti i pulsanti delle azioni di intelligenza artificiale, nell'ordine ``Genera'', ``Riassumi'', ``Riscrivi'', ``Traduci'', ``Grammatica'' e ``Analisi''. Le singole azioni sono descritte nella Sezione~\ref{sec:funzionalita-intelligenza-artificiale}.
 
 \subsection{La barra degli strumenti di formattazione}
 \label{sec:area-barra-strumenti}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{assets/barra-strumenti.png}
+    \label{fig:barra-strumenti}
+\end{figure}
+
 Al centro della schermata, sopra l'area di scrittura, si trova la barra degli strumenti di formattazione, che inserisce i marcatori Markdown al posto dell'utente. I singoli comandi sono descritti nella Sezione~\ref{sec:barra-strumenti-formattazione}.
 
 \subsection{L'area di scrittura e l'area di anteprima}
@@ -456,6 +484,13 @@ Sotto la barra degli strumenti si trova l'area di scrittura, nella quale si comp
 
 \subsection{Le modalità di visualizzazione}
 \label{sec:modalita-visualizzazione}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{assets/modalita-visualizzazione.png}
+    \label{fig:modalita-visualizzazione}
+\end{figure}
+
 Tre comandi consentono di scegliere quali aree tenere a schermo. Sono disposti nell'ordine seguente:
 
 \begin{itemize}
@@ -471,7 +506,7 @@ La modalità predefinita è ``Diviso''. Se la finestra del browser è stretta, l
 
 \section{Gestione delle note}
 \label{sec:gestione-note}
-Le note sono elencate nella barra laterale ``My Workspace'', dalla quale si creano, si aprono, si rinominano e si salvano su file. La presente sezione descrive tali operazioni.
+Le note sono elencate nella barra laterale, dalla quale si creano, si aprono, si rinominano e si salvano su file. La presente sezione descrive tali operazioni.
 
 \subsection{Creare una nota}
 \label{sec:creare-nota}
@@ -867,11 +902,80 @@ Nell'uso dell'assistente si consiglia di:
 
 \section{Risoluzione dei problemi}
 \label{sec:risoluzione-problemi}
-\daverificare{sezione da redigere: problemi più frequenti e relativi rimedi}
+Problemi più frequenti e relative soluzioni:
+\begin{itemize}
 
+\item \textbf{Problema:} Viene visualizzato il messaggio "Servono almeno N caratteri di testo."
+Il messaggio compare quando il testo su cui deve essere eseguita l'azione (riassumi, traduci, riscrivi, ecc.) è troppo corto, oppure quando il campo istruzioni o link è stato lasciato vuoto per un'azione che lo richiede.
+
+\textbf{Soluzione:} è necessario selezionare un testo più lungo nella nota prima di avviare l'azione, oppure, se non è stata effettuata alcuna selezione, verificare che la nota intera contenga testo sufficiente. Per le azioni "Genera" e "Genera da link" occorre assicurarsi di aver inserito istruzioni sufficienti o un URL valido.
+
+\item \textbf{Problema:} Viene visualizzato il messaggio "Servizio temporaneamente non disponibile"
+
+Il messaggio indica che il backend non è riuscito a contattare il servizio AI, per un problema temporaneo di connessione o di disponibilità del servizio stesso.
+
+\textbf{Soluzione:} si consiglia di attendere qualche istante e ripetere l'operazione. Se il problema persiste, è opportuno verificare la connessione internet o contattare l'amministratore del servizio.
+
+\item \textbf{Problema:} La generazione risulta bloccata e l'anteprima resta vuota
+
+Questa situazione può verificarsi se la connessione viene interrotta durante lo streaming, o se il server smette di rispondere senza restituire un errore esplicito.
+
+\textbf{Soluzione:} è possibile premere il pulsante "Interrompi" per fermare la richiesta bloccata, quindi avviare nuovamente la generazione. Se il problema si ripete con frequenza, è consigliabile verificare la connessione di rete in uso.
+
+\item \textbf{Problema:} L'utente desidera annullare una generazione già avviata
+
+Se ci si accorge di aver impostato parametri errati (ad esempio lunghezza, lingua o stile) mentre l'AI sta ancora generando il contenuto, non è necessario attendere il completamento dell'operazione.
+
+\textbf{Soluzione:} è sufficiente premere il pulsante "Interrompi", disponibile per tutta la durata della generazione. La richiesta viene annullata immediatamente, consentendo di correggere i parametri prima di avviare una nuova generazione.
+
+\item \textbf{Problema:} Viene visualizzato il messaggio "Impossibile aprire il file"
+
+Il messaggio compare quando il browser non riesce a leggere il file selezionato, ad esempio per permessi negati, un formato non supportato o un file danneggiato.
+
+\textbf{Soluzione:} è necessario verificare che il file sia in formato .md o .txt. Se il browser ha richiesto un permesso di accesso che è stato negato per errore, si consiglia di ripetere l'operazione e confermare l'autorizzazione quando richiesta.
+
+\item \textbf{Problema:} Le note risultano non più disponibili dopo la chiusura del browser
+
+Le note vengono salvate localmente nel browser utilizzato, non su un server esterno. Qualora la cache del browser venga svuotata, venga utilizzata la navigazione in incognito, o si effettui l'accesso da un dispositivo o browser diverso, le note salvate localmente non risulteranno più accessibili.
+
+\textbf{Soluzione:} per evitare la perdita del lavoro svolto, si consiglia di esportare regolarmente le note più importanti su file tramite la funzione "Salva file". In questo modo è garantita una copia indipendente dal browser utilizzato.
+
+\end{itemize}
 
 \section{Glossario}
 \label{sec:glossario}
-\daverificare{elenco dei termini marcati con pedice G nel documento e relative definizioni}
+\begin{itemize}
+    \item \textbf{LLM (Large Language Model):}
+Modello di intelligenza artificiale addestrato su grandi quantità di testo, in grado di comprendere e generare linguaggio naturale.
 
+    \item \textbf{Markdown:}
+Linguaggio di formattazione testuale che utilizza marcatori semplici per definire stili come grassetto, corsivo, titoli ed elenchi.
+
+    \item \textbf{Rendering:}
+Processo con cui il testo sorgente viene trasformato nella sua rappresentazione visiva formattata, mostrata all'utente.
+
+    \item \textbf{Sei Cappelli per Pensare:}
+Tecnica di analisi che esamina un argomento da sei prospettive distinte, ciascuna associata a un colore e a un tipo di ragionamento.
+
+    \item \textbf{Interfaccia:}
+Insieme degli elementi grafici attraverso cui l'utente interagisce con l'applicazione, quali pulsanti, menu e aree di visualizzazione.
+
+    \item \textbf{Terminale:}
+Programma che consente di impartire comandi al sistema operativo digitandoli in forma testuale.
+
+    \item \textbf{Container:}
+Ambiente isolato ed eseguibile che racchiude un'applicazione e le sue dipendenze, garantendone il funzionamento indipendentemente dal sistema ospitante.
+
+    \item \textbf{Docker:}
+Piattaforma software che permette di creare, distribuire ed eseguire applicazioni all'interno di container.
+
+    \item \textbf{Browser:}
+Programma che consente di accedere e visualizzare pagine e applicazioni web.
+
+    \item \textbf{API (Application Programming Interface):}
+Insieme di regole e strumenti che permette a due applicazioni software di comunicare e scambiarsi dati fra loro.
+
+    \item \textbf{Collegamento ipertestuale:}
+Riferimento testuale che, se selezionato, rimanda a un'altra risorsa, come una pagina web o un altro documento.
+\end{itemize}
 \end{document}
