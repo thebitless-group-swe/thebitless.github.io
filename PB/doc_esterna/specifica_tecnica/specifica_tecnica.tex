@@ -9,6 +9,26 @@
 \usepackage[italian]{babel}
 
 % ---------------------------------------------------------------------------
+% Caratteri Unicode scritti per esteso nel sorgente.
+%
+% Alcune sezioni contengono il trattino lungo, la freccia e i puntini di
+% sospensione come caratteri veri anziché come comandi LaTeX. Con pdflatex e
+% inputenc quei caratteri hanno una corrispondenza predefinita e vengono
+% composti; con un motore basato su XeTeX vengono invece cercati nel font, che
+% non li possiede, e scompaiono dal PDF senza che la compilazione fallisca --
+% la catena «modifica editor -> setCurrentText -> ...» della §3.3.4 si riduce a
+% una sequenza di parole staccate.
+%
+% Le dichiarazioni seguenti danno a ciascuno dei tre caratteri il comando
+% corrispondente, così che il documento si componga allo stesso modo con
+% entrambi i motori. Nessun testo delle sezioni viene modificato.
+% ---------------------------------------------------------------------------
+\usepackage{newunicodechar}
+\newunicodechar{—}{---}
+\newunicodechar{→}{\ensuremath{\rightarrow}}
+\newunicodechar{…}{\dots}
+
+% ---------------------------------------------------------------------------
 % Colori
 % xcolor va caricato una sola volta e prima di ogni pacchetto che lo richiami
 % a sua volta: un secondo \usepackage con opzioni diverse produce l'errore
