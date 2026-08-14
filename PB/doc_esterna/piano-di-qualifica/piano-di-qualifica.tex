@@ -73,11 +73,11 @@
     \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
     \hline
     \endhead
-    1.0.0 & 2026-07-07 & - & - & D. Facco & Approvazione finale per RTB\\
+    1.0.0 & 2026-07-07 & - & - & D. Facco & Approvazione$_G$ finale per RTB$_G$\\
     \hline
-    0.10.0 & 2026-07-06 & S. Zecchinato & S. Vendramin & - & Aggiorna cruscotto con ultimi sprint \\
+    0.10.0 & 2026-07-06 & S. Zecchinato & S. Vendramin & - & Aggiorna cruscotto con ultimi sprint$_G$ \\
     \hline
-    0.9.0 & 2026-06-23 & A. Marini & S. Vendramin & - & Aggiunge valutazione MPC-PMS e sistema le altre \\
+    0.9.0 & 2026-06-23 & A. Marini & S. Vendramin & - & Aggiunge valutazione MPC-PMS e sistema$_G$ le altre \\
     \hline
     0.8.0 & 2026-06-22 & L. Battistella & S. Vendramin & - & Aggiunge valutazioni MPC-IG/MPC-CO \\
     \hline
@@ -148,7 +148,7 @@ L'applicazione deve permettere all'utente di:
 La qualità del prodotto deve quindi essere valutata non solo rispetto alla correttezza funzionale, ma anche rispetto alla facilità d'uso, alla stabilità dell'interazione con il modello linguistico, alla manutenibilità$_G$ del codice e alla verificabilità delle funzionalità principali.
 
 \subsection{Glossario}
-Al fine di evitare ambiguità e prevenire incomprensioni durante la lettura della documentazione, è stato redatto un \textbf{Glossario}. Questo documento ha la funzione di raccogliere e fornire una definizione chiara e univoca per tutti i termini tecnici, gli acronimi e i vocaboli specifici del dominio applicativo di progetto.
+Al fine di evitare ambiguità e prevenire incomprensioni durante la lettura della documentazione, è stato redatto un \textbf{Glossario}. Questo documento ha la funzione di raccogliere e fornire una definizione chiara e univoca per tutti i termini tecnici, gli acronimi e i vocaboli specifici del dominio$_G$ applicativo di progetto.
 Per agevolare la consultazione e segnalare tempestivamente la presenza di un termine all'interno del Glossario, è stata adottata una specifica convenzione tipografica per l'intera documentazione. 
 Ogni vocabolo definito nel Glossario verrà contrassegnato con la lettera maiuscola ``G'' a pedice la prima volta che esso compare all'interno di un documento.
 \vspace{0.3cm}
@@ -811,7 +811,7 @@ Ogni test$_G$ viene identificato secondo la seguente convenzione:
     \hline
     TS-094 & Verificare che l'Utente possa modificare il testo di una formula scientifica o matematica esistente, mantenendone la formattazione. & R-120-F-De & S \\
     \hline
-    TS-095 & Verificare che l'Utente possa modificare il testo di un collegamento ipertestuale esistente, mantenendone la formattazione. & R-121-F-De & S \\
+    TS-095 & Verificare che l'Utente possa modificare il testo di un collegamento ipertestuale$_G$ esistente, mantenendone la formattazione. & R-121-F-De & S \\
     \hline
     TS-096 & Verificare che l'Utente possa modificare il testo di un'ancora di navigazione esistente, mantenendone la formattazione. & R-122-F-De & NI \\
     \hline
@@ -838,9 +838,9 @@ I test$_G$ di accettazione validano il sistema$_G$ rispetto agli scenari d'uso p
 \caption{Test di accettazione principali.}\label{tab:test-accettazione-principali}\\
 \endlastfoot
 TA-001 & L'utente scrive una nota in formato Markdown, ne osserva l'anteprima formattata e salva il contenuto su file locale. & UC 1, UC 78 & S \\ \hline
-TA-002 & L'utente seleziona una porzione di testo e ne richiede il riassunto all'LLM$_G$, scegliendo il livello di sintesi; accettando l'output, il riassunto sostituisce la porzione selezionata. & UC 62, UC 68 & S \\ \hline
-TA-003 & L'utente richiede all'LLM$_G$ una riscrittura del testo scegliendo lo stile da applicare (formale, informale o accademico) e, come intervento distinto, la correzione grammaticale; accettando l'output, il testo riscritto sostituisce quello di partenza. & UC 64, UC 65 & S \\ \hline
-TA-004 & L'utente richiede al sistema$_G$ la traduzione del testo indicando la lingua di destinazione fra quelle supportate; accettando l'output, la traduzione sostituisce il testo di partenza. & UC 63 & S \\ \hline
+TA-002 & L'utente seleziona una porzione di testo e ne richiede il riassunto all'LLM$_G$, scegliendo il livello di sintesi; accettando l'output$_G$, il riassunto sostituisce la porzione selezionata. & UC 62, UC 68 & S \\ \hline
+TA-003 & L'utente richiede all'LLM$_G$ una riscrittura del testo scegliendo lo stile da applicare (formale, informale o accademico) e, come intervento distinto, la correzione grammaticale; accettando l'output$_G$, il testo riscritto sostituisce quello di partenza. & UC 64, UC 65 & S \\ \hline
+TA-004 & L'utente richiede al sistema$_G$ la traduzione del testo indicando la lingua di destinazione fra quelle supportate; accettando l'output$_G$, la traduzione sostituisce il testo di partenza. & UC 63 & S \\ \hline
 TA-005 & L'utente applica in sequenza al testo le sei analisi dei cappelli (bianco, rosso, giallo, nero, verde, blu). & UC 66 & S \\ \hline
 TA-006 & L'utente inserisce un prompt nell'apposito pannello e avvia la generazione dell'intero testo da parte dell'LLM$_G$. & UC 67 & S \\ \hline
 TA-007 & Partendo da una nota salvata in precedenza, l'utente la carica da file locale e ne riprende la modifica nell'area di editing. & UC 76 & S \\ \hline
@@ -860,7 +860,7 @@ Il cruscotto viene aggiornato al termine di ogni periodo di lavoro rilevante e v
     \item verificare l'effetto delle iniziative di miglioramento.
 \end{itemize}
 
-Le misurazioni che seguono fanno riferimento al periodo che intercorre tra l'aggiudicazione del capitolato, avvenuto il 28 marzo 2026, e la consegna della RTB.
+Le misurazioni che seguono fanno riferimento al periodo che intercorre tra l'aggiudicazione del capitolato$_G$, avvenuto il 28 marzo 2026, e la consegna della RTB$_G$.
 
 \subsection{Confronto MPC-PV e MPC-EV}
 \begin{table}[H]
@@ -888,13 +888,13 @@ Le misurazioni che seguono fanno riferimento al periodo che intercorre tra l'agg
 	\label{tab:pv-ev}
 \end{table}
 
-Come possiamo notare dalla figura \ref{fig:pv-ev}, il \textit{Planned Value} cresce di pari passo con l'avanzare degli sprint. Vediamo poi come nel primo sprint l'\textit{Earned Value} sia minore rispetto alla stima pianificata: questo è dovuto a una inesperienza nella programmazione del lavoro che, a partire dallo sprint 2, è stata migliorata. 
-Questo lo si può notare anche dall'accumulo di EV che, dallo sprint 3, comincia ad essere maggiore dell'accumulo di PV, che riporta quindi un avanzamento del progetto di poco in anticipo rispetto a quanto pianificato. Nell'ultimo sprint, che coincide con la prima fase di valutazione RTB, il lavoro è stato principalmente di palestra e meno lavorativo e per questo risultano valori bassi in PV e EV. Valutazione:
+Come possiamo notare dalla figura \ref{fig:pv-ev}, il \textit{Planned Value} cresce di pari passo con l'avanzare degli sprint$_G$. Vediamo poi come nel primo sprint$_G$ l'\textit{Earned Value} sia minore rispetto alla stima pianificata: questo è dovuto a una inesperienza nella programmazione del lavoro che, a partire dallo sprint$_G$ 2, è stata migliorata. 
+Questo lo si può notare anche dall'accumulo di EV che, dallo sprint$_G$ 3, comincia ad essere maggiore dell'accumulo di PV, che riporta quindi un avanzamento del progetto di poco in anticipo rispetto a quanto pianificato. Nell'ultimo sprint$_G$, che coincide con la prima fase di valutazione RTB$_G$, il lavoro è stato principalmente di palestra e meno lavorativo e per questo risultano valori bassi in PV e EV. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} PV$>0$€, vincolo \textit{rispettato}.
-    \item \textbf{Valore ottimo:} PV pari alla pianificazione concordata, vincolo \textit{rispettato}.
-    \item \textbf{Valore accettabile:} EV$\geq 80\% * PV$, vincolo \textit{rispettato}.
-    \item \textbf{Valore ottimo:} EV$\geq PV$, vincolo \textit{violato} in due sprint su sette.
+    \item \textbf{Valore accettabile:} PV$>0$€, vincolo$_G$ \textit{rispettato}.
+    \item \textbf{Valore ottimo:} PV pari alla pianificazione concordata, vincolo$_G$ \textit{rispettato}.
+    \item \textbf{Valore accettabile:} EV$\geq 80\% * PV$, vincolo$_G$ \textit{rispettato}.
+    \item \textbf{Valore ottimo:} EV$\geq PV$, vincolo$_G$ \textit{violato} in due sprint$_G$ su sette.
 \end{itemize}
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/pv-ev.pdf}
@@ -928,14 +928,14 @@ Questo lo si può notare anche dall'accumulo di EV che, dallo sprint 3, comincia
 	\label{tab:ac-etc}
 \end{table}
 L'analisi del grafico in Figura \ref{fig:ac-etc} evidenzia, come atteso, un incremento progressivo dell'\textit{Actual Cost}, fisiologico e coerente con il continuo assorbimento delle risorse economiche durante l'avanzamento del progetto.
-Relativamente alle metriche previsionali \textit{Estimate to Complete} ed \textit{Estimate at Completion}, osserviamo un trend decrescente fino al secondo sprint. Tale dinamica rappresenta un indicatore di elevata efficienza iniziale, avendo posizionato la stima del costo a finire (EAC) significativamente al di sotto del budget stanziato.
-Tra il secondo e il terzo sprint, tuttavia, rileviamo una flessione nelle performance di progetto: all'incremento dei costi sostenuti non corrisponde una proporzionale riduzione del lavoro residuo stimato (ETC). Conseguentemente, l'EAC subisce un innalzamento, approssimandosi al limite critico definito dal BAC. Questa deviazione è imputabile principalmente alla fase di revisione dell'\textit{Analisi dei Requisiti}, un'attività che ha richiesto un notevole impiego di risorse in termini di \textit{effort} senza tuttavia generare un proporzionale incremento del valore maturato (\textit{Earned Value}). A tale criticità si è sommata un'iniziale inesperienza nella pianificazione operativa e nel coordinamento delle attività del team, con inevitabili ricadute negative sull'efficienza economica complessiva dello sprint.
-A partire dal terzo sprint si registra, in controtendenza, un marcato recupero dell'efficienza operativa, con una riduzione dell'ETC. Ciò determina una conseguente e significativa riduzione della stima del costo totale a finire. Pur riscontrando un lieve incremento dell'EAC in corrispondenza del quinto sprint, la proiezione di chiusura si stabilizza circa al limite imposto dal BAC. Valutazione:
+Relativamente alle metriche previsionali \textit{Estimate to Complete} ed \textit{Estimate at Completion}, osserviamo un trend decrescente fino al secondo sprint$_G$. Tale dinamica rappresenta un indicatore di elevata efficienza iniziale, avendo posizionato la stima del costo a finire (EAC) significativamente al di sotto del budget$_G$ stanziato.
+Tra il secondo e il terzo sprint$_G$, tuttavia, rileviamo una flessione nelle performance di progetto: all'incremento dei costi sostenuti non corrisponde una proporzionale riduzione del lavoro residuo stimato (ETC). Conseguentemente, l'EAC subisce un innalzamento, approssimandosi al limite critico definito dal BAC. Questa deviazione è imputabile principalmente alla fase di revisione dell'\textit{Analisi dei Requisiti}, un'attività che ha richiesto un notevole impiego di risorse in termini di \textit{effort} senza tuttavia generare un proporzionale incremento del valore maturato (\textit{Earned Value}). A tale criticità si è sommata un'iniziale inesperienza nella pianificazione operativa e nel coordinamento delle attività del team, con inevitabili ricadute negative sull'efficienza economica complessiva dello sprint$_G$.
+A partire dal terzo sprint$_G$ si registra, in controtendenza, un marcato recupero dell'efficienza operativa, con una riduzione dell'ETC. Ciò determina una conseguente e significativa riduzione della stima del costo totale a finire. Pur riscontrando un lieve incremento dell'EAC in corrispondenza del quinto sprint$_G$, la proiezione di chiusura si stabilizza circa al limite imposto dal BAC. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} AC$>0$€, vincolo \textit{rispettato}.
-    \item \textbf{Valore ottimo:} AC$\leq$EAC, vincolo \textit{rispettato}.
-    \item \textbf{Valore accettabile:} ETC$\geq 0$, vincolo \textit{rispettato}.
-    \item \textbf{Valore ottimo:} ETC$\geq 0$, vincolo \textit{rispettato}.
+    \item \textbf{Valore accettabile:} AC$>0$€, vincolo$_G$ \textit{rispettato}.
+    \item \textbf{Valore ottimo:} AC$\leq$EAC, vincolo$_G$ \textit{rispettato}.
+    \item \textbf{Valore accettabile:} ETC$\geq 0$, vincolo$_G$ \textit{rispettato}.
+    \item \textbf{Valore ottimo:} ETC$\geq 0$, vincolo$_G$ \textit{rispettato}.
 \end{itemize}
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/ac-etc.pdf}
@@ -950,17 +950,17 @@ A partire dal terzo sprint si registra, in controtendenza, un marcato recupero d
 		\hline
 		\textbf{Sprint} & \textbf{Cost Variance (€)} & \textbf{Schedule Variance (€)} & \textbf{Giudizio} \\
 		\hline
-		1 & -5,81 & -45,81 & In ritardo e lievemente sopra il budget\\ 
+		1 & -5,81 & -45,81 & In ritardo e lievemente sopra il budget$_G$\\ 
 		\hline
-        2 & +44,55 & +44,55 & In anticipo e sotto il budget \\
+        2 & +44,55 & +44,55 & In anticipo e sotto il budget$_G$ \\
         \hline
-        3 & -19,77 & +130,23 & In anticipo ma sopra il budget \\
+        3 & -19,77 & +130,23 & In anticipo ma sopra il budget$_G$ \\
         \hline
-        4 & +52,43 & -47,57 & In ritardo ma sotto il budget \\
+        4 & +52,43 & -47,57 & In ritardo ma sotto il budget$_G$ \\
         \hline
-        5 & +6,19 & +51,19 & In anticipo e lievemente sotto il budget \\
+        5 & +6,19 & +51,19 & In anticipo e lievemente sotto il budget$_G$ \\
         \hline
-        6 & -2,88 & -17,88 & In ritardo e lievemente sopra il budget \\
+        6 & -2,88 & -17,88 & In ritardo e lievemente sopra il budget$_G$ \\
         \hline
         7 & 0,00 & 0,00 & In regola \\
         \hline
@@ -970,18 +970,18 @@ A partire dal terzo sprint si registra, in controtendenza, un marcato recupero d
 \end{table}
 Dall'analisi del grafico in Figura \ref{fig:cv-sv} possiamo notare un andamento altalenante che, tuttavia, culmina in una convergenza verso l'efficienza ottimale:
 \begin{itemize}
-    \item \textbf{Sprint 1:} In questo sprint il progetto si avvia con performance al di sotto del livello di ottimalità. Questa dinamica è del tutto coerente con le difficoltà iniziali di calibrazione del team.
-    \item \textbf{Sprint 2:} In questo sprint il team recupera il ritardo iniziale con un ottimo slancio portandosi in anticipo sulle consegne. Questo slancio, però, comporta un impiego di risorse economiche superiore al previsto, che porta ad uno scenario di anticipo temporale a fronte di un sovraccosto.
-    \item \textbf{Sprint 3:} La tendenza all'accelerazione vista nello scorso sprint si consolida generando il picco massimo di vantaggio sulla schedulazione. Questo ritmo veloce produce un ulteriore, seppur contenuto, sforamento del budget.
-    \item \textbf{Sprint 4:} In questo sprint il team registra una flessione dal punto di vista temporale, accumulando nuovamente ritardo rispetto al piano ideale. Di contro si rileva un eccellente recupero dell'efficienza economica.
+    \item \textbf{Sprint 1:} In questo sprint$_G$ il progetto si avvia con performance al di sotto del livello di ottimalità. Questa dinamica è del tutto coerente con le difficoltà iniziali di calibrazione del team.
+    \item \textbf{Sprint 2:} In questo sprint$_G$ il team recupera il ritardo iniziale con un ottimo slancio portandosi in anticipo sulle consegne. Questo slancio, però, comporta un impiego di risorse economiche superiore al previsto, che porta ad uno scenario di anticipo temporale a fronte di un sovraccosto.
+    \item \textbf{Sprint 3:} La tendenza all'accelerazione vista nello scorso sprint$_G$ si consolida generando il picco massimo di vantaggio sulla schedulazione. Questo ritmo veloce produce un ulteriore, seppur contenuto, sforamento del budget$_G$.
+    \item \textbf{Sprint 4:} In questo sprint$_G$ il team registra una flessione dal punto di vista temporale, accumulando nuovamente ritardo rispetto al piano ideale. Di contro si rileva un eccellente recupero dell'efficienza economica.
     \item \textbf{Sprint 5:} In questa iterazione entrambe le metriche di varianza risultano positive consolidando un solido anticipo sulla tabella di marcia mantenendo allo stesso tempo una, seppur minima, efficienza finanziaria.
-    \item \textbf{Sprint 6:} In questo sprint il progetto registra un leggero calo delle prestazioni dovuto principalmente alla sessione d'esami. Questo ha portato ad un ritardo contenuto e ad un leggero sforamento di budget.
-    \item \textbf{Sprint 7:} In quest'ultima iterazione analizzata notiamo \textit{Schedule Variance} e \textit{Cost Variance} pari a zero. Questo è dovuto dal fatto che questo sprint rappresentava la prima fase di revisione RTB, quindi il carico di lavoro è stato poco e facile da portare a termine. 
+    \item \textbf{Sprint 6:} In questo sprint$_G$ il progetto registra un leggero calo delle prestazioni dovuto principalmente alla sessione d'esami. Questo ha portato ad un ritardo contenuto e ad un leggero sforamento di budget$_G$.
+    \item \textbf{Sprint 7:} In quest'ultima iterazione analizzata notiamo \textit{Schedule Variance} e \textit{Cost Variance} pari a zero. Questo è dovuto dal fatto che questo sprint$_G$ rappresentava la prima fase di revisione RTB$_G$, quindi il carico di lavoro è stato poco e facile da portare a termine. 
 \end{itemize}
 Valutazione: 
 \begin{itemize}
-    \item \textbf{Valore accettabile CV:} $CV>0$, vincolo \textit{violato} in tre sprint su cinque con scostamenti lievi.
-    \item \textbf{Valore accettabile SV:} $SV\geq 0$, vincolo \textit{violato} in tre sprint su cinque con slittamenti consistenti.
+    \item \textbf{Valore accettabile CV:} $CV>0$, vincolo$_G$ \textit{violato} in tre sprint$_G$ su cinque con scostamenti lievi.
+    \item \textbf{Valore accettabile SV:} $SV\geq 0$, vincolo$_G$ \textit{violato} in tre sprint$_G$ su cinque con slittamenti consistenti.
 \end{itemize}
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/cv-sv.pdf}
@@ -1015,16 +1015,16 @@ Valutazione:
 	\label{tab:eac-bac}
 \end{table}
 
-Dall'aggiudicazione del capitolato fino alla revisione della RTB, l'\textit{Estimate At Completion} oscilla attorno al \textit{Budget At Completion}. L'EAC supera il BAC solo in tre occasioni:
+Dall'aggiudicazione del capitolato$_G$ fino alla revisione della RTB$_G$, l'\textit{Estimate At Completion} oscilla attorno al \textit{Budget At Completion}. L'EAC supera il BAC solo in tre occasioni:
 \begin{itemize}
-    \item \textbf{Sprint 1:} come detto anche nelle altre sezioni, il primo sprint ha sofferto dell'inesperienza del gruppo nell'organizzare le task, dimensionarle e portarle a compimento. Questo ha provocato un leggero sforamento di budget.
-    \item \textbf{Sprint 3:} in questo sprint il gruppo si è dovuto confrontare con la revisione dell'\textit{Analisi dei Requisiti}, che ha portato ad un rallentamento del progetto e ad un conseguente minore valore aggiunto.
-    \item \textbf{Sprint 6:} in questo sprint il gruppo ha dovuto affrontare la revisione interna dei documenti e del PoC precedente alla prima fase di revisione RTB. Questo ha portato ad un carico di lavoro importante con conseguente sforamento di budget e leggero ritardo in quanto non si è prodotto un effettivo valore aggiunto.
+    \item \textbf{Sprint 1:} come detto anche nelle altre sezioni, il primo sprint$_G$ ha sofferto dell'inesperienza del gruppo nell'organizzare le task$_G$, dimensionarle e portarle a compimento. Questo ha provocato un leggero sforamento di budget$_G$.
+    \item \textbf{Sprint 3:} in questo sprint$_G$ il gruppo si è dovuto confrontare con la revisione dell'\textit{Analisi dei Requisiti}, che ha portato ad un rallentamento del progetto e ad un conseguente minore valore aggiunto.
+    \item \textbf{Sprint 6:} in questo sprint$_G$ il gruppo ha dovuto affrontare la revisione interna dei documenti e del PoC$_G$ precedente alla prima fase di revisione RTB$_G$. Questo ha portato ad un carico di lavoro importante con conseguente sforamento di budget$_G$ e leggero ritardo in quanto non si è prodotto un effettivo valore aggiunto.
 \end{itemize} 
 Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} EAC$\leq 110\%$ budget, vincolo \textit{rispettato}.
-    \item \textbf{Valore ottimale:} EAC$\leq$ budget, vincolo \textit{violato} in tre sprint su cinque.
+    \item \textbf{Valore accettabile:} EAC$\leq 110\%$ budget$_G$, vincolo$_G$ \textit{rispettato}.
+    \item \textbf{Valore ottimale:} EAC$\leq$ budget$_G$, vincolo$_G$ \textit{violato} in tre sprint$_G$ su cinque.
 \end{itemize}
 
 \begin{figure}[H]
@@ -1058,9 +1058,9 @@ Valutazione:
 	\caption{Task Completion Rate per sprint}
 	\label{tab:tcr}
 \end{table}
-Il \textit{Task Completion Rate} risulta ottimo in tre sprint su cinque. Notiamo subottimalità critica nello sprint 1 ($76,9\%$) e una subottimalità lieve nello sprint 4 ($92,3\%$). Valutazione:
+Il \textit{Task Completion Rate} risulta ottimo in tre sprint$_G$ su cinque. Notiamo subottimalità critica nello sprint$_G$ 1 ($76,9\%$) e una subottimalità lieve nello sprint$_G$ 4 ($92,3\%$). Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $TCR \geq 85\%$, vincolo \textit{violato} nello sprint 1.
+    \item \textbf{Valore accettabile:} $TCR \geq 85\%$, vincolo$_G$ \textit{violato} nello sprint$_G$ 1.
 \end{itemize}
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/tcr.pdf}
@@ -1093,9 +1093,9 @@ Il \textit{Task Completion Rate} risulta ottimo in tre sprint su cinque. Notiamo
 	\caption{Task Slippage per sprint}
 	\label{tab:ts}
 \end{table}
-Il \textit{Task Slippage} risulta ottimo in tre sprint su cinque. Notiamo subottimalità critica nello sprint 1 ($23,1\%$) e una subottimalità lieve nello sprint 4 ($7,7\%$). Valutazione:
+Il \textit{Task Slippage} risulta ottimo in tre sprint$_G$ su cinque. Notiamo subottimalità critica nello sprint$_G$ 1 ($23,1\%$) e una subottimalità lieve nello sprint$_G$ 4 ($7,7\%$). Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $TS < 15\%$, vincolo \textit{violato} nello sprint 1.
+    \item \textbf{Valore accettabile:} $TS < 15\%$, vincolo$_G$ \textit{violato} nello sprint$_G$ 1.
 \end{itemize}
 
 \begin{figure}[H]
@@ -1129,10 +1129,10 @@ Il \textit{Task Slippage} risulta ottimo in tre sprint su cinque. Notiamo subott
 	\caption{Merge Rework per sprint}
 	\label{tab:mr}
 \end{table}
-Dal grafico in Figura \ref{fig:mr} possiamo notare come la valutazione di \textit{Merge Rework}, ovvero la percentuale di Pull Request approvate nelle quali viene sovrascritto del lavoro già svolto, varia a seconda della fase del progetto. Nei primi due sprint troviamo dei valori simili ($7\%$ circa) che riteniamo accettabili. Questi valori sono dati dal fatto che tutti i membri del gruppo non avevano avuto ancora esperienza di co-working con lo strumento GitHub, né con un progetto con un gruppo così numeroso. Questo ha portato a iniziali incomprensioni sul lavoro da svolgere e, di conseguenza, a riscritture di parti di documenti. Nel terzo e quarto sprint abbiamo valori critici, dovuti principalmente all'\textit{Analisi dei Requisiti} (primo grande documento condiviso da più redattori) e dalla sua riscrittura, dovuta a revisioni a seguito di numerosi difetti di modellazione riscontrati.
-Nello sprint 5 abbiamo avuto un'enorme mole di Pull Request dovute all'inizio del \textit{Proof of Concept} che però sono state minimamente sovrascritte grazie ad una progettazione adeguata. Infine negli ultimi due sprint la percentuale di lavoro sovrascritto è stata pari a zero. Questo è dovuto al carico di lavoro diminuito e ad una consapevolezza aumentata sulle task da svolgere e sugli strumenti da utilizzare. Valutazione:
+Dal grafico in Figura \ref{fig:mr} possiamo notare come la valutazione di \textit{Merge Rework}, ovvero la percentuale di Pull Request$_G$ approvate nelle quali viene sovrascritto del lavoro già svolto, varia a seconda della fase del progetto. Nei primi due sprint$_G$ troviamo dei valori simili ($7\%$ circa) che riteniamo accettabili. Questi valori sono dati dal fatto che tutti i membri del gruppo non avevano avuto ancora esperienza di co-working con lo strumento GitHub$_G$, né con un progetto con un gruppo così numeroso. Questo ha portato a iniziali incomprensioni sul lavoro da svolgere e, di conseguenza, a riscritture di parti di documenti. Nel terzo e quarto sprint$_G$ abbiamo valori critici, dovuti principalmente all'\textit{Analisi dei Requisiti} (primo grande documento condiviso da più redattori) e dalla sua riscrittura, dovuta a revisioni a seguito di numerosi difetti di modellazione riscontrati.
+Nello sprint$_G$ 5 abbiamo avuto un'enorme mole di Pull Request$_G$ dovute all'inizio del \textit{Proof of Concept} che però sono state minimamente sovrascritte grazie ad una progettazione adeguata. Infine negli ultimi due sprint$_G$ la percentuale di lavoro sovrascritto è stata pari a zero. Questo è dovuto al carico di lavoro diminuito e ad una consapevolezza aumentata sulle task$_G$ da svolgere e sugli strumenti da utilizzare. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $MR \leq 20\%$, vincolo \textit{violato} in due sprint su cinque.
+    \item \textbf{Valore accettabile:} $MR \leq 20\%$, vincolo$_G$ \textit{violato} in due sprint$_G$ su cinque.
 \end{itemize}
 
 \begin{figure}[H]
@@ -1166,9 +1166,9 @@ Nello sprint 5 abbiamo avuto un'enorme mole di Pull Request dovute all'inizio de
 	\caption{Issue Reopening Rate per sprint}
 	\label{tab:ir}
 \end{table}
-Come è possibile notare in Figura \ref{fig:ir}, l'andamento dell'\textit{Issue Reopening Rate} è altalenante sebbene si mantenga quasi sempre abbondantemente sotto la soglia di accettabilità. L'unico sprint che fa eccezione è il numero 3 che, per motivi già affrontati in questo documento, possiede un valore di MPC-IR critico. Valutazione:
+Come è possibile notare in Figura \ref{fig:ir}, l'andamento dell'\textit{Issue Reopening Rate} è altalenante sebbene si mantenga quasi sempre abbondantemente sotto la soglia di accettabilità. L'unico sprint$_G$ che fa eccezione è il numero 3 che, per motivi già affrontati in questo documento, possiede un valore di MPC-IR critico. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $IR \leq 15\%$, vincolo \textit{violato} nello sprint 3.
+    \item \textbf{Valore accettabile:} $IR \leq 15\%$, vincolo$_G$ \textit{violato} nello sprint$_G$ 3.
 \end{itemize}
 
 \begin{figure}[H]
@@ -1201,8 +1201,8 @@ Come è possibile notare in Figura \ref{fig:ir}, l'andamento dell'\textit{Issue 
 Il grafico in Figura \ref{fig:ig} mostra l'indice di Gulpease di ogni documento prodotto nel suo stato finale (versione 1.0.0). Come possiamo notare, tutti i documenti si posizionano sopra la soglia di ottimalità. Questo certifica che i documenti prodotti sono leggibili e comprensibili da qualsiasi individuo in possesso di licenza media. Questa leggibilità elevata è data dalla preferenza di periodi semplici e brevi al posto di quelli complessi e lunghi; in più le parole usate vogliono essere il meno "tecniche" possibili, preferendo quindi una maggiore comprensibilità per i non addetti ai lavori a discapito però di una maggiore lunghezza dei documenti.
 Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $IG \geq 40$, vincolo sempre \textit{rispettato}.
-    \item \textbf{Valore ottimo:} $IG \geq 60$, vincolo sempre \textit{rispettato}.
+    \item \textbf{Valore accettabile:} $IG \geq 40$, vincolo$_G$ sempre \textit{rispettato}.
+    \item \textbf{Valore ottimo:} $IG \geq 60$, vincolo$_G$ sempre \textit{rispettato}.
 \end{itemize}
 
 \begin{figure}[H]
@@ -1235,8 +1235,8 @@ Valutazione:
 \end{table}
 Com'è possibile notare dalla Figura \ref{fig:co}, l'indice di correttezza ortografica è ottimo in tutti i documenti. Questo perché ogni documento in scrittura viene automaticamente analizzato dall'editor di testo che segnala all'utente eventuali inesattezze ortografiche. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} documenti senza errori gravi, vincolo \textit{rispettato}.
-    \item \textbf{Valore ottimo:} $CO \geq 99\%$, vincolo \textit{rispettato}.
+    \item \textbf{Valore accettabile:} documenti senza errori gravi, vincolo$_G$ \textit{rispettato}.
+    \item \textbf{Valore ottimo:} $CO \geq 99\%$, vincolo$_G$ \textit{rispettato}.
 \end{itemize}
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/co.pdf}
@@ -1266,10 +1266,10 @@ Com'è possibile notare dalla Figura \ref{fig:co}, l'indice di correttezza ortog
 	\caption{Percentuale di completezza documentale per documento}
 	\label{tab:cd}
 \end{table}
-L'indice di completezza documentale è ottimo in tutti i documenti, com'è possibile notare in Figura \ref{fig:cd}. Questo perché la struttura di ogni documento in scrittura viene concordata preventivamente nel team e viene verificata ogni qual volta il documento passa alla fase di verifica. Valutazione:
+L'indice di completezza documentale è ottimo in tutti i documenti, com'è possibile notare in Figura \ref{fig:cd}. Questo perché la struttura di ogni documento in scrittura viene concordata preventivamente nel team e viene verificata ogni qual volta il documento passa alla fase di verifica$_G$. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $CD \geq 90\%$ delle sezioni previste, vincolo \textit{rispettato}.
-    \item \textbf{Valore ottimo:} $CD = 100\%$ delle sezioni previste, vincolo \textit{rispettato}.
+    \item \textbf{Valore accettabile:} $CD \geq 90\%$ delle sezioni previste, vincolo$_G$ \textit{rispettato}.
+    \item \textbf{Valore ottimo:} $CD = 100\%$ delle sezioni previste, vincolo$_G$ \textit{rispettato}.
 \end{itemize}
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/cd.pdf}
@@ -1298,10 +1298,10 @@ L'indice di completezza documentale è ottimo in tutti i documenti, com'è possi
 	\caption{Percentuale correttezza dei riferimenti per documento}
 	\label{tab:cr}
 \end{table}
-Dal grafico in Figura \ref{fig:cr} è possibile notare che la percentuale di correttezza dei riferimenti è ottima in ogni documento. Questo perché la correttezza e la coerenza dei riferimenti viene stabilita dal sottogruppo a cui è assegnata la stesura del documento e verificata ogni qual volta il documento passa alla fase di verifica. Valutazione:
+Dal grafico in Figura \ref{fig:cr} è possibile notare che la percentuale di correttezza dei riferimenti è ottima in ogni documento. Questo perché la correttezza e la coerenza dei riferimenti viene stabilita dal sottogruppo a cui è assegnata la stesura del documento e verificata ogni qual volta il documento passa alla fase di verifica$_G$. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $CR \geq 95\%$ dei riferimenti validi, vincolo \textit{rispettato}.
-    \item \textbf{Valore ottimo:} $CD = 100\%$ dei riferimenti validi, vincolo \textit{rispettato}.
+    \item \textbf{Valore accettabile:} $CR \geq 95\%$ dei riferimenti validi, vincolo$_G$ \textit{rispettato}.
+    \item \textbf{Valore ottimo:} $CD = 100\%$ dei riferimenti validi, vincolo$_G$ \textit{rispettato}.
 \end{itemize}
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/cr.pdf}
@@ -1336,10 +1336,10 @@ Dal grafico in Figura \ref{fig:cr} è possibile notare che la percentuale di cor
 	\caption{Percentuale Metriche Soddisfatte per sprint}
 	\label{tab:pms}
 \end{table}
-Analizzando l'andamento della \textit{Percentuale di Metriche Soddisfatte} (MPC-PMS) per la durata degli sprint in Figura \ref{fig:pms}, notiamo un percorso discontinuo ma in miglioramento. A fronte di alcune criticità operative riscontrate negli Sprint 1 e 3 in cui i nostri risultati (67\% e 75\%) sono scesi sotto la soglia di accettabilità dell'80\% per i motivi già citati in questo documento, abbiamo messo in campo un'ottima capacità di reazione. Dopo aver recuperato l'adeguatezza nello Sprint 4 (83\%), nello sprint 5 notiamo un completamento al 100\% delle metriche che ci porta alla piena conformità agli standard qualitativi prefissati. 
-Dal calcolo sono state escluse le metriche di correttezza dei documenti, in quanto queste sono calcolate a documento approvato e non a sprint. Il loro coinvolgimento nel calcolo produrrebbe uno sfasamento che non permetterebbe una stima affidabile. Valutazione:
+Analizzando l'andamento della \textit{Percentuale di Metriche Soddisfatte} (MPC-PMS) per la durata degli sprint$_G$ in Figura \ref{fig:pms}, notiamo un percorso discontinuo ma in miglioramento. A fronte di alcune criticità operative riscontrate negli Sprint$_G$ 1 e 3 in cui i nostri risultati (67\% e 75\%) sono scesi sotto la soglia di accettabilità dell'80\% per i motivi già citati in questo documento, abbiamo messo in campo un'ottima capacità di reazione. Dopo aver recuperato l'adeguatezza nello Sprint$_G$ 4 (83\%), nello sprint$_G$ 5 notiamo un completamento al 100\% delle metriche che ci porta alla piena conformità agli standard qualitativi prefissati. 
+Dal calcolo sono state escluse le metriche di correttezza dei documenti, in quanto queste sono calcolate a documento approvato e non a sprint$_G$. Il loro coinvolgimento nel calcolo produrrebbe uno sfasamento che non permetterebbe una stima affidabile. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $PMS \geq 80\%$, vincolo \textit{non rispettato} nello sprint 1 e 3.
+    \item \textbf{Valore accettabile:} $PMS \geq 80\%$, vincolo$_G$ \textit{non rispettato} nello sprint$_G$ 1 e 3.
 \end{itemize}
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/pms.pdf}
@@ -1347,9 +1347,9 @@ Dal calcolo sono state escluse le metriche di correttezza dei documenti, in quan
     \label{fig:pms}
 \end{figure}
 
-Le sottosezioni che seguono riportano le metriche di qualità del prodotto (MPD) definite nel capitolo \textit{Metriche di qualità del prodotto} e riepilogate nelle Tabelle \ref{tab:metriche-funzionalita}, \ref{tab:metriche-affidabilita}, \ref{tab:metriche-usabilita}, \ref{tab:metriche-efficienza}, \ref{tab:metriche-manutenibilita} e \ref{tab:metriche-sicurezza}. La rilevazione parte dallo sprint$_G$ 8, primo sprint$_G$ della fase di \textit{Product Baseline}$_G$ e periodo in cui prende avvio lo sviluppo dell'MVP$_G$, e si arresta allo sprint$_G$ 11.
+Le sottosezioni che seguono riportano le metriche di qualità del prodotto (MPD) definite nel capitolo \textit{Metriche di qualità del prodotto} e riepilogate nelle Tabelle \ref{tab:metriche-funzionalita}, \ref{tab:metriche-affidabilita}, \ref{tab:metriche-usabilita}, \ref{tab:metriche-efficienza}, \ref{tab:metriche-manutenibilita} e \ref{tab:metriche-sicurezza}. La rilevazione parte dallo sprint$_G$ 8, primo sprint$_G$ della fase di \textit{Product Baseline}$_G$ e periodo in cui prende avvio lo sviluppo$_G$ dell'MVP$_G$, e si arresta allo sprint$_G$ 11.
 
-La rilevazione si ferma all'undicesimo sprint$_G$ perché è in esso che si è concluso lo sviluppo dell'MVP$_G$: l'ultima modifica al codice sorgente risale al 12 agosto 2026, dentro la finestra dell'undicesimo sprint$_G$. Lo sprint$_G$ successivo non ha comportato alcuna modifica al prodotto e i valori rilevati sarebbero identici a quelli dello sprint$_G$ 11, senza aggiungere alcuna informazione sull'andamento della qualità.
+La rilevazione si ferma all'undicesimo sprint$_G$ perché è in esso che si è concluso lo sviluppo$_G$ dell'MVP$_G$: l'ultima modifica al codice sorgente risale al 12 agosto 2026, dentro la finestra dell'undicesimo sprint$_G$. Lo sprint$_G$ successivo non ha comportato alcuna modifica al prodotto e i valori rilevati sarebbero identici a quelli dello sprint$_G$ 11, senza aggiungere alcuna informazione sull'andamento della qualità.
 
 \subsection{Valutazione della copertura dei requisiti}
 \begin{table}[H]
@@ -1378,14 +1378,14 @@ La copertura dei requisiti$_G$ desiderabili cresce progressivamente fino al 70,2
 
 La copertura dei requisiti$_G$ opzionali rimane costantemente a zero per tutta la \textit{Product Baseline}$_G$. Gli opzionali presuppongono un database$_G$ e un meccanismo di autenticazione, e nella riunione del 4 agosto 2026 il gruppo ha deliberato di non implementare alcun database$_G$, privilegiando la qualità complessiva del sistema$_G$ rispetto a funzionalità non richieste dal capitolato$_G$. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $CRO = 100\%$, vincolo \textit{rispettato} nello sprint$_G$ 11.
-    \item \textbf{Valore ottimale:} $CRO = 100\%$, vincolo \textit{rispettato} nello sprint$_G$ 11.
-    \item \textbf{Valore accettabile:} $CRD \geq 50\%$, vincolo \textit{rispettato} in tre sprint$_G$ su quattro.
-    \item \textbf{Valore ottimale:} $CRD \geq 80\%$, vincolo \textit{violato}.
-    \item \textbf{Valore accettabile:} $CROp \geq 0\%$, vincolo \textit{sempre rispettato}.
-    \item \textbf{Valore ottimale:} $CROp \geq 60\%$, vincolo \textit{violato}.
+    \item \textbf{Valore accettabile:} $CRO = 100\%$, vincolo$_G$ \textit{rispettato} nello sprint$_G$ 11.
+    \item \textbf{Valore ottimale:} $CRO = 100\%$, vincolo$_G$ \textit{rispettato} nello sprint$_G$ 11.
+    \item \textbf{Valore accettabile:} $CRD \geq 50\%$, vincolo$_G$ \textit{rispettato} in tre sprint$_G$ su quattro.
+    \item \textbf{Valore ottimale:} $CRD \geq 80\%$, vincolo$_G$ \textit{violato}.
+    \item \textbf{Valore accettabile:} $CROp \geq 0\%$, vincolo$_G$ \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $CROp \geq 60\%$, vincolo$_G$ \textit{violato}.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-cr}, la copertura dei requisiti obbligatori e desiderabili cresce in modo regolare, mentre quella dei requisiti opzionali resta costantemente nulla.
+Come si osserva in Figura \ref{fig:mpd-cr}, la copertura dei requisiti$_G$ obbligatori e desiderabili cresce in modo regolare, mentre quella dei requisiti$_G$ opzionali resta costantemente nulla.
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/mpd-cr.pdf}
     \caption{Valutazione \textit{Copertura dei requisiti}}
@@ -1415,10 +1415,10 @@ Delle sette funzioni basate sull'LLM$_G$ richieste dal capitolato$_G$, il \texti
 
 L'implementazione$_G$ delle funzioni mancanti è stata distribuita fra il nono e il decimo sprint$_G$, seguendo la ripartizione del lavoro decisa nelle rispettive riunioni di apertura, e al termine dell'undicesimo tutte e sette risultano operative e verificate$_G$ con esito positivo. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $CLLM = 100\%$, vincolo \textit{rispettato} nello sprint$_G$ 11.
-    \item \textbf{Valore ottimale:} $CLLM = 100\%$, vincolo \textit{rispettato} nello sprint$_G$ 11.
+    \item \textbf{Valore accettabile:} $CLLM = 100\%$, vincolo$_G$ \textit{rispettato} nello sprint$_G$ 11.
+    \item \textbf{Valore ottimale:} $CLLM = 100\%$, vincolo$_G$ \textit{rispettato} nello sprint$_G$ 11.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-cllm}, la copertura delle funzioni LLM raggiunge il valore pieno soltanto nell'ultimo sprint rilevato.
+Come si osserva in Figura \ref{fig:mpd-cllm}, la copertura delle funzioni LLM$_G$ raggiunge il valore pieno soltanto nell'ultimo sprint$_G$ rilevato.
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/mpd-cllm.pdf}
     \caption{Valutazione \textit{Copertura funzioni LLM obbligatorie}}
@@ -1444,12 +1444,12 @@ Come si osserva in Figura \ref{fig:mpd-cllm}, la copertura delle funzioni LLM ra
 	\caption{Correttezza del rendering Markdown$_G$ per sprint}
 	\label{tab:mpd-cmd}
 \end{table}
-Il rendering Markdown$_G$ era già solido nel \textit{Proof of Concept}$_G$: intestazioni, stili del testo, elenchi, citazioni, tabelle, formule matematiche e blocchi di codice venivano resi correttamente fin dal prototipo, che nasceva proprio per dimostrare la fattibilità dell'editor.
+Il rendering Markdown$_G$ era già solido nel \textit{Proof of Concept}$_G$: intestazioni, stili del testo, elenchi, citazioni, tabelle, formule matematiche e blocchi di codice venivano resi correttamente fin dal prototipo, che nasceva proprio per dimostrare la fattibilità$_G$ dell'editor.
 
 L'unico costrutto che il prototipo non rendeva era il testo sottolineato, che il linguaggio Markdown$_G$ non prevede in modo nativo e che è stato introdotto nell'MVP$_G$ con un'estensione dedicata della pipeline di rendering, scritta in modo da non richiedere l'abilitazione dell'HTML grezzo. Con essa il valore raggiunge la soglia ottimale nell'undicesimo sprint$_G$. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $CMD \geq 95\%$ dei casi previsti, vincolo \textit{sempre rispettato}.
-    \item \textbf{Valore ottimale:} $CMD = 100\%$ dei casi previsti, vincolo \textit{rispettato} nello sprint$_G$ 11.
+    \item \textbf{Valore accettabile:} $CMD \geq 95\%$ dei casi previsti, vincolo$_G$ \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $CMD = 100\%$ dei casi previsti, vincolo$_G$ \textit{rispettato} nello sprint$_G$ 11.
 \end{itemize}
 Come si osserva in Figura \ref{fig:mpd-cmd}, il valore parte esattamente sulla soglia di accettabilità e la mantiene per tutta la rilevazione, raggiungendo quella ottimale nell'ultimo sprint$_G$.
 \begin{figure}[H]
@@ -1481,10 +1481,10 @@ Nel \textit{Proof of Concept}$_G$ il salvataggio e il recupero delle note funzio
 
 La catena di persistenza interna è stata completata negli sprint$_G$ 9 e 10 insieme al resto dell'MVP$_G$. Nell'undicesimo sprint$_G$ entrambi i percorsi restituiscono il contenuto integro, compresi i casi più esposti come i testi di lunghezza elevata, i caratteri accentati e i metacaratteri del linguaggio. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $SN = 100\%$ dei casi obbligatori, vincolo \textit{rispettato} nello sprint$_G$ 11.
-    \item \textbf{Valore ottimale:} $SN = 100\%$ dei casi obbligatori, vincolo \textit{rispettato} nello sprint$_G$ 11.
+    \item \textbf{Valore accettabile:} $SN = 100\%$ dei casi obbligatori, vincolo$_G$ \textit{rispettato} nello sprint$_G$ 11.
+    \item \textbf{Valore ottimale:} $SN = 100\%$ dei casi obbligatori, vincolo$_G$ \textit{rispettato} nello sprint$_G$ 11.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-sn}, il salvataggio e recupero delle note recupera nei due sprint centrali il divario iniziale.
+Come si osserva in Figura \ref{fig:mpd-sn}, il salvataggio e recupero delle note recupera nei due sprint$_G$ centrali il divario iniziale.
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/mpd-sn.pdf}
     \caption{Valutazione \textit{Salvataggio e recupero note}}
@@ -1514,10 +1514,10 @@ Le occorrenze di perdita rilevate nell'ottavo sprint$_G$ discendono direttamente
 
 Il completamento della persistenza interna negli sprint$_G$ 9 e 10 riduce progressivamente le occorrenze, e la campagna di verifica$_G$ dell'undicesimo sprint$_G$ non ne rileva alcuna: il contenuto viene restituito identico in tutti i casi provati. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $0$ perdite nei casi principali, vincolo \textit{rispettato} nello sprint$_G$ 11.
-    \item \textbf{Valore ottimale:} $0$ perdite in ogni test$_G$, vincolo \textit{rispettato} nello sprint$_G$ 11.
+    \item \textbf{Valore accettabile:} $0$ perdite nei casi principali, vincolo$_G$ \textit{rispettato} nello sprint$_G$ 11.
+    \item \textbf{Valore ottimale:} $0$ perdite in ogni test$_G$, vincolo$_G$ \textit{rispettato} nello sprint$_G$ 11.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-dl}, le occorrenze di perdita si annullano progressivamente fino allo sprint 11.
+Come si osserva in Figura \ref{fig:mpd-dl}, le occorrenze di perdita si annullano progressivamente fino allo sprint$_G$ 11.
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/mpd-dl.pdf}
     \caption{Valutazione \textit{Data Loss}}
@@ -1545,16 +1545,16 @@ Come si osserva in Figura \ref{fig:mpd-dl}, le occorrenze di perdita si annullan
 	\caption{Gestione degli errori e recupero di sessione per sprint}
 	\label{tab:mpd-eh-sr}
 \end{table}
-La gestione degli errori parte da un livello discreto ma incompleto. Il \textit{Proof of Concept}$_G$ rifiutava correttamente gli input$_G$ troppo brevi e i campi obbligatori mancanti, ma accettava senza obiezioni testi di qualunque lunghezza, non avendo alcun limite superiore, e soprattutto restituiva all'utente la struttura tecnica prodotta dalla libreria di validazione anziché un messaggio comprensibile. Il lavoro di rifinitura dell'undicesimo sprint$_G$ ha introdotto i limiti superiori e riscritto tutte le risposte d'errore in linguaggio naturale, indicando il campo interessato e l'azione correttiva, e porta il valore alla soglia di accettabilità.
+La gestione degli errori parte da un livello discreto ma incompleto. Il \textit{Proof of Concept}$_G$ rifiutava correttamente gli input$_G$ troppo brevi e i campi obbligatori mancanti, ma accettava senza obiezioni testi di qualunque lunghezza, non avendo alcun limite superiore, e soprattutto restituiva all'utente la struttura tecnica prodotta dalla libreria di validazione$_G$ anziché un messaggio comprensibile. Il lavoro di rifinitura dell'undicesimo sprint$_G$ ha introdotto i limiti superiori e riscritto tutte le risposte d'errore in linguaggio naturale, indicando il campo interessato e l'azione correttiva, e porta il valore alla soglia di accettabilità.
 
 Il recupero di sessione resta il punto debole del prodotto e non raggiunge la soglia in nessuno sprint$_G$. Il motivo non è un difetto ma una conseguenza dell'architettura$_G$ scelta: l'MVP$_G$ non dispone di un database$_G$ e conserva le note nella memoria locale del browser soltanto nel momento in cui l'utente salva, senza alcun meccanismo di bozza automatica. Dopo un'interruzione imprevista viene quindi recuperato ciò che era già stato salvato, mentre le modifiche in corso al momento dell'interruzione vanno perdute, sia su una nota esistente sia su una nota appena creata. Colmare la distanza dalla soglia richiede un salvataggio automatico periodico, che non rientrava fra le priorità della \textit{Product Baseline}$_G$ e resta come intervento da pianificare. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $EH \geq 90\%$ degli errori gestiti, vincolo \textit{rispettato} nello sprint$_G$ 11.
-    \item \textbf{Valore ottimale:} $EH = 100\%$ degli errori gestiti, vincolo \textit{violato}.
-    \item \textbf{Valore accettabile:} recupero del testo nei casi previsti, vincolo \textit{violato}.
-    \item \textbf{Valore ottimale:} recupero completo e automatico, vincolo \textit{violato}.
+    \item \textbf{Valore accettabile:} $EH \geq 90\%$ degli errori gestiti, vincolo$_G$ \textit{rispettato} nello sprint$_G$ 11.
+    \item \textbf{Valore ottimale:} $EH = 100\%$ degli errori gestiti, vincolo$_G$ \textit{violato}.
+    \item \textbf{Valore accettabile:} recupero del testo nei casi previsti, vincolo$_G$ \textit{violato}.
+    \item \textbf{Valore ottimale:} recupero completo e automatico, vincolo$_G$ \textit{violato}.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-eh-sr}, la gestione degli errori raggiunge la soglia di accettabilita' nell'ultimo sprint mentre il recupero di sessione resta al di sotto di essa.
+Come si osserva in Figura \ref{fig:mpd-eh-sr}, la gestione degli errori raggiunge la soglia di accettabilita' nell'ultimo sprint$_G$ mentre il recupero di sessione resta al di sotto di essa.
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/mpd-eh-sr.pdf}
     \caption{Valutazione \textit{Error Handling} e \textit{Session Recovery}}
@@ -1580,12 +1580,12 @@ Come si osserva in Figura \ref{fig:mpd-eh-sr}, la gestione degli errori raggiung
 	\caption{Disponibilità del servizio LLM$_G$ esterno per sprint}
 	\label{tab:mpd-ar}
 \end{table}
-Durante le sessioni di test$_G$ il servizio LLM$_G$ messo a disposizione dal proponente$_G$ ha risposto a tutte le richieste senza segnalare la propria indisponibilità, e il valore si mantiene quindi al massimo in tutti e quattro gli sprint$_G$. È la stessa condizione verificata$_G$ dal test$_G$ di integrazione TI-001 nella Tabella \ref{tab:test-integrazione}.
+Durante le sessioni di test$_G$ il servizio LLM$_G$ messo a disposizione dal proponente$_G$ ha risposto a tutte le richieste senza segnalare la propria indisponibilità, e il valore si mantiene quindi al massimo in tutti e quattro gli sprint$_G$. È la stessa condizione verificata$_G$ dal test$_G$ di integrazione$_G$ TI-001 nella Tabella \ref{tab:test-integrazione}.
 
-Il dato va però letto con una precisazione, perché non racconta l'intero periodo. Nel lavoro quotidiano di sviluppo il servizio non è sempre stato raggiungibile: in più occasioni i programmatori$_G$ hanno dovuto sospendere le prove sulle funzioni basate sull'LLM$_G$ e attendere il ripristino. La metrica misura la disponibilità osservata nelle sessioni di verifica$_G$, non la disponibilità media del periodo, e resta legata a un sistema$_G$ esterno sul quale il gruppo non ha alcun controllo. È anche la ragione per cui il prodotto deve trattare l'indisponibilità come una normale condizione d'errore, aspetto coperto da MPD-EH e verificato$_G$ esplicitamente fra i casi di prova. Valutazione:
+Il dato va però letto con una precisazione, perché non racconta l'intero periodo. Nel lavoro quotidiano di sviluppo$_G$ il servizio non è sempre stato raggiungibile: in più occasioni i programmatori$_G$ hanno dovuto sospendere le prove sulle funzioni basate sull'LLM$_G$ e attendere il ripristino. La metrica misura la disponibilità osservata nelle sessioni di verifica$_G$, non la disponibilità media del periodo, e resta legata a un sistema$_G$ esterno sul quale il gruppo non ha alcun controllo. È anche la ragione per cui il prodotto deve trattare l'indisponibilità come una normale condizione d'errore, aspetto coperto da MPD-EH e verificato$_G$ esplicitamente fra i casi di prova. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $AR \geq 95\%$ durante i test$_G$, vincolo \textit{sempre rispettato}.
-    \item \textbf{Valore ottimale:} $AR \geq 99\%$ durante i test$_G$, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore accettabile:} $AR \geq 95\%$ durante i test$_G$, vincolo$_G$ \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $AR \geq 99\%$ durante i test$_G$, vincolo$_G$ \textit{sempre rispettato}.
 \end{itemize}
 Come si osserva in Figura \ref{fig:mpd-ar}, la serie resta costantemente al di sopra di entrambe le soglie per tutta la durata della rilevazione.
 \begin{figure}[H]
@@ -1617,8 +1617,8 @@ Il tempo necessario a un utente per completare con successo una funzionalità la
 
 Con il completamento delle funzioni negli sprint$_G$ 9 e 10 e la revisione delle etichette nell'undicesimo, nessun comando visibile resta inerte. Il valore scende sotto la soglia ottimale nonostante il numero di funzioni disponibili sia quasi raddoppiato fra i due estremi: è la conferma che il costo di apprendimento dipendeva dai comandi inerti più che dalla quantità di funzioni. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $LT \leq 30$ minuti, vincolo \textit{sempre rispettato}.
-    \item \textbf{Valore ottimale:} $LT \leq 10$ minuti, vincolo \textit{rispettato} nello sprint$_G$ 11.
+    \item \textbf{Valore accettabile:} $LT \leq 30$ minuti, vincolo$_G$ \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $LT \leq 10$ minuti, vincolo$_G$ \textit{rispettato} nello sprint$_G$ 11.
 \end{itemize}
 Come si osserva in Figura \ref{fig:mpd-lt}, il tempo di apprendimento cala in modo regolare e attraversa la soglia ottimale soltanto nell'ultimo sprint$_G$ rilevato.
 \begin{figure}[H]
@@ -1650,8 +1650,8 @@ Gli errori di navigazione hanno la stessa origine del tempo di apprendimento e s
 
 La riduzione è costante ma il valore non arriva a zero. La ragione è un passaggio dell'interfaccia che resta poco immediato anche nell'MVP$_G$: la scelta della prospettiva nell'analisi secondo i Sei Cappelli per Pensare$_G$, dove l'utente deve selezionare uno fra sei cappelli senza che il significato di ciascuno sia esplicitato nel comando. È il motivo per cui il giudizio resta \textit{Accettabile} in tutti e quattro gli sprint$_G$ e non raggiunge mai quello ottimale. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $NE \leq 3$ errori per scenario, vincolo \textit{sempre rispettato}.
-    \item \textbf{Valore ottimale:} $NE = 0$ errori per scenario, vincolo \textit{violato}.
+    \item \textbf{Valore accettabile:} $NE \leq 3$ errori per scenario, vincolo$_G$ \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $NE = 0$ errori per scenario, vincolo$_G$ \textit{violato}.
 \end{itemize}
 Come si osserva in Figura \ref{fig:mpd-ne}, gli errori per scenario calano in modo regolare restando sempre entro la soglia di accettabilità, senza però annullarsi.
 \begin{figure}[H]
@@ -1685,10 +1685,10 @@ La coerenza dell'interfaccia era già una qualità del prototipo e si è mantenu
 
 La comprensibilità delle funzioni ha invece un andamento molto più netto. Nell'ottavo sprint$_G$ quattro comandi su diciannove annunciavano una funzione che non producevano, e l'etichetta \textit{Migliora} non lasciava intuire quale trasformazione sarebbe stata applicata al testo: il valore risultava perciò appena sotto la soglia di accettabilità. L'attivazione progressiva delle funzioni e la riscrittura delle etichette in termini espliciti \textit{Riscrivi}, \textit{Grammatica}, \textit{Analisi} portano il valore oltre la soglia ottimale nell'undicesimo sprint$_G$. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $UI \geq 90\%$ degli elementi coerenti, vincolo \textit{sempre rispettato}.
-    \item \textbf{Valore ottimale:} $UI = 100\%$ degli elementi coerenti, vincolo \textit{violato}.
-    \item \textbf{Valore accettabile:} $FU \geq 80\%$ delle funzioni comprese senza guida, vincolo \textit{rispettato} in tre sprint$_G$ su quattro.
-    \item \textbf{Valore ottimale:} $FU \geq 95\%$ delle funzioni comprese senza guida, vincolo \textit{rispettato} nello sprint$_G$ 11.
+    \item \textbf{Valore accettabile:} $UI \geq 90\%$ degli elementi coerenti, vincolo$_G$ \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $UI = 100\%$ degli elementi coerenti, vincolo$_G$ \textit{violato}.
+    \item \textbf{Valore accettabile:} $FU \geq 80\%$ delle funzioni comprese senza guida, vincolo$_G$ \textit{rispettato} in tre sprint$_G$ su quattro.
+    \item \textbf{Valore ottimale:} $FU \geq 95\%$ delle funzioni comprese senza guida, vincolo$_G$ \textit{rispettato} nello sprint$_G$ 11.
 \end{itemize}
 Come si osserva in Figura \ref{fig:mpd-ui-fu}, la coerenza dell'interfaccia resta stabile mentre la comprensibilita' delle funzioni attraversa entrambe le soglie.
 \begin{figure}[H]
@@ -1720,12 +1720,12 @@ Le tre metriche condividono un'unica colonna di giudizio perché il giudizio è 
 
 Il miglioramento fra l'ottavo e l'undicesimo sprint$_G$ è reale e ha una causa individuabile: l'unificazione della pipeline di rendering in un unico componente condiviso ha alleggerito l'aggiornamento dell'anteprima, che è la più onerosa delle tre operazioni. La sua entità resta però trascurabile rispetto ai vincoli. Le tre metriche non hanno quindi potere discriminante nella forma attuale e andrebbero ritarate su soglie più stringenti per risultare informative. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $RT \leq 2$ secondi, vincolo \textit{sempre rispettato}.
-    \item \textbf{Valore ottimale:} $RT \leq 0{,}5$ secondi, vincolo \textit{sempre rispettato}.
-    \item \textbf{Valore accettabile:} $MRT \leq 1$ secondo, vincolo \textit{sempre rispettato}.
-    \item \textbf{Valore ottimale:} $MRT \leq 0{,}3$ secondi, vincolo \textit{sempre rispettato}.
-    \item \textbf{Valore accettabile:} $LS \leq 3$ secondi, vincolo \textit{sempre rispettato}.
-    \item \textbf{Valore ottimale:} $LS \leq 1$ secondo, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore accettabile:} $RT \leq 2$ secondi, vincolo$_G$ \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $RT \leq 0{,}5$ secondi, vincolo$_G$ \textit{sempre rispettato}.
+    \item \textbf{Valore accettabile:} $MRT \leq 1$ secondo, vincolo$_G$ \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $MRT \leq 0{,}3$ secondi, vincolo$_G$ \textit{sempre rispettato}.
+    \item \textbf{Valore accettabile:} $LS \leq 3$ secondi, vincolo$_G$ \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $LS \leq 1$ secondo, vincolo$_G$ \textit{sempre rispettato}.
 \end{itemize}
 Come si osserva in Figura \ref{fig:mpd-tempi-ui}, tracciata su scala logaritmica per poter mostrare insieme i valori e le soglie, le tre serie restano da uno a due ordini di grandezza al di sotto dei rispettivi vincoli.
 \begin{figure}[H]
@@ -1753,14 +1753,14 @@ Come si osserva in Figura \ref{fig:mpd-tempi-ui}, tracciata su scala logaritmica
 	\caption{Tempo di risposta delle chiamate al servizio LLM$_G$ per sprint}
 	\label{tab:mpd-llmrt}
 \end{table}
-Il tempo di risposta del servizio LLM$_G$ si dimezza fra l'ottavo e l'undicesimo sprint$_G$ pur restando invariato il fornitore. La riduzione è l'effetto della revisione del modo in cui la richiesta viene costruita: nel \textit{Proof of Concept}$_G$ il testo veniva inoltrato così com'era, senza alcun limite di lunghezza e con i \textit{prompt}$_G$ composti direttamente nelle rotte, mentre nell'MVP$_G$ la composizione è stata affidata a un modulo dedicato del dominio e gli ingressi sono limitati superiormente, così che la lunghezza inviata al modello non possa crescere senza controllo.
+Il tempo di risposta del servizio LLM$_G$ si dimezza fra l'ottavo e l'undicesimo sprint$_G$ pur restando invariato il fornitore. La riduzione è l'effetto della revisione del modo in cui la richiesta viene costruita: nel \textit{Proof of Concept}$_G$ il testo veniva inoltrato così com'era, senza alcun limite di lunghezza e con i \textit{prompt}$_G$ composti direttamente nelle rotte, mentre nell'MVP$_G$ la composizione è stata affidata a un modulo dedicato del dominio$_G$ e gli ingressi sono limitati superiormente, così che la lunghezza inviata al modello non possa crescere senza controllo.
 
 Entrambi i valori restano comunque ampiamente entro la soglia ottimale. Va segnalato che la misura dipende dal modello configurato e dal carico del servizio nel momento della rilevazione: un modello di dimensioni maggiori sposterebbe l'intera serie verso l'alto senza che nulla sia cambiato nel prodotto. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $LLMRT \leq 15$ secondi, vincolo \textit{sempre rispettato}.
-    \item \textbf{Valore ottimale:} $LLMRT \leq 8$ secondi, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore accettabile:} $LLMRT \leq 15$ secondi, vincolo$_G$ \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $LLMRT \leq 8$ secondi, vincolo$_G$ \textit{sempre rispettato}.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-llmrt}, il tempo di risposta del servizio LLM cala in modo regolare fino allo sprint 11.
+Come si osserva in Figura \ref{fig:mpd-llmrt}, il tempo di risposta del servizio LLM$_G$ cala in modo regolare fino allo sprint$_G$ 11.
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/mpd-llmrt.pdf}
     \caption{Valutazione \textit{LLM Response Time}}
@@ -1790,12 +1790,12 @@ Come si osserva in Figura \ref{fig:mpd-llmrt}, il tempo di risposta del servizio
 
 La crescita ha una causa individuabile nella scelta, deliberata nel decimo sprint$_G$, di disaccoppiare le finestre dell'interfaccia dagli \textit{endpoint}$_G$ del backend raccogliendo tutte le azioni basate sull'LLM$_G$ in un unico componente. La scelta ha effettivamente ridotto l'accoppiamento fra i moduli, ma ha concentrato in una sola funzione la ramificazione che prima era distribuita fra finestre separate, ciascuna con i propri parametri e i propri stati. Nell'undicesimo sprint$_G$ contribuisce anche la funzione che compone i messaggi d'errore in linguaggio naturale, scritta per soddisfare il requisito$_G$ sulla comprensibilità delle segnalazioni.
 
-Il vincolo risulta violato dal nono sprint$_G$ in poi. La riduzione della complessità di quel componente, che si ottiene scomponendolo nelle sue azioni senza rinunciare al punto di accesso unico, è un intervento di manutenzione$_G$ da pianificare e non un difetto da nascondere nella media. Valutazione:
+Il vincolo$_G$ risulta violato dal nono sprint$_G$ in poi. La riduzione della complessità di quel componente, che si ottiene scomponendolo nelle sue azioni senza rinunciare al punto di accesso unico, è un intervento di manutenzione$_G$ da pianificare e non un difetto da nascondere nella media. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $CYC \leq 15$, vincolo \textit{rispettato} nello sprint$_G$ 8.
-    \item \textbf{Valore ottimale:} $CYC \leq 10$, vincolo \textit{violato}.
+    \item \textbf{Valore accettabile:} $CYC \leq 15$, vincolo$_G$ \textit{rispettato} nello sprint$_G$ 8.
+    \item \textbf{Valore ottimale:} $CYC \leq 10$, vincolo$_G$ \textit{violato}.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-cyc}, la complessita' massima cresce a partire dallo sprint 9 e supera stabilmente la soglia di accettabilita'.
+Come si osserva in Figura \ref{fig:mpd-cyc}, la complessita' massima cresce a partire dallo sprint$_G$ 9 e supera stabilmente la soglia di accettabilita'.
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/mpd-cyc.pdf}
     \caption{Valutazione \textit{Complessità ciclomatica}}
@@ -1821,12 +1821,12 @@ Come si osserva in Figura \ref{fig:mpd-cyc}, la complessita' massima cresce a pa
 	\caption{Code smell per componente per sprint}
 	\label{tab:mpd-cs}
 \end{table}
-I rilievi dell'analisi statica erano concentrati nel backend del \textit{Proof of Concept}$_G$, scritto rapidamente per dimostrare la fattibilità dell'integrazione con il servizio LLM$_G$ e mai sottoposto a una revisione sistematica: ordinamento degli \textit{import} non conforme, righe eccedenti la lunghezza massima, eccezioni propagate senza catena di origine. Il frontend del prototipo non ne presentava alcuno.
+I rilievi dell'analisi statica erano concentrati nel backend del \textit{Proof of Concept}$_G$, scritto rapidamente per dimostrare la fattibilità$_G$ dell'integrazione$_G$ con il servizio LLM$_G$ e mai sottoposto a una revisione sistematica: ordinamento degli \textit{import} non conforme, righe eccedenti la lunghezza massima, eccezioni propagate senza catena di origine. Il frontend$_G$ del prototipo non ne presentava alcuno.
 
 Il decimo sprint$_G$ è il periodo in cui il valore attraversa la soglia ottimale, e la coincidenza non è casuale: è lo sprint$_G$ in cui il codice è stato portato a completamento con tre programmatori$_G$ e sottoposto a revisione da quattro verificatori$_G$, la distribuzione più ampia del ruolo in tutto il progetto. Nell'undicesimo i rilievi si azzerano su entrambi i lati. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $CS \leq 5$ per componente, vincolo \textit{sempre rispettato}.
-    \item \textbf{Valore ottimale:} $CS \leq 1$ per componente, vincolo \textit{rispettato} dallo sprint$_G$ 10.
+    \item \textbf{Valore accettabile:} $CS \leq 5$ per componente, vincolo$_G$ \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $CS \leq 1$ per componente, vincolo$_G$ \textit{rispettato} dallo sprint$_G$ 10.
 \end{itemize}
 Come si osserva in Figura \ref{fig:mpd-cs}, il numero di code smell per componente attraversa la soglia ottimale nel decimo sprint$_G$ e si annulla nell'undicesimo.
 \begin{figure}[H]
@@ -1854,12 +1854,12 @@ Come si osserva in Figura \ref{fig:mpd-cs}, il numero di code smell per componen
 	\caption{Duplicazione del codice per sprint}
 	\label{tab:mpd-dup}
 \end{table}
-La duplicazione resta entro la soglia ottimale in tutti e quattro gli sprint$_G$, ma la sua riduzione ha una causa precisa e vale la pena registrarla. Nel \textit{Proof of Concept}$_G$ la pipeline di rendering Markdown$_G$ era ripetuta in tre componenti distinti, l'anteprima e le due finestre delle azioni basate sull'LLM$_G$ ed era da sola responsabile della quasi totalità delle righe duplicate.
+La duplicazione resta entro la soglia ottimale in tutti e quattro gli sprint$_G$, ma la sua riduzione ha una causa precisa e vale la pena registrarla. Nel \textit{Proof of Concept}$_G$ la pipeline di rendering Markdown$_G$ era ripetuta in tre componenti distinti, l'anteprima e le due finestre delle azioni basate sull'LLM$_G$ ed era da sola responsabile$_G$ della quasi totalità delle righe duplicate.
 
 Nell'MVP$_G$ la stessa pipeline vive in un unico componente condiviso da tutte le anteprime, e la duplicazione residua si riduce a poche righe di configurazione. Il dato va letto insieme alla crescita del codice, quasi raddoppiato nello stesso periodo: la percentuale cala mentre il denominatore aumenta, il che significa che le righe duplicate sono diminuite in valore assoluto e non solo in proporzione. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $DUP \leq 10\%$, vincolo \textit{sempre rispettato}.
-    \item \textbf{Valore ottimale:} $DUP \leq 3\%$, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore accettabile:} $DUP \leq 10\%$, vincolo$_G$ \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $DUP \leq 3\%$, vincolo$_G$ \textit{sempre rispettato}.
 \end{itemize}
 Come si osserva in Figura \ref{fig:mpd-dup}, la duplicazione si mantiene sotto la soglia ottimale fin dal primo sprint$_G$ rilevato e si riduce di oltre l'ottanta per cento.
 \begin{figure}[H]
@@ -1889,10 +1889,10 @@ Come si osserva in Figura \ref{fig:mpd-dup}, la duplicazione si mantiene sotto l
 \end{table}
 Il grado di accoppiamento resta invariato lungo i quattro sprint$_G$, e il risultato è meno sorprendente di quanto appaia. La metrica è un rapporto fra le dipendenze presenti fra i moduli e quelle astrattamente possibili, e si muove soltanto se le due grandezze cambiano in proporzione diversa. La ristrutturazione del decimo sprint$_G$ ha riorganizzato i \textit{package}$_G$ attorno all'architettura$_G$ esagonale, ma ha introdotto dipendenze in proporzione ai \textit{package}$_G$ aggiunti, lasciando il rapporto dov'era.
 
-Il miglioramento c'è ed è visibile nella forma del grafo delle dipendenze anziché nel suo rapporto. Nel prototipo l'unica dipendenza del backend collegava le rotte a un \textit{package}$_G$ che portava il nome di una tecnologia; nell'MVP$_G$ tutte le dipendenze convergono verso il \textit{package}$_G$ di dominio, che non dipende da nulla, ed è esattamente l'assetto deliberato nella riunione del 4 agosto 2026, che nello stesso sprint$_G$ aveva assegnato ai programmatori$_G$ la verifica$_G$ esplicita del livello di accoppiamento. Il gruppo prende atto che la metrica, così come è formulata, non distingue i due assetti e ne propone la revisione dopo la consegna. Valutazione:
+Il miglioramento c'è ed è visibile nella forma del grafo delle dipendenze anziché nel suo rapporto. Nel prototipo l'unica dipendenza del backend collegava le rotte a un \textit{package}$_G$ che portava il nome di una tecnologia; nell'MVP$_G$ tutte le dipendenze convergono verso il \textit{package}$_G$ di dominio$_G$, che non dipende da nulla, ed è esattamente l'assetto deliberato nella riunione del 4 agosto 2026, che nello stesso sprint$_G$ aveva assegnato ai programmatori$_G$ la verifica$_G$ esplicita del livello di accoppiamento. Il gruppo prende atto che la metrica, così come è formulata, non distingue i due assetti e ne propone la revisione dopo la consegna. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $MOD \leq 0{,}60$, vincolo \textit{sempre rispettato}.
-    \item \textbf{Valore ottimale:} $MOD \leq 0{,}45$, vincolo \textit{violato}.
+    \item \textbf{Valore accettabile:} $MOD \leq 0{,}60$, vincolo$_G$ \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $MOD \leq 0{,}45$, vincolo$_G$ \textit{violato}.
 \end{itemize}
 Come si osserva in Figura \ref{fig:mpd-mod}, la serie è una retta collocata fra le due soglie: è la rappresentazione visiva del fatto che la metrica non registra la ristrutturazione avvenuta nel decimo sprint$_G$.
 \begin{figure}[H]
@@ -1926,16 +1926,16 @@ Nessuna chiave di accesso è mai stata esposta. Il file di configurazione che co
 
 Anche la sanificazione dei dati è piena in tutti gli sprint$_G$: la pipeline di rendering non abilita l'HTML grezzo e nessun componente inserisce nella pagina contenuto non filtrato, né quello scritto dall'utente né quello restituito dall'LLM$_G$. L'MVP$_G$ non ha migliorato il valore, che era già al massimo, ma ha ridotto da tre a uno i punti in cui questa configurazione va mantenuta corretta, e con essi il rischio$_G$ che le copie divergano nel tempo.
 
-La validazione degli ingressi è l'unica delle tre metriche che si muove. Nell'ottavo sprint$_G$ metà dei campi esposti dall'API$_G$ era priva di vincoli effettivi: i testi avevano un limite inferiore ma non superiore, e il collegamento fornito dall'utente veniva accettato come stringa qualunque, con un commento nel codice che rimandava esplicitamente la validazione a un momento successivo. Il completamento del backend negli sprint$_G$ 9 e 10 e la rifinitura dell'undicesimo portano tutti i campi a essere vincolati in entrambe le direzioni, con un tipo dedicato per il collegamento. Valutazione:
+La validazione$_G$ degli ingressi è l'unica delle tre metriche che si muove. Nell'ottavo sprint$_G$ metà dei campi esposti dall'API$_G$ era priva di vincoli effettivi: i testi avevano un limite inferiore ma non superiore, e il collegamento fornito dall'utente veniva accettato come stringa qualunque, con un commento nel codice che rimandava esplicitamente la validazione$_G$ a un momento successivo. Il completamento del backend negli sprint$_G$ 9 e 10 e la rifinitura dell'undicesimo portano tutti i campi a essere vincolati in entrambe le direzioni, con un tipo dedicato per il collegamento. Valutazione:
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $SK = 0$ chiavi esposte, vincolo \textit{sempre rispettato}.
-    \item \textbf{Valore ottimale:} $SK = 0$ chiavi esposte, vincolo \textit{sempre rispettato}.
-    \item \textbf{Valore accettabile:} $IV \geq 95\%$ degli input$_G$ validati, vincolo \textit{rispettato} nello sprint$_G$ 11.
-    \item \textbf{Valore ottimale:} $IV = 100\%$ degli input$_G$ validati, vincolo \textit{rispettato} nello sprint$_G$ 11.
-    \item \textbf{Valore accettabile:} $DS \geq 95\%$ dei dati sanificati, vincolo \textit{sempre rispettato}.
-    \item \textbf{Valore ottimale:} $DS = 100\%$ dei dati sanificati, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore accettabile:} $SK = 0$ chiavi esposte, vincolo$_G$ \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $SK = 0$ chiavi esposte, vincolo$_G$ \textit{sempre rispettato}.
+    \item \textbf{Valore accettabile:} $IV \geq 95\%$ degli input$_G$ validati, vincolo$_G$ \textit{rispettato} nello sprint$_G$ 11.
+    \item \textbf{Valore ottimale:} $IV = 100\%$ degli input$_G$ validati, vincolo$_G$ \textit{rispettato} nello sprint$_G$ 11.
+    \item \textbf{Valore accettabile:} $DS \geq 95\%$ dei dati sanificati, vincolo$_G$ \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $DS = 100\%$ dei dati sanificati, vincolo$_G$ \textit{sempre rispettato}.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-iv}, la validazione degli input$_G$ recupera cinquanta punti percentuali e attraversa entrambe le soglie nell'ultimo sprint$_G$; MPD-SK e MPD-DS non sono riportate perché costanti al valore ottimale in ogni sprint$_G$.
+Come si osserva in Figura \ref{fig:mpd-iv}, la validazione$_G$ degli input$_G$ recupera cinquanta punti percentuali e attraversa entrambe le soglie nell'ultimo sprint$_G$; MPD-SK e MPD-DS non sono riportate perché costanti al valore ottimale in ogni sprint$_G$.
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/mpd-iv.pdf}
     \caption{Valutazione \textit{Input Validation}}
@@ -1954,11 +1954,11 @@ Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del prog
         \hline
         \textbf{Problema} & \textbf{Descrizione} & \textbf{Azioni di correzione} \\ \hline
         
-        Pianificazione e dimensionamento task & Inesperienza iniziale (Sprint 1) nell'organizzare, dimensionare e portare a compimento le task, con conseguente abbassamento del Task Completion Rate (TCR) e scostamenti nei costi (EAC). & Migliore calibrazione del team e scomposizione delle task in unità più piccole per facilitarne il completamento nei tempi previsti (come dimostrato nei recuperi degli sprint successivi). \\ \hline
+        Pianificazione e dimensionamento task$_G$ & Inesperienza iniziale (Sprint$_G$ 1) nell'organizzare, dimensionare e portare a compimento le task$_G$, con conseguente abbassamento del Task$_G$ Completion Rate (TCR) e scostamenti nei costi (EAC). & Migliore calibrazione del team e scomposizione delle task$_G$ in unità più piccole per facilitarne il completamento nei tempi previsti (come dimostrato nei recuperi degli sprint$_G$ successivi). \\ \hline
         
-        Gestione e modellazione dei Requisiti & Numerosi difetti di modellazione nel documento di Analisi dei Requisiti hanno causato pesanti rallentamenti nello Sprint 3, alzando drasticamente il Merge Rework e l'Issue Reopening Rate. & Organizzazione di sessioni di revisione congiunta prima della stesura definitiva per evitare corpose riscritture strutturali e minimizzare la riapertura delle issue. \\ \hline
+        Gestione e modellazione dei Requisiti$_G$ & Numerosi difetti di modellazione nel documento di Analisi dei Requisiti$_G$ hanno causato pesanti rallentamenti nello Sprint$_G$ 3, alzando drasticamente il Merge$_G$ Rework e l'Issue$_G$ Reopening Rate. & Organizzazione di sessioni di revisione congiunta prima della stesura definitiva per evitare corpose riscritture strutturali e minimizzare la riapertura delle issue$_G$. \\ \hline
         
-        Calibrazione dell'effort economico & Tendenza ad accelerare il lavoro (Sprint 2 e 3) accumulando anticipo sulla schedulazione ma causando frequenti sforamenti del budget e Cost Variance negative. & Maggiore attenzione al bilanciamento tra l'Earned Value e l'Actual Cost, stabilizzando l'impiego delle ore produttive per non superare il costo pianificato (risolto nello Sprint 5). \\ \hline
+        Calibrazione dell'effort economico & Tendenza ad accelerare il lavoro (Sprint$_G$ 2 e 3) accumulando anticipo sulla schedulazione ma causando frequenti sforamenti del budget$_G$ e Cost Variance negative. & Maggiore attenzione al bilanciamento tra l'Earned Value e l'Actual Cost$_G$, stabilizzando l'impiego delle ore produttive per non superare il costo pianificato (risolto nello Sprint$_G$ 5). \\ \hline
     \end{tabularx}
     \caption{Azioni adottate per migliorare l'organizzazione.}
     \label{tab:azioni-org}
@@ -1973,9 +1973,9 @@ Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del prog
         \hline
         \textbf{Problema} & \textbf{Descrizione} & \textbf{Azioni di correzione} \\ \hline
         
-        Coordinamento dei redattori in gruppi numerosi & Iniziali incomprensioni sul lavoro da svolgere a causa della mancanza di esperienza pregressa in un team così numeroso, sfociate in sovrascritture di porzioni di documenti. & Definizione di confini più rigidi nell'assegnazione dei compiti ai singoli redattori per prevenire la sovrapposizione del lavoro e l'annullamento delle Pull Request. \\ \hline
+        Coordinamento dei redattori in gruppi numerosi & Iniziali incomprensioni sul lavoro da svolgere a causa della mancanza di esperienza pregressa in un team così numeroso, sfociate in sovrascritture di porzioni di documenti. & Definizione di confini più rigidi nell'assegnazione$_G$ dei compiti ai singoli redattori per prevenire la sovrapposizione del lavoro e l'annullamento delle Pull Request$_G$. \\ \hline
         
-        Verifica formale e controllo logico & I verificatori si sono inizialmente affidati eccessivamente ai correttori ortografici, tralasciando discrepanze logiche (formule smentite dai dati testuali) e sviste nel "copia e incolla" delle didascalie. & Integrazione di una checklist di verifica semantica e strutturale (matching dei dati tra tabelle e testo, controllo incrociato delle definizioni metriche) obbligatoria per il ruolo del Verificatore. \\ \hline
+        Verifica$_G$ formale e controllo logico & I verificatori si sono inizialmente affidati eccessivamente ai correttori ortografici, tralasciando discrepanze logiche (formule smentite dai dati testuali) e sviste nel "copia e incolla" delle didascalie. & Integrazione$_G$ di una checklist di verifica$_G$ semantica e strutturale (matching dei dati tra tabelle e testo, controllo incrociato delle definizioni metriche) obbligatoria per il ruolo del Verificatore$_G$. \\ \hline
     \end{tabularx}
     \caption{Azioni adottate per migliorare la gestione dei ruoli.}
     \label{tab:azioni-ruoli}
@@ -1990,9 +1990,9 @@ Le iniziative di miglioramento hanno lo scopo di analizzare l'andamento del prog
         \hline
         \textbf{Problema} & \textbf{Descrizione} & \textbf{Azioni di correzione} \\ \hline
         
-        Co-working tramite GitHub & L'inesperienza iniziale di tutti i membri con lo strumento di versioning GitHub ha portato a conflitti e difficoltà nella gestione collaborativa (alto Merge Rework iniziale). & Adozione di workflow condivisi e rigidi per l'apertura, revisione e approvazione delle Pull Request, uniti alla fisiologica esperienza maturata dal team sul campo. \\ \hline
+        Co-working tramite GitHub$_G$ & L'inesperienza iniziale di tutti i membri con lo strumento di versioning GitHub$_G$ ha portato a conflitti e difficoltà nella gestione collaborativa (alto Merge$_G$ Rework iniziale). & Adozione di workflow$_G$ condivisi e rigidi per l'apertura, revisione e approvazione$_G$ delle Pull Request$_G$, uniti alla fisiologica esperienza maturata dal team sul campo. \\ \hline
         
-        ITS inesistente & All'inizio del progetto il gruppo non adoperava strumenti di \textit{Issue Tracking System} che non permettevano quindi di sapere chi-fa-cosa-quando in tempi ragionevoli e alzava la probabilità di conflitti di merge. & Adozione dell'ITS GitHub Project per l'assegnazione, la misurazione e la rendicontazione delle issue. \\ \hline
+        ITS inesistente & All'inizio del progetto il gruppo non adoperava strumenti di \textit{Issue Tracking System} che non permettevano quindi di sapere chi-fa-cosa-quando in tempi ragionevoli e alzava la probabilità di conflitti di merge$_G$. & Adozione dell'ITS GitHub$_G$ Project per l'assegnazione$_G$, la misurazione e la rendicontazione delle issue$_G$. \\ \hline
     \end{tabularx}
     \caption{Azioni adottate per migliorare l'uso degli strumenti.}
     \label{tab:azioni-str}
