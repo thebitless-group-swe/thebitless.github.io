@@ -1,0 +1,35 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam componentStyle rectangle
+skinparam linetype ortho
+
+actor Utente as U
+
+participant "Applicazione" as APP
+participant "notes" as NS
+participant "middleware persist" as PERSIST
+participant "localStorage" as LS
+participant "useEditorStore" as ES
+participant "Editor" as ED
+
+U -> APP : Avvia applicazione
+APP -> NS : Inizializza store
+NS -> PERSIST : onRehydrateStorage()
+PERSIST -> LS : getItem('notes_persistence')
+LS --> PERSIST : list + currentId
+PERSIST --> NS : Stato ripristinato
+
+NS -> NS : currentId = ...
+NS -> ES : loadDocument(note.content)
+ES -> ED : Notifica change (currentText)
+ED -> ED : Aggiorna view
+ED --> U : Nota corrente visualizzata
+
+note right of NS
+  Il ripristino avviene prima
+  del primo render dell'applicazione.
+end note
+
+@enduml
