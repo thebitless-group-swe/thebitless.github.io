@@ -115,11 +115,10 @@
 % Ruff: dichiarato nel gruppo dev di api/pyproject.toml (`ruff>=0.14`) e risolto
 % in api/uv.lock alla versione qui riportata; configurazione in api/ruff.toml.
 \newcommand{\vRuff}{0.16.1}
-% NON PRESENTE NELL'MVP — mypy non figura fra le dipendenze dichiarate in
-% api/pyproject.toml, non è risolto in api/uv.lock, non ha un file di
-% configurazione e non è invocato da .github/workflows/ci.yml. È l'unico
-% strumento della sezione 2.5.1 privo di riscontro nel repository di prodotto.
-\newcommand{\vMypy}{---}
+% import-linter: dichiarato nel gruppo dev di api/pyproject.toml
+% (`import-linter>=1.8.0`) e risolto in api/uv.lock alla versione riportata nella
+% tabella di §2.5.1; contratti in api/.importlinter. Citato una sola volta con la
+% versione, quindi senza macro dedicata.
 
 % ---------------------------------------------------------------------------
 % REGOLA: finché nel documento è presente anche un solo marcatore
@@ -176,8 +175,8 @@
 
 \newcommand{\titolo}{Specifica Tecnica}
 \newcommand{\dataverbale}{}
-\newcommand{\dataversione}{2026-08-11}
-\newcommand{\versione}{0.5.0}
+\newcommand{\dataversione}{2026-08-16}
+\newcommand{\versione}{0.9.0}
 \newcommand{\stato}{Stesura}
 % La Specifica Tecnica è documentazione esterna: fra i destinatari figura anche
 % la proponente, coerentemente con Analisi dei Requisiti e Piano di Qualifica.
@@ -207,6 +206,14 @@
     \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
     \hline
     \endhead
+    0.9.0 & 2026-08-16 & A. Marini &  & - & Inserimento dei sei diagrammi e delle figure corrispondenti, allineamento dell'enumerazione dei contratti di dipendenza e della definizione di adattatore primario nelle sezioni Tecnologie di test e analisi e Panoramica architetturale, e delle annotazioni di struttura della sezione Architettura del backend, a seguito dello spostamento dell'adattatore di trasporto fra gli adattatori primari; riclassificazione della scopertura di R-97-F-De nella sezione Persistenza delle note, con la distinzione fra dati posseduti e copertura del requisito e la rimozione dei rimandi al sorgente dal corpo del testo; revisione redazionale di titoli dei paragrafi, grassetti e incisi \\ \hline
+
+    0.8.0 & 2026-08-12 & A. Marini &  & - & Stesura delle sezioni sul flusso di generazione in streaming e sull'annullamento \\ \hline
+
+    0.7.0 & 2026-08-12 & A. Marini &  & - & Stesura della sezione Design pattern adottati \\ \hline
+
+    0.6.0 & 2026-08-11 & A. Marini &  & - & Stesura della sezione Architettura di deployment \\ \hline
+
     0.5.0 & 2026-08-11 & A. Marini &  & - & Allineamento della sezione Tecnologie al repository di prodotto, stesura della Panoramica architetturale e riorganizzazione dello scheletro delle sezioni di Architettura \\ \hline
 
     0.4.0 & 2026-07-27 & A. Marini & A. Menegaldo & - & Integrazione continua e analisi statica del backend, tracciamento dei requisiti nella sezione Tecnologie, riorganizzazione della struttura delle sezioni Architettura, Flusso dei dati e Tracciamento \\ \hline
@@ -232,10 +239,13 @@
 \listoftables
 \newpage
 
-% Da riattivare quando la sezione 3 conterrà i primi diagrammi: al momento
-% \listoffigures produrrebbe una pagina con la sola intestazione.
-% \listoffigures
-% \newpage
+% Attivo dal primo \includegraphics entrato nel documento (§3.2.1). I segnaposto
+% «[INSERIRE DIAGRAMMA: ...]» ancora presenti sono commenti LaTeX: non producono
+% alcun ambiente figure, quindi non compaiono in questo elenco finché non vengono
+% sostituiti da una figura vera. Il segnaposto in attesa è UNO, in §3.1.1; il
+% conteggio va aggiornato quando se ne aggiungono o se ne sostituiscono.
+\listoffigures
+\newpage
 
 
 \section{Introduzione}
@@ -259,7 +269,7 @@ Nello specifico, il documento persegue i seguenti obiettivi:
 
 Il documento costituisce il riferimento progettuale per le successive fasi di realizzazione e di manutenzione del prodotto: ogni intervento sul codice deve risultare coerente con quanto qui descritto e, qualora introduca una variazione architetturale, deve essere preceduto dall'aggiornamento della presente specifica.
 
-La Specifica Tecnica dà inoltre continuità al \textbf{Proof of Concept\textsubscript{G}} sviluppato per la \textbf{Requirements and Technology Baseline\textsubscript{G}}: le tecnologie e le soluzioni architetturali qui documentate sono quelle sperimentate e validate in quella sede, ora consolidate e portate al livello di dettaglio necessario allo sviluppo\textsubscript{G} del prodotto completo.
+La Specifica Tecnica dà continuità al \textbf{Proof of Concept\textsubscript{G}} sviluppato per la \textbf{Requirements and Technology Baseline\textsubscript{G}}, nel quale le tecnologie qui adottate sono state selezionate e sperimentate. Il documento non descrive però quell'artefatto\textsubscript{G}: \textbf{descrive il repository\textsubscript{G} di prodotto}, che da allora è stato realizzato e nel quale quelle scelte sono state consolidate, in parte riviste e portate al livello di dettaglio necessario allo sviluppo\textsubscript{G} completo. Ogni affermazione fattuale che segue è verificata contro quel repository\textsubscript{G}, che è l'unico termine di confronto del documento.
 
 Come gli altri documenti del gruppo, la stesura segue un approccio \textbf{incrementale\textsubscript{G}}: il documento viene raffinato a ogni iterazione, in modo da riflettere costantemente lo stato effettivo del prodotto.
 
@@ -357,7 +367,7 @@ Documentazione ufficiale delle tecnologie descritte nella sezione \ref{sec:tecno
     \item \textbf{openapi-typescript}: \url{https://openapi-ts.dev/}
     \item \textbf{ESLint}: \url{https://eslint.org/docs/latest/}
     \item \textbf{Ruff}: \url{https://docs.astral.sh/ruff/}
-    \item \textbf{mypy}: \url{https://mypy.readthedocs.io/}
+    \item \textbf{import-linter}: \url{https://import-linter.readthedocs.io/}
     \item \textbf{Vitest}: \url{https://vitest.dev/}
     \item \textbf{Copertura del codice in Vitest}: \url{https://vitest.dev/guide/coverage}
     \item \textbf{Testing Library}: \url{https://testing-library.com/docs/react-testing-library/intro/}
@@ -390,30 +400,30 @@ Documentazione ufficiale delle tecnologie descritte nella sezione \ref{sec:tecno
 \label{sec:criteri-scelta}
 Le tecnologie descritte in questa sezione non sono state selezionate in astratto, sulla base della sola diffusione o popolarità, ma in risposta a bisogni tecnici precisi derivati dal capitolato\textsubscript{G} e dall'Analisi dei Requisiti\textsubscript{G}. Ciascuno dei bisogni elencati di seguito vincola una o più delle scelte successive, e costituisce il criterio rispetto al quale tali scelte vanno valutate.
 
-\paragraph{1. Risposta progressiva.}
+\paragraph{Risposta progressiva}
 Un riassunto o una generazione di testo richiedono al modello linguistico un tempo di elaborazione dell'ordine dei secondi. Mantenere l'utente davanti a un semplice indicatore di attesa per tutta la durata dell'operazione non è accettabile sul piano dell'usabilità\textsubscript{G}: il testo deve comparire progressivamente mentre viene prodotto (\textit{streaming}). Questo bisogno determina la scelta di un livello server asincrono, di un client HTTP che supporti la lettura incrementale della risposta e di un protocollo di trasporto adatto al flusso unidirezionale di dati testuali. Il criterio discende dal requisito\textsubscript{G} \textbf{R-109-F-De}, che impone un indicatore di avanzamento per l'intera durata delle operazioni con attesa percepibile, e da \textbf{R-79-F-De}, che richiede la possibilità di annullare un'elaborazione in corso: entrambi presuppongono che il server mantenga il controllo dell'operazione mentre questa procede, e non si limiti a restituirne l'esito finale.
 
-\paragraph{2. Riservatezza delle credenziali dei fornitori esterni.}
+\paragraph{Riservatezza delle credenziali dei fornitori esterni}
 L'accesso ai modelli linguistici avviene tramite una chiave di autenticazione fornita dalla proponente\textsubscript{G}, in attuazione del requisito di vincolo\textsubscript{G} \textbf{R-2-V-Ob}, che prescrive l'interfacciamento con i servizi LLM\textsubscript{G} tramite API\textsubscript{G}. Tale chiave non deve in alcun caso raggiungere il browser, dove sarebbe leggibile da chiunque ispezioni il traffico o il codice dell'applicazione. È quindi necessaria una componente server intermediaria che detenga la chiave e sia l'unico soggetto a comunicare con il fornitore; la medesima componente risolve anche il vincolo\textsubscript{G} \textbf{R-3-V-Ob} sulla \textit{same-origin policy}, poiché è essa a esporre al browser un'origine controllata, configurata mediante la politica CORS.
 
-Il criterio si estende a ogni fornitore esterno contattato dal prodotto, non al solo fornitore dei modelli. La funzione di generazione a partire da un collegamento (\textbf{R-74-F-De}) richiede l'estrazione del contenuto di una pagina web indicata dall'utente, operazione affidata a un secondo servizio esterno dotato di una propria chiave: anche questa è custodita dal backend e non transita dal browser. Va dichiarato, per trasparenza verso l'utente e verso la proponente\textsubscript{G}, \textbf{quali dati lasciano il perimetro del sistema\textsubscript{G}}: verso il fornitore dei modelli linguistici transitano il testo sottoposto all'operazione --- la porzione selezionata o l'intera nota --- e le istruzioni costruite dall'applicazione; verso il servizio di estrazione transita il solo indirizzo fornito dall'utente. Nessuno dei due riceve dati identificativi dell'utente, che il prodotto non raccoglie.
+Il criterio si estende a ogni fornitore esterno contattato dal prodotto, non al solo fornitore dei modelli. La funzione di generazione a partire da un collegamento (\textbf{R-74-F-De}) richiede l'estrazione del contenuto di una pagina web indicata dall'utente, operazione affidata a un secondo servizio esterno dotato di una propria chiave: anche questa è custodita dal backend e non transita dal browser. Va dichiarato, per trasparenza verso l'utente e verso la proponente\textsubscript{G}, quali dati lasciano il perimetro del sistema\textsubscript{G}: verso il fornitore dei modelli linguistici transitano il testo sottoposto all'operazione (la porzione selezionata o l'intera nota) e le istruzioni costruite dall'applicazione; verso il servizio di estrazione transita il solo indirizzo fornito dall'utente. Nessuno dei due riceve dati identificativi dell'utente, che il prodotto non raccoglie.
 
-Il confine è dato da ciò che l'utente sottopone, non dalla provenienza del testo: \textbf{nessun file è trasmesso automaticamente}. Una nota aperta da disco resta nel browser finché l'utente non ne affida il contenuto a un'operazione assistita; da quel momento esce dal perimetro come qualunque altro testo. Aprire un file non comporta dunque alcuna trasmissione, chiederne il riassunto sì: la differenza sta in un'azione che l'utente compie deliberatamente.
+Il confine è dato da ciò che l'utente sottopone, non dalla provenienza del testo: nessun file è trasmesso automaticamente. Una nota aperta da disco resta nel browser finché l'utente non ne affida il contenuto a un'operazione assistita; da quel momento esce dal perimetro come qualunque altro testo. Aprire un file non comporta dunque alcuna trasmissione, chiederne il riassunto sì: la differenza sta in un'azione che l'utente compie deliberatamente.
 
-\paragraph{3. Rendering sicuro del Markdown\textsubscript{G}.}
+\paragraph{Rendering sicuro del Markdown\textsubscript{G}}
 Il requisito\textsubscript{G} \textbf{R-113-F-Ob} prevede una componente di rendering che trasformi il testo Markdown\textsubscript{G} in una presentazione grafica formattata. Il testo restituito dal modello linguistico non è però contenuto fidato: è generato da un sistema\textsubscript{G} esterno a partire da input\textsubscript{G} che l'utente controlla solo in parte. Deve essere mostrato all'utente come HTML formattato senza che ciò apra la strada a vulnerabilità di tipo \textit{cross-site scripting} (XSS). La tecnologia di rendering deve quindi essere sicura per costruzione, non affidarsi a una sanificazione applicata a posteriori. Al medesimo criterio si riconduce \textbf{R-110-F-Ob}, che impone messaggi di errore in linguaggio naturale privi di dettagli tecnici: la gestione degli errori del modello non deve riversare nell'interfaccia contenuto proveniente dall'esterno.
 
-\paragraph{4. Editor ricco ma stabile.}
-L'editor deve offrire evidenziazione della sintassi, cronologia delle modifiche con annullamento e ripristino (\textbf{R-7-F-De}, \textbf{R-8-F-De}), e un comportamento accessibile da tastiera e da lettore di schermo; \textbf{R-111-F-Ob} ne prescrive la realizzazione come componente capace di ospitare testo su più righe. Deve inoltre mantenere invariati cursore e posizione di scorrimento mentre il pannello di anteprima si aggiorna in streaming, condizione che esclude soluzioni in cui la ricostruzione della vista coinvolge l'intera area di lavoro.
+\paragraph{Editor ricco ma stabile}
+L'editor deve offrire evidenziazione della sintassi, cronologia delle modifiche con annullamento e ripristino (\textbf{R-7-F-De}, \textbf{R-8-F-De}), e un comportamento accessibile da tastiera e da lettore di schermo; \textbf{R-111-F-Ob} ne prescrive la realizzazione come componente capace di ospitare testo su più righe. Deve inoltre mantenere invariati cursore e posizione di scorrimento mentre la parte di interfaccia che presenta l'esito in arrivo si aggiorna in streaming, condizione che esclude soluzioni in cui la ricostruzione della vista coinvolge l'intera area di lavoro.
 
-\paragraph{5. Manutenibilità\textsubscript{G} con un gruppo di sette persone.}
+\paragraph{Manutenibilità\textsubscript{G} con un gruppo di sette persone}
 Il prodotto è sviluppato in parallelo da sette persone con livelli di esperienza eterogenei. Ciò richiede codice tipizzato, in cui gli errori di interfaccia emergano in fase di compilazione anziché in esecuzione, confini netti fra i livelli dell'applicazione e verifica\textsubscript{G} automatica delle modifiche prima della loro integrazione\textsubscript{G}. Il criterio è vincolato da tre requisiti\textsubscript{G} di qualità: \textbf{R-4-Q-Ob} richiede che ogni pull request\textsubscript{G} sia sottoposta a revisione tra pari e superi i test\textsubscript{G} automatici prima dell'integrazione\textsubscript{G} nel ramo principale, \textbf{R-2-Q-Ob} richiede una copertura del codice\textsubscript{G} conforme alle soglie del Piano di Qualifica, \textbf{R-10-Q-Ob} impone il rispetto delle Norme di Progetto\textsubscript{G}. Serve quindi un'infrastruttura di \textit{Continuous Integration\textsubscript{G}} che applichi questi controlli in modo automatico e uniforme sui due livelli.
 
-\paragraph{6. Perimetro tecnologico ammesso dal capitolato\textsubscript{G}.}
-Il requisito di vincolo\textsubscript{G} \textbf{R-7-V-Op} stabilisce che la componente server-side, se realizzata, possa essere sviluppata utilizzando \textbf{Java} o \textbf{Python}. La scelta di Python ricade quindi all'interno del perimetro tecnologico ammesso dalla proponente\textsubscript{G}. Sul versante client, \textbf{R-1-V-Ob} circoscrive il perimetro alle Tecnologie Web\textsubscript{G} e ne fissa gli ambienti di esecuzione di riferimento: le versioni recenti di \textbf{Google Chrome}, \textbf{Mozilla Firefox} e \textbf{Microsoft Edge}. Questo vincolo\textsubscript{G} ha conseguenza diretta sulla strategia di persistenza descritta nella sezione \ref{sec:persistenza}, poiché le tre famiglie di browser non offrono le medesime interfacce di accesso al file system.
+\paragraph{Perimetro tecnologico ammesso dal capitolato\textsubscript{G}}
+Il requisito di vincolo\textsubscript{G} \textbf{R-7-V-Op} stabilisce che la componente server-side, se realizzata, possa essere sviluppata utilizzando Java o Python. La scelta di Python ricade quindi all'interno del perimetro tecnologico ammesso dalla proponente\textsubscript{G}. Sul versante client, \textbf{R-1-V-Ob} circoscrive il perimetro alle Tecnologie Web\textsubscript{G} e ne fissa gli ambienti di esecuzione di riferimento: le versioni recenti di Google Chrome, Mozilla Firefox e Microsoft Edge. Questo vincolo\textsubscript{G} ha conseguenza diretta sulla strategia di persistenza descritta nella sezione \ref{sec:persistenza}, poiché le tre famiglie di browser non offrono le medesime interfacce di accesso al file system.
 
-\paragraph{Filosofia trasversale.}
-Le scelte che seguono rispondono a un unico criterio di fondo: l'\textbf{equilibrio fra controllo e velocità di sviluppo\textsubscript{G}}. Il gruppo ha preferito tecnologie che lasciano visibile e modificabile ciò che accade, evitando tanto le soluzioni che nascondono il comportamento dietro astrazioni ampie e opinate, quanto quelle che impongono di riscrivere da zero funzionalità già disponibili. A parità di adeguatezza tecnica, la preferenza è andata agli ecosistemi maturi, con documentazione estesa e ampia disponibilità di risorse: fattore determinante per un gruppo che affronta gran parte di queste tecnologie per la prima volta.
+\paragraph{Filosofia trasversale}
+Le scelte che seguono rispondono a un unico criterio di fondo: l'equilibrio fra controllo e velocità di sviluppo\textsubscript{G}. Il gruppo ha preferito tecnologie che lasciano visibile e modificabile ciò che accade, evitando tanto le soluzioni che nascondono il comportamento dietro astrazioni ampie e opinate, quanto quelle che impongono di riscrivere da zero funzionalità già disponibili. A parità di adeguatezza tecnica, la preferenza è andata agli ecosistemi maturi, con documentazione estesa e ampia disponibilità di risorse: fattore determinante per un gruppo che affronta gran parte di queste tecnologie per la prima volta.
 
 \subsection{Frontend}
 \label{sec:tecnologie-frontend}
@@ -422,9 +432,9 @@ Il frontend\textsubscript{G} è un'applicazione a pagina singola eseguita intera
 \begin{tabellatec}{Tecnologie adottate per il frontend}{tab:tec-frontend}
     \textbf{TypeScript} & \vTS & Linguaggio di sviluppo\textsubscript{G} dell'intero frontend\textsubscript{G}. Estende JavaScript con un sistema di tipi statici che viene rimosso in fase di compilazione (\textit{type erasure}): i tipi non esistono a tempo di esecuzione e non introducono alcun costo prestazionale. Il loro contributo è spostare in compilazione errori che si manifesterebbero altrimenti in produzione, in particolare sulle interfacce fra componenti. La validazione dei dati provenienti dall'esterno resta a carico del backend, poiché i tipi non sopravvivono alla compilazione e non possono verificare nulla a tempo di esecuzione. \\ \hline
 
-    \textbf{React} & 19.2.7 & Libreria per la costruzione dell'interfaccia, organizzata a componenti. Editor, anteprima, barra degli strumenti e pannelli delle funzioni assistite dall'LLM\textsubscript{G} sono componenti React distinti. Il meccanismo di \textit{reconciliation} confronta la rappresentazione dell'interfaccia prima e dopo un cambiamento di stato e applica al DOM le sole modifiche effettivamente necessarie: durante lo streaming, in cui lo stato cambia decine di volte al secondo, questo evita la ricostruzione dell'intera pagina. L'applicazione \textbf{non impiega alcun router}: l'interazione si svolge in una sola vista, priva di navigazione fra pagine distinte, e l'introduzione di un instradamento lato client sarebbe una complessità non giustificata. \\ \hline
+    \textbf{React} & 19.2.7 & Libreria per la costruzione dell'interfaccia, organizzata a componenti. Editor, anteprima, barra degli strumenti e pannelli delle funzioni assistite dall'LLM\textsubscript{G} sono componenti React distinti. Il meccanismo di \textit{reconciliation} confronta la rappresentazione dell'interfaccia prima e dopo un cambiamento di stato e applica al DOM le sole modifiche effettivamente necessarie: durante lo streaming, in cui lo stato cambia decine di volte al secondo, questo evita la ricostruzione dell'intera pagina. L'applicazione non impiega alcun router: l'interazione si svolge in una sola vista, priva di navigazione fra pagine distinte, e l'introduzione di un instradamento lato client sarebbe una complessità non giustificata. \\ \hline
 
-    \textbf{Zustand} & 5.0.14 & Gestione dello stato applicativo condiviso fra i componenti (testo della nota, selezione corrente, testo in arrivo dallo streaming, stato di errore, modalità di visualizzazione). Espone selettori granulari, ciascuno dei quali osserva una singola porzione di stato: durante lo streaming la ridipintura interessa il solo pannello di anteprima, mentre l'editor resta immobile e conserva cursore e posizione di scorrimento. \\ \hline
+    \textbf{Zustand} & 5.0.14 & Gestione dello stato applicativo condiviso fra i componenti (testo della nota, selezione corrente, testo in arrivo dallo streaming, stato di errore, modalità di visualizzazione). Espone selettori granulari, ciascuno dei quali osserva una singola porzione di stato: durante lo streaming la ridipintura interessa la sola parte di interfaccia che presenta l'esito in arrivo, mentre l'editor resta immobile e conserva cursore e posizione di scorrimento. \\ \hline
 
     \textbf{react-markdown} & 10.1.0 & Rendering del Markdown\textsubscript{G} nel pannello di anteprima. Il testo viene analizzato e trasformato in un albero sintattico astratto, dal quale la libreria costruisce direttamente gli elementi React corrispondenti. In nessun punto della catena viene iniettato HTML grezzo nel documento: la libreria è quindi sicura per costruzione rispetto agli attacchi XSS, senza necessità di un passaggio di sanificazione. Il requisito è critico, poiché il testo da rendere proviene in larga parte dal modello linguistico. \\ \hline
 
@@ -436,7 +446,7 @@ Il frontend\textsubscript{G} è un'applicazione a pagina singola eseguita intera
 
     \textbf{Tailwind CSS} & 4.3.1 & Sistema di stile \textit{utility-first}: la presentazione è espressa mediante classi elementari applicate direttamente al marcatore, anziché tramite fogli di stile separati. Ne deriva un insieme chiuso di valori (spaziature, colori, dimensioni tipografiche) che mantiene l'aspetto uniforme fra le parti dell'interfaccia scritte da persone diverse. Il plugin \texttt{@tailwindcss/typo\-graphy} (0.5.20) fornisce gli stili tipografici applicati al risultato del rendering Markdown\textsubscript{G}. \\ \hline
 
-    \textbf{shadcn/ui \newline Radix UI} & --- \newline 1.5.0 & Insieme di componenti di interfaccia (pulsanti, aree di testo, finestre di dialogo, avvisi). shadcn/ui non è una dipendenza installata ma un catalogo da cui il codice sorgente dei componenti viene copiato nel progetto: resta quindi interamente leggibile e modificabile dal gruppo, senza vincolo di adozione verso un fornitore esterno. I componenti poggiano su Radix UI, che fornisce le primitive di comportamento accessibile --- navigazione da tastiera, gestione del focus, attributi per i lettori di schermo --- la cui realizzazione manuale corretta sarebbe onerosa e soggetta a errori. \\ \hline
+    \textbf{shadcn/ui \newline Radix UI} & --- \newline 1.5.0 & Insieme di componenti di interfaccia (pulsanti, aree di testo, finestre di dialogo, avvisi). shadcn/ui non è una dipendenza installata ma un catalogo da cui il codice sorgente dei componenti viene copiato nel progetto: resta quindi interamente leggibile e modificabile dal gruppo, senza vincolo di adozione verso un fornitore esterno. I componenti poggiano su Radix UI, che fornisce le primitive di comportamento accessibile (navigazione da tastiera, gestione del focus, attributi per i lettori di schermo), la cui realizzazione manuale corretta sarebbe onerosa e soggetta a errori. \\ \hline
 
     \textbf{CodeMirror 6} & 6.0.2 & Editor di testo del pannello sinistro. Fornisce nativamente evidenziazione della sintassi Markdown\textsubscript{G} (modulo \texttt{@codemirror/lang-mark\-down} 6.5.0), cronologia delle modifiche con annullamento e ripristino (\texttt{@codemirror/com\-mands} 6.10.3) e supporto all'accessibilità, a fronte di un ingombro dell'ordine del centinaio di kilobyte. L'architettura modulare consente di includere le sole estensioni effettivamente utilizzate. \\ \hline
 
@@ -450,7 +460,7 @@ Il frontend\textsubscript{G} è un'applicazione a pagina singola eseguita intera
 \begin{alternative}
 
 \altitem{Angular, Vue e Svelte al posto di React}
-Il confronto documentato nel verbale interno del 12 maggio 2026 ha contrapposto React e Svelte. Svelte adotta un approccio a compilatore: elimina il Virtual DOM spostando in fase di compilazione il lavoro che React svolge in esecuzione, con prestazioni superiori e minore ingombro del pacchetto prodotto. Il suo ecosistema è però più giovane, con minore disponibilità di librerie mature per le esigenze specifiche del prodotto e minore reperibilità di risorse di apprendimento, fattore rilevante per un gruppo che affronta la tecnologia per la prima volta. Vue è a sua volta maturo, ma la via più diffusa per il rendering del Markdown\textsubscript{G} nel suo ecosistema consiste nel produrre HTML e iniettarlo nel documento, esattamente il rischio che il criterio 3 impone di evitare. Angular offre un quadro strutturale completo e fortemente prescrittivo, sovradimensionato per un'applicazione a vista singola e con una curva di apprendimento incompatibile con i tempi del progetto. La determinante è che le librerie richieste --- rendering Markdown\textsubscript{G} sicuro, componenti accessibili, integrazione\textsubscript{G} dell'editor --- individuano React come primo ambiente di destinazione.
+Il confronto documentato nel verbale interno del 12 maggio 2026 ha contrapposto React e Svelte. Svelte adotta un approccio a compilatore: elimina il Virtual DOM spostando in fase di compilazione il lavoro che React svolge in esecuzione, con prestazioni superiori e minore ingombro del pacchetto prodotto. Il suo ecosistema è però più giovane, con minore disponibilità di librerie mature per le esigenze specifiche del prodotto e minore reperibilità di risorse di apprendimento, fattore rilevante per un gruppo che affronta la tecnologia per la prima volta. Vue è a sua volta maturo, ma la via più diffusa per il rendering del Markdown\textsubscript{G} nel suo ecosistema consiste nel produrre HTML e iniettarlo nel documento, esattamente il rischio che il criterio del rendering sicuro impone di evitare. Angular offre un quadro strutturale completo e fortemente prescrittivo, sovradimensionato per un'applicazione a vista singola e con una curva di apprendimento incompatibile con i tempi del progetto. La determinante è che le librerie richieste (rendering Markdown\textsubscript{G} sicuro, componenti accessibili, integrazione\textsubscript{G} dell'editor) individuano React come primo ambiente di destinazione.
 
 \altitem{Redux, Context API e Jotai al posto di Zustand}
 Redux impone una quantità di codice di supporto (azioni, riduttori, selettori memorizzati) sproporzionata rispetto alla dimensione dello stato da gestire. La Context API, disponibile nativamente in React, non offre sottoscrizioni granulari: ogni variazione del valore del contesto provoca la ridipintura di tutti i componenti che vi accedono, comportamento penalizzante durante lo streaming, in cui lo stato cambia con frequenza elevata e ridipingere l'editor comporterebbe la perdita della posizione del cursore. Jotai adotta un modello ad atomi tecnicamente adeguato, ma richiede di scomporre lo stato in unità elementari fin dall'inizio: Zustand ottiene il medesimo risultato con un modello concettuale più semplice e una superficie di apprendimento minore.
@@ -462,7 +472,7 @@ Entrambe le librerie convertono il Markdown\textsubscript{G} in una stringa HTML
 Offrono un numero maggiore di componenti già pronti, ma impongono un linguaggio visivo marcato, la cui personalizzazione richiede di intervenire contro le impostazioni predefinite della libreria; inoltre il codice dei componenti resta all'interno della dipendenza, non modificabile. L'alternativa opposta, i CSS Modules, non aggiunge alcuna dipendenza ma non fornisce né un sistema di valori condiviso né componenti accessibili, che andrebbero realizzati integralmente dal gruppo.
 
 \altitem{Monaco e \texttt{textarea} nativa al posto di CodeMirror}
-Monaco è l'editor impiegato in Visual Studio Code: è progettato per la scrittura di codice sorgente e la sua dotazione di funzioni --- completamento automatico, analisi del linguaggio, riquadro di anteprima --- eccede quanto richiesto dalla redazione di note, a fronte di un ingombro di oltre un ordine di grandezza superiore. L'elemento \texttt{textarea} nativo non comporta alcuna dipendenza, ma è privo di evidenziazione della sintassi e di una cronologia delle modifiche strutturata.
+Monaco è l'editor impiegato in Visual Studio Code: è progettato per la scrittura di codice sorgente e la sua dotazione di funzioni (completamento automatico, analisi del linguaggio, riquadro di anteprima) eccede quanto richiesto dalla redazione di note, a fronte di un ingombro di oltre un ordine di grandezza superiore. L'elemento \texttt{textarea} nativo non comporta alcuna dipendenza, ma è privo di evidenziazione della sintassi e di una cronologia delle modifiche strutturata.
 
 \altitem{Webpack e Create React App al posto di Vite}
 Ricostruiscono l'intero pacchetto a ogni modifica, con tempi di attesa in sviluppo\textsubscript{G} sensibilmente superiori, e richiedono una configurazione più estesa e frammentata. Create React App non è inoltre più oggetto di manutenzione attiva.
@@ -475,9 +485,9 @@ Il backend è una componente server che espone alcune API\textsubscript{G} trami
 
 \begin{enumerate}
     \setlength{\itemsep}{0pt}
-    \item custodire le chiavi di accesso ai fornitori esterni, così che non raggiungano mai il browser (criterio 2);
+    \item custodire le chiavi di accesso ai fornitori esterni, così che non raggiungano mai il browser (criterio della riservatezza delle credenziali);
     \item comporre le istruzioni da inviare al modello linguistico;
-    \item ritrasmettere al browser il testo prodotto man mano che diviene disponibile (criterio 1);
+    \item ritrasmettere al browser il testo prodotto man mano che diviene disponibile (criterio della risposta progressiva);
     \item acquisire il contenuto testuale di una pagina web indicata dall'utente, quando la generazione avviene a partire da un collegamento.
 \end{enumerate}
 
@@ -492,30 +502,30 @@ Il backend è una componente server che espone alcune API\textsubscript{G} trami
 
     \textbf{pydantic-settings} & 2.14.1 & Lettura e validazione della configurazione applicativa (indirizzo del gateway dei modelli, identificativo del modello, chiave di accesso, origini ammesse dalla politica CORS) a partire dalle variabili d'ambiente. Le impostazioni sono esposte tramite un'unica istanza per processo. \\ \hline
 
-    \textbf{httpx} & 0.28.1 & Client HTTP asincrono impiegato per la comunicazione verso il provider dei modelli linguistici. Supporta la lettura della risposta a blocchi man mano che arriva, senza attenderne il completamento, e propaga l'annullamento lungo l'intera catena: se l'utente interrompe la generazione, la chiusura si trasmette dal browser al backend e da questo alla connessione verso il provider, senza che rimangano richieste attive prive di destinatario. \\ \hline
+    \textbf{httpx} & 0.28.1 & Client HTTP asincrono impiegato per la comunicazione verso il provider dei modelli linguistici. Legge la risposta a blocchi man mano che arriva, senza attenderne il completamento. La risposta vive entro un blocco a gestione automatica della risorsa: all'annullamento il codice chiude esplicitamente il solo generatore del dominio\textsubscript{G}, e l'uscita da quel blocco chiude la connessione al provider per comportamento documentato della libreria. \\ \hline
 
     \textbf{tavily-python} & 0.7.26 & Estrazione del contenuto testuale delle pagine web nella funzione di generazione a partire da un collegamento (requisito\textsubscript{G} \textbf{R-74-F-De}, UC67.2 e UC67.5). Restituisce il solo testo della pagina, già ripulito dal marcatore e dagli elementi accessori, e ne consente il troncamento a una lunghezza massima prima dell'invio al modello. È un client verso un servizio esterno: si veda il paragrafo \textit{Estrazione del contenuto delle pagine web} per il perimetro dei dati trasmessi e per l'alternativa scartata. \\ \hline
 
     \textbf{Uvicorn} & 0.47.0 & Server ASGI sul quale l'applicazione FastAPI è posta in esecuzione. Costituisce l'implementazione dell'interfaccia asincrona fra il server HTTP e il codice applicativo. \\ \hline
 
-    \textbf{Server-Sent Events} & --- & Protocollo di trasporto dei blocchi testuali dal backend al browser. È un formato testuale unidirezionale che viaggia su una normale connessione HTTP mantenuta aperta, in cui ogni evento è una riga con prefisso \texttt{data:} e la fine del flusso è segnalata da un marcatore convenzionale. La direzione unica --- dal server al client --- corrisponde esattamente alla natura del problema. \\ \hline
+    \textbf{Server-Sent Events} & --- & Protocollo di trasporto dei blocchi testuali dal backend al browser. È un formato testuale unidirezionale che viaggia su una normale connessione HTTP mantenuta aperta, in cui ogni evento è una riga con prefisso \texttt{data:} e la fine del flusso è segnalata da un marcatore convenzionale. La direzione unica, dal server al client, corrisponde esattamente alla natura del problema. \\ \hline
 \end{tabellatec}
 
-\paragraph{Accesso ai modelli linguistici.}
+\paragraph{Accesso ai modelli linguistici}
 L'accesso ai modelli avviene attraverso un \textbf{gateway LiteLLM}, componente esterna che espone un'interfaccia compatibile con quella di OpenAI e uniforma l'accesso a fornitori diversi. Poiché si tratta di un servizio contattato via HTTP e non di una libreria installata nel progetto, non figura fra le dipendenze del backend e non è associato a una versione dichiarata nei file di progetto.
 
-La comunicazione con il gateway è confinata dietro l'astrazione \textbf{\texttt{LLMClient}}, una classe astratta che dichiara la sola operazione di produzione incrementale del testo. L'implementazione concreta che dialoga con LiteLLM --- interpretandone il formato di risposta e traducendone gli errori --- ne è l'unico realizzatore, secondo il pattern Adapter descritto nella sezione dedicata all'architettura. \textbf{Né i router né la logica di dominio\textsubscript{G} invocano direttamente LiteLLM}: conoscono unicamente l'interfaccia astratta. La sostituzione del gateway con un fornitore diverso comporta pertanto la scrittura di una nuova implementazione dell'interfaccia, e nessuna modifica al resto del backend.
+La comunicazione con il gateway è confinata dietro l'astrazione \texttt{LLMClient}, una classe astratta che dichiara la sola operazione di produzione incrementale del testo. L'implementazione concreta che dialoga con LiteLLM, interpretandone il formato di risposta e traducendone gli errori, ne è l'unico realizzatore, secondo il pattern Adapter descritto nella sezione dedicata all'architettura. Né i router né la logica di dominio\textsubscript{G} invocano direttamente LiteLLM: conoscono unicamente l'interfaccia astratta. La sostituzione del gateway con un fornitore diverso comporta pertanto la scrittura di una nuova implementazione dell'interfaccia, e nessuna modifica al resto del backend.
 
-\paragraph{Estrazione del contenuto delle pagine web.}
+\paragraph{Estrazione del contenuto delle pagine web}
 Il requisito\textsubscript{G} \textbf{R-74-F-De} consente all'utente di indicare un URL come fonte di contesto per la generazione automatica di testo (UC67.2). Poiché il modello linguistico non accede alla rete, il contenuto della pagina deve essere acquisito dal prodotto e passato al modello come parte delle istruzioni. L'operazione è affidata a \textbf{Tavily}, servizio esterno che restituisce il testo di una pagina già ripulito dal marcatore, dalla navigazione e dagli elementi accessori.
 
-Si tratta del \textbf{secondo fornitore esterno} del sistema\textsubscript{G}, dotato di una propria chiave di accesso. Coerentemente con il criterio 2, la chiave è custodita dal backend e non raggiunge il browser; verso il servizio transita esclusivamente l'indirizzo indicato dall'utente, non il testo della nota. Il contenuto restituito è troncato a una lunghezza massima prima di essere inoltrato al modello, così da mantenere prevedibile la dimensione delle istruzioni.
+Si tratta del secondo fornitore esterno del sistema\textsubscript{G}, dotato di una propria chiave di accesso. Coerentemente con il criterio della riservatezza delle credenziali, la chiave è custodita dal backend e non raggiunge il browser; verso il servizio transita esclusivamente l'indirizzo indicato dall'utente, non il testo della nota. Il contenuto restituito è troncato a una lunghezza massima prima di essere inoltrato al modello, così da mantenere prevedibile la dimensione delle istruzioni.
 
-L'alternativa considerata è l'\textbf{estrazione lato server con una libreria locale}: \texttt{trafilatura} e le realizzazioni Python dell'algoritmo \textit{Readability} scaricano la pagina con il client HTTP già presente nel progetto e ne isolano il contenuto principale senza coinvolgere alcun terzo. Eliminerebbero un fornitore, una chiave e un punto di uscita dei dati --- vantaggio non trascurabile --- ma sposterebbero sul gruppo la qualità dell'estrazione, che su pagine costruite dinamicamente tramite JavaScript risulta sensibilmente inferiore, e richiederebbero di gestire in proprio reindirizzamenti, codifiche e tempi di risposta dei siti contattati. Poiché R-74-F-De è desiderabile e non obbligatorio, il gruppo ha preferito la soluzione che ne rende prevedibile il completamento, accettando la dipendenza esterna.
+L'alternativa considerata è l'estrazione lato server con una libreria locale: \texttt{trafilatura} e le realizzazioni Python dell'algoritmo \textit{Readability} scaricano la pagina con il client HTTP già presente nel progetto e ne isolano il contenuto principale senza coinvolgere alcun terzo. Eliminerebbero un fornitore, una chiave e un punto di uscita dei dati (vantaggio non trascurabile), ma sposterebbero sul gruppo la qualità dell'estrazione, che su pagine costruite dinamicamente tramite JavaScript risulta sensibilmente inferiore, e richiederebbero di gestire in proprio reindirizzamenti, codifiche e tempi di risposta dei siti contattati. Poiché R-74-F-De è desiderabile e non obbligatorio, il gruppo ha preferito la soluzione che ne rende prevedibile il completamento, accettando la dipendenza esterna.
 
-Rispetto all'accesso ai modelli linguistici \textbf{non sussiste alcuna asimmetria}: le due dipendenze esterne sono trattate allo stesso modo. Come l'accesso al gateway passa dall'interfaccia astratta \texttt{LLMClient}, così l'estrazione passa dall'interfaccia astratta \textbf{\texttt{ContentExtractor}}, dichiarata anch'essa fra le porte del dominio\textsubscript{G} e affiancata dal proprio tipo di errore, così che chi la consuma possa trattarne il fallimento senza conoscere l'implementazione che lo solleva. Ciascuna delle due porte ha un unico realizzatore concreto fra gli adattatori verso l'esterno, ciascuna è costruita da un provider dedicato nel medesimo modulo di composizione, e ciascuna raggiunge la rotta che se ne serve per iniezione della dipendenza: la rotta di generazione a partire da un collegamento dichiara entrambe le porte fra i propri parametri e non nomina alcun fornitore.
+Rispetto all'accesso ai modelli linguistici non sussiste alcuna asimmetria: le due dipendenze esterne sono trattate allo stesso modo. Come l'accesso al gateway passa dall'interfaccia astratta \texttt{LLMClient}, così l'estrazione passa dall'interfaccia astratta \texttt{ContentExtractor}, dichiarata anch'essa fra le porte del dominio\textsubscript{G} e affiancata dal proprio tipo di errore, così che chi la consuma possa trattarne il fallimento senza conoscere l'implementazione che lo solleva. Ciascuna delle due porte ha un unico realizzatore concreto fra gli adattatori verso l'esterno, ciascuna è costruita da un provider dedicato nel medesimo modulo di composizione, e ciascuna raggiunge la rotta che se ne serve per iniezione della dipendenza: la rotta di generazione a partire da un collegamento dichiara entrambe le porte fra i propri parametri e non nomina alcun fornitore.
 
-La conseguenza è la stessa rivendicata per il gateway: \textbf{sostituire il servizio di estrazione comporta la scrittura di un nuovo adattatore e la modifica del solo modulo di composizione}, non l'intervento sul dominio\textsubscript{G} o sulle rotte. La differenza fra le due dipendenze non riguarda perciò la loro sostituibilità, ma il perimetro dei dati e la criticità: l'assenza della chiave del gateway impedisce l'avvio del processo, poiché senza modello linguistico nessuna funzione assistita è servibile, mentre l'assenza della chiave del servizio di estrazione degrada la sola generazione a partire da un collegamento e viene segnalata per singola richiesta.
+La conseguenza è la stessa rivendicata per il gateway: sostituire il servizio di estrazione comporta la scrittura di un nuovo adattatore e la modifica del solo modulo di composizione, non l'intervento sul dominio\textsubscript{G} o sulle rotte. La differenza fra le due dipendenze non riguarda perciò la loro sostituibilità, ma il perimetro dei dati e la criticità: l'assenza della chiave del gateway impedisce l'avvio del processo, poiché senza modello linguistico nessuna funzione assistita è servibile, mentre l'assenza della chiave del servizio di estrazione degrada la sola generazione a partire da un collegamento e viene segnalata per singola richiesta.
 
 \paragraph{Alternative considerate}\mbox{}
 
@@ -531,7 +541,7 @@ Flask è sincrono per impostazione: il supporto allo streaming asincrono richied
 La libreria \texttt{requests} è lo standard di fatto per le richieste HTTP in Python, ma è esclusivamente sincrona: bloccherebbe il processo per l'intera durata della risposta del modello, vanificando la scelta di un framework\textsubscript{G} asincrono. La libreria \texttt{aiohttp} è asincrona e supporta lo streaming, ma espone un'ergonomia meno lineare nella gestione della chiusura anticipata delle connessioni, aspetto centrale per la funzione di annullamento della generazione.
 
 \altitem{SDK diretto del fornitore e LangChain al posto del gateway}
-L'impiego dell'SDK proprietario di un singolo fornitore legherebbe il codice a quel fornitore, in un ambito in cui modelli e condizioni di accesso cambiano con frequenza elevata. LangChain, all'estremo opposto, introduce un livello di astrazione ampio e fortemente opinato --- catene, agenti, memoria, strumenti --- di cui il prodotto non utilizzerebbe che una frazione minima, a fronte di un aumento sensibile della superficie di dipendenza e di una minore prevedibilità del comportamento. Il gateway, unito all'interfaccia \texttt{LLMClient}, offre l'indipendenza dal fornitore senza alcuno dei due inconvenienti.
+L'impiego dell'SDK proprietario di un singolo fornitore legherebbe il codice a quel fornitore, in un ambito in cui modelli e condizioni di accesso cambiano con frequenza elevata. LangChain, all'estremo opposto, introduce un livello di astrazione ampio e fortemente opinato (catene, agenti, memoria, strumenti) di cui il prodotto non utilizzerebbe che una frazione minima, a fronte di un aumento sensibile della superficie di dipendenza e di una minore prevedibilità del comportamento. Il gateway, unito all'interfaccia \texttt{LLMClient}, offre l'indipendenza dal fornitore senza alcuno dei due inconvenienti.
 
 \altitem{WebSocket e polling al posto dei Server-Sent Events}
 I WebSocket stabiliscono un canale bidirezionale, con un protocollo di negoziazione dedicato e la necessità di gestire esplicitamente riconnessioni e stato della connessione: capacità superflue, poiché nel prodotto i dati scorrono in una sola direzione. Il \textit{polling} periodico richiederebbe di accumulare il testo prodotto lato server in attesa di essere richiesto, introducendo latenza e complessità di gestione dello stato intermedio.
@@ -540,54 +550,78 @@ I WebSocket stabiliscono un canale bidirezionale, con un protocollo di negoziazi
 
 \subsection{Persistenza delle note}
 \label{sec:persistenza}
-Il gruppo ha deliberato di non realizzare la persistenza delle note su base di dati. Le note non lasciano dunque la macchina dell'utente: sono salvate e ricaricate sul \textbf{file system locale} per il tramite del browser, e conservate fra una sessione e l'altra nell'\textbf{archivio locale del browser} stesso. Entrambi i meccanismi sono lato client; nessun dato dell'utente raggiunge il servizio applicativo per esservi memorizzato.
+Il gruppo ha deliberato di non realizzare la persistenza delle note su base di dati. Le note non lasciano dunque la macchina dell'utente: sono salvate e ricaricate sul file system locale per il tramite del browser, e conservate fra una sessione e l'altra nell'archivio locale del browser stesso. Entrambi i meccanismi sono lato client; nessun dato dell'utente raggiunge il servizio applicativo per esservi memorizzato.
 
-\paragraph{Meccanismo adottato.}
-I meccanismi di persistenza lato client sono \textbf{due, distinti per scopo e non alternativi}. L'accesso al file system serve all'\textbf{esportazione e all'importazione deliberate}: è l'utente a chiedere esplicitamente di salvare una nota su disco o di aprirne una, e il file prodotto è un documento che gli appartiene e che può usare con altri strumenti. La persistenza nel browser serve invece alla \textbf{continuità della sessione}: senza di essa chiudere la scheda comporterebbe la perdita delle note in lavorazione, poiché non esiste alcun archivio server-side che le conservi. Il primo meccanismo è descritto di seguito, il secondo nel paragrafo \textit{Continuità della sessione}.
+\paragraph{Meccanismo adottato}
+I meccanismi di persistenza lato client sono due, distinti per scopo e non alternativi. L'accesso al file system serve all'esportazione e all'importazione deliberate: è l'utente a chiedere esplicitamente di salvare una nota su disco o di aprirne una, e il file prodotto è un documento che gli appartiene e che può usare con altri strumenti. La persistenza nel browser serve invece alla continuità della sessione: senza di essa chiudere la scheda comporterebbe la perdita delle note in lavorazione, poiché non esiste alcun archivio server-side che le conservi. Il primo meccanismo è descritto di seguito, il secondo nel paragrafo \textit{Continuità della sessione}.
 
 Le operazioni di salvataggio e di caricamento su file sono realizzate con una strategia a due vie, selezionata a tempo di esecuzione in base alle capacità del browser ospite.
 
-Quando il browser espone la \textbf{File System Access API} --- verificata mediante la presenza dei metodi \texttt{showOpenFilePicker} e \texttt{showSaveFilePicker} sull'oggetto globale della finestra --- l'applicazione apre la finestra di selezione file nativa del sistema\textsubscript{G} operativo. Il caricamento ottiene un riferimento al file scelto e ne legge il contenuto testuale; il salvataggio ottiene un riferimento al percorso di destinazione e vi scrive un flusso di byte. L'annullamento da parte dell'utente è riconosciuto e trattato come esito legittimo, non come errore.
+Quando il browser espone la \textbf{File System Access API}, verificata mediante la presenza dei metodi \texttt{showOpenFilePicker} e \texttt{showSaveFilePicker} sull'oggetto globale della finestra, l'applicazione apre la finestra di selezione file nativa del sistema\textsubscript{G} operativo. Il caricamento ottiene un riferimento al file scelto e ne legge il contenuto testuale; il salvataggio ottiene un riferimento al percorso di destinazione e vi scrive un flusso di byte. L'annullamento da parte dell'utente è riconosciuto e trattato come esito legittimo, non come errore.
 
-Quando l'interfaccia non è disponibile --- condizione che ricorre su \textbf{Firefox} e \textbf{Safari}, che non la implementano --- l'applicazione ricade su meccanismi supportati universalmente. La doppia via non è una precauzione generica: il requisito di vincolo\textsubscript{G} \textbf{R-1-V-Ob} include Firefox fra gli ambienti di esecuzione di riferimento, quindi una realizzazione fondata sulla sola File System Access API lascerebbe scoperto uno dei tre browser prescritti. In caricamento crea un elemento \texttt{input} di tipo file e ne legge il contenuto tramite un lettore di file; in salvataggio costruisce un oggetto \texttt{Blob} con il contenuto della nota, ne ricava un indirizzo temporaneo e lo assegna a un collegamento di scaricamento attivato per via programmatica, delegando al browser la scelta della destinazione secondo le impostazioni dell'utente. L'indirizzo temporaneo viene rilasciato al termine dell'operazione.
+Quando l'interfaccia non è disponibile (condizione che ricorre su Firefox e Safari, che non la implementano), l'applicazione ricade su meccanismi supportati universalmente. La doppia via non è una precauzione generica: il requisito di vincolo\textsubscript{G} \textbf{R-1-V-Ob} include Firefox fra gli ambienti di esecuzione di riferimento, quindi una realizzazione fondata sulla sola File System Access API lascerebbe scoperto uno dei tre browser prescritti. In caricamento crea un elemento \texttt{input} di tipo file e ne legge il contenuto tramite un lettore di file; in salvataggio costruisce un oggetto \texttt{Blob} con il contenuto della nota, ne ricava un indirizzo temporaneo e lo assegna a un collegamento di scaricamento attivato per via programmatica, delegando al browser la scelta della destinazione secondo le impostazioni dell'utente. L'indirizzo temporaneo viene rilasciato al termine dell'operazione.
 
 Il criterio di selezione è quindi la disponibilità effettiva dell'interfaccia nel browser in uso, non l'identificazione del browser stesso: l'applicazione non interroga l'agente utente, ma verifica direttamente la presenza dei metodi richiesti. La funzione resta pertanto disponibile su ogni browser, con la sola differenza che sui browser dotati dell'interfaccia nativa l'utente sceglie esplicitamente il percorso di destinazione, mentre sugli altri il file segue le impostazioni di scaricamento predefinite.
 
-\paragraph{Continuità della sessione.}
-Il secondo meccanismo non richiede alcuna azione dell'utente. Lo store delle note è avvolto in un middleware di persistenza che ne riversa lo stato nel \textbf{\texttt{localStorage}} del browser sotto la chiave \texttt{notes\_persistence}, e lo rilegge all'avvio dell'applicazione: alla riapertura l'elenco delle note e la nota corrente sono quelli con cui la sessione precedente si era chiusa, e il contenuto della nota corrente è ricaricato nell'editor. Ciò che viene conservato è l'elenco delle note con i rispettivi identificativo, titolo, contenuto e istanti di creazione e di ultima modifica, oltre all'indicazione di quale sia la nota corrente.
+\paragraph{Continuità della sessione}
+Il secondo meccanismo non richiede alcuna azione dell'utente. Lo store delle note è avvolto in un middleware di persistenza che ne riversa lo stato nel \texttt{localStorage} del browser sotto la chiave \texttt{notes\_persistence}, e lo rilegge all'avvio dell'applicazione: alla riapertura l'elenco delle note e la nota corrente sono quelli con cui la sessione precedente si era chiusa, e il contenuto della nota corrente è ricaricato nell'editor. Ciò che viene conservato è l'elenco delle note con i rispettivi identificativo, titolo, contenuto e istanti di creazione e di ultima modifica, oltre all'indicazione di quale sia la nota corrente.
 
-Va precisato \textbf{quando} il testo in lavorazione raggiunge quell'archivio, per non attribuire al meccanismo una copertura che non ha: il contenuto dell'editor è riversato nella nota corrente in occasione del cambio di nota e della creazione di una nuova nota, non a ogni modifica del testo né alla chiusura della scheda. I metadati, assegnati alla creazione, sono invece persistiti immediatamente. Le modifiche successive all'ultimo cambio di nota non sono quindi conservate: è un limite noto della realizzazione attuale, non una proprietà del supporto.
+Va precisato \textit{quando} il testo in lavorazione raggiunge quell'archivio, per non attribuire al meccanismo una copertura che non ha: il contenuto dell'editor è riversato nella nota corrente in occasione del cambio di nota e della creazione di una nuova nota, non a ogni modifica del testo né alla chiusura della scheda. I metadati, assegnati alla creazione, sono invece persistiti immediatamente. Le modifiche successive all'ultimo cambio di nota non sono quindi conservate: è un limite noto della realizzazione attuale, non una proprietà del supporto.
 
-I limiti del supporto sono quelli propri dell'archiviazione locale del browser e vanno dichiarati. Lo spazio disponibile è soggetto a una \textbf{quota}, il cui superamento fa fallire la scrittura: l'applicazione lo tratta come condizione prevista e ripristina lo stato precedente anziché lasciare l'interfaccia in uno stato incoerente. I dati sono \textbf{confinati all'origine e al profilo del browser} in uso: non sono raggiungibili da un altro browser, da un altro dispositivo o da una finestra di navigazione anonima, non vi è alcuna sincronizzazione fra dispositivi, e la cancellazione dei dati di navigazione li rimuove. Questo meccanismo \textbf{non è un sostituto della persistenza server-side}: resta interamente lato client, e non copre alcuno dei requisiti\textsubscript{G} opzionali elencati più avanti in questa sezione.
+I limiti del supporto sono quelli propri dell'archiviazione locale del browser e vanno dichiarati. Lo spazio disponibile è soggetto a una quota, il cui superamento fa fallire la scrittura: l'applicazione lo tratta come condizione prevista e ripristina lo stato precedente anziché lasciare l'interfaccia in uno stato incoerente. I dati sono confinati all'origine e al profilo del browser in uso: non sono raggiungibili da un altro browser, da un altro dispositivo o da una finestra di navigazione anonima, non vi è alcuna sincronizzazione fra dispositivi, e la cancellazione dei dati di navigazione li rimuove. Questo meccanismo non è un sostituto della persistenza server-side: resta interamente lato client, e non copre alcuno dei requisiti\textsubscript{G} opzionali elencati più avanti in questa sezione.
 
-\paragraph{Formato dei file.}
-Le note sono salvate in \textbf{Markdown\textsubscript{G}}, con estensione \texttt{.md} e tipo MIME \texttt{text/markdown}; in caricamento sono accettate anche le estensioni \texttt{.txt}. La scelta del testo semplice attua il requisito di vincolo\textsubscript{G} \textbf{R-4-V-Ob}, che prescrive la memorizzazione delle note salvate localmente come file di testo. Il file contiene il solo testo della nota, senza intestazioni o marcatori aggiuntivi: resta quindi leggibile e modificabile con qualsiasi altro strumento, e non introduce alcun vincolo\textsubscript{G} verso il prodotto.
+\paragraph{Formato dei file}
+Le note sono salvate in Markdown\textsubscript{G}, con estensione \texttt{.md} e tipo MIME \texttt{text/markdown}; in caricamento sono accettate anche le estensioni \texttt{.txt}. La scelta del testo semplice attua il requisito di vincolo\textsubscript{G} \textbf{R-4-V-Ob}, che prescrive la memorizzazione delle note salvate localmente come file di testo. Il file contiene il solo testo della nota, senza intestazioni o marcatori aggiuntivi: resta quindi leggibile e modificabile con qualsiasi altro strumento, e non introduce alcun vincolo\textsubscript{G} verso il prodotto.
 
-\paragraph{Metadati della nota.}
-I metadati che l'applicazione associa alla nota --- identificativo, titolo, istante di creazione e istante di ultima modifica --- non sono scritti nel file, che resta un documento Markdown\textsubscript{G} puro. Il titolo è veicolato dal nome del file: in salvataggio il nome proposto deriva dal titolo della nota, in caricamento il titolo è ricavato dal nome del file privato dell'estensione. La derivazione avviene in \textbf{entrambi} i rami di caricamento, quello nativo e quello di ripiego, con un titolo convenzionale riservato al solo caso in cui il file scelto non esponga un nome utilizzabile: la parità fra i due rami è necessaria, poiché quello di ripiego è il percorso primario su Firefox, incluso fra i browser prescritti dal requisito\textsubscript{G} di vincolo\textsubscript{G} \textbf{R-1-V-Ob}.
+\paragraph{Metadati della nota}
+I metadati che l'applicazione associa alla nota (identificativo, titolo, istante di creazione e istante di ultima modifica) non sono scritti nel file, che resta un documento Markdown\textsubscript{G} puro. Il titolo è veicolato dal nome del file: in salvataggio il nome proposto deriva dal titolo della nota, in caricamento il titolo è ricavato dal nome del file privato dell'estensione. La derivazione avviene in entrambi i rami di caricamento, quello nativo e quello di ripiego, con un titolo convenzionale riservato al solo caso in cui il file scelto non esponga un nome utilizzabile: la parità fra i due rami è necessaria, poiché quello di ripiego è il percorso primario su Firefox, incluso fra i browser prescritti dal requisito\textsubscript{G} di vincolo\textsubscript{G} \textbf{R-1-V-Ob}.
 
-Sul requisito\textsubscript{G} \textbf{R-97-F-De} (UC84), che richiede la visualizzazione delle informazioni e dei metadati di una nota selezionata, vanno distinti \textbf{due casi}, che non hanno la medesima copertura.
+Sul requisito\textsubscript{G} \textbf{R-97-F-De} (UC84), che richiede la visualizzazione delle informazioni e dei metadati di una nota selezionata, vanno distinti due casi, che non dispongono dei medesimi dati.
 
 \begin{itemize}
     \setlength{\itemsep}{2pt}
-    \item \textbf{Nota creata nel prodotto.} Identificativo, titolo e istanti di creazione e di ultima modifica sono assegnati alla creazione e affidati alla persistenza locale descritta sopra, che li scrive immediatamente: \textbf{sopravvivono alla chiusura della sessione} e sono disponibili alla riapertura, alle condizioni proprie di quel supporto (stessa origine, stesso profilo del browser). Per queste note il requisito\textsubscript{G} è coperto dai dati che l'applicazione già possiede, senza che nulla debba essere ricavato dal file system.
+    \item \textbf{Nota creata nel prodotto}\\
+    Identificativo, titolo e istanti di creazione e di ultima modifica sono assegnati alla creazione e affidati alla persistenza locale descritta sopra, che li scrive immediatamente: sopravvivono alla chiusura della sessione e sono disponibili alla riapertura, alle condizioni proprie di quel supporto (stessa origine, stesso profilo del browser). Per queste note i dati richiesti dal caso d'uso\textsubscript{G} sono quindi già posseduti dall'applicazione, senza che nulla debba essere ricavato dal file system.
 
-    \item \textbf{Nota importata da disco.} Il file contiene il solo testo, quindi i metadati vanno ricostruiti da ciò che il browser espone sull'oggetto \texttt{File}. Il titolo lo è già, come appena descritto; gli istanti no: all'importazione entrambi sono posti all'istante di apertura, che descrive quando la nota è entrata nell'applicazione e non quando il file è stato scritto o modificato.
+    \item \textbf{Nota importata da disco}\\
+    Il file contiene il solo testo, quindi i metadati andrebbero ricostruiti da ciò che il browser espone sull'oggetto \texttt{File}. Il titolo lo è, come appena descritto, perché deriva dal nome del file; gli istanti no: all'importazione entrambi sono posti all'istante di apertura, che descrive quando la nota è entrata nell'applicazione e non quando il file è stato scritto o modificato. L'attributo \texttt{lastModified}, che il browser espone su quell'oggetto in entrambi i rami di caricamento, non è letto.
 \end{itemize}
 
-\noindent Trattandosi di un requisito\textsubscript{G} \textbf{desiderabile} e non opzionale, il secondo caso non può essere rinviato.
+% SCOPERTURA NOTA E CONFERMATA — R-97-F-De (UC84). Questo blocco non è un
+% marcatore di difetto di redazione e non va letto come tale: il corpo del testo
+% dichiara già apertamente che il requisito non è soddisfatto, e la scopertura è
+% una decisione del gruppo, non un'affermazione falsa da correggere. Si traccia
+% come NS nel capitolo 5, secondo la regola a due stati.
+% Quanto segue documenta che cosa manchi, su DUE fronti distinti, a beneficio di
+% chi un domani decidesse di coprirlo: in tal caso li chiuda entrambi, perché
+% chiuderne uno solo lascia il requisito scoperto.
+%
+% 1. IL DATO. In web/src/lib/fileSystem.ts la funzione openNoteFromFile non legge
+%    file.lastModified in alcuno dei due rami: imposta createdAt e updatedAt
+%    entrambi a Date.now(), cioè all'istante di importazione. È l'intervento
+%    minore: l'oggetto File è già in mano a entrambi i rami.
+%
+% 2. IL PANNELLO. UC84 chiede che il sistema mostri un pannello riassuntivo con
+%    quattro campi, e sono questi:
+%      - Titolo: nome identificativo della nota;
+%      - Data di creazione: data e ora della prima generazione;
+%      - Ultima modifica: istante dell'ultimo salvataggio andato a buon fine;
+%      - Formato: estensione o tipologia di codifica del file (.md o .txt).
+%    Nel frontend quel pannello non esiste: nessun componente legge createdAt o
+%    updatedAt per mostrarli, non c'è una vista di dettaglio della nota, e in
+%    web/src non compare alcuna formattazione di data (nessuna occorrenza di
+%    toLocaleDateString né di Intl.DateTimeFormat). Il campo Formato non è
+%    nemmeno presente nell'interfaccia Note, ma è derivabile dall'estensione del
+%    file o, per le note create nel prodotto, costante.
+%
+% Il primo punto senza il secondo non copre nulla: il requisito chiede di
+% mostrare i metadati, non di possederli. Per il capitolo 5: con la regola a due
+% stati, finché entrambi i punti non sono chiusi R-97-F-De si traccia come NS.
+\noindent Il requisito\textsubscript{G} non è tuttavia soddisfatto in nessuno dei due casi, poiché esso chiede la \textit{visualizzazione} dei metadati e il prodotto non espone alcun pannello che li mostri: i dati posseduti restano interni all'applicazione. I fronti scoperti sono due: in importazione l'istante di ultima modifica che il browser espone sull'oggetto \texttt{File} non viene letto, e nell'interfaccia non esiste alcuna vista che presenti i metadati della nota. Trattandosi di un requisito\textsubscript{G} desiderabile, la scopertura è una decisione consapevole del gruppo e non una dimenticanza, ed è tracciata come tale nel capitolo \ref{sec:tracciamento}.
 
-% NON PRESENTE NELL'MVP — l'intero meccanismo descritto nel capoverso che segue.
-% In web/src/lib/fileSystem.ts la funzione openNoteFromFile non legge né
-% file.lastModified né file.size in alcuno dei due rami: imposta createdAt e
-% updatedAt entrambi a Date.now(), cioè all'istante di apertura, e l'interfaccia
-% Note non prevede un campo per la dimensione. Il titolo è invece già derivato dal
-% nome del file in entrambi i rami: quella parte del capoverso descrive lo stato
-% reale, questa no. La copertura di R-97-F-De per le note importate da disco
-% dipende da questo intervento.
-Per le note importate il recupero è ottenuto senza modificare il formato del file, sfruttando i metadati che il file system già espone. L'oggetto \texttt{File} restituito sia dalla File System Access API sia dall'elemento \texttt{input} di tipo file riporta gli attributi \texttt{name}, \texttt{lastModified} e \texttt{size}: all'apertura di una nota l'applicazione li impiega per popolare rispettivamente titolo, istante di ultima modifica e dimensione del contenuto. Il numero di caratteri e il numero di parole sono derivati dal testo caricato. Resta non ricostruibile il solo \textbf{istante di creazione}, che il file system espone in modo non uniforme fra le piattaforme e che le interfacce del browser non rendono disponibile: per le sole note importate da disco tale informazione è presentata come non disponibile anziché con un valore convenzionale, così che l'interfaccia non affermi un dato che il prodotto non possiede. Per le note create nel prodotto l'istante di creazione è invece un dato posseduto e conservato, e va presentato come tale.
+L'istante di creazione merita un'ultima precisazione, perché è il solo dato che non dipende da una scelta realizzativa. Per le note create nel prodotto è posseduto e conservato. Per quelle importate da disco resta non ricostruibile anche se l'istante di ultima modifica venisse letto, poiché il file system lo espone in modo non uniforme fra le piattaforme e le interfacce del browser non lo rendono disponibile: in quel caso andrebbe presentato come non disponibile anziché con un valore convenzionale, così che l'interfaccia non affermi un dato che il prodotto non possiede.
 
-\paragraph{Motivazione dell'esclusione della base di dati.}
+\paragraph{Motivazione dell'esclusione della base di dati}
 La persistenza server-side è prevista dal capitolato\textsubscript{G} come estensione facoltativa. I requisiti\textsubscript{G} funzionali che ne derivano sono classificati come opzionali nell'Analisi dei Requisiti\textsubscript{G} e riguardano quattro capacità distinte:
 
 \begin{itemize}
@@ -602,9 +636,9 @@ La persistenza server-side è prevista dal capitolato\textsubscript{G} come este
 
 Il gruppo ha scelto di concentrare le risorse della presente iterazione sul completamento dei requisiti\textsubscript{G} obbligatori e desiderabili, in particolare sulle funzionalità assistite da LLM\textsubscript{G}, che costituiscono il nucleo del prodotto richiesto dalla proponente\textsubscript{G}. Lo stato di copertura di ciascun requisito\textsubscript{G} è riportato nella sezione \ref{sec:tracciamento}.
 
-Va precisato l'effettivo margine di estensione, per non attribuire all'architettura una predisposizione che non possiede. Nel perimetro attuale la persistenza delle note risiede \textbf{interamente nel frontend\textsubscript{G}}: le note non raggiungono in alcun momento il backend, e nel dominio\textsubscript{G} del backend non esiste una porta per le note in attesa di essere implementata. Introdurre la persistenza su base di dati comporterebbe quindi lavoro nuovo e non marginale: entità di dominio\textsubscript{G} per la nota e per l'utente, le porte corrispondenti, gli endpoint che le espongono, un adattatore verso il sistema\textsubscript{G} di gestione della base di dati e l'intero blocco di autenticazione richiesto da R-102-F-Op \dots\ R-108-F-Op.
+Va precisato l'effettivo margine di estensione, per non attribuire all'architettura una predisposizione che non possiede. Nel perimetro attuale la persistenza delle note risiede interamente nel frontend\textsubscript{G}: le note non raggiungono in alcun momento il backend, e nel dominio\textsubscript{G} del backend non esiste una porta per le note in attesa di essere implementata. Introdurre la persistenza su base di dati comporterebbe quindi lavoro nuovo e non marginale: entità di dominio\textsubscript{G} per la nota e per l'utente, le porte corrispondenti, gli endpoint che le espongono, un adattatore verso il sistema\textsubscript{G} di gestione della base di dati e l'intero blocco di autenticazione richiesto da R-102-F-Op \dots\ R-108-F-Op.
 
-Ciò che l'architettura esagonale garantisce è un'altra proprietà, più circoscritta ma sufficiente: la persistenza sarebbe aggiunta \textbf{come nuova porta e nuovo adattatore}, senza perturbare il dominio\textsubscript{G} delle funzioni assistite da LLM\textsubscript{G} già realizzato. Il costo dell'estensione ricade sulle componenti nuove, non sulla riscrittura di quelle esistenti.
+Ciò che l'architettura esagonale garantisce è un'altra proprietà, più circoscritta ma sufficiente: la persistenza sarebbe aggiunta come nuova porta e nuovo adattatore, senza perturbare il dominio\textsubscript{G} delle funzioni assistite da LLM\textsubscript{G} già realizzato. Il costo dell'estensione ricade sulle componenti nuove, non sulla riscrittura di quelle esistenti.
 
 \subsection{Tecnologie di test e analisi}
 \label{sec:tecnologie-test}
@@ -627,40 +661,21 @@ L'analisi statica\textsubscript{G} intercetta gli errori prima che il codice ven
 
     \textbf{Ruff} & \vRuff & Analisi statica\textsubscript{G} e formattazione automatica del codice del backend. Riunisce in un solo strumento le regole di più analizzatori dell'ecosistema Python: gli insiemi selezionati sono quelli di \texttt{pyflakes}, \texttt{pycodestyle} (errori e avvisi), \texttt{isort}, \texttt{pyupgrade} e \texttt{flake8-bugbear}, che segnalano importazioni e variabili non utilizzate, ordinamento delle importazioni, costrutti sintatticamente validi ma problematici e violazioni delle convenzioni di stile. Il formattatore integrato riproduce lo stile di \texttt{black}, indicato dalle Norme di Progetto\textsubscript{G} per la formattazione del codice Python: la conformità è quindi mantenuta senza introdurre un secondo strumento. La configurazione risiede in \texttt{ruff.toml}, accanto ai file di progetto del backend. \\ \hline
 
-% NON PRESENTE NELL'MVP — mypy non figura fra le dipendenze del gruppo dev di
-% api/pyproject.toml, non è risolto in api/uv.lock, non ha un file di
-% configurazione nel repository e non compare fra i passi di
-% .github/workflows/ci.yml. La modalità rigorosa qui descritta non è quindi
-% configurata da nessuna parte: la voce descrive uno strumento che il backend non
-% adopera. Delle due l'una: introdurre lo strumento, oppure rimuovere la voce e
-% le affermazioni che vi si appoggiano (si veda il capoverso di chiusura di
-% questa sezione).
-    \textbf{mypy} & \vMypy & Verifica\textsubscript{G} statica delle annotazioni di tipo del backend, in modalità rigorosa. Controlla la coerenza fra le firme dichiarate e le chiamate effettive, la completezza delle annotazioni e la correttezza dei tipi dei generatori asincroni impiegati nello streaming --- classe di errori che, in un linguaggio a tipizzazione dinamica, si manifesterebbe altrimenti solo in esecuzione e, nel caso dello streaming, a operazione già avviata. Porta il backend al medesimo livello di controllo che il compilatore TypeScript garantisce sul frontend\textsubscript{G}. \\ \hline
+    \textbf{import-linter} & 2.13 & Verifica\textsubscript{G} dei \textbf{contratti di dipendenza} del backend: quale package possa importare quale altro. Ispeziona il grafo delle importazioni senza eseguire il codice e segnala come errore ogni importazione che violi un contratto. I quattro contratti dichiarati in \texttt{.importlinter} fissano l'architettura descritta nella sezione \ref{sec:backend-esagono}: il nucleo del dominio\textsubscript{G} non importa il framework\textsubscript{G} web, il client HTTP, il client del servizio di estrazione, la libreria di configurazione né i package degli adattatori; non importa il modulo di configurazione del prodotto; i tre livelli procedono dall'esterno verso il centro; i due adattatori dell'infrastruttura non si importano fra loro. Rende verificabile\textsubscript{G} un'architettura che altrimenti resterebbe una convenzione affidata alla disciplina di chi scrive. \\ \hline
 \end{tabellatec}
 
-% NON PRESENTE NELL'MVP — non l'intero paragrafo che segue, ma la sola simmetria
-% che rivendica. Nell'MVP l'analisi statica è applicata a entrambi i livelli:
-% ESLint e il compilatore TypeScript sul frontend, Ruff e import-linter sul
-% backend, tutti eseguiti da .github/workflows/ci.yml. La prima frase è dunque
-% vera. È falsa la seconda: «al compilatore TypeScript ed ESLint sul frontend
-% corrispondono mypy e Ruff sul backend, con la medesima ripartizione fra
-% verifica dei tipi e verifica delle regole». Sul backend la verifica dei tipi
-% non esiste, perché mypy non è adottato: la ripartizione è quindi diversa, non
-% simmetrica, e in compenso il backend ha un controllo che il frontend non ha
-% (i contratti di dipendenza di import-linter).
-% Il paragrafo è lasciato invariato di proposito: la scelta fra riscriverlo e
-% introdurre mypy non spetta a chi ha eseguito questa revisione. Le opzioni sono
-% riportate nel riepilogo consegnato al gruppo.
-\noindent L'analisi statica\textsubscript{G} è quindi applicata a \textbf{entrambi} i livelli del prodotto, come richiesto dalle Norme di Progetto\textsubscript{G} e, per il loro tramite, dal requisito\textsubscript{G} di qualità \textbf{R-10-Q-Ob}. La simmetria fra i due livelli è voluta: al compilatore TypeScript ed ESLint sul frontend\textsubscript{G} corrispondono mypy e Ruff sul backend, con la medesima ripartizione fra verifica\textsubscript{G} dei tipi e verifica\textsubscript{G} delle regole di scrittura.
+\noindent L'analisi statica\textsubscript{G} è quindi applicata a entrambi i livelli del prodotto, come richiesto dalle Norme di Progetto\textsubscript{G} e, per il loro tramite, dal requisito\textsubscript{G} di qualità \textbf{R-10-Q-Ob}. La ripartizione fra i due livelli non è però simmetrica, e va descritta per quella che è: sul frontend\textsubscript{G} si verificano\textsubscript{G} i tipi, con il compilatore TypeScript, e le regole di scrittura, con ESLint; sul backend si verificano\textsubscript{G} le regole di scrittura, con Ruff, e i contratti di dipendenza, con import-linter. Ciascun livello ha quindi un controllo che l'altro non ha: la verifica\textsubscript{G} statica dei tipi esiste sul solo frontend\textsubscript{G}, poiché il backend non adotta un analizzatore di tipi, mentre la verifica\textsubscript{G} dei confini architetturali esiste sul solo backend, dove i package sono organizzati a esagono e la direzione delle dipendenze è ciò che occorre proteggere.
 
-Si osserva che la validazione operata dagli schemi \textbf{Pydantic} non appartiene a questa categoria e non ne costituisce un sostituto: Pydantic controlla i \textit{dati} che attraversano i confini dell'applicazione a tempo di esecuzione, mentre l'analisi statica\textsubscript{G} controlla il \textit{codice} senza eseguirlo. Le due verifiche\textsubscript{G} intercettano difetti disgiunti --- un corpo di richiesta malformato nel primo caso, un'incoerenza fra firme di funzione nel secondo --- e sono pertanto complementari.
+La differenza discende dalla natura dei due livelli e non da una lacuna nella pianificazione: il backend è tipizzato ma di dimensioni contenute, e ciò che al suo interno è più facile violare inavvertitamente non è la coerenza di una firma, bensì la direzione di un'importazione.
+
+Si osserva che la validazione operata dagli schemi Pydantic non appartiene a questa categoria e non ne costituisce un sostituto: Pydantic controlla i \textit{dati} che attraversano i confini dell'applicazione a tempo di esecuzione, mentre l'analisi statica\textsubscript{G} controlla il \textit{codice} senza eseguirlo. Le due verifiche\textsubscript{G} intercettano difetti disgiunti (un corpo di richiesta malformato nel primo caso, un'incoerenza fra firme di funzione nel secondo) e sono pertanto complementari.
 
 \subsubsection{Analisi dinamica}
 \label{sec:analisi-dinamica}
 L'analisi dinamica\textsubscript{G} è organizzata su test\textsubscript{G} di unità e di integrazione\textsubscript{G} dei due livelli, eseguiti separatamente dalle rispettive catene di strumenti.
 
 \begin{tabellatec}{Strumenti di analisi dinamica}{tab:tec-dinamica}
-    \textbf{Vitest} & 4.1.8 & Esecutore dei test\textsubscript{G} di unità e di integrazione\textsubscript{G} del frontend\textsubscript{G}. Riutilizza integralmente la configurazione di Vite --- risoluzione dei moduli, alias dei percorsi, trasformazione di TypeScript e JSX --- evitando la manutenzione di una seconda catena di strumenti allineata alla prima. \\ \hline
+    \textbf{Vitest} & 4.1.8 & Esecutore dei test\textsubscript{G} di unità e di integrazione\textsubscript{G} del frontend\textsubscript{G}. Riutilizza integralmente la configurazione di Vite (risoluzione dei moduli, alias dei percorsi, trasformazione di TypeScript e JSX), evitando la manutenzione di una seconda catena di strumenti allineata alla prima. \\ \hline
 
     \textbf{@vitest/\newline coverage-v8} & 4.1.8 & Misurazione della copertura del codice\textsubscript{G} raggiunta dai test\textsubscript{G} del frontend\textsubscript{G}. Si appoggia allo strumento di copertura nativo del motore V8, senza richiedere una strumentazione del codice sorgente. Le soglie minime sono dichiarate nella configurazione di Vitest, così che il superamento sia verificato\textsubscript{G} dall'esecutore stesso e non affidato alla lettura del rapporto; l'insieme dei file misurati vi è dichiarato esplicitamente, così che un sorgente privo di test pesi sul denominatore anziché sparire dal calcolo. È la controparte di \texttt{pytest-cov} sul versante frontend\textsubscript{G}: senza di essa il Piano di Qualifica non potrebbe riportare una metrica\textsubscript{G} di copertura su questo livello, come richiesto da \textbf{R-2-Q-Ob}. \\ \hline
 
@@ -676,7 +691,7 @@ L'analisi dinamica\textsubscript{G} è organizzata su test\textsubscript{G} di u
 
     \textbf{pytest-cov} & 7.1.0 & Misurazione della copertura del codice\textsubscript{G} raggiunta dai test\textsubscript{G} del backend. \\ \hline
 
-    \textbf{respx} & 0.23.1 & Interposizione sulle richieste HTTP effettuate tramite httpx. Consente di verificare\textsubscript{G} il comportamento del client verso il provider dei modelli --- flusso corretto, risposta malformata, errore di connessione, scadenza del tempo massimo --- senza contattare alcun servizio esterno, rendendo i test\textsubscript{G} deterministici e indipendenti dalla rete. \\ \hline
+    \textbf{respx} & 0.23.1 & Interposizione sulle richieste HTTP effettuate tramite httpx. Consente di verificare\textsubscript{G} il comportamento del client verso il provider dei modelli (flusso corretto, risposta malformata, errore di connessione, scadenza del tempo massimo) senza contattare alcun servizio esterno, rendendo i test\textsubscript{G} deterministici e indipendenti dalla rete. \\ \hline
 \end{tabellatec}
 
 \paragraph{Alternative considerate}\mbox{}
@@ -695,7 +710,7 @@ Il modulo \texttt{unittest} è incluso nella libreria standard di Python e non a
 \label{sec:tecnologie-infrastruttura}
 Le tecnologie di questa sezione non concorrono al comportamento del prodotto in esecuzione, ma governano il modo in cui esso viene costruito, avviato, verificato\textsubscript{G} e mantenuto coerente fra i due livelli.
 
-\paragraph{Organizzazione della repository\textsubscript{G}.}
+\paragraph{Organizzazione della repository\textsubscript{G}}
 Prima delle tecnologie va richiamata una decisione organizzativa che le condiziona tutte: il gruppo ha adottato un'unica repository\textsubscript{G} (\textit{mono-repo}) per i due livelli del prodotto. Il codice del frontend\textsubscript{G} risiede in \texttt{/web} e quello del backend in \texttt{/api}, ciascuno con il proprio gestore di pacchetti, il proprio file di dipendenze e il proprio file di lock. Restano quindi due progetti distinti, con costruzioni e dipendenze proprie: condividono la repository\textsubscript{G} e la cronologia delle modifiche, non divengono un unico artefatto\textsubscript{G}.
 
 La scelta ha due conseguenze dirette sulle tecnologie descritte di seguito. La prima è che una variazione del contratto dell'API\textsubscript{G} e il corrispondente adeguamento del client possono essere integrati\textsubscript{G} con una sola pull request\textsubscript{G}, che li sottopone alla medesima verifica\textsubscript{G} automatica: non esiste un intervallo in cui i due livelli risultino disallineati. La seconda è che la configurazione di verifica\textsubscript{G} è definita una volta sola, in un solo insieme di flussi di lavoro.
@@ -705,7 +720,7 @@ La scelta ha due conseguenze dirette sulle tecnologie descritte di seguito. La p
 % `api`, la rete `second-brain-net`, le porte 5173 e 8000 e le variabili
 % d'ambiente; web/Dockerfile usa `node:22-alpine` e api/Dockerfile
 % `python:3.12-slim`, cioè i valori delle macro \vNode e \vPython.
-    \textbf{Docker \newline Docker Compose} & \vDocker \newline \vCompose & Ambiente di sviluppo\textsubscript{G} ed esecuzione riproducibile. Il file \texttt{docker-compose.yml} descrive i due servizi \texttt{web} e \texttt{api}, la rete che li collega, le porte esposte verso la macchina ospite e le variabili d'ambiente, e li avvia con un solo comando. Le immagini di base sono fissate dai rispettivi \texttt{Dockerfile}: \texttt{node:\vNode{}-alpine} per il frontend\textsubscript{G} e \texttt{python:\vPython{}-slim} per il backend. La linea di Node.js non è scelta soltanto come limite inferiore: è \textbf{fissata al di sopra e al di sotto} dal campo \texttt{engines} di \texttt{package.json} (\texttt{>=\vNode{} <23}) e dal file \texttt{.nvmrc}, che l'ambiente locale e l'integrazione\textsubscript{G} continua leggono entrambi. Il limite superiore ha una ragione misurata e documentata nel repository\textsubscript{G}: su linee successive parte della suite di test\textsubscript{G} del frontend\textsubscript{G} non è eseguibile. \\ \hline
+    \textbf{Docker \newline Docker Compose} & \vDocker \newline \vCompose & Ambiente di sviluppo\textsubscript{G} riproducibile, non una configurazione di esercizio, per le ragioni esposte nella sezione \ref{sec:deployment-unita}. Il file \texttt{docker-compose.yml} descrive i due servizi \texttt{web} e \texttt{api}, la rete che li collega, le porte esposte verso la macchina ospite e le variabili d'ambiente, e li avvia con un solo comando. Le immagini di base sono fissate dai rispettivi \texttt{Dockerfile}: \texttt{node:\vNode{}-alpine} per il frontend\textsubscript{G} e \texttt{python:\vPython{}-slim} per il backend. La linea di Node.js non è scelta soltanto come limite inferiore: è fissata al di sopra e al di sotto dal campo \texttt{engines} di \texttt{package.json} (\texttt{>=\vNode{} <23}) e dal file \texttt{.nvmrc}, che l'ambiente locale e l'integrazione\textsubscript{G} continua leggono entrambi. Il limite superiore ha una ragione misurata e documentata nel repository\textsubscript{G}: su linee successive parte della suite di test\textsubscript{G} del frontend\textsubscript{G} non è eseguibile. \\ \hline
 
 % Voce confermata dall'MVP: .github/workflows/ci.yml esiste ed è attivo sulle
 % pull request e sui push verso main e develop. Definisce tre processi
@@ -723,16 +738,16 @@ La scelta ha due conseguenze dirette sulle tecnologie descritte di seguito. La p
 % periodo finale della voce lo dichiara.
     \textbf{pnpm} & \vPnpm & Gestore dei pacchetti del frontend\textsubscript{G}. Memorizza ogni versione di ogni pacchetto una sola volta e la collega per riferimento, riducendo occupazione di spazio e tempi di installazione. Il file \texttt{pnpm-lock.yaml} fissa le versioni risolte dell'intero albero delle dipendenze; la versione dello strumento stesso è vincolata dal campo \texttt{packageManager} di \texttt{package.json}, che l'integrazione\textsubscript{G} continua legge per approvvigionarsi, così che questa e lo sviluppo\textsubscript{G} locale adoperino il medesimo risolutore. Il vincolo\textsubscript{G} non si estende all'immagine di sviluppo\textsubscript{G} del frontend\textsubscript{G}, che installa lo strumento senza indicarne la versione: chi lavora nel container può quindi risolvere una versione diversa da quella dichiarata. \\ \hline
 
-    \textbf{uv} & \vUv & Gestore dei pacchetti e dell'ambiente virtuale del backend. Risolve le dipendenze dichiarate in \texttt{pyproject.toml} e ne fissa le versioni in \texttt{uv.lock}; l'installazione in fase di costruzione dell'immagine avviene in modalità vincolata al file di lock, così che l'ambiente sia identico su ogni macchina. \\ \hline
+    \textbf{uv} & \vUv & Gestore dei pacchetti e dell'ambiente virtuale del backend. Risolve le dipendenze dichiarate in \texttt{pyproject.toml} e ne fissa le versioni in \texttt{uv.lock}. Nell'ambiente composto con Docker l'installazione eseguita durante la costruzione dell'immagine, vincolata al file di lock, non è quella che il processo adopera: il volume di sviluppo\textsubscript{G} la copre, e l'ambiente è sincronizzato dal comando di avvio a ogni accensione del container (si veda la sezione \ref{sec:deployment-unita}). È dunque quella sincronizzazione, e non il passo di costruzione, a rendere identico l'ambiente fra macchine diverse. Il vincolo\textsubscript{G} esplicito al file di lock è però dichiarato nella sola costruzione dell'immagine e nell'integrazione\textsubscript{G} continua: il comando di avvio non lo ripete, e l'allineamento fra i due file di progetto è quindi assicurato a monte anziché nel momento dell'esecuzione. \\ \hline
 
     \textbf{openapi-\newline typescript} & 7.13.0 & Generazione dei tipi TypeScript del client a partire dallo schema OpenAPI prodotto da FastAPI. Il frontend\textsubscript{G} non dichiara autonomamente la forma dei dati scambiati con il backend: la deriva dal contratto pubblicato dal backend stesso. Una modifica di uno schema Pydantic si propaga così ai tipi del client e, se incompatibile con l'uso che il frontend\textsubscript{G} ne fa, si manifesta come errore di compilazione anziché come guasto in esecuzione. Il file generato è escluso dall'analisi di ESLint, non essendo codice scritto a mano. \\ \hline
 \end{tabellatec}
 
-\paragraph{Nota sulle versioni degli strumenti di sviluppo.}
-Le versioni indicate per \textbf{Docker}, \textbf{Docker Compose} e \textbf{uv} vanno lette diversamente da tutte le altre del documento. Quelle delle librerie sono fissate dai file di lock e risultano identiche su ogni macchina; queste tre no, perché nessun file del progetto le vincola: Docker e Compose sono presupposti dall'ambiente anziché dichiarati, e uv è installato dall'immagine del backend senza indicazione di versione e risolto alla versione corrente dall'integrazione\textsubscript{G} continua. I valori riportati sono quindi quelli \textbf{in uso sull'ambiente di sviluppo del gruppo} alla data del documento, e non un vincolo\textsubscript{G} verificabile\textsubscript{G}: su un'altra macchina, o in un altro momento, l'installazione può risolvere versioni diverse. Per Docker il numero è quello di CLI e motore riportato da \texttt{docker -{}-version}, che non coincide con la versione di Docker Desktop, la quale segue una numerazione propria. Fa eccezione \textbf{pnpm}, che il repository\textsubscript{G} vincola: il valore riportato è quello dichiarato in \texttt{package.json} e non quello rilevato dall'ambiente.
+\paragraph{Nota sulle versioni degli strumenti di sviluppo}
+Le versioni indicate per Docker, Docker Compose e uv vanno lette diversamente da tutte le altre del documento. Quelle delle librerie sono fissate dai file di lock e risultano identiche su ogni macchina; queste tre no, perché nessun file del progetto le vincola: Docker e Compose sono presupposti dall'ambiente anziché dichiarati, e uv è installato dall'immagine del backend senza indicazione di versione e risolto alla versione corrente dall'integrazione\textsubscript{G} continua. I valori riportati sono quindi quelli in uso sull'ambiente di sviluppo del gruppo alla data del documento, e non un vincolo\textsubscript{G} verificabile\textsubscript{G}: su un'altra macchina, o in un altro momento, l'installazione può risolvere versioni diverse. Per Docker il numero è quello di CLI e motore riportato da \texttt{docker -{}-version}, che non coincide con la versione di Docker Desktop, la quale segue una numerazione propria. Fa eccezione pnpm, che il repository\textsubscript{G} vincola: il valore riportato è quello dichiarato in \texttt{package.json} e non quello rilevato dall'ambiente.
 
-\paragraph{Verifica automatica delle pull request\textsubscript{G}.}
-I controlli eseguiti dall'integrazione\textsubscript{G} continua sono la condizione che ogni modifica deve soddisfare prima di essere integrata\textsubscript{G} nel ramo principale. Sono organizzati in \textbf{tre processi indipendenti}, ciascuno con i propri passi:
+\paragraph{Verifica automatica delle pull request\textsubscript{G}}
+I controlli eseguiti dall'integrazione\textsubscript{G} continua sono la condizione che ogni modifica deve soddisfare prima di essere integrata\textsubscript{G} nel ramo principale. Sono organizzati in tre processi indipendenti, ciascuno con i propri passi:
 
 \begin{itemize}
     \setlength{\itemsep}{2pt}
@@ -743,9 +758,9 @@ I controlli eseguiti dall'integrazione\textsubscript{G} continua sono la condizi
 
 \noindent La soglia di copertura verificata dai primi due processi è quella fissata dal Piano di Qualifica per il valore accettabile della metrica\textsubscript{G} corrispondente; entrambi conservano il rapporto prodotto come artefatto\textsubscript{G} del processo, così che il dato sia consultabile a posteriori e non solo nel registro di esecuzione.
 
-L'esito negativo di un qualunque passo impedisce l'integrazione\textsubscript{G}. Questi controlli soddisfano il requisito\textsubscript{G} \textbf{R-4-Q-Ob}, che subordina l'integrazione\textsubscript{G} nel ramo principale al superamento dei test\textsubscript{G} automatici oltre che alla revisione tra pari, e rendono \textbf{verificabile} quanto la voce openapi-typescript afferma: perché un'incompatibilità di contratto si manifesti ``come errore di compilazione'' occorre che una compilazione avvenga a ogni modifica, in un ambiente che non si possa aggirare. Il controllo sul contratto è \textbf{doppio e simmetrico}: il processo del backend riesporta lo schema dal codice e pretende che coincida con \texttt{openapi.json} versionato, quello del frontend\textsubscript{G} rigenera i tipi da quello schema e pretende che coincidano con il file versionato. Se il primo confronto fallisce, il contratto pubblicato non corrisponde più al codice che lo produce; se fallisce il secondo, lo schema è cambiato senza che il client sia stato aggiornato. In entrambi i casi la verifica\textsubscript{G} si interrompe prima che il disallineamento raggiunga il ramo principale.
+L'esito negativo di un qualunque passo impedisce l'integrazione\textsubscript{G}. Questi controlli soddisfano il requisito\textsubscript{G} \textbf{R-4-Q-Ob}, che subordina l'integrazione\textsubscript{G} nel ramo principale al superamento dei test\textsubscript{G} automatici oltre che alla revisione tra pari, e rendono verificabile quanto la voce openapi-typescript afferma: perché un'incompatibilità di contratto si manifesti ``come errore di compilazione'' occorre che una compilazione avvenga a ogni modifica, in un ambiente che non si possa aggirare. Il controllo sul contratto è doppio e simmetrico: il processo del backend riesporta lo schema dal codice e pretende che coincida con \texttt{openapi.json} versionato, quello del frontend\textsubscript{G} rigenera i tipi da quello schema e pretende che coincidano con il file versionato. Se il primo confronto fallisce, il contratto pubblicato non corrisponde più al codice che lo produce; se fallisce il secondo, lo schema è cambiato senza che il client sia stato aggiornato. In entrambi i casi la verifica\textsubscript{G} si interrompe prima che il disallineamento raggiunga il ramo principale.
 
-\paragraph{Nota sui container.}
+\paragraph{Nota sui container}
 Un container non è una macchina virtuale, bensì un normale processo del sistema\textsubscript{G} operativo ospite, isolato mediante funzionalità del kernel: i \textit{namespaces} gli attribuiscono una vista propria di processi, rete e file system, i \textit{cgroups} ne limitano il consumo di risorse. Poiché il kernel è condiviso con la macchina ospite, anziché replicato come in una macchina virtuale, l'ingombro è sensibilmente inferiore e l'avvio richiede secondi anziché minuti.
 
 \paragraph{Alternative considerate}\mbox{}
@@ -753,7 +768,7 @@ Un container non è una macchina virtuale, bensì un normale processo del sistem
 \begin{alternative}
 
 \altitem{Configurazione manuale dell'ambiente al posto di Docker}
-Richiederebbe a ciascun membro del gruppo di installare e allineare manualmente le versioni di Node.js, di Python e delle rispettive dipendenze di sistema\textsubscript{G} su tre famiglie di sistemi\textsubscript{G} operativi differenti. Le configurazioni divergerebbero inevitabilmente, con la conseguenza che un comportamento osservato su una macchina non sarebbe riproducibile sulle altre --- circostanza che rende la diagnosi dei guasti sproporzionatamente onerosa e vanifica il valore probatorio dei test\textsubscript{G}.
+Richiederebbe a ciascun membro del gruppo di installare e allineare manualmente le versioni di Node.js, di Python e delle rispettive dipendenze di sistema\textsubscript{G} su tre famiglie di sistemi\textsubscript{G} operativi differenti. Le configurazioni divergerebbero inevitabilmente, con la conseguenza che un comportamento osservato su una macchina non sarebbe riproducibile sulle altre, circostanza che rende la diagnosi dei guasti sproporzionatamente onerosa e vanifica il valore probatorio dei test\textsubscript{G}.
 
 \altitem{Podman al posto di Docker}
 Podman è compatibile con i formati e i comandi di Docker e presenta un vantaggio di sicurezza\textsubscript{G} non trascurabile: non richiede un processo demone privilegiato in esecuzione permanente e consente di eseguire i container senza privilegi amministrativi. È stato scartato per ragioni di diffusione, ampiezza della documentazione e familiarità pregressa dei membri del gruppo, elementi che riducono il tempo speso in attività non produttive.
@@ -793,11 +808,11 @@ La separazione di frontend\textsubscript{G} e backend in repository\textsubscrip
 
 \subsection{Panoramica architetturale}
 \label{sec:architettura-panoramica}
-La presente sezione fornisce la visione d'insieme del sistema\textsubscript{G}: le unità che lo compongono, i confini che le separano e lo stile architetturale adottato all'interno di ciascuna. Ne fissa inoltre il \textbf{vocabolario}, che le sezioni successive impiegano senza introdurre sinonimi. Il dettaglio di ciascuna parte è rimandato a quelle sezioni: qui si stabilisce soltanto che cosa esiste, come è delimitato e secondo quale criterio è organizzato al proprio interno.
+La presente sezione fornisce la visione d'insieme del sistema\textsubscript{G}: le unità che lo compongono, i confini che le separano e lo stile architetturale adottato all'interno di ciascuna. Ne fissa inoltre il vocabolario, che le sezioni successive impiegano senza introdurre sinonimi. Il dettaglio di ciascuna parte è rimandato a quelle sezioni: qui si stabilisce soltanto che cosa esiste, come è delimitato e secondo quale criterio è organizzato al proprio interno.
 
 \subsubsection{Visione d'insieme}
 \label{sec:panoramica-visione}
-Il sistema\textsubscript{G} è composto da \textbf{due unità di deployment indipendenti}:
+Il sistema\textsubscript{G} è composto da due unità di deployment indipendenti:
 
 \begin{itemize}
     \setlength{\itemsep}{0pt}
@@ -805,11 +820,11 @@ Il sistema\textsubscript{G} è composto da \textbf{due unità di deployment indi
     \item un \textbf{servizio applicativo} che espone un'API\textsubscript{G} HTTP.
 \end{itemize}
 
-\noindent Le due unità risiedono in altrettante cartelle della repository\textsubscript{G} --- \texttt{web/} e \texttt{api/} --- ciascuna con il proprio gestore di pacchetti, le proprie dipendenze e la propria catena di costruzione: restano quindi due progetti distinti, costruiti ed eseguiti separatamente, e non due parti di un unico artefatto\textsubscript{G}. Il modo in cui vengono poste in esecuzione è trattato nella sezione dedicata all'architettura di deployment.
+\noindent Le due unità risiedono in altrettante cartelle della repository\textsubscript{G} (\texttt{web/} e \texttt{api/}), ciascuna con il proprio gestore di pacchetti, le proprie dipendenze e la propria catena di costruzione: restano quindi due progetti distinti, costruiti ed eseguiti separatamente, e non due parti di un unico artefatto\textsubscript{G}. Il modo in cui vengono poste in esecuzione è trattato nella sezione dedicata all'architettura di deployment.
 
-La comunicazione fra le due unità avviene su \textbf{HTTP} secondo uno stile \textbf{REST}, ed è asimmetrica: l'applicazione web è l'unico soggetto che avvia le richieste, il servizio applicativo il solo che risponde. Le risposte delle operazioni assistite dal modello linguistico sono restituite \textbf{in streaming}: il testo raggiunge il browser a frammenti, man mano che il modello lo produce, e compare progressivamente nell'interfaccia anziché tutto insieme al termine dell'elaborazione. Il servizio non trattiene il testo per consegnarlo completo, ma lo inoltra appena disponibile; il formato con cui i frammenti viaggiano sulla connessione appartiene alla sezione sul flusso dei dati.
+La comunicazione fra le due unità avviene su HTTP secondo uno stile REST, ed è asimmetrica: l'applicazione web è l'unico soggetto che avvia le richieste, il servizio applicativo il solo che risponde. Le risposte delle operazioni assistite dal modello linguistico sono restituite in streaming: il testo raggiunge il browser a frammenti, man mano che il modello lo produce, e compare progressivamente nell'interfaccia anziché tutto insieme al termine dell'elaborazione. Il servizio non trattiene il testo per consegnarlo completo, ma lo inoltra appena disponibile; il formato con cui i frammenti viaggiano sulla connessione appartiene alla sezione sul flusso dei dati.
 
-Il servizio applicativo è a sua volta \textbf{client di due servizi esterni}, entrambi contattati via HTTP e nessuno dei due realizzato dal gruppo:
+Il servizio applicativo è a sua volta client di due servizi esterni, entrambi contattati via HTTP e nessuno dei due realizzato dal gruppo:
 
 \begin{itemize}
     \setlength{\itemsep}{0pt}
@@ -819,7 +834,7 @@ Il servizio applicativo è a sua volta \textbf{client di due servizi esterni}, e
 
 \noindent Il perimetro del sistema\textsubscript{G} comprende quindi due unità realizzate dal gruppo e due dipendenze esterne raggiunte dalla sola unità server: l'applicazione web non contatta in alcun caso i due fornitori.
 
-\textbf{Non esiste persistenza lato server.} Il servizio applicativo non possiede dati: non dispone di una base di dati, non conserva stato applicativo fra una richiesta e la successiva e il suo dominio\textsubscript{G} non dichiara alcuna porta per le note o per gli utenti. I dati dell'utente restano nel browser. Il meccanismo con cui vi permangono è descritto altrove; qui rileva la sola conseguenza architetturale: il confine del sistema\textsubscript{G} non racchiude alcun archivio, e le due unità non condividono alcuno stato persistente.
+Non esiste persistenza lato server. Il servizio applicativo non possiede dati: non dispone di una base di dati, non conserva stato applicativo fra una richiesta e la successiva e il suo dominio\textsubscript{G} non dichiara alcuna porta per le note o per gli utenti. I dati dell'utente restano nel browser. Il meccanismo con cui vi permangono è descritto altrove; qui rileva la sola conseguenza architetturale: il confine del sistema\textsubscript{G} non racchiude alcun archivio, e le due unità non condividono alcuno stato persistente.
 
 % [INSERIRE DIAGRAMMA: diagramma di contesto — le due unità di deployment
 % (applicazione web e servizio applicativo), i due servizi esterni (gateway LiteLLM,
@@ -829,32 +844,42 @@ Il servizio applicativo è a sua volta \textbf{client di due servizi esterni}, e
 \label{sec:panoramica-stile-servizio}
 Il servizio applicativo adotta l'\textbf{architettura esagonale} (\textit{Ports \& Adapters}). Il criterio che la caratterizza è la direzione delle dipendenze: al centro stanno le regole del prodotto, attorno gli adattatori che le collegano al mondo esterno, e la dipendenza punta sempre verso il centro, mai in senso contrario.
 
-\paragraph{Il nucleo.}
-Il package \texttt{app/core/} contiene le regole del prodotto --- i casi d'uso, i valori del dominio\textsubscript{G} e le porte --- e \textbf{non importa nulla dagli altri package}. Non conosce il framework\textsubscript{G} web, non conosce il client HTTP, non conosce i fornitori esterni né il modulo che legge la configurazione. Un caso d'uso è una funzione che riceve i dati dell'operazione e, come ultimo parametro, la porta di cui si serve: non sa chi la implementi e non ha modo di scoprirlo.
+\paragraph{Il nucleo}
+Il package \texttt{app/core/} contiene le regole del prodotto (i casi d'uso, i valori del dominio\textsubscript{G} e le porte) e non importa nulla dagli altri package. Non conosce il framework\textsubscript{G} web, non conosce il client HTTP, non conosce i fornitori esterni né il modulo che legge la configurazione. Un caso d'uso è una funzione che riceve i dati dell'operazione e, come ultimo parametro, la porta di cui si serve: non sa chi la implementi e non ha modo di scoprirlo.
 
-\paragraph{Le porte.}
-Le porte dichiarate sono \textbf{due}, entrambe in \texttt{app/core/ports/}. \texttt{LLMClient} dichiara la produzione incrementale di testo da parte di un modello linguistico; \texttt{ContentExtractor} dichiara l'estrazione del contenuto testuale di un indirizzo web. Sono interfacce astratte: descrivono ciò di cui il dominio\textsubscript{G} ha bisogno, non il modo in cui un fornitore lo realizza. Accanto a ciascuna è dichiarato il tipo di errore che essa può sollevare, così che chi la consuma possa trattarne il fallimento senza conoscere l'implementazione che lo produce.
+\paragraph{Le porte}
+Le porte dichiarate sono due, entrambe in \texttt{app/core/ports/}. \texttt{LLMClient} dichiara la produzione incrementale di testo da parte di un modello linguistico; \texttt{ContentExtractor} dichiara l'estrazione del contenuto testuale di un indirizzo web. Sono interfacce astratte: descrivono ciò di cui il dominio\textsubscript{G} ha bisogno, non il modo in cui un fornitore lo realizza. Accanto a ciascuna è dichiarato il tipo di errore che essa può sollevare, così che chi la consuma possa trattarne il fallimento senza conoscere l'implementazione che lo produce.
 
-\paragraph{I due lati dell'esagono.}
-Gli adattatori si dispongono su due lati opposti. In \texttt{app/api/} vive ciò che traduce una richiesta esterna in una chiamata al dominio\textsubscript{G}: è il lato da cui l'applicazione viene invocata. In \texttt{app/infrastructure/} vive ciò che il dominio\textsubscript{G} chiama per parlare con il mondo: è il lato che l'applicazione invoca. \textbf{Le due direzioni non si toccano direttamente}: un adattatore del primo lato non istanzia un adattatore del secondo, ma dichiara la porta di cui ha bisogno e la riceve dall'esterno. Il modulo che stabilisce quale adattatore soddisfa quale porta è uno solo --- il \textit{composition root} --- ed è l'unico punto dell'applicazione in cui i due adattatori concreti sono nominati fuori dai moduli che li definiscono. Sostituire un fornitore esterno significa perciò scrivere un nuovo adattatore e cambiare una riga in quel modulo, non intervenire sul dominio\textsubscript{G}.
+\paragraph{I due lati dell'esagono}
+Gli adattatori si dispongono su due lati opposti. In \texttt{app/api/} vive ciò che serve il chiamante esterno, tanto la traduzione della sua richiesta in una chiamata al dominio\textsubscript{G} quanto la formattazione dell'esito nella risposta che gli viene restituita: è il lato da cui l'applicazione viene invocata. In \texttt{app/infrastructure/} vive ciò che il dominio\textsubscript{G} chiama per parlare con il mondo: è il lato che l'applicazione invoca. Le due direzioni non si toccano direttamente: un adattatore del primo lato non istanzia un adattatore del secondo, ma dichiara la porta di cui ha bisogno e la riceve dall'esterno. Il modulo che stabilisce quale adattatore soddisfa quale porta è uno solo, il \textit{composition root}, ed è l'unico punto dell'applicazione in cui i due adattatori concreti sono nominati fuori dai moduli che li definiscono. Sostituire un fornitore esterno significa perciò scrivere un nuovo adattatore e cambiare una riga in quel modulo, non intervenire sul dominio\textsubscript{G}.
 
-\paragraph{Il vincolo\textsubscript{G} non è affidato alla disciplina dei redattori.}
-È il punto qualificante di questa architettura, e va detto esplicitamente: la direzione delle dipendenze \textbf{non è una convenzione che il gruppo si impegna a rispettare}, ma un vincolo\textsubscript{G} dichiarato e verificato\textsubscript{G} automaticamente. I contratti sono scritti in \texttt{api/.importlinter} e controllati staticamente dallo strumento \texttt{import-linter}, che ispeziona il grafo delle importazioni senza eseguire il codice. Sono quattro e stabiliscono che il nucleo non importi il framework\textsubscript{G} web, il client HTTP, il client del servizio di estrazione, la libreria di configurazione né i package degli adattatori; che i livelli siano ordinati dall'esterno verso il centro; che gli adattatori non si importino fra loro; che il nucleo non importi il modulo di configurazione. Il controllo è un passo dell'integrazione\textsubscript{G} continua, non un'abitudine locale: un'importazione che invertisse la dipendenza non sopravviverebbe fino alla revisione tra pari, perché farebbe fallire la verifica\textsubscript{G} automatica prima.
+\paragraph{Il vincolo\textsubscript{G} non è affidato alla disciplina dei redattori}
+È il punto qualificante di questa architettura, e va detto esplicitamente: la direzione delle dipendenze non è una convenzione che il gruppo si impegna a rispettare, ma un vincolo\textsubscript{G} dichiarato e verificato\textsubscript{G} automaticamente. I contratti sono scritti in \texttt{api/.importlinter} e controllati staticamente dallo strumento \texttt{import-linter}, che ispeziona il grafo delle importazioni senza eseguire il codice. Sono quattro:
 
-\paragraph{Il beneficio ottenuto.}
-Ciò che l'esagono restituisce, e che è verificabile\textsubscript{G} nel codice, è la \textbf{provabilità del dominio\textsubscript{G} in isolamento}: un caso d'uso si esercita senza montare HTTP e senza rete, passandogli al posto della porta un doppio che ne rispetta il contratto. I test\textsubscript{G} dei casi d'uso del prodotto sono scritti esattamente così, e non istanziano alcun adattatore. La proprietà non è un corollario teorico dello stile adottato: discende dal fatto che il tipo del parametro sia la porta e mai l'adattatore, condizione che i contratti di dipendenza rendono impossibile violare inavvertitamente.
+\begin{itemize}
+    \setlength{\itemsep}{2pt}
+    \item il nucleo non importa il framework\textsubscript{G} web, il client HTTP, il client del servizio di estrazione, la libreria che legge la configurazione, né i package dei due lati di adattatori;
+    \item il nucleo non importa il modulo del prodotto che dichiara lo schema della configurazione. Il contratto è distinto dal precedente e non ne è un caso particolare: quello vieta una libreria di terzi, questo un modulo scritto dal gruppo, e nessuno dei due implica l'altro;
+    \item i tre livelli sono ordinati dall'esterno verso il centro: ciascuno può importare quelli che gli stanno sotto, mai quelli che gli stanno sopra;
+    \item i due adattatori dell'infrastruttura non si importano fra loro.
+\end{itemize}
 
-\noindent Lo stile qui dichiarato --- un servizio applicativo unico, organizzato a esagono --- è stato adottato in alternativa alla scomposizione in microservizi e al monolite a strati tradizionale. L'argomentazione del confronto, con i costi e i benefici di ciascuna alternativa, è riportata nelle sezioni \ref{sec:confronto-microservizi} e \ref{sec:confronto-monolite}.
+\noindent Il controllo è un passo dell'integrazione\textsubscript{G} continua: un'importazione che invertisse la dipendenza farebbe fallire la verifica\textsubscript{G} automatica prima ancora di arrivare alla revisione tra pari.
+
+\paragraph{Il beneficio ottenuto}
+Ciò che l'esagono restituisce, e che è verificabile\textsubscript{G} nel codice, è la provabilità del dominio\textsubscript{G} in isolamento: un caso d'uso si esercita senza montare HTTP e senza rete, passandogli al posto della porta un doppio che ne rispetta il contratto. I test\textsubscript{G} dei casi d'uso del prodotto sono scritti esattamente così, e non istanziano alcun adattatore. La proprietà non è un corollario teorico dello stile adottato: discende dal fatto che il tipo del parametro sia la porta e mai l'adattatore, condizione che i contratti di dipendenza rendono impossibile violare inavvertitamente.
+
+\noindent Lo stile qui dichiarato (un servizio applicativo unico, organizzato a esagono) è stato adottato in alternativa alla scomposizione in microservizi e al monolite a strati tradizionale. L'argomentazione del confronto, con i costi e i benefici di ciascuna alternativa, è riportata nelle sezioni \ref{sec:confronto-microservizi} e \ref{sec:confronto-monolite}.
 
 \subsubsection{Stile architetturale dell'applicazione web}
 \label{sec:panoramica-stile-web}
-L'applicazione web è organizzata \textbf{a componenti, con stato condiviso esterno all'albero e flusso dei dati unidirezionale}.
+L'applicazione web è organizzata a componenti, con stato condiviso esterno all'albero e flusso dei dati unidirezionale.
 
-I componenti React compongono l'interfaccia per annidamento: ciascuno riceve dal genitore i dati che deve presentare e ne restituisce la rappresentazione. Lo stato realmente condiviso non risiede però nell'albero dei componenti: vive fuori di esso, in \textbf{due store distinti}, che i componenti interrogano direttamente senza doverlo trasmettere lungo la gerarchia. Il flusso resta unidirezionale: un'interazione dell'utente invoca un'azione dello store, l'azione aggiorna lo stato, i componenti sottoscritti alla porzione modificata si ridisegnano. Non esiste un percorso inverso in cui un componente modifichi la vista di un altro.
+I componenti React compongono l'interfaccia per annidamento: ciascuno riceve dal genitore i dati che deve presentare e ne restituisce la rappresentazione. Lo stato realmente condiviso non risiede però nell'albero dei componenti: vive fuori di esso, in due store distinti, che i componenti interrogano direttamente senza doverlo trasmettere lungo la gerarchia. Il flusso resta unidirezionale: un'interazione dell'utente invoca un'azione dello store, l'azione aggiorna lo stato, i componenti sottoscritti alla porzione modificata si ridisegnano. Non esiste un percorso inverso in cui un componente modifichi la vista di un altro.
 
-La regola seguita nel collocare lo stato è graduale: \textbf{stato locale al componente per difetto}, sollevato al genitore comune quando due componenti vicini devono concordare, \textbf{promosso a store soltanto quando componenti lontani nell'albero devono condividerlo}. Lo store non è quindi il deposito di tutto lo stato dell'applicazione: le condizioni puramente locali di un componente --- l'apertura di un pannello, il testo in corso di digitazione in un campo, la voce dell'elenco in fase di rinomina --- restano nel componente che le possiede, e non se ne ha traccia altrove.
+La regola seguita nel collocare lo stato è graduale: stato locale al componente per difetto, sollevato al genitore comune quando due componenti vicini devono concordare, promosso a store soltanto quando componenti lontani nell'albero devono condividerlo. Lo store non è quindi il deposito di tutto lo stato dell'applicazione: le condizioni puramente locali di un componente (l'apertura di un pannello, il testo in corso di digitazione in un campo, la voce dell'elenco in fase di rinomina) restano nel componente che le possiede, e non se ne ha traccia altrove.
 
-I componenti si sottoscrivono a \textbf{singole porzioni} di stato, non allo stato intero: ciascuno store espone un selettore per ogni porzione osservabile, e il componente che ne dichiara uno viene ridisegnato solo quando quella porzione cambia. È la proprietà che rende sostenibile lo streaming: mentre il testo arriva a frammenti e la porzione che lo raccoglie cambia molte volte al secondo, si ridisegna la sola parte di interfaccia che presenta l'esito in arrivo, mentre l'editor --- sottoscritto a una porzione distinta, il testo della nota --- non viene toccato. Una sottoscrizione allo stato nel suo complesso, o a un oggetto che ne aggreghi più porzioni, riporterebbe il ridisegno sull'intera area di lavoro a ogni frammento ricevuto.
+I componenti si sottoscrivono a singole porzioni di stato, non allo stato intero: ciascuno store espone un selettore per ogni porzione osservabile, e il componente che ne dichiara uno viene ridisegnato solo quando quella porzione cambia. È la proprietà che rende sostenibile lo streaming: mentre il testo arriva a frammenti e la porzione che lo raccoglie cambia molte volte al secondo, si ridisegna la sola parte di interfaccia che presenta l'esito in arrivo, mentre l'editor, sottoscritto a una porzione distinta (il testo della nota), non viene toccato. Una sottoscrizione allo stato nel suo complesso, o a un oggetto che ne aggreghi più porzioni, riporterebbe il ridisegno sull'intera area di lavoro a ogni frammento ricevuto.
 
 I due store si dividono le responsabilità in questo modo: \texttt{useEditorStore} custodisce lo stato della sessione di scrittura, cioè il testo corrente, la selezione, l'esito in arrivo dal servizio applicativo, la condizione di errore e di avanzamento e la modalità di visualizzazione; \texttt{useNotesStore} custodisce la raccolta delle note e l'indicazione di quale sia quella corrente. La loro composizione interna appartiene alla sezione sull'architettura logica dell'applicazione web.
 
@@ -877,7 +902,7 @@ I termini fissati nella tabella \ref{tab:vocabolario-architetturale} sono impieg
     \endhead
     \textbf{Porta} & Interfaccia astratta dichiarata dal nucleo, che descrive ciò di cui il dominio\textsubscript{G} ha bisogno dall'esterno senza indicare come venga realizzato. \\ \hline
 
-    \textbf{Adattatore primario} & Modulo che traduce una richiesta proveniente dall'esterno in una chiamata al dominio\textsubscript{G}; risiede in \texttt{app/api/}. \\ \hline
+    \textbf{Adattatore primario} & Modulo che sta sul lato dell'esagono da cui l'applicazione è invocata: traduce la richiesta proveniente dall'esterno in una chiamata al dominio\textsubscript{G}, oppure ne formatta l'esito nella risposta restituita al chiamante; risiede in \texttt{app/api/}. \\ \hline
 
     \textbf{Adattatore secondario} & Modulo che realizza una porta traducendo la chiamata del dominio\textsubscript{G} nel protocollo di un servizio esterno; risiede in \texttt{app/infrastructure/}. \\ \hline
 
@@ -895,44 +920,113 @@ I termini fissati nella tabella \ref{tab:vocabolario-architetturale} sono impieg
 
 \subsection{Architettura di deployment}
 \label{sec:architettura-deployment}
-% CONTIENE: le unità in esecuzione e il modo in cui sono messe in esercizio.
-% Le due sottosezioni di confronto contengono l'argomentazione sulle
-% alternative architetturali complessive, richiamata per riferimento dalla
-% §3.1.2.
-% NON CONTIENE: le motivazioni delle scelte tecnologiche, che sono del
-% capitolo 2; il dettaglio dei moduli dei due livelli, che è di §3.3 e §3.4.
+La sezione \ref{sec:architettura-panoramica} ha stabilito che il sistema\textsubscript{G} è composto da due unità di deployment indipendenti. La presente sezione descrive come quelle due unità sono messe in esercizio: quali processi esistono, in quale forma sono isolati, attraverso quale indirizzo si raggiungono, da dove ricevono la propria configurazione e che cosa accade loro all'avvio e allo spegnimento.
+
+Il perimetro è deliberatamente ristretto a ciò che si osserva dall'esterno dei due processi. L'organizzazione interna dell'applicazione web e del servizio applicativo appartiene alle sezioni \ref{sec:architettura-frontend} e \ref{sec:architettura-backend}; il contenuto degli scambi fra le due unità è trattato nella sezione \ref{sec:flusso-dati}; le ragioni per cui sono state adottate le tecnologie qui nominate sono esposte nella sezione \ref{sec:tecnologie}, e i controlli automatici applicati a ogni modifica nella sezione \ref{sec:tecnologie-infrastruttura}. Qui esse compaiono come fatti.
+
+Le sottosezioni \ref{sec:confronto-microservizi} e \ref{sec:confronto-monolite} raccolgono infine l'argomentazione sulle alternative architetturali complessive, richiamata per riferimento dalla sezione \ref{sec:panoramica-stile-servizio}.
 
 \subsubsection{Unità di esecuzione e configurazione}
 \label{sec:deployment-unita}
-% CONTIENE: i due servizi in container descritti da docker-compose.yml, le
-% immagini di base dei due Dockerfile, la rete che li collega, le porte
-% esposte verso la macchina ospite; la provenienza della configurazione
-% (variabili d'ambiente, file .env, schema delle impostazioni) e il confine
-% fra ciò che è configurazione e ciò che è codice; il ciclo di vita del
-% processo del servizio applicativo, cioè che cosa accade all'avvio e allo
-% spegnimento; le chiavi obbligatorie all'avvio e l'asimmetria fra la chiave
-% del gateway, che se manca impedisce il boot, e quella del servizio di
-% estrazione, che degrada una sola rotta.
-% Prevedere qui il segnaposto per il diagramma di deployment.
-% NON CONTIENE: il contenuto delle richieste HTTP, che è del capitolo 4.
+
+\paragraph{I due container}
+Il file \texttt{docker-compose.yml} descrive due servizi, \texttt{web} e \texttt{api}, uno per ciascuna delle due unità. Nessuno dei due riferisce un'immagine pubblicata in un registro: entrambi sono costruiti dal contesto della rispettiva cartella della repository\textsubscript{G}, così che l'immagine in esecuzione corrisponda sempre al codice della copia di lavoro. Ciascun servizio pubblica una porta verso la macchina ospite: la \texttt{5173} per l'applicazione web, la \texttt{8000} per il servizio applicativo. Sono i due soli punti di ingresso del sistema\textsubscript{G}, e li usa entrambi il browser dell'utente. Il servizio \texttt{web} dichiara inoltre una dipendenza di avvio dal servizio \texttt{api}: l'ordine riguarda l'avvio dei container, non la disponibilità dell'API\textsubscript{G}, che il primo non attende.
+
+\paragraph{Le immagini di base}
+Le due immagini sono fissate dai rispettivi \texttt{Dockerfile}: \texttt{node:\vNode{}-alpine} per l'applicazione web e \texttt{python:\vPython{}-slim} per il servizio applicativo. Entrambe installano il proprio gestore di pacchetti e risolvono le dipendenze in fase di costruzione a partire dal file di lock versionato. Le due linee non sono intercambiabili con altre: quella di Node.js è vincolata al di sopra e al di sotto, come argomentato nella sezione \ref{sec:tecnologie-infrastruttura}.
+
+Va osservato, perché la lettura del \texttt{Dockerfile} da sola condurrebbe a una conclusione errata, che per il servizio applicativo l'ambiente costruito nell'immagine non è quello effettivamente adoperato: il volume che monta la copia di lavoro sul medesimo percorso lo copre, e il comando di avvio sincronizza l'ambiente a ogni accensione del container, materializzandolo nella cartella montata. La riproducibilità fra macchine diverse discende quindi da quella sincronizzazione all'avvio, non dal passo di costruzione, il cui esito viene sostituito.
+
+La differenza fra i due momenti non è però soltanto di collocazione. La sincronizzazione eseguita durante la costruzione è dichiarata vincolata al file di lock, e rifiuta di procedere se questo non corrisponde alle dipendenze dichiarate; quella eseguita all'avvio del container non porta il medesimo vincolo\textsubscript{G}, e davanti a un disallineamento fra i due file aggiornerebbe il lock anziché arrestarsi. L'allineamento è perciò garantito a monte, dalla costruzione dell'immagine e dai controlli automatici descritti nella sezione \ref{sec:tecnologie-infrastruttura}, e non nell'istante dell'esecuzione. È una conseguenza coerente con la natura dell'ambiente: sincronizzare a ogni avvio ha senso in sviluppo\textsubscript{G}, dove i sorgenti e le dipendenze cambiano di continuo, e non ne avrebbe in esercizio.
+
+\paragraph{La rete}
+I due servizi sono collegati da una rete dedicata, di tipo \textit{bridge}, dichiarata nello stesso file. La rete attribuisce a ciascun container un nome risolvibile dall'altro, rendendo possibile una chiamata da container a container senza passare per la macchina ospite. Va però osservato, per non attribuire alla rete un ruolo che oggi non ha, che il traffico fra l'applicazione web e il servizio applicativo non la attraversa: il codice dell'applicazione web è eseguito dal browser sulla macchina ospite, ed è il browser a contattare la porta pubblicata dal servizio applicativo. La rete resta quindi predisposta per comunicazioni fra container che il prodotto, allo stato attuale, non effettua.
+
+\paragraph{Il punto di accoppiamento fra le due unità}
+L'applicazione web non conosce staticamente l'indirizzo del servizio applicativo: lo legge da una variabile d'ambiente, fornita al processo del frontend\textsubscript{G} al momento dell'avvio e valorizzata dal file di composizione con l'indirizzo pubblicato sulla macchina ospite. In sua assenza ripiega sulla stringa vuota, che produce indirizzi relativi e quindi richieste alla medesima origine da cui l'applicazione è stata servita.
+
+Che quell'indirizzo sia configurazione e non codice discende da una distinzione precisa: esso dipende da \textit{dove} il sistema\textsubscript{G} è messo in esercizio, non da \textit{che cosa} il sistema\textsubscript{G} fa. Le due unità dietro la medesima origine o su origini distinte, come avviene qui, richiedono valori diversi e nessuna modifica al codice; il ripiego sulla stringa vuota non è un predefinito arbitrario, ma la codifica del primo dei due casi.
+
+\paragraph{La provenienza della configurazione}
+Il servizio applicativo non legge variabili d'ambiente sparse nel codice: le raccoglie in un unico schema validato, che ne dichiara nomi, tipi ed eventuali valori predefiniti. Le voci sono cinque: l'indirizzo del gateway dei modelli linguistici, l'identificativo del modello da impiegare, la chiave di accesso al gateway, la chiave del servizio di estrazione e l'elenco delle origini ammesse dalla politica CORS. Le prime due e l'ultima hanno un valore predefinito nello schema; le due chiavi no, e il loro predefinito vuoto è precisamente ciò che rende riconoscibile una configurazione incompleta. I valori sono forniti da un file d'ambiente non versionato, di cui la repository\textsubscript{G} conserva un esemplare con i soli nomi delle variabili e segnaposto al posto dei valori: nessun segreto è quindi versionato, e chi predispone un ambiente sa esattamente che cosa deve fornire.
+
+Il confine fra configurazione e codice passa di qui: è configurazione ciò che cambia fra un ambiente e l'altro senza cambiare il comportamento del prodotto (indirizzi, identificativi, credenziali, origini ammesse), ed è codice tutto il resto. Lo schema descrive \textit{che cosa} sia la configurazione; il \textit{come} la si ottenga appartiene al modulo di composizione trattato nella sezione \ref{sec:backend-composition-root}.
+
+\paragraph{La politica CORS}
+Il requisito\textsubscript{G} di vincolo\textsubscript{G} \textbf{R-3-V-Ob}, argomentato nella sezione \ref{sec:criteri-scelta}, deriva dal fatto che il browser applica la \textit{same-origin policy}: un'applicazione servita da un'origine non può contattarne un'altra se questa non lo consente esplicitamente. Poiché nella configurazione descritta sopra le due unità occupano origini distinte, il servizio applicativo registra all'avvio un componente intermedio che dichiara le origini ammesse. Tali origini provengono dalla configurazione, non dal codice: sono una delle cinque voci dello schema, con l'indirizzo dell'applicazione web come valore predefinito. Metodi e intestazioni sono invece ammessi senza restrizione, mentre l'elenco delle origini resta esplicito ed è il solo controllo effettivo.
+
+\paragraph{Il ciclo di vita del processo}
+Il processo del servizio applicativo ha due momenti dichiarati, e nessuno dei due contiene logica di prodotto.
+
+All'avvio, prima che una qualunque richiesta possa essere accettata, viene verificata la presenza delle chiavi senza le quali il servizio non è in grado di svolgere il proprio compito. Se ne manca una, il processo non parte: solleva un errore che nomina la variabile mancante e ne registra il messaggio nel registro degli eventi. La collocazione è motivata: una chiave assente non è una condizione che sopravviene durante l'esercizio, è nota nell'istante in cui il processo viene avviato, e scoprirla al primo utente significherebbe accettare richieste sapendo di non poterle soddisfare.
+
+Che il nome esatto della variabile compaia nel messaggio non costituisce una deroga al requisito\textsubscript{G} \textbf{R-110-F-Ob}, che prescrive messaggi di errore privi di dettagli tecnici: quel requisito\textsubscript{G} governa le risposte rivolte all'utente, e il registro di avvio non è una di esse. Il destinatario qui è chi predispone l'ambiente, per il quale il nome della variabile è l'unica informazione che rende l'errore azionabile. Il vincolo\textsubscript{G} non è quindi allentato: è fuori ambito.
+
+Allo spegnimento vengono rilasciate le risorse di trasporto detenute dagli adattatori verso i servizi esterni, che vivono quanto il processo. Anche questa collocazione è motivata: il rilascio appartiene a chi possiede la risorsa, e il modulo che governa il ciclo di vita si limita a invocare due funzioni senza conoscere quali adattatori concreti siano coinvolti, coerentemente con l'inversione descritta nella sezione \ref{sec:backend-composition-root}.
+
+\paragraph{L'asimmetria fra le due chiavi}
+La sezione \ref{sec:tecnologie-backend} ha già dichiarato che le due dipendenze esterne differiscono per criticità; dal lato del processo in esecuzione la differenza si manifesta così:
+
+\begin{itemize}
+    \setlength{\itemsep}{2pt}
+    \item la chiave del gateway dei modelli linguistici figura fra quelle obbligatorie all'avvio: senza di essa nessuna delle funzioni assistite dall'LLM\textsubscript{G} è servibile, cioè il servizio non ha più alcuna ragione di accettare traffico, e il processo termina;
+    \item la chiave del servizio di estrazione non vi figura: il processo parte regolarmente e tutte le altre funzioni restano disponibili. È la sola rotta di generazione a partire da un collegamento a non poter essere servita, e la sua indisponibilità è comunicata per singola richiesta, con lo stato che segnala un servizio temporaneamente non disponibile.
+\end{itemize}
+
+\noindent La scelta è una decisione deliberata di degradazione graduale, non una dimenticanza: l'assenza della seconda chiave sottrae una rotta su otto, e far terminare per questo l'intero processo negherebbe all'utente anche le altre sette, che continuerebbero a funzionare. Che si tratti di una decisione è verificabile\textsubscript{G} nel codice, dove un test\textsubscript{G} asserisce che senza la chiave del servizio di estrazione il processo si avvii ugualmente: invertire il comportamento richiede di cambiare un'asserzione, non di scoprirlo per caso.
+
+\paragraph{Ambiente di sviluppo riproducibile, non configurazione di produzione}
+Va detto apertamente che cosa il file di composizione descrive, perché la forma (due container, una rete, porte pubblicate) potrebbe suggerire più di quanto vi sia. Tre elementi lo qualificano senza ambiguità: l'applicazione web è servita dal server di sviluppo\textsubscript{G} e non da un pacchetto costruito; entrambi i servizi montano la copia di lavoro della rispettiva cartella sopra il contenuto dell'immagine, che viene così sostituito da ciò che si trova sul disco dello sviluppatore; il servizio applicativo è avviato in modalità di ricaricamento automatico al variare dei sorgenti. Sono tre caratteristiche del lavoro quotidiano, non dell'esercizio.
+
+Ciò che il file descrive è quindi un ambiente di sviluppo\textsubscript{G} riproducibile: il suo scopo è che sette persone su sistemi\textsubscript{G} operativi diversi eseguano il medesimo ambiente con un solo comando, non che il prodotto sia dispiegato presso un utilizzatore. Il prodotto è un elaborato didattico e non è rilasciato in esercizio: una configurazione di produzione non è mancante per omissione, ma perché non esiste il contesto che la richiederebbe. Per esserlo occorrerebbero il pacchetto del frontend\textsubscript{G} costruito e servito staticamente, l'assenza dei volumi di sviluppo\textsubscript{G} e un'immagine dell'applicazione web autosufficiente, che contenga l'esito della costruzione anziché i sorgenti.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{diagrammi/pdf/deployment.pdf}
+    \caption{Diagramma di deployment dell'ambiente di sviluppo}
+    \label{fig:deployment}
+\end{figure}
+
+% CONTIENE: unità in esecuzione, immagini, rete, porte, configurazione, CORS,
+% ciclo di vita del processo, chiavi obbligatorie.
+% NON CONTIENE: il contenuto delle richieste HTTP (capitolo 4), i moduli interni
+% dei due livelli (§3.3 e §3.4), le motivazioni tecnologiche (capitolo 2).
 
 \subsubsection{Confronto con l'architettura a microservizi}
 \label{sec:confronto-microservizi}
-% CONTIENE: perché il servizio applicativo non è stato scomposto in servizi
-% autonomi. Argomentare con costi concreti e non con formule di rito: numero
-% di rotte esposte, assenza di dati posseduti, assenza di componenti con
-% profili di scalabilità divergenti; per contro orchestrazione, individuazione
-% reciproca dei servizi, tracciamento distribuito, chiamate di rete al posto
-% di chiamate di funzione.
+La prima alternativa considerata è la scomposizione del servizio applicativo in più servizi autonomi, ciascuno con il proprio processo, il proprio ciclo di rilascio e la propria unità di esecuzione. È stata scartata perché sproporzionata rispetto al problema, e le ragioni sono misurabili sul codice.
+
+Il servizio applicativo espone otto rotte e non possiede dati: non dispone di un archivio, non conserva stato applicativo fra una richiesta e la successiva, e non esiste quindi alcun insieme di dati da assegnare in proprietà esclusiva a un servizio piuttosto che a un altro, che è il criterio principale con cui una scomposizione in microservizi viene tracciata. Manca inoltre il presupposto della scalabilità differenziata: le operazioni assistite dal modello linguistico condividono la medesima struttura, poiché tutte ricevono un testo, ne compongono le istruzioni e ne inoltrano il flusso prodotto, e il loro carico cresce e diminuisce insieme. Non esiste una componente che debba essere replicata mentre le altre restano ferme.
+
+I costi, per contro, si sarebbero presentati per intero. Sarebbe stato necessario un livello di orchestrazione per governare più unità di esecuzione, un meccanismo di individuazione reciproca perché ciascun servizio potesse localizzare gli altri, e un tracciamento distribuito delle richieste, senza il quale seguire una singola operazione attraverso più processi diventa impraticabile. Soprattutto, ogni collaborazione oggi realizzata da una chiamata di funzione sarebbe diventata una chiamata di rete, cioè un'operazione che può fallire parzialmente, andare in scadenza o riuscire a metà, e che va quindi corredata di ritentativi, scadenze e politiche di reazione al guasto. Su un'operazione che deve restituire testo in streaming, ogni salto di rete aggiunto si somma al tempo che separa l'utente dal primo frammento visibile.
+
+Il beneficio corrispondente (rilascio e scalabilità indipendenti di parti che evolvono a ritmi diversi) non si sarebbe presentato, perché tali parti non esistono. L'indipendenza di cui il prodotto ha effettivamente bisogno è quella fra le due unità già individuate nella sezione \ref{sec:architettura-panoramica}, ed è ottenuta senza alcuna di quelle infrastrutture: le due unità hanno catene di costruzione distinte, sono avviate separatamente e comunicano attraverso un contratto esplicito.
+
+% CONTIENE: l'argomentazione contro la scomposizione in microservizi.
 % NON CONTIENE: la descrizione dello stile adottato, che è di §3.1.2.
 
 \subsubsection{Confronto con il monolite a strati}
 \label{sec:confronto-monolite}
-% CONTIENE: perché alla disposizione in livelli sovrapposti è stato preferito
-% l'esagono. Il punto dirimente è la direzione delle dipendenze: nel monolite
-% a strati il dominio può importare le librerie di infrastruttura, nell'esagono
-% no, e la differenza è verificata staticamente dai contratti di §3.4.1.
-% NON CONTIENE: la descrizione dei contratti, da richiamare per riferimento.
+La seconda alternativa considerata è la disposizione del servizio applicativo in livelli sovrapposti (presentazione, logica applicativa, accesso ai servizi esterni), secondo la struttura tradizionale del monolite a strati. Il confronto con l'esagono non riguarda il numero dei package né i loro nomi, che sarebbero stati pressoché gli stessi: riguarda la direzione delle dipendenze.
+
+Nel monolite a strati ogni livello dipende da quello sottostante: la logica applicativa importa il livello di accesso ai servizi esterni, e con esso le librerie che quel livello impiega. Nulla impedisce quindi al dominio\textsubscript{G} di importare il client HTTP, il client di un fornitore o il framework\textsubscript{G} web, e l'unica difesa contro il fatto che ciò accada è la disciplina di chi scrive. Nell'esagono la dipendenza è invertita dalla porta e punta sempre verso il centro; la differenza, come descritto nella sezione \ref{sec:backend-esagono}, non è affidata a un'intenzione ma verificata\textsubscript{G} staticamente dai contratti di dipendenza dichiarati nel repository\textsubscript{G}.
+
+Le conseguenze pratiche sono due, ed entrambe si pagherebbero a ogni modifica.
+
+\begin{itemize}
+    \setlength{\itemsep}{2pt}
+    \item \textbf{Prova di un caso d'uso}\\
+    Nel monolite a strati esercitare una singola operazione richiederebbe di predisporre le componenti dei livelli inferiori da cui essa dipende, cioè di montare l'infrastruttura per provare una regola che con l'infrastruttura non ha nulla a che vedere. Nell'esagono la stessa operazione riceve una porta, e alla porta si sostituisce un doppio.
+    \item \textbf{Sostituzione di un fornitore esterno}\\
+    Nel monolite a strati la conoscenza del fornitore sarebbe diffusa in tutto il codice che lo invoca, e sostituirlo comporterebbe di intervenire ovunque quel codice si trovi. Nell'esagono la conoscenza è confinata in un adattatore, e la sostituzione consiste nello scriverne un altro.
+\end{itemize}
+
+\noindent Il costo dell'esagono va dichiarato: è un livello di indirezione in più, poiché fra chi chiede un'operazione e chi la esegue si interpone un'interfaccia astratta. È il prezzo accettato in cambio delle due proprietà appena descritte.
+
+% CONTIENE: l'argomentazione contro il monolite a strati, imperniata sulla
+% direzione delle dipendenze.
+% NON CONTIENE: la descrizione dei contratti di dipendenza, richiamata con \ref
+% a §3.4.1.
 
 \subsection{Architettura del frontend}
 \label{sec:architettura-frontend}
@@ -1006,13 +1100,22 @@ I termini fissati nella tabella \ref{tab:vocabolario-architetturale} sono impieg
 
 \subsubsection{Struttura a esagono e contratti di dipendenza}
 \label{sec:backend-esagono}
-% CONTIENE: i quattro package di app/ e la regola che assegna un modulo
-% all'uno o all'altro; la direzione delle dipendenze; i contratti dichiarati
-% in api/.importlinter, uno per uno, e il fatto che siano verificati
+% CONTIENE: i tre package di app/ (api, core, infrastructure) e la regola che
+% assegna un modulo all'uno o all'altro; i moduli sciolti che restano fuori dai
+% tre package (dependencies.py, export_openapi.py, main.py, settings.py), che il
+% contratto layers non governa; la direzione delle dipendenze; i contratti
+% dichiarati in api/.importlinter, uno per uno, e il fatto che siano verificati
 % staticamente da import-linter come processo dell'integrazione continua.
 % Prevedere qui il segnaposto per il diagramma dei package.
 % NON CONTIENE: la ripetizione della panoramica di §3.1.2, che va richiamata
 % per riferimento e non riscritta.
+%
+% Promemoria per il redattore: i contratti dichiarati sono QUATTRO e i loro
+% nomi, riportati qui come compaiono in api/.importlinter, sono
+%   Il core non conosce l'infrastruttura né i framework
+%   Direzione delle dipendenze
+%   Gli adattatori non si importano tra loro
+%   Il core non importa direttamente app.settings
 
 \subsubsection{Adattatori primari}
 \label{sec:backend-adattatori-primari}
@@ -1054,53 +1157,143 @@ I termini fissati nella tabella \ref{tab:vocabolario-architetturale} sono impieg
 
 \subsection{Design pattern adottati}
 \label{sec:design-pattern}
-% CONTIENE: un pattern per sottosezione, ciascuna con la definizione del
-% pattern, il problema che risolve NEL PRODOTTO, i moduli coinvolti e il
-% segnaposto per il diagramma relativo.
-% NON CONTIENE: la descrizione dei moduli, che appartiene a §3.3 e §3.4 e va
-% richiamata per riferimento.
+Un pattern figura in questa sezione se e solo se sono vere tre condizioni insieme: la struttura che lo realizza è presente nel codice; è stata scelta dal gruppo, e non ricevuta dall'uso ordinario di una libreria o di un framework\textsubscript{G}; esisteva un problema del prodotto che senza quella scelta sarebbe rimasto irrisolto. La seconda condizione è quella che esclude di più, ed è deliberato: impiegare una libreria che al proprio interno realizza un pattern non equivale ad adottare quel pattern. Chi importa una libreria di gestione dello stato non ha progettato un Observer, così come chi dichiara una rotta non ha progettato un Command. Documentare quelle strutture come scelte di progettazione significherebbe attribuirsi decisioni prese da altri.
+
+L'applicazione del criterio ha prodotto quattro pattern documentati (Object Adapter, Facade, Observer e Dependency Injection) e quattro valutati e scartati, riportati con la relativa motivazione nella sottosezione \ref{sec:pattern-scartati}. Le strutture escluse non sono elencate per completezza formale: sono i candidati che un lettore si aspetterebbe di trovare, e per ciascuno è dichiarata la condizione che non risulta soddisfatta.
+
+\paragraph{Una distinzione da fissare: adattatore architetturale e Object Adapter}
+Il capitolo impiega il termine \textit{adattatore} in due accezioni che non coincidono, e confonderle è l'errore più frequente su questo tema. Nel vocabolario architetturale fissato nella sezione \ref{sec:panoramica-vocabolario} un adattatore è un modulo che sta sul bordo dell'esagono: primario se traduce una richiesta esterna in una chiamata al dominio\textsubscript{G}, secondario se realizza una porta per conto del dominio\textsubscript{G}. Nel catalogo dei design pattern, invece, l'Object Adapter è una struttura precisa, che presuppone due interfacce preesistenti e incompatibili da far collaborare.
+
+Ne segue che gli adattatori primari descritti nella sezione \ref{sec:backend-adattatori-primari} non sono Object Adapter: non esiste, dal lato in ingresso, un'interfaccia preesistente che il dominio\textsubscript{G} non sappia consumare; il framework\textsubscript{G} web consegna una richiesta già decodificata, e la rotta la inoltra a un caso d'uso scritto dal gruppo. Sono adattatori in senso architetturale e nient'altro. Lo sono invece, e a pieno titolo, i soli adattatori secondari, che è ciò di cui tratta la sottosezione seguente.
 
 \subsubsection{Object Adapter}
 \label{sec:pattern-adapter}
-% CONTIENE: i due adattatori che rendono compatibile l'interfaccia di un
-% fornitore esterno con la porta attesa dal dominio. È la variante a oggetti,
-% non a classi: l'adattatore incapsula il client del fornitore invece di
-% ereditarne.
+
+\paragraph{Definizione}
+L'Adapter converte l'interfaccia di una classe esistente in un'altra interfaccia, quella che il client si attende, permettendo la collaborazione fra due parti che per firma o per protocollo non potrebbero comunicare. Nella variante a oggetti, che è quella qui adottata, l'adattatore incapsula per composizione l'oggetto da adattare e ne inoltra le chiamate; nella variante a classi ne erediterebbe. La differenza non è di stile: la composizione consente di adattare un oggetto la cui classe non è modificabile, come è il caso dei client forniti da terzi.
+
+\paragraph{Problema risolto}
+Il nucleo del prodotto ha bisogno di due capacità che non possiede: ottenere testo prodotto in modo incrementale da un modello linguistico e ottenere il contenuto testuale di una pagina web. Entrambe sono fornite da librerie di terzi, le cui interfacce sono incompatibili con ciò che il dominio\textsubscript{G} dichiara di volere: il client del gateway parla il formato di filo del fornitore, con le proprie chiavi e i propri codici di stato, mentre il dominio\textsubscript{G} parla di messaggi e di frammenti di testo; il client del servizio di estrazione, per parte sua, è sincrono, e invocarlo direttamente da una funzione asincrona bloccherebbe l'intero processo per la durata della chiamata di rete, arrestando anche gli streaming già aperti verso altri utenti.
+
+Senza l'adattamento, l'incompatibilità si risolverebbe nell'unico modo rimasto: portando la conoscenza del fornitore dentro il dominio\textsubscript{G}. I casi d'uso conoscerebbero il formato di filo, i codici di errore e la natura sincrona di una delle due librerie, e cambiare fornitore diventerebbe una modifica diffusa anziché circoscritta.
+
+\paragraph{Implementazione}
+I due adattatori descritti nella sezione \ref{sec:backend-adattatori-secondari} realizzano ciascuno una delle due porte dichiarate dal nucleo e incapsulano per composizione il client del proprio fornitore: nessuno dei due eredita dalla classe adattata, che appartiene a una libreria di terzi. Ciascuno svolge tre traduzioni: dalla forma del dominio\textsubscript{G} a quella del protocollo del fornitore, dal risultato del fornitore alla forma attesa dalla porta e, soprattutto, dagli errori del fornitore al tipo di errore dichiarato dalla porta. Quest'ultima è la traduzione che rende l'adattamento completo: senza di essa il chiamante dovrebbe conoscere le eccezioni della libreria sottostante, e la porta non sarebbe un contratto ma una firma. Nel caso dell'estrazione l'adattamento riguarda anche il modello di esecuzione, poiché una chiamata sincrona è trasposta su un thread separato per non arrestare il ciclo degli eventi.
+
+Vale la pena riportare come la seconda porta sia nata, perché mostra che il pattern è stato \textit{applicato} e non ricevuto per caso. L'astrazione verso il modello linguistico esisteva fin dalla prima versione del repository\textsubscript{G} di prodotto, mentre l'estrazione era affidata a un modulo che costruiva e invocava direttamente il client del fornitore. L'asimmetria è stata rilevata e sanata con un intervento dedicato, il cui unico scopo era portare l'estrazione al medesimo trattamento: da lì nascono la porta, l'adattatore corrispondente e l'iniezione nella rotta. La sezione \ref{sec:tecnologie-backend} ne riporta la conseguenza dal lato delle tecnologie.
+
+\paragraph{Vantaggi}
+La conoscenza di ciascun fornitore è confinata in un solo modulo, e sostituirlo comporta la scrittura di un nuovo adattatore e la modifica del solo modulo di composizione, come descritto nella sezione \ref{sec:backend-composition-root}. Il nucleo resta scritto nei termini del prodotto e non in quelli di una libreria, e i contratti di dipendenza verificati staticamente, descritti nella sezione \ref{sec:backend-esagono}, impediscono che quella conoscenza rientri nel dominio\textsubscript{G} per disattenzione. Infine, poiché il tipo dichiarato è la porta e non l'adattatore, ogni consumatore può essere esercitato con un doppio: è il vantaggio ripreso nella sottosezione \ref{sec:pattern-di}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{diagrammi/pdf/object_adapter.pdf}
+    \caption{Diagramma delle classi dell'Object Adapter}
+    \label{fig:object-adapter}
+\end{figure}
 
 \subsubsection{Facade}
 \label{sec:pattern-facade}
-% CONTIENE: il modulo dell'applicazione web che espone un'interfaccia unica e
-% ridotta verso il servizio applicativo, nascondendo ai componenti la
-% costruzione della richiesta, la gestione della risposta e la decodifica del
-% flusso. È dichiarato come tale nel codice (web/src/lib/api.ts).
+
+\paragraph{Definizione}
+La Facade fornisce un'interfaccia unificata e di livello più alto verso un insieme di interfacce di un sottosistema, rendendone più semplice l'uso. Non elimina il sottosistema né ne vieta l'accesso diretto: ne offre una vista ridotta, tagliata sui casi d'uso effettivi dei suoi clienti.
+
+\paragraph{Problema risolto}
+Contattare il servizio applicativo non è, per l'applicazione web, un'operazione elementare. Richiede di comporre l'indirizzo della rotta a partire dall'indirizzo di base descritto nella sezione \ref{sec:deployment-unita}, di costruire la richiesta con il metodo, le intestazioni e il corpo serializzato, di distinguere una risposta riuscita da una fallita interpretandone lo stato ed estraendone il messaggio destinato all'utente, e infine di decodificare un flusso che non arriva come un valore unico ma come una sequenza di eventi da riassemblare.
+
+Senza una facciata, ciascuno di questi passaggi ricadrebbe sul componente che invoca l'operazione. La conseguenza non sarebbe soltanto la duplicazione: la conoscenza del protocollo si spargerebbe nell'albero dei componenti, e una modifica del contratto (una rotta rinominata, un formato d'errore cambiato) richiederebbe di intervenire in tutti i punti che la posseggono, con la certezza di dimenticarne qualcuno.
+
+\paragraph{Implementazione}
+Il modulo descritto nella sezione \ref{sec:frontend-accesso-servizio} espone una funzione per ciascuna delle sette operazioni assistite, ciascuna con i soli parametri di dominio\textsubscript{G} dell'operazione e un unico tipo di ritorno: una sequenza asincrona di frammenti testuali. Tutto il resto (indirizzo, metodo, intestazioni, serializzazione, lettura dello stato della risposta, estrazione del messaggio d'errore, decodifica del flusso e conversione dell'evento terminale di errore in un fallimento) vive dietro quella superficie. Il modulo si dichiara facciata nel proprio commento d'apertura, ed è quindi una scelta esplicita e non una lettura a posteriori.
+
+\paragraph{Vantaggi}
+I componenti dell'interfaccia esprimono \textit{che cosa} chiedono e non \textit{come} lo si ottiene: invocano un'operazione e consumano frammenti. Il protocollo è conosciuto in un solo punto dell'applicazione web, ed è lo stesso punto che impiega i tipi derivati dal contratto pubblicato dal servizio applicativo, come descritto nella sezione \ref{sec:idiomi-tipizzazione}. Va osservato, per non attribuire alla facciata un merito che oggi non ha, che i suoi clienti sono uno solo: il componente che presenta le operazioni assistite. Il beneficio realizzato non è quindi la mancata duplicazione fra molti chiamanti, ma la separazione fra la conoscenza del protocollo e la presentazione, che resta valida con un cliente e diventa determinante quando se ne aggiunge un secondo.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{diagrammi/pdf/facade.pdf}
+    \caption{Diagramma della facciata di accesso al servizio applicativo}
+    \label{fig:facade}
+\end{figure}
 
 \subsubsection{Observer}
 \label{sec:pattern-observer}
-% CONTIENE: la sottoscrizione dei componenti a singole porzioni di stato degli
-% store, con notifica ai soli sottoscrittori della porzione modificata.
+
+\paragraph{Definizione}
+L'Observer stabilisce una dipendenza uno-a-molti fra oggetti, tale che al mutare dello stato del soggetto tutti i suoi osservatori siano notificati e aggiornati automaticamente. Il soggetto non conosce l'identità degli osservatori, che si registrano e si cancellano autonomamente.
+
+\paragraph{Problema risolto}
+Va dichiarato con precisione che cosa, qui, sia scelta del gruppo, perché la sezione perderebbe credibilità se rivendicasse più del dovuto. La libreria di gestione dello stato realizza Observer al proprio interno, e adottarla non è di per sé una decisione di progettazione: quel meccanismo si sarebbe ottenuto con qualunque libreria della stessa famiglia. La scelta del gruppo è un'altra, e riguarda la granularità della sottoscrizione.
+
+Il problema si osserva durante lo streaming. La porzione di stato che raccoglie l'esito in arrivo dal servizio applicativo cambia molte volte al secondo, poiché ogni frammento ricevuto la aggiorna. Se i componenti si sottoscrivessero allo stato nel suo complesso, o a un oggetto che ne aggreghi più porzioni, ogni frammento provocherebbe il ridisegno di tutta l'area di lavoro: l'editor verrebbe ricostruito decine di volte al secondo, con la perdita della posizione del cursore e dello scorrimento mentre l'utente osserva il testo comparire.
+
+\paragraph{Implementazione}
+I due store descritti nella sezione \ref{sec:frontend-stato} espongono un selettore per ciascuna porzione osservabile, e il codice enuncia la regola come vincolo\textsubscript{G} e non come consiglio: non si espongono mai porzioni composite. Un componente dichiara la porzione che gli serve e viene notificato solo quando quella cambia. La ripartizione che ne risulta è la ragione per cui lo streaming non disturba la scrittura: il componente che presenta l'esito in arrivo (la finestra di dialogo dell'operazione assistita, non il pannello di anteprima) è sottoscritto alla sola porzione che raccoglie i frammenti, mentre l'editor è sottoscritto a quella che contiene il testo della nota, che durante l'elaborazione non cambia.
+
+\paragraph{Vantaggi}
+Il costo del ridisegno è proporzionale a ciò che è effettivamente cambiato, non alla dimensione dello stato dell'applicazione. L'editor conserva cursore e posizione di scorrimento durante l'intera elaborazione, perché non viene toccato. Il beneficio è verificabile leggendo a quale selettore ciascun componente si sottoscrive, e non richiede misurazioni: è una proprietà della struttura delle sottoscrizioni.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{diagrammi/pdf/observer.pdf}
+    \caption{Diagramma soggetto-osservatori degli store e dei selettori}
+    \label{fig:observer}
+\end{figure}
 
 \subsubsection{Dependency Injection}
 \label{sec:pattern-di}
-% CONTIENE: la dichiarazione delle dipendenze nella firma delle rotte e la
-% loro risoluzione a opera del framework a partire dai provider del
-% composition root; il beneficio verificabile, cioè la sostituzione di un
-% adattatore con un doppio nei test senza toccare il codice di produzione.
+
+\paragraph{Definizione}
+La Dependency Injection è la tecnica per cui un componente non costruisce né cerca le proprie dipendenze, ma le riceve dall'esterno, tipicamente dichiarandole nella propria firma. Non appartiene al catalogo dei design pattern di Gamma, Helm, Johnson e Vlissides, e non le si attribuisce quindi alcuna delle tre categorie di quel catalogo: è una tecnica di realizzazione dell'\textit{Inversion of Control}, formalizzata successivamente e qui documentata perché è una scelta esplicita del gruppo con conseguenze verificabili.
+
+Il capitolo tiene distinti tre piani che si sovrappongono spesso: la Dependency Injection è il meccanismo, l'inversione delle dipendenze è il principio che il meccanismo serve, l'architettura esagonale è la forma che il principio assume nell'organizzazione dei package. Qui si tratta del solo meccanismo; per gli altri due si rimanda alla sezione \ref{sec:backend-esagono}.
+
+\paragraph{Problema risolto}
+Una rotta ha bisogno di una porta per servire la propria richiesta. Se la costruisse da sé dovrebbe nominare l'adattatore concreto, e con esso il fornitore, la chiave di accesso e il modo di ottenerla: la conoscenza che il modulo di composizione tiene in un punto solo tornerebbe distribuita fra le rotte. Ne seguirebbe anche l'impossibilità di provare una rotta senza contattare il fornitore reale, poiché non esisterebbe alcun punto in cui sostituire ciò che essa costruisce al proprio interno.
+
+\paragraph{Implementazione}
+Le rotte descritte nella sezione \ref{sec:backend-adattatori-primari} dichiarano la porta nella propria firma, associandola al provider che sa costruirla; è il framework\textsubscript{G} web a risolvere la dichiarazione prima di eseguire il corpo della rotta. I provider risiedono tutti nel modulo di composizione descritto nella sezione \ref{sec:backend-composition-root}, che resta l'unico punto in cui gli adattatori concreti sono nominati. La rotta di generazione a partire da un collegamento dichiara entrambe le porte, e non nomina alcun fornitore.
+
+\paragraph{Vantaggi}
+Il vantaggio rivendicato è verificabile nel repository\textsubscript{G} e non è un'attesa teorica: i test\textsubscript{G} sostituiscono l'adattatore con un doppio senza toccare il codice di produzione, registrando nella tabella delle dipendenze del framework\textsubscript{G} una funzione che restituisce il doppio al posto del provider reale. È così che il prodotto è provato contro un servizio di estrazione che fallisce sempre, o contro un client del modello linguistico che emette una sequenza nota di frammenti, senza rete e senza chiavi.
+
+Va tenuta distinta da questa la provabilità dei casi d'uso in isolamento rivendicata nella sezione \ref{sec:panoramica-stile-servizio}, che si ottiene con un meccanismo diverso: un caso d'uso riceve la porta come parametro, e il doppio gli è passato direttamente dal test\textsubscript{G}, senza che il framework\textsubscript{G} intervenga, ed è precisamente ciò che consente di esercitarlo senza montare HTTP. Le due sostituzioni sono due conseguenze distinte della medesima scelta, cioè di aver dichiarato ovunque il tipo della porta e mai quello dell'adattatore: la prima opera al confine HTTP e passa per il framework\textsubscript{G}, la seconda opera nel nucleo e non lo coinvolge affatto.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{diagrammi/pdf/dependency_injection.pdf}
+    \caption{Diagramma della risoluzione della dipendenza e della sostituzione con un doppio}
+    \label{fig:dependency-injection}
+\end{figure}
 
 \subsubsection{Pattern valutati e non adottati}
 \label{sec:pattern-scartati}
-% CONTIENE: i pattern considerati e scartati, ciascuno con la motivazione —
-% Strategy, Template Method, Decorator, Builder.
-% Su Strategy in particolare: la selezione della via di persistenza in base
-% alle capacità del browser NON è Strategy. È rilevamento di funzionalità
-% dell'ambiente: non esiste una famiglia di algoritmi incapsulati in oggetti
-% intercambiabili, né un contesto che ne detenga uno sostituibile a runtime.
-% Va detto esplicitamente, perché è l'attribuzione errata più probabile.
-% CONTIENE inoltre la precisazione sul Singleton: la memoizzazione dei
-% provider del composition root produce un'istanza unica per processo, ma non
-% è il Singleton della classificazione GoF, perché la classe non controlla la
-% propria istanziazione — resta istanziabile liberamente, ed è il chiamante a
-% ottenere sempre la stessa istanza. La differenza non è terminologica: il
-% Singleton GoF impedisce la sostituzione nei test, questa costruzione no.
+Le strutture seguenti sono state considerate e scartate. Per ciascuna è indicata la condizione del criterio che non risulta soddisfatta.
+
+\paragraph{Strategy}
+Due valutazioni distinte, che conviene non confondere.
+
+La prima riguarda un'attribuzione errata e assai probabile: la selezione della via di accesso al file system in base alle capacità del browser, descritta nella sezione \ref{sec:frontend-persistenza}, non è Strategy. Si tratta di rilevamento di funzionalità dell'ambiente di esecuzione: non esiste una famiglia di algoritmi incapsulati in oggetti intercambiabili, non esiste un contesto che ne detenga uno e possa sostituirlo, e la scelta non è configurabile né estendibile dall'esterno. È una diramazione condizionale eseguita una volta, su una capacità del browser che il codice interroga direttamente.
+
+La seconda riguarda un caso in cui Strategy sarebbe stato applicabile, e va argomentato senza liquidarlo. Le sei prospettive dell'analisi critica secondo il metodo dei Sei Cappelli\textsubscript{G} potrebbero essere incapsulate ciascuna in una classe, con un contesto che seleziona la prospettiva richiesta: sarebbe la scelta corretta se le sei differissero per logica di costruzione delle istruzioni destinate al modello. Nel codice del prodotto non è così. I costruttori delle istruzioni hanno struttura identica (una funzione unica, parametrizzata dalla prospettiva, che assembla ruolo, regole e testo dell'utente attraverso il medesimo compositore) e le sei prospettive differiscono per il solo blocco testuale delle indicazioni, raccolto in una tabella di costanti indicizzata dal cappello.
+
+Introdurre una famiglia di classi produrrebbe quindi indirezione senza rimuovere alcuna duplicazione, poiché non vi è logica duplicata da estrarre: la sola differenza fra le sei è già isolata in un dato. Va inoltre osservato quale sia oggi il costo dell'estensione, che è il criterio con cui Strategy si giudica: aggiungere una prospettiva è l'aggiunta di una voce alla tabella delle costanti, non la modifica di un algoritmo né la scrittura di una classe. La scelta opposta resta difendibile qualora una prospettiva richiedesse in futuro una costruzione propria; allo stato del codice, la condizione del criterio che non è soddisfatta è la terza: non esiste un problema che la sua adozione risolverebbe.
+
+\paragraph{Template Method}
+Il Template Method richiede una gerarchia di classi: una classe base che fissa lo scheletro di un algoritmo e ne delega i passi variabili a metodi astratti, e sottoclassi che li realizzano. Nel prodotto il flusso comune alle sette operazioni assistite (estrazione del primo frammento, verifica\textsubscript{G} della connessione, emissione degli eventi, trattamento del fallimento a metà flusso, chiusura) è effettivamente centralizzato in un punto solo, ma per composizione di funzioni e generatori, non per ereditarietà: non esiste alcuna classe base, alcun metodo astratto, alcuna sottoclasse. È la forma idiomatica in un servizio asincrono costruito su generatori, dove il punto di variazione è il generatore ricevuto come parametro. Una gerarchia non semplificherebbe nulla e aggiungerebbe la rigidità propria dell'ereditarietà.
+
+\paragraph{Decorator}
+Il Decorator aggiunge responsabilità a un oggetto avvolgendolo in un altro che ne rispetta l'interfaccia, così che i due siano interscambiabili per il client. Nel prodotto non esiste alcuna preoccupazione trasversale scritta dal gruppo e avvolta attorno a un'interfaccia comune: nessun modulo racchiude una porta per aggiungervi registrazione degli eventi, misurazione dei tempi, ritentativi o memorizzazione dei risultati. Il solo componente intermedio presente nel servizio applicativo è quello che applica la politica CORS, che è fornito dal framework\textsubscript{G}: non è stato progettato dal gruppo e non soddisfa quindi la seconda condizione del criterio.
+
+\paragraph{Builder}
+Il Builder separa la costruzione di un oggetto complesso dalla sua rappresentazione, procedendo per accumulo progressivo di parti e affidando a un direttore la sequenza dei passi. La costruzione delle istruzioni destinate al modello linguistico, descritta nella sezione \ref{sec:backend-nucleo}, avviene invece in un passo solo: una singola invocazione riceve tutte le parti come argomenti nominali e restituisce i due messaggi. Alcune parti sono facoltative, ma la facoltatività di un argomento non è accumulo progressivo, e non esiste alcun direttore né alcuna sequenza di passi da governare.
+
+\paragraph{Precisazione sul Singleton}
+Merita una nota a sé la memoizzazione applicata ai provider del modulo di composizione, descritta nella sezione \ref{sec:backend-composition-root}, perché produce un effetto che è facile scambiare per un Singleton: l'adattatore viene costruito una volta sola e ogni richiesta successiva riceve la medesima istanza, che vive quanto il processo.
+
+Non è tuttavia il Singleton della classificazione GoF, e la differenza non è terminologica. Nel Singleton è la classe a controllare la propria istanziazione: nasconde il costruttore e concede un unico punto di accesso globale, rendendo impossibile ottenere una seconda istanza. Qui le classi degli adattatori non controllano nulla, restano liberamente istanziabili (i test\textsubscript{G} ne costruiscono direttamente, passando le proprie credenziali fittizie) ed è il chiamante, attraverso il provider memoizzato, a ottenere sempre la stessa istanza. L'unicità è una proprietà del punto di costruzione, non della classe.
+
+La conseguenza è precisamente ciò che rende la distinzione rilevante: il Singleton GoF impedisce la sostituzione nei test\textsubscript{G}, perché non esiste un modo di far ottenere al codice di produzione un'istanza diversa da quella che la classe custodisce; questa costruzione no, e infatti la sostituzione con un doppio descritta nella sottosezione \ref{sec:pattern-di} è possibile proprio perché l'unicità risiede nel provider e non nella classe. La memoizzazione, inoltre, è azzerabile su richiesta, ed è così che i test\textsubscript{G} evitano che un adattatore costruito da un caso di prova sopravviva a quelli successivi.
 
 \subsection{Idiomi e convenzioni di codifica}
 \label{sec:idiomi-convenzioni}
@@ -1144,15 +1337,98 @@ I termini fissati nella tabella \ref{tab:vocabolario-architetturale} sono impieg
 
 \subsection{Generazione assistita da LLM\textsubscript{G} con risposta in streaming}
 \label{sec:flusso-streaming}
-% Contenuto previsto: diagramma di sequenza dall'azione dell'utente alla
-% comparsa progressiva del testo nell'anteprima, con i confini di
-% responsabilità attraversati. Requisiti coinvolti: R-54-F-Ob, R-72-F-Ob,
-% R-109-F-De.
+La presente sezione segue una singola interazione dall'azione dell'utente al frammento reso a video, attraversando i confini descritti nel capitolo \ref{sec:architettura}. L'operazione impiegata come pilota è il riassunto; le altre sei operazioni assistite dal modello linguistico condividono per intero la struttura qui descritta e differiscono soltanto per la rotta contattata, i parametri trasmessi e le istruzioni composte per il modello. Ciò che segue vale quindi per tutte, e non viene ripetuto sette volte.
+
+\paragraph{L'avvio}
+L'utente attiva l'operazione da un comando della barra superiore, che apre la finestra di dialogo dedicata. Per le operazioni che agiscono sul testo della nota (riassunto, traduzione, riscrittura, correzione e analisi critica) il testo non è digitato in un campo: è prelevato dall'area di lavoro secondo una regola unica, che restituisce la selezione corrente se non è vuota e altrimenti l'intera nota. È così che una sola coppia di comandi copre i due modi d'uso previsti dal requisito\textsubscript{G} \textbf{R-54-F-Ob}, senza che l'utente debba dichiarare su che cosa intende operare. Le due operazioni di generazione, che attuano \textbf{R-72-F-Ob}, ricevono invece dall'utente un'indicazione testuale o un indirizzo, e in quel caso l'input proviene da un campo della finestra di dialogo.
+
+Prima che qualunque richiesta parta, l'invio è sottoposto a una validazione preliminare nel browser, i cui limiti sono dichiarati nel registro delle operazioni disponibili: una lunghezza minima e una lunghezza massima, distinte per operazione. Un testo troppo breve o troppo lungo non produce una richiesta ma un messaggio che indica il limite superato e, nel caso della lunghezza massima, la dimensione attuale del testo; l'analisi critica richiede inoltre che sia stata scelta una prospettiva. La validazione non sostituisce quella del servizio applicativo: interviene prima, evita un viaggio di rete inutile e formula il rifiuto nei termini dell'interfaccia.
+
+Quei limiti sono valori di dominio\textsubscript{G}, non convenzioni dell'interfaccia: risiedono nel nucleo del servizio applicativo e sono pubblicati dal contratto attraverso una rotta dedicata. L'applicazione web non interroga quella rotta a tempo di esecuzione: i valori le arrivano a tempo di compilazione, attraverso i tipi generati dal contratto. Il meccanismo che ne impedisce la divergenza è infatti la tipizzazione: nel modulo dei tipi dell'applicazione web le costanti sono dichiarate con il tipo letterale che il contratto assegna a ciascuna, e una modifica del valore nel servizio applicativo, propagata ai tipi generati, farebbe fallire la compilazione. Va però osservato che il registro impiegato dalla validazione non passa da quelle costanti e riporta i medesimi numeri per esteso: il vincolo\textsubscript{G} esiste ed è dichiarato, ma il punto d'uso non vi si appoggia, e una divergenza fra i limiti dichiarati dal contratto e quelli applicati dall'interfaccia non verrebbe intercettata dal compilatore. La stessa costante di segnalazione impiegata dalla correzione, descritta più avanti, è invece consumata attraverso quel modulo e gode della garanzia.
+
+Quando i parametri e il testo coincidono con quelli dell'ultima operazione avviata, il comando di invio si presenta come rigenerazione: l'applicazione conserva la chiamata precedente e la riesegue senza ricostruirla. La forma in cui è conservata (una funzione che riceve al momento dell'esecuzione ciò che serve ad annullarla, e non lo cattura alla creazione) è ciò che rende la rigenerazione possibile anche dopo un annullamento, argomento della sezione \ref{sec:flusso-annullamento}.
+
+\paragraph{La richiesta}
+Superata la validazione, la chiamata attraversa il confine HTTP attraverso il modulo unico descritto nella sezione \ref{sec:frontend-accesso-servizio}: una richiesta \texttt{POST} con corpo JSON verso la rotta dell'operazione. Nessun altro punto dell'applicazione web contatta il servizio applicativo. La risposta non è attesa nella sua interezza: il corpo è letto come flusso, e il chiamante riceve una sequenza asincrona di frammenti testuali che consuma via via che arrivano.
+
+\paragraph{Il servizio applicativo}
+Sul lato server la richiesta incontra tre passaggi e nessuna logica di prodotto nel mezzo. Il corpo è validato prima che il corpo della rotta sia eseguito, sulla base dello schema dichiarato per quella rotta: una richiesta malformata non raggiunge mai il dominio\textsubscript{G} e riceve una risposta di errore di validazione, la cui forma è unificata con quella di ogni altro errore dell'API\textsubscript{G} e il cui trattamento è descritto nella sezione \ref{sec:flusso-errori}. La rotta invoca quindi il caso d'uso, passandogli i dati dell'operazione e la porta ricevuta per iniezione.
+
+Il caso d'uso costruisce le istruzioni destinate al modello e restituisce il flusso della porta senza consumarlo. È una proprietà da sottolineare, perché tutto ciò che segue vi si appoggia: chi riceve quel flusso ottiene un generatore ancora \textit{freddo}, dal quale nessun frammento è stato ancora estratto. La rotta lo consegna infine all'adattatore di trasporto, che è il modulo incaricato di trasformarlo in una risposta HTTP.
+
+\paragraph{La composizione delle istruzioni}
+Fra la richiesta e il fornitore si colloca il passaggio in cui il testo dell'utente diventa una richiesta al modello. La composizione produce due messaggi distinti: nel primo confluiscono il ruolo attribuito al modello e le regole che governano contenuto e forma della risposta, oltre all'indicazione di lunghezza quando l'operazione la prevede; nel secondo, e soltanto in quello, il testo dell'utente. La separazione non è formale: è ciò che tiene distinte le istruzioni del prodotto dal materiale su cui operano, e la sezione \ref{sec:backend-nucleo} ne descrive la costruzione. Per il percorso qui seguito è sufficiente osservare che il testo trasmesso al fornitore non è il testo dell'utente da solo, e che ciò che l'utente scrive non entra mai nella posizione in cui il modello si attende le proprie istruzioni.
+
+\paragraph{L'ultimo tratto: la richiesta al fornitore}
+L'adattatore che realizza la porta traduce i due messaggi nel formato di filo del gateway e richiede esplicitamente una risposta incrementale. Il gateway risponde a sua volta con un flusso di eventi, che l'adattatore consuma riga per riga estraendone la sola porzione di testo prodotta dal modello e ignorando le righe di servizio, compreso il terminatore proprio del fornitore. Ciò che risale verso il dominio\textsubscript{G} è quindi una sequenza di frammenti testuali privi di qualunque struttura del protocollo del fornitore: il formato descritto nel paragrafo seguente è prodotto dal servizio applicativo, non inoltrato dal gateway. La connessione è soggetta a un tempo massimo di attesa, superato il quale l'operazione fallisce come qualunque altro guasto del fornitore.
+
+\paragraph{Il protocollo di trasporto}
+La risposta è emessa con tipo di contenuto \texttt{text/event-stream} secondo la specifica \textit{Server-Sent Events}, e il formato degli eventi è il cuore tecnico di questa sezione.
+
+Un frammento di testo è emesso come un evento di dati: una riga \texttt{data:\ } per ciascuna riga del contenuto, seguita da una riga vuota che chiude l'evento. La suddivisione per righe non è un dettaglio implementativo ma una necessità del formato: nella specifica il valore di un campo non può contenere un ritorno a capo, quindi emettere un frammento multiriga dentro un solo campo \texttt{data:} produrrebbe righe prive di prefisso, che il client scarterebbe. Non si perderebbe il solo carattere di a capo, ma tutto il testo che lo segue, una perdita sistematica, dato che tutte le operazioni assistite producono Markdown\textsubscript{G} con titoli, elenchi e blocchi di codice. Un frammento su una sola riga produce esattamente il formato elementare, quindi la regola è trasparente nel caso semplice.
+
+La fine del flusso è segnalata da un evento terminale convenzionale, \texttt{data: [DONE]} seguito dalla riga vuota. Il fallimento sopravvenuto durante l'emissione è segnalato da un evento terminale di errore, che si distingue dal precedente per il campo che lo apre: \texttt{event: error}, seguito dalle righe di dati che ne portano il messaggio, \texttt{Servizio temporaneamente non disponibile}. I tre esiti (completamento, errore dichiarato e chiusura senza alcun terminatore) sono quindi distinguibili dal client per asserzione e non per implicazione.
+
+\paragraph{I due momenti dell'errore}
+La distinzione che governa il trattamento dei guasti è temporale, e discende da una proprietà del protocollo HTTP: lo stato della risposta viene inviato prima del corpo, e una volta inviato non è più modificabile.
+
+L'adattatore di trasporto sfrutta il fatto che il flusso ricevuto sia ancora freddo ed estrae il primo frammento prima di restituire la risposta. Fino a quel momento nulla è stato inviato al browser: se il fornitore è irraggiungibile, se rifiuta la richiesta o se risponde in modo malformato, l'errore che ne deriva è ancora traducibile in uno stato HTTP 503, e il browser riceve un fallimento pulito come per qualunque altra richiesta.
+
+Dopo quel momento la strada è chiusa. L'intestazione è partita con esito positivo, i primi frammenti sono già a video, e nessuno stato di errore può più essere inviato. È qui che l'evento terminale di errore acquista la propria ragione: senza di esso il client osserverebbe la sola chiusura della connessione e non avrebbe modo di distinguerla da un completamento riuscito, presentando come compiuto un testo troncato. Il requisito\textsubscript{G} \textbf{R-80-F-Ob} impone di gestire gli errori di comunicazione con il servizio del modello preservando il contenuto originale dell'editor: presentare un esito parziale come definitivo lo violerebbe nel modo più insidioso, perché senza alcun segnale visibile. L'evento terminale è ciò che rende quel fallimento dichiarato anziché silenzioso.
+
+\paragraph{La decodifica e la presentazione}
+Nel browser il flusso è ricostruito da un decodificatore che lavora sulla struttura dell'evento e non sulla singola riga: accumula le righe di dati appartenenti al medesimo evento e le riunisce con un ritorno a capo, ricomponendo esattamente il frammento che il servizio ha suddiviso. Il riconoscimento avviene sul nome del campo e non con un confronto testuale sulla riga: è la proprietà che consente a un frammento il cui contenuto sia letteralmente \texttt{event: error} di raggiungere l'utente come testo anziché essere scambiato per un errore, e non è un caso di scuola in un'applicazione che genera Markdown\textsubscript{G} arbitrario. Il decodificatore riconosce i tre esiti descritti sopra e, nel caso di chiusura senza terminatore, emette esso stesso un fallimento, così che uno stream troncato non passi per completato.
+
+Ogni frammento decodificato è aggiunto in coda a una porzione di stato dedicata all'esito in arrivo. Coerentemente con quanto descritto nella sezione \ref{sec:pattern-observer}, ciò che si aggiorna è la sola parte di interfaccia che presenta l'esito in arrivo (l'area della finestra di dialogo dell'operazione, dichiarata come regione aggiornabile ai lettori di schermo) e non il pannello di anteprima, che resta legato al testo della nota e durante l'elaborazione non cambia. Per l'intera durata dell'operazione l'interfaccia mostra un indicatore di attesa accanto al comando di avvio, esposto come elemento di stato con etichetta esplicita, e i comandi che avvierebbero altre operazioni sono disabilitati: è l'attuazione del requisito\textsubscript{G} \textbf{R-109-F-De}, che richiede un indicatore di avanzamento per l'intera durata di un'attesa percepibile.
+
+Fra lo stato e ciò che l'utente legge si interpone un'ultima trasformazione, che va dichiarata perché il testo mostrato non avanza al ritmo con cui i frammenti arrivano: la porzione visualizzata cresce di un numero fisso di caratteri a ogni fotogramma dell'animazione del browser, fino a raggiungere quanto è stato ricevuto. Il flusso di rete e il flusso visivo restano quindi distinti (il secondo insegue il primo e lo raggiunge) e ciò che si osserva è una comparsa regolare del testo invece di avanzamenti a scatti dettati dalla rete. La trasformazione non altera il contenuto: il testo mostrato è sempre un prefisso di quello ricevuto.
+
+Due esiti si discostano dal caso generale e vanno riportati. Il primo è il flusso vuoto: un'operazione che si conclude senza aver prodotto alcun frammento è valida, e la risposta contiene il solo terminatore di fine. Il secondo riguarda la correzione ortografica e grammaticale, che quando non rileva errori non restituisce il testo corretto ma una costante di segnalazione concordata fra le due unità: l'interfaccia la riconosce, mostra un messaggio in linguaggio naturale al posto dell'esito e mantiene disabilitato il comando di accettazione, poiché non vi è nulla da inserire nella nota. È l'unico caso in cui il contenuto del flusso è interpretato dall'applicazione web anziché essere semplicemente reso.
+
+\paragraph{L'esito accettato}
+Finché l'operazione è in corso, e finché l'utente non la accetta, la nota non è toccata: l'esito vive in una porzione di stato separata dal testo del documento. Il comando di accettazione lo trasferisce nella nota secondo una modalità che dipende dal \textit{tipo} di operazione e non dalla presenza di una selezione: le trasformazioni del testo esistente lo sostituiscono, le generazioni lo accodano. Nel primo caso, se la selezione su cui l'operazione ha lavorato è ancora presente nel testo, viene sostituita quella soltanto; altrimenti l'esito sostituisce l'intera nota, che è il comportamento coerente con l'aver operato sull'intero testo.
+
+Il testo così ottenuto raggiunge il documento dell'editor come transazione, e non come sostituzione dello stato interno: la distinzione, descritta nella sezione \ref{sec:frontend-editor}, è ciò che consente di annullare l'inserimento con il comando di annullamento dell'editor, poiché la transazione entra nella cronologia delle modifiche, mentre un cambio di nota ne è esplicitamente escluso.
+
+\paragraph{Il contratto che tiene insieme i due lati}
+L'intero percorso poggia su un contratto dichiarato una sola volta. Gli schemi di validazione del servizio applicativo generano lo schema OpenAPI, che è versionato nel repository\textsubscript{G}; da quello schema sono generati i tipi impiegati dal modulo di accesso descritto sopra, anch'essi versionati. Poiché entrambi i file sono prodotti ma conservati sotto controllo di versione, possono restare indietro rispetto al codice che li produce: a impedirlo sono due guardie automatiche, che riesportano lo schema e rigenerano i tipi a ogni modifica proposta e ne pretendono la coincidenza con i file versionati. Il dettaglio dei processi che le eseguono è nella sezione \ref{sec:tecnologie-infrastruttura}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{diagrammi/pdf/sequenza.pdf}
+    \caption{Diagramma di sequenza di un'operazione assistita con risposta in streaming}
+    \label{fig:sequenza-streaming}
+\end{figure}
+
+% CONTIENE: il percorso completo di un'operazione assistita, il formato degli
+% eventi, i due momenti dell'errore, l'inserimento dell'esito nella nota.
+% NON CONTIENE: la descrizione dei moduli (§3.3, §3.4), la traduzione degli
+% errori in messaggi rivolti all'utente (§4.5), la generazione da collegamento
+% (§4.3).
 
 \subsection{Annullamento di un'operazione in corso}
 \label{sec:flusso-annullamento}
-% Contenuto previsto: propagazione della chiusura dal browser al backend e
-% da questo alla connessione verso il gateway. Requisito: R-79-F-De.
+Il requisito\textsubscript{G} \textbf{R-79-F-De} e il caso d'uso\textsubscript{G} \textbf{UC71} richiedono che un'elaborazione in corso possa essere annullata, che la richiesta pendente verso il servizio esterno sia annullata e che l'interfaccia sia riportata allo stato precedente senza applicare modifiche. La catena che ne discende attraversa gli stessi confini della sezione \ref{sec:flusso-streaming}, in senso inverso.
+
+\paragraph{L'origine e il primo anello}
+Il comando di interruzione è offerto in due punti dell'interfaccia (accanto all'indicatore di attesa nella finestra di dialogo dell'operazione e nella barra superiore) e compare solo mentre un'elaborazione è in corso. Entrambi agiscono sul medesimo oggetto: il controllore di annullamento creato all'avvio dell'operazione e conservato per la sua durata. Il segnale che esso espone è passato alla richiesta HTTP nel momento in cui questa viene inviata, ed è questo che rende l'annullamento effettivo e non apparente: prima che ciò fosse fatto, interrompere fermava il consumo dei frammenti nel browser ma lasciava la richiesta aperta, e il servizio applicativo continuava a produrre il flusso fino al terminatore, ignaro di non avere più un destinatario.
+
+\paragraph{L'annullamento non è un errore}
+L'interruzione della richiesta fa emergere nel client un errore che il browser solleva per segnalare l'operazione annullata. Riconoscerlo correttamente è ciò che protegge il requisito\textsubscript{G} \textbf{R-110-F-Ob}: se fosse trattato come un fallimento qualunque, il messaggio tecnico del browser (in lingua inglese) comparirebbe nell'interfaccia come se qualcosa fosse andato storto, mentre l'utente ha semplicemente ottenuto ciò che ha chiesto. Il riconoscimento avviene per nome dell'errore e non per classe, poiché la verifica per classe non attraversa i confini di contesto del browser e fallirebbe proprio nel percorso normale dell'annullamento. Riconosciuto come tale, l'annullamento chiude l'attesa senza produrre alcun messaggio d'errore. Il generatore che consuma la risposta chiude inoltre il lettore del corpo in ogni uscita anticipata, non solo in quella provocata dal segnale.
+
+\paragraph{Ciò di cui il servizio si accorge}
+Sul lato server la disconnessione del chiamante è verificata prima di ogni emissione: sia prima del primo frammento, sia a ogni successivo passaggio del ciclo. Rilevata la disconnessione, il ciclo di emissione termina senza inviare il terminatore di fine flusso, e la chiusura del generatore del dominio\textsubscript{G} è eseguita nel blocco conclusivo che accompagna in ogni caso l'uscita. La verifica è quindi a granularità di frammento: un'operazione già avviata non è interrotta a metà di un frammento, ma non ne produce di ulteriori.
+
+\paragraph{Che cosa accade verso il fornitore}
+Qui la descrizione deve distinguere due cose che non hanno lo stesso peso probatorio, e che il documento non può presentare come una sola. Ciò che il codice esegue esplicitamente è la chiusura del generatore del dominio\textsubscript{G} all'uscita dal ciclo di emissione. Ciò che ne consegue è che l'adattatore verso il fornitore, il quale mantiene la risposta aperta entro un blocco con gestione automatica della risorsa, esca da quel blocco e chiuda la risposta in streaming. Non esiste nel prodotto una riga che annulli esplicitamente la richiesta verso il fornitore: la chiusura della connessione discende dal comportamento del client HTTP all'uscita dal blocco, comportamento documentato dalla libreria ma non osservabile nel codice del prodotto. È corretto affermare che la catena si chiude; sarebbe scorretto attribuire al codice una propagazione esplicita che non contiene.
+
+\paragraph{Lo stato in cui resta l'interfaccia}
+L'indicatore di attesa si spegne immediatamente all'annullamento, per entrambi i comandi, e il controllore è azzerato: la durata percepita dall'utente termina quando egli interrompe, non quando il ciclo se ne accorge. La nota non è modificata, poiché l'esito entra nel documento solo su accettazione esplicita, e la post-condizione di UC71 sull'assenza di modifiche è quindi soddisfatta. Va però dichiarato che cosa resta: il testo parziale già ricevuto rimane visibile nell'area dell'esito, e poiché l'elaborazione non è più in corso il comando di accettazione torna disponibile. L'utente può quindi accettare deliberatamente un esito parziale, oppure scartarlo con il comando di rifiuto, che azzera l'esito e chiude la finestra di dialogo. Non si tratta di un ripristino automatico dello stato precedente: è una scelta lasciata all'utente, e l'unico stato che il sistema\textsubscript{G} ripristina da sé è quello di attesa.
+
+% CONTIENE: la catena dell'annullamento, dal comando dell'interfaccia alla
+% connessione verso il fornitore, e lo stato in cui l'interfaccia resta.
+% NON CONTIENE: il formato degli eventi (§4.1), la presentazione dei messaggi
+% di errore (§4.5).
 
 \subsection{Generazione a partire da un collegamento}
 \label{sec:flusso-collegamento}
