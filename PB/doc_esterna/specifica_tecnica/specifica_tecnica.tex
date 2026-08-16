@@ -245,8 +245,8 @@
 
 \newcommand{\titolo}{Specifica Tecnica}
 \newcommand{\dataverbale}{}
-\newcommand{\dataversione}{2026-08-13}
-\newcommand{\versione}{0.8.1}
+\newcommand{\dataversione}{2026-08-16}
+\newcommand{\versione}{0.8.2}
 \newcommand{\stato}{Stesura}
 % La Specifica Tecnica è documentazione esterna: fra i destinatari figura anche
 % la proponente, coerentemente con Analisi dei Requisiti e Piano di Qualifica.
@@ -276,6 +276,8 @@
     \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
     \hline
     \endhead
+    0.8.2 & 2026-08-16 & E. De Piccoli &  & - & Allineamento dell'Architettura del backend allo spostamento dell'adattatore di trasporto fra gli adattatori primari \\ \hline
+
     0.8.1 & 2026-08-13 & E. De Piccoli &  & - & Revisione delle sezioni Architettura del backend, Idiomi e convenzioni di codifica e dei relativi flussi: correzioni dei riferimenti ai casi d'uso, condensazione del testo e riordino delle figure \\ \hline
 
     0.8.0 & 2026-08-13 & E. De Piccoli &  & - & Stesura dei flussi di generazione a partire da un collegamento e di propagazione degli errori \\ \hline
@@ -1343,7 +1345,7 @@ La presente sezione descrive l'architettura logica del servizio applicativo: i p
 \paragraph{Notazione degli elenchi di firme.}
 Il segno \texttt{+} contrassegna i membri pubblici, il segno \texttt{-} quelli che il modulo non espone all'esterno. Le funzioni di modulo, che in Python non appartengono ad alcuna classe, sono riportate senza segno. I tipi sono quelli annotati nel codice.
 
-\diagrammamancante{Architettura del servizio applicativo}{backend-uml}{Diagramma delle classi del backend: le porte \texttt{LLMClient} e \texttt{ContentExtractor} con la rispettiva operazione e il rispettivo tipo di errore; i realizzatori \texttt{LiteLLMClient} e \texttt{TavilyExtractor} con le dipendenze verso i due fornitori esterni; i sette casi d'uso di \texttt{core/services/} e le loro dipendenze verso le porte; il value object \texttt{Message} e i tipi di \texttt{core/domain/values.py}; gli otto router di \texttt{api/routes/}, i sette DTO di \texttt{api/schemas.py} e lo schema \texttt{ErrorResponse}; l'adattatore di trasporto \texttt{sse\_response}; il composition root \texttt{dependencies.py} con i tre provider. Le frecce di dipendenza sono tutte dirette verso il centro.}
+\diagrammamancante{Architettura del servizio applicativo}{backend-uml}{Diagramma delle classi del backend: le porte \texttt{LLMClient} e \texttt{ContentExtractor} con la rispettiva operazione e il rispettivo tipo di errore; i due realizzatori \texttt{LiteLLMClient} e \texttt{TavilyExtractor}, sul lato secondario, con le dipendenze verso i rispettivi fornitori esterni; i sette casi d'uso di \texttt{core/services/} e le loro dipendenze verso le porte; il value object \texttt{Message} e i tipi di \texttt{core/domain/values.py}; sul lato primario gli otto router di \texttt{api/routes/}, i sette DTO di \texttt{api/schemas.py}, lo schema \texttt{ErrorResponse} e l'adattatore di trasporto \texttt{sse\_response}; il composition root \texttt{dependencies.py} con i tre provider. Le frecce di dipendenza sono tutte dirette verso il centro.}
 
 \subsubsection{Struttura a esagono e contratti di dipendenza}
 \label{sec:backend-esagono}
@@ -1359,9 +1361,9 @@ Il codice del servizio applicativo risiede in \texttt{api/app/} ed è ripartito 
     \setlength{\itemsep}{3pt}
     \item \texttt{app/core/}: il nucleo. Contiene i casi d'uso (\texttt{core/services/}), i valori e le istruzioni del dominio\textsubscript{G} (\texttt{core/domain/}) e le porte (\texttt{core/ports/}). Non importa nulla dagli altri package e nulla dalle librerie che realizzano il trasporto.
 
-    \item \texttt{app/api/}: gli adattatori primari. Contiene le rotte HTTP (\texttt{api/routes/}), gli schemi di validazione delle richieste (\texttt{api/schemas.py}) e la traduzione degli errori di validazione in messaggi rivolti all'utente (\texttt{api/errors.py}). È il lato da cui l'applicazione viene invocata.
+    \item \texttt{app/api/}: gli adattatori primari. Contiene le rotte HTTP (\texttt{api/routes/}), gli schemi di validazione delle richieste (\texttt{api/schemas.py}), la traduzione degli errori di validazione in messaggi rivolti all'utente (\texttt{api/errors.py}) e il modulo che dà forma alla risposta in streaming (\texttt{api/sse\_streaming.py}). È il lato da cui l'applicazione viene invocata.
 
-    \item \texttt{app/infrastructure/adapters/}: gli adattatori secondari. Contiene i due moduli che realizzano le porte parlando con i rispettivi fornitori e il modulo che dà forma alla risposta in streaming. È il lato che l'applicazione invoca.
+    \item \texttt{app/infrastructure/adapters/}: gli adattatori secondari. Contiene i \textbf{due} moduli che realizzano le porte parlando con i rispettivi fornitori. È il lato che l'applicazione invoca.
 
     \item I moduli di radice, che descrivono non una responsabilità del prodotto ma il modo in cui il processo è messo insieme: \texttt{main.py} costruisce l'applicazione e vi monta i router, \texttt{dependencies.py} è il composition root, \texttt{settings.py} dichiara lo schema della configurazione, \texttt{export\_openapi.py} scrive su file il contratto dell'API\textsubscript{G}.
 \end{itemize}
@@ -1388,14 +1390,14 @@ La direzione delle dipendenze è dichiarata in \texttt{api/.importlinter} come \
 
     \texttt{layers} & \textit{layers} & I tre package sono ordinati dall'esterno verso il centro: \texttt{app.api} sopra \texttt{app.infrastructure}, \texttt{app.infrastructure} sopra \texttt{app.core}. Un livello può importare quelli sottostanti, mai quelli soprastanti. \\ \hline
 
-    \texttt{adapter-\newline indipendente} & \textit{independence} & I tre moduli di \texttt{app/infrastructure/adapters/} (\texttt{litellm\_client}, \texttt{tavily\_extractor}, \texttt{sse\_streaming}) non si importano fra loro. \\ \hline
+    \texttt{adapter-\newline indipendente} & \textit{independence} & I due moduli di \texttt{app/infrastructure/adapters/} (\texttt{litellm\_client}, \texttt{tavily\_extractor}) non si importano fra loro. \\ \hline
 
     \texttt{core-non-\newline importa-settings} & \textit{forbidden} & Il nucleo non importa \texttt{app.settings}: non conosce nemmeno lo schema della configurazione del processo. \\ \hline
 \end{longtable}
 \endgroup
 
 \paragraph{Portata del contratto \texttt{layers}.}
-L'ordinamento in livelli consente a un adattatore primario di importare da \texttt{app/infrastructure/}, ed è ciò che accade: ognuna delle sette rotte assistite importa \texttt{sse\_response}, che è un modulo di trasporto interno. Nessuna rotta \textbf{istanzia però un adattatore di fornitore}: i nomi \texttt{LiteLLMClient} e \texttt{TavilyExtractor} non vi compaiono, perché la rotta dichiara la porta e la riceve dal composition root (sezione \ref{sec:backend-composition-root}).
+L'ordinamento in livelli consente a un adattatore primario di importare da \texttt{app/infrastructure/}, ma \textbf{nessun modulo di \texttt{app/api/} lo fa}: l'unico che nomini \texttt{LiteLLMClient} e \texttt{TavilyExtractor} è il composition root, che è un modulo di radice (sezione \ref{sec:backend-composition-root}). Le rotte dichiarano la porta di cui hanno bisogno e la ricevono dall'esterno, quindi il margine che il contratto lascia aperto resta inutilizzato.
 
 \subsubsection{Adattatori primari}
 \label{sec:backend-adattatori-primari}
@@ -1404,7 +1406,7 @@ L'ordinamento in livelli consente a un adattatore primario di importare da \text
 % all'utente; l'adattatore che formatta la risposta in streaming.
 % NON CONTIENE: il formato degli eventi sul filo (capitolo 4); la logica delle
 % operazioni, che è del nucleo.
-Il package \texttt{app/api/} traduce una richiesta HTTP in una chiamata al nucleo. Espone \textbf{otto rotte}, ciascuna definita in un modulo proprio di \texttt{api/routes/} e montata su \texttt{main.py} come router indipendente: sette accettano un corpo in \texttt{POST} e realizzano altrettante funzioni assistite dal modello linguistico (\texttt{/api/summarize}, \texttt{/api/generate}, \texttt{/api/generate-from-link}, \texttt{/api/translate}, \texttt{/api/rewrite}, \texttt{/api/grammar}, \texttt{/api/critique}); l'ottava, \texttt{GET /api/constants}, non accetta corpo e pubblica nel contratto le soglie del dominio\textsubscript{G} tramite lo schema \texttt{ApiConstants}, dichiarato nel modulo della rotta stessa. A queste si aggiunge la rotta di salute \texttt{GET /}, che risiede in \texttt{main.py} perché non appartiene ad alcuna funzione del prodotto.
+Il package \texttt{app/api/} traduce una richiesta HTTP in una chiamata al nucleo e l'esito del nucleo nella risposta verso il client. Espone \textbf{otto rotte}, ciascuna definita in un modulo proprio di \texttt{api/routes/} e montata su \texttt{main.py} come router indipendente: sette accettano un corpo in \texttt{POST} e realizzano altrettante funzioni assistite dal modello linguistico (\texttt{/api/summarize}, \texttt{/api/generate}, \texttt{/api/generate-from-link}, \texttt{/api/translate}, \texttt{/api/rewrite}, \texttt{/api/grammar}, \texttt{/api/critique}); l'ottava, \texttt{GET /api/constants}, non accetta corpo e pubblica nel contratto le soglie del dominio\textsubscript{G} tramite lo schema \texttt{ApiConstants}, dichiarato nel modulo della rotta stessa. A queste si aggiunge la rotta di salute \texttt{GET /}, che risiede in \texttt{main.py} perché non appartiene ad alcuna funzione del prodotto.
 
 \paragraph{Forma comune delle sette rotte assistite.}
 Ciascuna si esaurisce in tre passi e non contiene logica di dominio\textsubscript{G}. Il primo non è scritto in alcuna riga: quando l'handler viene eseguito il corpo è già stato validato, perché la validazione è dichiarata dal tipo del parametro. Il secondo invoca il caso d'uso, che costruisce le istruzioni e interroga la porta. Il terzo consegna il flusso all'adattatore di trasporto. La porta arriva alla rotta per iniezione della dipendenza, come valore predefinito del parametro corrispondente: \textbf{nessuna rotta nomina un adattatore concreto} e nessuna importa le istruzioni destinate al modello.
@@ -1421,7 +1423,7 @@ Il modulo \texttt{api/errors.py} traduce un errore di validazione di Pydantic in
 Il modulo \texttt{main.py} registra due gestori che riconducono ogni esito negativo allo schema \texttt{ErrorResponse}: uno per le eccezioni HTTP sollevate dalle rotte, uno per gli errori di validazione, restituiti con stato 422. Alle sette rotte con corpo è associata la dichiarazione esplicita che la risposta 422 ha forma \texttt{ErrorResponse}: senza di essa il contratto pubblicherebbe lo schema generato in automatico da FastAPI, che descrive \texttt{detail} come sequenza di oggetti, forma che l'applicazione non produce.
 
 \paragraph{L'adattatore di trasporto.}
-La funzione \texttt{sse\_response} converte il flusso di frammenti prodotto dal caso d'uso in una risposta HTTP progressiva. Risiede in \texttt{app/infrastructure/adapters/} e non in \texttt{app/api/} perché conosce il formato degli eventi sul filo, che è un protocollo: il criterio che assegna un modulo a un package è la conoscenza che esso possiede, non il luogo da cui viene chiamato. Il formato degli eventi è nella sezione \ref{sec:flusso-streaming}.
+La funzione \texttt{sse\_response}, in \texttt{api/sse\_streaming.py}, converte il flusso di frammenti prodotto dal caso d'uso in una risposta HTTP progressiva. Risiede fra gli adattatori primari perché \textbf{non realizza alcuna porta}, non parla con alcun servizio esterno e non viene mai invocata dal dominio\textsubscript{G}, ma dalle sette rotte assistite. Traduce l'esito prodotto dal nucleo nel protocollo della risposta verso il client, che è lavoro del lato da cui l'applicazione viene invocata. Che conosca HTTP e il formato degli eventi sul filo non la colloca altrove, perché anche le rotte li conoscono. Il formato degli eventi è nella sezione \ref{sec:flusso-streaming}.
 
 Alla firma appartiene una scelta che va motivata qui: la funzione \textbf{estrae il primo frammento prima di restituire la risposta}. Il server invia l'intestazione di stato prima di iniziare a iterare il flusso, e dopo quel momento non è più possibile rispondere con uno stato di errore; il prelievo anticipato intercetta quindi un guasto del fornitore mentre lo stato è ancora modificabile e lo traduce in 503 (UC72). Un guasto che sopraggiunga a metà flusso richiede un trattamento diverso (sezione \ref{sec:flusso-errori}). La funzione verifica inoltre a ogni frammento se il client si è disconnesso e in tal caso chiude il flusso: è il tratto terminale della propagazione dell'annullamento trattata nella sezione \ref{sec:idiomi-generatori}.
 
@@ -1528,7 +1530,9 @@ Sono dichiarate in \texttt{core/ports/} come classi astratte, ciascuna con una s
 % traduce la chiamata del dominio nel protocollo del proprio fornitore e ne
 % converte gli errori nel tipo dichiarato dalla porta; il ciclo di vita delle
 % risorse di trasporto che possiedono; il vincolo che vieta a un adattatore di
-% importarne un altro.
+% importare l'altro.
+% NON CONTIENE: l'adattatore che formatta la risposta in streaming, che non
+% realizza alcuna porta ed e' descritto fra gli adattatori primari (§3.4.2).
 % NON CONTIENE: le chiavi di accesso e la loro provenienza (§3.2.1).
 Il package \texttt{app/infrastructure/adapters/} contiene ciò che il nucleo invoca per parlare con il mondo. Ciascuna delle due porte ha \textbf{un solo realizzatore concreto}, responsabile di due traduzioni: dalla chiamata del dominio\textsubscript{G} al protocollo del proprio fornitore, e dagli errori del fornitore al tipo di errore che la porta dichiara. Sono le due traduzioni che consentono al nucleo di ignorare l'esistenza dei fornitori. Entrambi i moduli realizzano il pattern definito nella sezione \ref{sec:pattern-adapter}; la provenienza delle chiavi di accesso è nella sezione \ref{sec:deployment-unita}.
 
@@ -1546,7 +1550,7 @@ Una proprietà dell'adattatore non è visibile nella firma e va documentata: \te
 Entrambi gli adattatori possiedono un pool di connessioni che vive quanto il processo ed espongono un'operazione di chiusura asincrona, invocata alla terminazione. La simmetria delle due firme è voluta anche dove non sarebbe necessaria: la chiusura di \texttt{TavilyExtractor} non compie operazioni di rete e potrebbe essere sincrona, ma è dichiarata asincrona perché chi la invoca non debba distinguere i due casi. Nessuno dei due, inoltre, legge la configurazione del processo: la riceve dal costruttore, perché leggerla all'interno legherebbe una classe di infrastruttura alla configurazione globale e renderebbe impossibile istanziarla in un test\textsubscript{G} senza alterare l'ambiente di esecuzione.
 
 \paragraph{Indipendenza reciproca degli adattatori.}
-Il contratto \texttt{adapter-indipendente} vieta a ciascuno dei tre moduli del package di importare gli altri due. L'elenco comprende anche l'adattatore di trasporto descritto nella sezione \ref{sec:backend-adattatori-primari}: pur non realizzando alcuna porta, risiede in questo package perché conosce un protocollo, e soggiace quindi allo stesso vincolo\textsubscript{G}.
+Il contratto \texttt{adapter-indipendente} vieta a ciascuno dei due moduli del package di importare l'altro: i due fornitori sono indipendenti, e un adattatore che ne chiamasse un altro introdurrebbe fra servizi esterni una dipendenza che nessuna porta dichiara. Il package contiene i soli realizzatori delle porte; l'adattatore che dà forma alla risposta in streaming non ne fa parte, per la ragione riportata nella sezione \ref{sec:backend-adattatori-primari}.
 
 \paragraph{Firme.}
 \begin{firme}
