@@ -281,7 +281,7 @@ $ docker --version
     \textit{Ultimo accesso:} \daverificare{data di ultimo accesso}.
 
     \item \textbf{Analisi dei Requisiti v2.0.0}: \\
-    \daverificare{indirizzo dell'Analisi dei Requisiti v2.0.0} \\
+    \url{https://thebitless.live/PB/doc_esterna/analisi-dei-requisiti/analisi-dei-requisiti.pdf} \\
     \textit{Ultimo accesso:} \daverificare{data di ultimo accesso}.
 \end{itemize}
 
@@ -292,7 +292,7 @@ Il manuale è disponibile in due formati, il cui contenuto è mantenuto allineat
 \begin{itemize}
     \item \textbf{documento PDF}: adatto alla stampa e alla lettura sequenziale;
 
-    \item \textbf{versione web (HTML)}: pubblicata sul sito del gruppo, adatta alla consultazione rapida e disponibile all'indirizzo \daverificare{indirizzo della versione web del manuale}.
+    \item \textbf{versione web (HTML)}: pubblicata sul sito del gruppo, adatta alla consultazione rapida e disponibile all'indirizzo \daverificare{}\url{https://thebitless.live/PB/doc_esterna/manuale-utente/manuale-utente.html}. 
 \end{itemize}
 
 Le due versioni corrispondono alla stessa revisione del documento, indicata nel registro delle modifiche in apertura.
@@ -657,11 +657,9 @@ Il pulsante ``Immagine'' inserisce il riferimento a un'immagine nella forma \tex
 
 \subsection{Annullare e ripristinare una modifica}
 \label{sec:annullare-ripristinare}
-L'area di scrittura conserva la cronologia delle modifiche. La combinazione \texttt{Ctrl+Z} annulla l'ultima modifica.
+L'area di scrittura conserva la cronologia delle modifiche. La combinazione \texttt{Ctrl+Z} annulla l'ultima modifica, mentre la combinazione \texttt{Ctrl+Y} la ripristina.
 
 La barra degli strumenti non espone comandi corrispondenti: annullamento e ripristino si impartiscono soltanto da tastiera.
-
-\daverificare{combinazione di tasti che ripristina una modifica annullata}
 
 
 \section{Funzionalità di intelligenza artificiale}
@@ -730,8 +728,6 @@ Prima di inviare la richiesta, l'applicazione controlla che il testo e i paramet
 
 Gli errori che si verificano dopo l'invio della richiesta, durante l'elaborazione, compaiono anch'essi all'interno della finestra.
 
-\daverificare{testo dei messaggi mostrati in caso di servizio non raggiungibile o di interruzione della connessione}
-
 I problemi più frequenti e i relativi rimedi sono raccolti nella Sezione~\ref{sec:risoluzione-problemi}.
 
 \subsection{Che cosa viene modificato nella nota}
@@ -764,7 +760,12 @@ Il riassunto sostituisce il testo di partenza.
 \vspace{0.5em}
 
 \noindent
-\textbf{Esempio.} Testo di partenza: ``La biblioteca comunale ha inaugurato una nuova sala di lettura al primo piano. Lo spazio resta aperto nei giorni feriali dalle nove alle diciannove e ospita quaranta posti.'' Parametro scelto: ``Lunghezza output'' impostato su ``Breve''. Risultato: \daverificare{risultato prodotto dall'assistente, da rilevare eseguendo l'azione}.
+\textbf{Esempio.} Testo di partenza: ``L'intelligenza artificiale sta cambiando il modo in cui studiamo e lavoriamo, grazie a strumenti capaci di analizzare grandi quantità di dati in pochi secondi. È però importante mantenere un pensiero critico per valutare le informazioni che questi sistemi forniscono. Le università italiane stanno iniziando a integrarli nella didattica, cercando un equilibrio tra innovazione e rigore.'' Parametro scelto: ``Lunghezza output'' impostato su ``Breve''. Risultato: 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{assets/riassumi.png}
+\end{figure}
 
 \subsection{Traduci}
 \label{sec:azione-traduci}
@@ -789,7 +790,13 @@ La traduzione sostituisce il testo di partenza.
 \vspace{0.5em}
 
 \noindent
-\textbf{Esempio.} Testo di partenza: ``La biblioteca comunale ha inaugurato una nuova sala di lettura al primo piano. Lo spazio resta aperto nei giorni feriali dalle nove alle diciannove e ospita quaranta posti.'' Parametro scelto: ``Lingua di destinazione'' impostata su ``Inglese''. Risultato: \daverificare{risultato prodotto dall'assistente, da rilevare eseguendo l'azione}.
+\textbf{Esempio.} Testo di partenza: ``L'intelligenza artificiale sta cambiando il modo in cui studiamo e lavoriamo, grazie a strumenti capaci di analizzare grandi quantità di dati in pochi secondi. È però importante mantenere un pensiero critico per valutare le informazioni che questi sistemi forniscono. Le università italiane stanno iniziando a integrarli nella didattica, cercando un equilibrio tra innovazione e rigore.'' Parametro scelto: ``Lingua di destinazione'' impostata su ``Inglese''. Risultato: 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{assets/traduci.png}
+\end{figure}
+
 
 \subsection{Riscrivi}
 \label{sec:azione-riscrivi}
@@ -812,7 +819,13 @@ Il testo riscritto sostituisce quello di partenza.
 \vspace{0.5em}
 
 \noindent
-\textbf{Esempio.} Testo di partenza: ``La biblioteca comunale ha inaugurato una nuova sala di lettura al primo piano. Lo spazio resta aperto nei giorni feriali dalle nove alle diciannove e ospita quaranta posti.'' Parametro scelto: ``Stile'' impostato su ``Formale''. Risultato: \daverificare{risultato prodotto dall'assistente, da rilevare eseguendo l'azione}.
+\textbf{Esempio.} Testo di partenza: ``L'intelligenza artificiale sta cambiando il modo in cui studiamo e lavoriamo, grazie a strumenti capaci di analizzare grandi quantità di dati in pochi secondi. È però importante mantenere un pensiero critico per valutare le informazioni che questi sistemi forniscono. Le università italiane stanno iniziando a integrarli nella didattica, cercando un equilibrio tra innovazione e rigore.'' Parametro scelto: ``Stile'' impostato su ``Formale''. Risultato: 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{assets/riscrivi.png}
+\end{figure}
+
 
 \subsection{Grammatica}
 \label{sec:azione-grammatica}
@@ -825,7 +838,12 @@ Se non vengono rilevati errori, l'anteprima riporta ``Nessun errore rilevato.'' 
 \vspace{0.5em}
 
 \noindent
-\textbf{Esempio.} Testo di partenza: ``La biblioteca comunale ha inaugurato una nuova sala di lettura al primo piano. Lo spazio resta aperto nei giorni feriali dalle nove alle diciannove e ospita quaranta posti.'' Parametro scelto: nessuno, poiché l'azione non prevede parametri. Risultato: \daverificare{risultato prodotto dall'assistente, da rilevare eseguendo l'azione}.
+\textbf{Esempio.} Testo di partenza: ``L'intelligenza artificiale sta cambiando il modo in cui studiamo e lavoriamo, grazie a strumenti capaci di analizzare grandi quantità di dati in pochi secondi. È però importante mantenere un pensiero critico per valutare le informazioni che questi sistemi forniscono. Le università italiane stanno iniziando a integrarli nella didattica, cercando un equilibrio tra innovazione e rigore.'' Parametro scelto: nessuno, poiché l'azione non prevede parametri. Risultato: 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{assets/grammatica.png}
+\end{figure}
 
 \subsection{Analisi}
 \label{sec:azione-analisi}
@@ -868,7 +886,13 @@ Il commento prodotto viene aggiunto in fondo alla nota, separato da una riga vuo
 \vspace{0.5em}
 
 \noindent
-\textbf{Esempio.} Testo di partenza: ``La biblioteca comunale ha inaugurato una nuova sala di lettura al primo piano. Lo spazio resta aperto nei giorni feriali dalle nove alle diciannove e ospita quaranta posti.'' Parametro scelto: ``Prospettiva (cappello)'' impostata su ``Critico''. Risultato: \daverificare{risultato prodotto dall'assistente, da rilevare eseguendo l'azione}.
+\textbf{Esempio.} Testo di partenza: ``L'intelligenza artificiale sta cambiando il modo in cui studiamo e lavoriamo, grazie a strumenti capaci di analizzare grandi quantità di dati in pochi secondi. È però importante mantenere un pensiero critico per valutare le informazioni che questi sistemi forniscono. Le università italiane stanno iniziando a integrarli nella didattica, cercando un equilibrio tra innovazione e rigore.'' Parametro scelto: ``Prospettiva (cappello)'' impostata su ``Critico''. Risultato: 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{assets/analisi.png}
+\end{figure}
+
 
 \subsection{Genera}
 \label{sec:azione-genera}
@@ -883,7 +907,13 @@ Il testo prodotto viene aggiunto in fondo alla nota, separato da una riga vuota:
 \vspace{0.5em}
 
 \noindent
-\textbf{Esempio.} Istruzioni fornite: ``Scrivi tre righe di presentazione della nuova sala di lettura della biblioteca comunale''. Parametro scelto: ``Lunghezza output'' impostato su ``Breve''. Risultato: \daverificare{risultato prodotto dall'assistente, da rilevare eseguendo l'azione}.
+\textbf{Esempio.} Istruzioni fornite: ``Scrivi tre righe su l'utilizzo dell'intelligenza artificiale nelle università italiane''. Parametro scelto: ``Lunghezza output'' impostato su ``Breve''. Risultato: 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{assets/genera.png}
+\end{figure}
+
 
 \subsection{Buone pratiche}
 \label{sec:buone-pratiche-assistente}
@@ -906,6 +936,7 @@ Problemi più frequenti e relative soluzioni:
 \begin{itemize}
 
 \item \textbf{Problema:} Viene visualizzato il messaggio "Servono almeno N caratteri di testo."
+
 Il messaggio compare quando il testo su cui deve essere eseguita l'azione (riassumi, traduci, riscrivi, ecc.) è troppo corto, oppure quando il campo istruzioni o link è stato lasciato vuoto per un'azione che lo richiede.
 
 \textbf{Soluzione:} è necessario selezionare un testo più lungo nella nota prima di avviare l'azione, oppure, se non è stata effettuata alcuna selezione, verificare che la nota intera contenga testo sufficiente. Per le azioni "Genera" e "Genera da link" occorre assicurarsi di aver inserito istruzioni sufficienti o un URL valido.
