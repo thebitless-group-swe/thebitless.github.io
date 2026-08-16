@@ -1,0 +1,375 @@
+@startuml backend-uml
+' ===========================================================================
+' Traccia del diagramma delle classi del servizio applicativo (Specifica
+' Tecnica, figura 1 della sezione 3.4).
+'
+' NON e' l'artefatto finale: i diagrammi del gruppo sono disegnati in draw.io
+' e versionati in assets/draw.io/, con l'esportazione in assets/img/*.pdf.
+' Questo file fissa contenuti, nomi, firme e direzione delle dipendenze, cosi'
+' che il disegno debba solo riprodurli.
+'
+' Ricavato da MVP@develop dopo la pull request #113, che ha spostato
+' sse_streaming.py fra gli adattatori primari. Le firme sono quelle annotate
+' nel codice; la visibilita' segue la notazione UML gia' usata negli elenchi
+' di firme della sezione 3.4.
+'
+' Regola da rispettare nel disegno: ogni freccia punta verso il centro.
+' Nessuna freccia esce da app/core.
+' ===========================================================================
+
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+hide empty members
+left to right direction
+
+' ---------------------------------------------------------------------------
+' NUCLEO
+' ---------------------------------------------------------------------------
+package "app/core" as core {
+
+  package "core/ports" as ports {
+
+    interface LLMClient <<porta>> {
+      +stream(messages: Sequence<Message>): AsyncIterator<str>
+    }
+    class LLMProviderError <<eccezione>>
+
+    interface ContentExtractor <<porta>> {
+      +extract(url: str): str
+    }
+    class ContentExtractorError <<eccezione>>
+
+    LLMClient ..> LLMProviderError : <<solleva>>
+    ContentExtractor ..> ContentExtractorError : <<solleva>>
+  }
+
+  package "core/domain" as domain {
+
+    class Message <<value object>> {
+      +role: Literal["system","user","assistant"]
+      +content: str
+    }
+    note right of Message
+      immutabile (frozen)
+    end note
+
+    class values <<modulo>> {
+      Length = Literal["breve","medio","dettagliato"]
+      Language = Literal["inglese","francese","tedesco","spagnolo"]
+      Style = Literal["formale","informale","accademico"]
+      Hat = Literal["bianco","rosso","giallo","nero","verde","blu"]
+      MIN_TEXT_LENGTH: int = 10
+      MAX_TEXT_LENGTH: int = 12000
+      MIN_PROMPT_LENGTH: int = 3
+      MAX_PROMPT_LENGTH: int = 2000
+      NO_ERRORS_MARKER: str = "NESSUN_ERRORE_RILEVATO"
+    }
+
+    package "core/domain/prompts" as prompts {
+
+      class rules <<modulo>> {
+        costanti di regola condivise
+        LENGTH_INSTRUCTIONS, STYLE_INSTRUCTIONS
+      }
+
+      class composer <<modulo>> {
+        compose(role: str, user: str, content_rules: Sequence<str>, form_rules: Sequence<str>, content_heading: str, length: Length | None): list<Message>
+      }
+
+      class templates <<modulo>> {
+        build_summarize_messages(text: str, length: Length): list<Message>
+        build_generate_messages(prompt: str, length: Length): list<Message>
+        build_generate_from_link_messages(content: str, length: Length): list<Message>
+        build_translate_messages(text: str, target_language: Language): list<Message>
+        build_rewrite_messages(text: str, style: Style): list<Message>
+        build_grammar_messages(text: str): list<Message>
+        build_critique_messages(text: str, hat: Hat): list<Message>
+      }
+
+      class untrusted <<modulo>> {
+        wrap_extracted_content(content: str): str
+        -_neutralize_delimiters(content: str): str
+        EXTRACTED_CONTENT_OPEN, EXTRACTED_CONTENT_CLOSE
+      }
+
+      templates ..> composer
+      templates ..> rules
+      templates ..> untrusted
+      composer ..> rules
+      composer ..> Message
+      composer ..> values
+    }
+
+    Message -[hidden]- values
+  }
+
+  package "core/services" as services {
+
+    class summarize <<caso d'uso>> {
+      summarize(text: str, length: Length, llm: LLMClient): AsyncIterator<str>
+    }
+    class generate <<caso d'uso>> {
+      generate(prompt: str, length: Length, llm: LLMClient): AsyncIterator<str>
+    }
+    class translate <<caso d'uso>> {
+      translate(text: str, target_language: Language, llm: LLMClient): AsyncIterator<str>
+    }
+    class rewrite <<caso d'uso>> {
+      rewrite(text: str, style: Style, llm: LLMClient): AsyncIterator<str>
+    }
+    class grammar <<caso d'uso>> {
+      grammar(text: str, llm: LLMClient): AsyncIterator<str>
+    }
+    class critique <<caso d'uso>> {
+      critique(text: str, hat: Hat, llm: LLMClient): AsyncIterator<str>
+    }
+    class generate_from_link <<caso d'uso>> {
+      generate_from_link(url: str, length: Length, extractor: ContentExtractor, llm: LLMClient): AsyncIterator<str>
+      validate_link(url: str): None
+      fetch_and_extract(url: str, extractor: ContentExtractor): str
+      MAX_URL_LENGTH: int = 2048
+    }
+    class FetchError <<eccezione>>
+    class InvalidLinkError <<eccezione>>
+
+    InvalidLinkError --|> FetchError
+    generate_from_link ..> FetchError : <<solleva>>
+    generate_from_link ..> InvalidLinkError : <<solleva>>
+  }
+
+  ' i sette casi d'uso dipendono dalla porta, mai dall'adattatore
+  summarize ..> LLMClient
+  generate ..> LLMClient
+  translate ..> LLMClient
+  rewrite ..> LLMClient
+  grammar ..> LLMClient
+  critique ..> LLMClient
+  generate_from_link ..> LLMClient
+  generate_from_link ..> ContentExtractor
+
+  summarize ..> templates
+  generate ..> templates
+  translate ..> templates
+  rewrite ..> templates
+  grammar ..> templates
+  critique ..> templates
+  generate_from_link ..> templates
+}
+
+' ---------------------------------------------------------------------------
+' ADATTATORI PRIMARI  (app/api) -- il lato da cui l'applicazione e' invocata
+' ---------------------------------------------------------------------------
+package "app/api" as api {
+
+  package "api/routes" as routes {
+    class summarize_router <<rotta>> {
+      +summarize(payload: TextRequest, request: Request, client: LLMClient): StreamingResponse
+    }
+    class generate_router <<rotta>>
+    class translate_router <<rotta>>
+    class rewrite_router <<rotta>>
+    class grammar_router <<rotta>>
+    class critique_router <<rotta>>
+    class generate_link_router <<rotta>> {
+      +generate_from_link(payload: LinkRequest, request: Request, client: LLMClient, extractor: ContentExtractor): StreamingResponse
+    }
+    class constants_router <<rotta>> {
+      +constants(): ApiConstants
+    }
+    class ApiConstants <<DTO>> {
+      +no_errors_marker: NoErrorsMarker
+      +min_text_length: MinTextLength
+      +min_prompt_length: MinPromptLength
+      +max_text_length: MaxTextLength
+      +max_prompt_length: MaxPromptLength
+    }
+    constants_router ..> ApiConstants
+  }
+
+  class schemas <<modulo>> {
+    FIELD_LABELS: dict<str, str>
+  }
+  class TextRequest <<DTO>> {
+    +text: str
+    +length: Length = "medio"
+  }
+  class GenerateRequest <<DTO>> {
+    +prompt: str
+    +length: Length = "medio"
+  }
+  class LinkRequest <<DTO>> {
+    +url: HttpUrl
+    +length: Length = "medio"
+  }
+  class TranslateRequest <<DTO>> {
+    +text: str
+    +target_language: Language
+  }
+  class RewriteRequest <<DTO>> {
+    +text: str
+    +style: Style
+  }
+  class GrammarRequest <<DTO>> {
+    +text: str
+  }
+  class CritiqueRequest <<DTO>> {
+    +text: str
+    +hat: Hat
+  }
+  class ErrorResponse <<DTO>> {
+    +detail: str
+  }
+
+  class errors <<modulo>> {
+    describe_validation_error(error: dict): str
+  }
+
+  class sse_streaming <<adattatore primario>> {
+    sse_response(request: Request, stream: AsyncGenerator<str, None>, log_label: str, logger: Logger | None): StreamingResponse
+    -_format_sse(chunk: str): str
+    SSE_DONE_EVENT, SSE_ERROR_EVENT
+    SERVICE_UNAVAILABLE_DETAIL
+  }
+  note bottom of sse_streaming
+    Non realizza alcuna porta e non e'
+    invocato dal dominio: e' un adattatore
+    primario, non secondario.
+  end note
+
+  errors ..> schemas
+}
+
+' le rotte dichiarano la porta, mai l'adattatore concreto
+summarize_router ..> LLMClient : <<Depends>>
+generate_router ..> LLMClient : <<Depends>>
+translate_router ..> LLMClient : <<Depends>>
+rewrite_router ..> LLMClient : <<Depends>>
+grammar_router ..> LLMClient : <<Depends>>
+critique_router ..> LLMClient : <<Depends>>
+generate_link_router ..> LLMClient : <<Depends>>
+generate_link_router ..> ContentExtractor : <<Depends>>
+
+summarize_router ..> summarize
+generate_router ..> generate
+translate_router ..> translate
+rewrite_router ..> rewrite
+grammar_router ..> grammar
+critique_router ..> critique
+generate_link_router ..> generate_from_link
+
+summarize_router ..> sse_streaming
+generate_router ..> sse_streaming
+translate_router ..> sse_streaming
+rewrite_router ..> sse_streaming
+grammar_router ..> sse_streaming
+critique_router ..> sse_streaming
+generate_link_router ..> sse_streaming
+
+summarize_router ..> TextRequest
+generate_router ..> GenerateRequest
+translate_router ..> TranslateRequest
+rewrite_router ..> RewriteRequest
+grammar_router ..> GrammarRequest
+critique_router ..> CritiqueRequest
+generate_link_router ..> LinkRequest
+
+' le soglie e i vocabolari non sono ridichiarati al confine: arrivano dal dominio
+schemas ..> values
+ApiConstants ..> values
+sse_streaming ..> LLMProviderError
+
+' ---------------------------------------------------------------------------
+' ADATTATORI SECONDARI  (app/infrastructure) -- il lato che l'applicazione invoca
+' ---------------------------------------------------------------------------
+package "app/infrastructure/adapters" as infra {
+
+  class LiteLLMClient <<adattatore secondario>> {
+    -_settings: Settings
+    -_client: httpx.AsyncClient
+    +LiteLLMClient(settings: Settings)
+    +stream(messages: Sequence<Message>): AsyncIterator<str>
+    -_parse_sse_line(line: str): str | None {static}
+    +aclose(): None
+    HTTP_TIMEOUT_SECONDS: float = 60.0
+  }
+
+  class TavilyExtractor <<adattatore secondario>> {
+    -_api_key: str
+    -_client: TavilyClient
+    +TavilyExtractor(api_key: str)
+    +extract(url: str): str
+    +aclose(): None
+    MAX_CHARS: int = 12000
+  }
+}
+
+LiteLLMClient ..|> LLMClient
+TavilyExtractor ..|> ContentExtractor
+LiteLLMClient ..> Message
+LiteLLMClient ..> LLMProviderError : <<solleva>>
+TavilyExtractor ..> ContentExtractorError : <<solleva>>
+
+' ---------------------------------------------------------------------------
+' MODULI DI RADICE
+' ---------------------------------------------------------------------------
+package "app" as radice {
+
+  class dependencies <<composition root>> {
+    get_settings(): Settings
+    get_llm_client(): LLMClient
+    get_content_extractor(): ContentExtractor
+    verifica_chiavi_obbligatorie(): None
+    close_llm_client(): None
+    close_content_extractor(): None
+  }
+  note bottom of dependencies
+    Unico modulo che nomina
+    LiteLLMClient e TavilyExtractor
+    fuori dai moduli che li definiscono.
+    I tre provider sono memoizzati:
+    una istanza per processo.
+  end note
+
+  class Settings <<configurazione>> {
+    +litellm_base_url: str
+    +litellm_model: str
+    +litellm_api_key: str
+    +tavily_api_key: str
+    +cors_origins: list<str>
+  }
+
+  class main <<modulo>> {
+    app: FastAPI
+    lifespan(app: FastAPI)
+    http_exception_handler(...): JSONResponse
+    validation_exception_handler(...): JSONResponse
+    health(): dict
+  }
+
+  class export_openapi <<modulo>> {
+    esporta openapi.json
+  }
+}
+
+dependencies ..> LiteLLMClient : <<istanzia>>
+dependencies ..> TavilyExtractor : <<istanzia>>
+dependencies ..> Settings
+LiteLLMClient ..> Settings
+
+main ..> routes : <<monta>>
+main ..> errors
+main ..> ErrorResponse
+main ..> dependencies
+
+' ---------------------------------------------------------------------------
+' FORNITORI ESTERNI
+' ---------------------------------------------------------------------------
+package "servizi esterni" as esterni {
+  class "gateway LiteLLM" as gateway <<sistema esterno>>
+  class "Tavily" as tavily <<sistema esterno>>
+}
+
+LiteLLMClient ..> gateway : HTTP/SSE
+TavilyExtractor ..> tavily : HTTP
+
+@enduml
