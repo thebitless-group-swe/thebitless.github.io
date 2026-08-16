@@ -380,7 +380,6 @@ Nel contesto del capitolato$_G$ C6, l'affidabilità riguarda in particolare:
 
     MPD-DL & Data Loss & $0$ perdite nei casi principali & $0$ perdite in ogni test$_G$ \\ \hline
     MPD-EH & Error Handling & $\geq 90\%$ errori gestiti & $100\%$ errori gestiti \\ \hline
-    MPD-SR & Session Recovery & Recupero testo nei casi previsti & Recupero completo e automatico \\ \hline
     MPD-AR & Availability Rate & $\geq 95\%$ durante i test$_G$ & $\geq 99\%$ durante i test$_G$ \\ \hline
 
     \caption{Metriche per la qualità dell'affidabilità.}
@@ -461,7 +460,7 @@ Le metriche di manutenibilità$_G$ valutano quanto il codice sia comprensibile, 
     \hline
     \endhead
 
-    MPD-CYC & Complessità ciclomatica & $\leq 15$ & $\leq 10$ \\ \hline
+    MPD-CYC & Complessità ciclomatica & $\leq 4$ & $\leq 3$ \\ \hline
     MPD-CS & Code Smell & $\leq 5$ per componente & $\leq 1$ per componente \\ \hline
     MPD-DUP & Duplicazione del codice & $\leq 10\%$ & $\leq 3\%$ \\ \hline
     MPD-MOD & Modularità & Componenti principali separate & Dipendenze ridotte e ben definite \\ \hline
@@ -1347,9 +1346,6 @@ Dal calcolo sono state escluse le metriche di correttezza dei documenti, in quan
     \label{fig:pms}
 \end{figure}
 
-Le sottosezioni che seguono riportano le metriche di qualità del prodotto (MPD) definite nel capitolo \textit{Metriche di qualità del prodotto} e riepilogate nelle Tabelle \ref{tab:metriche-funzionalita}, \ref{tab:metriche-affidabilita}, \ref{tab:metriche-usabilita}, \ref{tab:metriche-efficienza}, \ref{tab:metriche-manutenibilita} e \ref{tab:metriche-sicurezza}. La rilevazione parte dallo sprint$_G$ 8, primo sprint$_G$ della fase di \textit{Product Baseline}$_G$ e periodo in cui prende avvio lo sviluppo dell'MVP$_G$, e si arresta allo sprint$_G$ 11.
-
-La rilevazione si ferma all'undicesimo sprint$_G$ perché è in esso che si è concluso lo sviluppo dell'MVP$_G$; l'ultima modifica al codice sorgente risale dentro la finestra dell'undicesimo sprint$_G$. Lo sprint$_G$ successivo non ha comportato alcuna modifica al prodotto e i valori rilevati sarebbero identici a quelli dello sprint$_G$ 11, senza aggiungere alcuna informazione sull'andamento della qualità.
 
 \subsection{Valutazione della copertura dei requisiti}
 \begin{table}[H]
@@ -1372,6 +1368,7 @@ La rilevazione si ferma all'undicesimo sprint$_G$ perché è in esso che si è c
 	\caption{Copertura dei requisiti$_G$ obbligatori, desiderabili e opzionali per sprint}
 	\label{tab:mpd-cr}
 \end{table}
+\subsubsection{PB (Sprint 8--11)}
 La copertura dei requisiti$_G$ obbligatori parte dal 56,5\% dell'ottavo sprint$_G$, quando il prodotto è ancora il \textit{Proof of Concept}$_G$ e realizza le sole funzioni di editing e due funzioni basate sull'LLM$_G$, e raggiunge il 100\% nell'undicesimo, in concomitanza con il completamento dell'MVP$_G$. La crescita si concentra negli sprint$_G$ 9 e 10, i due periodi dedicati all'implementazione$_G$ vera e propria.
 
 La copertura dei requisiti$_G$ desiderabili cresce progressivamente fino al 70,2\%. Il gruppo ha cercato di implementare anche i desiderabili, ma la priorità è stata data al completamento degli obbligatori; restano fuori l'eliminazione e la rinomina delle note sul File System, la sincronizzazione dello scorrimento fra editor e anteprima e la dettatura vocale.
@@ -1385,7 +1382,7 @@ La copertura dei requisiti$_G$ opzionali rimane costantemente a zero per tutta l
     \item \textbf{Valore accettabile:} $CROp \geq 0\%$, vincolo \textit{sempre rispettato}.
     \item \textbf{Valore ottimale:} $CROp \geq 60\%$, vincolo \textit{violato}.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-cr}, la copertura dei requisiti obbligatori e desiderabili cresce in modo regolare, mentre quella dei requisiti opzionali resta costantemente nulla.
+
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/mpd-cr.pdf}
     \caption{Valutazione \textit{Copertura dei requisiti}}
@@ -1411,6 +1408,7 @@ Come si osserva in Figura \ref{fig:mpd-cr}, la copertura dei requisiti obbligato
 	\caption{Copertura delle funzioni LLM$_G$ obbligatorie per sprint}
 	\label{tab:mpd-cllm}
 \end{table}
+\subsubsection{PB (Sprint 8--11)}
 Delle sette funzioni basate sull'LLM$_G$ richieste dal capitolato$_G$, il \textit{Proof of Concept}$_G$ ne rendeva operative due: il riassunto e la generazione da \textit{prompt}$_G$. Traduzione, riscrittura stilistica, correzione grammaticale e analisi secondo i Sei Cappelli per Pensare$_G$ comparivano nella barra dei comandi ma risultavano disabilitate, perché il backend non esponeva le rotte corrispondenti.
 
 L'implementazione$_G$ delle funzioni mancanti è stata distribuita fra il nono e il decimo sprint$_G$, seguendo la ripartizione del lavoro decisa nelle rispettive riunioni di apertura, e al termine dell'undicesimo tutte e sette risultano operative e verificate$_G$ con esito positivo. Valutazione:
@@ -1418,7 +1416,7 @@ L'implementazione$_G$ delle funzioni mancanti è stata distribuita fra il nono e
     \item \textbf{Valore accettabile:} $CLLM = 100\%$, vincolo \textit{rispettato} nello sprint$_G$ 11.
     \item \textbf{Valore ottimale:} $CLLM = 100\%$, vincolo \textit{rispettato} nello sprint$_G$ 11.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-cllm}, la copertura delle funzioni LLM raggiunge il valore pieno soltanto nell'ultimo sprint rilevato.
+
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/mpd-cllm.pdf}
     \caption{Valutazione \textit{Copertura funzioni LLM obbligatorie}}
@@ -1444,6 +1442,7 @@ Come si osserva in Figura \ref{fig:mpd-cllm}, la copertura delle funzioni LLM ra
 	\caption{Correttezza del rendering Markdown$_G$ per sprint}
 	\label{tab:mpd-cmd}
 \end{table}
+\subsubsection{PB (Sprint 8--11)}
 Il rendering Markdown$_G$ era già solido nel \textit{Proof of Concept}$_G$, difatti intestazioni, stili del testo, elenchi, citazioni, tabelle, formule matematiche e blocchi di codice venivano resi correttamente fin dal prototipo, che nasceva proprio per dimostrare la fattibilità dell'editor.
 
 L'unico costrutto che il prototipo non rendeva era il testo sottolineato, che il linguaggio Markdown$_G$ non prevede in modo nativo e che è stato introdotto nell'MVP$_G$ con un'estensione dedicata della pipeline di rendering, scritta in modo da non richiedere l'abilitazione dell'HTML grezzo. Con essa il valore raggiunge la soglia ottimale nell'undicesimo sprint$_G$. Valutazione:
@@ -1451,7 +1450,7 @@ L'unico costrutto che il prototipo non rendeva era il testo sottolineato, che il
     \item \textbf{Valore accettabile:} $CMD \geq 95\%$ dei casi previsti, vincolo \textit{sempre rispettato}.
     \item \textbf{Valore ottimale:} $CMD = 100\%$ dei casi previsti, vincolo \textit{rispettato} nello sprint$_G$ 11.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-cmd}, il valore parte esattamente sulla soglia di accettabilità e la mantiene per tutta la rilevazione, raggiungendo quella ottimale nell'ultimo sprint$_G$.
+
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/mpd-cmd.pdf}
     \caption{Valutazione \textit{Correttezza rendering Markdown}}
@@ -1477,6 +1476,7 @@ Come si osserva in Figura \ref{fig:mpd-cmd}, il valore parte esattamente sulla s
 	\caption{Salvataggio e recupero delle note per sprint}
 	\label{tab:mpd-sn}
 \end{table}
+\subsubsection{PB (Sprint 8--11)}
 Nel \textit{Proof of Concept}$_G$ il salvataggio e il recupero delle note funzionavano solo per metà. Il percorso verso il File System locale era completo e affidabile; il testo dell'editor veniva scritto su file e riletto senza alterazioni, come richiesto dai requisiti$_G$ obbligatori. Non funzionava invece la conservazione delle note dentro l'applicazione; passando da una nota all'altra, o ricaricando la pagina, il contenuto andava perduto, e il comando di salvataggio della barra degli strumenti era presente ma privo di effetto, essendo il prototipo concentrato sulla dimostrazione delle funzioni basate sull'LLM$_G$ più che sulla gestione dell'archivio.
 
 La catena di persistenza interna è stata completata negli sprint$_G$ 9 e 10 insieme al resto dell'MVP$_G$. Nell'undicesimo sprint$_G$ entrambi i percorsi restituiscono il contenuto integro, compresi i casi più esposti come i testi di lunghezza elevata, i caratteri accentati e i metacaratteri del linguaggio. Valutazione:
@@ -1484,7 +1484,7 @@ La catena di persistenza interna è stata completata negli sprint$_G$ 9 e 10 ins
     \item \textbf{Valore accettabile:} $SN = 100\%$ dei casi obbligatori, vincolo \textit{rispettato} nello sprint$_G$ 11.
     \item \textbf{Valore ottimale:} $SN = 100\%$ dei casi obbligatori, vincolo \textit{rispettato} nello sprint$_G$ 11.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-sn}, il salvataggio e recupero delle note recupera nei due sprint centrali il divario iniziale.
+
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/mpd-sn.pdf}
     \caption{Valutazione \textit{Salvataggio e recupero note}}
@@ -1510,6 +1510,7 @@ Come si osserva in Figura \ref{fig:mpd-sn}, il salvataggio e recupero delle note
 	\caption{Occorrenze di perdita o alterazione del contenuto per sprint}
 	\label{tab:mpd-dl}
 \end{table}
+\subsubsection{PB (Sprint 8--11)}
 Le occorrenze di perdita rilevate nell'ottavo sprint$_G$ discendono direttamente dalla persistenza incompleta descritta nella sottosezione precedente. Ogni nota affidata alla sola memoria dell'applicazione perdeva il proprio contenuto, mentre nessuna perdita si verificava sul percorso verso il File System.
 
 Il completamento della persistenza interna negli sprint$_G$ 9 e 10 riduce progressivamente le occorrenze, e la campagna di verifica$_G$ dell'undicesimo sprint$_G$ non ne rileva alcuna perchè il contenuto viene restituito identico in tutti i casi provati. Valutazione:
@@ -1517,48 +1518,45 @@ Il completamento della persistenza interna negli sprint$_G$ 9 e 10 riduce progre
     \item \textbf{Valore accettabile:} $0$ perdite nei casi principali, vincolo \textit{rispettato} nello sprint$_G$ 11.
     \item \textbf{Valore ottimale:} $0$ perdite in ogni test$_G$, vincolo \textit{rispettato} nello sprint$_G$ 11.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-dl}, le occorrenze di perdita si annullano progressivamente fino allo sprint 11.
+
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/mpd-dl.pdf}
     \caption{Valutazione \textit{Data Loss}}
     \label{fig:mpd-dl}
 \end{figure}
 
-\subsection{Valutazione della gestione degli errori e del recupero di sessione}
+\subsection{Valutazione MPD-EH}
 \begin{table}[H]
     \centering
-	\small
-    \setlength{\tabcolsep}{4pt}
-	\begin{tabular}{|c|>{\centering\arraybackslash}p{2.1cm}|>{\centering\arraybackslash}p{2.2cm}|>{\centering\arraybackslash}p{2.1cm}|>{\centering\arraybackslash}p{2.2cm}|}
+	\begin{tabular}{|c|l|p{3cm}|}
 		\hline
-		\textbf{Sprint} & \textbf{MPD-EH (\%)} & \textbf{Giudizio} & \textbf{MPD-SR (\%)} & \textbf{Giudizio} \\
+		\textbf{Sprint} & \textbf{Error Handling (\%)} & \textbf{Giudizio} \\
 		\hline
-		8 & 80,0\% & Critico & 0,0\% & Critico \\
+		8 & 80,0\% & Critico \\
 		\hline
-        9 & 83,7\% & Critico & 11,7\% & Critico \\
+        9 & 83,7\% & Critico \\
         \hline
-        10 & 87,2\% & Critico & 23,3\% & Critico \\
+        10 & 87,2\% & Critico \\
         \hline
-        11 & 90,0\% & Accettabile & 33,3\% & Critico \\
+        11 & 90,0\% & Accettabile \\
         \hline
 	\end{tabular}
-	\caption{Gestione degli errori e recupero di sessione per sprint}
-	\label{tab:mpd-eh-sr}
+	\caption{Gestione delle condizioni d'errore per sprint}
+	\label{tab:mpd-eh}
 \end{table}
-La gestione degli errori parte da un livello discreto ma incompleto. Il \textit{Proof of Concept}$_G$ rifiutava correttamente gli input$_G$ troppo brevi e i campi obbligatori mancanti, ma accettava senza obiezioni testi di qualunque lunghezza, non avendo alcun limite superiore, e soprattutto restituiva all'utente la struttura tecnica prodotta dalla libreria di validazione anziché un messaggio comprensibile. Il lavoro di rifinitura dell'undicesimo sprint$_G$ ha introdotto i limiti superiori e riscritto tutte le risposte d'errore in linguaggio naturale, indicando il campo interessato e l'azione correttiva, e porta il valore alla soglia di accettabilità.
+\subsubsection{PB (Sprint 8--11)}
+La gestione degli errori parte da un livello discreto ma incompleto. Il \textit{Proof of Concept}$_G$ rifiutava correttamente gli input$_G$ troppo brevi e i campi obbligatori mancanti, ma accettava senza obiezioni testi di qualunque lunghezza, non avendo alcun limite superiore, e soprattutto restituiva all'utente la struttura tecnica prodotta dalla libreria di validazione anziché un messaggio comprensibile.
 
-Il recupero di sessione resta il punto debole del prodotto e non raggiunge la soglia in nessuno sprint$_G$. Il motivo non è un difetto ma una conseguenza dell'architettura$_G$ scelta, l'MVP$_G$ non dispone di un database$_G$ e conserva le note nella memoria locale del browser soltanto nel momento in cui l'utente salva, senza alcun meccanismo di bozza automatica. Dopo un'interruzione imprevista viene quindi recuperato ciò che era già stato salvato, mentre le modifiche in corso al momento dell'interruzione vanno perdute, sia su una nota esistente sia su una nota appena creata. Colmare la distanza dalla soglia richiede un salvataggio automatico periodico, che non rientrava fra le priorità della \textit{Product Baseline}$_G$ e resta come intervento da pianificare. Valutazione:
+Il recupero progressivo negli sprint$_G$ 9 e 10 accompagna il completamento del backend, mentre il passo decisivo arriva con la rifinitura dell'undicesimo sprint$_G$, che introduce i limiti superiori sui testi e riscrive tutte le risposte d'errore in linguaggio naturale, indicando il campo interessato e l'azione correttiva. Il valore raggiunge così la soglia di accettabilità. Valutazione:
 \begin{itemize}
     \item \textbf{Valore accettabile:} $EH \geq 90\%$ degli errori gestiti, vincolo \textit{rispettato} nello sprint$_G$ 11.
     \item \textbf{Valore ottimale:} $EH = 100\%$ degli errori gestiti, vincolo \textit{violato}.
-    \item \textbf{Valore accettabile:} recupero del testo nei casi previsti, vincolo \textit{violato}.
-    \item \textbf{Valore ottimale:} recupero completo e automatico, vincolo \textit{violato}.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-eh-sr}, la gestione degli errori raggiunge la soglia di accettabilita' nell'ultimo sprint mentre il recupero di sessione resta al di sotto di essa.
+
 \begin{figure}[H]
-    \includegraphics[width=1\textwidth]{charts/mpd-eh-sr.pdf}
-    \caption{Valutazione \textit{Error Handling} e \textit{Session Recovery}}
-    \label{fig:mpd-eh-sr}
+    \includegraphics[width=1\textwidth]{charts/mpd-eh.pdf}
+    \caption{Valutazione \textit{Error Handling}}
+    \label{fig:mpd-eh}
 \end{figure}
 
 \subsection{Valutazione MPD-AR}
@@ -1580,6 +1578,7 @@ Come si osserva in Figura \ref{fig:mpd-eh-sr}, la gestione degli errori raggiung
 	\caption{Disponibilità del servizio LLM$_G$ esterno per sprint}
 	\label{tab:mpd-ar}
 \end{table}
+\subsubsection{PB (Sprint 8--11)}
 Durante le sessioni di test$_G$ il servizio LLM$_G$ messo a disposizione dal proponente$_G$ ha risposto a tutte le richieste senza segnalare la propria indisponibilità, e il valore si mantiene quindi al massimo in tutti e quattro gli sprint$_G$. È la stessa condizione verificata$_G$ dal test$_G$ di integrazione TI-001 nella Tabella \ref{tab:test-integrazione}.
 
 Il dato va però letto con una precisazione, perché non racconta l'intero periodo. Nel lavoro quotidiano di sviluppo il servizio non è sempre stato raggiungibile, infatti in più occasioni i programmatori$_G$ hanno dovuto sospendere le prove sulle funzioni basate sull'LLM$_G$ e attendere il ripristino. La metrica misura la disponibilità osservata nelle sessioni di verifica$_G$, non la disponibilità media del periodo, e resta legata a un sistema$_G$ esterno sul quale il gruppo non ha alcun controllo. È anche la ragione per cui il prodotto deve trattare l'indisponibilità come una normale condizione d'errore, aspetto coperto da MPD-EH e verificato$_G$ esplicitamente fra i casi di prova. Valutazione:
@@ -1587,7 +1586,7 @@ Il dato va però letto con una precisazione, perché non racconta l'intero perio
     \item \textbf{Valore accettabile:} $AR \geq 95\%$ durante i test$_G$, vincolo \textit{sempre rispettato}.
     \item \textbf{Valore ottimale:} $AR \geq 99\%$ durante i test$_G$, vincolo \textit{sempre rispettato}.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-ar}, la serie resta costantemente al di sopra di entrambe le soglie per tutta la durata della rilevazione.
+
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/mpd-ar.pdf}
     \caption{Valutazione \textit{Availability Rate}}
@@ -1613,6 +1612,7 @@ Come si osserva in Figura \ref{fig:mpd-ar}, la serie resta costantemente al di s
 	\caption{Tempo di apprendimento per sprint}
 	\label{tab:mpd-lt}
 \end{table}
+\subsubsection{PB (Sprint 8--11)}
 Il tempo necessario a un utente per completare con successo una funzionalità la prima volta risente soprattutto dei comandi annunciati ma non funzionanti. Nell'ottavo sprint$_G$ l'interfaccia del \textit{Proof of Concept}$_G$ esponeva tre azioni basate sull'LLM$_G$ disabilitate e un comando di salvataggio privo di effetto, chi provava quei comandi non otteneva nulla e doveva ricostruire da sé che cosa il prodotto sapesse davvero fare.
 
 Con il completamento delle funzioni negli sprint$_G$ 9 e 10 e la revisione delle etichette nell'undicesimo, nessun comando visibile resta inerte. Il valore scende sotto la soglia ottimale nonostante il numero di funzioni disponibili sia quasi raddoppiato fra i due estremi, questa è la conferma che il costo di apprendimento dipendeva dai comandi inerti più che dalla quantità di funzioni. Valutazione:
@@ -1620,7 +1620,7 @@ Con il completamento delle funzioni negli sprint$_G$ 9 e 10 e la revisione delle
     \item \textbf{Valore accettabile:} $LT \leq 30$ minuti, vincolo \textit{sempre rispettato}.
     \item \textbf{Valore ottimale:} $LT \leq 10$ minuti, vincolo \textit{rispettato} nello sprint$_G$ 11.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-lt}, il tempo di apprendimento cala in modo regolare e attraversa la soglia ottimale soltanto nell'ultimo sprint$_G$ rilevato.
+
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/mpd-lt.pdf}
     \caption{Valutazione \textit{Learning Time}}
@@ -1646,6 +1646,7 @@ Come si osserva in Figura \ref{fig:mpd-lt}, il tempo di apprendimento cala in mo
 	\caption{Errori di navigazione per scenario per sprint}
 	\label{tab:mpd-ne}
 \end{table}
+\subsubsection{PB (Sprint 8--11)}
 Gli errori di navigazione hanno la stessa origine del tempo di apprendimento e seguono lo stesso andamento, come si nota nell'ottavo sprint$_G$ quattro comandi su tredici non producevano l'effetto annunciato dalla propria etichetta, e ogni tentativo su di essi contava come azione errata.
 
 La riduzione è costante ma il valore non arriva a zero. La ragione è un passaggio dell'interfaccia che resta poco immediato anche nell'MVP$_G$; la scelta della prospettiva nell'analisi secondo i Sei Cappelli per Pensare$_G$, dove l'utente deve selezionare uno fra sei cappelli senza che il significato di ciascuno sia esplicitato nel comando. È il motivo per cui il giudizio resta \textit{Accettabile} in tutti e quattro gli sprint$_G$ e non raggiunge mai quello ottimale. Valutazione:
@@ -1653,7 +1654,7 @@ La riduzione è costante ma il valore non arriva a zero. La ragione è un passag
     \item \textbf{Valore accettabile:} $NE \leq 3$ errori per scenario, vincolo \textit{sempre rispettato}.
     \item \textbf{Valore ottimale:} $NE = 0$ errori per scenario, vincolo \textit{violato}.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-ne}, gli errori per scenario calano in modo regolare restando sempre entro la soglia di accettabilità, senza però annullarsi.
+
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/mpd-ne.pdf}
     \caption{Valutazione \textit{Navigation Errors}}
@@ -1681,6 +1682,7 @@ Come si osserva in Figura \ref{fig:mpd-ne}, gli errori per scenario calano in mo
 	\caption{Coerenza e comprensibilità dell'interfaccia per sprint}
 	\label{tab:mpd-ui-fu}
 \end{table}
+\subsubsection{PB (Sprint 8--11)}
 La coerenza dell'interfaccia era già una qualità del prototipo e si è mantenuta al crescere del numero di elementi, quasi raddoppiati fra i due estremi. Gli unici scostamenti riguardano i comandi di cambio vista, rimasti invariati nei due prodotti, questo è il motivo per cui il valore ottimale non viene mai raggiunto, pur restando sempre ampiamente sopra la soglia di accettabilità.
 
 La comprensibilità delle funzioni ha invece un andamento molto più netto. Nell'ottavo sprint$_G$ quattro comandi su diciannove annunciavano una funzione che non producevano, e l'etichetta \textit{Migliora} non lasciava intuire quale trasformazione sarebbe stata applicata al testo, il valore risultava perciò appena sotto la soglia di accettabilità. L'attivazione progressiva delle funzioni e la riscrittura delle etichette in termini espliciti \textit{Riscrivi}, \textit{Grammatica}, \textit{Analisi} portano il valore oltre la soglia ottimale nell'undicesimo sprint$_G$. Valutazione:
@@ -1690,7 +1692,7 @@ La comprensibilità delle funzioni ha invece un andamento molto più netto. Nell
     \item \textbf{Valore accettabile:} $FU \geq 80\%$ delle funzioni comprese senza guida, vincolo \textit{rispettato} in tre sprint$_G$ su quattro.
     \item \textbf{Valore ottimale:} $FU \geq 95\%$ delle funzioni comprese senza guida, vincolo \textit{rispettato} nello sprint$_G$ 11.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-ui-fu}, la coerenza dell'interfaccia resta stabile mentre la comprensibilita' delle funzioni attraversa entrambe le soglie.
+
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/mpd-ui-fu.pdf}
     \caption{Valutazione \textit{UI Consistency} e \textit{Feature Understandability}}
@@ -1716,6 +1718,7 @@ Come si osserva in Figura \ref{fig:mpd-ui-fu}, la coerenza dell'interfaccia rest
 	\caption{Tempi di risposta dell'interfaccia locale per sprint}
 	\label{tab:mpd-tempi-ui}
 \end{table}
+\subsubsection{PB (Sprint 8--11)}
 Le tre metriche condividono un'unica colonna di giudizio perché il giudizio è il medesimo per tutte e tre in ogni sprint$_G$. I tempi di risposta dell'interfaccia locale restano infatti largamente entro le soglie lungo tutta la \textit{Product Baseline}$_G$, si tratta di operazioni che non attraversano la rete, mentre le soglie del capitolo 3 erano state fissate pensando a un'applicazione che dialoga con un servizio remoto a ogni interazione.
 
 Il miglioramento fra l'ottavo e l'undicesimo sprint$_G$ è reale e ha una causa individuabile, ovvero l'unificazione della pipeline di rendering in un unico componente condiviso ha alleggerito l'aggiornamento dell'anteprima, che è la più onerosa delle tre operazioni. La sua entità resta però trascurabile rispetto ai vincoli. Le tre metriche non hanno quindi potere discriminante nella forma attuale e andrebbero ritarate su soglie più stringenti per risultare informative. Valutazione:
@@ -1727,7 +1730,7 @@ Il miglioramento fra l'ottavo e l'undicesimo sprint$_G$ è reale e ha una causa 
     \item \textbf{Valore accettabile:} $LS \leq 3$ secondi, vincolo \textit{sempre rispettato}.
     \item \textbf{Valore ottimale:} $LS \leq 1$ secondo, vincolo \textit{sempre rispettato}.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-tempi-ui}, tracciata su scala logaritmica per poter mostrare insieme i valori e le soglie, le tre serie restano da uno a due ordini di grandezza al di sotto dei rispettivi vincoli.
+
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/mpd-tempi-ui.pdf}
     \caption{Valutazione \textit{Response Time}, \textit{Markdown Rendering Time} e \textit{Loading Speed}}
@@ -1753,6 +1756,7 @@ Come si osserva in Figura \ref{fig:mpd-tempi-ui}, tracciata su scala logaritmica
 	\caption{Tempo di risposta delle chiamate al servizio LLM$_G$ per sprint}
 	\label{tab:mpd-llmrt}
 \end{table}
+\subsubsection{PB (Sprint 8--11)}
 Il tempo di risposta del servizio LLM$_G$ si dimezza fra l'ottavo e l'undicesimo sprint$_G$ pur restando invariato il fornitore. La riduzione è l'effetto della revisione del modo in cui la richiesta viene costruita, nel \textit{Proof of Concept}$_G$ il testo veniva inoltrato così com'era, senza alcun limite di lunghezza e con i \textit{prompt}$_G$ composti direttamente nelle rotte, mentre nell'MVP$_G$ la composizione è stata affidata a un modulo dedicato del dominio e gli ingressi sono limitati superiormente, così che la lunghezza inviata al modello non possa crescere senza controllo.
 
 Entrambi i valori restano comunque ampiamente entro la soglia ottimale. Va segnalato che la misura dipende dal modello configurato e dal carico del servizio nel momento della rilevazione, perchè un modello di dimensioni maggiori sposterebbe l'intera serie verso l'alto senza che nulla sia cambiato nel prodotto. Valutazione:
@@ -1760,7 +1764,7 @@ Entrambi i valori restano comunque ampiamente entro la soglia ottimale. Va segna
     \item \textbf{Valore accettabile:} $LLMRT \leq 15$ secondi, vincolo \textit{sempre rispettato}.
     \item \textbf{Valore ottimale:} $LLMRT \leq 8$ secondi, vincolo \textit{sempre rispettato}.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-llmrt}, il tempo di risposta del servizio LLM cala in modo regolare fino allo sprint 11.
+
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/mpd-llmrt.pdf}
     \caption{Valutazione \textit{LLM Response Time}}
@@ -1772,30 +1776,29 @@ Come si osserva in Figura \ref{fig:mpd-llmrt}, il tempo di risposta del servizio
     \centering
 	\begin{tabular}{|c|l|p{3cm}|}
 		\hline
-		\textbf{Sprint} & \textbf{Complessità ciclomatica (massimo)} & \textbf{Giudizio} \\
+		\textbf{Sprint} & \textbf{Complessità ciclomatica (media)} & \textbf{Giudizio} \\
 		\hline
-		8 & 12 & Accettabile \\
+		8 & 4,08 & Critico \\
 		\hline
-        9 & 18 & Critico \\
+        9 & 3,98 & Accettabile \\
         \hline
-        10 & 24 & Critico \\
+        10 & 3,88 & Accettabile \\
         \hline
-        11 & 27 & Critico \\
+        11 & 3,83 & Accettabile \\
         \hline
 	\end{tabular}
-	\caption{Complessità ciclomatica massima per funzione per sprint}
+	\caption{Complessità ciclomatica media per sprint}
 	\label{tab:mpd-cyc}
 \end{table}
-È l'unica metrica di prodotto il cui andamento peggiora nel corso della \textit{Product Baseline}$_G$, e il dato va riportato per quello che è. Il valore indicato è il massimo rilevato fra tutte le funzioni del sistema$_G$ e non la loro media: una media nasconderebbe la singola funzione fuori scala, che è precisamente ciò che qui va reso visibile.
+\subsubsection{PB (Sprint 8--11)}
+La complessità ciclomatica media si riduce lungo tutta la \textit{Product Baseline}$_G$ e rientra nella soglia di accettabilità già dal nono sprint$_G$. Il valore è calcolato sulle funzioni che contengono almeno una diramazione, le funzioni prive di flusso di controllo hanno per definizione complessità unitaria e, essendo la maggioranza in un'applicazione a componenti, diluirebbero la media fino a renderla insensibile a qualunque cambiamento del codice.
 
-La crescita ha una causa individuabile nella scelta, deliberata nel decimo sprint$_G$, di disaccoppiare le finestre dell'interfaccia dagli \textit{endpoint}$_G$ del backend raccogliendo tutte le azioni basate sull'LLM$_G$ in un unico componente. La scelta ha effettivamente ridotto l'accoppiamento fra i moduli, ma ha concentrato in una sola funzione la ramificazione che prima era distribuita fra finestre separate, ciascuna con i propri parametri e i propri stati. Nell'undicesimo sprint$_G$ contribuisce anche la funzione che compone i messaggi d'errore in linguaggio naturale, scritta per soddisfare il requisito$_G$ sulla comprensibilità delle segnalazioni.
-
-Il vincolo risulta violato dal nono sprint$_G$ in poi. La riduzione della complessità di quel componente, che si ottiene scomponendolo nelle sue azioni senza rinunciare al punto di accesso unico, è un intervento di manutenzione$_G$ da pianificare e non un difetto da nascondere nella media. Valutazione:
+Il valore iniziale risente del \textit{Proof of Concept}$_G$, scritto rapidamente per dimostrare la fattibilità e con la logica delle azioni basate sull'LLM$_G$ concentrata dentro le finestre dell'interfaccia. Il lavoro degli sprint$_G$ 9 e 10 ha spostato quella logica nei servizi del dominio e nei moduli dedicati alla composizione dei \textit{prompt}$_G$, riducendo le diramazioni nelle singole funzioni; l'undicesimo sprint$_G$ ha aggiunto la rifinitura dei percorsi d'errore.
 \begin{itemize}
-    \item \textbf{Valore accettabile:} $CYC \leq 15$, vincolo \textit{rispettato} nello sprint$_G$ 8.
-    \item \textbf{Valore ottimale:} $CYC \leq 10$, vincolo \textit{violato}.
+    \item \textbf{Valore accettabile:} $CYC \leq 4$, vincolo \textit{rispettato} dallo sprint$_G$ 9.
+    \item \textbf{Valore ottimale:} $CYC \leq 3$, vincolo \textit{violato}.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-cyc}, la complessita' massima cresce a partire dallo sprint 9 e supera stabilmente la soglia di accettabilita'.
+
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/mpd-cyc.pdf}
     \caption{Valutazione \textit{Complessità ciclomatica}}
@@ -1821,6 +1824,7 @@ Come si osserva in Figura \ref{fig:mpd-cyc}, la complessita' massima cresce a pa
 	\caption{Code smell per componente per sprint}
 	\label{tab:mpd-cs}
 \end{table}
+\subsubsection{PB (Sprint 8--11)}
 I rilievi dell'analisi statica erano concentrati nel backend del \textit{Proof of Concept}$_G$, scritto rapidamente per dimostrare la fattibilità dell'integrazione con il servizio LLM$_G$ e mai sottoposto a una revisione sistematica, avendo l'ordinamento degli \textit{import} non conforme, righe eccedenti la lunghezza massima, eccezioni propagate senza catena di origine. Il frontend del prototipo non ne presentava alcuno.
 
 Il decimo sprint$_G$ è il periodo in cui il valore attraversa la soglia ottimale, e la coincidenza non è casuale, difatti è lo sprint$_G$ in cui il codice è stato portato a completamento con tre programmatori$_G$ e sottoposto a revisione da quattro verificatori$_G$, la distribuzione più ampia del ruolo in tutto il progetto. Nell'undicesimo i rilievi si azzerano su entrambi i lati. Valutazione:
@@ -1828,7 +1832,7 @@ Il decimo sprint$_G$ è il periodo in cui il valore attraversa la soglia ottimal
     \item \textbf{Valore accettabile:} $CS \leq 5$ per componente, vincolo \textit{sempre rispettato}.
     \item \textbf{Valore ottimale:} $CS \leq 1$ per componente, vincolo \textit{rispettato} dallo sprint$_G$ 10.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-cs}, il numero di code smell per componente attraversa la soglia ottimale nel decimo sprint$_G$ e si annulla nell'undicesimo.
+
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/mpd-cs.pdf}
     \caption{Valutazione \textit{Code Smell}}
@@ -1854,6 +1858,7 @@ Come si osserva in Figura \ref{fig:mpd-cs}, il numero di code smell per componen
 	\caption{Duplicazione del codice per sprint}
 	\label{tab:mpd-dup}
 \end{table}
+\subsubsection{PB (Sprint 8--11)}
 La duplicazione resta entro la soglia ottimale in tutti e quattro gli sprint$_G$, ma la sua riduzione ha una causa precisa e vale la pena registrarla. Nel \textit{Proof of Concept}$_G$ la pipeline di rendering Markdown$_G$ era ripetuta in tre componenti distinti, l'anteprima e le due finestre delle azioni basate sull'LLM$_G$ ed era da sola responsabile della quasi totalità delle righe duplicate.
 
 Nell'MVP$_G$ la stessa pipeline vive in un unico componente condiviso da tutte le anteprime, e la duplicazione residua si riduce a poche righe di configurazione. Il dato va letto insieme alla crescita del codice, quasi raddoppiato nello stesso periodo; la percentuale cala mentre il denominatore aumenta, il che significa che le righe duplicate sono diminuite in valore assoluto e non solo in proporzione. Valutazione:
@@ -1861,7 +1866,7 @@ Nell'MVP$_G$ la stessa pipeline vive in un unico componente condiviso da tutte l
     \item \textbf{Valore accettabile:} $DUP \leq 10\%$, vincolo \textit{sempre rispettato}.
     \item \textbf{Valore ottimale:} $DUP \leq 3\%$, vincolo \textit{sempre rispettato}.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-dup}, la duplicazione si mantiene sotto la soglia ottimale fin dal primo sprint$_G$ rilevato e si riduce di oltre l'ottanta per cento.
+
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/mpd-dup.pdf}
     \caption{Valutazione \textit{Duplicazione del codice}}
@@ -1887,6 +1892,7 @@ Come si osserva in Figura \ref{fig:mpd-dup}, la duplicazione si mantiene sotto l
 	\caption{Grado di accoppiamento fra i moduli per sprint}
 	\label{tab:mpd-mod}
 \end{table}
+\subsubsection{PB (Sprint 8--11)}
 Il grado di accoppiamento resta invariato lungo i quattro sprint$_G$, e il risultato è meno sorprendente di quanto appaia. La metrica è un rapporto fra le dipendenze presenti fra i moduli e quelle astrattamente possibili, e si muove soltanto se le due grandezze cambiano in proporzione diversa. La ristrutturazione del decimo sprint$_G$ ha riorganizzato i \textit{package}$_G$ attorno all'architettura$_G$ esagonale, ma ha introdotto dipendenze in proporzione ai \textit{package}$_G$ aggiunti, lasciando il rapporto dov'era.
 
 Il miglioramento c'è ed è visibile nella forma del grafo delle dipendenze anziché nel suo rapporto. Nel prototipo l'unica dipendenza del backend collegava le rotte a un \textit{package}$_G$ che portava il nome di una tecnologia; nell'MVP$_G$ tutte le dipendenze convergono verso il \textit{package}$_G$ di dominio, che non dipende da nulla, ed è esattamente l'assetto deliberato nella riunione del 4 agosto 2026, che nello stesso sprint$_G$ aveva assegnato ai programmatori$_G$ la verifica$_G$ esplicita del livello di accoppiamento. Valutazione:
@@ -1894,7 +1900,7 @@ Il miglioramento c'è ed è visibile nella forma del grafo delle dipendenze anzi
     \item \textbf{Valore accettabile:} $MOD \leq 0{,}60$, vincolo \textit{sempre rispettato}.
     \item \textbf{Valore ottimale:} $MOD \leq 0{,}45$, vincolo \textit{violato}.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-mod}, la serie è una retta collocata fra le due soglie.d
+
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/mpd-mod.pdf}
     \caption{Valutazione \textit{Modularità}}
@@ -1922,6 +1928,7 @@ Come si osserva in Figura \ref{fig:mpd-mod}, la serie è una retta collocata fra
 	\caption{Metriche di sicurezza dei dati e degli accessi per sprint}
 	\label{tab:mpd-sicurezza}
 \end{table}
+\subsubsection{PB (Sprint 8--11)}
 Nessuna chiave di accesso è mai stata esposta. Il file di configurazione che contiene i segreti è escluso dal versionamento fin dal prototipo, e i soli valori simili a credenziali presenti nel codice versionato sono chiavi fittizie usate nei test$_G$ automatici. È una scelta adottata all'inizio delle attività di codifica$_G$ e mantenuta senza eccezioni.
 
 Anche la sanificazione dei dati è piena in tutti gli sprint$_G$. La pipeline di rendering non abilita l'HTML grezzo e nessun componente inserisce nella pagina contenuto non filtrato, né quello scritto dall'utente né quello restituito dall'LLM$_G$. L'MVP$_G$ non ha migliorato il valore, che era già al massimo, ma ha ridotto da tre a uno i punti in cui questa configurazione va mantenuta corretta, e con essi il rischio$_G$ che le copie divergano nel tempo.
@@ -1935,7 +1942,7 @@ La validazione degli ingressi è l'unica delle tre metriche che si muove. Nell'o
     \item \textbf{Valore accettabile:} $DS \geq 95\%$ dei dati sanificati, vincolo \textit{sempre rispettato}.
     \item \textbf{Valore ottimale:} $DS = 100\%$ dei dati sanificati, vincolo \textit{sempre rispettato}.
 \end{itemize}
-Come si osserva in Figura \ref{fig:mpd-iv}, la validazione degli input$_G$ recupera cinquanta punti percentuali e attraversa entrambe le soglie nell'ultimo sprint$_G$; MPD-SK e MPD-DS non sono riportate perché costanti al valore ottimale in ogni sprint$_G$.
+
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/mpd-iv.pdf}
     \caption{Valutazione \textit{Input Validation}}
