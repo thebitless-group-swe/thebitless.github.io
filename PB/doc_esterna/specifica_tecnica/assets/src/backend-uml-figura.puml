@@ -1,0 +1,193 @@
+@startuml backend-uml-figura
+' ===========================================================================
+' Sorgente della figura della sezione 3.4 (Architettura del backend).
+'
+' Versione RIDOTTA, corrispondente alla didascalia del documento: le rotte e i
+' casi d'uso sono rappresentati da un esemplare ciascuno, piu' generate_from_link
+' che e' l'unico a dipendere da due porte. L'inventario completo di classi e
+' firme resta in backend-uml.puml, da cui questo file e' derivato per selezione.
+'
+' Uso previsto: draw.io, menu Arrange > Insert > Advanced > PlantUML. Il
+' risultato va poi disposto a mano in quattro fasce -- adattatori primari,
+' nucleo, adattatori secondari, fornitori esterni -- ed esportato in
+' assets/img/backend-uml.pdf.
+'
+' Regola da verificare sul disegno finito: nessuna freccia esce da app/core.
+' ===========================================================================
+
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+hide empty members
+
+' ---------------------------------------------------------------------------
+' NUCLEO -- non conosce nulla di cio' che sta attorno
+' ---------------------------------------------------------------------------
+package "app/core" as core {
+
+  interface LLMClient <<porta>> {
+    +stream(messages: Sequence<Message>): AsyncIterator<str>
+  }
+  class LLMProviderError <<eccezione>>
+
+  interface ContentExtractor <<porta>> {
+    +extract(url: str): str
+  }
+  class ContentExtractorError <<eccezione>>
+
+  class Message <<value object>> {
+    +role: Literal["system","user","assistant"]
+    +content: str
+  }
+
+  class summarize <<caso d'uso>> {
+    summarize(text: str, length: Length, llm: LLMClient): AsyncIterator<str>
+  }
+
+  class generate_from_link <<caso d'uso>> {
+    generate_from_link(url: str, length: Length, extractor: ContentExtractor, llm: LLMClient): AsyncIterator<str>
+    validate_link(url: str): None
+    fetch_and_extract(url: str, extractor: ContentExtractor): str
+  }
+
+  class FetchError <<eccezione>>
+  class InvalidLinkError <<eccezione>>
+}
+
+note bottom of summarize
+  Stessa forma per altri cinque casi d'uso:
+  generate, translate, rewrite, grammar, critique.
+  Ognuno riceve la porta come ultimo parametro
+  e ne restituisce il flusso senza consumarlo.
+end note
+
+LLMClient ..> LLMProviderError : <<solleva>>
+ContentExtractor ..> ContentExtractorError : <<solleva>>
+LLMClient ..> Message
+
+InvalidLinkError --|> FetchError
+generate_from_link ..> FetchError : <<solleva>>
+
+summarize ..> LLMClient
+generate_from_link ..> LLMClient
+generate_from_link ..> ContentExtractor
+
+' ---------------------------------------------------------------------------
+' ADATTATORI PRIMARI -- il lato da cui l'applicazione viene invocata
+' ---------------------------------------------------------------------------
+package "app/api" as api {
+
+  class summarize_router <<rotta>> {
+    +summarize(payload: TextRequest, request: Request, client: LLMClient): StreamingResponse
+  }
+
+  class generate_link_router <<rotta>> {
+    +generate_from_link(payload: LinkRequest, request: Request, client: LLMClient, extractor: ContentExtractor): StreamingResponse
+  }
+
+  class TextRequest <<DTO>> {
+    +text: str
+    +length: Length = "medio"
+  }
+
+  class LinkRequest <<DTO>> {
+    +url: HttpUrl
+    +length: Length = "medio"
+  }
+
+  class ErrorResponse <<DTO>> {
+    +detail: str
+  }
+
+  class sse_streaming <<adattatore primario>> {
+    sse_response(request: Request, stream: AsyncGenerator<str, None>, log_label: str, logger: Logger | None): StreamingResponse
+  }
+}
+
+note bottom of summarize_router
+  Stessa forma per altre cinque rotte.
+  Nessuna nomina un adattatore concreto:
+  dichiara la porta e la riceve iniettata.
+end note
+
+note bottom of sse_streaming
+  Non realizza alcuna porta e non e' invocato
+  dal dominio: e' un adattatore primario.
+  Preleva il primo frammento finche' lo stato
+  della risposta e' ancora modificabile.
+end note
+
+summarize_router ..> summarize
+summarize_router ..> LLMClient : <<Depends>>
+summarize_router ..> TextRequest
+summarize_router ..> sse_streaming
+
+generate_link_router ..> generate_from_link
+generate_link_router ..> LLMClient : <<Depends>>
+generate_link_router ..> ContentExtractor : <<Depends>>
+generate_link_router ..> LinkRequest
+generate_link_router ..> sse_streaming
+generate_link_router ..> ErrorResponse
+
+sse_streaming ..> LLMProviderError : <<intercetta>>
+
+' ---------------------------------------------------------------------------
+' ADATTATORI SECONDARI -- il lato che l'applicazione invoca
+' ---------------------------------------------------------------------------
+package "app/infrastructure/adapters" as infra {
+
+  class LiteLLMClient <<adattatore secondario>> {
+    -_settings: Settings
+    -_client: httpx.AsyncClient
+    +LiteLLMClient(settings: Settings)
+    +stream(messages: Sequence<Message>): AsyncIterator<str>
+    +aclose(): None
+    -_parse_sse_line(line: str): str | None
+  }
+
+  class TavilyExtractor <<adattatore secondario>> {
+    -_api_key: str
+    -_client: TavilyClient
+    +TavilyExtractor(api_key: str)
+    +extract(url: str): str
+    +aclose(): None
+  }
+}
+
+LiteLLMClient ..|> LLMClient
+TavilyExtractor ..|> ContentExtractor
+LiteLLMClient ..> Message
+LiteLLMClient ..> LLMProviderError : <<solleva>>
+TavilyExtractor ..> ContentExtractorError : <<solleva>>
+
+' ---------------------------------------------------------------------------
+' COMPOSITION ROOT
+' ---------------------------------------------------------------------------
+class dependencies <<composition root>> {
+  get_settings(): Settings
+  get_llm_client(): LLMClient
+  get_content_extractor(): ContentExtractor
+  verifica_chiavi_obbligatorie(): None
+  close_llm_client(): None
+  close_content_extractor(): None
+}
+
+note bottom of dependencies
+  Unico modulo che nomini LiteLLMClient e
+  TavilyExtractor fuori dai moduli che li
+  definiscono. I tre provider sono memoizzati:
+  una istanza per processo.
+end note
+
+dependencies ..> LiteLLMClient : <<istanzia>>
+dependencies ..> TavilyExtractor : <<istanzia>>
+
+' ---------------------------------------------------------------------------
+' FORNITORI ESTERNI
+' ---------------------------------------------------------------------------
+class "gateway LiteLLM" as gateway <<sistema esterno>>
+class "Tavily" as tavily <<sistema esterno>>
+
+LiteLLMClient ..> gateway : HTTP/SSE
+TavilyExtractor ..> tavily : HTTP
+
+@enduml
