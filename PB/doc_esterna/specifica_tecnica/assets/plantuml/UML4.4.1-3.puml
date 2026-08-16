@@ -1,0 +1,61 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam componentStyle rectangle
+skinparam linetype ortho
+' ============================================================
+' ENTITÀ NOTE
+' ============================================================
+
+class Note {
+  - id: string
+  - title: string
+  - content: string
+  - createdAt: number
+  - updatedAt: number
+}
+
+' ============================================================
+' MODULO fileSystem
+' ============================================================
+
+class fileSystem {
+  + openNoteFromFile(): Promise<Note | null>
+  + saveNoteToFile(note: Note): Promise<void>
+  + renameNote(note: Note, name: string): Promise<Note>
+  + GRAZIA_ANNULLAMENTO_MS: number (300)
+  + TITOLO_DI_RIPIEGO: string
+  - scegliFileConInput(): Promise<{text: string, fileName: string} | null>
+  - eAnnullamento(err: unknown): boolean
+}
+
+' ============================================================
+' LIBRERIE UTILIZZATE
+' ============================================================
+
+class id {
+  + newId(): string
+}
+
+class useNotesStore {
+  + loadNote(note: Note): void
+}
+
+class useEditorStore {
+  + loadDocument(text: string): void
+}
+
+' ============================================================
+' RELAZIONI
+' ============================================================
+
+fileSystem ..> Note : crea/gestisce
+fileSystem ..> id : utilizza (newId)
+
+Sidebar ..> fileSystem : utilizza (openNoteFromFile, saveNoteToFile)
+
+fileSystem ..> useNotesStore : utilizza (loadNote)
+fileSystem ..> useEditorStore : utilizza (loadDocument)
+
+@enduml

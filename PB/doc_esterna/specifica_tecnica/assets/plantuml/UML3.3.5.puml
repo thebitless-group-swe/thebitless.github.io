@@ -1,0 +1,149 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam componentStyle rectangle
+skinparam linetype ortho
+
+' ============================================================
+' 1. HOOK E STORE
+' ============================================================
+
+class useAiStream {
+  - status: 'idle' | 'streaming' | 'done' | 'error'
+  - abortControllerRef: RefObject<AbortController | null>
+  - isAbortedRef: RefObject<boolean>
+  __
+  + start<T>(fn: () => AsyncIterable<T>): Promise<void>
+  + abort(): void
+}
+
+class useEditorStore {
+  - isGenerating: boolean
+  - streamedOutput: string
+  - errorMessage: string | null
+  - _abortController: AbortController | null
+  - lastCall: LastCall | null
+  __
+  + startStreaming(): void
+  + appendChunk(chunk: string): void
+  + finishStreaming(): void
+  + setError(msg: string): void
+  + clearError(): void
+  + _setAbortController(c: AbortController | null): void
+  + abortStream(): void
+  + setLastCall(call: LastCall): void
+  + clearLastCall(): void
+}
+
+class LastCall {
+  input: string
+  params: AiParams
+  mode?: 'prompt' | 'link'
+  actionId: AiActionId
+  execute(signal: AbortSignal): AsyncIterable<string>
+}
+
+' ============================================================
+' 2. API E PARSER SSE
+' ============================================================
+
+class api {
+  + summarize(text: string, length: Length): AsyncIterable<string>
+  + translate(text: string, target: Language): AsyncIterable<string>
+  + rewrite(text: string, style: Style): AsyncIterable<string>
+  + grammar(text: string): AsyncIterable<string>
+  + critique(text: string, hat: Hat): AsyncIterable<string>
+  + generate(prompt: string, length: Length): AsyncIterable<string>
+  + generateFromLink(url: string, length: Length): AsyncIterable<string>
+  - stream(endpoint: string, body: unknown): AsyncIterable<string>
+}
+
+class sse {
+  + parseSseStream(reader: ReadableStreamDefaultReader<Uint8Array>): AsyncIterable<SseEvent>
+  + STREAM_INTERRUPTED_MESSAGE: string
+}
+
+class SseEvent {
+  type: 'chunk' | 'error'
+  data: string
+  message?: string
+}
+
+class abort {
+  + isAbortError(err: unknown): boolean
+}
+
+' ============================================================
+' 3. TIPI GENERATI
+' ============================================================
+
+class types {
+  + api.ts (generato da openapi-typescript)
+  + models.ts
+}
+
+' ============================================================
+' 4. COMPONENTI CHE UTILIZZANO
+' ============================================================
+
+class AiActionDialog {
+  - actionId: AiActionId
+  - isGenerating: boolean
+  - streamedOutput: string
+  - errorMessage: string | null
+  - displayed: string
+  - params: AiParams
+  - input: string
+  - validationError: string | null
+  - lastCall: LastCall | null
+  __
+  + handleGenerate(): void
+  + handleAccept(): void
+  + handleReject(): void
+  + handleStop(): void
+}
+
+class TopBar {
+  - isGenerating: boolean
+  - errorMessage: string | null
+  - aiModal: AiModal
+  __
+  + handleAbort(): void
+}
+
+' ============================================================
+' 5. RELAZIONI
+' ============================================================
+
+' AiActionDialog → useAiStream (usa l'hook)
+AiActionDialog ..> useAiStream : utilizza (start, abort, status)
+AiActionDialog ..> useEditorStore : utilizza
+AiActionDialog ..> api : utilizza
+AiActionDialog ..> types : utilizza (parametri tipizzati)
+
+' TopBar → useEditorStore (abort)
+TopBar ..> useEditorStore : utilizza (abortStream)
+
+' useAiStream → useEditorStore (gestisce stato)
+useAiStream ..> useEditorStore : utilizza (appendChunk, startStreaming, setError)
+
+' useAiStream → api (esegue le chiamate)
+useAiStream ..> api : utilizza (streamFn)
+
+' useAiStream → abort (utilizza isAbortError)
+useAiStream ..> abort : utilizza
+
+' api → sse (parser)
+api ..> sse : utilizza (parseSseStream)
+
+' api → types (tipi OpenAPI)
+api ..> types : utilizza (tipi delle richieste)
+
+' sse → SseEvent (definisce il tipo)
+sse ..> SseEvent : produce
+
+' useEditorStore → LastCall (definisce il tipo)
+useEditorStore ..> LastCall : utilizza
+
+@enduml

@@ -1,0 +1,30 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam componentStyle rectangle
+skinparam linetype ortho
+
+class ViewToggle {
+  - viewMode: ViewMode
+  __
+  + setViewMode(mode: ViewMode): void
+}
+
+class useEditorStore {
+  - viewMode: ViewMode
+  __
+  + setViewMode(mode: ViewMode): void
+}
+
+enum ViewMode {
+  editor
+  render
+  split
+}
+
+ViewToggle ..> useEditorStore : utilizza
+ViewToggle ..> ViewMode : utilizza
+useEditorStore ..> ViewMode : utilizza
+
+@enduml

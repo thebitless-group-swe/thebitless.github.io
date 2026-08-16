@@ -1,0 +1,48 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam componentStyle rectangle
+skinparam linetype ortho
+
+class useNotesStore {
+  - list: Note[]
+  - currentId: string | null
+  __
+  + createEmpty(): Note
+  + select(id: string): void
+  + updateCurrent(patch): void
+  + loadNote(note: Note): void
+}
+
+class Note {
+  - id: string
+  - title: string
+  - content: string
+  - createdAt: number
+  - updatedAt: number
+}
+
+class useEditorStore {
+  - currentText: string
+  - _loadVersion: number
+  __
+  + loadDocument(text: string): void
+  + setCurrentText(text: string): void
+}
+
+class Zustand {
+  + persist(fn, config): StoreApi
+}
+
+class localStorage {
+  + setItem(key: string, value: string): void
+  + getItem(key: string): string | null
+}
+
+useNotesStore "1" --o "0..*" Note : contiene
+useNotesStore ..> Zustand : utilizza (middleware persist)
+Zustand ..> localStorage : legge/scrive (notes_persistence)
+useNotesStore ..> useEditorStore : loadDocument()
+
+@enduml

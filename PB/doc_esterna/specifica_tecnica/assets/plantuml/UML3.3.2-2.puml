@@ -1,0 +1,52 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam componentStyle rectangle
+skinparam linetype ortho
+
+class TopBar {
+  - noteTitle?: string
+  - isGenerating: boolean
+  - errorMessage: string | null
+  - aiModal: AiModal
+  - currentNote: Note | null
+  __
+  + openModal(modal: AiActionId): void
+  + handleAbort(): void
+}
+
+class useNotesStore {
+  - list: Note[]
+  - currentId: string | null
+  __
+  + createEmpty(): Note
+  + select(id: string): void
+}
+
+class useEditorStore {
+  - currentText: string
+  - isGenerating: boolean
+  - errorMessage: string | null
+  - aiModal: AiModal
+  __
+  + setAiModal(modal: AiModal): void
+  + abortStream(): void
+}
+
+class AiActionId {
+}
+
+class AiModal {
+}
+
+class Note {
+}
+
+TopBar ..> useNotesStore : utilizza
+TopBar ..> useEditorStore : utilizza
+TopBar ..> AiActionId : utilizza
+TopBar ..> AiModal : utilizza
+useNotesStore ..> Note : gestisce
+
+@enduml

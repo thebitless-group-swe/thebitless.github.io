@@ -1,0 +1,83 @@
+@startuml
+!theme plain
+skinparam packageStyle rectangle
+skinparam componentStyle rectangle
+skinparam monochrome true
+skinparam shadowing false
+skinparam linetype ortho
+skinparam stereotypeCBackgroundColor transparent
+skinparam defaultFontName Arial
+
+title Dipendenze esterne del frontend
+
+top to bottom direction
+
+package "Frontend" {
+  
+  package "UI (React)" as UI {
+    [Componenti]
+    [Hooks]
+  }
+
+  package "State (Zustand)" as STORE {
+    [Store]
+    [Persist]
+  }
+
+  package "Utility" as UTIL {
+    [API Client]
+    [File System]
+    [Editor]
+    [Parser SSE]
+  }
+
+  package "Types" as TYPES {
+    [Tipi generati]
+    [Modelli]
+  }
+}
+
+together {
+  package "Framework" {
+    [React 19]
+    [TypeScript 6]
+  }
+
+  package "UI / Stile" {
+    [Radix UI]
+    [Tailwind CSS 4]
+  }
+
+  package "Editor" {
+    [CodeMirror 6]
+  }
+
+  package "Markdown" {
+    [react-markdown]
+  }
+
+  package "Testing" {
+    [Vitest]
+  }
+
+  package "Build" {
+    [Vite]
+    [openapi-typescript]
+  }
+}
+
+UI ..> [React 19] : utilizza
+UI ..> [Radix UI] : utilizza
+UI ..> [Tailwind CSS 4] : utilizza
+
+STORE ..> [Zustand 5] : utilizza
+
+UTIL ..> [CodeMirror 6] : utilizza
+UTIL ..> [react-markdown] : utilizza
+
+TYPES ..> [openapi-typescript] : genera
+
+[Vitest] ..> [React 19] : testa
+[Vite] ..> [TypeScript 6] : compila
+
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam componentStyle rectangle
+skinparam linetype ortho
+
+class EditorToolbar {
+  - editorView: EditorView | null
+  __
+  + handleAction(label: string): void
+  + handleHeading(level: HeadingLevel): void
+  + handleList(ordered: boolean): void
+}
+
+class useEditorStore {
+  - editorView: EditorView | null
+  __
+  + setEditorView(view: EditorView | null): void
+}
+
+class editorCommands {
+}
+
+class EditorView {
+}
+
+EditorToolbar ..> useEditorStore : utilizza
+EditorToolbar ..> editorCommands : utilizza
+useEditorStore ..> EditorView : contiene
+
+@enduml
