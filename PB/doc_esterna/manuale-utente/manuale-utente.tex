@@ -695,7 +695,9 @@ Il testo si compone nell'area di scrittura in Markdown; l'area di anteprima ne m
 
 \subsection{La barra degli strumenti di formattazione}
 \label{sec:barra-strumenti-formattazione}
-La barra degli strumenti posta sopra l'area di scrittura inserisce i marcatori Markdown al posto dell'utente. Le sottosezioni seguenti ne descrivono i comandi.
+La barra degli strumenti posta sopra l'area di scrittura inserisce i marcatori Markdown al posto dell'utente. I comandi vi compaiono nell'ordine ``Grassetto'', ``Corsivo'', ``Sottolineato'', ``Barrato'', ``Link'', ``Immagine'', ``Codice'', ``Titolo'' ed ``Elenco''; ``Titolo'' ed ``Elenco'' aprono un menu, gli altri agiscono direttamente. All'estremità destra della barra si trova inoltre il pulsante ``Salva''.\daverificare{pulsante ``Salva'' della barra degli strumenti: nel codice non risulta associato ad alcuna azione. Confermare quale operazione debba compiere, o se vada rimosso dall'interfaccia}
+
+Le sottosezioni seguenti descrivono i comandi della barra. I costrutti Markdown che l'area di anteprima riconosce ma che non hanno un comando dedicato sono raccolti nella Sezione~\ref{sec:costrutti-senza-comando}.
 
 \subsubsection{Come si comportano i comandi di formattazione}
 \label{sec:comandi-formattazione}
@@ -777,11 +779,104 @@ Il comando ``Link'' funziona come un interruttore: applicato a un collegamento g
 
 Il pulsante ``Immagine'' inserisce il riferimento a un'immagine nella forma \texttt{![testo]\allowbreak(https://)}, dove \texttt{testo} è il testo selezionato e diventa la descrizione dell'immagine. Anche in questo caso l'indirizzo predefinito resta selezionato, pronto per essere sostituito.
 
+\subsubsection{Costrutti Markdown privi di un comando dedicato}
+\label{sec:costrutti-senza-comando}
+L'area di anteprima riconosce alcuni costrutti Markdown per i quali la barra degli strumenti non mette a disposizione alcun pulsante. Per impiegarli occorre digitarne i marcatori direttamente nell'area di scrittura: l'anteprima li rende come tutti gli altri. I marcatori riconosciuti sono riportati nella Tabella~\ref{tab:costrutti-senza-comando}.
+
+\begingroup
+\small
+\begin{longtable}{|p{2.8cm}|p{4.6cm}|p{4.9cm}|}
+    \caption{Costrutti Markdown riconosciuti dall'anteprima e privi di un comando nella barra degli strumenti}
+    \label{tab:costrutti-senza-comando} \\
+    \hline
+    \textbf{Costrutto} & \textbf{Marcatori} & \textbf{Risultato} \\
+    \hline
+    \endfirsthead
+    \hline
+    \textbf{Costrutto} & \textbf{Marcatori} & \textbf{Risultato} \\
+    \hline
+    \endhead
+    Citazione & \texttt{> testo}, all'inizio della riga & Blocco di citazione, rientrato rispetto al testo circostante. \\ \hline
+
+    Blocco di codice & Tre apici inversi su una riga propria, prima e dopo il blocco; dopo i primi tre si può indicare il linguaggio & Blocco a spaziatura fissa. Indicando il linguaggio, l'anteprima ne colora la sintassi. \\ \hline
+
+    Tabella & Righe di celle separate dal carattere \texttt{|}; la seconda riga separa l'intestazione dal corpo con trattini, nella forma \texttt{|---|---|} & Tabella con riga di intestazione. Il numero di colonne è quello della prima riga. \\ \hline
+
+    Formula in riga & \texttt{\$formula\$} & Formula matematica composta all'interno della riga di testo. \\ \hline
+
+    Formula isolata & \texttt{\$\$formula\$\$} & Formula matematica composta su una riga propria, centrata. \\ \hline
+
+    Elenco di controllo & \texttt{- [ ] voce} oppure \texttt{- [x] voce} & Voce di elenco preceduta da una casella, vuota o spuntata. \\ \hline
+
+\end{longtable}
+\endgroup
+
+Poiché questi costrutti non hanno un comando dedicato, non dispongono neppure del comportamento a interruttore descritto nella Sezione~\ref{sec:comandi-formattazione}: per rimuoverli occorre cancellarne i marcatori a mano.
+
+\vspace{0.5em}
+
+\noindent
+\textbf{Avviso.} L'applicazione non riconosce le ancore di navigazione interne alla nota: non è possibile inserire un collegamento che rimandi a un punto della nota stessa. I collegamenti descritti nella Sezione~\ref{sec:collegamenti-immagini} rimandano a risorse esterne.
+
 \subsection{Annullare e ripristinare una modifica}
 \label{sec:annullare-ripristinare}
-L'area di scrittura conserva la cronologia delle modifiche. La combinazione \texttt{Ctrl+Z} annulla l'ultima modifica, mentre la combinazione \texttt{Ctrl+Y} la ripristina.
+L'area di scrittura conserva la cronologia delle modifiche. La combinazione \texttt{Ctrl+Z} annulla l'ultima modifica.
+
+Il ripristino della modifica annullata dipende dal sistema operativo:
+
+\begin{itemize}
+    \item su Windows e su Linux si impiega \texttt{Ctrl+Y};
+
+    \item su Linux è riconosciuta anche la combinazione \texttt{Ctrl+Shift+Z};
+
+    \item su macOS si impiega \texttt{Cmd+Shift+Z}, mentre \texttt{Ctrl+Y} non è riconosciuta. Su macOS anche l'annullamento si imparte con \texttt{Cmd+Z} anziché con \texttt{Ctrl+Z}.
+\end{itemize}
 
 La barra degli strumenti non espone comandi corrispondenti: annullamento e ripristino si impartiscono soltanto da tastiera.
+
+\subsection{Scorciatoie da tastiera}
+\label{sec:scorciatoie}
+Le combinazioni di tasti riconosciute dall'applicazione sono riepilogate nella Tabella~\ref{tab:scorciatoie}. Ciascuna vale nel contesto indicato: le scorciatoie dell'area di scrittura non hanno effetto quando il cursore si trova in un campo della barra laterale o della finestra dell'assistente.
+
+\begingroup
+\small
+\begin{longtable}{|p{3.6cm}|p{4.2cm}|p{4.5cm}|}
+    \caption{Scorciatoie da tastiera}
+    \label{tab:scorciatoie} \\
+    \hline
+    \textbf{Combinazione} & \textbf{Contesto} & \textbf{Effetto} \\
+    \hline
+    \endfirsthead
+    \hline
+    \textbf{Combinazione} & \textbf{Contesto} & \textbf{Effetto} \\
+    \hline
+    \endhead
+    \texttt{Ctrl+Z} \newline (\texttt{Cmd+Z} su macOS) & Area di scrittura & Annulla l'ultima modifica. \\ \hline
+
+    \texttt{Ctrl+Y} \newline (\texttt{Cmd+Shift+Z} su macOS) & Area di scrittura & Ripristina la modifica annullata. \\ \hline
+
+    \texttt{Ctrl+K} \newline (\texttt{Cmd+K} su macOS) & Area di scrittura & Inserisce un collegamento, come il pulsante ``Link''. \\ \hline
+
+    \texttt{Ctrl+F} \newline (\texttt{Cmd+F} su macOS) & Area di scrittura & Apre il pannello di ricerca nel testo della nota. \\ \hline
+
+    \texttt{F3} & Pannello di ricerca & Passa all'occorrenza successiva; con \texttt{Shift}, alla precedente. \\ \hline
+
+    \texttt{Esc} & Pannello di ricerca & Chiude il pannello di ricerca. \\ \hline
+
+    \texttt{Invio} & Campo del titolo, alla creazione & Conferma il titolo e crea la nota. \\ \hline
+
+    \texttt{Esc} & Campo del titolo, alla creazione & Annulla la creazione. \\ \hline
+
+    \texttt{Invio} & Campo del nome, nella rinomina & Conferma il nuovo nome. \\ \hline
+
+    \texttt{Esc} & Campo del nome, nella rinomina & Annulla la rinomina e ripristina il nome precedente. \\ \hline
+
+    \texttt{Esc} & Richiesta di conferma dell'eliminazione & Rinuncia all'eliminazione. \\ \hline
+
+    \texttt{Esc} & Finestra dell'assistente & Chiude la finestra, scartando il risultato. \\ \hline
+
+\end{longtable}
+\endgroup
 
 
 \section{Funzionalità di intelligenza artificiale}
