@@ -518,7 +518,7 @@ La presente sezione descrive le aree in cui è suddivisa la schermata dell'appli
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{assets/interfaccia-base.png}
+    \includegraphics[width=\textwidth]{assets/interfaccia-base.jpeg}
     \caption{Interfaccia all'avvio dell'applicazione.}
     \label{fig:guida-interfaccia}
 \end{figure}
@@ -533,7 +533,7 @@ La presente sezione descrive le aree in cui è suddivisa la schermata dell'appli
     \label{fig:barra-laterale}
 \end{figure}
 
-Sul lato sinistro si trova una barra laterale, intestata ``Second Brain''.\daverificare{intestazione della barra laterale: confermare che il prodotto riporti ``Second Brain''} Nella sua parte superiore sono raccolti i pulsanti ``Nuova nota'', ``Apri file\ldots'' e ``Salva file''; al di sotto compare l'elenco ``Tutte le note'', che riporta le note presenti. Quando non esiste alcuna nota, l'elenco riporta la scritta ``Nessuna nota''.
+Sul lato sinistro si trova una barra laterale, intestata ``Second Brain''. Nella sua parte superiore sono raccolti i pulsanti ``Nuova nota'', ``Apri file\ldots'' e ``Salva file''; al di sotto compare l'elenco ``Tutte le note'', che riporta le note presenti. Quando non esiste alcuna nota, l'elenco riporta la scritta ``Nessuna nota''.
 
 Ogni voce dell'elenco espone, sul proprio lato destro, il comando di eliminazione, rappresentato dall'icona di un cestino. L'eliminazione di una nota è descritta nella Sezione~\ref{sec:eliminare-nota}.
 
@@ -560,6 +560,10 @@ Sotto al titolo sono disposti i pulsanti delle azioni di intelligenza artificial
 \subsection{La barra degli strumenti di formattazione}
 \label{sec:area-barra-strumenti}
 
+% TODO screenshot: assets/barra-strumenti.png è anteriore alla rimozione del
+% pulsante "Salva" dalla barra degli strumenti e lo mostra ancora, mentre
+% interfaccia-base.jpeg e modalita-render-editor.jpeg riprendono la barra senza.
+% Va rifatto ritagliando la barra da uno dei due, mantenendo lo stesso nome.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{assets/barra-strumenti.png}
@@ -719,7 +723,7 @@ Il testo si compone nell'area di scrittura in Markdown; l'area di anteprima ne m
 
 \subsection{La barra degli strumenti di formattazione}
 \label{sec:barra-strumenti-formattazione}
-La barra degli strumenti posta sopra l'area di scrittura inserisce i marcatori Markdown al posto dell'utente. I comandi vi compaiono nell'ordine ``Grassetto'', ``Corsivo'', ``Sottolineato'', ``Barrato'', ``Link'', ``Immagine'', ``Codice'', ``Titolo'' ed ``Elenco''; ``Titolo'' ed ``Elenco'' aprono un menu, gli altri agiscono direttamente. All'estremità destra della barra si trova inoltre il pulsante ``Salva''.\daverificare{pulsante ``Salva'' della barra degli strumenti: nel codice non risulta associato ad alcuna azione. Confermare quale operazione debba compiere, o se vada rimosso dall'interfaccia}
+La barra degli strumenti posta sopra l'area di scrittura inserisce i marcatori Markdown al posto dell'utente. I comandi vi compaiono nell'ordine ``Grassetto'', ``Corsivo'', ``Sottolineato'', ``Barrato'', ``Link'', ``Immagine'', ``Codice'', ``Titolo'' ed ``Elenco''; ``Titolo'' ed ``Elenco'' aprono un menu, gli altri agiscono direttamente. La barra non contiene altri comandi: il salvataggio della nota su file si imparte dalla barra laterale, come descritto nella Sezione~\ref{sec:salvare-nota-file}.
 
 Le sottosezioni seguenti descrivono i comandi della barra. I costrutti Markdown che l'area di anteprima riconosce ma che non hanno un comando dedicato sono raccolti nella Sezione~\ref{sec:costrutti-senza-comando}.
 
@@ -1074,7 +1078,7 @@ La Sezione~\ref{sec:controlli-da-link} descrive i controlli propri di questa mod
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{assets/da-link.jpeg}
+    \includegraphics[width=0.72\textwidth]{assets/da-link.jpeg}
     \caption{Risultato dell'azione ``Genera'', modalità ``Da link'', con parametro ``Lunghezza output'' impostato su ``Dettagliato''.}
     \label{fig:esempio-genera-link}
 \end{figure}
