@@ -9,6 +9,27 @@
 \usepackage[italian]{babel}
 
 % ---------------------------------------------------------------------------
+% Sillabazione e rientri di paragrafo.
+%
+% Nessuna parola viene spezzata a fine riga: \hyphenpenalty sopprime la
+% sillabazione automatica, \exhyphenpenalty impedisce di andare a capo in
+% corrispondenza dei trattini già presenti nel testo, come in
+% docker-compose.yml. Senza sillabazione la giustificazione deve poter
+% allargare gli spazi fra le parole, altrimenti le righe sborderebbero dal
+% margine destro: è quanto consente \sloppy.
+%
+% I paragrafi iniziano tutti dallo stesso margine sinistro, senza rientro. In
+% assenza di rientro il solo indizio di un nuovo paragrafo è lo spazio
+% verticale, che va quindi reso esplicito con \parskip.
+% ---------------------------------------------------------------------------
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\sloppy
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em plus 0.2em minus 0.1em}
+
+% ---------------------------------------------------------------------------
 % Colori
 % xcolor va caricato una sola volta e prima di ogni pacchetto che lo richiami
 % a sua volta: un secondo \usepackage con opzioni diverse produce l'errore
@@ -28,6 +49,10 @@
 \usepackage{tabularx}
 \usepackage{enumitem}
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
+% Colonna di paragrafo allineata a sinistra anziché giustificata. Serve alle
+% colonne strette: senza sillabazione una colonna giustificata non ha modo di
+% chiudere la riga e sborda invece di allargare gli spazi.
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 \renewcommand{\arraystretch}{1.2}
 
 % ---------------------------------------------------------------------------
