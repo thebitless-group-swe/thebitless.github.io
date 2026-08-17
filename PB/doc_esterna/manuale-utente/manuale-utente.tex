@@ -132,7 +132,7 @@
 \newcommand{\dataverbale}{}
 \newcommand{\dataversione}{2026-08-17}
 \newcommand{\versione}{1.0.0}
-\newcommand{\stato}{Stesura}
+\newcommand{\stato}{Approvato}
 % Il Manuale Utente è documentazione esterna: fra i destinatari figura anche
 % la proponente, coerentemente con Analisi dei Requisiti, Piano di Qualifica e
 % Specifica Tecnica.
@@ -560,10 +560,6 @@ Sotto al titolo sono disposti i pulsanti delle azioni di intelligenza artificial
 \subsection{La barra degli strumenti di formattazione}
 \label{sec:area-barra-strumenti}
 
-% TODO screenshot: assets/barra-strumenti.png è anteriore alla rimozione del
-% pulsante "Salva" dalla barra degli strumenti e lo mostra ancora, mentre
-% interfaccia-base.jpeg e modalita-render-editor.jpeg riprendono la barra senza.
-% Va rifatto ritagliando la barra da uno dei due, mantenendo lo stesso nome.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{assets/barra-strumenti.png}
@@ -989,7 +985,7 @@ La modalità ``Da link'' dell'azione ``Genera'' non riceve un testo, ma un URL\t
 
 Del contenuto letto dalla pagina vengono impiegati al più i primi 12000 caratteri: delle pagine più lunghe si considera quindi soltanto la parte iniziale.
 
-Gli errori che si verificano dopo l'invio della richiesta, durante l'elaborazione, compaiono anch'essi all'interno della finestra. L'attesa di una risposta dal servizio di intelligenza artificiale non supera i 60 secondi: trascorsi i quali la richiesta viene abbandonata e compare il messaggio ``Servizio temporaneamente non disponibile''.\daverificare{tempo massimo di attesa dell'estrazione del contenuto di una pagina web: nel codice non risulta configurato alcun valore esplicito}
+Gli errori che si verificano dopo l'invio della richiesta, durante l'elaborazione, compaiono anch'essi all'interno della finestra. L'attesa di una risposta dal servizio di intelligenza artificiale non supera i 60 secondi: trascorsi i quali la richiesta viene abbandonata e compare il messaggio ``Servizio temporaneamente non disponibile''.
 
 I problemi più frequenti e i relativi rimedi sono raccolti nella Sezione~\ref{sec:risoluzione-problemi}, che riporta anche i messaggi elencati qui sopra.
 
