@@ -118,8 +118,8 @@
 
 \newcommand{\titolo}{Manuale Utente}
 \newcommand{\dataverbale}{}
-\newcommand{\dataversione}{2026-08-10}
-\newcommand{\versione}{0.7.0}
+\newcommand{\dataversione}{2026-08-17}
+\newcommand{\versione}{1.0.0}
 \newcommand{\stato}{Stesura}
 % Il Manuale Utente è documentazione esterna: fra i destinatari figura anche
 % la proponente, coerentemente con Analisi dei Requisiti, Piano di Qualifica e
@@ -138,29 +138,6 @@
 \newpage
 \pagenumbering{arabic}
 
-% ---------------------------------------------------------------------------
-% Redattori e verificatori.
-% Il template condiviso templates/frontespizio.tex non prevede questi due
-% campi: si riportano qui, in apertura del corpo, per non modificare un
-% template impiegato da tutti i documenti del gruppo.
-% ---------------------------------------------------------------------------
-\begingroup
-\small
-\renewcommand{\theHtable}{informazioni-redazione}
-\noindent
-\begin{tabularx}{\textwidth}{|l|L|}
-    \hline
-    \multicolumn{2}{|c|}{\textbf{Informazioni sulla redazione}} \\
-    \hline
-    \textbf{Redattori} & Anna Marini, Lorenzo Battistella \\
-    \hline
-    \textbf{Verificatori} & \daverificare{nominativi dei verificatori designati} \\
-    \hline
-    \textbf{Contatti} & thebitless.swe@gmail.com \\
-    \hline
-\end{tabularx}
-\endgroup
-
 \vspace{1em}
 
 \begingroup
@@ -170,31 +147,43 @@
 % didascalia.
 \renewcommand{\theHtable}{registro-modifiche}
 % Larghezze fissate esplicitamente: la somma delle colonne più i separatori
-% deve restare entro \textwidth (418pt), altrimenti la tabella sborda.
-\begin{longtable}{|c|c|p{2.4cm}|p{2.4cm}|p{4.5cm}|}
+% deve restare entro \textwidth (418pt), altrimenti la tabella sborda. Con
+% l'aggiunta della colonna «Approvatore» le sei colonne non stanno più nelle
+% larghezze precedenti: si riducono quelle dei nominativi e della descrizione e
+% si stringe \tabcolsep, che su sei colonne pesa da solo più di 2,5 cm.
+\setlength{\tabcolsep}{4pt}
+\begin{longtable}{|c|c|P{2.1cm}|P{2.1cm}|P{2.1cm}|P{3.1cm}|}
     \hline
-    \multicolumn{5}{|c|}{\textbf{Registro delle modifiche}} \\
+    \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
     \hline
-    \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Descrizione} \\
+    \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
     \hline
     \endhead
-    0.8.0 & 2026-08-13 & L. Battistella & A. Marini & Aggiunta sezioni Risoluzione dei problemi e Glossario \\ \hline
+    1.0.0 & 2026-08-17 & -- & -- & A. Menegaldo & Approvazione del documento \\ \hline
 
-    0.7.0 & 2026-08-10 & A. Marini & L. Battistella & Aggiunta dell'analisi critica secondo i Sei Cappelli, della Guida all'interfaccia, della Risoluzione dei problemi e del Glossario; allineamento delle etichette dell'interfaccia al prodotto \\ \hline
+    0.9.0 & 2026-08-14 & A. Marini & L. Battistella & -- & Eliminazione di una nota, titolo richiesto alla creazione e generazione da link; correzioni grammaticali \\ \hline
 
-    0.6.0 & 2026-08-09 & L. Battistella & A. Marini & Funzionalità di intelligenza artificiale: flusso comune alle azioni, inserimento del risultato nella nota e descrizione delle singole azioni dell'assistente \\ \hline
+    0.8.0 & 2026-08-13 & L. Battistella & A. Marini & -- & Aggiunta delle sezioni Risoluzione dei problemi e Glossario \\ \hline
 
-    0.5.0 & 2026-08-08 & A. Marini & L. Battistella & Scrivere e formattare il testo: comandi della barra degli strumenti, titoli, elenchi, collegamenti e immagini \\ \hline
+    0.7.0 & 2026-08-10 & A. Marini & S. Zecchinato & -- & Aggiunta dell'analisi critica secondo i Sei Cappelli e della Guida all'interfaccia; allineamento delle etichette dell'interfaccia al prodotto \\ \hline
 
-    0.4.0 & 2026-08-08 & L. Battistella & A. Marini & Gestione delle note: creazione, apertura, rinomina, salvataggio su file e conservazione nel browser \\ \hline
+    0.6.0 & 2026-08-09 & E. De Piccoli & A. Marini & -- & Funzionalità di intelligenza artificiale: flusso comune alle azioni, inserimento del risultato nella nota e descrizione delle singole azioni dell'assistente \\ \hline
 
-    0.3.0 & 2026-08-07 & A. Marini & L. Battistella & Installazione e avvio: requisiti di sistema, verifica dell'installazione, configurazione del file \texttt{.env}, avvio e arresto \\ \hline
+    0.5.0 & 2026-08-08 & A. Marini & L. Battistella & -- & Scrivere e formattare il testo: comandi della barra degli strumenti, titoli, elenchi, collegamenti e immagini \\ \hline
 
-    0.2.0 & 2026-08-06 & L. Battistella & A. Marini & Introduzione: scopo del prodotto, finalità e destinatari, convenzioni tipografiche, riferimenti e formati del manuale \\ \hline
+    0.4.0 & 2026-08-08 & L. Battistella & A. Menegaldo & -- & Gestione delle note: creazione, apertura, rinomina, salvataggio su file e conservazione nel browser \\ \hline
 
-    0.1.0 & 2026-08-06 & A. Marini & L. Battistella & Impostazione del documento: preambolo \LaTeX{}, frontespizio, tabella di redazione e registro delle modifiche \\ \hline
+    0.3.0 & 2026-08-07 & D. Facco & S. Vendramin & -- & Installazione e avvio: requisiti di sistema, verifica dell'installazione, configurazione del file \texttt{.env}, avvio e arresto \\ \hline
+
+    0.2.0 & 2026-08-06 & L. Battistella & E. De Piccoli & -- & Introduzione: scopo del prodotto, finalità e destinatari, convenzioni tipografiche, riferimenti e formati del manuale \\ \hline
+
+    0.1.0 & 2026-08-06 & A. Marini & L. Battistella & -- & Impostazione del documento: preambolo \LaTeX{}, frontespizio, tabella di redazione e registro delle modifiche \\ \hline
 
 \end{longtable}
+% Il registro è privo di didascalia e non compare nell'indice delle tabelle, ma
+% longtable ne incrementa comunque il contatore: senza questa riga la prima
+% tabella con didascalia riceverebbe il numero 2 e l'indice partirebbe da lì.
+\addtocounter{table}{-1}
 \endgroup
 
 \newpage
