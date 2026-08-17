@@ -1218,81 +1218,208 @@ Nell'uso dell'assistente si consiglia di:
 
 \section{Risoluzione dei problemi}
 \label{sec:risoluzione-problemi}
-Problemi più frequenti e relative soluzioni:
-\begin{itemize}
+La presente sezione raccoglie i problemi più frequenti. La Sezione~\ref{sec:messaggi-applicazione} riporta i messaggi che l'applicazione può mostrare, con la causa e il rimedio di ciascuno; la Sezione~\ref{sec:problemi-installazione} tratta i problemi che si manifestano in fase di installazione e di avvio; la Sezione~\ref{sec:altre-situazioni} descrive le situazioni che richiedono una spiegazione più estesa.
 
-\item \textbf{Problema:} Viene visualizzato il messaggio "Servono almeno N caratteri di testo."
+Trattandosi di un'installazione locale, l'amministratore dell'ambiente è l'utente stesso: tutti i rimedi indicati sono alla sua portata e non richiedono l'intervento di terzi.
 
-Il messaggio compare quando il testo su cui deve essere eseguita l'azione (riassumi, traduci, riscrivi, ecc.) è troppo corto, oppure quando il campo istruzioni o link è stato lasciato vuoto per un'azione che lo richiede.
+\subsection{I messaggi dell'applicazione}
+\label{sec:messaggi-applicazione}
+I messaggi delle azioni dell'assistente compaiono all'interno della finestra dell'azione; quelli relativi alle operazioni sulle note compaiono nella barra laterale. I controlli che li producono sono descritti nella Sezione~\ref{sec:funzionamento-comune-azioni} e, per la modalità ``Da link'', nella Sezione~\ref{sec:controlli-da-link}.
 
-\textbf{Soluzione:} è necessario selezionare un testo più lungo nella nota prima di avviare l'azione, oppure, se non è stata effettuata alcuna selezione, verificare che la nota intera contenga testo sufficiente. Per le azioni "Genera" e "Genera da link" occorre assicurarsi di aver inserito istruzioni sufficienti o un URL valido.
+\begingroup
+\small
+\begin{longtable}{|p{4.5cm}|p{4.3cm}|p{4.3cm}|}
+    \caption{Messaggi dell'applicazione, con causa e rimedio}
+    \label{tab:messaggi} \\
+    \hline
+    \textbf{Messaggio} & \textbf{Causa} & \textbf{Rimedio} \\
+    \hline
+    \endfirsthead
+    \hline
+    \textbf{Messaggio} & \textbf{Causa} & \textbf{Rimedio} \\
+    \hline
+    \endhead
+    ``Servono almeno N caratteri di testo.'' & Il testo da elaborare è più corto del minimo richiesto: 10 caratteri per le azioni che lavorano sul testo della nota, 3 per le istruzioni di ``Genera''. & Selezionare una porzione di testo più lunga, oppure scrivere altro testo nella nota. Per ``Genera'', estendere le istruzioni. \\ \hline
 
-\item \textbf{Problema:} Viene visualizzato il messaggio "Servizio temporaneamente non disponibile"
+    ``Il testo supera il massimo di N caratteri (attuali: M). Riducilo o elaboralo in più parti.'' & Il testo da elaborare supera il limite: 12000 caratteri per le azioni sul testo della nota, 2000 per le istruzioni di ``Genera''. & Selezionare una porzione più breve ed elaborare la nota in più passaggi. \\ \hline
 
-Il messaggio indica che il backend non è riuscito a contattare il servizio AI, per un problema temporaneo di connessione o di disponibilità del servizio stesso.
+    ``Seleziona un cappello per l'analisi.'' & Si è avviata l'azione ``Analisi'' senza aver scelto una prospettiva, che non è preselezionata. & Scegliere una delle sei opzioni del parametro ``Prospettiva (cappello)'', quindi riavviare l'elaborazione. \\ \hline
 
-\textbf{Soluzione:} si consiglia di attendere qualche istante e ripetere l'operazione. Se il problema persiste, è opportuno verificare la connessione internet o contattare l'amministratore del servizio.
+    ``Inserisci un URL.'' & Si è avviata l'azione ``Genera'' nella modalità ``Da link'' lasciando vuoto il campo ``URL''. & Incollare nel campo ``URL'' l'indirizzo della pagina da cui partire. \\ \hline
 
-\item \textbf{Problema:} La generazione risulta bloccata e l'anteprima resta vuota
+    ``Il link indicato non è un indirizzo valido: controlla che inizi con http:// o https://.'' & L'indirizzo inserito non ha la forma di un indirizzo web. & Correggere l'indirizzo, verificando che inizi con \texttt{http://} oppure con \texttt{https://}. \\ \hline
 
-Questa situazione può verificarsi se la connessione viene interrotta durante lo streaming, o se il server smette di rispondere senza restituire un errore esplicito.
+    ``L'indirizzo del link è troppo lungo. Incollane uno più breve e riprova.'' & L'indirizzo inserito supera i 2048 caratteri. La pagina non viene contattata. & Impiegare un indirizzo più breve della stessa pagina, privandolo dei parametri non necessari. \\ \hline
 
-\textbf{Soluzione:} è possibile premere il pulsante "Interrompi" per fermare la richiesta bloccata, quindi avviare nuovamente la generazione. Se il problema si ripete con frequenza, è consigliabile verificare la connessione di rete in uso.
+    ``Non è stato possibile leggere il contenuto della pagina. Controlla che il link sia corretto e raggiungibile, poi riprova.'' & La pagina non è raggiungibile, non esiste, oppure non contiene testo estraibile. & Aprire l'indirizzo nel browser per verificarlo. Se la pagina richiede un accesso, impiegare la modalità ``Da prompt''. \\ \hline
 
-\item \textbf{Problema:} L'utente desidera annullare una generazione già avviata
+    ``Servizio temporaneamente non disponibile'' & Il servizio di intelligenza artificiale non ha risposto entro 60 secondi, non è raggiungibile o ha rifiutato la richiesta. & Attendere qualche istante e riprovare. Se persiste, verificare la connessione a Internet e i valori di \texttt{LITELLM\_BASE\_URL} e \texttt{LITELLM\_API\_KEY} nel file \texttt{.env}. \\ \hline
 
-Se ci si accorge di aver impostato parametri errati (ad esempio lunghezza, lingua o stile) mentre l'AI sta ancora generando il contenuto, non è necessario attendere il completamento dell'operazione.
+    ``Servizio di elaborazione temporaneamente non disponibile (chiave mancante).'' & La variabile \texttt{LITELLM\_API\_KEY} è assente o vuota. & Valorizzarla nel file \texttt{.env}, quindi riavviare l'applicazione. \\ \hline
 
-\textbf{Soluzione:} è sufficiente premere il pulsante "Interrompi", disponibile per tutta la durata della generazione. La richiesta viene annullata immediatamente, consentendo di correggere i parametri prima di avviare una nuova generazione.
+    ``Servizio di estrazione contenuti temporaneamente non disponibile (chiave mancante).'' & La variabile \texttt{TAVILY\_API\_KEY} è assente o vuota. Solo la modalità ``Da link'' ne risente. & Valorizzarla nel file \texttt{.env}, quindi riavviare l'applicazione. Nel frattempo è utilizzabile la modalità ``Da prompt''. \\ \hline
 
-\item \textbf{Problema:} Viene visualizzato il messaggio "Impossibile aprire il file"
+    ``Il campo «\textit{nome}» è obbligatorio.'' & Una richiesta è giunta al servizio priva di un dato necessario. & Chiudere la finestra dell'azione, riaprirla e ripetere l'operazione. \\ \hline
 
-Il messaggio compare quando il browser non riesce a leggere il file selezionato, ad esempio per permessi negati, un formato non supportato o un file danneggiato.
+    ``Il campo «\textit{nome}» deve contenere almeno N caratteri.'' & Il servizio ha respinto un testo più corto del minimo consentito. & Estendere il testo, come per il primo messaggio della presente tabella. \\ \hline
 
-\textbf{Soluzione:} è necessario verificare che il file sia in formato .md o .txt. Se il browser ha richiesto un permesso di accesso che è stato negato per errore, si consiglia di ripetere l'operazione e confermare l'autorizzazione quando richiesta.
+    ``Il campo «\textit{nome}» non può superare N caratteri: riduci il testo o elaboralo in più parti.'' & Il servizio ha respinto un testo più lungo del massimo consentito. & Ridurre il testo ed elaborare la nota in più passaggi. \\ \hline
 
-\item \textbf{Problema:} Le note risultano non più disponibili dopo la chiusura del browser
+    ``Il valore indicato per «\textit{nome}» non è fra quelli ammessi: scegline uno fra le opzioni proposte.'' & Il servizio ha ricevuto per un parametro un valore che non riconosce. & Scegliere di nuovo il parametro fra le opzioni della finestra e riavviare l'elaborazione. \\ \hline
 
-Le note vengono salvate localmente nel browser utilizzato, non su un server esterno. Qualora la cache del browser venga svuotata, venga utilizzata la navigazione in incognito, o si effettui l'accesso da un dispositivo o browser diverso, le note salvate localmente non risulteranno più accessibili.
+    ``I dati inviati non sono validi. Controlla la richiesta e riprova.'' & Il servizio ha respinto la richiesta senza poterne indicare il campo. & Chiudere la finestra dell'azione, riaprirla e ripetere l'operazione. \\ \hline
 
-\textbf{Soluzione:} per evitare la perdita del lavoro svolto, si consiglia di esportare regolarmente le note più importanti su file tramite la funzione "Salva file". In questo modo è garantita una copia indipendente dal browser utilizzato.
+    ``Impossibile creare la nota. Riprova.'' & La nota non è stata creata, per esempio perché la memoria del browser è esaurita. & Premere di nuovo \texttt{Invio}: il titolo digitato è conservato. Se persiste, liberare spazio eliminando le note non più necessarie. \\ \hline
 
-\end{itemize}
+    ``Impossibile aprire il file. Riprova.'' & Il browser non è riuscito a leggere il file scelto. & Verificare che il file abbia estensione \texttt{.md} o \texttt{.txt} e non sia danneggiato, quindi ripetere l'operazione autorizzando l'accesso se richiesto. \\ \hline
+
+    ``Impossibile salvare il file. Riprova.'' & Il browser non è riuscito a scrivere il file. La nota resta invariata. & Ripetere il salvataggio scegliendo una cartella su cui si dispone dei permessi di scrittura. \\ \hline
+
+    ``Impossibile rinominare la nota. Riprova.'' & La rinomina non è andata a buon fine. & Ripetere la rinomina con un doppio clic sul nome della nota. \\ \hline
+
+    ``Impossibile eliminare la nota. Riprova.'' & L'eliminazione non è andata a buon fine. La nota non è stata eliminata. & Ripetere l'eliminazione. Se persiste, ricaricare la pagina del browser e riprovare. \\ \hline
+
+\end{longtable}
+\endgroup
+
+\subsection{Problemi di installazione e di avvio}
+\label{sec:problemi-installazione}
+I problemi descritti di seguito si manifestano nel terminale, durante l'installazione o l'avvio, e non nell'interfaccia dell'applicazione. I comandi citati vanno impartiti dalla cartella principale del progetto.
+
+\subsubsection{Docker non è in esecuzione}
+Il comando \texttt{docker compose up --build} termina subito con un errore che segnala l'impossibilità di contattare il servizio Docker.
+
+\textbf{Causa.} Docker è installato ma non avviato: su Windows e su macOS il programma Docker Desktop deve essere in esecuzione perché i comandi \texttt{docker} funzionino.
+
+\textbf{Rimedio.} Avviare Docker Desktop e attenderne il completo caricamento, quindi ripetere la verifica descritta nella Sezione~\ref{sec:verifica-installazione}: se entrambi i comandi restituiscono un numero di versione, l'ambiente è pronto e l'avvio può essere ripetuto.
+
+\subsubsection{La porta 5173 o la porta 8000 è già occupata}
+L'avvio termina con un errore che segnala l'impossibilità di assegnare una delle due porte.
+
+\textbf{Causa.} Un altro programma sta già utilizzando la porta\textsubscript{G} 5173, impiegata dall'interfaccia, o la porta 8000, impiegata dal servizio di backend. È il caso tipico di una precedente esecuzione di Second Brain non arrestata correttamente.
+
+\textbf{Rimedio.} Eseguire dapprima \texttt{docker compose down}, che libera le porte occupate da un'esecuzione precedente, quindi ripetere l'avvio. Se la porta è occupata da un altro programma, chiudere quel programma. In alternativa si può modificare la porta esposta sulla macchina nel file \texttt{docker-compose.yml}, sostituendo per esempio \texttt{"5173:5173"} con \texttt{"5174:5173"}: in tal caso l'interfaccia risponde all'indirizzo \url{http://localhost:5174}.
+
+\vspace{0.5em}
+
+\noindent
+\textbf{Avviso.} Cambiando la porta del servizio di backend occorre aggiornare di conseguenza anche la variabile \texttt{VITE\_API\_BASE\_URL} nel file \texttt{docker-compose.yml}; cambiando quella dell'interfaccia, occorre aggiornare \texttt{CORS\_ORIGINS} nel file \texttt{.env}. Senza questi due allineamenti l'interfaccia non riesce a contattare il servizio.
+
+\subsubsection{Il file \texttt{.env} manca o è incompleto}
+Se il file manca, l'avvio termina con un errore che ne segnala l'assenza. Se il file esiste ma la variabile \texttt{LITELLM\_API\_KEY} è assente o vuota, il servizio di backend si arresta subito dopo l'avvio e nel terminale compare il messaggio ``Avvio interrotto: configurazione incompleta. Variabili d'ambiente obbligatorie assenti o vuote: LITELLM\_API\_KEY.''
+
+\textbf{Causa.} Il file \texttt{.env} non è stato creato a partire dal modello, oppure è stato creato ma non completato.
+
+\textbf{Rimedio.} Creare il file copiando il modello e completarlo con i valori descritti nella Tabella~\ref{tab:variabili-configurazione}, come indicato nella Sezione~\ref{sec:configurazione}. Il file va collocato nella cartella principale del progetto e deve chiamarsi esattamente \texttt{.env}, senza altre estensioni: alcuni editor di testo aggiungono \texttt{.txt} in coda al nome senza segnalarlo.
+
+\vspace{0.5em}
+
+\noindent
+L'assenza della sola variabile \texttt{TAVILY\_API\_KEY} non impedisce l'avvio: l'applicazione funziona, ma la modalità ``Da link'' dell'azione ``Genera'' risponde con il messaggio riportato nella Tabella~\ref{tab:messaggi}.
+
+\subsubsection{La chiave di accesso non è valida o è scaduta}
+L'applicazione si avvia regolarmente, ma ogni azione dell'assistente termina con il messaggio ``Servizio temporaneamente non disponibile''.
+
+\textbf{Causa.} La variabile \texttt{LITELLM\_API\_KEY} contiene un valore, quindi l'avvio riesce, ma il servizio esterno rifiuta quella chiave perché errata, revocata o scaduta. La stessa cosa avviene se \texttt{LITELLM\_BASE\_URL} o \texttt{LITELLM\_MODEL} indicano un servizio o un modello non più disponibili.
+
+\textbf{Rimedio.} Verificare i tre valori nel file \texttt{.env}, correggendo quelli errati. Poiché la configurazione è letta all'avvio, le modifiche hanno effetto solo dopo aver arrestato e riavviato l'applicazione:
+
+\begin{comando}
+$ docker compose down
+$ docker compose up --build
+\end{comando}
+
+\subsubsection{La costruzione fallisce al primo avvio}
+Il comando \texttt{docker compose up --build} termina con un errore prima che i due indirizzi rispondano.
+
+\textbf{Causa.} La costruzione delle immagini scarica le dipendenze dell'applicazione da Internet: una connessione assente o interrotta la fa fallire. Può inoltre accadere che una costruzione precedente, interrotta a metà, abbia lasciato dati intermedi incoerenti.
+
+\textbf{Rimedio.} Verificare la connessione a Internet e ripetere il comando. Se l'errore si ripresenta, ricostruire le immagini da zero, ignorando i dati intermedi:
+
+\begin{comando}
+$ docker compose build --no-cache
+$ docker compose up
+\end{comando}
+
+\subsection{Altre situazioni}
+\label{sec:altre-situazioni}
+
+\subsubsection{La generazione resta bloccata e l'anteprima resta vuota}
+L'indicatore di attività continua a girare, ma nell'area ``Anteprima output'' non compare alcun testo.
+
+\textbf{Causa.} La connessione si è interrotta durante la trasmissione del risultato, oppure il servizio esterno ha smesso di rispondere senza restituire un errore.
+
+\textbf{Rimedio.} Premere ``Interrompi'' per fermare la richiesta, quindi riavviare l'elaborazione con ``Genera''. Se la situazione si ripete, verificare la connessione a Internet. L'attesa di una risposta non supera comunque i 60 secondi, trascorsi i quali compare il messaggio ``Servizio temporaneamente non disponibile''.
+
+\subsubsection{Si desidera annullare una generazione già avviata}
+Ci si accorge di aver impostato un parametro errato --- la lunghezza, la lingua o lo stile --- mentre l'elaborazione è ancora in corso.
+
+\textbf{Rimedio.} Non occorre attendere il completamento: il pulsante ``Interrompi'' è disponibile per tutta la durata dell'elaborazione e ferma subito la richiesta. Il testo prodotto fino a quel momento resta nell'area di anteprima e può essere accettato con ``Accetta'' oppure scartato con ``Rifiuta''. Corretto il parametro, l'elaborazione si riavvia con ``Genera''.
+
+\subsubsection{Le note non sono più disponibili}
+All'apertura dell'applicazione l'elenco riporta ``Nessuna nota'', pur avendo lavorato in precedenza su una o più note.
+
+\textbf{Causa.} Le note risiedono nella memoria locale del browser e non su un server. Non sono quindi accessibili da un altro browser o da un altro dispositivo, né da una finestra di navigazione anonima. Vengono inoltre rimosse cancellando i dati di navigazione.
+
+\textbf{Rimedio.} Riaprire l'applicazione con lo stesso browser e sullo stesso dispositivo impiegati in precedenza. Le note cancellate insieme ai dati di navigazione non sono recuperabili: per non dipendere dal browser, conviene salvare periodicamente su file le note importanti con ``Salva file'', come descritto nella Sezione~\ref{sec:salvare-nota-file}.
 
 \section{Glossario}
 \label{sec:glossario}
+La presente sezione definisce i termini marcati nel testo con il pedice \textbf{G}, secondo la convenzione descritta nella Sezione~\ref{sec:convenzioni-tipografiche}. Le voci sono ordinate alfabeticamente.
+
 \begin{itemize}
-    \item \textbf{LLM (Large Language Model):}
-Modello di intelligenza artificiale addestrato su grandi quantità di testo, in grado di comprendere e generare linguaggio naturale.
-
-    \item \textbf{Markdown:}
-Linguaggio di formattazione testuale che utilizza marcatori semplici per definire stili come grassetto, corsivo, titoli ed elenchi.
-
-    \item \textbf{Rendering:}
-Processo con cui il testo sorgente viene trasformato nella sua rappresentazione visiva formattata, mostrata all'utente.
-
-    \item \textbf{Sei Cappelli per Pensare:}
-Tecnica di analisi che esamina un argomento da sei prospettive distinte, ciascuna associata a un colore e a un tipo di ragionamento.
-
-    \item \textbf{Interfaccia:}
-Insieme degli elementi grafici attraverso cui l'utente interagisce con l'applicazione, quali pulsanti, menu e aree di visualizzazione.
-
-    \item \textbf{Terminale:}
-Programma che consente di impartire comandi al sistema operativo digitandoli in forma testuale.
-
-    \item \textbf{Container:}
-Ambiente isolato ed eseguibile che racchiude un'applicazione e le sue dipendenze, garantendone il funzionamento indipendentemente dal sistema ospitante.
-
-    \item \textbf{Docker:}
-Piattaforma software che permette di creare, distribuire ed eseguire applicazioni all'interno di container.
+    \item \textbf{API (Application Programming Interface):}
+insieme di regole e strumenti che permette a due applicazioni software di comunicare e scambiarsi dati fra loro.
 
     \item \textbf{Browser:}
-Programma che consente di accedere e visualizzare pagine e applicazioni web.
-
-    \item \textbf{API (Application Programming Interface):}
-Insieme di regole e strumenti che permette a due applicazioni software di comunicare e scambiarsi dati fra loro.
+programma che consente di accedere a pagine e applicazioni web e di visualizzarle.
 
     \item \textbf{Collegamento ipertestuale:}
-Riferimento testuale che, se selezionato, rimanda a un'altra risorsa, come una pagina web o un altro documento.
+riferimento testuale che, se selezionato, rimanda a un'altra risorsa, come una pagina web o un altro documento.
+
+    \item \textbf{Container:}
+ambiente isolato ed eseguibile che racchiude un'applicazione e le sue dipendenze, garantendone il funzionamento indipendentemente dal sistema ospitante.
+
+    \item \textbf{Docker:}
+piattaforma software che permette di creare, distribuire ed eseguire applicazioni all'interno di container.
+
+    \item \textbf{Immagine Docker:}
+modello a sola lettura da cui Docker crea un container. Le immagini di Second Brain vengono costruite al primo avvio e riutilizzate agli avvii successivi.
+
+    \item \textbf{Interfaccia:}
+insieme degli elementi grafici attraverso cui l'utente interagisce con l'applicazione, quali pulsanti, menu e aree di visualizzazione.
+
+    \item \textbf{LLM (Large Language Model):}
+modello di intelligenza artificiale addestrato su grandi quantità di testo, in grado di comprendere e generare linguaggio naturale.
+
+    \item \textbf{Markdown:}
+linguaggio di formattazione testuale che utilizza marcatori semplici per definire stili come grassetto, corsivo, titoli ed elenchi.
+
+    \item \textbf{Memoria locale del browser:}
+spazio in cui il browser conserva i dati di un sito fra una visita e l'altra. È lo spazio in cui Second Brain conserva le note; è legato al browser e al dispositivo in uso e viene svuotato cancellando i dati di navigazione.
+
+    \item \textbf{Porta:}
+numero che identifica un servizio in ascolto su una macchina. Second Brain impiega la porta 5173 per l'interfaccia e la porta 8000 per il servizio di backend.
+
+    \item \textbf{Prompt:}
+istruzione in linguaggio naturale con cui si indica a un LLM che cosa produrre.
+
+    \item \textbf{Rendering:}
+processo con cui il testo sorgente viene trasformato nella sua rappresentazione visiva formattata, mostrata all'utente.
+
+    \item \textbf{Sei Cappelli per Pensare:}
+tecnica di analisi che esamina un argomento da sei prospettive distinte, ciascuna associata a un colore e a un tipo di ragionamento.
+
+    \item \textbf{Terminale:}
+programma che consente di impartire comandi al sistema operativo digitandoli in forma testuale.
+
+    \item \textbf{URL:}
+indirizzo che individua una risorsa sul web, come una pagina o un documento. Inizia con \texttt{http://} oppure con \texttt{https://}.
+
+    \item \textbf{Variabile d'ambiente:}
+coppia formata da un nome e da un valore, che il sistema mette a disposizione di un programma al suo avvio. Le variabili d'ambiente di Second Brain si impostano nel file \texttt{.env}.
+
+    \item \textbf{Volume:}
+spazio in cui Docker conserva i dati di un container al di fuori del container stesso, così che sopravvivano alla sua rimozione.
 \end{itemize}
 \end{document}
