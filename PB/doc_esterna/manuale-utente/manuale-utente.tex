@@ -524,7 +524,7 @@ Ogni voce dell'elenco espone, sul proprio lato destro, il comando di eliminazion
 
 La barra può essere ridotta con il comando ``Chiudi barra laterale'' e riaperta con il comando ``Apri barra laterale''.
 
-Gli avvisi relativi alle operazioni sulle note --- creazione, apertura, salvataggio, rinomina ed eliminazione --- compaiono all'interno della barra laterale, sotto ai tre pulsanti.
+Gli avvisi delle operazioni sulle note compaiono all'interno della barra laterale, sotto ai tre pulsanti. Riguardano la creazione, l'apertura, il salvataggio, la rinomina e l'eliminazione.
 
 Le operazioni disponibili sulle note sono descritte nella Sezione~\ref{sec:gestione-note}.
 
@@ -676,7 +676,7 @@ Il pulsante è disponibile solo quando esiste una nota corrente: in assenza di n
 
 Se il salvataggio non riesce, compare il messaggio ``Impossibile salvare il file. Riprova.'' e il contenuto della nota resta invariato.
 
-Su alcuni browser viene chiesto in quale cartella salvare il file. Su altri --- fra cui Mozilla Firefox --- la richiesta non compare e il file viene scaricato direttamente nella cartella predefinita del browser.
+Su alcuni browser viene chiesto in quale cartella salvare il file. Su altri, fra cui Mozilla Firefox, la richiesta non compare e il file viene scaricato direttamente nella cartella predefinita del browser.
 
 \subsection{Dove sono conservate le note}
 \label{sec:conservazione-note}
@@ -956,7 +956,7 @@ La modalità ``Da link'' dell'azione ``Genera'' non riceve un testo, ma un URL\t
 
     \item L'indirizzo non può superare 2048 caratteri. Oltre tale limite la pagina non viene neppure contattata e compare il messaggio ``L'indirizzo del link è troppo lungo. Incollane uno più breve e riprova.''
 
-    \item Se l'applicazione non riesce a leggere il contenuto della pagina --- perché l'indirizzo non è raggiungibile, oppure perché la pagina non contiene testo estraibile --- compare il messaggio ``Non è stato possibile leggere il contenuto della pagina. Controlla che il link sia corretto e raggiungibile, poi riprova.''
+    \item Se l'applicazione non riesce a leggere il contenuto della pagina, compare il messaggio ``Non è stato possibile leggere il contenuto della pagina. Controlla che il link sia corretto e raggiungibile, poi riprova.'' Ciò avviene quando l'indirizzo non è raggiungibile, oppure quando la pagina non contiene testo estraibile.
 \end{itemize}
 
 Del contenuto letto dalla pagina vengono impiegati al più i primi 12000 caratteri: delle pagine più lunghe si considera quindi soltanto la parte iniziale.
@@ -990,7 +990,7 @@ Fra il contenuto già presente e il testo accodato viene inserita una riga vuota
 \label{sec:testo-esempio}
 Le sezioni seguenti descrivono le singole azioni, nell'ordine in cui i relativi pulsanti compaiono nella barra in alto. Ciascuna si chiude con un esempio.
 
-Negli esempi delle azioni che lavorano sul testo della nota --- ``Riassumi'', ``Riscrivi'', ``Traduci'', ``Grammatica'' e ``Analisi'' --- il testo di partenza è sempre il seguente:
+Le azioni che lavorano sul testo della nota sono ``Riassumi'', ``Riscrivi'', ``Traduci'', ``Grammatica'' e ``Analisi''. Nei loro esempi il testo di partenza è sempre il seguente:
 
 \begin{quote}
 ``L'intelligenza artificiale sta cambiando il modo in cui studiamo e lavoriamo, grazie a strumenti capaci di analizzare grandi quantità di dati in pochi secondi. È però importante mantenere un pensiero critico per valutare le informazioni che questi sistemi forniscono. Le università italiane stanno iniziando a integrarli nella didattica, cercando un equilibrio tra innovazione e rigore.''
@@ -1003,7 +1003,7 @@ L'azione ``Genera'' non parte dal testo della nota: il suo esempio riporta perci
 L'azione ``Genera'' redige un testo nuovo. La finestra si apre su due schede, che stabiliscono da che cosa il testo viene generato:
 
 \begin{itemize}
-    \item ``Da prompt'': il testo è generato a partire dalle istruzioni --- il prompt\textsubscript{G} --- scritte dall'utente;
+    \item ``Da prompt'': il testo è generato a partire dalle istruzioni scritte dall'utente, dette anche prompt\textsubscript{G};
 
     \item ``Da link'': il testo è generato a partire dal contenuto di una pagina web, indicata tramite il suo indirizzo.
 \end{itemize}
@@ -1352,7 +1352,7 @@ L'indicatore di attività continua a girare, ma nell'area ``Anteprima output'' n
 \textbf{Rimedio.} Premere ``Interrompi'' per fermare la richiesta, quindi riavviare l'elaborazione con ``Genera''. Se la situazione si ripete, verificare la connessione a Internet. L'attesa di una risposta non supera comunque i 60 secondi, trascorsi i quali compare il messaggio ``Servizio temporaneamente non disponibile''.
 
 \subsubsection{Si desidera annullare una generazione già avviata}
-Ci si accorge di aver impostato un parametro errato --- la lunghezza, la lingua o lo stile --- mentre l'elaborazione è ancora in corso.
+Mentre l'elaborazione è ancora in corso, ci si accorge di aver impostato un parametro errato: la lunghezza, la lingua o lo stile.
 
 \textbf{Rimedio.} Non occorre attendere il completamento: il pulsante ``Interrompi'' è disponibile per tutta la durata dell'elaborazione e ferma subito la richiesta. Il testo prodotto fino a quel momento resta nell'area di anteprima e può essere accettato con ``Accetta'' oppure scartato con ``Rifiuta''. Corretto il parametro, l'elaborazione si riavvia con ``Genera''.
 
