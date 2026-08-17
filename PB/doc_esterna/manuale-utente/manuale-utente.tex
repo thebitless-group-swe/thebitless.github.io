@@ -97,10 +97,10 @@
 \newcommand{\versione}{0.7.0}
 \newcommand{\stato}{Stesura}
 % Il Manuale Utente è documentazione esterna: fra i destinatari figura anche
-% la proponente, coerentemente con Analisi dei Requisiti, Piano di Qualifica e
+% la proponente$_G$, coerentemente con Analisi dei Requisiti$_G$, Piano di Qualifica$_G$ e
 % Specifica Tecnica.
 \newcommand{\destinatari}{prof. T. Vardanega, prof. R. Cardin, Zucchetti S.p.A.}
-% \templatedir è consumato da frontespizio.tex per risolvere il percorso del
+% \templatedir è consumato da frontespizio$_G$.tex per risolvere il percorso del
 % logo: la profondità predefinita (\providecommand nel template) non è quella
 % di questa cartella, quindi la definizione seguente è necessaria.
 \def\templatedir{../../../templates}
@@ -115,7 +115,7 @@
 
 % ---------------------------------------------------------------------------
 % Redattori e verificatori.
-% Il template condiviso templates/frontespizio.tex non prevede questi due
+% Il template condiviso templates/frontespizio$_G$.tex non prevede questi due
 % campi: si riportano qui, in apertura del corpo, per non modificare un
 % template impiegato da tutti i documenti del gruppo.
 % ---------------------------------------------------------------------------
@@ -163,11 +163,11 @@
 
     0.4.0 & 2026-08-08 & L. Battistella & A. Marini & Gestione delle note: creazione, apertura, rinomina, salvataggio su file e conservazione nel browser \\ \hline
 
-    0.3.0 & 2026-08-07 & A. Marini & L. Battistella & Installazione e avvio: requisiti di sistema, verifica dell'installazione, configurazione del file \texttt{.env}, avvio e arresto \\ \hline
+    0.3.0 & 2026-08-07 & A. Marini & L. Battistella & Installazione e avvio: requisiti$_G$ di sistema$_G$, verifica$_G$ dell'installazione, configurazione del file \texttt{.env}, avvio e arresto \\ \hline
 
     0.2.0 & 2026-08-06 & L. Battistella & A. Marini & Introduzione: scopo del prodotto, finalità e destinatari, convenzioni tipografiche, riferimenti e formati del manuale \\ \hline
 
-    0.1.0 & 2026-08-06 & A. Marini & L. Battistella & Impostazione del documento: preambolo \LaTeX{}, frontespizio, tabella di redazione e registro delle modifiche \\ \hline
+    0.1.0 & 2026-08-06 & A. Marini & L. Battistella & Impostazione del documento: preambolo \LaTeX{}, frontespizio$_G$, tabella di redazione e registro delle modifiche \\ \hline
 
 \end{longtable}
 \endgroup
@@ -205,12 +205,12 @@ L'assistente opera sul testo prodotto dall'utente e mette a disposizione le segu
 
     \item \textbf{Correzione grammaticale}: corregge gli errori grammaticali presenti nel testo.
 
-    \item \textbf{Analisi critica}: esamina il testo secondo una fra sei prospettive, ispirate alla tecnica dei Sei Cappelli per Pensare\textsubscript{G}.
+    \item \textbf{Analisi critica}: esamina il testo secondo una fra sei prospettive, ispirate alla tecnica dei Sei Cappelli per Pensare$_G$\textsubscript{G}.
 
     \item \textbf{Generazione di nuovo testo}: redige un testo a partire dalle istruzioni fornite dall'utente.
 \end{itemize}
 
-L'obiettivo del prodotto è offrire un ambiente di lavoro in cui il sistema non si limita ad archiviare le note, ma supporta attivamente la stesura e la revisione dei contenuti. Le note prodotte possono inoltre essere salvate come file sul dispositivo dell'utente.
+L'obiettivo del prodotto è offrire un ambiente di lavoro in cui il sistema$_G$ non si limita ad archiviare le note, ma supporta attivamente la stesura e la revisione dei contenuti. Le note prodotte possono inoltre essere salvate come file sul dispositivo dell'utente.
 
 \subsection{Finalità e destinatari del documento}
 \label{sec:finalita-destinatari}
@@ -300,14 +300,14 @@ Le due versioni corrispondono alla stessa revisione del documento, indicata nel 
 
 \section{Installazione e avvio}
 \label{sec:installazione-avvio}
-Second Brain si esegue in locale tramite container\textsubscript{G} Docker\textsubscript{G}. Al termine dell'avvio, l'interfaccia è accessibile da un normale browser\textsubscript{G}. La presente sezione descrive i requisiti da soddisfare, la configurazione da predisporre e le operazioni di avvio e di arresto dell'applicazione.
+Second Brain si esegue in locale tramite container\textsubscript{G} Docker\textsubscript{G}. Al termine dell'avvio, l'interfaccia è accessibile da un normale browser\textsubscript{G}. La presente sezione descrive i requisiti$_G$ da soddisfare, la configurazione da predisporre e le operazioni di avvio e di arresto dell'applicazione.
 
 \subsection{Requisiti di sistema}
 \label{sec:requisiti-sistema}
 Sulla macchina che ospita l'applicazione deve essere installato il software seguente:
 
 \begin{itemize}
-    \item \textbf{Docker}: si scarica dal sito ufficiale \url{https://www.docker.com}, scegliendo l'installer corrispondente al proprio sistema operativo;
+    \item \textbf{Docker}: si scarica dal sito ufficiale \url{https://www.docker.com}, scegliendo l'installer corrispondente al proprio sistema$_G$ operativo;
 
     \item \textbf{Docker Compose}: è normalmente già incluso in Docker Desktop e non richiede quindi un'installazione separata.
 \end{itemize}
@@ -333,7 +333,7 @@ $ docker --version
 $ docker compose version
 \end{comando}
 
-Se entrambi i comandi restituiscono un numero di versione, l'ambiente è pronto. In caso contrario, reinstallare Docker e verificare che sia in esecuzione, quindi ripetere la verifica.
+Se entrambi i comandi restituiscono un numero di versione, l'ambiente è pronto. In caso contrario, reinstallare Docker e verificare che sia in esecuzione, quindi ripetere la verifica$_G$.
 
 \subsection{Configurazione}
 \label{sec:configurazione}
@@ -370,7 +370,7 @@ Il file così ottenuto va poi aperto con un editor di testo e completato con i v
 
     \texttt{LITELLM\_MODEL} & Nome del modello da utilizzare. \\ \hline
 
-    \texttt{LITELLM\_API\_KEY} & Chiave di accesso all'API\textsubscript{G} del servizio di intelligenza artificiale. \\ \hline
+    \texttt{LITELLM\_API\_KEY} & Chiave di accesso all'API$_G$\textsubscript{G} del servizio di intelligenza artificiale. \\ \hline
 
     \texttt{TAVILY\_API\_KEY} & Chiave del servizio impiegato per leggere il contenuto di una pagina web. \\ \hline
 
@@ -382,7 +382,7 @@ Il file così ottenuto va poi aperto con un editor di testo e completato con i v
 \vspace{0.5em}
 
 \noindent
-\textbf{Avviso.} Il file \texttt{.env} contiene credenziali personali. Non va condiviso con terzi né inserito nel repository.
+\textbf{Avviso.} Il file \texttt{.env} contiene credenziali personali. Non va condiviso con terzi né inserito nel repository$_G$.
 
 \subsection{Avvio, accesso e arresto}
 \label{sec:avvio-accesso-arresto}
@@ -424,7 +424,7 @@ Le sezioni seguenti del manuale descrivono nel dettaglio le singole funzionalit�
 %
 % Resta aperta l'alternativa scartata: restringere l'elenco dei browser
 % supportati in §2.1, il che però richiede prima una modifica di R-1-V-Ob,
-% che deriva dal Capitolato.
+% che deriva dal Capitolato$_G$.
 % ---------------------------------------------------------------------------
 
 
@@ -538,7 +538,7 @@ Se la rinomina non riesce, compare il messaggio ``Impossibile rinominare la nota
 
 \subsection{Aprire una nota da file}
 \label{sec:aprire-nota-file}
-Il pulsante ``Apri file\ldots'' apre la finestra di selezione dei file del sistema operativo. Sono ammessi file di testo con estensione \texttt{.md} o \texttt{.txt}.
+Il pulsante ``Apri file\ldots'' apre la finestra di selezione dei file del sistema$_G$ operativo. Sono ammessi file di testo con estensione \texttt{.md} o \texttt{.txt}.
 
 Il contenuto del file diventa il contenuto della nota; il titolo della nota è il nome del file privato dell'estensione. La nota viene aggiunta all'elenco e diventa la nota corrente.
 
@@ -649,7 +649,7 @@ Anche questi comandi funzionano come un interruttore: le righe che riportano gi�
 
 \subsubsection{Collegamenti e immagini}
 \label{sec:collegamenti-immagini}
-Il pulsante ``Link'' inserisce un collegamento ipertestuale\textsubscript{G} nella forma \texttt{[testo](https://)}, dove \texttt{testo} è il testo selezionato. L'indirizzo predefinito \texttt{https://} resta selezionato, pronto per essere sostituito digitando l'indirizzo desiderato. Lo stesso comando è disponibile con la combinazione \texttt{Ctrl+K}.
+Il pulsante ``Link'' inserisce un collegamento ipertestuale$_G$\textsubscript{G} nella forma \texttt{[testo](https://)}, dove \texttt{testo} è il testo selezionato. L'indirizzo predefinito \texttt{https://} resta selezionato, pronto per essere sostituito digitando l'indirizzo desiderato. Lo stesso comando è disponibile con la combinazione \texttt{Ctrl+K}.
 
 Il comando ``Link'' funziona come un interruttore: applicato a un collegamento già presente, ne rimuove la sintassi e conserva il solo testo.
 
@@ -685,7 +685,7 @@ Tutte le azioni dell'assistente seguono lo stesso flusso:
 \begin{enumerate}
     \item premere il pulsante dell'azione nella barra in alto; si apre una finestra che riporta il nome dell'azione;
 
-    \item la finestra contiene, quando previsti, i campi di inserimento e i selettori dei parametri, e un'area intitolata ``Anteprima output'';
+    \item la finestra contiene, quando previsti, i campi di inserimento e i selettori dei parametri, e un'area intitolata ``Anteprima output$_G$'';
 
     \item premere il pulsante ``Genera'' della finestra per avviare l'elaborazione;
 
@@ -753,14 +753,14 @@ Le azioni ``Analisi'' e ``Genera'' non sostituiscono invece alcun testo: il risu
 \label{sec:azione-riassumi}
 L'azione ``Riassumi'' produce una sintesi del testo.
 
-Il parametro ``Lunghezza output'' consente di scegliere fra ``Breve'', ``Medio'' e ``Dettagliato''. Il valore predefinito è ``Medio''.
+Il parametro ``Lunghezza output$_G$'' consente di scegliere fra ``Breve'', ``Medio'' e ``Dettagliato''. Il valore predefinito è ``Medio''.
 
 Il riassunto sostituisce il testo di partenza.
 
 \vspace{0.5em}
 
 \noindent
-\textbf{Esempio.} Testo di partenza: ``L'intelligenza artificiale sta cambiando il modo in cui studiamo e lavoriamo, grazie a strumenti capaci di analizzare grandi quantità di dati in pochi secondi. È però importante mantenere un pensiero critico per valutare le informazioni che questi sistemi forniscono. Le università italiane stanno iniziando a integrarli nella didattica, cercando un equilibrio tra innovazione e rigore.'' Parametro scelto: ``Lunghezza output'' impostato su ``Breve''. Risultato: 
+\textbf{Esempio.} Testo di partenza: ``L'intelligenza artificiale sta cambiando il modo in cui studiamo e lavoriamo, grazie a strumenti capaci di analizzare grandi quantità di dati in pochi secondi. È però importante mantenere un pensiero critico per valutare le informazioni che questi sistemi forniscono. Le università italiane stanno iniziando a integrarli nella didattica, cercando un equilibrio tra innovazione e rigore.'' Parametro scelto: ``Lunghezza output$_G$'' impostato su ``Breve''. Risultato: 
 
 \begin{figure}[H]
     \centering
@@ -847,7 +847,7 @@ Se non vengono rilevati errori, l'anteprima riporta ``Nessun errore rilevato.'' 
 
 \subsection{Analisi}
 \label{sec:azione-analisi}
-L'azione ``Analisi'' esamina il testo secondo una fra sei prospettive, ispirate alla tecnica dei Sei Cappelli per Pensare. Non riscrive il testo: ne produce un commento.
+L'azione ``Analisi'' esamina il testo secondo una fra sei prospettive, ispirate alla tecnica dei Sei Cappelli per Pensare$_G$. Non riscrive il testo: ne produce un commento.
 
 Il parametro ``Prospettiva (cappello)'' consente di scegliere fra le sei opzioni riportate nella Tabella~\ref{tab:prospettive-analisi}, presentate nell'ordine in cui compaiono nella finestra.
 
@@ -900,14 +900,14 @@ L'azione ``Genera'' redige un testo nuovo a partire dalle istruzioni fornite.
 
 La finestra presenta il campo ``Istruzioni / Contesto'', con il testo guida ``Descrivi cosa generare\ldots'', in cui descrivere ciò che si desidera ottenere. Sono richiesti almeno 3 caratteri di istruzioni e non se ne possono superare 2000.
 
-Il parametro ``Lunghezza output'' consente di scegliere fra ``Breve'', ``Medio'' e ``Dettagliato''. Il valore predefinito è ``Medio''.
+Il parametro ``Lunghezza output$_G$'' consente di scegliere fra ``Breve'', ``Medio'' e ``Dettagliato''. Il valore predefinito è ``Medio''.
 
 Il testo prodotto viene aggiunto in fondo alla nota, separato da una riga vuota: il contenuto già presente non viene toccato.
 
 \vspace{0.5em}
 
 \noindent
-\textbf{Esempio.} Istruzioni fornite: ``Scrivi tre righe su l'utilizzo dell'intelligenza artificiale nelle università italiane''. Parametro scelto: ``Lunghezza output'' impostato su ``Breve''. Risultato: 
+\textbf{Esempio.} Istruzioni fornite: ``Scrivi tre righe su l'utilizzo dell'intelligenza artificiale nelle università italiane''. Parametro scelto: ``Lunghezza output$_G$'' impostato su ``Breve''. Risultato: 
 
 \begin{figure}[H]
     \centering
@@ -945,7 +945,7 @@ Il messaggio compare quando il testo su cui deve essere eseguita l'azione (riass
 
 Il messaggio indica che il backend non è riuscito a contattare il servizio AI, per un problema temporaneo di connessione o di disponibilità del servizio stesso.
 
-\textbf{Soluzione:} si consiglia di attendere qualche istante e ripetere l'operazione. Se il problema persiste, è opportuno verificare la connessione internet o contattare l'amministratore del servizio.
+\textbf{Soluzione:} si consiglia di attendere qualche istante e ripetere l'operazione. Se il problema persiste, è opportuno verificare la connessione internet o contattare l'amministratore$_G$ del servizio.
 
 \item \textbf{Problema:} La generazione risulta bloccata e l'anteprima resta vuota
 
@@ -992,10 +992,10 @@ Tecnica di analisi che esamina un argomento da sei prospettive distinte, ciascun
 Insieme degli elementi grafici attraverso cui l'utente interagisce con l'applicazione, quali pulsanti, menu e aree di visualizzazione.
 
     \item \textbf{Terminale:}
-Programma che consente di impartire comandi al sistema operativo digitandoli in forma testuale.
+Programma che consente di impartire comandi al sistema$_G$ operativo digitandoli in forma testuale.
 
     \item \textbf{Container:}
-Ambiente isolato ed eseguibile che racchiude un'applicazione e le sue dipendenze, garantendone il funzionamento indipendentemente dal sistema ospitante.
+Ambiente isolato ed eseguibile che racchiude un'applicazione e le sue dipendenze, garantendone il funzionamento indipendentemente dal sistema$_G$ ospitante.
 
     \item \textbf{Docker:}
 Piattaforma software che permette di creare, distribuire ed eseguire applicazioni all'interno di container.
