@@ -96,22 +96,34 @@
 
 % ---------------------------------------------------------------------------
 % Collegamenti ipertestuali
-% Convenzione adottata nel documento:
-%   - riferimenti interni (sezioni, tabelle): neri, per non frammentare
-%     visivamente il corpo del testo;
-%   - collegamenti esterni: blu, così da risultare riconoscibili come tali.
+% Convenzione adottata nel documento: ogni collegamento, interno o esterno, è
+% nero e sottolineato. Il nero evita di frammentare visivamente il corpo del
+% testo; la sottolineatura è ciò che, in assenza di colore, rende il
+% collegamento riconoscibile anche sulla carta.
+%
+% Si impiega \uline di ulem e non \underline: quest'ultimo è un comando
+% matematico che produce una scatola indivisibile, e un indirizzo lungo non
+% potrebbe più andare a capo. L'opzione normalem impedisce a ulem di
+% ridefinire \emph, che il documento usa attraverso \textit.
 % ---------------------------------------------------------------------------
+\usepackage[normalem]{ulem}
 \usepackage{xurl}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
-    linkcolor=black,
-    urlcolor=blue,
-    citecolor=black,
-    filecolor=black,
+    allcolors=black,
     breaklinks=true,
     pdfpagemode=UseNone
 }
+% I collegamenti esterni si scrivono con \link, che sottolinea l'indirizzo
+% lasciandolo in carattere a spaziatura fissa. L'argomento resta gestito da
+% \url, quindi caratteri come ~ e _ continuano a non richiedere protezione.
+\newcommand{\link}[1]{\uline{\url{#1}}}
+% Variante per gli indirizzi lunghi degli elenchi di riferimenti. La
+% sottolineatura rende l'indirizzo indivisibile, quindi i più lunghi non
+% starebbero nella giustezza a corpo pieno: qui si riducono di un corpo,
+% come d'uso negli elenchi bibliografici, invece di troncarli o di spezzarli.
+\newcommand{\linklungo}[1]{{\footnotesize\uline{\url{#1}}}}
 
 \begin{document}
 \setlength{\emergencystretch}{3em}
@@ -351,7 +363,7 @@ Second Brain si esegue in locale tramite container\textsubscript{G} Docker\texts
 Sulla macchina che ospita l'applicazione deve essere installato il software seguente:
 
 \begin{itemize}
-    \item \textbf{Docker}: si scarica dal sito ufficiale \url{https://www.docker.com}, scegliendo l'installer corrispondente al proprio sistema operativo;
+    \item \textbf{Docker}: si scarica dal sito ufficiale \link{https://www.docker.com}, scegliendo l'installer corrispondente al proprio sistema operativo;
 
     \item \textbf{Docker Compose}: è normalmente già incluso in Docker Desktop e non richiede quindi un'installazione separata.
 \end{itemize}
@@ -441,9 +453,9 @@ Il primo avvio richiede qualche minuto, perché le immagini Docker\textsubscript
 Ad avvio completato, i due indirizzi seguenti rispondono in locale:
 
 \begin{itemize}
-    \item \textbf{interfaccia utente}: \url{http://localhost:5173}, da aprire nel browser per utilizzare l'applicazione;
+    \item \textbf{interfaccia utente}: \link{http://localhost:5173}, da aprire nel browser per utilizzare l'applicazione;
 
-    \item \textbf{servizio di backend}: \url{http://localhost:8000}. L'indirizzo non serve all'utente e si riporta soltanto per consentire di verificare che il servizio risponda.
+    \item \textbf{servizio di backend}: \link{http://localhost:8000}. L'indirizzo non serve all'utente e si riporta soltanto per consentire di verificare che il servizio risponda.
 \end{itemize}
 
 Per arrestare l'applicazione, premere \texttt{Ctrl+C} nel terminale in cui Docker è in esecuzione. L'arresto completo e la rimozione dell'ambiente sono descritti nella Sezione~\ref{sec:arresto-rimozione}.
@@ -1298,7 +1310,7 @@ L'avvio termina con un errore che segnala l'impossibilità di assegnare una dell
 
 \textbf{Causa.} Un altro programma sta già utilizzando la porta\textsubscript{G} 5173, impiegata dall'interfaccia, o la porta 8000, impiegata dal servizio di backend. È il caso tipico di una precedente esecuzione di Second Brain non arrestata correttamente.
 
-\textbf{Rimedio.} Eseguire dapprima \texttt{docker compose down}, che libera le porte occupate da un'esecuzione precedente, quindi ripetere l'avvio. Se la porta è occupata da un altro programma, chiudere quel programma. In alternativa si può modificare la porta esposta sulla macchina nel file \texttt{docker-compose.yml}, sostituendo per esempio \texttt{"5173:5173"} con \texttt{"5174:5173"}: in tal caso l'interfaccia risponde all'indirizzo \url{http://localhost:5174}.
+\textbf{Rimedio.} Eseguire dapprima \texttt{docker compose down}, che libera le porte occupate da un'esecuzione precedente, quindi ripetere l'avvio. Se la porta è occupata da un altro programma, chiudere quel programma. In alternativa si può modificare la porta esposta sulla macchina nel file \texttt{docker-compose.yml}, sostituendo per esempio \texttt{"5173:5173"} con \texttt{"5174:5173"}: in tal caso l'interfaccia risponde all'indirizzo \link{http://localhost:5174}.
 
 \vspace{0.5em}
 
