@@ -142,10 +142,20 @@
 % di questa cartella, quindi la definizione seguente è necessaria.
 \def\templatedir{../../../templates}
 
+% Il frontespizio è tarato sulle spaziature predefinite di LaTeX. Il \parskip
+% introdotto nel preambolo per il corpo del documento vale anche qui, e si
+% somma fra i blocchi del template: logo, intestazione, elenco dei redattori e
+% tabella. Lo spazio in più spingeva la riga dei contatti, che il \vfill del
+% template tiene in fondo alla pagina, sulla pagina successiva. Si azzera per
+% il solo frontespizio, dentro un gruppo, così il corpo resta invariato e il
+% template non va modificato.
+\begingroup
+\setlength{\parskip}{0pt}
 \begin{titlepage}
 \pagenumbering{gobble}
 \input{\templatedir/frontespizio.tex}
 \end{titlepage}
+\endgroup
 
 \newpage
 \pagenumbering{arabic}
@@ -1045,7 +1055,7 @@ Sono richiesti almeno 3 caratteri di istruzioni e non se ne possono superare 200
 \vspace{0.5em}
 
 \noindent
-\textbf{Esempio.} Istruzioni fornite: ``Scrivi tre righe su l'utilizzo dell'intelligenza artificiale nelle università italiane''. Parametro scelto: ``Lunghezza output'' impostato su ``Breve''. Risultato:
+\textbf{Esempio.} Istruzioni fornite: ``Scrivi un testo sull'utilizzo dell'intelligenza artificiale nella vita quotidiana''. Parametro scelto: ``Lunghezza output'' impostato su ``Breve''. Risultato:
 
 \begin{figure}[H]
     \centering
