@@ -206,21 +206,23 @@
 
 Le note si redigono in \textbf{Markdown\textsubscript{G}}. Mentre l'utente scrive, l'applicazione ne produce il rendering\textsubscript{G} in un'area di anteprima dedicata, che si aggiorna a ogni modifica del testo. Il testo sorgente e il risultato formattato restano così visibili nello stesso momento.
 
-L'assistente opera sul testo prodotto dall'utente e mette a disposizione le seguenti funzionalità:
+L'assistente mette a disposizione le sei azioni seguenti, elencate nell'ordine in cui i relativi pulsanti compaiono nella barra in alto:
 
 \begin{itemize}
-    \item \textbf{Riassunto}: produce una sintesi del testo.
+    \item ``Genera'': redige un testo nuovo, a partire dalle istruzioni fornite dall'utente oppure dal contenuto di una pagina web indicata tramite il suo indirizzo;
 
-    \item \textbf{Traduzione}: riporta il testo in un'altra lingua.
+    \item ``Riassumi'': produce una sintesi del testo;
 
-    \item \textbf{Riscrittura}: riformula il testo mantenendone il contenuto.
+    \item ``Riscrivi'': riformula il testo mantenendone il contenuto e adattandone il registro;
 
-    \item \textbf{Correzione grammaticale}: corregge gli errori grammaticali presenti nel testo.
+    \item ``Traduci'': riporta il testo in un'altra lingua;
 
-    \item \textbf{Analisi critica}: esamina il testo secondo una fra sei prospettive, ispirate alla tecnica dei Sei Cappelli per Pensare\textsubscript{G}.
+    \item ``Grammatica'': corregge gli errori grammaticali presenti nel testo;
 
-    \item \textbf{Generazione di nuovo testo}: redige un testo a partire dalle istruzioni fornite dall'utente.
+    \item ``Analisi'': esamina il testo secondo una fra sei prospettive, ispirate alla tecnica dei Sei Cappelli per Pensare\textsubscript{G}.
 \end{itemize}
+
+Le azioni ``Riassumi'', ``Riscrivi'', ``Traduci'', ``Grammatica'' e ``Analisi'' operano sul testo già presente nella nota; ``Genera'' parte invece da istruzioni o da un indirizzo forniti dall'utente.
 
 L'obiettivo del prodotto è offrire un ambiente di lavoro in cui il sistema non si limita ad archiviare le note, ma supporta attivamente la stesura e la revisione dei contenuti. Le note prodotte possono inoltre essere salvate come file sul dispositivo dell'utente.
 
@@ -231,27 +233,57 @@ Il presente documento è il Manuale Utente di Second Brain. Guida l'utente final
 Il manuale tratta in particolare:
 
 \begin{itemize}
+    \item l'installazione, la configurazione e l'avvio dell'applicazione;
+
     \item la descrizione delle aree dell'interfaccia\textsubscript{G};
 
     \item le operazioni disponibili sulle note;
 
+    \item la scrittura e la formattazione del testo;
+
     \item le funzionalità di intelligenza artificiale;
 
-    \item la risoluzione dei problemi più comuni.
+    \item la risoluzione dei problemi più comuni;
+
+    \item il significato dei termini impiegati nel documento.
 \end{itemize}
 
 Il documento si rivolge a chi utilizza Second Brain e non presuppone alcuna competenza di programmazione. Non si rivolge invece a chi intende estendere o modificare l'applicazione: per tale finalità è previsto un manuale dedicato.
+
+\subsubsection{Struttura del documento}
+\label{sec:struttura-documento}
+Le sezioni si susseguono nell'ordine in cui se ne presume la consultazione:
+
+\begin{itemize}
+    \item la Sezione~\ref{sec:introduzione} presenta il prodotto, il documento e le convenzioni adottate;
+
+    \item la Sezione~\ref{sec:installazione-avvio} descrive i requisiti, la configurazione, l'avvio, l'arresto e la rimozione dell'applicazione;
+
+    \item la Sezione~\ref{sec:guida-interfaccia} illustra le aree della schermata e i comandi che ciascuna mette a disposizione;
+
+    \item la Sezione~\ref{sec:gestione-note} descrive le operazioni sulle note: creazione, apertura, rinomina, eliminazione e salvataggio su file;
+
+    \item la Sezione~\ref{sec:scrivere-formattare} descrive la scrittura del testo, i comandi di formattazione e le scorciatoie da tastiera;
+
+    \item la Sezione~\ref{sec:funzionalita-intelligenza-artificiale} descrive le azioni dell'assistente basato su intelligenza artificiale;
+
+    \item la Sezione~\ref{sec:risoluzione-problemi} raccoglie i problemi più frequenti, con la causa e il rimedio di ciascuno;
+
+    \item la Sezione~\ref{sec:glossario} definisce i termini marcati nel testo con il pedice \textbf{G}.
+\end{itemize}
 
 \subsection{Convenzioni tipografiche}
 \label{sec:convenzioni-tipografiche}
 Il documento adotta le convenzioni descritte di seguito.
 
 \begin{itemize}
-    \item \textbf{Termini del glossario}: i termini definiti nel Glossario di progetto sono marcati con una lettera \textbf{G} a pedice, come nell'esempio seguente:
+    \item \textbf{Termini del glossario}: i termini definiti nella Sezione~\ref{sec:glossario}, che è il glossario del presente manuale, sono marcati con una lettera \textbf{G} a pedice alla prima occorrenza, come nell'esempio seguente:
 
     \begin{quote}
         parola\textsubscript{G}
     \end{quote}
+
+    Il Glossario di progetto, citato fra i riferimenti informativi nella Sezione~\ref{sec:riferimenti-informativi}, è un documento distinto, rivolto al gruppo di lavoro e alla proponente: il presente manuale non ne presuppone la lettura.
 
     \item \textbf{Nomi dei pulsanti}: i nomi dei pulsanti dell'applicazione sono riportati fra virgolette, esattamente come compaiono a schermo. Per esempio, il pulsante che crea una nota è indicato come ``Nuova nota''.
 
