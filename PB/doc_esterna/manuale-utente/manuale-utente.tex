@@ -348,10 +348,13 @@ Il manuale è disponibile in due formati, il cui contenuto è mantenuto allineat
 \begin{itemize}
     \item \textbf{documento PDF}: adatto alla stampa e alla lettura sequenziale;
 
-    \item \textbf{versione web (HTML)}: pubblicata sul sito del gruppo, adatta alla consultazione rapida e disponibile all'indirizzo \daverificare{}\url{https://thebitless.live/PB/doc_esterna/manuale-utente/manuale-utente.html}. 
+    \item \textbf{versione web}: pubblicata sul sito del gruppo, adatta alla consultazione rapida e disponibile all'indirizzo \\
+    \linklungo{https://thebitless.live/website/manuale-utente.html}
 \end{itemize}
 
-Le due versioni corrispondono alla stessa revisione del documento, indicata nel registro delle modifiche in apertura.
+La versione web presenta le stesse sezioni del documento PDF, con un indice laterale e un campo di ricerca che consente di individuare un termine senza scorrere l'intero manuale. È raggiungibile anche dalla voce ``Manuale Utente'' della barra di navigazione del sito, accanto a ``Glossario''.
+
+Le due versioni corrispondono alla stessa revisione del documento, indicata nel registro delle modifiche in apertura: la versione web è generata a partire dal medesimo sorgente del PDF.
 
 
 \section{Installazione e avvio}
@@ -590,7 +593,14 @@ Tre comandi consentono di scegliere quali aree tenere a schermo. Sono disposti n
     \item ``Render'': mostra la sola area di anteprima.
 \end{itemize}
 
-La modalità predefinita è ``Diviso''. Se la finestra del browser è stretta, le due aree non vengono affiancate ma disposte una sopra l'altra.
+La modalità predefinita è ``Diviso'', riportata nella Figura~\ref{fig:modalita-diviso}: l'area di scrittura occupa la metà sinistra della schermata e l'area di anteprima la metà destra, con il medesimo testo nelle due forme. Se la finestra del browser è stretta, le due aree non vengono affiancate ma disposte una sopra l'altra.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{assets/modalita-render-editor.jpeg}
+    \caption{La modalità ``Diviso'': a sinistra l'area di scrittura con il testo in Markdown, a destra l'area di anteprima con il risultato formattato.}
+    \label{fig:modalita-diviso}
+\end{figure}
 
 
 \section{Gestione delle note}
@@ -1048,17 +1058,26 @@ La scheda ``Da link'' presenta il campo ``URL'', con il testo guida ``https://\l
 
 Avviando l'elaborazione, l'applicazione legge il contenuto testuale della pagina e lo impiega come base per la generazione: dell'indirizzo indicato non viene quindi riportato il collegamento, ma un testo nuovo redatto a partire da ciò che la pagina contiene.
 
-I controlli propri di questa modalità --- campo vuoto, indirizzo non valido, indirizzo troppo lungo, contenuto della pagina non leggibile --- e i relativi messaggi sono descritti nella Sezione~\ref{sec:controlli-da-link}.
+La Sezione~\ref{sec:controlli-da-link} descrive i controlli propri di questa modalità, con i relativi messaggi: campo vuoto, indirizzo non valido, indirizzo troppo lungo e contenuto della pagina non leggibile.
 
 \vspace{0.5em}
 
 \noindent
 \textbf{Avviso.} L'applicazione legge la pagina tramite un servizio esterno. Le pagine che richiedono un accesso, oppure che generano il proprio contenuto solo all'interno del browser, possono risultare prive di testo estraibile: in tal caso la generazione non parte e compare il messaggio riportato nella Sezione~\ref{sec:controlli-da-link}.
 
-% TODO screenshot: finestra dell'azione "Genera" con la scheda "Da link"
-% selezionata, in cui siano visibili le due schede "Da prompt" e "Da link", il
-% campo "URL" con il testo guida "https://...", il parametro "Lunghezza output"
-% e l'area "Anteprima output" con il risultato prodotto.
+\vspace{0.5em}
+
+\noindent
+\textbf{Esempio.} Indirizzo indicato: \texttt{https://en.wikipedia.org/wiki/\allowbreak World\_War\_II}. Parametro scelto: ``Lunghezza output'' impostato su ``Dettagliato''. Risultato:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{assets/da-link.jpeg}
+    \caption{Risultato dell'azione ``Genera'', modalità ``Da link'', con parametro ``Lunghezza output'' impostato su ``Dettagliato''.}
+    \label{fig:esempio-genera-link}
+\end{figure}
+
+Nella figura il pulsante di avvio riporta ``Rigenera'' anziché ``Genera'': l'elaborazione era già stata eseguita una volta con gli stessi dati, secondo quanto descritto nella Sezione~\ref{sec:funzionamento-comune-azioni}.
 
 \subsection{Riassumi}
 \label{sec:azione-riassumi}
