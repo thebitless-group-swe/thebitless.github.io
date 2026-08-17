@@ -886,7 +886,7 @@ Le combinazioni di tasti riconosciute dall'applicazione sono riepilogate nella T
 \label{sec:come-funziona-assistente}
 L'assistente elabora il testo della nota tramite un servizio esterno: per utilizzarlo è quindi necessaria una connessione a Internet.
 
-Le azioni ``Riassumi'', ``Traduci'', ``Riscrivi'', ``Grammatica'' e ``Analisi'' elaborano il testo selezionato nell'area di scrittura; se non è selezionato nulla, elaborano l'intero contenuto della nota. L'azione ``Genera'' non parte invece dal testo della nota, ma dalle istruzioni che l'utente scrive nella finestra.
+Le azioni ``Riassumi'', ``Riscrivi'', ``Traduci'', ``Grammatica'' e ``Analisi'' elaborano il testo selezionato nell'area di scrittura; se non è selezionato nulla, elaborano l'intero contenuto della nota. L'azione ``Genera'' non parte invece dal testo della nota, ma da ciò che l'utente indica nella finestra: le istruzioni che vi scrive, oppure l'indirizzo di una pagina web di cui l'applicazione legge il contenuto.
 
 Il risultato compare in una finestra dedicata e non entra nella nota finché non si preme ``Accetta''. Finché non lo si fa, la nota resta invariata.
 
@@ -930,7 +930,9 @@ Al flusso appena descritto si aggiungono le precisazioni seguenti:
 
     \item le azioni che lavorano sul testo della nota richiedono almeno 10 caratteri, mentre ``Genera'' richiede almeno 3 caratteri di istruzioni. Se il testo è più corto, la richiesta non viene inviata;
 
-    \item il testo elaborato dall'assistente non può superare 12000 caratteri, mentre le istruzioni dell'azione ``Genera'' non possono superare 2000 caratteri. Oltre tali limiti la richiesta viene rifiutata: occorre ridurre il testo oppure elaborarlo in più parti.
+    \item il testo elaborato dall'assistente non può superare 12000 caratteri, mentre le istruzioni dell'azione ``Genera'' non possono superare 2000 caratteri. Oltre tali limiti la richiesta viene rifiutata: occorre ridurre il testo oppure elaborarlo in più parti;
+
+    \item nella modalità ``Da link'' dell'azione ``Genera'' i due limiti precedenti non si applicano al campo ``URL'', che è soggetto ai controlli propri descritti più avanti in questa sezione.
 \end{itemize}
 
 Prima di inviare la richiesta, l'applicazione controlla che il testo e i parametri siano validi. Se il controllo non passa, la generazione non parte e il motivo compare all'interno della finestra. I messaggi indicano sempre la causa del problema e l'azione correttiva da compiere:
@@ -943,15 +945,31 @@ Prima di inviare la richiesta, l'applicazione controlla che il testo e i paramet
     \item se si avvia l'azione ``Analisi'' senza aver scelto una prospettiva, compare il messaggio ``Seleziona un cappello per l'analisi.''
 \end{itemize}
 
-Gli errori che si verificano dopo l'invio della richiesta, durante l'elaborazione, compaiono anch'essi all'interno della finestra.
+\subsubsection{I controlli propri della modalità ``Da link''}
+\label{sec:controlli-da-link}
+La modalità ``Da link'' dell'azione ``Genera'' non riceve un testo, ma un URL\textsubscript{G}, cioè l'indirizzo di una pagina web: i controlli sono quindi diversi da quelli delle altre azioni.
 
-I problemi più frequenti e i relativi rimedi sono raccolti nella Sezione~\ref{sec:risoluzione-problemi}.
+\begin{itemize}
+    \item Il campo ``URL'' non può restare vuoto. Avviando l'elaborazione senza aver inserito nulla, compare il messaggio ``Inserisci un URL.'' e la richiesta non viene inviata. In questa modalità non compare quindi il messaggio ``Servono almeno N caratteri di testo.''
+
+    \item L'indirizzo deve iniziare con \texttt{http://} oppure con \texttt{https://}. Se non è un indirizzo valido, compare il messaggio ``Il link indicato non è un indirizzo valido: controlla che inizi con http:// o https://.''
+
+    \item L'indirizzo non può superare 2048 caratteri. Oltre tale limite la pagina non viene neppure contattata e compare il messaggio ``L'indirizzo del link è troppo lungo. Incollane uno più breve e riprova.''
+
+    \item Se l'applicazione non riesce a leggere il contenuto della pagina --- perché l'indirizzo non è raggiungibile, oppure perché la pagina non contiene testo estraibile --- compare il messaggio ``Non è stato possibile leggere il contenuto della pagina. Controlla che il link sia corretto e raggiungibile, poi riprova.''
+\end{itemize}
+
+Del contenuto letto dalla pagina vengono impiegati al più i primi 12000 caratteri: delle pagine più lunghe si considera quindi soltanto la parte iniziale.
+
+Gli errori che si verificano dopo l'invio della richiesta, durante l'elaborazione, compaiono anch'essi all'interno della finestra. L'attesa di una risposta dal servizio di intelligenza artificiale non supera i 60 secondi: trascorsi i quali la richiesta viene abbandonata e compare il messaggio ``Servizio temporaneamente non disponibile''.\daverificare{tempo massimo di attesa dell'estrazione del contenuto di una pagina web: nel codice non risulta configurato alcun valore esplicito}
+
+I problemi più frequenti e i relativi rimedi sono raccolti nella Sezione~\ref{sec:risoluzione-problemi}, che riporta anche i messaggi elencati qui sopra.
 
 \subsection{Che cosa viene modificato nella nota}
 \label{sec:cosa-viene-modificato}
 Il modo in cui il risultato entra nella nota, premendo ``Accetta'', dipende dall'azione impiegata e da ciò che era selezionato al momento dell'avvio dell'elaborazione.
 
-Le azioni ``Riassumi'', ``Traduci'', ``Riscrivi'' e ``Grammatica'' sostituiscono il testo su cui hanno lavorato. Per esse valgono i due casi seguenti:
+Le azioni ``Riassumi'', ``Riscrivi'', ``Traduci'' e ``Grammatica'' sostituiscono il testo su cui hanno lavorato. Per esse valgono i due casi seguenti:
 
 \begin{itemize}
     \item se al momento dell'avvio era selezionata una porzione di testo, ``Accetta'' sostituisce soltanto quella porzione e lascia intatto il resto della nota;
@@ -959,12 +977,76 @@ Le azioni ``Riassumi'', ``Traduci'', ``Riscrivi'' e ``Grammatica'' sostituiscono
     \item se non era selezionato nulla, ``Accetta'' sostituisce l'intero contenuto della nota con il risultato prodotto.
 \end{itemize}
 
-Le azioni ``Analisi'' e ``Genera'' non sostituiscono invece alcun testo: il risultato viene aggiunto in fondo alla nota, separato da una riga vuota, e il contenuto esistente non viene mai toccato. Nel caso di ``Analisi'' ciò è coerente con la natura dell'azione, che produce un commento sul testo e non una sua riscrittura.
+Le azioni ``Analisi'' e ``Genera'' non sostituiscono invece alcun testo: il risultato viene aggiunto in fondo alla nota e il contenuto esistente non viene mai toccato. Per ``Genera'' ciò vale in entrambe le modalità, ``Da prompt'' e ``Da link'': il testo prodotto a partire da una pagina web si accoda come quello prodotto a partire dalle istruzioni. Nel caso di ``Analisi'' l'accodamento è coerente con la natura dell'azione, che produce un commento sul testo e non una sua riscrittura.
+
+Fra il contenuto già presente e il testo accodato viene inserita una riga vuota. Fanno eccezione i due casi in cui non serve: se la nota è vuota, il risultato ne diventa l'intero contenuto; se la nota termina già con un a capo, il risultato viene accodato senza righe aggiuntive.
 
 \vspace{0.5em}
 
 \noindent
 \textbf{Avviso.} In due casi la sostituzione non interessa la porzione attesa. Se dopo l'avvio dell'elaborazione la porzione selezionata viene modificata o eliminata, l'applicazione non è più in grado di ritrovarla e il risultato sostituisce l'intero contenuto della nota. Se invece la porzione selezionata compare più volte identica nella nota, la sostituzione interessa la prima occorrenza, che può non essere quella effettivamente selezionata. Si consiglia pertanto di non modificare la nota mentre l'elaborazione è in corso.
+
+\subsection{Gli esempi delle sezioni seguenti}
+\label{sec:testo-esempio}
+Le sezioni seguenti descrivono le singole azioni, nell'ordine in cui i relativi pulsanti compaiono nella barra in alto. Ciascuna si chiude con un esempio.
+
+Negli esempi delle azioni che lavorano sul testo della nota --- ``Riassumi'', ``Riscrivi'', ``Traduci'', ``Grammatica'' e ``Analisi'' --- il testo di partenza è sempre il seguente:
+
+\begin{quote}
+``L'intelligenza artificiale sta cambiando il modo in cui studiamo e lavoriamo, grazie a strumenti capaci di analizzare grandi quantità di dati in pochi secondi. È però importante mantenere un pensiero critico per valutare le informazioni che questi sistemi forniscono. Le università italiane stanno iniziando a integrarli nella didattica, cercando un equilibrio tra innovazione e rigore.''
+\end{quote}
+
+L'azione ``Genera'' non parte dal testo della nota: il suo esempio riporta perciò le istruzioni fornite, oppure l'indirizzo indicato.
+
+\subsection{Genera}
+\label{sec:azione-genera}
+L'azione ``Genera'' redige un testo nuovo. La finestra si apre su due schede, che stabiliscono da che cosa il testo viene generato:
+
+\begin{itemize}
+    \item ``Da prompt'': il testo è generato a partire dalle istruzioni --- il prompt\textsubscript{G} --- scritte dall'utente;
+
+    \item ``Da link'': il testo è generato a partire dal contenuto di una pagina web, indicata tramite il suo indirizzo.
+\end{itemize}
+
+All'apertura della finestra è selezionata la scheda ``Da prompt''. Passando da una scheda all'altra il campo di inserimento viene svuotato e l'eventuale messaggio di errore scompare: il contenuto digitato in una scheda non si trasferisce all'altra.
+
+In entrambe le modalità la finestra presenta il parametro ``Lunghezza output'', che consente di scegliere fra ``Breve'', ``Medio'' e ``Dettagliato''; il valore preselezionato è ``Medio''. In entrambe le modalità il testo prodotto viene aggiunto in fondo alla nota e il contenuto già presente non viene toccato, secondo quanto descritto nella Sezione~\ref{sec:cosa-viene-modificato}.
+
+\subsubsection{La modalità ``Da prompt''}
+\label{sec:genera-da-prompt}
+La scheda ``Da prompt'' presenta il campo ``Istruzioni / Contesto'', con il testo guida ``Descrivi cosa generare\ldots'', in cui descrivere ciò che si desidera ottenere.
+
+Sono richiesti almeno 3 caratteri di istruzioni e non se ne possono superare 2000.
+
+\vspace{0.5em}
+
+\noindent
+\textbf{Esempio.} Istruzioni fornite: ``Scrivi tre righe su l'utilizzo dell'intelligenza artificiale nelle università italiane''. Parametro scelto: ``Lunghezza output'' impostato su ``Breve''. Risultato:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{assets/genera.png}
+    \caption{Risultato dell'azione ``Genera'', modalità ``Da prompt'', con parametro ``Lunghezza output'' impostato su ``Breve''.}
+    \label{fig:esempio-genera}
+\end{figure}
+
+\subsubsection{La modalità ``Da link''}
+\label{sec:genera-da-link}
+La scheda ``Da link'' presenta il campo ``URL'', con il testo guida ``https://\ldots'', in cui incollare l'indirizzo della pagina da cui partire.
+
+Avviando l'elaborazione, l'applicazione legge il contenuto testuale della pagina e lo impiega come base per la generazione: dell'indirizzo indicato non viene quindi riportato il collegamento, ma un testo nuovo redatto a partire da ciò che la pagina contiene.
+
+I controlli propri di questa modalità --- campo vuoto, indirizzo non valido, indirizzo troppo lungo, contenuto della pagina non leggibile --- e i relativi messaggi sono descritti nella Sezione~\ref{sec:controlli-da-link}.
+
+\vspace{0.5em}
+
+\noindent
+\textbf{Avviso.} L'applicazione legge la pagina tramite un servizio esterno. Le pagine che richiedono un accesso, oppure che generano il proprio contenuto solo all'interno del browser, possono risultare prive di testo estraibile: in tal caso la generazione non parte e compare il messaggio riportato nella Sezione~\ref{sec:controlli-da-link}.
+
+% TODO screenshot: finestra dell'azione "Genera" con la scheda "Da link"
+% selezionata, in cui siano visibili le due schede "Da prompt" e "Da link", il
+% campo "URL" con il testo guida "https://...", il parametro "Lunghezza output"
+% e l'area "Anteprima output" con il risultato prodotto.
 
 \subsection{Riassumi}
 \label{sec:azione-riassumi}
@@ -977,43 +1059,14 @@ Il riassunto sostituisce il testo di partenza.
 \vspace{0.5em}
 
 \noindent
-\textbf{Esempio.} Testo di partenza: ``L'intelligenza artificiale sta cambiando il modo in cui studiamo e lavoriamo, grazie a strumenti capaci di analizzare grandi quantità di dati in pochi secondi. È però importante mantenere un pensiero critico per valutare le informazioni che questi sistemi forniscono. Le università italiane stanno iniziando a integrarli nella didattica, cercando un equilibrio tra innovazione e rigore.'' Parametro scelto: ``Lunghezza output'' impostato su ``Breve''. Risultato: 
+\textbf{Esempio.} Testo di partenza: quello riportato nella Sezione~\ref{sec:testo-esempio}. Parametro scelto: ``Lunghezza output'' impostato su ``Breve''. Risultato:
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{assets/riassumi.png}
+    \caption{Risultato dell'azione ``Riassumi'' con parametro ``Lunghezza output'' impostato su ``Breve''.}
+    \label{fig:esempio-riassumi}
 \end{figure}
-
-\subsection{Traduci}
-\label{sec:azione-traduci}
-L'azione ``Traduci'' riporta il testo in un'altra lingua.
-
-Il parametro ``Lingua di destinazione'' consente di scegliere fra le quattro opzioni seguenti:
-
-\begin{itemize}
-    \item ``Inglese'';
-
-    \item ``Francese'';
-
-    \item ``Tedesco'';
-
-    \item ``Spagnolo''.
-\end{itemize}
-
-L'opzione preselezionata all'apertura della finestra è ``Inglese''.
-
-La traduzione sostituisce il testo di partenza.
-
-\vspace{0.5em}
-
-\noindent
-\textbf{Esempio.} Testo di partenza: ``L'intelligenza artificiale sta cambiando il modo in cui studiamo e lavoriamo, grazie a strumenti capaci di analizzare grandi quantità di dati in pochi secondi. È però importante mantenere un pensiero critico per valutare le informazioni che questi sistemi forniscono. Le università italiane stanno iniziando a integrarli nella didattica, cercando un equilibrio tra innovazione e rigore.'' Parametro scelto: ``Lingua di destinazione'' impostata su ``Inglese''. Risultato: 
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{assets/traduci.png}
-\end{figure}
-
 
 \subsection{Riscrivi}
 \label{sec:azione-riscrivi}
@@ -1036,13 +1089,46 @@ Il testo riscritto sostituisce quello di partenza.
 \vspace{0.5em}
 
 \noindent
-\textbf{Esempio.} Testo di partenza: ``L'intelligenza artificiale sta cambiando il modo in cui studiamo e lavoriamo, grazie a strumenti capaci di analizzare grandi quantità di dati in pochi secondi. È però importante mantenere un pensiero critico per valutare le informazioni che questi sistemi forniscono. Le università italiane stanno iniziando a integrarli nella didattica, cercando un equilibrio tra innovazione e rigore.'' Parametro scelto: ``Stile'' impostato su ``Formale''. Risultato: 
+\textbf{Esempio.} Testo di partenza: quello riportato nella Sezione~\ref{sec:testo-esempio}. Parametro scelto: ``Stile'' impostato su ``Formale''. Risultato:
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{assets/riscrivi.png}
+    \caption{Risultato dell'azione ``Riscrivi'' con parametro ``Stile'' impostato su ``Formale''.}
+    \label{fig:esempio-riscrivi}
 \end{figure}
 
+\subsection{Traduci}
+\label{sec:azione-traduci}
+L'azione ``Traduci'' riporta il testo in un'altra lingua.
+
+Il parametro ``Lingua di destinazione'' consente di scegliere fra le quattro opzioni seguenti:
+
+\begin{itemize}
+    \item ``Inglese'';
+
+    \item ``Francese'';
+
+    \item ``Tedesco'';
+
+    \item ``Spagnolo''.
+\end{itemize}
+
+L'opzione preselezionata all'apertura della finestra è ``Inglese''. L'italiano non figura fra le opzioni.
+
+La traduzione sostituisce il testo di partenza.
+
+\vspace{0.5em}
+
+\noindent
+\textbf{Esempio.} Testo di partenza: quello riportato nella Sezione~\ref{sec:testo-esempio}. Parametro scelto: ``Lingua di destinazione'' impostata su ``Inglese''. Risultato:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{assets/traduci.png}
+    \caption{Risultato dell'azione ``Traduci'' con parametro ``Lingua di destinazione'' impostata su ``Inglese''.}
+    \label{fig:esempio-traduci}
+\end{figure}
 
 \subsection{Grammatica}
 \label{sec:azione-grammatica}
@@ -1055,80 +1141,63 @@ Se non vengono rilevati errori, l'anteprima riporta ``Nessun errore rilevato.'' 
 \vspace{0.5em}
 
 \noindent
-\textbf{Esempio.} Testo di partenza: ``L'intelligenza artificiale sta cambiando il modo in cui studiamo e lavoriamo, grazie a strumenti capaci di analizzare grandi quantità di dati in pochi secondi. È però importante mantenere un pensiero critico per valutare le informazioni che questi sistemi forniscono. Le università italiane stanno iniziando a integrarli nella didattica, cercando un equilibrio tra innovazione e rigore.'' Parametro scelto: nessuno, poiché l'azione non prevede parametri. Risultato: 
+\textbf{Esempio.} Testo di partenza: quello riportato nella Sezione~\ref{sec:testo-esempio}. Parametro scelto: nessuno, poiché l'azione non prevede parametri. Risultato:
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{assets/grammatica.png}
+    \caption{Risultato dell'azione ``Grammatica'', che non prevede parametri.}
+    \label{fig:esempio-grammatica}
 \end{figure}
 
 \subsection{Analisi}
 \label{sec:azione-analisi}
 L'azione ``Analisi'' esamina il testo secondo una fra sei prospettive, ispirate alla tecnica dei Sei Cappelli per Pensare. Non riscrive il testo: ne produce un commento.
 
-Il parametro ``Prospettiva (cappello)'' consente di scegliere fra le sei opzioni riportate nella Tabella~\ref{tab:prospettive-analisi}, presentate nell'ordine in cui compaiono nella finestra.
+Il parametro ``Prospettiva (cappello)'' consente di scegliere fra le sei opzioni riportate nella Tabella~\ref{tab:prospettive-analisi}, presentate nell'ordine in cui compaiono nella finestra. Accanto a ciascuna opzione si riporta il colore del cappello a cui corrisponde nella tecnica originale: il colore non compare nell'etichetta del pulsante, ma nella tinta con cui il pulsante stesso è riempito.
 
 \begingroup
 \small
-\begin{longtable}{|p{3.4cm}|p{9.4cm}|}
+\begin{longtable}{|p{2.6cm}|p{1.8cm}|p{8.2cm}|}
     \caption{Opzioni del parametro ``Prospettiva (cappello)''}
     \label{tab:prospettive-analisi} \\
     \hline
-    \textbf{Opzione} & \textbf{Orientamento dell'analisi} \\
+    \textbf{Opzione} & \textbf{Colore} & \textbf{Orientamento dell'analisi} \\
     \hline
     \endfirsthead
     \hline
-    \textbf{Opzione} & \textbf{Orientamento dell'analisi} \\
+    \textbf{Opzione} & \textbf{Colore} & \textbf{Orientamento dell'analisi} \\
     \hline
     \endhead
-    ``Informativo'' & Fatti, dati e informazioni oggettive. \\ \hline
+    ``Informativo'' & Bianco & Fatti, dati e informazioni oggettive. \\ \hline
 
-    ``Emotivo'' & Intuizioni, emozioni e sensazioni. \\ \hline
+    ``Emotivo'' & Rosso & Intuizioni, emozioni e sensazioni. \\ \hline
 
-    ``Critico'' & Difficoltà, rischi e punti deboli. \\ \hline
+    ``Critico'' & Nero & Difficoltà, rischi e punti deboli. \\ \hline
 
-    ``Ottimista'' & Vantaggi, benefici e opportunità. \\ \hline
+    ``Ottimista'' & Giallo & Vantaggi, benefici e opportunità. \\ \hline
 
-    ``Creativo'' & Nuove idee, alternative e soluzioni. \\ \hline
+    ``Creativo'' & Verde & Nuove idee, alternative e soluzioni. \\ \hline
 
-    ``Organizzativo'' & Processo, struttura e prossimi passi. \\ \hline
+    ``Organizzativo'' & Blu & Processo, struttura e prossimi passi. \\ \hline
 
 \end{longtable}
 \endgroup
 
 Nessuna opzione è preselezionata: la prospettiva va scelta esplicitamente prima di premere il pulsante ``Genera'' della finestra. Senza una scelta la richiesta non viene inviata e compare il messaggio ``Seleziona un cappello per l'analisi.''
 
-Il commento prodotto viene aggiunto in fondo alla nota, separato da una riga vuota: il testo analizzato non viene modificato.
+Il commento prodotto viene aggiunto in fondo alla nota: il testo analizzato non viene modificato.
 
 \vspace{0.5em}
 
 \noindent
-\textbf{Esempio.} Testo di partenza: ``L'intelligenza artificiale sta cambiando il modo in cui studiamo e lavoriamo, grazie a strumenti capaci di analizzare grandi quantità di dati in pochi secondi. È però importante mantenere un pensiero critico per valutare le informazioni che questi sistemi forniscono. Le università italiane stanno iniziando a integrarli nella didattica, cercando un equilibrio tra innovazione e rigore.'' Parametro scelto: ``Prospettiva (cappello)'' impostata su ``Critico''. Risultato: 
+\textbf{Esempio.} Testo di partenza: quello riportato nella Sezione~\ref{sec:testo-esempio}. Parametro scelto: ``Prospettiva (cappello)'' impostata su ``Critico''. Risultato:
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{assets/analisi.png}
-\end{figure}
-
-
-\subsection{Genera}
-\label{sec:azione-genera}
-L'azione ``Genera'' redige un testo nuovo a partire dalle istruzioni fornite.
-
-La finestra presenta il campo ``Istruzioni / Contesto'', con il testo guida ``Descrivi cosa generare\ldots'', in cui descrivere ciò che si desidera ottenere. Sono richiesti almeno 3 caratteri di istruzioni e non se ne possono superare 2000.
-
-Il parametro ``Lunghezza output'' consente di scegliere fra ``Breve'', ``Medio'' e ``Dettagliato''. Il valore predefinito è ``Medio''.
-
-Il testo prodotto viene aggiunto in fondo alla nota, separato da una riga vuota: il contenuto già presente non viene toccato.
-
-\vspace{0.5em}
-
-\noindent
-\textbf{Esempio.} Istruzioni fornite: ``Scrivi tre righe su l'utilizzo dell'intelligenza artificiale nelle università italiane''. Parametro scelto: ``Lunghezza output'' impostato su ``Breve''. Risultato: 
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{assets/genera.png}
+    \caption{Risultato dell'azione ``Analisi'' con parametro ``Prospettiva (cappello)'' impostata su ``Critico''.}
+    \label{fig:esempio-analisi}
 \end{figure}
 
 
