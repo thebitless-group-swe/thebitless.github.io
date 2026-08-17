@@ -393,7 +393,7 @@ $ cp .env.example .env
 > copy .env.example .env
 \end{comando}
 
-Il file così ottenuto va poi aperto con un editor di testo e completato con i valori descritti nella Tabella~\ref{tab:variabili-configurazione}.
+Il file così ottenuto va poi aperto con un editor di testo e completato con i valori delle variabili d'ambiente\textsubscript{G} descritte nella Tabella~\ref{tab:variabili-configurazione}.
 
 \begingroup
 \small
@@ -436,7 +436,7 @@ Per avviare l'applicazione, eseguire il comando seguente dalla cartella principa
 $ docker compose up --build
 \end{comando}
 
-Il primo avvio richiede qualche minuto, perché le immagini vengono costruite in questa occasione. Gli avvii successivi risultano più rapidi, poiché le immagini sono già disponibili.
+Il primo avvio richiede qualche minuto, perché le immagini Docker\textsubscript{G} vengono costruite in questa occasione. Gli avvii successivi risultano più rapidi, poiché le immagini sono già disponibili.
 
 Ad avvio completato, i due indirizzi seguenti rispondono in locale:
 
@@ -446,21 +446,46 @@ Ad avvio completato, i due indirizzi seguenti rispondono in locale:
     \item \textbf{servizio di backend}: \url{http://localhost:8000}. L'indirizzo non serve all'utente e si riporta soltanto per consentire di verificare che il servizio risponda.
 \end{itemize}
 
-Per arrestare l'applicazione, premere \texttt{Ctrl+C} nel terminale in cui Docker è in esecuzione. Per arrestare e rimuovere anche i container, eseguire il comando seguente:
-
-\begin{comando}
-$ docker compose down
-\end{comando}
+Per arrestare l'applicazione, premere \texttt{Ctrl+C} nel terminale in cui Docker è in esecuzione. L'arresto completo e la rimozione dell'ambiente sono descritti nella Sezione~\ref{sec:arresto-rimozione}.
 
 \subsection{Il primo avvio}
 \label{sec:primo-avvio}
 Aprendo l'applicazione per la prima volta, la schermata si presenta suddivisa in poche aree distinte: una barra laterale sul lato sinistro, una barra del titolo in alto e, al centro, lo spazio dedicato alla scrittura. La mappa completa delle aree è riportata nella Sezione~\ref{sec:guida-interfaccia}.
 
-Al primo avvio non esiste ancora alcuna nota: l'elenco della barra laterale riporta la scritta ``Nessuna nota''. Per cominciare a scrivere, premere ``Nuova nota'': viene creata una nota intitolata ``Senza titolo'' e con contenuto vuoto, pronta per essere compilata.
+Al primo avvio non esiste ancora alcuna nota: l'elenco della barra laterale riporta la scritta ``Nessuna nota'' e la barra del titolo riporta ``Nota senza titolo''. Per cominciare a scrivere, premere ``Nuova nota'': al posto del pulsante compare un campo di testo in cui digitare il titolo della nota. Premendo \texttt{Invio} la nota viene creata, con il titolo indicato e contenuto vuoto, e diventa la nota corrente. Il flusso completo è descritto nella Sezione~\ref{sec:creare-nota}.
 
 Le note restano memorizzate nel browser fra una sessione e l'altra: non è quindi necessaria alcuna registrazione, né alcun accesso, per ritrovarle all'avvio successivo.
 
 Le sezioni seguenti del manuale descrivono nel dettaglio le singole funzionalità dell'applicazione.
+
+\subsection{Arresto e rimozione completa}
+\label{sec:arresto-rimozione}
+Per arrestare l'applicazione lasciando l'ambiente pronto per un avvio successivo, premere \texttt{Ctrl+C} nel terminale in cui Docker è in esecuzione, quindi eseguire il comando seguente dalla cartella principale del progetto:
+
+\begin{comando}
+$ docker compose down
+\end{comando}
+
+Il comando arresta e rimuove i container dell'applicazione e la rete che li collega. Le immagini restano disponibili, quindi l'avvio successivo non richiede una nuova costruzione.
+
+Per rimuovere anche i volumi\textsubscript{G} creati da Docker, fra cui quello che conserva le dipendenze dell'interfaccia, aggiungere l'opzione \texttt{-v}:
+
+\begin{comando}
+$ docker compose down -v
+\end{comando}
+
+Per rimuovere infine anche le immagini costruite in locale, riportando la macchina allo stato precedente alla prima installazione, aggiungere l'opzione \texttt{--rmi local}:
+
+\begin{comando}
+$ docker compose down -v --rmi local
+\end{comando}
+
+Dopo quest'ultimo comando il primo avvio successivo richiede di nuovo qualche minuto, perché le immagini vanno ricostruite.
+
+\vspace{0.5em}
+
+\noindent
+\textbf{Avviso.} Nessuno dei comandi precedenti cancella le note: esse non risiedono nei container, ma nella memoria locale del browser\textsubscript{G}. Per rimuovere anche le note occorre cancellare i dati del sito \texttt{http://localhost:5173} dalle impostazioni del browser, dove sono conservate sotto la voce \texttt{notes\_persistence}. L'operazione è irreversibile: le note non salvate su file vanno perse. Il salvataggio su file è descritto nella Sezione~\ref{sec:salvare-nota-file}.
 
 % ---------------------------------------------------------------------------
 % NOTA. La differenza di comportamento del salvataggio su file fra i browser
