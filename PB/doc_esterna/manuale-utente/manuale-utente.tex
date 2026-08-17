@@ -587,9 +587,23 @@ Le note sono elencate nella barra laterale, dalla quale si creano, si aprono, si
 
 \subsection{Creare una nota}
 \label{sec:creare-nota}
-Il pulsante ``Nuova nota'' crea una nota con titolo ``Senza titolo'' e contenuto vuoto. La nota così creata diventa immediatamente la nota corrente.
+La creazione di una nota avviene in due passaggi: prima l'applicazione chiede il titolo, poi crea la nota.
 
-Prima di creare la nuova nota, il contenuto della nota su cui si stava lavorando viene salvato automaticamente: nulla va perso.
+Premendo ``Nuova nota'', al posto del pulsante compare un campo di testo con il testo guida ``Titolo della nota\ldots''. Sotto al campo compare l'indicazione ``Invio per creare $\cdot$ Esc per annullare''. Da questo momento:
+
+\begin{itemize}
+    \item \texttt{Invio} conferma il titolo e crea la nota;
+
+    \item \texttt{Esc} annulla l'operazione: il campo si chiude, il testo digitato viene scartato e nessuna nota viene creata.
+\end{itemize}
+
+Un clic al di fuori del campo non produce alcun effetto: il campo resta aperto e conserva il titolo digitato, in attesa di una delle due scelte precedenti.
+
+Se si conferma un titolo vuoto, la nota viene creata ugualmente e riceve il titolo ``Senza titolo''.
+
+La nota così creata ha contenuto vuoto e diventa immediatamente la nota corrente. Prima della creazione, il contenuto della nota su cui si stava lavorando viene salvato automaticamente: nulla va perso.
+
+Se la creazione non riesce, compare il messaggio ``Impossibile creare la nota. Riprova.'' Il campo del titolo resta aperto e conserva quanto digitato, pronto per un secondo tentativo; la nota precedente resta la nota corrente e il suo contenuto resta invariato.
 
 \subsection{Passare da una nota all'altra}
 \label{sec:passare-nota}
@@ -612,6 +626,37 @@ Per rinominare una nota, fare doppio clic sul nome della nota nell'elenco: il no
 Se si conferma un nome vuoto, il titolo torna a ``Senza titolo''. Il nuovo nome viene proposto come nome del file al successivo salvataggio.
 
 Se la rinomina non riesce, compare il messaggio ``Impossibile rinominare la nota. Riprova.''
+
+\subsection{Eliminare una nota}
+\label{sec:eliminare-nota}
+Ogni voce dell'elenco ``Tutte le note'' espone, sul proprio lato destro, il comando di eliminazione, rappresentato dall'icona di un cestino.
+
+L'eliminazione richiede una conferma esplicita. Premendo il cestino, la voce dell'elenco è sostituita dalla richiesta ``Eliminare «\textit{titolo della nota}»?'', accompagnata da due pulsanti:
+
+\begin{itemize}
+    \item ``Sì, elimina'' conferma ed elimina la nota;
+
+    \item ``Annulla'' rinuncia all'operazione e riporta la voce al suo aspetto abituale. Il tasto \texttt{Esc} produce lo stesso effetto.
+\end{itemize}
+
+La richiesta di conferma riguarda una nota per volta: aprendola su una voce, le altre restano invariate.
+
+L'effetto sulla nota corrente dipende da quale nota si elimina:
+
+\begin{itemize}
+    \item eliminando una nota diversa da quella corrente, l'area di scrittura non cambia;
+
+    \item eliminando la nota corrente, diventa corrente la prima nota rimasta nell'elenco e il suo contenuto compare nell'area di scrittura;
+
+    \item eliminando l'ultima nota rimasta, l'area di scrittura si svuota e la barra del titolo torna a riportare ``Nota senza titolo''.
+\end{itemize}
+
+Se l'eliminazione non riesce, compare il messaggio ``Impossibile eliminare la nota. Riprova.'' e la nota non viene eliminata.
+
+\vspace{0.5em}
+
+\noindent
+\textbf{Avviso.} L'eliminazione è irreversibile: la nota viene rimossa dall'elenco e dalla memoria del browser, e non esiste alcun comando per annullarla. Se la nota era stata salvata su file con ``Salva file'', il file sul dispositivo non viene invece rimosso e resta disponibile: può essere riaperto con ``Apri file\ldots''.
 
 \subsection{Aprire una nota da file}
 \label{sec:aprire-nota-file}
