@@ -119,9 +119,17 @@ function replaceCommand(src, name, argc, fn) {
   }
 }
 
-/** Elimina i commenti LaTeX, lasciando intatto il \% che e' un carattere. */
+/**
+ * Elimina i commenti LaTeX, lasciando intatto il \% che e' un carattere.
+ *
+ * Normalizza prima i fine riga. Il sorgente arriva con CRLF quando e' stato
+ * scritto su Windows, e in quel caso una riga vuota e' "\r\n\r\n": senza questa
+ * normalizzazione lo spezzamento in paragrafi, che cerca due "\n" consecutivi,
+ * non riconosce piu' nulla e l'intera sezione diventa un unico blocco.
+ */
 function stripComments(tex) {
   return tex
+    .replace(/\r\n?/g, "\n")
     .split("\n")
     .map(function (line) {
       let out = "";
