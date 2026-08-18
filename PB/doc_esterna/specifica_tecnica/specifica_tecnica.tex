@@ -2339,7 +2339,7 @@ Per le note create all'interno dell'applicazione, i metadati sono posseduti e co
     \item \texttt{content}: il testo della nota.
 \end{itemize}
 
-Questi metadati sono affidati alla persistenza locale descritta in §4.4.2: il middleware \texttt{persist} li scrive immediatamente in \texttt{localStorage} e li rilegge all'avvio. Per queste note, R-97-F-De è già coperto.
+Questi metadati sono affidati alla persistenza locale descritta in §4.4.2: il middleware \texttt{persist} li scrive immediatamente in \texttt{localStorage} e li rilegge all'avvio. Per queste note l'applicazione possiede quindi tutti i dati richiesti dal caso d'uso\textsubscript{G}, senza doverne ricavare alcuno dal file system.
 
 \paragraph{Nota importata da disco.}
 
@@ -2352,7 +2352,11 @@ Per le note importate da file locale (UC76.1), il file contiene il solo testo. I
     \item \texttt{createdAt} e \texttt{updatedAt}: entrambi impostati all'istante di importazione.
 \end{itemize}
 
-Questa realizzazione sarà estesa per sfruttare gli attributi \texttt{lastModified} e \texttt{size} dell'oggetto \texttt{File}, in modo da popolare rispettivamente l'istante di ultima modifica e la dimensione del contenuto. L'istante di creazione (\texttt{createdAt}) non è ricostruibile in modo affidabile dalle informazioni disponibili; per le note importate da disco sarà presentato come «non disponibile».
+L'attributo \texttt{lastModified}, che il browser espone sull'oggetto \texttt{File} in entrambi i rami di caricamento, non viene letto: sarebbe l'estensione naturale per popolare l'istante di ultima modifica. L'istante di creazione non è invece ricostruibile in modo affidabile dalle informazioni disponibili, e per le note importate da disco andrebbe presentato come «non disponibile» anziché con un valore convenzionale.
+
+\paragraph{Stato di copertura.}
+
+Il requisito\textsubscript{G} \textbf{non è soddisfatto} in nessuno dei due casi: UC84 chiede la \textit{visualizzazione} dei metadati in un pannello riassuntivo con i campi Titolo, Data di creazione, Ultima modifica e Formato, e l'interfaccia non espone alcuna vista che li mostri. I dati posseduti restano interni all'applicazione. I fronti scoperti sono quindi due, e chiuderne uno solo non basta: in importazione l'istante di ultima modifica non viene letto, e in nessun caso esiste il pannello che presenti i metadati. Trattandosi di un requisito\textsubscript{G} desiderabile, la scopertura è una decisione consapevole del gruppo; è tracciata come NS nel capitolo \ref{sec:tracciamento}.
 
     \begin{figure}[H]
     \centering
@@ -2430,26 +2434,228 @@ Il requisito\textsubscript{G} \textbf{R-110-F-Ob} vieta i dettagli tecnici nei m
 
 \subsection{Criteri di tracciamento}
 \label{sec:tracciamento-criteri}
-% Contenuto previsto: significato attribuito a ciascuno stato di copertura e
-% modalità di verifica.
-% Gli stati sono DUE, non tre: soddisfatto (S) e non soddisfatto (NS). Uno
-% stato intermedio "parzialmente soddisfatto" su un requisito obbligatorio
-% viene letto in revisione come non soddisfatto, con l'aggravante
-% dell'ambiguità: se un requisito non è coperto per intero, è NS.
+Questa sezione riporta, per ciascun requisito\textsubscript{G} individuato nell'\textit{Analisi dei Requisiti}, se il prodotto lo soddisfa. L'\textit{Analisi dei Requisiti} classifica i requisiti\textsubscript{G} in funzionali, di qualità e di vincolo\textsubscript{G}: il tracciamento le copre tutte e tre, per un totale di 140 requisiti\textsubscript{G}.
+
+Gli stati sono \textbf{due}, non tre: \textbf{soddisfatto} se il prodotto realizza il requisito\textsubscript{G} per intero, \textbf{non soddisfatto} se non lo realizza o lo realizza solo in parte. L'assenza di uno stato intermedio è deliberata: un requisito\textsubscript{G} coperto a metà non offre all'utente la funzione che promette, e registrarlo come ``parzialmente soddisfatto'' renderebbe il prospetto meno leggibile senza renderlo più veritiero.
+
+La verifica\textsubscript{G} è stata condotta \textbf{contro il repository\textsubscript{G} di prodotto} e non contro la documentazione di progettazione\textsubscript{G}: lo stato soddisfatto presuppone che la funzione sia stata individuata nel codice o nell'interfaccia, non che sia stata pianificata\textsubscript{G}. Dove il requisito\textsubscript{G} chiede che l'utente \textit{possa} compiere un'operazione, è considerato soddisfatto solo se il prodotto espone un comando o un controllo dedicato, oppure se la capacità è nativa dell'editor: la sola possibilità di ottenere il risultato digitando a mano i marcatori Markdown\textsubscript{G} non costituisce copertura, perché renderebbe il requisito\textsubscript{G} vuoto.
+
+Uno stato non soddisfatto su un requisito\textsubscript{G} \textbf{desiderabile} o \textbf{opzionale} è una decisione del gruppo sull'ampiezza del perimetro realizzato: l'\textit{Analisi dei Requisiti} attribuisce a quelle due classi un carattere non vincolante. Su un requisito\textsubscript{G} \textbf{obbligatorio} sarebbe invece un difetto di copertura.
 
 \subsection{Requisiti\textsubscript{G} funzionali}
 \label{sec:tracciamento-funzionali}
 
+\begin{longtable}{|p{2.1cm}|p{9.6cm}|p{2.6cm}|}
+    \hline
+    \rowcolor{gray!15}
+    \textbf{ID} & \textbf{Descrizione} & \textbf{Stato} \\
+    \hline
+    \endfirsthead
+    \hline
+    \rowcolor{gray!15}
+    \textbf{ID} & \textbf{Descrizione} & \textbf{Stato} \\
+    \hline
+    \endhead
+    R-1-F-Ob & L'Utente deve poter inserire e modificare testo libero nell'area di editing utilizzando marcatori in formato Markdown\textsubscript{G}. & SODDISFATTO \\ \hline
+    R-2-F-Ob & Il Sistema deve visualizzare graficamente il contenuto Markdown\textsubscript{G} inserito dall'Utente, applicando la formattazione definita dai marcatori presenti nel testo. & SODDISFATTO \\ \hline
+    R-3-F-Ob & L'Utente deve poter selezionare una porzione di testo oppure l'intero contenuto del documento. & SODDISFATTO \\ \hline
+    R-4-F-De & L'Utente deve poter tagliare il testo selezionato, rimuovendolo dall'editor e memorizzandolo negli appunti di sistema. & SODDISFATTO \\ \hline
+    R-5-F-De & L'Utente deve poter copiare il testo selezionato negli appunti di sistema senza modificare il contenuto dell'editor. & SODDISFATTO \\ \hline
+    R-6-F-De & L'Utente deve poter incollare nell'editor un contenuto testuale precedentemente copiato o tagliato. & SODDISFATTO \\ \hline
+    R-7-F-De & L'Utente deve poter annullare l'ultima modifica effettuata nell'editor. & SODDISFATTO \\ \hline
+    R-8-F-De & L'Utente deve poter ripristinare un'operazione precedentemente annullata, se non sono state effettuate nuove modifiche successive. & SODDISFATTO \\ \hline
+    R-9-F-Ob & L'Utente deve poter applicare la formattazione in grassetto al testo tramite marcatori Markdown\textsubscript{G}. & SODDISFATTO \\ \hline
+    R-10-F-Ob & L'Utente deve poter rimuovere la formattazione in grassetto dal testo. & SODDISFATTO \\ \hline
+    R-11-F-Ob & L'Utente deve poter applicare la formattazione in corsivo al testo tramite marcatori Markdown\textsubscript{G}. & SODDISFATTO \\ \hline
+    R-12-F-Ob & L'Utente deve poter rimuovere la formattazione in corsivo dal testo. & SODDISFATTO \\ \hline
+    R-13-F-Ob & L'Utente deve poter applicare la formattazione sottolineata al testo. & SODDISFATTO \\ \hline
+    R-14-F-Ob & L'Utente deve poter rimuovere la formattazione sottolineata dal testo. & SODDISFATTO \\ \hline
+    R-15-F-De & L'Utente deve poter applicare la formattazione barrata al testo tramite marcatori Markdown\textsubscript{G}. & SODDISFATTO \\ \hline
+    R-16-F-De & L'Utente deve poter rimuovere la formattazione barrata dal testo. & SODDISFATTO \\ \hline
+    R-17-F-Ob & L'Utente deve poter inserire un titolo mediante sintassi Markdown\textsubscript{G}. & SODDISFATTO \\ \hline
+    R-18-F-Ob & L'Utente deve poter rimuovere un titolo. & SODDISFATTO \\ \hline
+    R-19-F-Ob & L'Utente deve poter inserire un sottotitolo mediante sintassi Markdown\textsubscript{G}. & SODDISFATTO \\ \hline
+    R-20-F-Ob & L'Utente deve poter rimuovere un sottotitolo. & SODDISFATTO \\ \hline
+    R-21-F-De & L'Utente deve poter inserire un elenco, puntato o numerato. & SODDISFATTO \\ \hline
+    R-22-F-De & L'Utente deve poter scegliere il tipo di elenco da inserire (puntato o numerato). & SODDISFATTO \\ \hline
+    R-23-F-De & L'Utente deve poter rimuovere un elenco. & SODDISFATTO \\ \hline
+    R-24-F-De & L'Utente deve poter inserire un blocco di citazione. & NON SODDISFATTO \\ \hline
+    R-25-F-De & L'Utente deve poter rimuovere un blocco di citazione. & NON SODDISFATTO \\ \hline
+    R-26-F-De & L'Utente deve poter inserire un blocco di codice sorgente. & NON SODDISFATTO \\ \hline
+    R-27-F-De & L'Utente deve poter rimuovere un blocco di codice sorgente. & NON SODDISFATTO \\ \hline
+    R-28-F-De & L'Utente deve poter inserire una formula scientifica o matematica. & NON SODDISFATTO \\ \hline
+    R-29-F-De & L'Utente deve poter rimuovere una formula scientifica o matematica. & NON SODDISFATTO \\ \hline
+    R-30-F-De & L'Utente deve poter inserire un collegamento ipertestuale. & SODDISFATTO \\ \hline
+    R-31-F-De & L'Utente deve poter rimuovere un collegamento ipertestuale. & SODDISFATTO \\ \hline
+    R-32-F-De & L'Utente deve poter inserire un'ancora di navigazione interna al documento. & NON SODDISFATTO \\ \hline
+    R-33-F-De & L'Utente deve poter rimuovere un'ancora di navigazione interna al documento. & NON SODDISFATTO \\ \hline
+    R-34-F-De & L'Utente deve poter inserire una tabella Markdown\textsubscript{G}, definendone le dimensioni iniziali. & NON SODDISFATTO \\ \hline
+    R-35-F-De & L'Utente deve poter inserire una riga in una tabella esistente. & NON SODDISFATTO \\ \hline
+    R-36-F-De & L'Utente deve poter rimuovere una riga da una tabella esistente. & NON SODDISFATTO \\ \hline
+    R-37-F-De & L'Utente deve poter inserire una colonna in una tabella esistente. & NON SODDISFATTO \\ \hline
+    R-38-F-De & L'Utente deve poter rimuovere una colonna da una tabella esistente. & NON SODDISFATTO \\ \hline
+    R-39-F-De & L'Utente deve poter inserire un'immagine nel documento tramite URL o percorso locale. & SODDISFATTO \\ \hline
+    R-40-F-De & Il Sistema deve gestire l'inserimento di un'immagine con URL o percorso non valido, informando l'Utente e non inserendo l'immagine. & NON SODDISFATTO \\ \hline
+    R-41-F-De & L'Utente deve poter rimuovere un'immagine dal documento. & SODDISFATTO \\ \hline
+    R-42-F-De & L'Utente deve poter attivare l'auto-completamento dei simboli durante la digitazione. & NON SODDISFATTO \\ \hline
+    R-43-F-De & L'Utente deve poter disattivare l'auto-completamento dei simboli durante la digitazione. & NON SODDISFATTO \\ \hline
+    R-44-F-De & L'Utente deve poter attivare la sincronizzazione dello scorrimento tra editor e anteprima. & NON SODDISFATTO \\ \hline
+    R-45-F-De & L'Utente deve poter disattivare la sincronizzazione dello scorrimento tra editor e anteprima. & NON SODDISFATTO \\ \hline
+    R-46-F-De & L'Utente deve poter attivare il tema scuro dell'interfaccia. & NON SODDISFATTO \\ \hline
+    R-47-F-De & L'Utente deve poter attivare il tema chiaro dell'interfaccia. & NON SODDISFATTO \\ \hline
+    R-50-F-Ob & L'Utente deve poter attivare la visualizzazione esclusiva dell'editor. & SODDISFATTO \\ \hline
+    R-51-F-Ob & L'Utente deve poter attivare la visualizzazione esclusiva dell'anteprima. & SODDISFATTO \\ \hline
+    R-52-F-Ob & L'Utente deve poter attivare la visualizzazione combinata di editor e anteprima. & SODDISFATTO \\ \hline
+    R-53-F-De & L'Utente deve poter inserire testo tramite dettatura vocale, se il browser supporta le Web Speech API. & NON SODDISFATTO \\ \hline
+    R-54-F-Ob & Il Sistema deve permettere l'accesso a un LLM\textsubscript{G} per elaborare una porzione di testo selezionata oppure l'intero documento. & SODDISFATTO \\ \hline
+    R-55-F-Ob & L'Utente deve poter ottenere un riassunto del testo selezionato o dell'intero documento tramite LLM\textsubscript{G}. & SODDISFATTO \\ \hline
+    R-56-F-De & L'Utente deve poter scegliere la tipologia di riassunto. & SODDISFATTO \\ \hline
+    R-57-F-Ob & L'Utente deve poter tradurre il testo selezionato o l'intero documento tramite LLM\textsubscript{G}. & SODDISFATTO \\ \hline
+    R-58-F-Ob & L'Utente deve poter scegliere la lingua di destinazione della traduzione. & SODDISFATTO \\ \hline
+    R-59-F-Ob & L'Utente deve poter richiedere al LLM\textsubscript{G} una riscrittura del testo, modificandone tono, stile o registro linguistico. & SODDISFATTO \\ \hline
+    R-60-F-Ob & L'Utente deve poter scegliere lo stile da applicare nella riscrittura del testo. & SODDISFATTO \\ \hline
+    R-61-F-Ob & L'Utente deve poter correggere grammaticalmente il testo selezionato o l'intero documento tramite LLM\textsubscript{G}. & SODDISFATTO \\ \hline
+    R-62-F-De & L'Utente deve ricevere una comunicazione nel caso in cui l'LLM\textsubscript{G} non rilevi errori nel testo analizzato. & NON SODDISFATTO \\ \hline
+    R-63-F-Ob & L'Utente deve poter analizzare criticamente il testo secondo la metodologia dei Sei Cappelli per Pensare. & SODDISFATTO \\ \hline
+    R-64-F-Ob & L'Utente deve poter selezionare una prospettiva di analisi tra i Sei Cappelli. & SODDISFATTO \\ \hline
+    R-65-F-Ob & L'Utente deve poter ottenere un'analisi critica del testo secondo la prospettiva del Cappello Bianco, orientata a dati, fatti, neutralità e imparzialità. & SODDISFATTO \\ \hline
+    R-66-F-Ob & L'Utente deve poter ottenere un'analisi critica del testo secondo la prospettiva del Cappello Rosso, orientata a emozioni, sensazioni e percezioni. & SODDISFATTO \\ \hline
+    R-67-F-Ob & L'Utente deve poter ottenere un'analisi critica del testo secondo la prospettiva del Cappello Giallo, orientata a benefici, opportunità e aspetti positivi. & SODDISFATTO \\ \hline
+    R-68-F-Ob & L'Utente deve poter ottenere un'analisi critica del testo secondo la prospettiva del Cappello Nero, orientata a rischi, criticità e punti deboli. & SODDISFATTO \\ \hline
+    R-69-F-Ob & L'Utente deve poter ottenere un'analisi critica del testo secondo la prospettiva del Cappello Verde, orientata a creatività, alternative e soluzioni innovative. & SODDISFATTO \\ \hline
+    R-70-F-Ob & L'Utente deve poter ottenere un'analisi critica del testo secondo la prospettiva del Cappello Blu, orientata a logica, struttura e organizzazione del contenuto. & SODDISFATTO \\ \hline
+    R-71-F-Ob & Il Sistema deve associare a ciascuna prospettiva dei Sei Cappelli un prompt\textsubscript{G} specifico, adatto a guidare l'LLM\textsubscript{G} nell'analisi critica del testo. & SODDISFATTO \\ \hline
+    R-72-F-Ob & L'Utente deve poter generare automaticamente un testo a partire da un prompt\textsubscript{G}. & SODDISFATTO \\ \hline
+    R-73-F-De & L'Utente deve poter definire la lunghezza desiderata del testo generato. & SODDISFATTO \\ \hline
+    R-74-F-De & L'Utente deve poter fornire un URL come fonte di contesto per la generazione automatica di testo. & SODDISFATTO \\ \hline
+    R-76-F-Ob & L'Utente deve poter accettare l'output prodotto dall'LLM\textsubscript{G} e integrarlo nella nota corrente. & SODDISFATTO \\ \hline
+    R-77-F-De & L'Utente deve poter scartare l'output prodotto dall'LLM\textsubscript{G} senza modificare la nota corrente. & SODDISFATTO \\ \hline
+    R-78-F-De & L'Utente deve poter rigenerare l'output prodotto dall'LLM\textsubscript{G} mantenendo la richiesta e i parametri precedenti. & SODDISFATTO \\ \hline
+    R-79-F-De & L'Utente deve poter annullare una richiesta di elaborazione in corso. & SODDISFATTO \\ \hline
+    R-80-F-Ob & Il Sistema deve gestire gli errori di comunicazione o risposta del servizio LLM\textsubscript{G}, preservando il contenuto originale dell'editor. & SODDISFATTO \\ \hline
+    R-81-F-Ob & Il Sistema deve impedire l'invio di richieste AI quando il testo fornito è insufficiente per un'elaborazione significativa. & SODDISFATTO \\ \hline
+    R-82-F-Ob & L'Utente deve poter creare una nuova nota vuota nell'editor. & SODDISFATTO \\ \hline
+    R-83-F-Op & L'Utente riconosciuto deve poter creare una nuova nota nel database\textsubscript{G}. & NON SODDISFATTO \\ \hline
+    R-84-F-Ob & Il Sistema deve gestire eventuali errori durante la creazione di una nota, informando l'Utente e preservando lo stato precedente. & SODDISFATTO \\ \hline
+    R-85-F-Ob & L'Utente deve poter caricare una nota da file locale in formato testuale, come \texttt{.md} o \texttt{.txt}. & SODDISFATTO \\ \hline
+    R-86-F-Op & L'Utente riconosciuto deve poter caricare una nota dal database\textsubscript{G}. & NON SODDISFATTO \\ \hline
+    R-87-F-Ob & Il Sistema deve gestire eventuali errori durante il caricamento di una nota, preservando la sessione di lavoro precedente. & SODDISFATTO \\ \hline
+    R-88-F-Ob & L'Utente deve poter salvare una nota sul File System locale in formato testuale. & SODDISFATTO \\ \hline
+    R-89-F-Op & L'Utente riconosciuto deve poter salvare una nota nel database\textsubscript{G}. & NON SODDISFATTO \\ \hline
+    R-90-F-Ob & Il Sistema deve gestire eventuali errori durante il salvataggio di una nota, preservando l'integrità dei dati presenti nell'editor. & SODDISFATTO \\ \hline
+    R-91-F-De & L'Utente deve poter rimuovere una nota dal File System locale. & SODDISFATTO \\ \hline
+    R-92-F-Op & L'Utente riconosciuto deve poter rimuovere una nota dal database\textsubscript{G}. & NON SODDISFATTO \\ \hline
+    R-93-F-De & Il Sistema deve gestire eventuali errori durante la rimozione di una nota, evitando la perdita inconsistente dei dati. & SODDISFATTO \\ \hline
+    R-94-F-De & L'Utente deve poter rinominare una nota locale. & SODDISFATTO \\ \hline
+    R-95-F-Op & L'Utente riconosciuto deve poter rinominare una nota salvata nel database\textsubscript{G}. & NON SODDISFATTO \\ \hline
+    R-96-F-De & Il Sistema deve gestire eventuali errori durante la rinominazione di una nota, mantenendo il titolo precedente. & SODDISFATTO \\ \hline
+    R-97-F-De & L'Utente deve poter visualizzare le informazioni e i metadati di una nota selezionata. & NON SODDISFATTO \\ \hline
+    R-98-F-Op & L'Utente riconosciuto deve poter cercare note nel database\textsubscript{G} per titolo. & NON SODDISFATTO \\ \hline
+    R-99-F-Op & L'Utente riconosciuto deve poter effettuare una ricerca full-text nel contenuto delle note salvate nel database\textsubscript{G}. & NON SODDISFATTO \\ \hline
+    R-100-F-Op & L'Utente riconosciuto deve poter filtrare le note del database\textsubscript{G} per data di creazione. & NON SODDISFATTO \\ \hline
+    R-101-F-Op & L'Utente riconosciuto deve poter filtrare le note del database\textsubscript{G} per data di ultima modifica. & NON SODDISFATTO \\ \hline
+    R-102-F-Op & L'Utente deve poter autenticarsi tramite username e password per accedere alle funzionalità opzionali legate alla persistenza server-side. & NON SODDISFATTO \\ \hline
+    R-103-F-Op & Il Sistema deve gestire eventuali errori di autenticazione, mantenendo l'Utente disconnesso e mostrando un messaggio di errore. & NON SODDISFATTO \\ \hline
+    R-104-F-Op & L'Utente deve poter registrare un nuovo account per utilizzare le funzionalità opzionali di salvataggio e recupero delle note nel database\textsubscript{G}. & NON SODDISFATTO \\ \hline
+    R-105-F-Op & Il Sistema deve impedire la registrazione con uno username già presente nel database\textsubscript{G}. & NON SODDISFATTO \\ \hline
+    R-106-F-Op & Il Sistema deve impedire la registrazione se la password e la conferma password non coincidono. & NON SODDISFATTO \\ \hline
+    R-107-F-Op & L'Utente riconosciuto deve poter rimuovere il proprio account e i dati cloud associati. & NON SODDISFATTO \\ \hline
+    R-108-F-Op & L'Utente riconosciuto deve poter effettuare il logout. & NON SODDISFATTO \\ \hline
+    R-109-F-De & Per le operazioni che comportano un'attesa percepibile (superiore a circa un secondo), come l'elaborazione da parte del LLM\textsubscript{G}, il Sistema deve mostrare un indicatore di avanzamento o di attesa per l'intera durata dell'operazione. & SODDISFATTO \\ \hline
+    R-110-F-Ob & Ogni messaggio di errore mostrato all'Utente deve indicare, in linguaggio naturale, la causa dell'errore e l'eventuale azione correttiva, senza esporre dettagli tecnici (es. stack trace) o informazioni di sicurezza. & SODDISFATTO \\ \hline
+    R-111-F-Ob & L'area di editing deve essere realizzata come componente capace di ospitare testo su più righe. & SODDISFATTO \\ \hline
+    R-112-F-Ob & Il linguaggio di riferimento per l'inserimento formattato dei testi deve essere Markdown\textsubscript{G}. & SODDISFATTO \\ \hline
+    R-113-F-Ob & Il sistema deve prevedere una componente di rendering capace di trasformare il testo Markdown\textsubscript{G} in una presentazione grafica formattata. & SODDISFATTO \\ \hline
+    R-114-F-Ob & L'Utente deve poter assegnare un titolo alla nota in fase di creazione. & SODDISFATTO \\ \hline
+    R-115-F-Ob & L'Utente deve poter modificare il testo di un titolo esistente, mantenendone la formattazione. & SODDISFATTO \\ \hline
+    R-116-F-Ob & L'Utente deve poter modificare il testo di un sottotitolo esistente, mantenendone la formattazione. & SODDISFATTO \\ \hline
+    R-117-F-De & L'Utente deve poter modificare il testo di un elenco esistente, mantenendone la formattazione. & SODDISFATTO \\ \hline
+    R-118-F-De & L'Utente deve poter modificare il testo di un blocco di citazione esistente, mantenendone la formattazione. & NON SODDISFATTO \\ \hline
+    R-119-F-De & L'Utente deve poter modificare il testo di un blocco di codice sorgente esistente, mantenendone la formattazione. & NON SODDISFATTO \\ \hline
+    R-120-F-De & L'Utente deve poter modificare il testo di una formula scientifica esistente, mantenendone la formattazione. & NON SODDISFATTO \\ \hline
+    R-121-F-De & L'Utente deve poter modificare il testo di un collegamento ipertestuale esistente, mantenendone la formattazione. & SODDISFATTO \\ \hline
+    R-122-F-De & L'Utente deve poter modificare il testo di un'ancora di navigazione esistente, mantenendone la formattazione. & NON SODDISFATTO \\ \hline
+    \caption{Tracciamento dei requisiti funzionali}\label{tab:tracciamento-funzionali}
+\end{longtable}
+
 \subsection{Requisiti\textsubscript{G} di qualità}
 \label{sec:tracciamento-qualita}
 
+\begin{longtable}{|p{2.1cm}|p{9.6cm}|p{2.6cm}|}
+    \hline
+    \rowcolor{gray!15}
+    \textbf{ID} & \textbf{Descrizione} & \textbf{Stato} \\
+    \hline
+    \endfirsthead
+    \hline
+    \rowcolor{gray!15}
+    \textbf{ID} & \textbf{Descrizione} & \textbf{Stato} \\
+    \hline
+    \endhead
+    R-1-Q-Ob & L'MVP\textsubscript{G} deve realizzare tutti i requisiti funzionali obbligatori individuati nell'analisi dei requisiti. & SODDISFATTO \\ \hline
+    R-2-Q-Ob & Il prodotto deve essere accompagnato da test automatici la cui copertura rispetti le soglie minime definite nel Piano di Qualifica, a partire dal MVP\textsubscript{G}. & SODDISFATTO \\ \hline
+    R-3-Q-Ob & I casi d'uso principali devono essere verificabili tramite test automatici ripetibili. & SODDISFATTO \\ \hline
+    R-4-Q-Ob & Il codice deve essere revisionato a ogni iterazione significativa del progetto tramite revisione tra pari (code review) sulle pull request\textsubscript{G}, verificando il rispetto delle Norme di Progetto e il superamento dei test automatici prima dell'integrazione nel ramo principale. & SODDISFATTO \\ \hline
+    R-5-Q-Ob & Il progetto deve essere accompagnato dalla documentazione minima richiesta dal corso di Ingegneria del Software, ovvero: Analisi dei Requisiti, Piano di Progetto, Piano di Qualifica, Norme di Progetto, Manuale Utente, Specifica Tecnica, Glossario e verbali interni ed esterni. & SODDISFATTO \\ \hline
+    R-6-Q-Ob & Deve essere fornito un manuale per l'utilizzo dell'applicazione da parte dell'utente finale. & SODDISFATTO \\ \hline
+    R-7-Q-Ob & Deve essere fornito un manuale per chiunque voglia estendere l'applicazione. & NON SODDISFATTO \\ \hline
+    R-8-Q-De & Il progetto deve essere pubblicato su GitHub o su un altro repository pubblico, così da favorire la continuità del prodotto risultante. & SODDISFATTO \\ \hline
+    R-9-Q-De & Il progetto deve essere pubblicato secondo requisiti compatibili con la natura open-source del repository scelto. & NON SODDISFATTO \\ \hline
+    R-10-Q-Ob & Il prodotto deve rispettare le Norme di Progetto definite dal gruppo. & SODDISFATTO \\ \hline
+    R-11-Q-De & Le librerie e i framework di terze parti adottati devono avere licenze compatibili con la pubblicazione open-source del progetto. & NON SODDISFATTO \\ \hline
+    R-12-Q-Ob & I requisiti minimi obbligatori del capitolato non possono essere eliminati o modificati in corso d'opera. & SODDISFATTO \\ \hline
+    R-13-Q-Op & I requisiti opzionali possono essere modificati, eliminati o integrati dal gruppo vincitore dell'appalto. & SODDISFATTO \\ \hline
+    \caption{Tracciamento dei requisiti di qualit\`a}\label{tab:tracciamento-qualita}
+\end{longtable}
+
 \subsection{Requisiti\textsubscript{G} di vincolo\textsubscript{G}}
 \label{sec:tracciamento-vincolo}
-% Promemoria: R-8-V-Op (funzionalità RAG) è opzionale e non implementato. Non
-% riguarda la persistenza, quindi resta fuori dalla sezione 2.4, ma va tracciato
-% come NS qui.
 
-\subsection{Grafici riassuntivi}
-\label{sec:tracciamento-grafici}
+\begin{longtable}{|p{2.1cm}|p{9.6cm}|p{2.6cm}|}
+    \hline
+    \rowcolor{gray!15}
+    \textbf{ID} & \textbf{Descrizione} & \textbf{Stato} \\
+    \hline
+    \endfirsthead
+    \hline
+    \rowcolor{gray!15}
+    \textbf{ID} & \textbf{Descrizione} & \textbf{Stato} \\
+    \hline
+    \endhead
+    R-1-V-Ob & Il sistema client deve essere sviluppato utilizzando Tecnologie Web\textsubscript{G}, in particolare una pagina HTML eseguibile tramite le versioni recenti dei principali browser desktop (Google Chrome, Mozilla Firefox e Microsoft Edge). & SODDISFATTO \\ \hline
+    R-2-V-Ob & Il sistema deve interfacciarsi con servizi LLM\textsubscript{G} tramite API\textsubscript{G}. & SODDISFATTO \\ \hline
+    R-3-V-Ob & L'interazione con i servizi LLM\textsubscript{G} deve tenere conto delle limitazioni imposte dalla same-origin policy o prevedere configurazioni adeguate per superarle. & SODDISFATTO \\ \hline
+    R-4-V-Ob & Le note salvate localmente devono essere memorizzate come file di testo. & SODDISFATTO \\ \hline
+    R-5-V-Op & Nel caso di implementazione dell'archivio server-side, le note devono essere memorizzate in un database\textsubscript{G} raggiungibile dal sistema. & NON SODDISFATTO \\ \hline
+    R-6-V-Op & Nel caso di implementazione della persistenza server-side, deve essere prevista una componente server raggiungibile tramite chiamate HTTP. & NON SODDISFATTO \\ \hline
+    R-7-V-Op & La componente server-side, se realizzata, può essere sviluppata utilizzando Java o Python. & SODDISFATTO \\ \hline
+    R-8-V-Op & Nel caso di implementazione delle funzionalità RAG\textsubscript{G}, il sistema deve poter utilizzare note selezionate o associate come contesto per la generazione o modifica dei testi tramite LLM\textsubscript{G}. & NON SODDISFATTO \\ \hline
+    \caption{Tracciamento dei requisiti di vincolo}\label{tab:tracciamento-vincolo}
+\end{longtable}
+
+\subsection{Tabella riassuntiva}
+\label{sec:tracciamento-riepilogo}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        \rowcolor{gray!15}
+        \textbf{Tipo} & \textbf{Soddisfatti} & \textbf{Totali} & \textbf{Percentuale} \\
+        \hline
+        FROb & 49 & 49 & 100,00\% \\ \hline
+        FRDe & 27 & 54 & 50,00\% \\ \hline
+        FROp & 0 & 16 & 0,00\% \\ \hline
+        QROb & 8 & 9 & 88,89\% \\ \hline
+        QRDe & 1 & 3 & 33,33\% \\ \hline
+        QROp & 1 & 1 & 100,00\% \\ \hline
+        VROb & 4 & 4 & 100,00\% \\ \hline
+        VROp & 1 & 4 & 25,00\% \\ \hline
+        \rowcolor{gray!8}
+        \textbf{Totale} & \textbf{91} & \textbf{140} & \textbf{65,00\%} \\ \hline
+    \end{tabular}
+    \caption{Riepilogo della copertura dei requisiti}\label{tab:tracciamento-riepilogo}
+\end{table}
 
 \end{document}
