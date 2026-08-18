@@ -661,50 +661,7 @@ Le note sono salvate in Markdown\textsubscript{G}, con estensione \texttt{.md} e
 \paragraph{Metadati della nota}
 I metadati che l'applicazione associa alla nota (identificativo, titolo, istante di creazione e istante di ultima modifica) non sono scritti nel file, che resta un documento Markdown\textsubscript{G} puro. Il titolo è veicolato dal nome del file: in salvataggio il nome proposto deriva dal titolo della nota, in caricamento il titolo è ricavato dal nome del file privato dell'estensione. La derivazione avviene in entrambi i rami di caricamento, quello nativo e quello di ripiego, con un titolo convenzionale riservato al solo caso in cui il file scelto non esponga un nome utilizzabile: la parità fra i due rami è necessaria, poiché quello di ripiego è il percorso primario su Firefox, incluso fra i browser prescritti dal requisito\textsubscript{G} di vincolo\textsubscript{G} \textbf{R-1-V-Ob}.
 
-Sul requisito\textsubscript{G} \textbf{R-97-F-De} (UC84), che chiede di mostrare informazioni e metadati di una nota selezionata, i casi da distinguere sono due, e non hanno a disposizione gli stessi dati.
-
-\begin{itemize}
-    \setlength{\itemsep}{2pt}
-    \item \textbf{Nota creata nel prodotto}\\
-    Identificativo, titolo e istanti di creazione e di ultima modifica sono assegnati alla creazione e affidati alla persistenza locale descritta sopra, che li scrive immediatamente: sopravvivono alla chiusura della sessione e sono disponibili alla riapertura, alle condizioni proprie di quel supporto (stessa origine, stesso profilo del browser). Per queste note i dati richiesti dal caso d'uso\textsubscript{G} sono quindi già posseduti dall'applicazione, senza che nulla debba essere ricavato dal file system.
-
-    \item \textbf{Nota importata da disco}\\
-    Il file contiene il solo testo, quindi i metadati andrebbero ricostruiti da ciò che il browser espone sull'oggetto \texttt{File}. Il titolo lo è, come appena descritto, perché deriva dal nome del file; gli istanti no: all'importazione entrambi sono posti all'istante di apertura, che descrive quando la nota è entrata nell'applicazione e non quando il file è stato scritto o modificato. L'attributo \texttt{lastModified}, che il browser espone su quell'oggetto in entrambi i rami di caricamento, non è letto.
-\end{itemize}
-
-% SCOPERTURA NOTA E CONFERMATA — R-97-F-De (UC84). Questo blocco non è un
-% marcatore di difetto di redazione e non va letto come tale: il corpo del testo
-% dichiara già apertamente che il requisito non è soddisfatto, e la scopertura è
-% una decisione del gruppo, non un'affermazione falsa da correggere. Si traccia
-% come NS nel capitolo 5, secondo la regola a due stati.
-% Quanto segue documenta che cosa manchi, su DUE fronti distinti, a beneficio di
-% chi un domani decidesse di coprirlo: in tal caso li chiuda entrambi, perché
-% chiuderne uno solo lascia il requisito scoperto.
-%
-% 1. IL DATO. In web/src/lib/fileSystem.ts la funzione openNoteFromFile non legge
-%    file.lastModified in alcuno dei due rami: imposta createdAt e updatedAt
-%    entrambi a Date.now(), cioè all'istante di importazione. È l'intervento
-%    minore: l'oggetto File è già in mano a entrambi i rami.
-%
-% 2. IL PANNELLO. UC84 chiede che il sistema mostri un pannello riassuntivo con
-%    quattro campi, e sono questi:
-%      - Titolo: nome identificativo della nota;
-%      - Data di creazione: data e ora della prima generazione;
-%      - Ultima modifica: istante dell'ultimo salvataggio andato a buon fine;
-%      - Formato: estensione o tipologia di codifica del file (.md o .txt).
-%    Nel frontend quel pannello non esiste: nessun componente legge createdAt o
-%    updatedAt per mostrarli, non c'è una vista di dettaglio della nota, e in
-%    web/src non compare alcuna formattazione di data (nessuna occorrenza di
-%    toLocaleDateString né di Intl.DateTimeFormat). Il campo Formato non è
-%    nemmeno presente nell'interfaccia Note, ma è derivabile dall'estensione del
-%    file o, per le note create nel prodotto, costante.
-%
-% Il primo punto senza il secondo non copre nulla: il requisito chiede di
-% mostrare i metadati, non di possederli. Per il capitolo 5: con la regola a due
-% stati, finché entrambi i punti non sono chiusi R-97-F-De si traccia come NS.
-\noindent In nessuno dei due casi però il requisito\textsubscript{G} è soddisfatto: chiede la \textit{visualizzazione} dei metadati, e il prodotto non espone alcun pannello che li mostri, per cui i dati che possiede restano interni all'applicazione. I fronti scoperti sono due: in importazione l'istante di ultima modifica che il browser espone sull'oggetto \texttt{File} non viene letto, e nell'interfaccia non esiste alcuna vista che presenti i metadati della nota. Trattandosi di un requisito\textsubscript{G} desiderabile, la scopertura è una decisione consapevole del gruppo e non una dimenticanza, ed è tracciata come tale nel capitolo \ref{sec:tracciamento}.
-
-L'istante di creazione fa eccezione, perché è il solo dato che non dipende da una scelta realizzativa: per le note create nel prodotto è conservato, per quelle importate da disco resta non ricostruibile anche leggendo l'istante di ultima modifica, dato che le interfacce del browser non lo espongono. Andrebbe quindi mostrato come non disponibile, non con un valore convenzionale.
+Il trattamento dei metadati per il requisito\textsubscript{G} \textbf{R-97-F-De} (UC84) è descritto nella sezione \ref{sec:recupero-metadati}; il relativo stato di copertura è riportato nel capitolo \ref{sec:tracciamento}.
 
 \paragraph{Motivazione dell'esclusione della base di dati}
 La persistenza server-side è prevista dal capitolato\textsubscript{G} come estensione facoltativa. I requisiti\textsubscript{G} funzionali che ne derivano sono classificati come opzionali nell'Analisi dei Requisiti\textsubscript{G} e riguardano quattro capacità distinte:
@@ -2367,7 +2324,7 @@ Questo meccanismo non è un sostituto della persistenza server-side: resta inter
 \subsubsection{Recupero dei metadati dall'oggetto File}
 \label{sec:recupero-metadati}
 
-Il requisito R-97-F-De (UC84) richiede la visualizzazione delle informazioni e dei metadati di una nota selezionata. Come dichiarato in §2.4, la copertura del requisito distingue due casi.
+Il requisito R-97-F-De (UC84) richiede la visualizzazione delle informazioni e dei metadati di una nota selezionata. I casi da distinguere sono due, e non hanno a disposizione gli stessi dati.
 
 \paragraph{Nota creata nel prodotto.}
 
@@ -2395,7 +2352,7 @@ Per le note importate da file locale (UC76.1), il file contiene il solo testo. I
     \item \texttt{createdAt} e \texttt{updatedAt}: entrambi impostati all'istante di importazione.
 \end{itemize}
 
-Come dichiarato in §2.4, questa realizzazione sarà estesa per sfruttare gli attributi \texttt{lastModified} e \texttt{size} dell'oggetto \texttt{File}, in modo da popolare rispettivamente l'istante di ultima modifica e la dimensione del contenuto. L'istante di creazione (\texttt{createdAt}) non è ricostruibile in modo affidabile dalle informazioni disponibili; per le note importate da disco sarà presentato come «non disponibile».
+Questa realizzazione sarà estesa per sfruttare gli attributi \texttt{lastModified} e \texttt{size} dell'oggetto \texttt{File}, in modo da popolare rispettivamente l'istante di ultima modifica e la dimensione del contenuto. L'istante di creazione (\texttt{createdAt}) non è ricostruibile in modo affidabile dalle informazioni disponibili; per le note importate da disco sarà presentato come «non disponibile».
 
     \begin{figure}[H]
     \centering
