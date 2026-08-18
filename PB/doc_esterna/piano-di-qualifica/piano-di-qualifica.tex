@@ -882,12 +882,23 @@ Le misurazioni che seguono fanno riferimento al periodo che intercorre tra l'agg
         \hline
         7 & €185,00 & €185,00 & €6.115,00 & €6.229,70 \\
         \hline
+        8 & €1.415,00 & €1.504,84 & €7.530,00 & €7.734,54 \\
+        \hline
+        9 & €1.445,00 & €1.482,05 & €8.975,00 & €9.216,59 \\
+        \hline
+        10 & €1.485,00 & €1.540,00 & €10.460,00 & €10.759,59 \\
+        \hline
+        11 & €1.065,00 & €1.065,00 & €11.525,00 & €11.821,59 \\
+        \hline
+        12 & €275,00 & €275,00 & €11.800,00 & €12.096,59 \\
+        \hline
 	\end{tabular}
 	\caption{MPC-PV e MPC-EV per sprint}
 	\label{tab:pv-ev}
 \end{table}
 
-Come possiamo notare dalla figura \ref{fig:pv-ev}, il \textit{Planned Value} cresce di pari passo con l'avanzare degli sprint. Vediamo poi come nel primo sprint l'\textit{Earned Value} sia minore rispetto alla stima pianificata: questo è dovuto a una inesperienza nella programmazione del lavoro che, a partire dallo sprint 2, è stata migliorata. 
+\subsubsection{RTB}
+Come possiamo notare dalla Figura \ref{fig:pv-ev}, il \textit{Planned Value} cresce di pari passo con l'avanzare degli sprint. Vediamo poi come nel primo sprint l'\textit{Earned Value} sia minore rispetto alla stima pianificata: questo è dovuto a una inesperienza nella programmazione del lavoro che, a partire dallo sprint 2, è stata migliorata. 
 Questo lo si può notare anche dall'accumulo di EV che, dallo sprint 3, comincia ad essere maggiore dell'accumulo di PV, che riporta quindi un avanzamento del progetto di poco in anticipo rispetto a quanto pianificato. Nell'ultimo sprint, che coincide con la prima fase di valutazione RTB, il lavoro è stato principalmente di palestra e meno lavorativo e per questo risultano valori bassi in PV e EV. Valutazione:
 \begin{itemize}
     \item \textbf{Valore accettabile:} PV$>0$€, vincolo \textit{rispettato}.
@@ -895,6 +906,17 @@ Questo lo si può notare anche dall'accumulo di EV che, dallo sprint 3, comincia
     \item \textbf{Valore accettabile:} EV$\geq 80\% * PV$, vincolo \textit{rispettato}.
     \item \textbf{Valore ottimo:} EV$\geq PV$, vincolo \textit{violato} in due sprint su sette.
 \end{itemize}
+
+\subsubsection{PB}
+Analizzando il grafico in Figura \ref{fig:pv-ev} tra lo Sprint 8 e lo Sprint 12, si osserva la fase di completamento del progetto, in cui sia il \textit{Planned Value} che l'\textit{Earned Value} convergono progressivamente verso il valore cumulato finale di circa 12.500,00 €. 
+L'andamento costante e parallelo di entrambe le curve evidenzia come il lavoro sia proseguito a un ritmo regolare nelle iterazioni conclusive, permettendo di ultimare agevolmente le attività programmate. Notiamo come l'accumulo di EV sia sempre maggiore dell'accumulo di PV e che, man mano che il progetto avanza, la distanza tra le due curve aumenti. Questo ci mostra un miglioramento nella pianificazione della fase finale di delivery rispetto alla prima fase del progetto.
+\begin{itemize}
+    \item \textbf{Valore accettabile:} PV$>0$€, vincolo \textit{rispettato}.
+    \item \textbf{Valore ottimo:} PV pari alla pianificazione concordata, vincolo \textit{rispettato}.
+    \item \textbf{Valore accettabile:} EV$\geq 80\% * PV$, vincolo \textit{rispettato}.
+    \item \textbf{Valore ottimo:} EV$\geq PV$, vincolo \textit{rispettato}.
+\end{itemize}
+
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/pv-ev.pdf}
     \caption{Comparazione \textit{Planned Value - Earned Value}}
@@ -922,10 +944,22 @@ Questo lo si può notare anche dall'accumulo di EV che, dallo sprint 3, comincia
         \hline
         7 & €185,00 & €6.155,00 & €6.705,00 & €12.860,00 \\
         \hline
+        8 & €1.495,00 & €7.650,00 & €5.125,90 & €12.775,90 \\
+        \hline
+        9 & €1.505,00 & €9.155,00 & €3.904,13 & €13.059,13 \\
+        \hline
+        10 & €1.535,00 & €10.690,00 & €2.128,25 & €12.818,25 \\
+        \hline
+        11 & €1.085,00 & €11.775,00 & €1.326,50 & €13.101,50 \\
+        \hline
+        12 & €275,00 & €12.050,00 & €810,00 & €12.860,00 \\
+        \hline
 	\end{tabular}
 	\caption{MPC-AC, MPC-ETC e MPC-EAC per sprint}
 	\label{tab:ac-etc}
 \end{table}
+
+\subsubsection{RTB}
 L'analisi del grafico in Figura \ref{fig:ac-etc} evidenzia, come atteso, un incremento progressivo dell'\textit{Actual Cost}, fisiologico e coerente con il continuo assorbimento delle risorse economiche durante l'avanzamento del progetto.
 Relativamente alle metriche previsionali \textit{Estimate to Complete} ed \textit{Estimate at Completion}, osserviamo un trend decrescente fino al secondo sprint. Tale dinamica rappresenta un indicatore di elevata efficienza iniziale, avendo posizionato la stima del costo a finire (EAC) significativamente al di sotto del budget stanziato.
 Tra il secondo e il terzo sprint, tuttavia, rileviamo una flessione nelle performance di progetto: all'incremento dei costi sostenuti non corrisponde una proporzionale riduzione del lavoro residuo stimato (ETC). Conseguentemente, l'EAC subisce un innalzamento, approssimandosi al limite critico definito dal BAC. Questa deviazione è imputabile principalmente alla fase di revisione dell'\textit{Analisi dei Requisiti}, un'attività che ha richiesto un notevole impiego di risorse in termini di \textit{effort} senza tuttavia generare un proporzionale incremento del valore maturato (\textit{Earned Value}). A tale criticità si è sommata un'iniziale inesperienza nella pianificazione operativa e nel coordinamento delle attività del team, con inevitabili ricadute negative sull'efficienza economica complessiva dello sprint.
@@ -936,6 +970,17 @@ A partire dal terzo sprint si registra, in controtendenza, un marcato recupero d
     \item \textbf{Valore accettabile:} ETC$\geq 0$, vincolo \textit{rispettato}.
     \item \textbf{Valore ottimo:} ETC$\geq 0$, vincolo \textit{rispettato}.
 \end{itemize}
+
+\subsubsection{PB}
+Analizzando l'intervallo compreso tra lo Sprint 8 e lo Sprint 12 visibile in FIgura \ref{fig:ac-etc}, si osserva il progressivo esaurimento delle attività di progetto, evidenziato dalla curva dell'\textit{Estimate to Complete (ETC)} che decresce verso lo zero. Di conseguenza, l'\textit{Actual Cost (AC)} cumulato rallenta la sua ascesa fino a stabilizzarsi, consolidando una proiezione del costo finale (\textit{Estimate at Completion}) lineare e priva di scostamenti critici. 
+Mantenendosi al di sotto del \textit{Budget at Completion (BAC)}, l'EAC certifica la chiusura del progetto in economia, nel pieno rispetto dell'assunzione nella dichiarazione degli impegni.
+\begin{itemize}
+    \item \textbf{Valore accettabile:} AC$>0$€, vincolo \textit{rispettato}.
+    \item \textbf{Valore ottimo:} AC$\leq$EAC, vincolo \textit{rispettato}.
+    \item \textbf{Valore accettabile:} ETC$\geq 0$, vincolo \textit{rispettato}.
+    \item \textbf{Valore ottimo:} ETC$\geq 0$, vincolo \textit{rispettato}.
+\end{itemize}
+
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/ac-etc.pdf}
     \caption{Comparazione \textit{Actual Cost - Estimate to Complete - Estimated at Completion}}
@@ -963,10 +1008,22 @@ A partire dal terzo sprint si registra, in controtendenza, un marcato recupero d
         \hline
         7 & 0,00 & 0,00 & In regola \\
         \hline
+        8 & +9,84 & +89,84 & In anticipo e sotto il budget \\
+        \hline
+        9 & -22,95 & +37,05 & In anticipo ma sopra il budget \\
+        \hline
+        10 & +5,00 & +55,00 & In anticipo e sotto il budget \\
+        \hline
+        11 & -20,00 & 0,00 & In orario ma sopra il budget \\
+        \hline
+        12 & 0,00 & 0,00 & In regola \\
+        \hline
 	\end{tabular}
 	\caption{MPC-CV e MPC-SV per sprint}
 	\label{tab:cv-sv}
 \end{table}
+
+\subsubsection{RTB}
 Dall'analisi del grafico in Figura \ref{fig:cv-sv} possiamo notare un andamento altalenante che, tuttavia, culmina in una convergenza verso l'efficienza ottimale:
 \begin{itemize}
     \item \textbf{Sprint 1:} In questo sprint il progetto si avvia con performance al di sotto del livello di ottimalità. Questa dinamica è del tutto coerente con le difficoltà iniziali di calibrazione del team.
@@ -982,6 +1039,23 @@ Valutazione:
     \item \textbf{Valore accettabile CV:} $CV>0$, vincolo \textit{violato} in tre sprint su cinque con scostamenti lievi.
     \item \textbf{Valore accettabile SV:} $SV\geq 0$, vincolo \textit{violato} in tre sprint su cinque con slittamenti consistenti.
 \end{itemize}
+
+\subsubsection{PB}
+Di seguito la valutazione, sprint per sprint, della fase visibile in Figura \ref{fig:cv-sv}:
+\begin{itemize}
+\item \textbf{Sprint 8:} Con la ripresa delle attività di sviluppo a pieno regime dopo la revisione, il team registra una performance solida. Le metriche di varianza si assestano, garantendo il rispetto delle tempistiche e un buon controllo sul budget.
+\item \textbf{Sprint 9:} In questa fase, si osserva un progressivo consolidamento dell'efficienza operativa seppur con un leggero sforamento economico. Questo sforamento è dovuto al rallentamento fisiologico che il progetto ha subito il team durante i mesi scarichi da impegni universitari.
+\item \textbf{Sprint 10:} L'iterazione conferma il trend virtuoso intrapreso. L'avvicinamento alle fasi finali di \textit{delivery} procede speditamente, con le curve di \textit{Cost Variance} e \textit{Schedule Variance} che testimoniano un'ottima gestione delle risorse residue.
+\item \textbf{Sprint 11:} Avviandosi verso la conclusione delle attività principali, la \textit{Schedule Variance} inizia la sua fisiologica convergenza verso lo zero, a indicare che il lavoro in sospeso si sta esaurendo esattamente secondo le scadenze del piano originario. Si nota però un leggero sforamento economico. 
+\item \textbf{Sprint 12:} Nell'ultimo sprint analizzato, la \textit{Schedule Variance} si azzera definitivamente, certificando il completamento del lavoro pianificato senza alcun ritardo finale. La \textit{Cost Variance} si attesta su un valore di chiusura positivo, mostrando il completamento del progetto in efficienza economica.
+\end{itemize}
+Valutazione: 
+\begin{itemize}
+    \item \textbf{Valore accettabile CV:} $CV>0$, vincolo \textit{violato} in due sprint su cinque con scostamenti lievi.
+    \item \textbf{Valore accettabile SV:} $SV\geq 0$, vincolo \textit{rispettato}.
+    \item \textbf{Valore ottimo SV:} $SV > 0$, vincolo \textit{violato} in due sprint su cinque. 
+\end{itemize}
+
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/cv-sv.pdf}
     \caption{Comparazione \textit{Cost Variance - Schedule Variance}}
@@ -1009,17 +1083,38 @@ Valutazione:
         \hline
         7 & €12.860,00 & €12.860,00 & EAC$=$BAC \\
         \hline
+        8 & €12.775,90 & €12.860,00 & EAC$<$BAC \\
+        \hline
+        9 & €13.059,13 & €12.860,00 & EAC$>$BAC \\
+        \hline
+        10 & €12.818,25 & €12.860,00 & EAC$<$BAC \\
+        \hline
+        11 & €13.101,50 & €12.860,00 & EAC$>$BAC \\
+        \hline
+        12 & €12.860,00 & €12.860,00 & EAC$=$BAC \\
+        \hline
 	\end{tabular}
 	\caption{MPC-EAC e BAC per sprint}
 	\label{tab:eac-bac}
 \end{table}
 
+\subsubsection{RTB}
 Dall'aggiudicazione del capitolato fino alla revisione della RTB, l'\textit{Estimate At Completion} oscilla attorno al \textit{Budget At Completion}. L'EAC supera il BAC solo in tre occasioni:
 \begin{itemize}
     \item \textbf{Sprint 1:} come detto anche nelle altre sezioni, il primo sprint ha sofferto dell'inesperienza del gruppo nell'organizzare le task, dimensionarle e portarle a compimento. Questo ha provocato un leggero sforamento di budget.
     \item \textbf{Sprint 3:} in questo sprint il gruppo si è dovuto confrontare con la revisione dell'\textit{Analisi dei Requisiti}, che ha portato ad un rallentamento del progetto e ad un conseguente minore valore aggiunto.
     \item \textbf{Sprint 6:} in questo sprint il gruppo ha dovuto affrontare la revisione interna dei documenti e del PoC precedente alla prima fase di revisione RTB. Questo ha portato ad un carico di lavoro importante con conseguente sforamento di budget e leggero ritardo in quanto non si è prodotto un effettivo valore aggiunto.
 \end{itemize} 
+Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} EAC$\leq 110\%$ budget, vincolo \textit{rispettato}.
+    \item \textbf{Valore ottimale:} EAC$\leq$ budget, vincolo \textit{violato} in tre sprint su cinque.
+\end{itemize}
+
+\subsubsection{PB}
+Analizzando il grafico in Figura \ref{fig:eac-bac} relativo all'andamento dell'\textit{Estimate at Completion (EAC)} in rapporto al \textit{Budget at Completion (BAC)}, si osserva un'oscillazione della spesa totale prevista durante le iterazioni conclusive del progetto. 
+Nello sprint 9 e 11, infatti, l'EAC si posiziona di poco sopra al budget concordato. Questo è frutto delle naturali oscillazioni di prestazione lavorativa del gruppo durante gli sprint finali. 
+Nonostante ciò, lo sprint 12 chiude in linea con il BAC, assicurando che il progetto si concluda in economia senza alcun rischio di sforamento del budget originario.
 Valutazione:
 \begin{itemize}
     \item \textbf{Valore accettabile:} EAC$\leq 110\%$ budget, vincolo \textit{rispettato}.
@@ -1053,13 +1148,32 @@ Valutazione:
         \hline
         7 & 5 & 0 & $100,0\%$ & Ottimo \\
         \hline
+        8 & 7 & 0 & $100,0\%$ & Ottimo \\
+        \hline
+        9 & 14 & 0 & $100,0\%$ & Ottimo \\
+        \hline
+        10 & 54 & 0 & $100,0\%$ & Ottimo \\
+        \hline
+        11 & 31 & 0 & $100,0\%$ & Ottimo \\
+        \hline
+        12 & 5 & 0 & $100,0\%$ & Ottimo \\
+        \hline
 	\end{tabular}
 	\caption{Task Completion Rate per sprint}
 	\label{tab:tcr}
 \end{table}
+
+\subsubsection{RTB}
 Il \textit{Task Completion Rate} risulta ottimo in tre sprint su cinque. Notiamo subottimalità critica nello sprint 1 ($76,9\%$) e una subottimalità lieve nello sprint 4 ($92,3\%$). Valutazione:
 \begin{itemize}
     \item \textbf{Valore accettabile:} $TCR \geq 85\%$, vincolo \textit{violato} nello sprint 1.
+\end{itemize}
+
+\subsubsection{PB}
+Come notiamo dal grafico in Figura \ref{fig:tcr}, il \textit{Task Completion Rate} risulta ottimo in tutti gli sprint finali. Questo è dovuto all'esperienza che il gruppo ha acquisito durante il progetto che ha permesso di gestire carichi di lavoro importanti (e.g. 54 task nello sprint 10) senza particolari problemi di scheduling. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $TCR \geq 85\%$, vincolo \textit{rispettato}.
+    \item \textbf{Valore ottimale:} $TCR = 100\%$, vincolo \textit{rispettato}.
 \end{itemize}
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/tcr.pdf}
@@ -1088,15 +1202,33 @@ Il \textit{Task Completion Rate} risulta ottimo in tre sprint su cinque. Notiamo
         \hline
         7 & 5 & 0 & $0,0\%$ & Ottimo \\
         \hline
+        8 & 7 & 0 & $0,0\%$ & Ottimo \\
+        \hline
+        9 & 14 & 0 & $0,0\%$ & Ottimo \\
+        \hline
+        10 & 54 & 0 & $0,0\%$ & Ottimo \\
+        \hline
+        11 & 31 & 0 & $0,0\%$ & Ottimo \\
+        \hline
+        12 & 5 & 0 & $0,0\%$ & Ottimo \\
+        \hline
 	\end{tabular}
 	\caption{Task Slippage per sprint}
 	\label{tab:ts}
 \end{table}
+
+\subsubsection{RTB}
 Il \textit{Task Slippage} risulta ottimo in tre sprint su cinque. Notiamo subottimalità critica nello sprint 1 ($23,1\%$) e una subottimalità lieve nello sprint 4 ($7,7\%$). Valutazione:
 \begin{itemize}
     \item \textbf{Valore accettabile:} $TS < 15\%$, vincolo \textit{violato} nello sprint 1.
 \end{itemize}
 
+\subsubsection{PB}
+Ugualmente a quello che succede per l'\textit{MPC-TCR}, negli sprint relativi alla PB, il \textit{Task Slippage} risulta ottimo in tutti e cinque gli sprint. Questo è dovuto alla maturità organizzativa sviluppata durante il progetto che ha permesso di gestire tutti i flussi di lavoro senza particolari problemi. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $TS < 15\%$, vincolo \textit{rispettato}.
+    \item  \textbf{Valore ottimale:} $TS = 0\%$, vincolo \textit{rispettato}.
+\end{itemize}
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/ts.pdf}
     \caption{Valutazione \textit{Task Slippage}}
@@ -1124,14 +1256,34 @@ Il \textit{Task Slippage} risulta ottimo in tre sprint su cinque. Notiamo subott
         \hline
         7 & 2 & 0 & $0,0\%$ & Ottimo \\
         \hline
+        8 & 3 & 0 & $0,0\%$ & Ottimo \\
+        \hline
+        9 & 9 & 0 & $0,0\%$ & Ottimo \\
+        \hline
+        10 & 40 & 0 & $0,0\%$ & Ottimo \\
+        \hline
+        11 & 22 & 0 & $0,0\%$ & Ottimo \\
+        \hline
+        12 & 4 & 0 & $0,0\%$ & Ottimo \\
+        \hline
 	\end{tabular}
 	\caption{Merge Rework per sprint}
 	\label{tab:mr}
 \end{table}
+
+\subsubsection{RTB}
 Dal grafico in Figura \ref{fig:mr} possiamo notare come la valutazione di \textit{Merge Rework}, ovvero la percentuale di Pull Request approvate nelle quali viene sovrascritto del lavoro già svolto, varia a seconda della fase del progetto. Nei primi due sprint troviamo dei valori simili ($7\%$ circa) che riteniamo accettabili. Questi valori sono dati dal fatto che tutti i membri del gruppo non avevano avuto ancora esperienza di co-working con lo strumento GitHub, né con un progetto con un gruppo così numeroso. Questo ha portato a iniziali incomprensioni sul lavoro da svolgere e, di conseguenza, a riscritture di parti di documenti. Nel terzo e quarto sprint abbiamo valori critici, dovuti principalmente all'\textit{Analisi dei Requisiti} (primo grande documento condiviso da più redattori) e dalla sua riscrittura, dovuta a revisioni a seguito di numerosi difetti di modellazione riscontrati.
 Nello sprint 5 abbiamo avuto un'enorme mole di Pull Request dovute all'inizio del \textit{Proof of Concept} che però sono state minimamente sovrascritte grazie ad una progettazione adeguata. Infine negli ultimi due sprint la percentuale di lavoro sovrascritto è stata pari a zero. Questo è dovuto al carico di lavoro diminuito e ad una consapevolezza aumentata sulle task da svolgere e sugli strumenti da utilizzare. Valutazione:
 \begin{itemize}
     \item \textbf{Valore accettabile:} $MR \leq 20\%$, vincolo \textit{violato} in due sprint su cinque.
+\end{itemize}
+
+\subsubsection{PB}
+Come possiamo notare in Figura \ref{fig:mr}, la percentuale di Pull Request approvate nelle quali viene sovrascritto del lavoro già svolto, a differenza di quanto è avvenuto nella fase RTB, rimane stabile sullo zero durante tutta la fase di PB. Questo risultato, così come quelli raggiunti per \textit{MPC-TCR} e \textit{MPC-TS}, denotano una maturità nella pianificazione delle task e nello svolgere il proprio lavoro, che ci ha portato a non perdere più tempo nel mettere nuovamente mano a ciò che era già stato fatto ma nel proseguire spediti verso la fine.
+Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $MR \leq 20\%$, vincolo \textit{rispettato}.
+    \item \textbf{Valore ottimale:} $MR \leq 5\%$, vincolo \textit{rispettato}.
 \end{itemize}
 
 \begin{figure}[H]
