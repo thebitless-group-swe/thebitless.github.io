@@ -244,8 +244,8 @@
 
 \newcommand{\titolo}{Specifica Tecnica}
 \newcommand{\dataverbale}{}
-\newcommand{\dataversione}{2026-08-16}
-\newcommand{\versione}{0.13.1}
+\newcommand{\dataversione}{2026-08-18}
+\newcommand{\versione}{0.14.0}
 \newcommand{\stato}{Stesura}
 % La Specifica Tecnica è documentazione esterna: fra i destinatari figura anche
 % la proponente, coerentemente con Analisi dei Requisiti e Piano di Qualifica.
@@ -275,6 +275,8 @@
     \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
     \hline
     \endhead
+    0.14.0 & 2026-08-18 & A. Marini &  & - & Unione delle stesure parallele delle sezioni Architettura e Flusso dei dati; aggiornamento dei riferimenti a Norme di Progetto v2.0.0, Glossario v2.0.0 e Analisi dei Requisiti della baseline di Product Baseline; integrazione della generazione a partire da un collegamento nello scopo del prodotto \\ \hline
+
     0.13.1 & 2026-08-16 & E. De Piccoli &  & - & Allineamento dell'Architettura del backend allo spostamento dell'adattatore di trasporto fra gli adattatori primari \\ \hline
 
     0.13.0 & 2026-08-16 & A. Marini &  & - & Inserimento dei sei diagrammi e delle figure corrispondenti, allineamento dell'enumerazione dei contratti di dipendenza e della definizione di adattatore primario nelle sezioni Tecnologie di test e analisi e Panoramica architetturale, e delle annotazioni di struttura della sezione Architettura del backend, a seguito dello spostamento dell'adattatore di trasporto fra gli adattatori primari; riclassificazione della scopertura di R-97-F-De nella sezione Persistenza delle note, con la distinzione fra dati posseduti e copertura del requisito e la rimozione dei rimandi al sorgente dal corpo del testo; revisione redazionale di titoli dei paragrafi, grassetti e incisi \\ \hline
@@ -362,17 +364,17 @@ Come gli altri documenti del gruppo, la stesura segue un approccio \textbf{incre
 \label{sec:scopo-prodotto}
 Il capitolato\textsubscript{G} \textbf{C6} di \textbf{Zucchetti S.p.A.} richiede la realizzazione di \textbf{Second Brain}, un'applicazione web per la scrittura e la gestione di note in formato \textbf{Markdown\textsubscript{G}}, assistita da modelli linguistici di grandi dimensioni (\textbf{LLM\textsubscript{G}}).
 
-L'interfaccia si articola in due pannelli affiancati: a sinistra un editor in cui l'utente compone il testo nella sintassi Markdown\textsubscript{G}, a destra un'anteprima che ne mostra il rendering aggiornato in tempo reale. Su questa base si innestano le funzioni assistite dall'LLM\textsubscript{G}, che operano sul testo selezionato o sull'intera nota: riassunto, riscrittura e adattamento del tono, correzione, traduzione multilingue, analisi critica secondo la tecnica dei \textbf{Sei Cappelli per Pensare\textsubscript{G}} di Edward de Bono e generazione di testo secondo il paradigma del \textbf{Distant Writing\textsubscript{G}}, in cui l'utente descrive sinteticamente il contenuto desiderato e delega al modello la stesura. Le note prodotte sono salvate e ricaricate sul file system locale dell'utente in formato Markdown\textsubscript{G}.
+L'interfaccia si articola in due pannelli affiancati: a sinistra un editor in cui l'utente compone il testo nella sintassi Markdown\textsubscript{G}, a destra un'anteprima che ne mostra il rendering aggiornato in tempo reale. Su questa base si innestano le funzioni assistite dall'LLM\textsubscript{G}, che operano sul testo selezionato o sull'intera nota: riassunto, riscrittura e adattamento del tono, correzione, traduzione multilingue, analisi critica secondo la tecnica dei \textbf{Sei Cappelli per Pensare\textsubscript{G}} di Edward de Bono e generazione di testo secondo il paradigma del \textbf{Distant Writing\textsubscript{G}}, in cui l'utente descrive sinteticamente il contenuto desiderato e delega al modello la stesura. A queste si aggiunge la generazione a partire da un collegamento, in cui l'utente indica l'indirizzo di una pagina web e il sistema\textsubscript{G} ne estrae il contenuto per sottoporlo al modello. Le note prodotte sono salvate e ricaricate sul file system locale dell'utente in formato Markdown\textsubscript{G}.
 
 Il valore del prodotto non risiede quindi nella sola redazione del testo, ma nel ruolo attivo assunto dal sistema\textsubscript{G}, che affianca l'utente nelle fasi di ideazione, revisione e riorganizzazione dei contenuti.
 
-Per la trattazione completa del perimetro funzionale, dei casi d'uso\textsubscript{G} e della classificazione dei requisiti\textsubscript{G} in obbligatori, desiderabili e opzionali si rimanda all'\href{https://thebitless.live/RTB/doc_esterna/analisi-dei-requisiti/analisi-dei-requisiti.pdf}{\textit{Analisi dei Requisiti}}, di cui il presente documento non intende costituire una duplicazione.
+Per la trattazione completa del perimetro funzionale, dei casi d'uso\textsubscript{G} e della classificazione dei requisiti\textsubscript{G} in obbligatori, desiderabili e opzionali si rimanda all'\href{https://thebitless.live/PB/doc_esterna/analisi-dei-requisiti/analisi-dei-requisiti.pdf}{\textit{Analisi dei Requisiti}}, di cui il presente documento non intende costituire una duplicazione.
 
 \subsection{Glossario}
 \label{sec:glossario}
 La creazione e lo sviluppo\textsubscript{G} di un sistema\textsubscript{G} software richiedono una complessa operazione di progettazione e analisi del dominio\textsubscript{G}, attività che deve necessariamente precedere la stesura del codice. Il gruppo si impegna a raccogliere e organizzare tali informazioni in modo che siano facilmente accessibili, al fine di favorire la massima asincronia ed efficienza nelle attività di progetto.
 
-La principale fonte di ambiguità nello svolgimento delle attività è rappresentata dall'incomprensione dei termini tecnici o specialistici adottati. A tale scopo, la nomenclatura di riferimento viene raccolta nel \href{https://thebitless.live/RTB/doc_interna/glossario/glossario.pdf}{\textit{glossario}}, un documento incrementale\textsubscript{G} volto a definire ogni termine rilevante per il dominio\textsubscript{G} del progetto.
+La principale fonte di ambiguità nello svolgimento delle attività è rappresentata dall'incomprensione dei termini tecnici o specialistici adottati. A tale scopo, la nomenclatura di riferimento viene raccolta nel \href{https://thebitless.live/PB/doc_interna/glossario/glossario.pdf}{\textit{glossario}}, un documento incrementale\textsubscript{G} volto a definire ogni termine rilevante per il dominio\textsubscript{G} del progetto.
 
 Il gruppo si impegna a contrassegnare ogni occorrenza di un termine presente nel glossario mediante l'apposizione di una lettera \textbf{G} a pedice, come esemplificato di seguito:
 
@@ -394,9 +396,9 @@ Al fine di garantire una corretta comprensione del dominio\textsubscript{G}, è 
     \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf} \\
     \textit{Ultimo accesso:} 23 maggio 2026.
 
-    \item \textbf{Norme di Progetto v1.0.0}: \\
-    \url{https://thebitless.live/RTB/doc_interna/norme-di-progetto/norme-di-progetto.pdf} \\
-    \textit{Ultimo accesso:} 8 giugno 2026.
+    \item \textbf{Norme di Progetto v2.0.0}: \\
+    \url{https://thebitless.live/PB/doc_interna/norme-di-progetto/norme-di-progetto.pdf} \\
+    \textit{Ultimo accesso:} 18 agosto 2026.
 \end{itemize}
 
 \subsubsection{Riferimenti informativi}
@@ -404,13 +406,13 @@ Al fine di garantire una corretta comprensione del dominio\textsubscript{G}, è 
 
 \paragraph{Documentazione di progetto}
 \begin{itemize}
-    \item \textbf{Glossario v1.0.0}: \\
-    \url{https://thebitless.live/RTB/doc_interna/glossario/glossario.pdf} \\
-    \textit{Ultimo accesso:} 12 giugno 2026.
+    \item \textbf{Glossario v2.0.0}: \\
+    \url{https://thebitless.live/PB/doc_interna/glossario/glossario.pdf} \\
+    \textit{Ultimo accesso:} 18 agosto 2026.
 
     \item \textbf{Analisi dei Requisiti v2.0.0}: \\
-    \url{https://thebitless.live/RTB/doc_esterna/analisi-dei-requisiti/analisi-dei-requisiti.pdf} \\
-    \textit{Ultimo accesso:} 27 luglio 2026.
+    \url{https://thebitless.live/PB/doc_esterna/analisi-dei-requisiti/analisi-dei-requisiti.pdf} \\
+    \textit{Ultimo accesso:} 18 agosto 2026.
 
     \item \textbf{Verbale interno VI\_2026-05-12 -- Scelta delle tecnologie per il PoC\textsubscript{G}}: \\
     \url{https://thebitless.live/RTB/doc_interna/verbali/VI_2026-05-12_quarto-sprint/VI_2026-05-12_quarto-sprint.pdf} \\
