@@ -134,20 +134,20 @@
 \newcommand{\versione}{1.0.0}
 \newcommand{\stato}{Approvato}
 % Il Manuale Utente è documentazione esterna: fra i destinatari figura anche
-% la proponente, coerentemente con Analisi dei Requisiti, Piano di Qualifica e
+% la proponente$_G$, coerentemente con Analisi dei Requisiti$_G$, Piano di Qualifica$_G$ e
 % Specifica Tecnica.
 \newcommand{\destinatari}{prof. T. Vardanega, prof. R. Cardin, Zucchetti S.p.A.}
-% \templatedir è consumato da frontespizio.tex per risolvere il percorso del
+% \templatedir è consumato da frontespizio$_G$.tex per risolvere il percorso del
 % logo: la profondità predefinita (\providecommand nel template) non è quella
 % di questa cartella, quindi la definizione seguente è necessaria.
 \def\templatedir{../../../templates}
 
-% Il frontespizio è tarato sulle spaziature predefinite di LaTeX. Il \parskip
+% Il frontespizio$_G$ è tarato sulle spaziature predefinite di LaTeX$_G$. Il \parskip
 % introdotto nel preambolo per il corpo del documento vale anche qui, e si
 % somma fra i blocchi del template: logo, intestazione, elenco dei redattori e
 % tabella. Lo spazio in più spingeva la riga dei contatti, che il \vfill del
 % template tiene in fondo alla pagina, sulla pagina successiva. Si azzera per
-% il solo frontespizio, dentro un gruppo, così il corpo resta invariato e il
+% il solo frontespizio$_G$, dentro un gruppo, così il corpo resta invariato e il
 % template non va modificato.
 \begingroup
 \setlength{\parskip}{0pt}
@@ -181,7 +181,7 @@
     \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
     \hline
     \endhead
-    1.0.0 & 2026-08-17 & -- & -- & A. Menegaldo & Approvazione del documento \\ \hline
+    1.0.0 & 2026-08-17 & -- & -- & A. Menegaldo & Approvazione$_G$ del documento \\ \hline
 
     0.9.0 & 2026-08-14 & A. Marini & L. Battistella & -- & Eliminazione di una nota, titolo richiesto alla creazione e generazione da link; correzioni grammaticali \\ \hline
 
@@ -195,11 +195,11 @@
 
     0.4.0 & 2026-08-08 & L. Battistella & A. Menegaldo & -- & Gestione delle note: creazione, apertura, rinomina, salvataggio su file e conservazione nel browser \\ \hline
 
-    0.3.0 & 2026-08-07 & D. Facco & S. Vendramin & -- & Installazione e avvio: requisiti di sistema, verifica dell'installazione, configurazione del file \texttt{.env}, avvio e arresto \\ \hline
+    0.3.0 & 2026-08-07 & D. Facco & S. Vendramin & -- & Installazione e avvio: requisiti$_G$ di sistema$_G$, verifica$_G$ dell'installazione, configurazione del file \texttt{.env}, avvio e arresto \\ \hline
 
     0.2.0 & 2026-08-06 & L. Battistella & E. De Piccoli & -- & Introduzione: scopo del prodotto, finalità e destinatari, convenzioni tipografiche, riferimenti e formati del manuale \\ \hline
 
-    0.1.0 & 2026-08-06 & A. Marini & L. Battistella & -- & Impostazione del documento: preambolo \LaTeX{}, frontespizio, tabella di redazione e registro delle modifiche \\ \hline
+    0.1.0 & 2026-08-06 & A. Marini & L. Battistella & -- & Impostazione del documento: preambolo \LaTeX{}, frontespizio$_G$, tabella di redazione e registro delle modifiche \\ \hline
 
 \end{longtable}
 % Il registro è privo di didascalia e non compare nell'indice delle tabelle, ma
@@ -241,12 +241,12 @@ L'assistente mette a disposizione le sei azioni seguenti, elencate nell'ordine i
 
     \item ``Grammatica'': corregge gli errori grammaticali presenti nel testo;
 
-    \item ``Analisi'': esamina il testo secondo una fra sei prospettive, ispirate alla tecnica dei Sei Cappelli per Pensare\textsubscript{G}.
+    \item ``Analisi'': esamina il testo secondo una fra sei prospettive, ispirate alla tecnica dei Sei Cappelli per Pensare$_G$\textsubscript{G}.
 \end{itemize}
 
 Le azioni ``Riassumi'', ``Riscrivi'', ``Traduci'', ``Grammatica'' e ``Analisi'' operano sul testo già presente nella nota; ``Genera'' parte invece da istruzioni o da un indirizzo forniti dall'utente.
 
-L'obiettivo del prodotto è offrire un ambiente di lavoro in cui il sistema non si limita ad archiviare le note, ma supporta attivamente la stesura e la revisione dei contenuti. Le note prodotte possono inoltre essere salvate come file sul dispositivo dell'utente.
+L'obiettivo del prodotto è offrire un ambiente di lavoro in cui il sistema$_G$ non si limita ad archiviare le note, ma supporta attivamente la stesura e la revisione dei contenuti. Le note prodotte possono inoltre essere salvate come file sul dispositivo dell'utente.
 
 \subsection{Finalità e destinatari del documento}
 \label{sec:finalita-destinatari}
@@ -279,7 +279,7 @@ Le sezioni si susseguono nell'ordine in cui se ne presume la consultazione:
 \begin{itemize}
     \item la Sezione~\ref{sec:introduzione} presenta il prodotto, il documento e le convenzioni adottate;
 
-    \item la Sezione~\ref{sec:installazione-avvio} descrive i requisiti, la configurazione, l'avvio, l'arresto e la rimozione dell'applicazione;
+    \item la Sezione~\ref{sec:installazione-avvio} descrive i requisiti$_G$, la configurazione, l'avvio, l'arresto e la rimozione dell'applicazione;
 
     \item la Sezione~\ref{sec:guida-interfaccia} illustra le aree della schermata e i comandi che ciascuna mette a disposizione;
 
@@ -305,7 +305,7 @@ Il documento adotta le convenzioni descritte di seguito.
         parola\textsubscript{G}
     \end{quote}
 
-    Il Glossario di progetto, citato fra i riferimenti informativi nella Sezione~\ref{sec:riferimenti-informativi}, è un documento distinto, rivolto al gruppo di lavoro e alla proponente: il presente manuale non ne presuppone la lettura.
+    Il Glossario di progetto, citato fra i riferimenti informativi nella Sezione~\ref{sec:riferimenti-informativi}, è un documento distinto, rivolto al gruppo di lavoro e alla proponente$_G$: il presente manuale non ne presuppone la lettura.
 
     \item \textbf{Nomi dei pulsanti}: i nomi dei pulsanti dell'applicazione sono riportati fra virgolette, esattamente come compaiono a schermo. Per esempio, il pulsante che crea una nota è indicato come ``Nuova nota''.
 
@@ -369,14 +369,14 @@ Le due versioni corrispondono alla stessa revisione del documento, indicata nel 
 
 \section{Installazione e avvio}
 \label{sec:installazione-avvio}
-Second Brain si esegue in locale tramite container\textsubscript{G} Docker\textsubscript{G}. Al termine dell'avvio, l'interfaccia è accessibile da un normale browser\textsubscript{G}. La presente sezione descrive i requisiti da soddisfare, la configurazione da predisporre e le operazioni di avvio e di arresto dell'applicazione.
+Second Brain si esegue in locale tramite container\textsubscript{G} Docker\textsubscript{G}. Al termine dell'avvio, l'interfaccia è accessibile da un normale browser\textsubscript{G}. La presente sezione descrive i requisiti$_G$ da soddisfare, la configurazione da predisporre e le operazioni di avvio e di arresto dell'applicazione.
 
 \subsection{Requisiti di sistema}
 \label{sec:requisiti-sistema}
 Sulla macchina che ospita l'applicazione deve essere installato il software seguente:
 
 \begin{itemize}
-    \item \textbf{Docker}: si scarica dal sito ufficiale \link{https://www.docker.com}, scegliendo l'installer corrispondente al proprio sistema operativo;
+    \item \textbf{Docker}: si scarica dal sito ufficiale \link{https://www.docker.com}, scegliendo l'installer corrispondente al proprio sistema$_G$ operativo;
 
     \item \textbf{Docker Compose}: è normalmente già incluso in Docker Desktop e non richiede quindi un'installazione separata.
 \end{itemize}
@@ -402,7 +402,7 @@ $ docker --version
 $ docker compose version
 \end{comando}
 
-Se entrambi i comandi restituiscono un numero di versione, l'ambiente è pronto. In caso contrario, reinstallare Docker e verificare che sia in esecuzione, quindi ripetere la verifica.
+Se entrambi i comandi restituiscono un numero di versione, l'ambiente è pronto. In caso contrario, reinstallare Docker e verificare che sia in esecuzione, quindi ripetere la verifica$_G$.
 
 \subsection{Configurazione}
 \label{sec:configurazione}
@@ -439,7 +439,7 @@ Il file così ottenuto va poi aperto con un editor di testo e completato con i v
 
     \texttt{LITELLM\_MODEL} & Nome del modello da utilizzare. \\ \hline
 
-    \texttt{LITELLM\_API\_KEY} & Chiave di accesso all'API\textsubscript{G} del servizio di intelligenza artificiale. \\ \hline
+    \texttt{LITELLM\_API\_KEY} & Chiave di accesso all'API$_G$\textsubscript{G} del servizio di intelligenza artificiale. \\ \hline
 
     \texttt{TAVILY\_API\_KEY} & Chiave del servizio impiegato per leggere il contenuto di una pagina web. \\ \hline
 
@@ -451,7 +451,7 @@ Il file così ottenuto va poi aperto con un editor di testo e completato con i v
 \vspace{0.5em}
 
 \noindent
-\textbf{Avviso.} Il file \texttt{.env} contiene credenziali personali. Non va condiviso con terzi né inserito nel repository.
+\textbf{Avviso.} Il file \texttt{.env} contiene credenziali personali. Non va condiviso con terzi né inserito nel repository$_G$.
 
 \subsection{Avvio, accesso e arresto}
 \label{sec:avvio-accesso-arresto}
@@ -518,7 +518,7 @@ Dopo quest'ultimo comando il primo avvio successivo richiede di nuovo qualche mi
 %
 % Resta aperta l'alternativa scartata: restringere l'elenco dei browser
 % supportati in §2.1, il che però richiede prima una modifica di R-1-V-Ob,
-% che deriva dal Capitolato.
+% che deriva dal Capitolato$_G$.
 % ---------------------------------------------------------------------------
 
 
@@ -694,7 +694,7 @@ Se l'eliminazione non riesce, compare il messaggio ``Impossibile eliminare la no
 
 \subsection{Aprire una nota da file}
 \label{sec:aprire-nota-file}
-Il pulsante ``Apri file\ldots'' apre la finestra di selezione dei file del sistema operativo. Sono ammessi file di testo con estensione \texttt{.md} o \texttt{.txt}.
+Il pulsante ``Apri file\ldots'' apre la finestra di selezione dei file del sistema$_G$ operativo. Sono ammessi file di testo con estensione \texttt{.md} o \texttt{.txt}.
 
 Il contenuto del file diventa il contenuto della nota; il titolo della nota è il nome del file privato dell'estensione. La nota viene aggiunta all'elenco e diventa la nota corrente.
 
@@ -807,7 +807,7 @@ Anche questi comandi funzionano come un interruttore: le righe che riportano gi�
 
 \subsubsection{Collegamenti e immagini}
 \label{sec:collegamenti-immagini}
-Il pulsante ``Link'' inserisce un collegamento ipertestuale\textsubscript{G} nella forma \texttt{[testo](https://)}, dove \texttt{testo} è il testo selezionato. L'indirizzo predefinito \texttt{https://} resta selezionato, pronto per essere sostituito digitando l'indirizzo desiderato. Lo stesso comando è disponibile con la combinazione \texttt{Ctrl+K}.
+Il pulsante ``Link'' inserisce un collegamento ipertestuale$_G$\textsubscript{G} nella forma \texttt{[testo](https://)}, dove \texttt{testo} è il testo selezionato. L'indirizzo predefinito \texttt{https://} resta selezionato, pronto per essere sostituito digitando l'indirizzo desiderato. Lo stesso comando è disponibile con la combinazione \texttt{Ctrl+K}.
 
 Il comando ``Link'' funziona come un interruttore: applicato a un collegamento già presente, ne rimuove la sintassi e conserva il solo testo.
 
@@ -856,7 +856,7 @@ Poiché questi costrutti non hanno un comando dedicato, non dispongono neppure d
 \label{sec:annullare-ripristinare}
 L'area di scrittura conserva la cronologia delle modifiche. La combinazione \texttt{Ctrl+Z} annulla l'ultima modifica.
 
-Il ripristino della modifica annullata dipende dal sistema operativo:
+Il ripristino della modifica annullata dipende dal sistema$_G$ operativo:
 
 \begin{itemize}
     \item su Windows e su Linux si impiega \texttt{Ctrl+Y};
@@ -936,7 +936,7 @@ Tutte le azioni dell'assistente seguono lo stesso flusso:
 \begin{enumerate}
     \item premere il pulsante dell'azione nella barra in alto; si apre una finestra che riporta il nome dell'azione;
 
-    \item la finestra contiene, quando previsti, i campi di inserimento e i selettori dei parametri, e un'area intitolata ``Anteprima output'';
+    \item la finestra contiene, quando previsti, i campi di inserimento e i selettori dei parametri, e un'area intitolata ``Anteprima output$_G$'';
 
     \item premere il pulsante ``Genera'' della finestra per avviare l'elaborazione;
 
@@ -1044,7 +1044,7 @@ L'azione ``Genera'' redige un testo nuovo. La finestra si apre su due schede, ch
 
 All'apertura della finestra è selezionata la scheda ``Da prompt''. Passando da una scheda all'altra il campo di inserimento viene svuotato e l'eventuale messaggio di errore scompare: il contenuto digitato in una scheda non si trasferisce all'altra.
 
-In entrambe le modalità la finestra presenta il parametro ``Lunghezza output'', che consente di scegliere fra ``Breve'', ``Medio'' e ``Dettagliato''; il valore preselezionato è ``Medio''. In entrambe le modalità il testo prodotto viene aggiunto in fondo alla nota e il contenuto già presente non viene toccato, secondo quanto descritto nella Sezione~\ref{sec:cosa-viene-modificato}.
+In entrambe le modalità la finestra presenta il parametro ``Lunghezza output$_G$'', che consente di scegliere fra ``Breve'', ``Medio'' e ``Dettagliato''; il valore preselezionato è ``Medio''. In entrambe le modalità il testo prodotto viene aggiunto in fondo alla nota e il contenuto già presente non viene toccato, secondo quanto descritto nella Sezione~\ref{sec:cosa-viene-modificato}.
 
 \subsubsection{La modalità ``Da prompt''}
 \label{sec:genera-da-prompt}
@@ -1055,7 +1055,7 @@ Sono richiesti almeno 3 caratteri di istruzioni e non se ne possono superare 200
 \vspace{0.5em}
 
 \noindent
-\textbf{Esempio.} Istruzioni fornite: ``Scrivi un testo sull'utilizzo dell'intelligenza artificiale nella vita quotidiana''. Parametro scelto: ``Lunghezza output'' impostato su ``Breve''. Risultato:
+\textbf{Esempio.} Istruzioni fornite: ``Scrivi un testo sull'utilizzo dell'intelligenza artificiale nella vita quotidiana''. Parametro scelto: ``Lunghezza output$_G$'' impostato su ``Breve''. Risultato:
 
 \begin{figure}[H]
     \centering
@@ -1080,7 +1080,7 @@ La Sezione~\ref{sec:controlli-da-link} descrive i controlli propri di questa mod
 \vspace{0.5em}
 
 \noindent
-\textbf{Esempio.} Indirizzo indicato: \texttt{https://en.wikipedia.org/wiki/\allowbreak World\_War\_II}. Parametro scelto: ``Lunghezza output'' impostato su ``Dettagliato''. Risultato:
+\textbf{Esempio.} Indirizzo indicato: \texttt{https://en.wikipedia.org/wiki/\allowbreak World\_War\_II}. Parametro scelto: ``Lunghezza output$_G$'' impostato su ``Dettagliato''. Risultato:
 
 \begin{figure}[H]
     \centering
@@ -1095,14 +1095,14 @@ Nella figura il pulsante di avvio riporta ``Rigenera'' anziché ``Genera'': l'el
 \label{sec:azione-riassumi}
 L'azione ``Riassumi'' produce una sintesi del testo.
 
-Il parametro ``Lunghezza output'' consente di scegliere fra ``Breve'', ``Medio'' e ``Dettagliato''. Il valore predefinito è ``Medio''.
+Il parametro ``Lunghezza output$_G$'' consente di scegliere fra ``Breve'', ``Medio'' e ``Dettagliato''. Il valore predefinito è ``Medio''.
 
 Il riassunto sostituisce il testo di partenza.
 
 \vspace{0.5em}
 
 \noindent
-\textbf{Esempio.} Testo di partenza: quello riportato nella Sezione~\ref{sec:testo-esempio}. Parametro scelto: ``Lunghezza output'' impostato su ``Breve''. Risultato:
+\textbf{Esempio.} Testo di partenza: quello riportato nella Sezione~\ref{sec:testo-esempio}. Parametro scelto: ``Lunghezza output$_G$'' impostato su ``Breve''. Risultato:
 
 \begin{figure}[H]
     \centering
@@ -1195,7 +1195,7 @@ Se non vengono rilevati errori, l'anteprima riporta ``Nessun errore rilevato.'' 
 
 \subsection{Analisi}
 \label{sec:azione-analisi}
-L'azione ``Analisi'' esamina il testo secondo una fra sei prospettive, ispirate alla tecnica dei Sei Cappelli per Pensare. Non riscrive il testo: ne produce un commento.
+L'azione ``Analisi'' esamina il testo secondo una fra sei prospettive, ispirate alla tecnica dei Sei Cappelli per Pensare$_G$. Non riscrive il testo: ne produce un commento.
 
 Il parametro ``Prospettiva (cappello)'' consente di scegliere fra le sei opzioni riportate nella Tabella~\ref{tab:prospettive-analisi}, presentate nell'ordine in cui compaiono nella finestra. Accanto a ciascuna opzione si riporta il colore del cappello a cui corrisponde nella tecnica originale: il colore non compare nell'etichetta del pulsante, ma nella tinta con cui il pulsante stesso è riempito.
 
@@ -1263,7 +1263,7 @@ Nell'uso dell'assistente si consiglia di:
 \label{sec:risoluzione-problemi}
 La presente sezione raccoglie i problemi più frequenti. La Sezione~\ref{sec:messaggi-applicazione} riporta i messaggi che l'applicazione può mostrare, con la causa e il rimedio di ciascuno; la Sezione~\ref{sec:problemi-installazione} tratta i problemi che si manifestano in fase di installazione e di avvio; la Sezione~\ref{sec:altre-situazioni} descrive le situazioni che richiedono una spiegazione più estesa.
 
-Trattandosi di un'installazione locale, l'amministratore dell'ambiente è l'utente stesso: tutti i rimedi indicati sono alla sua portata e non richiedono l'intervento di terzi.
+Trattandosi di un'installazione locale, l'amministratore$_G$ dell'ambiente è l'utente stesso: tutti i rimedi indicati sono alla sua portata e non richiedono l'intervento di terzi.
 
 \subsection{I messaggi dell'applicazione}
 \label{sec:messaggi-applicazione}
@@ -1334,7 +1334,7 @@ Il comando \texttt{docker compose up --build} termina subito con un errore che s
 
 \textbf{Causa.} Docker è installato ma non avviato: su Windows e su macOS il programma Docker Desktop deve essere in esecuzione perché i comandi \texttt{docker} funzionino.
 
-\textbf{Rimedio.} Avviare Docker Desktop e attenderne il completo caricamento, quindi ripetere la verifica descritta nella Sezione~\ref{sec:verifica-installazione}: se entrambi i comandi restituiscono un numero di versione, l'ambiente è pronto e l'avvio può essere ripetuto.
+\textbf{Rimedio.} Avviare Docker Desktop e attenderne il completo caricamento, quindi ripetere la verifica$_G$ descritta nella Sezione~\ref{sec:verifica-installazione}: se entrambi i comandi restituiscono un numero di versione, l'ambiente è pronto e l'avvio può essere ripetuto.
 
 \subsubsection{La porta 5173 o la porta 8000 è già occupata}
 L'avvio termina con un errore che segnala l'impossibilità di assegnare una delle due porte.
@@ -1388,7 +1388,7 @@ $ docker compose up
 \label{sec:altre-situazioni}
 
 \subsubsection{La generazione resta bloccata e l'anteprima resta vuota}
-L'indicatore di attività continua a girare, ma nell'area ``Anteprima output'' non compare alcun testo.
+L'indicatore di attività continua a girare, ma nell'area ``Anteprima output$_G$'' non compare alcun testo.
 
 \textbf{Causa.} La connessione si è interrotta durante la trasmissione del risultato, oppure il servizio esterno ha smesso di rispondere senza restituire un errore.
 
@@ -1421,7 +1421,7 @@ programma che consente di accedere a pagine e applicazioni web e di visualizzarl
 riferimento testuale che, se selezionato, rimanda a un'altra risorsa, come una pagina web o un altro documento.
 
     \item \textbf{Container:}
-ambiente isolato ed eseguibile che racchiude un'applicazione e le sue dipendenze, garantendone il funzionamento indipendentemente dal sistema ospitante.
+ambiente isolato ed eseguibile che racchiude un'applicazione e le sue dipendenze, garantendone il funzionamento indipendentemente dal sistema$_G$ ospitante.
 
     \item \textbf{Docker:}
 piattaforma software che permette di creare, distribuire ed eseguire applicazioni all'interno di container.
@@ -1445,7 +1445,7 @@ spazio in cui il browser conserva i dati di un sito fra una visita e l'altra. È
 numero che identifica un servizio in ascolto su una macchina. Second Brain impiega la porta 5173 per l'interfaccia e la porta 8000 per il servizio di backend.
 
     \item \textbf{Prompt:}
-istruzione in linguaggio naturale con cui si indica a un LLM che cosa produrre.
+istruzione in linguaggio naturale con cui si indica a un LLM$_G$ che cosa produrre.
 
     \item \textbf{Rendering:}
 processo con cui il testo sorgente viene trasformato nella sua rappresentazione visiva formattata, mostrata all'utente.
@@ -1454,13 +1454,13 @@ processo con cui il testo sorgente viene trasformato nella sua rappresentazione 
 tecnica di analisi che esamina un argomento da sei prospettive distinte, ciascuna associata a un colore e a un tipo di ragionamento.
 
     \item \textbf{Terminale:}
-programma che consente di impartire comandi al sistema operativo digitandoli in forma testuale.
+programma che consente di impartire comandi al sistema$_G$ operativo digitandoli in forma testuale.
 
     \item \textbf{URL:}
 indirizzo che individua una risorsa sul web, come una pagina o un documento. Inizia con \texttt{http://} oppure con \texttt{https://}.
 
     \item \textbf{Variabile d'ambiente:}
-coppia formata da un nome e da un valore, che il sistema mette a disposizione di un programma al suo avvio. Le variabili d'ambiente di Second Brain si impostano nel file \texttt{.env}.
+coppia formata da un nome e da un valore, che il sistema$_G$ mette a disposizione di un programma al suo avvio. Le variabili d'ambiente di Second Brain si impostano nel file \texttt{.env}.
 
     \item \textbf{Volume:}
 spazio in cui Docker conserva i dati di un container al di fuori del container stesso, così che sopravvivano alla sua rimozione.
