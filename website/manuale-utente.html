@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Glossario — TheBitless</title>
+  <title>Manuale Utente — TheBitless</title>
   <link rel="icon" type="image/png" href="assets/logo-mark.png">
   <link rel="stylesheet" href="styles.css">
   <script>
     (function(){var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();
   </script>
 </head>
-<body>
+<body class="page-manuale">
 
   <nav class="navbar">
     <div class="navbar-inner">
@@ -27,16 +27,24 @@
 
       <div class="navbar-links">
         <a href="#team" class="nav-link">Chi siamo</a>
-        <a href="manuale-utente.html" class="nav-link">Manuale Utente</a>
-        <a href="glossario.html" class="nav-link active">Glossario</a>
+        <a href="manuale-utente.html" class="nav-link active">Manuale Utente</a>
+        <a href="glossario.html" class="nav-link">Glossario</a>
       </div>
     </div>
   </nav>
 
   <main>
     <div class="glossary-header">
-      <h1 class="glossary-title">Glossario</h1>
-      <p class="glossary-subtitle">Definizioni dei termini tecnici e metodologici usati nel progetto.</p>
+      <h1 class="glossary-title">Manuale Utente</h1>
+      <p class="glossary-subtitle">
+        Guida all'installazione e all'uso di Second Brain. Il testo è generato dallo
+        stesso sorgente del documento PDF, quindi le due versioni coincidono sempre.
+      </p>
+      <p class="mu-pdf-line">
+        <a href="../PB/doc_esterna/manuale-utente/manuale-utente.pdf" class="mu-pdf-link">
+          Scarica la versione PDF ↓
+        </a>
+      </p>
     </div>
 
     <div class="search-wrap">
@@ -44,13 +52,23 @@
         type="search"
         id="search-input"
         class="search-input"
-        placeholder="Cerca un termine..."
-        aria-label="Cerca nel glossario"
+        placeholder="Cerca nel manuale..."
+        aria-label="Cerca nel manuale utente"
         autocomplete="off"
       >
+      <p id="mu-result-count" class="mu-result-count" role="status" aria-live="polite"></p>
     </div>
 
-    <div class="glossary-grid" id="glossary-grid"></div>
+    <div class="mu-layout">
+      <aside class="mu-aside" aria-label="Indice del manuale">
+        <p class="mu-aside-title">Indice</p>
+        <nav id="mu-toc" class="mu-toc"></nav>
+      </aside>
+
+      <div id="mu-content" class="mu-content">
+        <p class="glossary-empty">Caricamento del manuale…</p>
+      </div>
+    </div>
   </main>
 
   <footer id="team">
@@ -69,6 +87,6 @@
   </footer>
 
   <script src="javascript.js"></script>
-  <script src="glossario.js"></script>
+  <script src="manuale-utente.js"></script>
 </body>
 </html>

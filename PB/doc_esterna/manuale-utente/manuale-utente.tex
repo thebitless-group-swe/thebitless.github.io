@@ -9,6 +9,27 @@
 \usepackage[italian]{babel}
 
 % ---------------------------------------------------------------------------
+% Sillabazione e rientri di paragrafo.
+%
+% Nessuna parola viene spezzata a fine riga: \hyphenpenalty sopprime la
+% sillabazione automatica, \exhyphenpenalty impedisce di andare a capo in
+% corrispondenza dei trattini già presenti nel testo, come in
+% docker-compose.yml. Senza sillabazione la giustificazione deve poter
+% allargare gli spazi fra le parole, altrimenti le righe sborderebbero dal
+% margine destro: è quanto consente \sloppy.
+%
+% I paragrafi iniziano tutti dallo stesso margine sinistro, senza rientro. In
+% assenza di rientro il solo indizio di un nuovo paragrafo è lo spazio
+% verticale, che va quindi reso esplicito con \parskip.
+% ---------------------------------------------------------------------------
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\sloppy
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em plus 0.2em minus 0.1em}
+
+% ---------------------------------------------------------------------------
 % Colori
 % xcolor va caricato una sola volta e prima di ogni pacchetto che lo richiami
 % a sua volta: un secondo \usepackage con opzioni diverse produce l'errore
@@ -28,6 +49,10 @@
 \usepackage{tabularx}
 \usepackage{enumitem}
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
+% Colonna di paragrafo allineata a sinistra anziché giustificata. Serve alle
+% colonne strette: senza sillabazione una colonna giustificata non ha modo di
+% chiudere la riga e sborda invece di allargare gli spazi.
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 \renewcommand{\arraystretch}{1.2}
 
 % ---------------------------------------------------------------------------
@@ -71,31 +96,43 @@
 
 % ---------------------------------------------------------------------------
 % Collegamenti ipertestuali
-% Convenzione adottata nel documento:
-%   - riferimenti interni (sezioni, tabelle): neri, per non frammentare
-%     visivamente il corpo del testo;
-%   - collegamenti esterni: blu, così da risultare riconoscibili come tali.
+% Convenzione adottata nel documento: ogni collegamento, interno o esterno, è
+% nero e sottolineato. Il nero evita di frammentare visivamente il corpo del
+% testo; la sottolineatura è ciò che, in assenza di colore, rende il
+% collegamento riconoscibile anche sulla carta.
+%
+% Si impiega \uline di ulem e non \underline: quest'ultimo è un comando
+% matematico che produce una scatola indivisibile, e un indirizzo lungo non
+% potrebbe più andare a capo. L'opzione normalem impedisce a ulem di
+% ridefinire \emph, che il documento usa attraverso \textit.
 % ---------------------------------------------------------------------------
+\usepackage[normalem]{ulem}
 \usepackage{xurl}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
-    linkcolor=black,
-    urlcolor=blue,
-    citecolor=black,
-    filecolor=black,
+    allcolors=black,
     breaklinks=true,
     pdfpagemode=UseNone
 }
+% I collegamenti esterni si scrivono con \link, che sottolinea l'indirizzo
+% lasciandolo in carattere a spaziatura fissa. L'argomento resta gestito da
+% \url, quindi caratteri come ~ e _ continuano a non richiedere protezione.
+\newcommand{\link}[1]{\uline{\url{#1}}}
+% Variante per gli indirizzi lunghi degli elenchi di riferimenti. La
+% sottolineatura rende l'indirizzo indivisibile, quindi i più lunghi non
+% starebbero nella giustezza a corpo pieno: qui si riducono di un corpo,
+% come d'uso negli elenchi bibliografici, invece di troncarli o di spezzarli.
+\newcommand{\linklungo}[1]{{\footnotesize\uline{\url{#1}}}}
 
 \begin{document}
 \setlength{\emergencystretch}{3em}
 
 \newcommand{\titolo}{Manuale Utente}
 \newcommand{\dataverbale}{}
-\newcommand{\dataversione}{2026-08-10}
-\newcommand{\versione}{0.7.0}
-\newcommand{\stato}{Stesura}
+\newcommand{\dataversione}{2026-08-17}
+\newcommand{\versione}{1.0.0}
+\newcommand{\stato}{Approvato}
 % Il Manuale Utente è documentazione esterna: fra i destinatari figura anche
 % la proponente, coerentemente con Analisi dei Requisiti, Piano di Qualifica e
 % Specifica Tecnica.
@@ -105,36 +142,23 @@
 % di questa cartella, quindi la definizione seguente è necessaria.
 \def\templatedir{../../../templates}
 
+% Il frontespizio è tarato sulle spaziature predefinite di LaTeX. Il \parskip
+% introdotto nel preambolo per il corpo del documento vale anche qui, e si
+% somma fra i blocchi del template: logo, intestazione, elenco dei redattori e
+% tabella. Lo spazio in più spingeva la riga dei contatti, che il \vfill del
+% template tiene in fondo alla pagina, sulla pagina successiva. Si azzera per
+% il solo frontespizio, dentro un gruppo, così il corpo resta invariato e il
+% template non va modificato.
+\begingroup
+\setlength{\parskip}{0pt}
 \begin{titlepage}
 \pagenumbering{gobble}
 \input{\templatedir/frontespizio.tex}
 \end{titlepage}
+\endgroup
 
 \newpage
 \pagenumbering{arabic}
-
-% ---------------------------------------------------------------------------
-% Redattori e verificatori.
-% Il template condiviso templates/frontespizio.tex non prevede questi due
-% campi: si riportano qui, in apertura del corpo, per non modificare un
-% template impiegato da tutti i documenti del gruppo.
-% ---------------------------------------------------------------------------
-\begingroup
-\small
-\renewcommand{\theHtable}{informazioni-redazione}
-\noindent
-\begin{tabularx}{\textwidth}{|l|L|}
-    \hline
-    \multicolumn{2}{|c|}{\textbf{Informazioni sulla redazione}} \\
-    \hline
-    \textbf{Redattori} & Anna Marini, Lorenzo Battistella \\
-    \hline
-    \textbf{Verificatori} & \daverificare{nominativi dei verificatori designati} \\
-    \hline
-    \textbf{Contatti} & thebitless.swe@gmail.com \\
-    \hline
-\end{tabularx}
-\endgroup
 
 \vspace{1em}
 
@@ -145,31 +169,43 @@
 % didascalia.
 \renewcommand{\theHtable}{registro-modifiche}
 % Larghezze fissate esplicitamente: la somma delle colonne più i separatori
-% deve restare entro \textwidth (418pt), altrimenti la tabella sborda.
-\begin{longtable}{|c|c|p{2.4cm}|p{2.4cm}|p{4.5cm}|}
+% deve restare entro \textwidth (418pt), altrimenti la tabella sborda. Con
+% l'aggiunta della colonna «Approvatore» le sei colonne non stanno più nelle
+% larghezze precedenti: si riducono quelle dei nominativi e della descrizione e
+% si stringe \tabcolsep, che su sei colonne pesa da solo più di 2,5 cm.
+\setlength{\tabcolsep}{4pt}
+\begin{longtable}{|c|c|P{2.1cm}|P{2.1cm}|P{2.1cm}|P{3.1cm}|}
     \hline
-    \multicolumn{5}{|c|}{\textbf{Registro delle modifiche}} \\
+    \multicolumn{6}{|c|}{\textbf{Registro delle modifiche}} \\
     \hline
-    \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Descrizione} \\
+    \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
     \hline
     \endhead
-    0.8.0 & 2026-08-13 & L. Battistella & A. Marini & Aggiunta sezioni Risoluzione dei problemi e Glossario \\ \hline
+    1.0.0 & 2026-08-17 & -- & -- & A. Menegaldo & Approvazione del documento \\ \hline
 
-    0.7.0 & 2026-08-10 & A. Marini & L. Battistella & Aggiunta dell'analisi critica secondo i Sei Cappelli, della Guida all'interfaccia, della Risoluzione dei problemi e del Glossario; allineamento delle etichette dell'interfaccia al prodotto \\ \hline
+    0.9.0 & 2026-08-14 & A. Marini & L. Battistella & -- & Eliminazione di una nota, titolo richiesto alla creazione e generazione da link; correzioni grammaticali \\ \hline
 
-    0.6.0 & 2026-08-09 & L. Battistella & A. Marini & Funzionalità di intelligenza artificiale: flusso comune alle azioni, inserimento del risultato nella nota e descrizione delle singole azioni dell'assistente \\ \hline
+    0.8.0 & 2026-08-13 & L. Battistella & A. Marini & -- & Aggiunta delle sezioni Risoluzione dei problemi e Glossario \\ \hline
 
-    0.5.0 & 2026-08-08 & A. Marini & L. Battistella & Scrivere e formattare il testo: comandi della barra degli strumenti, titoli, elenchi, collegamenti e immagini \\ \hline
+    0.7.0 & 2026-08-10 & A. Marini & S. Zecchinato & -- & Aggiunta dell'analisi critica secondo i Sei Cappelli e della Guida all'interfaccia; allineamento delle etichette dell'interfaccia al prodotto \\ \hline
 
-    0.4.0 & 2026-08-08 & L. Battistella & A. Marini & Gestione delle note: creazione, apertura, rinomina, salvataggio su file e conservazione nel browser \\ \hline
+    0.6.0 & 2026-08-09 & E. De Piccoli & A. Marini & -- & Funzionalità di intelligenza artificiale: flusso comune alle azioni, inserimento del risultato nella nota e descrizione delle singole azioni dell'assistente \\ \hline
 
-    0.3.0 & 2026-08-07 & A. Marini & L. Battistella & Installazione e avvio: requisiti di sistema, verifica dell'installazione, configurazione del file \texttt{.env}, avvio e arresto \\ \hline
+    0.5.0 & 2026-08-08 & A. Marini & L. Battistella & -- & Scrivere e formattare il testo: comandi della barra degli strumenti, titoli, elenchi, collegamenti e immagini \\ \hline
 
-    0.2.0 & 2026-08-06 & L. Battistella & A. Marini & Introduzione: scopo del prodotto, finalità e destinatari, convenzioni tipografiche, riferimenti e formati del manuale \\ \hline
+    0.4.0 & 2026-08-08 & L. Battistella & A. Menegaldo & -- & Gestione delle note: creazione, apertura, rinomina, salvataggio su file e conservazione nel browser \\ \hline
 
-    0.1.0 & 2026-08-06 & A. Marini & L. Battistella & Impostazione del documento: preambolo \LaTeX{}, frontespizio, tabella di redazione e registro delle modifiche \\ \hline
+    0.3.0 & 2026-08-07 & D. Facco & S. Vendramin & -- & Installazione e avvio: requisiti di sistema, verifica dell'installazione, configurazione del file \texttt{.env}, avvio e arresto \\ \hline
+
+    0.2.0 & 2026-08-06 & L. Battistella & E. De Piccoli & -- & Introduzione: scopo del prodotto, finalità e destinatari, convenzioni tipografiche, riferimenti e formati del manuale \\ \hline
+
+    0.1.0 & 2026-08-06 & A. Marini & L. Battistella & -- & Impostazione del documento: preambolo \LaTeX{}, frontespizio, tabella di redazione e registro delle modifiche \\ \hline
 
 \end{longtable}
+% Il registro è privo di didascalia e non compare nell'indice delle tabelle, ma
+% longtable ne incrementa comunque il contatore: senza questa riga la prima
+% tabella con didascalia riceverebbe il numero 2 e l'indice partirebbe da lì.
+\addtocounter{table}{-1}
 \endgroup
 
 \newpage
@@ -179,10 +215,8 @@
 \listoftables
 \newpage
 
-% Da riattivare quando il manuale conterrà i primi screenshot: al momento
-% \listoffigures produrrebbe una pagina con la sola intestazione.
-% \listoffigures
-% \newpage
+\listoffigures
+\newpage
 
 
 \section{Introduzione}
@@ -194,21 +228,23 @@
 
 Le note si redigono in \textbf{Markdown\textsubscript{G}}. Mentre l'utente scrive, l'applicazione ne produce il rendering\textsubscript{G} in un'area di anteprima dedicata, che si aggiorna a ogni modifica del testo. Il testo sorgente e il risultato formattato restano così visibili nello stesso momento.
 
-L'assistente opera sul testo prodotto dall'utente e mette a disposizione le seguenti funzionalità:
+L'assistente mette a disposizione le sei azioni seguenti, elencate nell'ordine in cui i relativi pulsanti compaiono nella barra in alto:
 
 \begin{itemize}
-    \item \textbf{Riassunto}: produce una sintesi del testo.
+    \item ``Genera'': redige un testo nuovo, a partire dalle istruzioni fornite dall'utente oppure dal contenuto di una pagina web indicata tramite il suo indirizzo;
 
-    \item \textbf{Traduzione}: riporta il testo in un'altra lingua.
+    \item ``Riassumi'': produce una sintesi del testo;
 
-    \item \textbf{Riscrittura}: riformula il testo mantenendone il contenuto.
+    \item ``Riscrivi'': riformula il testo mantenendone il contenuto e adattandone il registro;
 
-    \item \textbf{Correzione grammaticale}: corregge gli errori grammaticali presenti nel testo.
+    \item ``Traduci'': riporta il testo in un'altra lingua;
 
-    \item \textbf{Analisi critica}: esamina il testo secondo una fra sei prospettive, ispirate alla tecnica dei Sei Cappelli per Pensare\textsubscript{G}.
+    \item ``Grammatica'': corregge gli errori grammaticali presenti nel testo;
 
-    \item \textbf{Generazione di nuovo testo}: redige un testo a partire dalle istruzioni fornite dall'utente.
+    \item ``Analisi'': esamina il testo secondo una fra sei prospettive, ispirate alla tecnica dei Sei Cappelli per Pensare\textsubscript{G}.
 \end{itemize}
+
+Le azioni ``Riassumi'', ``Riscrivi'', ``Traduci'', ``Grammatica'' e ``Analisi'' operano sul testo già presente nella nota; ``Genera'' parte invece da istruzioni o da un indirizzo forniti dall'utente.
 
 L'obiettivo del prodotto è offrire un ambiente di lavoro in cui il sistema non si limita ad archiviare le note, ma supporta attivamente la stesura e la revisione dei contenuti. Le note prodotte possono inoltre essere salvate come file sul dispositivo dell'utente.
 
@@ -219,27 +255,57 @@ Il presente documento è il Manuale Utente di Second Brain. Guida l'utente final
 Il manuale tratta in particolare:
 
 \begin{itemize}
+    \item l'installazione, la configurazione e l'avvio dell'applicazione;
+
     \item la descrizione delle aree dell'interfaccia\textsubscript{G};
 
     \item le operazioni disponibili sulle note;
 
+    \item la scrittura e la formattazione del testo;
+
     \item le funzionalità di intelligenza artificiale;
 
-    \item la risoluzione dei problemi più comuni.
+    \item la risoluzione dei problemi più comuni;
+
+    \item il significato dei termini impiegati nel documento.
 \end{itemize}
 
 Il documento si rivolge a chi utilizza Second Brain e non presuppone alcuna competenza di programmazione. Non si rivolge invece a chi intende estendere o modificare l'applicazione: per tale finalità è previsto un manuale dedicato.
+
+\subsubsection{Struttura del documento}
+\label{sec:struttura-documento}
+Le sezioni si susseguono nell'ordine in cui se ne presume la consultazione:
+
+\begin{itemize}
+    \item la Sezione~\ref{sec:introduzione} presenta il prodotto, il documento e le convenzioni adottate;
+
+    \item la Sezione~\ref{sec:installazione-avvio} descrive i requisiti, la configurazione, l'avvio, l'arresto e la rimozione dell'applicazione;
+
+    \item la Sezione~\ref{sec:guida-interfaccia} illustra le aree della schermata e i comandi che ciascuna mette a disposizione;
+
+    \item la Sezione~\ref{sec:gestione-note} descrive le operazioni sulle note: creazione, apertura, rinomina, eliminazione e salvataggio su file;
+
+    \item la Sezione~\ref{sec:scrivere-formattare} descrive la scrittura del testo, i comandi di formattazione e le scorciatoie da tastiera;
+
+    \item la Sezione~\ref{sec:funzionalita-intelligenza-artificiale} descrive le azioni dell'assistente basato su intelligenza artificiale;
+
+    \item la Sezione~\ref{sec:risoluzione-problemi} raccoglie i problemi più frequenti, con la causa e il rimedio di ciascuno;
+
+    \item la Sezione~\ref{sec:glossario} definisce i termini marcati nel testo con il pedice \textbf{G}.
+\end{itemize}
 
 \subsection{Convenzioni tipografiche}
 \label{sec:convenzioni-tipografiche}
 Il documento adotta le convenzioni descritte di seguito.
 
 \begin{itemize}
-    \item \textbf{Termini del glossario}: i termini definiti nel Glossario di progetto sono marcati con una lettera \textbf{G} a pedice, come nell'esempio seguente:
+    \item \textbf{Termini del glossario}: i termini definiti nella Sezione~\ref{sec:glossario}, che è il glossario del presente manuale, sono marcati con una lettera \textbf{G} a pedice alla prima occorrenza, come nell'esempio seguente:
 
     \begin{quote}
         parola\textsubscript{G}
     \end{quote}
+
+    Il Glossario di progetto, citato fra i riferimenti informativi nella Sezione~\ref{sec:riferimenti-informativi}, è un documento distinto, rivolto al gruppo di lavoro e alla proponente: il presente manuale non ne presuppone la lettura.
 
     \item \textbf{Nomi dei pulsanti}: i nomi dei pulsanti dell'applicazione sono riportati fra virgolette, esattamente come compaiono a schermo. Per esempio, il pulsante che crea una nota è indicato come ``Nuova nota''.
 
@@ -261,28 +327,28 @@ $ docker --version
 \label{sec:riferimenti-normativi}
 \begin{itemize}
     \item \textbf{Capitolato C6 -- Second Brain}: \\
-    \url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C6.pdf} \\
-    \textit{Ultimo accesso:} \daverificare{data di ultimo accesso}.
+    \linklungo{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C6.pdf} \\
+    \textit{Ultimo accesso:} 9 agosto 2026.
 
     \item \textbf{Regolamento del Progetto Didattico}: \\
-    \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf} \\
-    \textit{Ultimo accesso:} \daverificare{data di ultimo accesso}.
+    \linklungo{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf} \\
+    \textit{Ultimo accesso:} 23 luglio 2026.
 
-    \item \textbf{Norme di Progetto v1.0.0}: \\
-    \url{https://thebitless.live/RTB/doc_interna/norme-di-progetto/norme-di-progetto.pdf} \\
-    \textit{Ultimo accesso:} \daverificare{data di ultimo accesso}.
+    \item \textbf{Norme di Progetto v2.0.0}: \\
+    \linklungo{https://thebitless.live/PB/doc_interna/norme-di-progetto/norme-di-progetto.pdf} \\
+    \textit{Ultimo accesso:} 14 agosto 2026.
 \end{itemize}
 
 \subsubsection{Riferimenti informativi}
 \label{sec:riferimenti-informativi}
 \begin{itemize}
-    \item \textbf{Glossario v1.0.0}: \\
-    \url{https://thebitless.live/RTB/doc_interna/glossario/glossario.pdf} \\
-    \textit{Ultimo accesso:} \daverificare{data di ultimo accesso}.
+    \item \textbf{Glossario v2.0.0}: \\
+    \linklungo{https://thebitless.live/PB/doc_interna/glossario/glossario.pdf} \\
+    \textit{Ultimo accesso:} 12 agosto 2026.
 
     \item \textbf{Analisi dei Requisiti v2.0.0}: \\
-    \url{https://thebitless.live/PB/doc_esterna/analisi-dei-requisiti/analisi-dei-requisiti.pdf} \\
-    \textit{Ultimo accesso:} \daverificare{data di ultimo accesso}.
+    \linklungo{https://thebitless.live/PB/doc_esterna/analisi-dei-requisiti/analisi-dei-requisiti.pdf} \\
+    \textit{Ultimo accesso:} 17 agosto 2026.
 \end{itemize}
 
 \subsection{Versioni e formati del manuale}
@@ -292,10 +358,13 @@ Il manuale è disponibile in due formati, il cui contenuto è mantenuto allineat
 \begin{itemize}
     \item \textbf{documento PDF}: adatto alla stampa e alla lettura sequenziale;
 
-    \item \textbf{versione web (HTML)}: pubblicata sul sito del gruppo, adatta alla consultazione rapida e disponibile all'indirizzo \daverificare{}\url{https://thebitless.live/PB/doc_esterna/manuale-utente/manuale-utente.html}. 
+    \item \textbf{versione web}: pubblicata sul sito del gruppo, adatta alla consultazione rapida e disponibile all'indirizzo \\
+    \linklungo{https://thebitless.live/website/manuale-utente.html}
 \end{itemize}
 
-Le due versioni corrispondono alla stessa revisione del documento, indicata nel registro delle modifiche in apertura.
+La versione web presenta le stesse sezioni del documento PDF, con un indice laterale e un campo di ricerca che consente di individuare un termine senza scorrere l'intero manuale. È raggiungibile anche dalla voce ``Manuale Utente'' della barra di navigazione del sito, accanto a ``Glossario''.
+
+Le due versioni corrispondono alla stessa revisione del documento, indicata nel registro delle modifiche in apertura: la versione web è generata a partire dal medesimo sorgente del PDF.
 
 
 \section{Installazione e avvio}
@@ -307,7 +376,7 @@ Second Brain si esegue in locale tramite container\textsubscript{G} Docker\texts
 Sulla macchina che ospita l'applicazione deve essere installato il software seguente:
 
 \begin{itemize}
-    \item \textbf{Docker}: si scarica dal sito ufficiale \url{https://www.docker.com}, scegliendo l'installer corrispondente al proprio sistema operativo;
+    \item \textbf{Docker}: si scarica dal sito ufficiale \link{https://www.docker.com}, scegliendo l'installer corrispondente al proprio sistema operativo;
 
     \item \textbf{Docker Compose}: è normalmente già incluso in Docker Desktop e non richiede quindi un'installazione separata.
 \end{itemize}
@@ -349,7 +418,7 @@ $ cp .env.example .env
 > copy .env.example .env
 \end{comando}
 
-Il file così ottenuto va poi aperto con un editor di testo e completato con i valori descritti nella Tabella~\ref{tab:variabili-configurazione}.
+Il file così ottenuto va poi aperto con un editor di testo e completato con i valori delle variabili d'ambiente\textsubscript{G} descritte nella Tabella~\ref{tab:variabili-configurazione}.
 
 \begingroup
 \small
@@ -392,31 +461,56 @@ Per avviare l'applicazione, eseguire il comando seguente dalla cartella principa
 $ docker compose up --build
 \end{comando}
 
-Il primo avvio richiede qualche minuto, perché le immagini vengono costruite in questa occasione. Gli avvii successivi risultano più rapidi, poiché le immagini sono già disponibili.
+Il primo avvio richiede qualche minuto, perché le immagini Docker\textsubscript{G} vengono costruite in questa occasione. Gli avvii successivi risultano più rapidi, poiché le immagini sono già disponibili.
 
 Ad avvio completato, i due indirizzi seguenti rispondono in locale:
 
 \begin{itemize}
-    \item \textbf{interfaccia utente}: \url{http://localhost:5173}, da aprire nel browser per utilizzare l'applicazione;
+    \item \textbf{interfaccia utente}: \link{http://localhost:5173}, da aprire nel browser per utilizzare l'applicazione;
 
-    \item \textbf{servizio di backend}: \url{http://localhost:8000}. L'indirizzo non serve all'utente e si riporta soltanto per consentire di verificare che il servizio risponda.
+    \item \textbf{servizio di backend}: \link{http://localhost:8000}. L'indirizzo non serve all'utente e si riporta soltanto per consentire di verificare che il servizio risponda.
 \end{itemize}
 
-Per arrestare l'applicazione, premere \texttt{Ctrl+C} nel terminale in cui Docker è in esecuzione. Per arrestare e rimuovere anche i container, eseguire il comando seguente:
-
-\begin{comando}
-$ docker compose down
-\end{comando}
+Per arrestare l'applicazione, premere \texttt{Ctrl+C} nel terminale in cui Docker è in esecuzione. L'arresto completo e la rimozione dell'ambiente sono descritti nella Sezione~\ref{sec:arresto-rimozione}.
 
 \subsection{Il primo avvio}
 \label{sec:primo-avvio}
 Aprendo l'applicazione per la prima volta, la schermata si presenta suddivisa in poche aree distinte: una barra laterale sul lato sinistro, una barra del titolo in alto e, al centro, lo spazio dedicato alla scrittura. La mappa completa delle aree è riportata nella Sezione~\ref{sec:guida-interfaccia}.
 
-Al primo avvio non esiste ancora alcuna nota: l'elenco della barra laterale riporta la scritta ``Nessuna nota''. Per cominciare a scrivere, premere ``Nuova nota'': viene creata una nota intitolata ``Senza titolo'' e con contenuto vuoto, pronta per essere compilata.
+Al primo avvio non esiste ancora alcuna nota: l'elenco della barra laterale riporta la scritta ``Nessuna nota'' e la barra del titolo riporta ``Nota senza titolo''. Per cominciare a scrivere, premere ``Nuova nota'': al posto del pulsante compare un campo di testo in cui digitare il titolo della nota. Premendo \texttt{Invio} la nota viene creata, con il titolo indicato e contenuto vuoto, e diventa la nota corrente. Il flusso completo è descritto nella Sezione~\ref{sec:creare-nota}.
 
 Le note restano memorizzate nel browser fra una sessione e l'altra: non è quindi necessaria alcuna registrazione, né alcun accesso, per ritrovarle all'avvio successivo.
 
 Le sezioni seguenti del manuale descrivono nel dettaglio le singole funzionalità dell'applicazione.
+
+\subsection{Arresto e rimozione completa}
+\label{sec:arresto-rimozione}
+Per arrestare l'applicazione lasciando l'ambiente pronto per un avvio successivo, premere \texttt{Ctrl+C} nel terminale in cui Docker è in esecuzione, quindi eseguire il comando seguente dalla cartella principale del progetto:
+
+\begin{comando}
+$ docker compose down
+\end{comando}
+
+Il comando arresta e rimuove i container dell'applicazione e la rete che li collega. Le immagini restano disponibili, quindi l'avvio successivo non richiede una nuova costruzione.
+
+Per rimuovere anche i volumi\textsubscript{G} creati da Docker, fra cui quello che conserva le dipendenze dell'interfaccia, aggiungere l'opzione \texttt{-v}:
+
+\begin{comando}
+$ docker compose down -v
+\end{comando}
+
+Per rimuovere infine anche le immagini costruite in locale, riportando la macchina allo stato precedente alla prima installazione, aggiungere l'opzione \texttt{--rmi local}:
+
+\begin{comando}
+$ docker compose down -v --rmi local
+\end{comando}
+
+Dopo quest'ultimo comando il primo avvio successivo richiede di nuovo qualche minuto, perché le immagini vanno ricostruite.
+
+\vspace{0.5em}
+
+\noindent
+\textbf{Avviso.} Nessuno dei comandi precedenti cancella le note: esse non risiedono nei container, ma nella memoria locale del browser\textsubscript{G}. Per rimuovere anche le note occorre cancellare i dati del sito \texttt{http://localhost:5173} dalle impostazioni del browser, dove sono conservate sotto la voce \texttt{notes\_persistence}. L'operazione è irreversibile: le note non salvate su file vanno perse. Il salvataggio su file è descritto nella Sezione~\ref{sec:salvare-nota-file}.
 
 % ---------------------------------------------------------------------------
 % NOTA. La differenza di comportamento del salvataggio su file fra i browser
@@ -434,7 +528,7 @@ La presente sezione descrive le aree in cui è suddivisa la schermata dell'appli
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{assets/interfaccia-base.png}
+    \includegraphics[width=\textwidth]{assets/interfaccia-base.jpeg}
     \caption{Interfaccia all'avvio dell'applicazione.}
     \label{fig:guida-interfaccia}
 \end{figure}
@@ -445,12 +539,17 @@ La presente sezione descrive le aree in cui è suddivisa la schermata dell'appli
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.3\textwidth]{assets/barra-laterale.png}
+    \caption{La barra laterale, con i comandi sulle note e l'elenco ``Tutte le note''.}
     \label{fig:barra-laterale}
 \end{figure}
 
-Sul lato sinistro si trova una barra laterale. Nella sua parte superiore sono raccolti i pulsanti ``Nuova nota'', ``Apri file\ldots'' e ``Salva file''; al di sotto compare l'elenco ``Tutte le note'', che riporta le note presenti. Quando non esiste alcuna nota, l'elenco riporta la scritta ``Nessuna nota''.
+Sul lato sinistro si trova una barra laterale, intestata ``Second Brain''. Nella sua parte superiore sono raccolti i pulsanti ``Nuova nota'', ``Apri file\ldots'' e ``Salva file''; al di sotto compare l'elenco ``Tutte le note'', che riporta le note presenti. Quando non esiste alcuna nota, l'elenco riporta la scritta ``Nessuna nota''.
+
+Ogni voce dell'elenco espone, sul proprio lato destro, il comando di eliminazione, rappresentato dall'icona di un cestino. L'eliminazione di una nota è descritta nella Sezione~\ref{sec:eliminare-nota}.
 
 La barra può essere ridotta con il comando ``Chiudi barra laterale'' e riaperta con il comando ``Apri barra laterale''.
+
+Gli avvisi delle operazioni sulle note compaiono all'interno della barra laterale, sotto ai tre pulsanti. Riguardano la creazione, l'apertura, il salvataggio, la rinomina e l'eliminazione.
 
 Le operazioni disponibili sulle note sono descritte nella Sezione~\ref{sec:gestione-note}.
 
@@ -460,6 +559,7 @@ Le operazioni disponibili sulle note sono descritte nella Sezione~\ref{sec:gesti
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{assets/barra-strumenti-AI.png}
+    \caption{La barra del titolo e i pulsanti delle azioni di intelligenza artificiale.}
     \label{fig:barra-titolo}
 \end{figure}
 
@@ -473,6 +573,7 @@ Sotto al titolo sono disposti i pulsanti delle azioni di intelligenza artificial
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{assets/barra-strumenti.png}
+    \caption{La barra degli strumenti di formattazione.}
     \label{fig:barra-strumenti}
 \end{figure}
 
@@ -482,12 +583,22 @@ Al centro della schermata, sopra l'area di scrittura, si trova la barra degli st
 \label{sec:area-scrittura-anteprima}
 Sotto la barra degli strumenti si trova l'area di scrittura, nella quale si compone il testo della nota. Sul lato destro si trova l'area di anteprima, che ne mostra il risultato formattato e si aggiorna a ogni modifica del testo.
 
+Le due aree sono riportate nella Figura~\ref{fig:aree-scrittura-anteprima}, che ne mostra il rapporto: a sinistra il testo con i marcatori Markdown, a destra lo stesso testo nella forma che assume una volta formattato. Le righe dell'area di scrittura sono numerate sul margine sinistro.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{assets/modalita-render-editor.jpeg}
+    \caption{L'area di scrittura e l'area di anteprima affiancate: a sinistra il testo in Markdown, a destra il risultato formattato.}
+    \label{fig:aree-scrittura-anteprima}
+\end{figure}
+
 \subsection{Le modalità di visualizzazione}
 \label{sec:modalita-visualizzazione}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth]{assets/modalita-visualizzazione.png}
+    \caption{I comandi delle modalità di visualizzazione.}
     \label{fig:modalita-visualizzazione}
 \end{figure}
 
@@ -501,7 +612,7 @@ Tre comandi consentono di scegliere quali aree tenere a schermo. Sono disposti n
     \item ``Render'': mostra la sola area di anteprima.
 \end{itemize}
 
-La modalità predefinita è ``Diviso''. Se la finestra del browser è stretta, le due aree non vengono affiancate ma disposte una sopra l'altra.
+La modalità predefinita è ``Diviso'', quella riportata nella Figura~\ref{fig:aree-scrittura-anteprima}. Se la finestra del browser è stretta, le due aree non vengono affiancate ma disposte una sopra l'altra.
 
 
 \section{Gestione delle note}
@@ -510,9 +621,23 @@ Le note sono elencate nella barra laterale, dalla quale si creano, si aprono, si
 
 \subsection{Creare una nota}
 \label{sec:creare-nota}
-Il pulsante ``Nuova nota'' crea una nota con titolo ``Senza titolo'' e contenuto vuoto. La nota così creata diventa immediatamente la nota corrente.
+La creazione di una nota avviene in due passaggi: prima l'applicazione chiede il titolo, poi crea la nota.
 
-Prima di creare la nuova nota, il contenuto della nota su cui si stava lavorando viene salvato automaticamente: nulla va perso.
+Premendo ``Nuova nota'', al posto del pulsante compare un campo di testo con il testo guida ``Titolo della nota\ldots''. Sotto al campo compare l'indicazione ``Invio per creare $\cdot$ Esc per annullare''. Da questo momento:
+
+\begin{itemize}
+    \item \texttt{Invio} conferma il titolo e crea la nota;
+
+    \item \texttt{Esc} annulla l'operazione: il campo si chiude, il testo digitato viene scartato e nessuna nota viene creata.
+\end{itemize}
+
+Un clic al di fuori del campo non produce alcun effetto: il campo resta aperto e conserva il titolo digitato, in attesa di una delle due scelte precedenti.
+
+Se si conferma un titolo vuoto, la nota viene creata ugualmente e riceve il titolo ``Senza titolo''.
+
+La nota così creata ha contenuto vuoto e diventa immediatamente la nota corrente. Prima della creazione, il contenuto della nota su cui si stava lavorando viene salvato automaticamente: nulla va perso.
+
+Se la creazione non riesce, compare il messaggio ``Impossibile creare la nota. Riprova.'' Il campo del titolo resta aperto e conserva quanto digitato, pronto per un secondo tentativo; la nota precedente resta la nota corrente e il suo contenuto resta invariato.
 
 \subsection{Passare da una nota all'altra}
 \label{sec:passare-nota}
@@ -536,6 +661,37 @@ Se si conferma un nome vuoto, il titolo torna a ``Senza titolo''. Il nuovo nome 
 
 Se la rinomina non riesce, compare il messaggio ``Impossibile rinominare la nota. Riprova.''
 
+\subsection{Eliminare una nota}
+\label{sec:eliminare-nota}
+Ogni voce dell'elenco ``Tutte le note'' espone, sul proprio lato destro, il comando di eliminazione, rappresentato dall'icona di un cestino.
+
+L'eliminazione richiede una conferma esplicita. Premendo il cestino, la voce dell'elenco è sostituita dalla richiesta ``Eliminare «\textit{titolo della nota}»?'', accompagnata da due pulsanti:
+
+\begin{itemize}
+    \item ``Sì, elimina'' conferma ed elimina la nota;
+
+    \item ``Annulla'' rinuncia all'operazione e riporta la voce al suo aspetto abituale. Il tasto \texttt{Esc} produce lo stesso effetto.
+\end{itemize}
+
+La richiesta di conferma riguarda una nota per volta: aprendola su una voce, le altre restano invariate.
+
+L'effetto sulla nota corrente dipende da quale nota si elimina:
+
+\begin{itemize}
+    \item eliminando una nota diversa da quella corrente, l'area di scrittura non cambia;
+
+    \item eliminando la nota corrente, diventa corrente la prima nota rimasta nell'elenco e il suo contenuto compare nell'area di scrittura;
+
+    \item eliminando l'ultima nota rimasta, l'area di scrittura si svuota e la barra del titolo torna a riportare ``Nota senza titolo''.
+\end{itemize}
+
+Se l'eliminazione non riesce, compare il messaggio ``Impossibile eliminare la nota. Riprova.'' e la nota non viene eliminata.
+
+\vspace{0.5em}
+
+\noindent
+\textbf{Avviso.} L'eliminazione è irreversibile: la nota viene rimossa dall'elenco e dalla memoria del browser, e non esiste alcun comando per annullarla. Se la nota era stata salvata su file con ``Salva file'', il file sul dispositivo non viene invece rimosso e resta disponibile: può essere riaperto con ``Apri file\ldots''.
+
 \subsection{Aprire una nota da file}
 \label{sec:aprire-nota-file}
 Il pulsante ``Apri file\ldots'' apre la finestra di selezione dei file del sistema operativo. Sono ammessi file di testo con estensione \texttt{.md} o \texttt{.txt}.
@@ -554,7 +710,7 @@ Il pulsante è disponibile solo quando esiste una nota corrente: in assenza di n
 
 Se il salvataggio non riesce, compare il messaggio ``Impossibile salvare il file. Riprova.'' e il contenuto della nota resta invariato.
 
-Su alcuni browser viene chiesto in quale cartella salvare il file. Su altri --- fra cui Mozilla Firefox --- la richiesta non compare e il file viene scaricato direttamente nella cartella predefinita del browser.
+Su alcuni browser viene chiesto in quale cartella salvare il file. Su altri, fra cui Mozilla Firefox, la richiesta non compare e il file viene scaricato direttamente nella cartella predefinita del browser.
 
 \subsection{Dove sono conservate le note}
 \label{sec:conservazione-note}
@@ -573,7 +729,9 @@ Il testo si compone nell'area di scrittura in Markdown; l'area di anteprima ne m
 
 \subsection{La barra degli strumenti di formattazione}
 \label{sec:barra-strumenti-formattazione}
-La barra degli strumenti posta sopra l'area di scrittura inserisce i marcatori Markdown al posto dell'utente. Le sottosezioni seguenti ne descrivono i comandi.
+La barra degli strumenti posta sopra l'area di scrittura inserisce i marcatori Markdown al posto dell'utente. I comandi vi compaiono nell'ordine ``Grassetto'', ``Corsivo'', ``Sottolineato'', ``Barrato'', ``Link'', ``Immagine'', ``Codice'', ``Titolo'' ed ``Elenco''; ``Titolo'' ed ``Elenco'' aprono un menu, gli altri agiscono direttamente. La barra non contiene altri comandi: il salvataggio della nota su file si imparte dalla barra laterale, come descritto nella Sezione~\ref{sec:salvare-nota-file}.
+
+Le sottosezioni seguenti descrivono i comandi della barra. I costrutti Markdown che l'area di anteprima riconosce ma che non hanno un comando dedicato sono raccolti nella Sezione~\ref{sec:costrutti-senza-comando}.
 
 \subsubsection{Come si comportano i comandi di formattazione}
 \label{sec:comandi-formattazione}
@@ -655,11 +813,104 @@ Il comando ``Link'' funziona come un interruttore: applicato a un collegamento g
 
 Il pulsante ``Immagine'' inserisce il riferimento a un'immagine nella forma \texttt{![testo]\allowbreak(https://)}, dove \texttt{testo} è il testo selezionato e diventa la descrizione dell'immagine. Anche in questo caso l'indirizzo predefinito resta selezionato, pronto per essere sostituito.
 
+\subsubsection{Costrutti Markdown privi di un comando dedicato}
+\label{sec:costrutti-senza-comando}
+L'area di anteprima riconosce alcuni costrutti Markdown per i quali la barra degli strumenti non mette a disposizione alcun pulsante. Per impiegarli occorre digitarne i marcatori direttamente nell'area di scrittura: l'anteprima li rende come tutti gli altri. I marcatori riconosciuti sono riportati nella Tabella~\ref{tab:costrutti-senza-comando}.
+
+\begingroup
+\small
+\begin{longtable}{|p{2.8cm}|p{4.6cm}|p{4.9cm}|}
+    \caption{Costrutti Markdown riconosciuti dall'anteprima e privi di un comando nella barra degli strumenti}
+    \label{tab:costrutti-senza-comando} \\
+    \hline
+    \textbf{Costrutto} & \textbf{Marcatori} & \textbf{Risultato} \\
+    \hline
+    \endfirsthead
+    \hline
+    \textbf{Costrutto} & \textbf{Marcatori} & \textbf{Risultato} \\
+    \hline
+    \endhead
+    Citazione & \texttt{> testo}, all'inizio della riga & Blocco di citazione, rientrato rispetto al testo circostante. \\ \hline
+
+    Blocco di codice & Tre apici inversi su una riga propria, prima e dopo il blocco; dopo i primi tre si può indicare il linguaggio & Blocco a spaziatura fissa. Indicando il linguaggio, l'anteprima ne colora la sintassi. \\ \hline
+
+    Tabella & Righe di celle separate dal carattere \texttt{|}; la seconda riga separa l'intestazione dal corpo con trattini, nella forma \texttt{|---|---|} & Tabella con riga di intestazione. Il numero di colonne è quello della prima riga. \\ \hline
+
+    Formula in riga & \texttt{\$formula\$} & Formula matematica composta all'interno della riga di testo. \\ \hline
+
+    Formula isolata & \texttt{\$\$formula\$\$} & Formula matematica composta su una riga propria, centrata. \\ \hline
+
+    Elenco di controllo & \texttt{- [ ] voce} oppure \texttt{- [x] voce} & Voce di elenco preceduta da una casella, vuota o spuntata. \\ \hline
+
+\end{longtable}
+\endgroup
+
+Poiché questi costrutti non hanno un comando dedicato, non dispongono neppure del comportamento a interruttore descritto nella Sezione~\ref{sec:comandi-formattazione}: per rimuoverli occorre cancellarne i marcatori a mano.
+
+\vspace{0.5em}
+
+\noindent
+\textbf{Avviso.} L'applicazione non riconosce le ancore di navigazione interne alla nota: non è possibile inserire un collegamento che rimandi a un punto della nota stessa. I collegamenti descritti nella Sezione~\ref{sec:collegamenti-immagini} rimandano a risorse esterne.
+
 \subsection{Annullare e ripristinare una modifica}
 \label{sec:annullare-ripristinare}
-L'area di scrittura conserva la cronologia delle modifiche. La combinazione \texttt{Ctrl+Z} annulla l'ultima modifica, mentre la combinazione \texttt{Ctrl+Y} la ripristina.
+L'area di scrittura conserva la cronologia delle modifiche. La combinazione \texttt{Ctrl+Z} annulla l'ultima modifica.
+
+Il ripristino della modifica annullata dipende dal sistema operativo:
+
+\begin{itemize}
+    \item su Windows e su Linux si impiega \texttt{Ctrl+Y};
+
+    \item su Linux è riconosciuta anche la combinazione \texttt{Ctrl+Shift+Z};
+
+    \item su macOS si impiega \texttt{Cmd+Shift+Z}, mentre \texttt{Ctrl+Y} non è riconosciuta. Su macOS anche l'annullamento si imparte con \texttt{Cmd+Z} anziché con \texttt{Ctrl+Z}.
+\end{itemize}
 
 La barra degli strumenti non espone comandi corrispondenti: annullamento e ripristino si impartiscono soltanto da tastiera.
+
+\subsection{Scorciatoie da tastiera}
+\label{sec:scorciatoie}
+Le combinazioni di tasti riconosciute dall'applicazione sono riepilogate nella Tabella~\ref{tab:scorciatoie}. Ciascuna vale nel contesto indicato: le scorciatoie dell'area di scrittura non hanno effetto quando il cursore si trova in un campo della barra laterale o della finestra dell'assistente.
+
+\begingroup
+\small
+\begin{longtable}{|p{3.6cm}|p{4.2cm}|p{4.5cm}|}
+    \caption{Scorciatoie da tastiera}
+    \label{tab:scorciatoie} \\
+    \hline
+    \textbf{Combinazione} & \textbf{Contesto} & \textbf{Effetto} \\
+    \hline
+    \endfirsthead
+    \hline
+    \textbf{Combinazione} & \textbf{Contesto} & \textbf{Effetto} \\
+    \hline
+    \endhead
+    \texttt{Ctrl+Z} \newline (\texttt{Cmd+Z} su macOS) & Area di scrittura & Annulla l'ultima modifica. \\ \hline
+
+    \texttt{Ctrl+Y} \newline (\texttt{Cmd+Shift+Z} su macOS) & Area di scrittura & Ripristina la modifica annullata. \\ \hline
+
+    \texttt{Ctrl+K} \newline (\texttt{Cmd+K} su macOS) & Area di scrittura & Inserisce un collegamento, come il pulsante ``Link''. \\ \hline
+
+    \texttt{Ctrl+F} \newline (\texttt{Cmd+F} su macOS) & Area di scrittura & Apre il pannello di ricerca nel testo della nota. \\ \hline
+
+    \texttt{F3} & Pannello di ricerca & Passa all'occorrenza successiva; con \texttt{Shift}, alla precedente. \\ \hline
+
+    \texttt{Esc} & Pannello di ricerca & Chiude il pannello di ricerca. \\ \hline
+
+    \texttt{Invio} & Campo del titolo, alla creazione & Conferma il titolo e crea la nota. \\ \hline
+
+    \texttt{Esc} & Campo del titolo, alla creazione & Annulla la creazione. \\ \hline
+
+    \texttt{Invio} & Campo del nome, nella rinomina & Conferma il nuovo nome. \\ \hline
+
+    \texttt{Esc} & Campo del nome, nella rinomina & Annulla la rinomina e ripristina il nome precedente. \\ \hline
+
+    \texttt{Esc} & Richiesta di conferma dell'eliminazione & Rinuncia all'eliminazione. \\ \hline
+
+    \texttt{Esc} & Finestra dell'assistente & Chiude la finestra, scartando il risultato. \\ \hline
+
+\end{longtable}
+\endgroup
 
 
 \section{Funzionalità di intelligenza artificiale}
@@ -669,7 +920,7 @@ La barra degli strumenti non espone comandi corrispondenti: annullamento e ripri
 \label{sec:come-funziona-assistente}
 L'assistente elabora il testo della nota tramite un servizio esterno: per utilizzarlo è quindi necessaria una connessione a Internet.
 
-Le azioni ``Riassumi'', ``Traduci'', ``Riscrivi'', ``Grammatica'' e ``Analisi'' elaborano il testo selezionato nell'area di scrittura; se non è selezionato nulla, elaborano l'intero contenuto della nota. L'azione ``Genera'' non parte invece dal testo della nota, ma dalle istruzioni che l'utente scrive nella finestra.
+Le azioni ``Riassumi'', ``Riscrivi'', ``Traduci'', ``Grammatica'' e ``Analisi'' elaborano il testo selezionato nell'area di scrittura; se non è selezionato nulla, elaborano l'intero contenuto della nota. L'azione ``Genera'' non parte invece dal testo della nota, ma da ciò che l'utente indica nella finestra: le istruzioni che vi scrive, oppure l'indirizzo di una pagina web di cui l'applicazione legge il contenuto.
 
 Il risultato compare in una finestra dedicata e non entra nella nota finché non si preme ``Accetta''. Finché non lo si fa, la nota resta invariata.
 
@@ -713,7 +964,9 @@ Al flusso appena descritto si aggiungono le precisazioni seguenti:
 
     \item le azioni che lavorano sul testo della nota richiedono almeno 10 caratteri, mentre ``Genera'' richiede almeno 3 caratteri di istruzioni. Se il testo è più corto, la richiesta non viene inviata;
 
-    \item il testo elaborato dall'assistente non può superare 12000 caratteri, mentre le istruzioni dell'azione ``Genera'' non possono superare 2000 caratteri. Oltre tali limiti la richiesta viene rifiutata: occorre ridurre il testo oppure elaborarlo in più parti.
+    \item il testo elaborato dall'assistente non può superare 12000 caratteri, mentre le istruzioni dell'azione ``Genera'' non possono superare 2000 caratteri. Oltre tali limiti la richiesta viene rifiutata: occorre ridurre il testo oppure elaborarlo in più parti;
+
+    \item nella modalità ``Da link'' dell'azione ``Genera'' i due limiti precedenti non si applicano al campo ``URL'', che è soggetto ai controlli propri descritti più avanti in questa sezione.
 \end{itemize}
 
 Prima di inviare la richiesta, l'applicazione controlla che il testo e i parametri siano validi. Se il controllo non passa, la generazione non parte e il motivo compare all'interno della finestra. I messaggi indicano sempre la causa del problema e l'azione correttiva da compiere:
@@ -726,15 +979,31 @@ Prima di inviare la richiesta, l'applicazione controlla che il testo e i paramet
     \item se si avvia l'azione ``Analisi'' senza aver scelto una prospettiva, compare il messaggio ``Seleziona un cappello per l'analisi.''
 \end{itemize}
 
-Gli errori che si verificano dopo l'invio della richiesta, durante l'elaborazione, compaiono anch'essi all'interno della finestra.
+\subsubsection{I controlli propri della modalità ``Da link''}
+\label{sec:controlli-da-link}
+La modalità ``Da link'' dell'azione ``Genera'' non riceve un testo, ma un URL\textsubscript{G}, cioè l'indirizzo di una pagina web: i controlli sono quindi diversi da quelli delle altre azioni.
 
-I problemi più frequenti e i relativi rimedi sono raccolti nella Sezione~\ref{sec:risoluzione-problemi}.
+\begin{itemize}
+    \item Il campo ``URL'' non può restare vuoto. Avviando l'elaborazione senza aver inserito nulla, compare il messaggio ``Inserisci un URL.'' e la richiesta non viene inviata. In questa modalità non compare quindi il messaggio ``Servono almeno N caratteri di testo.''
+
+    \item L'indirizzo deve iniziare con \texttt{http://} oppure con \texttt{https://}. Se non è un indirizzo valido, compare il messaggio ``Il link indicato non è un indirizzo valido: controlla che inizi con http:// o https://.''
+
+    \item L'indirizzo non può superare 2048 caratteri. Oltre tale limite la pagina non viene neppure contattata e compare il messaggio ``L'indirizzo del link è troppo lungo. Incollane uno più breve e riprova.''
+
+    \item Se l'applicazione non riesce a leggere il contenuto della pagina, compare il messaggio ``Non è stato possibile leggere il contenuto della pagina. Controlla che il link sia corretto e raggiungibile, poi riprova.'' Ciò avviene quando l'indirizzo non è raggiungibile, oppure quando la pagina non contiene testo estraibile.
+\end{itemize}
+
+Del contenuto letto dalla pagina vengono impiegati al più i primi 12000 caratteri: delle pagine più lunghe si considera quindi soltanto la parte iniziale.
+
+Gli errori che si verificano dopo l'invio della richiesta, durante l'elaborazione, compaiono anch'essi all'interno della finestra. L'attesa di una risposta dal servizio di intelligenza artificiale non supera i 60 secondi: trascorsi i quali la richiesta viene abbandonata e compare il messaggio ``Servizio temporaneamente non disponibile''.
+
+I problemi più frequenti e i relativi rimedi sono raccolti nella Sezione~\ref{sec:risoluzione-problemi}, che riporta anche i messaggi elencati qui sopra.
 
 \subsection{Che cosa viene modificato nella nota}
 \label{sec:cosa-viene-modificato}
 Il modo in cui il risultato entra nella nota, premendo ``Accetta'', dipende dall'azione impiegata e da ciò che era selezionato al momento dell'avvio dell'elaborazione.
 
-Le azioni ``Riassumi'', ``Traduci'', ``Riscrivi'' e ``Grammatica'' sostituiscono il testo su cui hanno lavorato. Per esse valgono i due casi seguenti:
+Le azioni ``Riassumi'', ``Riscrivi'', ``Traduci'' e ``Grammatica'' sostituiscono il testo su cui hanno lavorato. Per esse valgono i due casi seguenti:
 
 \begin{itemize}
     \item se al momento dell'avvio era selezionata una porzione di testo, ``Accetta'' sostituisce soltanto quella porzione e lascia intatto il resto della nota;
@@ -742,12 +1011,85 @@ Le azioni ``Riassumi'', ``Traduci'', ``Riscrivi'' e ``Grammatica'' sostituiscono
     \item se non era selezionato nulla, ``Accetta'' sostituisce l'intero contenuto della nota con il risultato prodotto.
 \end{itemize}
 
-Le azioni ``Analisi'' e ``Genera'' non sostituiscono invece alcun testo: il risultato viene aggiunto in fondo alla nota, separato da una riga vuota, e il contenuto esistente non viene mai toccato. Nel caso di ``Analisi'' ciò è coerente con la natura dell'azione, che produce un commento sul testo e non una sua riscrittura.
+Le azioni ``Analisi'' e ``Genera'' non sostituiscono invece alcun testo: il risultato viene aggiunto in fondo alla nota e il contenuto esistente non viene mai toccato. Per ``Genera'' ciò vale in entrambe le modalità, ``Da prompt'' e ``Da link'': il testo prodotto a partire da una pagina web si accoda come quello prodotto a partire dalle istruzioni. Nel caso di ``Analisi'' l'accodamento è coerente con la natura dell'azione, che produce un commento sul testo e non una sua riscrittura.
+
+Fra il contenuto già presente e il testo accodato viene inserita una riga vuota. Fanno eccezione i due casi in cui non serve: se la nota è vuota, il risultato ne diventa l'intero contenuto; se la nota termina già con un a capo, il risultato viene accodato senza righe aggiuntive.
 
 \vspace{0.5em}
 
 \noindent
 \textbf{Avviso.} In due casi la sostituzione non interessa la porzione attesa. Se dopo l'avvio dell'elaborazione la porzione selezionata viene modificata o eliminata, l'applicazione non è più in grado di ritrovarla e il risultato sostituisce l'intero contenuto della nota. Se invece la porzione selezionata compare più volte identica nella nota, la sostituzione interessa la prima occorrenza, che può non essere quella effettivamente selezionata. Si consiglia pertanto di non modificare la nota mentre l'elaborazione è in corso.
+
+\subsection{Gli esempi delle sezioni seguenti}
+\label{sec:testo-esempio}
+Le sezioni seguenti descrivono le singole azioni, nell'ordine in cui i relativi pulsanti compaiono nella barra in alto. Ciascuna si chiude con un esempio.
+
+Le azioni che lavorano sul testo della nota sono ``Riassumi'', ``Riscrivi'', ``Traduci'', ``Grammatica'' e ``Analisi''. Nei loro esempi il testo di partenza è sempre il seguente:
+
+\begin{quote}
+``L'intelligenza artificiale sta cambiando il modo in cui studiamo e lavoriamo, grazie a strumenti capaci di analizzare grandi quantità di dati in pochi secondi. È però importante mantenere un pensiero critico per valutare le informazioni che questi sistemi forniscono. Le università italiane stanno iniziando a integrarli nella didattica, cercando un equilibrio tra innovazione e rigore.''
+\end{quote}
+
+L'azione ``Genera'' non parte dal testo della nota: il suo esempio riporta perciò le istruzioni fornite, oppure l'indirizzo indicato.
+
+\subsection{Genera}
+\label{sec:azione-genera}
+L'azione ``Genera'' redige un testo nuovo. La finestra si apre su due schede, che stabiliscono da che cosa il testo viene generato:
+
+\begin{itemize}
+    \item ``Da prompt'': il testo è generato a partire dalle istruzioni scritte dall'utente, dette anche prompt\textsubscript{G};
+
+    \item ``Da link'': il testo è generato a partire dal contenuto di una pagina web, indicata tramite il suo indirizzo.
+\end{itemize}
+
+All'apertura della finestra è selezionata la scheda ``Da prompt''. Passando da una scheda all'altra il campo di inserimento viene svuotato e l'eventuale messaggio di errore scompare: il contenuto digitato in una scheda non si trasferisce all'altra.
+
+In entrambe le modalità la finestra presenta il parametro ``Lunghezza output'', che consente di scegliere fra ``Breve'', ``Medio'' e ``Dettagliato''; il valore preselezionato è ``Medio''. In entrambe le modalità il testo prodotto viene aggiunto in fondo alla nota e il contenuto già presente non viene toccato, secondo quanto descritto nella Sezione~\ref{sec:cosa-viene-modificato}.
+
+\subsubsection{La modalità ``Da prompt''}
+\label{sec:genera-da-prompt}
+La scheda ``Da prompt'' presenta il campo ``Istruzioni / Contesto'', con il testo guida ``Descrivi cosa generare\ldots'', in cui descrivere ciò che si desidera ottenere.
+
+Sono richiesti almeno 3 caratteri di istruzioni e non se ne possono superare 2000.
+
+\vspace{0.5em}
+
+\noindent
+\textbf{Esempio.} Istruzioni fornite: ``Scrivi un testo sull'utilizzo dell'intelligenza artificiale nella vita quotidiana''. Parametro scelto: ``Lunghezza output'' impostato su ``Breve''. Risultato:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{assets/genera.png}
+    \caption{Risultato dell'azione ``Genera'', modalità ``Da prompt'', con parametro ``Lunghezza output'' impostato su ``Breve''.}
+    \label{fig:esempio-genera}
+\end{figure}
+
+\subsubsection{La modalità ``Da link''}
+\label{sec:genera-da-link}
+La scheda ``Da link'' presenta il campo ``URL'', con il testo guida ``https://\ldots'', in cui incollare l'indirizzo della pagina da cui partire.
+
+Avviando l'elaborazione, l'applicazione legge il contenuto testuale della pagina e lo impiega come base per la generazione: dell'indirizzo indicato non viene quindi riportato il collegamento, ma un testo nuovo redatto a partire da ciò che la pagina contiene.
+
+La Sezione~\ref{sec:controlli-da-link} descrive i controlli propri di questa modalità, con i relativi messaggi: campo vuoto, indirizzo non valido, indirizzo troppo lungo e contenuto della pagina non leggibile.
+
+\vspace{0.5em}
+
+\noindent
+\textbf{Avviso.} L'applicazione legge la pagina tramite un servizio esterno. Le pagine che richiedono un accesso, oppure che generano il proprio contenuto solo all'interno del browser, possono risultare prive di testo estraibile: in tal caso la generazione non parte e compare il messaggio riportato nella Sezione~\ref{sec:controlli-da-link}.
+
+\vspace{0.5em}
+
+\noindent
+\textbf{Esempio.} Indirizzo indicato: \texttt{https://en.wikipedia.org/wiki/\allowbreak World\_War\_II}. Parametro scelto: ``Lunghezza output'' impostato su ``Dettagliato''. Risultato:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.72\textwidth]{assets/da-link.jpeg}
+    \caption{Risultato dell'azione ``Genera'', modalità ``Da link'', con parametro ``Lunghezza output'' impostato su ``Dettagliato''.}
+    \label{fig:esempio-genera-link}
+\end{figure}
+
+Nella figura il pulsante di avvio riporta ``Rigenera'' anziché ``Genera'': l'elaborazione era già stata eseguita una volta con gli stessi dati, secondo quanto descritto nella Sezione~\ref{sec:funzionamento-comune-azioni}.
 
 \subsection{Riassumi}
 \label{sec:azione-riassumi}
@@ -760,43 +1102,14 @@ Il riassunto sostituisce il testo di partenza.
 \vspace{0.5em}
 
 \noindent
-\textbf{Esempio.} Testo di partenza: ``L'intelligenza artificiale sta cambiando il modo in cui studiamo e lavoriamo, grazie a strumenti capaci di analizzare grandi quantità di dati in pochi secondi. È però importante mantenere un pensiero critico per valutare le informazioni che questi sistemi forniscono. Le università italiane stanno iniziando a integrarli nella didattica, cercando un equilibrio tra innovazione e rigore.'' Parametro scelto: ``Lunghezza output'' impostato su ``Breve''. Risultato: 
+\textbf{Esempio.} Testo di partenza: quello riportato nella Sezione~\ref{sec:testo-esempio}. Parametro scelto: ``Lunghezza output'' impostato su ``Breve''. Risultato:
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{assets/riassumi.png}
+    \caption{Risultato dell'azione ``Riassumi'' con parametro ``Lunghezza output'' impostato su ``Breve''.}
+    \label{fig:esempio-riassumi}
 \end{figure}
-
-\subsection{Traduci}
-\label{sec:azione-traduci}
-L'azione ``Traduci'' riporta il testo in un'altra lingua.
-
-Il parametro ``Lingua di destinazione'' consente di scegliere fra le quattro opzioni seguenti:
-
-\begin{itemize}
-    \item ``Inglese'';
-
-    \item ``Francese'';
-
-    \item ``Tedesco'';
-
-    \item ``Spagnolo''.
-\end{itemize}
-
-L'opzione preselezionata all'apertura della finestra è ``Inglese''.
-
-La traduzione sostituisce il testo di partenza.
-
-\vspace{0.5em}
-
-\noindent
-\textbf{Esempio.} Testo di partenza: ``L'intelligenza artificiale sta cambiando il modo in cui studiamo e lavoriamo, grazie a strumenti capaci di analizzare grandi quantità di dati in pochi secondi. È però importante mantenere un pensiero critico per valutare le informazioni che questi sistemi forniscono. Le università italiane stanno iniziando a integrarli nella didattica, cercando un equilibrio tra innovazione e rigore.'' Parametro scelto: ``Lingua di destinazione'' impostata su ``Inglese''. Risultato: 
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{assets/traduci.png}
-\end{figure}
-
 
 \subsection{Riscrivi}
 \label{sec:azione-riscrivi}
@@ -819,13 +1132,46 @@ Il testo riscritto sostituisce quello di partenza.
 \vspace{0.5em}
 
 \noindent
-\textbf{Esempio.} Testo di partenza: ``L'intelligenza artificiale sta cambiando il modo in cui studiamo e lavoriamo, grazie a strumenti capaci di analizzare grandi quantità di dati in pochi secondi. È però importante mantenere un pensiero critico per valutare le informazioni che questi sistemi forniscono. Le università italiane stanno iniziando a integrarli nella didattica, cercando un equilibrio tra innovazione e rigore.'' Parametro scelto: ``Stile'' impostato su ``Formale''. Risultato: 
+\textbf{Esempio.} Testo di partenza: quello riportato nella Sezione~\ref{sec:testo-esempio}. Parametro scelto: ``Stile'' impostato su ``Formale''. Risultato:
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{assets/riscrivi.png}
+    \caption{Risultato dell'azione ``Riscrivi'' con parametro ``Stile'' impostato su ``Formale''.}
+    \label{fig:esempio-riscrivi}
 \end{figure}
 
+\subsection{Traduci}
+\label{sec:azione-traduci}
+L'azione ``Traduci'' riporta il testo in un'altra lingua.
+
+Il parametro ``Lingua di destinazione'' consente di scegliere fra le quattro opzioni seguenti:
+
+\begin{itemize}
+    \item ``Inglese'';
+
+    \item ``Francese'';
+
+    \item ``Tedesco'';
+
+    \item ``Spagnolo''.
+\end{itemize}
+
+L'opzione preselezionata all'apertura della finestra è ``Inglese''. L'italiano non figura fra le opzioni.
+
+La traduzione sostituisce il testo di partenza.
+
+\vspace{0.5em}
+
+\noindent
+\textbf{Esempio.} Testo di partenza: quello riportato nella Sezione~\ref{sec:testo-esempio}. Parametro scelto: ``Lingua di destinazione'' impostata su ``Inglese''. Risultato:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{assets/traduci.png}
+    \caption{Risultato dell'azione ``Traduci'' con parametro ``Lingua di destinazione'' impostata su ``Inglese''.}
+    \label{fig:esempio-traduci}
+\end{figure}
 
 \subsection{Grammatica}
 \label{sec:azione-grammatica}
@@ -838,80 +1184,63 @@ Se non vengono rilevati errori, l'anteprima riporta ``Nessun errore rilevato.'' 
 \vspace{0.5em}
 
 \noindent
-\textbf{Esempio.} Testo di partenza: ``L'intelligenza artificiale sta cambiando il modo in cui studiamo e lavoriamo, grazie a strumenti capaci di analizzare grandi quantità di dati in pochi secondi. È però importante mantenere un pensiero critico per valutare le informazioni che questi sistemi forniscono. Le università italiane stanno iniziando a integrarli nella didattica, cercando un equilibrio tra innovazione e rigore.'' Parametro scelto: nessuno, poiché l'azione non prevede parametri. Risultato: 
+\textbf{Esempio.} Testo di partenza: quello riportato nella Sezione~\ref{sec:testo-esempio}. Parametro scelto: nessuno, poiché l'azione non prevede parametri. Risultato:
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{assets/grammatica.png}
+    \caption{Risultato dell'azione ``Grammatica'', che non prevede parametri.}
+    \label{fig:esempio-grammatica}
 \end{figure}
 
 \subsection{Analisi}
 \label{sec:azione-analisi}
 L'azione ``Analisi'' esamina il testo secondo una fra sei prospettive, ispirate alla tecnica dei Sei Cappelli per Pensare. Non riscrive il testo: ne produce un commento.
 
-Il parametro ``Prospettiva (cappello)'' consente di scegliere fra le sei opzioni riportate nella Tabella~\ref{tab:prospettive-analisi}, presentate nell'ordine in cui compaiono nella finestra.
+Il parametro ``Prospettiva (cappello)'' consente di scegliere fra le sei opzioni riportate nella Tabella~\ref{tab:prospettive-analisi}, presentate nell'ordine in cui compaiono nella finestra. Accanto a ciascuna opzione si riporta il colore del cappello a cui corrisponde nella tecnica originale: il colore non compare nell'etichetta del pulsante, ma nella tinta con cui il pulsante stesso è riempito.
 
 \begingroup
 \small
-\begin{longtable}{|p{3.4cm}|p{9.4cm}|}
+\begin{longtable}{|p{2.6cm}|p{1.8cm}|p{8.2cm}|}
     \caption{Opzioni del parametro ``Prospettiva (cappello)''}
     \label{tab:prospettive-analisi} \\
     \hline
-    \textbf{Opzione} & \textbf{Orientamento dell'analisi} \\
+    \textbf{Opzione} & \textbf{Colore} & \textbf{Orientamento dell'analisi} \\
     \hline
     \endfirsthead
     \hline
-    \textbf{Opzione} & \textbf{Orientamento dell'analisi} \\
+    \textbf{Opzione} & \textbf{Colore} & \textbf{Orientamento dell'analisi} \\
     \hline
     \endhead
-    ``Informativo'' & Fatti, dati e informazioni oggettive. \\ \hline
+    ``Informativo'' & Bianco & Fatti, dati e informazioni oggettive. \\ \hline
 
-    ``Emotivo'' & Intuizioni, emozioni e sensazioni. \\ \hline
+    ``Emotivo'' & Rosso & Intuizioni, emozioni e sensazioni. \\ \hline
 
-    ``Critico'' & Difficoltà, rischi e punti deboli. \\ \hline
+    ``Critico'' & Nero & Difficoltà, rischi e punti deboli. \\ \hline
 
-    ``Ottimista'' & Vantaggi, benefici e opportunità. \\ \hline
+    ``Ottimista'' & Giallo & Vantaggi, benefici e opportunità. \\ \hline
 
-    ``Creativo'' & Nuove idee, alternative e soluzioni. \\ \hline
+    ``Creativo'' & Verde & Nuove idee, alternative e soluzioni. \\ \hline
 
-    ``Organizzativo'' & Processo, struttura e prossimi passi. \\ \hline
+    ``Organizzativo'' & Blu & Processo, struttura e prossimi passi. \\ \hline
 
 \end{longtable}
 \endgroup
 
 Nessuna opzione è preselezionata: la prospettiva va scelta esplicitamente prima di premere il pulsante ``Genera'' della finestra. Senza una scelta la richiesta non viene inviata e compare il messaggio ``Seleziona un cappello per l'analisi.''
 
-Il commento prodotto viene aggiunto in fondo alla nota, separato da una riga vuota: il testo analizzato non viene modificato.
+Il commento prodotto viene aggiunto in fondo alla nota: il testo analizzato non viene modificato.
 
 \vspace{0.5em}
 
 \noindent
-\textbf{Esempio.} Testo di partenza: ``L'intelligenza artificiale sta cambiando il modo in cui studiamo e lavoriamo, grazie a strumenti capaci di analizzare grandi quantità di dati in pochi secondi. È però importante mantenere un pensiero critico per valutare le informazioni che questi sistemi forniscono. Le università italiane stanno iniziando a integrarli nella didattica, cercando un equilibrio tra innovazione e rigore.'' Parametro scelto: ``Prospettiva (cappello)'' impostata su ``Critico''. Risultato: 
+\textbf{Esempio.} Testo di partenza: quello riportato nella Sezione~\ref{sec:testo-esempio}. Parametro scelto: ``Prospettiva (cappello)'' impostata su ``Critico''. Risultato:
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{assets/analisi.png}
-\end{figure}
-
-
-\subsection{Genera}
-\label{sec:azione-genera}
-L'azione ``Genera'' redige un testo nuovo a partire dalle istruzioni fornite.
-
-La finestra presenta il campo ``Istruzioni / Contesto'', con il testo guida ``Descrivi cosa generare\ldots'', in cui descrivere ciò che si desidera ottenere. Sono richiesti almeno 3 caratteri di istruzioni e non se ne possono superare 2000.
-
-Il parametro ``Lunghezza output'' consente di scegliere fra ``Breve'', ``Medio'' e ``Dettagliato''. Il valore predefinito è ``Medio''.
-
-Il testo prodotto viene aggiunto in fondo alla nota, separato da una riga vuota: il contenuto già presente non viene toccato.
-
-\vspace{0.5em}
-
-\noindent
-\textbf{Esempio.} Istruzioni fornite: ``Scrivi tre righe su l'utilizzo dell'intelligenza artificiale nelle università italiane''. Parametro scelto: ``Lunghezza output'' impostato su ``Breve''. Risultato: 
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{assets/genera.png}
+    \caption{Risultato dell'azione ``Analisi'' con parametro ``Prospettiva (cappello)'' impostata su ``Critico''.}
+    \label{fig:esempio-analisi}
 \end{figure}
 
 
@@ -932,81 +1261,208 @@ Nell'uso dell'assistente si consiglia di:
 
 \section{Risoluzione dei problemi}
 \label{sec:risoluzione-problemi}
-Problemi più frequenti e relative soluzioni:
-\begin{itemize}
+La presente sezione raccoglie i problemi più frequenti. La Sezione~\ref{sec:messaggi-applicazione} riporta i messaggi che l'applicazione può mostrare, con la causa e il rimedio di ciascuno; la Sezione~\ref{sec:problemi-installazione} tratta i problemi che si manifestano in fase di installazione e di avvio; la Sezione~\ref{sec:altre-situazioni} descrive le situazioni che richiedono una spiegazione più estesa.
 
-\item \textbf{Problema:} Viene visualizzato il messaggio "Servono almeno N caratteri di testo."
+Trattandosi di un'installazione locale, l'amministratore dell'ambiente è l'utente stesso: tutti i rimedi indicati sono alla sua portata e non richiedono l'intervento di terzi.
 
-Il messaggio compare quando il testo su cui deve essere eseguita l'azione (riassumi, traduci, riscrivi, ecc.) è troppo corto, oppure quando il campo istruzioni o link è stato lasciato vuoto per un'azione che lo richiede.
+\subsection{I messaggi dell'applicazione}
+\label{sec:messaggi-applicazione}
+I messaggi delle azioni dell'assistente compaiono all'interno della finestra dell'azione; quelli relativi alle operazioni sulle note compaiono nella barra laterale. I controlli che li producono sono descritti nella Sezione~\ref{sec:funzionamento-comune-azioni} e, per la modalità ``Da link'', nella Sezione~\ref{sec:controlli-da-link}.
 
-\textbf{Soluzione:} è necessario selezionare un testo più lungo nella nota prima di avviare l'azione, oppure, se non è stata effettuata alcuna selezione, verificare che la nota intera contenga testo sufficiente. Per le azioni "Genera" e "Genera da link" occorre assicurarsi di aver inserito istruzioni sufficienti o un URL valido.
+\begingroup
+\small
+\begin{longtable}{|p{4.5cm}|p{4.3cm}|p{4.3cm}|}
+    \caption{Messaggi dell'applicazione, con causa e rimedio}
+    \label{tab:messaggi} \\
+    \hline
+    \textbf{Messaggio} & \textbf{Causa} & \textbf{Rimedio} \\
+    \hline
+    \endfirsthead
+    \hline
+    \textbf{Messaggio} & \textbf{Causa} & \textbf{Rimedio} \\
+    \hline
+    \endhead
+    ``Servono almeno N caratteri di testo.'' & Il testo da elaborare è più corto del minimo richiesto: 10 caratteri per le azioni che lavorano sul testo della nota, 3 per le istruzioni di ``Genera''. & Selezionare una porzione di testo più lunga, oppure scrivere altro testo nella nota. Per ``Genera'', estendere le istruzioni. \\ \hline
 
-\item \textbf{Problema:} Viene visualizzato il messaggio "Servizio temporaneamente non disponibile"
+    ``Il testo supera il massimo di N caratteri (attuali: M). Riducilo o elaboralo in più parti.'' & Il testo da elaborare supera il limite: 12000 caratteri per le azioni sul testo della nota, 2000 per le istruzioni di ``Genera''. & Selezionare una porzione più breve ed elaborare la nota in più passaggi. \\ \hline
 
-Il messaggio indica che il backend non è riuscito a contattare il servizio AI, per un problema temporaneo di connessione o di disponibilità del servizio stesso.
+    ``Seleziona un cappello per l'analisi.'' & Si è avviata l'azione ``Analisi'' senza aver scelto una prospettiva, che non è preselezionata. & Scegliere una delle sei opzioni del parametro ``Prospettiva (cappello)'', quindi riavviare l'elaborazione. \\ \hline
 
-\textbf{Soluzione:} si consiglia di attendere qualche istante e ripetere l'operazione. Se il problema persiste, è opportuno verificare la connessione internet o contattare l'amministratore del servizio.
+    ``Inserisci un URL.'' & Si è avviata l'azione ``Genera'' nella modalità ``Da link'' lasciando vuoto il campo ``URL''. & Incollare nel campo ``URL'' l'indirizzo della pagina da cui partire. \\ \hline
 
-\item \textbf{Problema:} La generazione risulta bloccata e l'anteprima resta vuota
+    ``Il link indicato non è un indirizzo valido: controlla che inizi con http:// o https://.'' & L'indirizzo inserito non ha la forma di un indirizzo web. & Correggere l'indirizzo, verificando che inizi con \texttt{http://} oppure con \texttt{https://}. \\ \hline
 
-Questa situazione può verificarsi se la connessione viene interrotta durante lo streaming, o se il server smette di rispondere senza restituire un errore esplicito.
+    ``L'indirizzo del link è troppo lungo. Incollane uno più breve e riprova.'' & L'indirizzo inserito supera i 2048 caratteri. La pagina non viene contattata. & Impiegare un indirizzo più breve della stessa pagina, privandolo dei parametri non necessari. \\ \hline
 
-\textbf{Soluzione:} è possibile premere il pulsante "Interrompi" per fermare la richiesta bloccata, quindi avviare nuovamente la generazione. Se il problema si ripete con frequenza, è consigliabile verificare la connessione di rete in uso.
+    ``Non è stato possibile leggere il contenuto della pagina. Controlla che il link sia corretto e raggiungibile, poi riprova.'' & La pagina non è raggiungibile, non esiste, oppure non contiene testo estraibile. & Aprire l'indirizzo nel browser per verificarlo. Se la pagina richiede un accesso, impiegare la modalità ``Da prompt''. \\ \hline
 
-\item \textbf{Problema:} L'utente desidera annullare una generazione già avviata
+    ``Servizio temporaneamente non disponibile'' & Il servizio di intelligenza artificiale non ha risposto entro 60 secondi, non è raggiungibile o ha rifiutato la richiesta. & Attendere qualche istante e riprovare. Se persiste, verificare la connessione a Internet e i valori di \texttt{LITELLM\_BASE\_URL} e \texttt{LITELLM\_API\_KEY} nel file \texttt{.env}. \\ \hline
 
-Se ci si accorge di aver impostato parametri errati (ad esempio lunghezza, lingua o stile) mentre l'AI sta ancora generando il contenuto, non è necessario attendere il completamento dell'operazione.
+    ``Servizio di elaborazione temporaneamente non disponibile (chiave mancante).'' & La variabile \texttt{LITELLM\_API\_KEY} è assente o vuota. & Valorizzarla nel file \texttt{.env}, quindi riavviare l'applicazione. \\ \hline
 
-\textbf{Soluzione:} è sufficiente premere il pulsante "Interrompi", disponibile per tutta la durata della generazione. La richiesta viene annullata immediatamente, consentendo di correggere i parametri prima di avviare una nuova generazione.
+    ``Servizio di estrazione contenuti temporaneamente non disponibile (chiave mancante).'' & La variabile \texttt{TAVILY\_API\_KEY} è assente o vuota. Solo la modalità ``Da link'' ne risente. & Valorizzarla nel file \texttt{.env}, quindi riavviare l'applicazione. Nel frattempo è utilizzabile la modalità ``Da prompt''. \\ \hline
 
-\item \textbf{Problema:} Viene visualizzato il messaggio "Impossibile aprire il file"
+    ``Il campo «\textit{nome}» è obbligatorio.'' & Una richiesta è giunta al servizio priva di un dato necessario. & Chiudere la finestra dell'azione, riaprirla e ripetere l'operazione. \\ \hline
 
-Il messaggio compare quando il browser non riesce a leggere il file selezionato, ad esempio per permessi negati, un formato non supportato o un file danneggiato.
+    ``Il campo «\textit{nome}» deve contenere almeno N caratteri.'' & Il servizio ha respinto un testo più corto del minimo consentito. & Estendere il testo, come per il primo messaggio della presente tabella. \\ \hline
 
-\textbf{Soluzione:} è necessario verificare che il file sia in formato .md o .txt. Se il browser ha richiesto un permesso di accesso che è stato negato per errore, si consiglia di ripetere l'operazione e confermare l'autorizzazione quando richiesta.
+    ``Il campo «\textit{nome}» non può superare N caratteri: riduci il testo o elaboralo in più parti.'' & Il servizio ha respinto un testo più lungo del massimo consentito. & Ridurre il testo ed elaborare la nota in più passaggi. \\ \hline
 
-\item \textbf{Problema:} Le note risultano non più disponibili dopo la chiusura del browser
+    ``Il valore indicato per «\textit{nome}» non è fra quelli ammessi: scegline uno fra le opzioni proposte.'' & Il servizio ha ricevuto per un parametro un valore che non riconosce. & Scegliere di nuovo il parametro fra le opzioni della finestra e riavviare l'elaborazione. \\ \hline
 
-Le note vengono salvate localmente nel browser utilizzato, non su un server esterno. Qualora la cache del browser venga svuotata, venga utilizzata la navigazione in incognito, o si effettui l'accesso da un dispositivo o browser diverso, le note salvate localmente non risulteranno più accessibili.
+    ``I dati inviati non sono validi. Controlla la richiesta e riprova.'' & Il servizio ha respinto la richiesta senza poterne indicare il campo. & Chiudere la finestra dell'azione, riaprirla e ripetere l'operazione. \\ \hline
 
-\textbf{Soluzione:} per evitare la perdita del lavoro svolto, si consiglia di esportare regolarmente le note più importanti su file tramite la funzione "Salva file". In questo modo è garantita una copia indipendente dal browser utilizzato.
+    ``Impossibile creare la nota. Riprova.'' & La nota non è stata creata, per esempio perché la memoria del browser è esaurita. & Premere di nuovo \texttt{Invio}: il titolo digitato è conservato. Se persiste, liberare spazio eliminando le note non più necessarie. \\ \hline
 
-\end{itemize}
+    ``Impossibile aprire il file. Riprova.'' & Il browser non è riuscito a leggere il file scelto. & Verificare che il file abbia estensione \texttt{.md} o \texttt{.txt} e non sia danneggiato, quindi ripetere l'operazione autorizzando l'accesso se richiesto. \\ \hline
+
+    ``Impossibile salvare il file. Riprova.'' & Il browser non è riuscito a scrivere il file. La nota resta invariata. & Ripetere il salvataggio scegliendo una cartella su cui si dispone dei permessi di scrittura. \\ \hline
+
+    ``Impossibile rinominare la nota. Riprova.'' & La rinomina non è andata a buon fine. & Ripetere la rinomina con un doppio clic sul nome della nota. \\ \hline
+
+    ``Impossibile eliminare la nota. Riprova.'' & L'eliminazione non è andata a buon fine. La nota non è stata eliminata. & Ripetere l'eliminazione. Se persiste, ricaricare la pagina del browser e riprovare. \\ \hline
+
+\end{longtable}
+\endgroup
+
+\subsection{Problemi di installazione e di avvio}
+\label{sec:problemi-installazione}
+I problemi descritti di seguito si manifestano nel terminale, durante l'installazione o l'avvio, e non nell'interfaccia dell'applicazione. I comandi citati vanno impartiti dalla cartella principale del progetto.
+
+\subsubsection{Docker non è in esecuzione}
+Il comando \texttt{docker compose up --build} termina subito con un errore che segnala l'impossibilità di contattare il servizio Docker.
+
+\textbf{Causa.} Docker è installato ma non avviato: su Windows e su macOS il programma Docker Desktop deve essere in esecuzione perché i comandi \texttt{docker} funzionino.
+
+\textbf{Rimedio.} Avviare Docker Desktop e attenderne il completo caricamento, quindi ripetere la verifica descritta nella Sezione~\ref{sec:verifica-installazione}: se entrambi i comandi restituiscono un numero di versione, l'ambiente è pronto e l'avvio può essere ripetuto.
+
+\subsubsection{La porta 5173 o la porta 8000 è già occupata}
+L'avvio termina con un errore che segnala l'impossibilità di assegnare una delle due porte.
+
+\textbf{Causa.} Un altro programma sta già utilizzando la porta\textsubscript{G} 5173, impiegata dall'interfaccia, o la porta 8000, impiegata dal servizio di backend. È il caso tipico di una precedente esecuzione di Second Brain non arrestata correttamente.
+
+\textbf{Rimedio.} Eseguire dapprima \texttt{docker compose down}, che libera le porte occupate da un'esecuzione precedente, quindi ripetere l'avvio. Se la porta è occupata da un altro programma, chiudere quel programma. In alternativa si può modificare la porta esposta sulla macchina nel file \texttt{docker-compose.yml}, sostituendo per esempio \texttt{"5173:5173"} con \texttt{"5174:5173"}: in tal caso l'interfaccia risponde all'indirizzo \link{http://localhost:5174}.
+
+\vspace{0.5em}
+
+\noindent
+\textbf{Avviso.} Cambiando la porta del servizio di backend occorre aggiornare di conseguenza anche la variabile \texttt{VITE\_API\_BASE\_URL} nel file \texttt{docker-compose.yml}; cambiando quella dell'interfaccia, occorre aggiornare \texttt{CORS\_ORIGINS} nel file \texttt{.env}. Senza questi due allineamenti l'interfaccia non riesce a contattare il servizio.
+
+\subsubsection{Il file \texttt{.env} manca o è incompleto}
+Se il file manca, l'avvio termina con un errore che ne segnala l'assenza. Se il file esiste ma la variabile \texttt{LITELLM\_API\_KEY} è assente o vuota, il servizio di backend si arresta subito dopo l'avvio e nel terminale compare il messaggio ``Avvio interrotto: configurazione incompleta. Variabili d'ambiente obbligatorie assenti o vuote: LITELLM\_API\_KEY.''
+
+\textbf{Causa.} Il file \texttt{.env} non è stato creato a partire dal modello, oppure è stato creato ma non completato.
+
+\textbf{Rimedio.} Creare il file copiando il modello e completarlo con i valori descritti nella Tabella~\ref{tab:variabili-configurazione}, come indicato nella Sezione~\ref{sec:configurazione}. Il file va collocato nella cartella principale del progetto e deve chiamarsi esattamente \texttt{.env}, senza altre estensioni: alcuni editor di testo aggiungono \texttt{.txt} in coda al nome senza segnalarlo.
+
+\vspace{0.5em}
+
+\noindent
+L'assenza della sola variabile \texttt{TAVILY\_API\_KEY} non impedisce l'avvio: l'applicazione funziona, ma la modalità ``Da link'' dell'azione ``Genera'' risponde con il messaggio riportato nella Tabella~\ref{tab:messaggi}.
+
+\subsubsection{La chiave di accesso non è valida o è scaduta}
+L'applicazione si avvia regolarmente, ma ogni azione dell'assistente termina con il messaggio ``Servizio temporaneamente non disponibile''.
+
+\textbf{Causa.} La variabile \texttt{LITELLM\_API\_KEY} contiene un valore, quindi l'avvio riesce, ma il servizio esterno rifiuta quella chiave perché errata, revocata o scaduta. La stessa cosa avviene se \texttt{LITELLM\_BASE\_URL} o \texttt{LITELLM\_MODEL} indicano un servizio o un modello non più disponibili.
+
+\textbf{Rimedio.} Verificare i tre valori nel file \texttt{.env}, correggendo quelli errati. Poiché la configurazione è letta all'avvio, le modifiche hanno effetto solo dopo aver arrestato e riavviato l'applicazione:
+
+\begin{comando}
+$ docker compose down
+$ docker compose up --build
+\end{comando}
+
+\subsubsection{La costruzione fallisce al primo avvio}
+Il comando \texttt{docker compose up --build} termina con un errore prima che i due indirizzi rispondano.
+
+\textbf{Causa.} La costruzione delle immagini scarica le dipendenze dell'applicazione da Internet: una connessione assente o interrotta la fa fallire. Può inoltre accadere che una costruzione precedente, interrotta a metà, abbia lasciato dati intermedi incoerenti.
+
+\textbf{Rimedio.} Verificare la connessione a Internet e ripetere il comando. Se l'errore si ripresenta, ricostruire le immagini da zero, ignorando i dati intermedi:
+
+\begin{comando}
+$ docker compose build --no-cache
+$ docker compose up
+\end{comando}
+
+\subsection{Altre situazioni}
+\label{sec:altre-situazioni}
+
+\subsubsection{La generazione resta bloccata e l'anteprima resta vuota}
+L'indicatore di attività continua a girare, ma nell'area ``Anteprima output'' non compare alcun testo.
+
+\textbf{Causa.} La connessione si è interrotta durante la trasmissione del risultato, oppure il servizio esterno ha smesso di rispondere senza restituire un errore.
+
+\textbf{Rimedio.} Premere ``Interrompi'' per fermare la richiesta, quindi riavviare l'elaborazione con ``Genera''. Se la situazione si ripete, verificare la connessione a Internet. L'attesa di una risposta non supera comunque i 60 secondi, trascorsi i quali compare il messaggio ``Servizio temporaneamente non disponibile''.
+
+\subsubsection{Si desidera annullare una generazione già avviata}
+Mentre l'elaborazione è ancora in corso, ci si accorge di aver impostato un parametro errato: la lunghezza, la lingua o lo stile.
+
+\textbf{Rimedio.} Non occorre attendere il completamento: il pulsante ``Interrompi'' è disponibile per tutta la durata dell'elaborazione e ferma subito la richiesta. Il testo prodotto fino a quel momento resta nell'area di anteprima e può essere accettato con ``Accetta'' oppure scartato con ``Rifiuta''. Corretto il parametro, l'elaborazione si riavvia con ``Genera''.
+
+\subsubsection{Le note non sono più disponibili}
+All'apertura dell'applicazione l'elenco riporta ``Nessuna nota'', pur avendo lavorato in precedenza su una o più note.
+
+\textbf{Causa.} Le note risiedono nella memoria locale del browser e non su un server. Non sono quindi accessibili da un altro browser o da un altro dispositivo, né da una finestra di navigazione anonima. Vengono inoltre rimosse cancellando i dati di navigazione.
+
+\textbf{Rimedio.} Riaprire l'applicazione con lo stesso browser e sullo stesso dispositivo impiegati in precedenza. Le note cancellate insieme ai dati di navigazione non sono recuperabili: per non dipendere dal browser, conviene salvare periodicamente su file le note importanti con ``Salva file'', come descritto nella Sezione~\ref{sec:salvare-nota-file}.
 
 \section{Glossario}
 \label{sec:glossario}
+La presente sezione definisce i termini marcati nel testo con il pedice \textbf{G}, secondo la convenzione descritta nella Sezione~\ref{sec:convenzioni-tipografiche}. Le voci sono ordinate alfabeticamente.
+
 \begin{itemize}
-    \item \textbf{LLM (Large Language Model):}
-Modello di intelligenza artificiale addestrato su grandi quantità di testo, in grado di comprendere e generare linguaggio naturale.
-
-    \item \textbf{Markdown:}
-Linguaggio di formattazione testuale che utilizza marcatori semplici per definire stili come grassetto, corsivo, titoli ed elenchi.
-
-    \item \textbf{Rendering:}
-Processo con cui il testo sorgente viene trasformato nella sua rappresentazione visiva formattata, mostrata all'utente.
-
-    \item \textbf{Sei Cappelli per Pensare:}
-Tecnica di analisi che esamina un argomento da sei prospettive distinte, ciascuna associata a un colore e a un tipo di ragionamento.
-
-    \item \textbf{Interfaccia:}
-Insieme degli elementi grafici attraverso cui l'utente interagisce con l'applicazione, quali pulsanti, menu e aree di visualizzazione.
-
-    \item \textbf{Terminale:}
-Programma che consente di impartire comandi al sistema operativo digitandoli in forma testuale.
-
-    \item \textbf{Container:}
-Ambiente isolato ed eseguibile che racchiude un'applicazione e le sue dipendenze, garantendone il funzionamento indipendentemente dal sistema ospitante.
-
-    \item \textbf{Docker:}
-Piattaforma software che permette di creare, distribuire ed eseguire applicazioni all'interno di container.
+    \item \textbf{API (Application Programming Interface):}
+insieme di regole e strumenti che permette a due applicazioni software di comunicare e scambiarsi dati fra loro.
 
     \item \textbf{Browser:}
-Programma che consente di accedere e visualizzare pagine e applicazioni web.
-
-    \item \textbf{API (Application Programming Interface):}
-Insieme di regole e strumenti che permette a due applicazioni software di comunicare e scambiarsi dati fra loro.
+programma che consente di accedere a pagine e applicazioni web e di visualizzarle.
 
     \item \textbf{Collegamento ipertestuale:}
-Riferimento testuale che, se selezionato, rimanda a un'altra risorsa, come una pagina web o un altro documento.
+riferimento testuale che, se selezionato, rimanda a un'altra risorsa, come una pagina web o un altro documento.
+
+    \item \textbf{Container:}
+ambiente isolato ed eseguibile che racchiude un'applicazione e le sue dipendenze, garantendone il funzionamento indipendentemente dal sistema ospitante.
+
+    \item \textbf{Docker:}
+piattaforma software che permette di creare, distribuire ed eseguire applicazioni all'interno di container.
+
+    \item \textbf{Immagine Docker:}
+modello a sola lettura da cui Docker crea un container. Le immagini di Second Brain vengono costruite al primo avvio e riutilizzate agli avvii successivi.
+
+    \item \textbf{Interfaccia:}
+insieme degli elementi grafici attraverso cui l'utente interagisce con l'applicazione, quali pulsanti, menu e aree di visualizzazione.
+
+    \item \textbf{LLM (Large Language Model):}
+modello di intelligenza artificiale addestrato su grandi quantità di testo, in grado di comprendere e generare linguaggio naturale.
+
+    \item \textbf{Markdown:}
+linguaggio di formattazione testuale che utilizza marcatori semplici per definire stili come grassetto, corsivo, titoli ed elenchi.
+
+    \item \textbf{Memoria locale del browser:}
+spazio in cui il browser conserva i dati di un sito fra una visita e l'altra. È lo spazio in cui Second Brain conserva le note; è legato al browser e al dispositivo in uso e viene svuotato cancellando i dati di navigazione.
+
+    \item \textbf{Porta:}
+numero che identifica un servizio in ascolto su una macchina. Second Brain impiega la porta 5173 per l'interfaccia e la porta 8000 per il servizio di backend.
+
+    \item \textbf{Prompt:}
+istruzione in linguaggio naturale con cui si indica a un LLM che cosa produrre.
+
+    \item \textbf{Rendering:}
+processo con cui il testo sorgente viene trasformato nella sua rappresentazione visiva formattata, mostrata all'utente.
+
+    \item \textbf{Sei Cappelli per Pensare:}
+tecnica di analisi che esamina un argomento da sei prospettive distinte, ciascuna associata a un colore e a un tipo di ragionamento.
+
+    \item \textbf{Terminale:}
+programma che consente di impartire comandi al sistema operativo digitandoli in forma testuale.
+
+    \item \textbf{URL:}
+indirizzo che individua una risorsa sul web, come una pagina o un documento. Inizia con \texttt{http://} oppure con \texttt{https://}.
+
+    \item \textbf{Variabile d'ambiente:}
+coppia formata da un nome e da un valore, che il sistema mette a disposizione di un programma al suo avvio. Le variabili d'ambiente di Second Brain si impostano nel file \texttt{.env}.
+
+    \item \textbf{Volume:}
+spazio in cui Docker conserva i dati di un container al di fuori del container stesso, così che sopravvivano alla sua rimozione.
 \end{itemize}
 \end{document}
