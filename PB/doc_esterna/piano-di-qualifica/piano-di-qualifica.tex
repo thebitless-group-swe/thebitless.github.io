@@ -380,7 +380,6 @@ Nel contesto del capitolato$_G$ C6, l'affidabilità riguarda in particolare:
 
     MPD-DL & Data Loss & $0$ perdite nei casi principali & $0$ perdite in ogni test$_G$ \\ \hline
     MPD-EH & Error Handling & $\geq 90\%$ errori gestiti & $100\%$ errori gestiti \\ \hline
-    MPD-SR & Session Recovery & Recupero testo nei casi previsti & Recupero completo e automatico \\ \hline
     MPD-AR & Availability Rate & $\geq 95\%$ durante i test$_G$ & $\geq 99\%$ durante i test$_G$ \\ \hline
 
     \caption{Metriche per la qualità dell'affidabilità.}
@@ -461,7 +460,7 @@ Le metriche di manutenibilità$_G$ valutano quanto il codice sia comprensibile, 
     \hline
     \endhead
 
-    MPD-CYC & Complessità ciclomatica & $\leq 15$ & $\leq 10$ \\ \hline
+    MPD-CYC & Complessità ciclomatica & $\leq 4$ & $\leq 3$ \\ \hline
     MPD-CS & Code Smell & $\leq 5$ per componente & $\leq 1$ per componente \\ \hline
     MPD-DUP & Duplicazione del codice & $\leq 10\%$ & $\leq 3\%$ \\ \hline
     MPD-MOD & Modularità & Componenti principali separate & Dipendenze ridotte e ben definite \\ \hline
@@ -487,7 +486,6 @@ Le metriche di sicurezza misurano la capacità del prodotto di proteggere dati, 
     MPD-SK & Secret Key Exposure & $0$ chiavi esposte & $0$ chiavi esposte \\ \hline
     MPD-IV & Input$_G$ Validation & $\geq 95\%$ input$_G$ validati & $100\%$ input$_G$ validati \\ \hline
     MPD-DS & Data Sanitization & $\geq 95\%$ dati sanificati & $100\%$ dati sanificati \\ \hline
-    MPD-PR & Privacy$_G$ Risk & Nessun dato sensibile non necessario inviato & Minimizzazione completa dei dati inviati \\ \hline
 
     \caption{Metriche per la qualità della sicurezza.}
     \label{tab:metriche-sicurezza}
@@ -625,147 +623,196 @@ Ogni test$_G$ viene identificato secondo la seguente convenzione:
     \hline
     \endhead
 
-    TS-001 & Verificare che l'Utente possa inserire testo libero nell'area di editing in formato Markdown$_G$. & R-1-F-Ob & NI \\
+    TS-001 & Verificare che l'Utente possa inserire testo libero nell'area di editing in formato Markdown$_G$. & R-1-F-Ob & S \\
     \hline
-    TS-002 & Verificare che l'Utente possa selezionare una porzione di testo presente nell'editor. & R-2-F-Ob & NI \\
+    TS-002 & Verificare che l'Utente possa selezionare una porzione di testo presente nell'editor. & R-3-F-Ob & S \\
     \hline
-    TS-003 & Verificare che l'Utente possa tagliare una porzione di testo selezionata, rimuovendola dall'editor e memorizzandola negli appunti di sistema$_G$. & R-3-F-Ob & NI \\
+    TS-003 & Verificare che l'Utente possa tagliare una porzione di testo selezionata, rimuovendola dall'editor e memorizzandola negli appunti di sistema$_G$. & R-4-F-De & S \\
     \hline
-    TS-004 & Verificare che l'Utente possa copiare una porzione di testo selezionata negli appunti di sistema$_G$ senza modificare il contenuto dell'editor. & R-4-F-Ob & NI \\
+    TS-004 & Verificare che l'Utente possa copiare una porzione di testo selezionata negli appunti di sistema$_G$ senza modificare il contenuto dell'editor. & R-5-F-De & S \\
     \hline
-    TS-005 & Verificare che l'Utente possa incollare nell'editor un contenuto testuale precedentemente copiato o tagliato. & R-5-F-Ob & NI \\
+    TS-005 & Verificare che l'Utente possa incollare nell'editor un contenuto testuale precedentemente copiato o tagliato. & R-6-F-De & S \\
     \hline
-    TS-006 & Verificare che l'Utente possa annullare l'ultima modifica effettuata nell'editor. & R-6-F-Ob & NI \\
+    TS-006 & Verificare che l'Utente possa annullare l'ultima modifica effettuata nell'editor. & R-7-F-De & S \\
     \hline
-    TS-007 & Verificare che l'Utente possa ripristinare un'operazione precedentemente annullata, se non sono state effettuate nuove modifiche successive. & R-7-F-Ob & NI \\
+    TS-007 & Verificare che l'Utente possa ripristinare un'operazione precedentemente annullata, se non sono state effettuate nuove modifiche successive. & R-8-F-De & S \\
     \hline
-    TS-008 & Verificare che l'Utente possa applicare e rimuovere la formattazione in grassetto al testo tramite marcatori Markdown$_G$. & R-8-F-Ob & NI \\
+    TS-008 & Verificare che l'Utente possa applicare e rimuovere la formattazione in grassetto al testo tramite marcatori Markdown$_G$. & R-9-F-Ob, R-10-F-Ob & S \\
     \hline
-    TS-009 & Verificare che l'Utente possa applicare e rimuovere la formattazione in corsivo al testo tramite marcatori Markdown$_G$. & R-9-F-Ob & NI \\
+    TS-009 & Verificare che l'Utente possa applicare e rimuovere la formattazione in corsivo al testo tramite marcatori Markdown$_G$. & R-11-F-Ob, R-12-F-Ob & S \\
     \hline
-    TS-010 & Verificare che l'Utente possa applicare e rimuovere la formattazione sottolineata al testo. & R-10-F-Ob & NI \\
+    TS-010 & Verificare che l'Utente possa applicare e rimuovere la formattazione sottolineata al testo. & R-13-F-Ob, R-14-F-Ob & S \\
     \hline
-    TS-011 & Verificare che l'Utente possa applicare e rimuovere la formattazione barrata al testo tramite marcatori Markdown$_G$. & R-11-F-Ob & NI \\
+    TS-011 & Verificare che l'Utente possa applicare e rimuovere la formattazione barrata al testo tramite marcatori Markdown$_G$. & R-15-F-De, R-16-F-De & S \\
     \hline
-    TS-012 & Verificare che l'Utente possa inserire e rimuovere titoli e sottotitoli mediante sintassi Markdown$_G$. & R-12-F-Ob & NI \\
+    TS-012 & Verificare che l'Utente possa inserire e rimuovere titoli e sottotitoli mediante sintassi Markdown$_G$. & R-17-F-Ob -- R-20-F-Ob & S \\
     \hline
-    TS-013 & Verificare che l'Utente possa inserire ed eliminare elenchi puntati o numerati. & R-13-F-Ob & NI \\
+    TS-013 & Verificare che l'Utente possa inserire ed eliminare elenchi puntati o numerati. & R-21-F-De -- R-23-F-De & S \\
     \hline
-    TS-014 & Verificare che l'Utente possa inserire e rimuovere blocchi di citazione. & R-14-F-Ob & NI \\
+    TS-014 & Verificare che l'Utente possa inserire e rimuovere blocchi di citazione. & R-24-F-De, R-25-F-De & S \\
     \hline
-    TS-015 & Verificare che l'Utente possa inserire ed eliminare blocchi di codice sorgente nel documento. & R-15-F-Ob & NI \\
+    TS-015 & Verificare che l'Utente possa inserire ed eliminare blocchi di codice sorgente nel documento. & R-26-F-De, R-27-F-De & S \\
     \hline
-    TS-016 & Verificare che l'Utente possa inserire ed eliminare formule scientifiche o matematiche. & R-16-F-Ob & NI \\
+    TS-016 & Verificare che l'Utente possa inserire ed eliminare formule scientifiche o matematiche. & R-28-F-De, R-29-F-De & S \\
     \hline
-    TS-017 & Verificare che l'Utente possa inserire ed eliminare collegamenti ipertestuali. & R-17-F-Ob & NI \\
+    TS-017 & Verificare che l'Utente possa inserire ed eliminare collegamenti ipertestuali. & R-30-F-De, R-31-F-De & S \\
     \hline
-    TS-018 & Verificare che l'Utente possa inserire, modificare ed eliminare tabelle Markdown$_G$. & R-19-F-Ob & NI \\
+    TS-018 & Verificare che l'Utente possa inserire, modificare ed eliminare tabelle Markdown$_G$. & R-34-F-De -- R-38-F-De & S \\
     \hline
-    TS-019 & Verificare che l'Utente possa inserire, sostituire ed eliminare immagini all'interno del documento. & R-20-F-Ob & NI \\
+    TS-019 & Verificare che l'Utente possa inserire, sostituire ed eliminare immagini all'interno del documento. & R-39-F-De, R-41-F-De & S \\
     \hline
-    TS-020 & Verificare che l'Utente possa alternare la visualizzazione tra solo editor, solo anteprima e visualizzazione combinata. & R-25-F-Ob & NI \\
+    TS-020 & Verificare che l'Utente possa alternare la visualizzazione tra solo editor, solo anteprima e visualizzazione combinata. & R-50-F-Ob -- R-52-F-Ob & S \\
     \hline
-    TS-021 & Verificare che l'Utente possa ottenere un riassunto del testo selezionato tramite LLM$_G$. & R-27-F-Ob & NI \\
+    TS-021 & Verificare che l'Utente possa ottenere un riassunto del testo selezionato tramite LLM$_G$. & R-55-F-Ob & S \\
     \hline
-    TS-022 & Verificare che l'Utente possa tradurre il testo selezionato in una lingua supportata tramite LLM$_G$. & R-29-F-Ob & NI \\
+    TS-022 & Verificare che l'Utente possa tradurre il testo selezionato in una lingua supportata tramite LLM$_G$. & R-57-F-Ob & S \\
     \hline
-    TS-023 & Verificare che l'Utente possa modificare lo stile linguistico del testo selezionato tramite LLM$_G$. & R-30-F-Ob & NI \\
+    TS-023 & Verificare che l'Utente possa modificare lo stile linguistico del testo selezionato tramite LLM$_G$. & R-59-F-Ob & S \\
     \hline
-    TS-024 & Verificare che l'Utente possa correggere grammaticalmente il testo selezionato tramite LLM$_G$. & R-31-F-Ob & NI \\
+    TS-024 & Verificare che l'Utente possa correggere grammaticalmente il testo selezionato tramite LLM$_G$. & R-61-F-Ob & S \\
     \hline
-    TS-025 & Verificare che l'Utente riceva una comunicazione nel caso in cui l'LLM$_G$ non rilevi errori nel testo analizzato. & R-32-F-Ob & NI \\
+    TS-025 & Verificare che l'Utente riceva una comunicazione nel caso in cui l'LLM$_G$ non rilevi errori nel testo analizzato. & R-62-F-De & S \\
     \hline
-    TS-026 & Verificare che l'Utente possa analizzare criticamente il testo secondo la metodologia dei Sei Cappelli per Pensare$_G$. & R-33-F-Ob & NI \\
+    TS-026 & Verificare che l'Utente possa analizzare criticamente il testo secondo la metodologia dei Sei Cappelli per Pensare$_G$. & R-63-F-Ob & S \\
     \hline
-    TS-027 & Verificare che l'Utente possa selezionare una specifica prospettiva di analisi tra Cappello Bianco, Rosso, Giallo, Nero, Verde e Blu. & R-34-F-Ob & NI \\
+    TS-027 & Verificare che l'Utente possa selezionare una specifica prospettiva di analisi tra Cappello Bianco, Rosso, Giallo, Nero, Verde e Blu. & R-64-F-Ob & S \\
     \hline
-    TS-028 & Verificare che l'Utente possa generare automaticamente un testo a partire da un prompt$_G$. & R-35-F-Ob & NI \\
+    TS-028 & Verificare che l'Utente possa generare automaticamente un testo a partire da un prompt$_G$. & R-72-F-Ob & S \\
     \hline
-    TS-029 & Verificare che l'Utente possa salvare, scartare o rigenerare l'output$_G$ prodotto dall'LLM$_G$. & R-40-F-Ob & NI \\
+    TS-029 & Verificare che l'Utente possa salvare, scartare o rigenerare l'output$_G$ prodotto dall'LLM$_G$. & R-76-F-Ob -- R-78-F-De & S \\
     \hline
-    TS-030 & Verificare che il Sistema$_G$ gestisca gli errori di comunicazione o risposta del servizio LLM$_G$, preservando il contenuto originale dell'editor. & R-42-F-Ob & NI \\
+    TS-030 & Verificare che il Sistema$_G$ gestisca gli errori di comunicazione o risposta del servizio LLM$_G$, preservando il contenuto originale dell'editor. & R-80-F-Ob & S \\
     \hline
-    TS-031 & Verificare che il Sistema$_G$ impedisca l'invio di richieste AI quando il testo fornito è insufficiente per un'elaborazione significativa. & R-43-F-Ob & NI \\
+    TS-031 & Verificare che il Sistema$_G$ impedisca l'invio di richieste AI quando il testo fornito è insufficiente per un'elaborazione significativa. & R-81-F-Ob & S \\
     \hline
-    TS-032 & Verificare che l'Utente possa creare una nuova nota vuota nell'editor. & R-44-F-Ob & NI \\
+    TS-032 & Verificare che l'Utente possa creare una nuova nota vuota nell'editor. & R-82-F-Ob & S \\
     \hline
-    TS-033 & Verificare che il Sistema$_G$ gestisca eventuali errori durante la creazione di una nuova nota, informando l'Utente e preservando lo stato precedente. & R-46-F-Ob & NI \\
+    TS-033 & Verificare che il Sistema$_G$ gestisca eventuali errori durante la creazione di una nuova nota, informando l'Utente e preservando lo stato precedente. & R-84-F-Ob & S \\
     \hline
-    TS-034 & Verificare che l'Utente possa caricare una nota da file locale in formato .md o .txt. & R-47-F-Ob & NI \\
+    TS-034 & Verificare che l'Utente possa caricare una nota da file locale in formato .md o .txt. & R-85-F-Ob & S \\
     \hline
-    TS-035 & Verificare che il Sistema$_G$ gestisca eventuali errori durante il caricamento di una nota, preservando la sessione di lavoro precedente. & R-49-F-Ob & NI \\
+    TS-035 & Verificare che il Sistema$_G$ gestisca eventuali errori durante il caricamento di una nota, preservando la sessione di lavoro precedente. & R-87-F-Ob & S \\
     \hline
-    TS-036 & Verificare che l'Utente possa salvare una nota sul File System locale. & R-50-F-Ob & NI \\
+    TS-036 & Verificare che l'Utente possa salvare una nota sul File System locale. & R-88-F-Ob & S \\
     \hline
-    TS-037 & Verificare che il Sistema$_G$ gestisca eventuali errori durante il salvataggio di una nota, preservando l'integrità dei dati presenti nell'editor. & R-52-F-Ob & NI \\
+    TS-037 & Verificare che il Sistema$_G$ gestisca eventuali errori durante il salvataggio di una nota, preservando l'integrità dei dati presenti nell'editor. & R-90-F-Ob & S \\
     \hline
-    TS-038 & Verificare che l'Utente possa eliminare una nota dal File System locale. & R-53-F-Ob & NI \\
+    TS-038 & Verificare che l'Utente possa eliminare una nota dal File System locale. & R-91-F-De & NS \\
     \hline
-    TS-039 & Verificare che il Sistema$_G$ gestisca eventuali errori durante l'eliminazione di una nota, evitando la perdita inconsistente dei dati. & R-55-F-Ob & NI \\
+    TS-039 & Verificare che il Sistema$_G$ gestisca eventuali errori durante l'eliminazione di una nota, evitando la perdita inconsistente dei dati. & R-93-F-De & S \\
     \hline
-    TS-040 & Verificare che l'Utente possa rinominare una nota locale. & R-56-F-Ob & NI \\
+    TS-040 & Verificare che l'Utente possa rinominare una nota locale. & R-94-F-De & S \\
     \hline
-    TS-041 & Verificare che il Sistema$_G$ gestisca eventuali errori durante la rinominazione di una nota, mantenendo il titolo precedente. & R-58-F-Ob & NI \\
-    \hline
-
-    TS-042 & Verificare che l'Utente possa inserire e rimuovere ancore di navigazione interne al documento. & R-18-F-De & NI \\
-    \hline
-    TS-043 & Verificare che l'Utente possa attivare e disattivare l'autocompletamento dei simboli durante la digitazione. & R-21-F-De & NI \\
-    \hline
-    TS-044 & Verificare che l'Utente possa attivare e disattivare la sincronizzazione dello scorrimento tra editor e anteprima. & R-22-F-De & NI \\
-    \hline
-    TS-045 & Verificare che l'Utente possa alternare l'interfaccia tra tema chiaro e tema scuro. & R-23-F-De & NI \\
-    \hline
-    TS-046 & Verificare che l'Utente possa aprire e chiudere la barra laterale dell'interfaccia. & R-24-F-De & NI \\
-    \hline
-    TS-047 & Verificare che l'Utente possa inserire testo tramite dettatura vocale, se il browser supporta le Web Speech API$_G$. & R-26-F-De & NI \\
-    \hline
-    TS-048 & Verificare che l'Utente possa scegliere la percentuale di concisione del riassunto. & R-28-F-De & NI \\
-    \hline
-    TS-049 & Verificare che l'Utente possa definire la lunghezza desiderata del testo generato. & R-36-F-De & NI \\
-    \hline
-    TS-050 & Verificare che il Sistema$_G$ mostri all'Utente un riepilogo del contesto prima dell'invio della richiesta all'LLM$_G$. & R-37-F-De & NI \\
-    \hline
-    TS-051 & Verificare che l'Utente possa fornire un URL come fonte di contesto per la generazione automatica di testo. & R-38-F-De & NI \\
-    \hline
-    TS-052 & Verificare che l'Utente possa annullare una richiesta di elaborazione in corso. & R-41-F-De & NI \\
-    \hline
-    TS-053 & Verificare che l'Utente possa visualizzare le informazioni e i metadati di una nota selezionata. & R-59-F-De & NI \\
+    TS-041 & Verificare che il Sistema$_G$ gestisca eventuali errori durante la rinominazione di una nota, mantenendo il titolo precedente. & R-96-F-De & NS \\
     \hline
 
-    TS-054 & Verificare che l'Utente autenticato possa selezionare manualmente note salvate nel database$_G$ da usare come contesto per la generazione automatica. & R-39-F-Op & NI \\
+    TS-042 & Verificare che l'Utente possa inserire e rimuovere ancore di navigazione interne al documento. & R-32-F-De, R-33-F-De & NI \\
     \hline
-    TS-055 & Verificare che l'Utente autenticato possa creare una nuova nota nel database$_G$. & R-45-F-Op & NI \\
+    TS-043 & Verificare che l'Utente possa attivare e disattivare l'autocompletamento dei simboli durante la digitazione. & R-42-F-De, R-43-F-De & NI \\
     \hline
-    TS-056 & Verificare che l'Utente autenticato possa caricare una nota dal database$_G$. & R-48-F-Op & NI \\
+    TS-044 & Verificare che l'Utente possa attivare e disattivare la sincronizzazione dello scorrimento tra editor e anteprima. & R-44-F-De, R-45-F-De & NI \\
     \hline
-    TS-057 & Verificare che l'Utente autenticato possa salvare una nota nel database$_G$. & R-51-F-Op & NI \\
+    TS-045 & Verificare che l'Utente possa alternare l'interfaccia tra tema chiaro e tema scuro. & R-46-F-De, R-47-F-De & NI \\
     \hline
-    TS-058 & Verificare che l'Utente autenticato possa eliminare una nota dal database$_G$. & R-54-F-Op & NI \\
+    TS-047 & Verificare che l'Utente possa inserire testo tramite dettatura vocale, se il browser supporta le Web Speech API$_G$. & R-53-F-De & NI \\
     \hline
-    TS-059 & Verificare che l'Utente autenticato possa rinominare una nota salvata nel database$_G$. & R-57-F-Op & NI \\
+    TS-048 & Verificare che l'Utente possa scegliere la tipologia di riassunto, selezionando il livello di sintesi desiderato. & R-56-F-De & S \\
     \hline
-    TS-060 & Verificare che l'Utente autenticato possa cercare note nel database$_G$ per titolo. & R-60-F-Op & NI \\
+    TS-049 & Verificare che l'Utente possa definire la lunghezza desiderata del testo generato. & R-73-F-De & S \\
     \hline
-    TS-061 & Verificare che l'Utente autenticato possa effettuare una ricerca full-text nel contenuto delle note salvate nel database$_G$. & R-61-F-Op & NI \\
+    TS-051 & Verificare che l'Utente possa fornire un URL come fonte di contesto per la generazione automatica di testo. & R-74-F-De & S \\
     \hline
-    TS-062 & Verificare che l'Utente autenticato possa filtrare le note del database$_G$ per data di creazione. & R-62-F-Op & NI \\
+    TS-052 & Verificare che l'Utente possa annullare una richiesta di elaborazione in corso. & R-79-F-De & S \\
     \hline
-    TS-063 & Verificare che l'Utente autenticato possa filtrare le note del database$_G$ per data di ultima modifica. & R-63-F-Op & NI \\
+    TS-053 & Verificare che l'Utente possa visualizzare le informazioni e i metadati di una nota selezionata. & R-97-F-De & NI \\
     \hline
-    TS-064 & Verificare che l'Utente non autenticato possa effettuare l'autenticazione tramite username e password. & R-64-F-Op & NI \\
+
+    TS-054 & Verificare che l'Utente autenticato possa selezionare manualmente note salvate nel database$_G$ da usare come contesto per la generazione automatica. & R-8-V-Op & NI \\
     \hline
-    TS-065 & Verificare che il Sistema$_G$ gestisca eventuali errori di autenticazione, mantenendo l'Utente disconnesso e mostrando un messaggio di errore. & R-65-F-Op & NI \\
+    TS-055 & Verificare che l'Utente autenticato possa creare una nuova nota nel database$_G$. & R-83-F-Op & NI \\
     \hline
-    TS-066 & Verificare che l'Utente non autenticato possa registrare un nuovo account. & R-66-F-Op & NI \\
+    TS-056 & Verificare che l'Utente autenticato possa caricare una nota dal database$_G$. & R-86-F-Op & NI \\
     \hline
-    TS-067 & Verificare che il Sistema$_G$ impedisca la registrazione con uno username già presente nel database$_G$. & R-67-F-Op & NI \\
+    TS-057 & Verificare che l'Utente autenticato possa salvare una nota nel database$_G$. & R-89-F-Op & NI \\
     \hline
-    TS-068 & Verificare che il Sistema$_G$ impedisca la registrazione se la password e la conferma password non coincidono. & R-68-F-Op & NI \\
+    TS-058 & Verificare che l'Utente autenticato possa eliminare una nota dal database$_G$. & R-92-F-Op & NI \\
     \hline
-    TS-069 & Verificare che l'Utente autenticato possa eliminare il proprio account e i dati cloud associati. & R-69-F-Op & NI \\
+    TS-059 & Verificare che l'Utente autenticato possa rinominare una nota salvata nel database$_G$. & R-95-F-Op & NI \\
     \hline
-    TS-070 & Verificare che l'Utente autenticato possa effettuare il logout. & R-70-F-Op & NI \\
+    TS-060 & Verificare che l'Utente autenticato possa cercare note nel database$_G$ per titolo. & R-98-F-Op & NI \\
+    \hline
+    TS-061 & Verificare che l'Utente autenticato possa effettuare una ricerca full-text nel contenuto delle note salvate nel database$_G$. & R-99-F-Op & NI \\
+    \hline
+    TS-062 & Verificare che l'Utente autenticato possa filtrare le note del database$_G$ per data di creazione. & R-100-F-Op & NI \\
+    \hline
+    TS-063 & Verificare che l'Utente autenticato possa filtrare le note del database$_G$ per data di ultima modifica. & R-101-F-Op & NI \\
+    \hline
+    TS-064 & Verificare che l'Utente non autenticato possa effettuare l'autenticazione tramite username e password. & R-102-F-Op & NI \\
+    \hline
+    TS-065 & Verificare che il Sistema$_G$ gestisca eventuali errori di autenticazione, mantenendo l'Utente disconnesso e mostrando un messaggio di errore. & R-103-F-Op & NI \\
+    \hline
+    TS-066 & Verificare che l'Utente non autenticato possa registrare un nuovo account. & R-104-F-Op & NI \\
+    \hline
+    TS-067 & Verificare che il Sistema$_G$ impedisca la registrazione con uno username già presente nel database$_G$. & R-105-F-Op & NI \\
+    \hline
+    TS-068 & Verificare che il Sistema$_G$ impedisca la registrazione se la password e la conferma password non coincidono. & R-106-F-Op & NI \\
+    \hline
+    TS-069 & Verificare che l'Utente autenticato possa eliminare il proprio account e i dati cloud associati. & R-107-F-Op & NI \\
+    \hline
+    TS-070 & Verificare che l'Utente autenticato possa effettuare il logout. & R-108-F-Op & NI \\
+    \hline
+
+    TS-071 & Verificare che il Sistema$_G$ visualizzi graficamente il contenuto Markdown$_G$ inserito dall'Utente, applicando la formattazione definita dai marcatori presenti nel testo. & R-2-F-Ob & S \\
+    \hline
+    TS-072 & Verificare che il Sistema$_G$ gestisca l'inserimento di un'immagine con URL$_G$ o percorso non valido, informando l'Utente e preservando il contenuto della nota. & R-40-F-De & NI \\
+    \hline
+    TS-073 & Verificare che il Sistema$_G$ consenta l'accesso al servizio LLM$_G$ per elaborare sia una porzione di testo selezionata sia l'intero documento. & R-54-F-Ob & S \\
+    \hline
+    TS-074 & Verificare che l'Utente possa scegliere la lingua di destinazione della traduzione. & R-58-F-Ob & S \\
+    \hline
+    TS-075 & Verificare che l'Utente possa scegliere lo stile da applicare nella riscrittura del testo. & R-60-F-Ob & S \\
+    \hline
+    TS-076 & Verificare che l'Utente possa ottenere un'analisi critica del testo secondo la prospettiva del Cappello Bianco, orientata a fatti e dati oggettivi. & R-65-F-Ob & S \\
+    \hline
+    TS-077 & Verificare che l'Utente possa ottenere un'analisi critica del testo secondo la prospettiva del Cappello Rosso, orientata a intuizioni ed emozioni. & R-66-F-Ob & S \\
+    \hline
+    TS-078 & Verificare che l'Utente possa ottenere un'analisi critica del testo secondo la prospettiva del Cappello Giallo, orientata a vantaggi e opportunità. & R-67-F-Ob & S \\
+    \hline
+    TS-079 & Verificare che l'Utente possa ottenere un'analisi critica del testo secondo la prospettiva del Cappello Nero, orientata a rischi e punti deboli. & R-68-F-Ob & S \\
+    \hline
+    TS-080 & Verificare che l'Utente possa ottenere un'analisi critica del testo secondo la prospettiva del Cappello Verde, orientata a nuove idee e alternative. & R-69-F-Ob & S \\
+    \hline
+    TS-081 & Verificare che l'Utente possa ottenere un'analisi critica del testo secondo la prospettiva del Cappello Blu, orientata a processo e prossimi passi. & R-70-F-Ob & S \\
+    \hline
+    TS-082 & Verificare che il Sistema$_G$ associ a ciascuna prospettiva dei Sei Cappelli per Pensare$_G$ un prompt$_G$ specifico, producendo analisi distinte per ogni cappello. & R-71-F-Ob & S \\
+    \hline
+    TS-083 & Verificare che il Sistema$_G$ mostri un indicatore di attesa per le operazioni di durata percepibile, come l'elaborazione da parte dell'LLM$_G$. & R-109-F-De & S \\
+    \hline
+    TS-084 & Verificare che ogni messaggio di errore mostrato all'Utente indichi causa e azione correttiva in linguaggio naturale, senza dettagli tecnici. & R-110-F-Ob & S \\
+    \hline
+    TS-085 & Verificare che l'area di editing sia in grado di ospitare testo su più righe. & R-111-F-Ob & S \\
+    \hline
+    TS-086 & Verificare che il linguaggio di riferimento per l'inserimento formattato dei testi sia Markdown$_G$. & R-112-F-Ob & S \\
+    \hline
+    TS-087 & Verificare che il Sistema$_G$ disponga di una componente di rendering che trasformi il testo Markdown$_G$ in una presentazione formattata, aggiornata a ogni modifica. & R-113-F-Ob & S \\
+    \hline
+    TS-088 & Verificare che l'Utente possa assegnare un titolo alla nota in fase di creazione. & R-114-F-Ob & S \\
+    \hline
+    TS-089 & Verificare che l'Utente possa modificare il testo di un titolo esistente, mantenendone la formattazione. & R-115-F-Ob & S \\
+    \hline
+    TS-090 & Verificare che l'Utente possa modificare il testo di un sottotitolo esistente, mantenendone la formattazione. & R-116-F-Ob & S \\
+    \hline
+    TS-091 & Verificare che l'Utente possa modificare il testo di un elenco esistente, mantenendone la formattazione. & R-117-F-De & S \\
+    \hline
+    TS-092 & Verificare che l'Utente possa modificare il testo di un blocco di citazione esistente, mantenendone la formattazione. & R-118-F-De & S \\
+    \hline
+    TS-093 & Verificare che l'Utente possa modificare il testo di un blocco di codice sorgente esistente, mantenendone la formattazione. & R-119-F-De & S \\
+    \hline
+    TS-094 & Verificare che l'Utente possa modificare il testo di una formula scientifica o matematica esistente, mantenendone la formattazione. & R-120-F-De & S \\
+    \hline
+    TS-095 & Verificare che l'Utente possa modificare il testo di un collegamento ipertestuale esistente, mantenendone la formattazione. & R-121-F-De & S \\
+    \hline
+    TS-096 & Verificare che l'Utente possa modificare il testo di un'ancora di navigazione esistente, mantenendone la formattazione. & R-122-F-De & NI \\
     \hline
    \caption{Test di sistema principali} 
 \end{longtable}
@@ -789,13 +836,13 @@ I test$_G$ di accettazione validano il sistema$_G$ rispetto agli scenari d'uso p
 \endfoot
 \caption{Test di accettazione principali.}\label{tab:test-accettazione-principali}\\
 \endlastfoot
-TA-001 & L'utente scrive una nota in formato Markdown, ne osserva l'anteprima formattata e salva il contenuto su file locale. & UC 1, UC 70 & NI \\ \hline
-TA-002 & L'utente seleziona una porzione di testo e ne richiede il riassunto all'LLM$_G$, scegliendo se porre il risultato in coda o in sostituzione della selezione. & UC 52 & NI \\ \hline
-TA-003 & L'utente richiede una riscrittura del testo specificando il tipo di intervento (sistemazione grammaticale, cambio di tono, estensione o riduzione) e la modalità di inserimento del risultato. & UC 54, UC 55 & NI \\ \hline
-TA-004 & L'utente richiede al sistema$_G$ la traduzione del testo, indicando la lingua di destinazione e la modalità di inserimento del risultato. & UC 53 & NI \\ \hline
-TA-005 & L'utente applica in sequenza al testo le sei analisi dei cappelli (bianco, rosso, giallo, nero, verde, blu). & UC 56 & NI \\ \hline
-TA-006 & L'utente inserisce un prompt nell'apposito pannello e avvia la generazione dell'intero testo da parte dell'LLM$_G$. & UC 57 & NI \\ \hline
-TA-007 & Partendo da una nota salvata in precedenza, l'utente la carica da file locale e ne riprende la modifica nell'area di editing. & UC 67 & NI \\ \hline
+TA-001 & L'utente scrive una nota in formato Markdown, ne osserva l'anteprima formattata e salva il contenuto su file locale. & UC 1, UC 78 & S \\ \hline
+TA-002 & L'utente seleziona una porzione di testo e ne richiede il riassunto all'LLM$_G$, scegliendo il livello di sintesi; accettando l'output, il riassunto sostituisce la porzione selezionata. & UC 62, UC 68 & S \\ \hline
+TA-003 & L'utente richiede all'LLM$_G$ una riscrittura del testo scegliendo lo stile da applicare (formale, informale o accademico) e, come intervento distinto, la correzione grammaticale; accettando l'output, il testo riscritto sostituisce quello di partenza. & UC 64, UC 65 & S \\ \hline
+TA-004 & L'utente richiede al sistema$_G$ la traduzione del testo indicando la lingua di destinazione fra quelle supportate; accettando l'output, la traduzione sostituisce il testo di partenza. & UC 63 & S \\ \hline
+TA-005 & L'utente applica in sequenza al testo le sei analisi dei cappelli (bianco, rosso, giallo, nero, verde, blu). & UC 66 & S \\ \hline
+TA-006 & L'utente inserisce un prompt nell'apposito pannello e avvia la generazione dell'intero testo da parte dell'LLM$_G$. & UC 67 & S \\ \hline
+TA-007 & Partendo da una nota salvata in precedenza, l'utente la carica da file locale e ne riprende la modifica nell'area di editing. & UC 76 & S \\ \hline
 \end{longtable}
 \endgroup
 
@@ -1297,6 +1344,609 @@ Dal calcolo sono state escluse le metriche di correttezza dei documenti, in quan
     \includegraphics[width=1\textwidth]{charts/pms.pdf}
     \caption{Valutazione \textit{Percentuale di Metriche Soddisfatte}}
     \label{fig:pms}
+\end{figure}
+
+
+\subsection{Valutazione della copertura dei requisiti}
+\begin{table}[H]
+    \centering
+    \small
+    \setlength{\tabcolsep}{4pt}
+	\begin{tabular}{|c|>{\centering\arraybackslash}p{1.7cm}|>{\centering\arraybackslash}p{1.9cm}|>{\centering\arraybackslash}p{1.7cm}|>{\centering\arraybackslash}p{1.9cm}|>{\centering\arraybackslash}p{1.7cm}|>{\centering\arraybackslash}p{1.9cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{MPD-CRO (\%)} & \textbf{Giudizio} & \textbf{MPD-CRD (\%)} & \textbf{Giudizio} & \textbf{MPD-CROp (\%)} & \textbf{Giudizio} \\
+		\hline
+		8 & 56,5\% & Critico & 35,1\% & Critico & 0,0\% & Accettabile \\
+		\hline
+        9 & 75,6\% & Critico & 50,2\% & Accettabile & 0,0\% & Accettabile \\
+        \hline
+        10 & 90,9\% & Critico & 62,5\% & Accettabile & 0,0\% & Accettabile \\
+        \hline
+        11 & 100,0\% & Ottimo & 70,2\% & Accettabile & 0,0\% & Accettabile \\
+        \hline
+	\end{tabular}
+	\caption{Copertura dei requisiti$_G$ obbligatori, desiderabili e opzionali per sprint}
+	\label{tab:mpd-cr}
+\end{table}
+\subsubsection{PB (Sprint 8--11)}
+La copertura dei requisiti$_G$ obbligatori parte dal 56,5\% dell'ottavo sprint$_G$, quando il prodotto è ancora il \textit{Proof of Concept}$_G$ e realizza le sole funzioni di editing e due funzioni basate sull'LLM$_G$, e raggiunge il 100\% nell'undicesimo, in concomitanza con il completamento dell'MVP$_G$. La crescita si concentra negli sprint$_G$ 9 e 10, i due periodi dedicati all'implementazione$_G$ vera e propria.
+
+La copertura dei requisiti$_G$ desiderabili cresce progressivamente fino al 70,2\%. Il gruppo ha cercato di implementare anche i desiderabili, ma la priorità è stata data al completamento degli obbligatori; restano fuori l'eliminazione e la rinomina delle note sul File System, la sincronizzazione dello scorrimento fra editor e anteprima e la dettatura vocale.
+
+La copertura dei requisiti$_G$ opzionali rimane costantemente a zero per tutta la \textit{Product Baseline}$_G$. Gli opzionali presuppongono un database$_G$ e un meccanismo di autenticazione, e nella riunione del 4 agosto 2026 il gruppo ha deliberato di non implementare alcun database$_G$, privilegiando la qualità complessiva del sistema$_G$ rispetto a funzionalità non richieste dal capitolato$_G$. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $CRO = 100\%$, vincolo \textit{rispettato} nello sprint$_G$ 11.
+    \item \textbf{Valore ottimale:} $CRO = 100\%$, vincolo \textit{rispettato} nello sprint$_G$ 11.
+    \item \textbf{Valore accettabile:} $CRD \geq 50\%$, vincolo \textit{rispettato} in tre sprint$_G$ su quattro.
+    \item \textbf{Valore ottimale:} $CRD \geq 80\%$, vincolo \textit{violato}.
+    \item \textbf{Valore accettabile:} $CROp \geq 0\%$, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $CROp \geq 60\%$, vincolo \textit{violato}.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/mpd-cr.pdf}
+    \caption{Valutazione \textit{Copertura dei requisiti}}
+    \label{fig:mpd-cr}
+\end{figure}
+
+\subsection{Valutazione MPD-CLLM}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Copertura funzioni LLM$_G$ obbligatorie (\%)} & \textbf{Giudizio} \\
+		\hline
+		8 & 42,9\% & Critico \\
+		\hline
+        9 & 68,6\% & Critico \\
+        \hline
+        10 & 88,6\% & Critico \\
+        \hline
+        11 & 100,0\% & Ottimo \\
+        \hline
+	\end{tabular}
+	\caption{Copertura delle funzioni LLM$_G$ obbligatorie per sprint}
+	\label{tab:mpd-cllm}
+\end{table}
+\subsubsection{PB (Sprint 8--11)}
+Delle sette funzioni basate sull'LLM$_G$ richieste dal capitolato$_G$, il \textit{Proof of Concept}$_G$ ne rendeva operative due: il riassunto e la generazione da \textit{prompt}$_G$. Traduzione, riscrittura stilistica, correzione grammaticale e analisi secondo i Sei Cappelli per Pensare$_G$ comparivano nella barra dei comandi ma risultavano disabilitate, perché il backend non esponeva le rotte corrispondenti.
+
+L'implementazione$_G$ delle funzioni mancanti è stata distribuita fra il nono e il decimo sprint$_G$, seguendo la ripartizione del lavoro decisa nelle rispettive riunioni di apertura, e al termine dell'undicesimo tutte e sette risultano operative e verificate$_G$ con esito positivo. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $CLLM = 100\%$, vincolo \textit{rispettato} nello sprint$_G$ 11.
+    \item \textbf{Valore ottimale:} $CLLM = 100\%$, vincolo \textit{rispettato} nello sprint$_G$ 11.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/mpd-cllm.pdf}
+    \caption{Valutazione \textit{Copertura funzioni LLM obbligatorie}}
+    \label{fig:mpd-cllm}
+\end{figure}
+
+\subsection{Valutazione MPD-CMD}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Correttezza rendering Markdown$_G$ (\%)} & \textbf{Giudizio} \\
+		\hline
+		8 & 95,0\% & Accettabile \\
+		\hline
+        9 & 96,8\% & Accettabile \\
+        \hline
+        10 & 98,6\% & Accettabile \\
+        \hline
+        11 & 100,0\% & Ottimo \\
+        \hline
+	\end{tabular}
+	\caption{Correttezza del rendering Markdown$_G$ per sprint}
+	\label{tab:mpd-cmd}
+\end{table}
+\subsubsection{PB (Sprint 8--11)}
+Il rendering Markdown$_G$ era già solido nel \textit{Proof of Concept}$_G$, difatti intestazioni, stili del testo, elenchi, citazioni, tabelle, formule matematiche e blocchi di codice venivano resi correttamente fin dal prototipo, che nasceva proprio per dimostrare la fattibilità dell'editor.
+
+L'unico costrutto che il prototipo non rendeva era il testo sottolineato, che il linguaggio Markdown$_G$ non prevede in modo nativo e che è stato introdotto nell'MVP$_G$ con un'estensione dedicata della pipeline di rendering, scritta in modo da non richiedere l'abilitazione dell'HTML grezzo. Con essa il valore raggiunge la soglia ottimale nell'undicesimo sprint$_G$. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $CMD \geq 95\%$ dei casi previsti, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $CMD = 100\%$ dei casi previsti, vincolo \textit{rispettato} nello sprint$_G$ 11.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/mpd-cmd.pdf}
+    \caption{Valutazione \textit{Correttezza rendering Markdown}}
+    \label{fig:mpd-cmd}
+\end{figure}
+
+\subsection{Valutazione MPD-SN}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Salvataggio e recupero note (\%)} & \textbf{Giudizio} \\
+		\hline
+		8 & 50,0\% & Critico \\
+		\hline
+        9 & 71,4\% & Critico \\
+        \hline
+        10 & 89,3\% & Critico \\
+        \hline
+        11 & 100,0\% & Ottimo \\
+        \hline
+	\end{tabular}
+	\caption{Salvataggio e recupero delle note per sprint}
+	\label{tab:mpd-sn}
+\end{table}
+\subsubsection{PB (Sprint 8--11)}
+Nel \textit{Proof of Concept}$_G$ il salvataggio e il recupero delle note funzionavano solo per metà. Il percorso verso il File System locale era completo e affidabile; il testo dell'editor veniva scritto su file e riletto senza alterazioni, come richiesto dai requisiti$_G$ obbligatori. Non funzionava invece la conservazione delle note dentro l'applicazione; passando da una nota all'altra, o ricaricando la pagina, il contenuto andava perduto, e il comando di salvataggio della barra degli strumenti era presente ma privo di effetto, essendo il prototipo concentrato sulla dimostrazione delle funzioni basate sull'LLM$_G$ più che sulla gestione dell'archivio.
+
+La catena di persistenza interna è stata completata negli sprint$_G$ 9 e 10 insieme al resto dell'MVP$_G$. Nell'undicesimo sprint$_G$ entrambi i percorsi restituiscono il contenuto integro, compresi i casi più esposti come i testi di lunghezza elevata, i caratteri accentati e i metacaratteri del linguaggio. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $SN = 100\%$ dei casi obbligatori, vincolo \textit{rispettato} nello sprint$_G$ 11.
+    \item \textbf{Valore ottimale:} $SN = 100\%$ dei casi obbligatori, vincolo \textit{rispettato} nello sprint$_G$ 11.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/mpd-sn.pdf}
+    \caption{Valutazione \textit{Salvataggio e recupero note}}
+    \label{fig:mpd-sn}
+\end{figure}
+
+\subsection{Valutazione MPD-DL}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Data Loss (occorrenze)} & \textbf{Giudizio} \\
+		\hline
+		8 & 7 & Critico \\
+		\hline
+        9 & 4 & Critico \\
+        \hline
+        10 & 2 & Critico \\
+        \hline
+        11 & 0 & Ottimo \\
+        \hline
+	\end{tabular}
+	\caption{Occorrenze di perdita o alterazione del contenuto per sprint}
+	\label{tab:mpd-dl}
+\end{table}
+\subsubsection{PB (Sprint 8--11)}
+Le occorrenze di perdita rilevate nell'ottavo sprint$_G$ discendono direttamente dalla persistenza incompleta descritta nella sottosezione precedente. Ogni nota affidata alla sola memoria dell'applicazione perdeva il proprio contenuto, mentre nessuna perdita si verificava sul percorso verso il File System.
+
+Il completamento della persistenza interna negli sprint$_G$ 9 e 10 riduce progressivamente le occorrenze, e la campagna di verifica$_G$ dell'undicesimo sprint$_G$ non ne rileva alcuna perchè il contenuto viene restituito identico in tutti i casi provati. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $0$ perdite nei casi principali, vincolo \textit{rispettato} nello sprint$_G$ 11.
+    \item \textbf{Valore ottimale:} $0$ perdite in ogni test$_G$, vincolo \textit{rispettato} nello sprint$_G$ 11.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/mpd-dl.pdf}
+    \caption{Valutazione \textit{Data Loss}}
+    \label{fig:mpd-dl}
+\end{figure}
+
+\subsection{Valutazione MPD-EH}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Error Handling (\%)} & \textbf{Giudizio} \\
+		\hline
+		8 & 80,0\% & Critico \\
+		\hline
+        9 & 83,7\% & Critico \\
+        \hline
+        10 & 87,2\% & Critico \\
+        \hline
+        11 & 90,0\% & Accettabile \\
+        \hline
+	\end{tabular}
+	\caption{Gestione delle condizioni d'errore per sprint}
+	\label{tab:mpd-eh}
+\end{table}
+\subsubsection{PB (Sprint 8--11)}
+La gestione degli errori parte da un livello discreto ma incompleto. Il \textit{Proof of Concept}$_G$ rifiutava correttamente gli input$_G$ troppo brevi e i campi obbligatori mancanti, ma accettava senza obiezioni testi di qualunque lunghezza, non avendo alcun limite superiore, e soprattutto restituiva all'utente la struttura tecnica prodotta dalla libreria di validazione anziché un messaggio comprensibile.
+
+Il recupero progressivo negli sprint$_G$ 9 e 10 accompagna il completamento del backend, mentre il passo decisivo arriva con la rifinitura dell'undicesimo sprint$_G$, che introduce i limiti superiori sui testi e riscrive tutte le risposte d'errore in linguaggio naturale, indicando il campo interessato e l'azione correttiva. Il valore raggiunge così la soglia di accettabilità. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $EH \geq 90\%$ degli errori gestiti, vincolo \textit{rispettato} nello sprint$_G$ 11.
+    \item \textbf{Valore ottimale:} $EH = 100\%$ degli errori gestiti, vincolo \textit{violato}.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/mpd-eh.pdf}
+    \caption{Valutazione \textit{Error Handling}}
+    \label{fig:mpd-eh}
+\end{figure}
+
+\subsection{Valutazione MPD-AR}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Availability Rate (\%)} & \textbf{Giudizio} \\
+		\hline
+		8 & 100,0\% & Ottimo \\
+		\hline
+        9 & 100,0\% & Ottimo \\
+        \hline
+        10 & 100,0\% & Ottimo \\
+        \hline
+        11 & 100,0\% & Ottimo \\
+        \hline
+	\end{tabular}
+	\caption{Disponibilità del servizio LLM$_G$ esterno per sprint}
+	\label{tab:mpd-ar}
+\end{table}
+\subsubsection{PB (Sprint 8--11)}
+Durante le sessioni di test$_G$ il servizio LLM$_G$ messo a disposizione dal proponente$_G$ ha risposto a tutte le richieste senza segnalare la propria indisponibilità, e il valore si mantiene quindi al massimo in tutti e quattro gli sprint$_G$. È la stessa condizione verificata$_G$ dal test$_G$ di integrazione TI-001 nella Tabella \ref{tab:test-integrazione}.
+
+Il dato va però letto con una precisazione, perché non racconta l'intero periodo. Nel lavoro quotidiano di sviluppo il servizio non è sempre stato raggiungibile, infatti in più occasioni i programmatori$_G$ hanno dovuto sospendere le prove sulle funzioni basate sull'LLM$_G$ e attendere il ripristino. La metrica misura la disponibilità osservata nelle sessioni di verifica$_G$, non la disponibilità media del periodo, e resta legata a un sistema$_G$ esterno sul quale il gruppo non ha alcun controllo. È anche la ragione per cui il prodotto deve trattare l'indisponibilità come una normale condizione d'errore, aspetto coperto da MPD-EH e verificato$_G$ esplicitamente fra i casi di prova. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $AR \geq 95\%$ durante i test$_G$, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $AR \geq 99\%$ durante i test$_G$, vincolo \textit{sempre rispettato}.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/mpd-ar.pdf}
+    \caption{Valutazione \textit{Availability Rate}}
+    \label{fig:mpd-ar}
+\end{figure}
+
+\subsection{Valutazione MPD-LT}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Learning Time (minuti)} & \textbf{Giudizio} \\
+		\hline
+		8 & 22 & Accettabile \\
+		\hline
+        9 & 17 & Accettabile \\
+        \hline
+        10 & 12 & Accettabile \\
+        \hline
+        11 & 8 & Ottimo \\
+        \hline
+	\end{tabular}
+	\caption{Tempo di apprendimento per sprint}
+	\label{tab:mpd-lt}
+\end{table}
+\subsubsection{PB (Sprint 8--11)}
+Il tempo necessario a un utente per completare con successo una funzionalità la prima volta risente soprattutto dei comandi annunciati ma non funzionanti. Nell'ottavo sprint$_G$ l'interfaccia del \textit{Proof of Concept}$_G$ esponeva tre azioni basate sull'LLM$_G$ disabilitate e un comando di salvataggio privo di effetto, chi provava quei comandi non otteneva nulla e doveva ricostruire da sé che cosa il prodotto sapesse davvero fare.
+
+Con il completamento delle funzioni negli sprint$_G$ 9 e 10 e la revisione delle etichette nell'undicesimo, nessun comando visibile resta inerte. Il valore scende sotto la soglia ottimale nonostante il numero di funzioni disponibili sia quasi raddoppiato fra i due estremi, questa è la conferma che il costo di apprendimento dipendeva dai comandi inerti più che dalla quantità di funzioni. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $LT \leq 30$ minuti, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $LT \leq 10$ minuti, vincolo \textit{rispettato} nello sprint$_G$ 11.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/mpd-lt.pdf}
+    \caption{Valutazione \textit{Learning Time}}
+    \label{fig:mpd-lt}
+\end{figure}
+
+\subsection{Valutazione MPD-NE}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Navigation Errors (errori per scenario)} & \textbf{Giudizio} \\
+		\hline
+		8 & 2,4 & Accettabile \\
+		\hline
+        9 & 1,7 & Accettabile \\
+        \hline
+        10 & 1,0 & Accettabile \\
+        \hline
+        11 & 0,4 & Accettabile \\
+        \hline
+	\end{tabular}
+	\caption{Errori di navigazione per scenario per sprint}
+	\label{tab:mpd-ne}
+\end{table}
+\subsubsection{PB (Sprint 8--11)}
+Gli errori di navigazione hanno la stessa origine del tempo di apprendimento e seguono lo stesso andamento, come si nota nell'ottavo sprint$_G$ quattro comandi su tredici non producevano l'effetto annunciato dalla propria etichetta, e ogni tentativo su di essi contava come azione errata.
+
+La riduzione è costante ma il valore non arriva a zero. La ragione è un passaggio dell'interfaccia che resta poco immediato anche nell'MVP$_G$; la scelta della prospettiva nell'analisi secondo i Sei Cappelli per Pensare$_G$, dove l'utente deve selezionare uno fra sei cappelli senza che il significato di ciascuno sia esplicitato nel comando. È il motivo per cui il giudizio resta \textit{Accettabile} in tutti e quattro gli sprint$_G$ e non raggiunge mai quello ottimale. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $NE \leq 3$ errori per scenario, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $NE = 0$ errori per scenario, vincolo \textit{violato}.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/mpd-ne.pdf}
+    \caption{Valutazione \textit{Navigation Errors}}
+    \label{fig:mpd-ne}
+\end{figure}
+
+\subsection{Valutazione della coerenza e della comprensibilità dell'interfaccia}
+\begin{table}[H]
+    \centering
+	\small
+    \setlength{\tabcolsep}{4pt}
+	\begin{tabular}{|c|>{\centering\arraybackslash}p{2.1cm}|>{\centering\arraybackslash}p{2.2cm}|>{\centering\arraybackslash}p{2.1cm}|>{\centering\arraybackslash}p{2.2cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{MPD-UI (\%)} & \textbf{Giudizio} & \textbf{MPD-FU (\%)} & \textbf{Giudizio} \\
+		\hline
+		8 & 97,2\% & Accettabile & 78,9\% & Critico \\
+		\hline
+        9 & 97,5\% & Accettabile & 85,3\% & Accettabile \\
+        \hline
+        10 & 97,8\% & Accettabile & 91,2\% & Accettabile \\
+        \hline
+        11 & 98,0\% & Accettabile & 95,7\% & Ottimo \\
+        \hline
+	\end{tabular}
+	\caption{Coerenza e comprensibilità dell'interfaccia per sprint}
+	\label{tab:mpd-ui-fu}
+\end{table}
+\subsubsection{PB (Sprint 8--11)}
+La coerenza dell'interfaccia era già una qualità del prototipo e si è mantenuta al crescere del numero di elementi, quasi raddoppiati fra i due estremi. Gli unici scostamenti riguardano i comandi di cambio vista, rimasti invariati nei due prodotti, questo è il motivo per cui il valore ottimale non viene mai raggiunto, pur restando sempre ampiamente sopra la soglia di accettabilità.
+
+La comprensibilità delle funzioni ha invece un andamento molto più netto. Nell'ottavo sprint$_G$ quattro comandi su diciannove annunciavano una funzione che non producevano, e l'etichetta \textit{Migliora} non lasciava intuire quale trasformazione sarebbe stata applicata al testo, il valore risultava perciò appena sotto la soglia di accettabilità. L'attivazione progressiva delle funzioni e la riscrittura delle etichette in termini espliciti \textit{Riscrivi}, \textit{Grammatica}, \textit{Analisi} portano il valore oltre la soglia ottimale nell'undicesimo sprint$_G$. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $UI \geq 90\%$ degli elementi coerenti, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $UI = 100\%$ degli elementi coerenti, vincolo \textit{violato}.
+    \item \textbf{Valore accettabile:} $FU \geq 80\%$ delle funzioni comprese senza guida, vincolo \textit{rispettato} in tre sprint$_G$ su quattro.
+    \item \textbf{Valore ottimale:} $FU \geq 95\%$ delle funzioni comprese senza guida, vincolo \textit{rispettato} nello sprint$_G$ 11.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/mpd-ui-fu.pdf}
+    \caption{Valutazione \textit{UI Consistency} e \textit{Feature Understandability}}
+    \label{fig:mpd-ui-fu}
+\end{figure}
+
+\subsection{Valutazione dei tempi di risposta dell'interfaccia}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|l|l|p{2.3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{MPD-RT (s)} & \textbf{MPD-MRT (s)} & \textbf{MPD-LS (s)} & \textbf{Giudizio} \\
+		\hline
+		8 & 0,0113 & 0,0118 & 0,1560 & Ottimo \\
+		\hline
+        9 & 0,0110 & 0,0108 & 0,1546 & Ottimo \\
+        \hline
+        10 & 0,0107 & 0,0098 & 0,1531 & Ottimo \\
+        \hline
+        11 & 0,0104 & 0,0089 & 0,1520 & Ottimo \\
+        \hline
+	\end{tabular}
+	\caption{Tempi di risposta dell'interfaccia locale per sprint}
+	\label{tab:mpd-tempi-ui}
+\end{table}
+\subsubsection{PB (Sprint 8--11)}
+Le tre metriche condividono un'unica colonna di giudizio perché il giudizio è il medesimo per tutte e tre in ogni sprint$_G$. I tempi di risposta dell'interfaccia locale restano infatti largamente entro le soglie lungo tutta la \textit{Product Baseline}$_G$, si tratta di operazioni che non attraversano la rete, mentre le soglie del capitolo 3 erano state fissate pensando a un'applicazione che dialoga con un servizio remoto a ogni interazione.
+
+Il miglioramento fra l'ottavo e l'undicesimo sprint$_G$ è reale e ha una causa individuabile, ovvero l'unificazione della pipeline di rendering in un unico componente condiviso ha alleggerito l'aggiornamento dell'anteprima, che è la più onerosa delle tre operazioni. La sua entità resta però trascurabile rispetto ai vincoli. Le tre metriche non hanno quindi potere discriminante nella forma attuale e andrebbero ritarate su soglie più stringenti per risultare informative. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $RT \leq 2$ secondi, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $RT \leq 0{,}5$ secondi, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore accettabile:} $MRT \leq 1$ secondo, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $MRT \leq 0{,}3$ secondi, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore accettabile:} $LS \leq 3$ secondi, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $LS \leq 1$ secondo, vincolo \textit{sempre rispettato}.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/mpd-tempi-ui.pdf}
+    \caption{Valutazione \textit{Response Time}, \textit{Markdown Rendering Time} e \textit{Loading Speed}}
+    \label{fig:mpd-tempi-ui}
+\end{figure}
+
+\subsection{Valutazione MPD-LLMRT}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{LLM$_G$ Response Time (s)} & \textbf{Giudizio} \\
+		\hline
+		8 & 3,06 & Ottimo \\
+		\hline
+        9 & 2,43 & Ottimo \\
+        \hline
+        10 & 1,86 & Ottimo \\
+        \hline
+        11 & 1,40 & Ottimo \\
+        \hline
+	\end{tabular}
+	\caption{Tempo di risposta delle chiamate al servizio LLM$_G$ per sprint}
+	\label{tab:mpd-llmrt}
+\end{table}
+\subsubsection{PB (Sprint 8--11)}
+Il tempo di risposta del servizio LLM$_G$ si dimezza fra l'ottavo e l'undicesimo sprint$_G$ pur restando invariato il fornitore. La riduzione è l'effetto della revisione del modo in cui la richiesta viene costruita, nel \textit{Proof of Concept}$_G$ il testo veniva inoltrato così com'era, senza alcun limite di lunghezza e con i \textit{prompt}$_G$ composti direttamente nelle rotte, mentre nell'MVP$_G$ la composizione è stata affidata a un modulo dedicato del dominio e gli ingressi sono limitati superiormente, così che la lunghezza inviata al modello non possa crescere senza controllo.
+
+Entrambi i valori restano comunque ampiamente entro la soglia ottimale. Va segnalato che la misura dipende dal modello configurato e dal carico del servizio nel momento della rilevazione, perchè un modello di dimensioni maggiori sposterebbe l'intera serie verso l'alto senza che nulla sia cambiato nel prodotto. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $LLMRT \leq 15$ secondi, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $LLMRT \leq 8$ secondi, vincolo \textit{sempre rispettato}.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/mpd-llmrt.pdf}
+    \caption{Valutazione \textit{LLM Response Time}}
+    \label{fig:mpd-llmrt}
+\end{figure}
+
+\subsection{Valutazione MPD-CYC}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Complessità ciclomatica (media)} & \textbf{Giudizio} \\
+		\hline
+		8 & 4,08 & Critico \\
+		\hline
+        9 & 3,98 & Accettabile \\
+        \hline
+        10 & 3,88 & Accettabile \\
+        \hline
+        11 & 3,83 & Accettabile \\
+        \hline
+	\end{tabular}
+	\caption{Complessità ciclomatica media per sprint}
+	\label{tab:mpd-cyc}
+\end{table}
+\subsubsection{PB (Sprint 8--11)}
+La complessità ciclomatica media si riduce lungo tutta la \textit{Product Baseline}$_G$ e rientra nella soglia di accettabilità già dal nono sprint$_G$. Il valore è calcolato sulle funzioni che contengono almeno una diramazione, le funzioni prive di flusso di controllo hanno per definizione complessità unitaria e, essendo la maggioranza in un'applicazione a componenti, diluirebbero la media fino a renderla insensibile a qualunque cambiamento del codice.
+
+Il valore iniziale risente del \textit{Proof of Concept}$_G$, scritto rapidamente per dimostrare la fattibilità e con la logica delle azioni basate sull'LLM$_G$ concentrata dentro le finestre dell'interfaccia. Il lavoro degli sprint$_G$ 9 e 10 ha spostato quella logica nei servizi del dominio e nei moduli dedicati alla composizione dei \textit{prompt}$_G$, riducendo le diramazioni nelle singole funzioni; l'undicesimo sprint$_G$ ha aggiunto la rifinitura dei percorsi d'errore.
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $CYC \leq 4$, vincolo \textit{rispettato} dallo sprint$_G$ 9.
+    \item \textbf{Valore ottimale:} $CYC \leq 3$, vincolo \textit{violato}.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/mpd-cyc.pdf}
+    \caption{Valutazione \textit{Complessità ciclomatica}}
+    \label{fig:mpd-cyc}
+\end{figure}
+
+\subsection{Valutazione MPD-CS}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Code Smell (per componente)} & \textbf{Giudizio} \\
+		\hline
+		8 & 3,00 & Accettabile \\
+		\hline
+        9 & 1,65 & Accettabile \\
+        \hline
+        10 & 0,60 & Ottimo \\
+        \hline
+        11 & 0,00 & Ottimo \\
+        \hline
+	\end{tabular}
+	\caption{Code smell per componente per sprint}
+	\label{tab:mpd-cs}
+\end{table}
+\subsubsection{PB (Sprint 8--11)}
+I rilievi dell'analisi statica erano concentrati nel backend del \textit{Proof of Concept}$_G$, scritto rapidamente per dimostrare la fattibilità dell'integrazione con il servizio LLM$_G$ e mai sottoposto a una revisione sistematica, avendo l'ordinamento degli \textit{import} non conforme, righe eccedenti la lunghezza massima, eccezioni propagate senza catena di origine. Il frontend del prototipo non ne presentava alcuno.
+
+Il decimo sprint$_G$ è il periodo in cui il valore attraversa la soglia ottimale, e la coincidenza non è casuale, difatti è lo sprint$_G$ in cui il codice è stato portato a completamento con tre programmatori$_G$ e sottoposto a revisione da quattro verificatori$_G$, la distribuzione più ampia del ruolo in tutto il progetto. Nell'undicesimo i rilievi si azzerano su entrambi i lati. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $CS \leq 5$ per componente, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $CS \leq 1$ per componente, vincolo \textit{rispettato} dallo sprint$_G$ 10.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/mpd-cs.pdf}
+    \caption{Valutazione \textit{Code Smell}}
+    \label{fig:mpd-cs}
+\end{figure}
+
+\subsection{Valutazione MPD-DUP}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Duplicazione del codice (\%)} & \textbf{Giudizio} \\
+		\hline
+		8 & 2,89\% & Ottimo \\
+		\hline
+        9 & 1,88\% & Ottimo \\
+        \hline
+        10 & 1,06\% & Ottimo \\
+        \hline
+        11 & 0,55\% & Ottimo \\
+        \hline
+	\end{tabular}
+	\caption{Duplicazione del codice per sprint}
+	\label{tab:mpd-dup}
+\end{table}
+\subsubsection{PB (Sprint 8--11)}
+La duplicazione resta entro la soglia ottimale in tutti e quattro gli sprint$_G$, ma la sua riduzione ha una causa precisa e vale la pena registrarla. Nel \textit{Proof of Concept}$_G$ la pipeline di rendering Markdown$_G$ era ripetuta in tre componenti distinti, l'anteprima e le due finestre delle azioni basate sull'LLM$_G$ ed era da sola responsabile della quasi totalità delle righe duplicate.
+
+Nell'MVP$_G$ la stessa pipeline vive in un unico componente condiviso da tutte le anteprime, e la duplicazione residua si riduce a poche righe di configurazione. Il dato va letto insieme alla crescita del codice, quasi raddoppiato nello stesso periodo; la percentuale cala mentre il denominatore aumenta, il che significa che le righe duplicate sono diminuite in valore assoluto e non solo in proporzione. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $DUP \leq 10\%$, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $DUP \leq 3\%$, vincolo \textit{sempre rispettato}.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/mpd-dup.pdf}
+    \caption{Valutazione \textit{Duplicazione del codice}}
+    \label{fig:mpd-dup}
+\end{figure}
+
+\subsection{Valutazione MPD-MOD}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|p{3cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Modularità (adimensionale, 0--1)} & \textbf{Giudizio} \\
+		\hline
+		8 & 0,54 & Accettabile \\
+		\hline
+        9 & 0,54 & Accettabile \\
+        \hline
+        10 & 0,54 & Accettabile \\
+        \hline
+        11 & 0,54 & Accettabile \\
+        \hline
+	\end{tabular}
+	\caption{Grado di accoppiamento fra i moduli per sprint}
+	\label{tab:mpd-mod}
+\end{table}
+\subsubsection{PB (Sprint 8--11)}
+Il grado di accoppiamento resta invariato lungo i quattro sprint$_G$, e il risultato è meno sorprendente di quanto appaia. La metrica è un rapporto fra le dipendenze presenti fra i moduli e quelle astrattamente possibili, e si muove soltanto se le due grandezze cambiano in proporzione diversa. La ristrutturazione del decimo sprint$_G$ ha riorganizzato i \textit{package}$_G$ attorno all'architettura$_G$ esagonale, ma ha introdotto dipendenze in proporzione ai \textit{package}$_G$ aggiunti, lasciando il rapporto dov'era.
+
+Il miglioramento c'è ed è visibile nella forma del grafo delle dipendenze anziché nel suo rapporto. Nel prototipo l'unica dipendenza del backend collegava le rotte a un \textit{package}$_G$ che portava il nome di una tecnologia; nell'MVP$_G$ tutte le dipendenze convergono verso il \textit{package}$_G$ di dominio, che non dipende da nulla, ed è esattamente l'assetto deliberato nella riunione del 4 agosto 2026, che nello stesso sprint$_G$ aveva assegnato ai programmatori$_G$ la verifica$_G$ esplicita del livello di accoppiamento. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $MOD \leq 0{,}60$, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $MOD \leq 0{,}45$, vincolo \textit{violato}.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/mpd-mod.pdf}
+    \caption{Valutazione \textit{Modularità}}
+    \label{fig:mpd-mod}
+\end{figure}
+
+\subsection{Valutazione della sicurezza dei dati e degli accessi}
+\begin{table}[H]
+    \centering
+    \small
+    \setlength{\tabcolsep}{4pt}
+	\begin{tabular}{|c|>{\centering\arraybackslash}p{1.7cm}|>{\centering\arraybackslash}p{1.9cm}|>{\centering\arraybackslash}p{1.7cm}|>{\centering\arraybackslash}p{1.9cm}|>{\centering\arraybackslash}p{1.7cm}|>{\centering\arraybackslash}p{1.9cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{MPD-SK (chiavi)} & \textbf{Giudizio} & \textbf{MPD-IV (\%)} & \textbf{Giudizio} & \textbf{MPD-DS (\%)} & \textbf{Giudizio} \\
+		\hline
+		8 & 0 & Ottimo & 50,0\% & Critico & 100,0\% & Ottimo \\
+		\hline
+        9 & 0 & Ottimo & 72,0\% & Critico & 100,0\% & Ottimo \\
+        \hline
+        10 & 0 & Ottimo & 89,5\% & Critico & 100,0\% & Ottimo \\
+        \hline
+        11 & 0 & Ottimo & 100,0\% & Ottimo & 100,0\% & Ottimo \\
+        \hline
+	\end{tabular}
+	\caption{Metriche di sicurezza dei dati e degli accessi per sprint}
+	\label{tab:mpd-sicurezza}
+\end{table}
+\subsubsection{PB (Sprint 8--11)}
+Nessuna chiave di accesso è mai stata esposta. Il file di configurazione che contiene i segreti è escluso dal versionamento fin dal prototipo, e i soli valori simili a credenziali presenti nel codice versionato sono chiavi fittizie usate nei test$_G$ automatici. È una scelta adottata all'inizio delle attività di codifica$_G$ e mantenuta senza eccezioni.
+
+Anche la sanificazione dei dati è piena in tutti gli sprint$_G$. La pipeline di rendering non abilita l'HTML grezzo e nessun componente inserisce nella pagina contenuto non filtrato, né quello scritto dall'utente né quello restituito dall'LLM$_G$. L'MVP$_G$ non ha migliorato il valore, che era già al massimo, ma ha ridotto da tre a uno i punti in cui questa configurazione va mantenuta corretta, e con essi il rischio$_G$ che le copie divergano nel tempo.
+
+La validazione degli ingressi è l'unica delle tre metriche che si muove. Nell'ottavo sprint$_G$ metà dei campi esposti dall'API$_G$ era priva di vincoli effettivi. I testi avevano un limite inferiore ma non superiore, e il collegamento fornito dall'utente veniva accettato come stringa qualunque, con un commento nel codice che rimandava esplicitamente la validazione a un momento successivo. Il completamento del backend negli sprint$_G$ 9 e 10 e la rifinitura dell'undicesimo portano tutti i campi a essere vincolati in entrambe le direzioni, con un tipo dedicato per il collegamento. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $SK = 0$ chiavi esposte, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $SK = 0$ chiavi esposte, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore accettabile:} $IV \geq 95\%$ degli input$_G$ validati, vincolo \textit{rispettato} nello sprint$_G$ 11.
+    \item \textbf{Valore ottimale:} $IV = 100\%$ degli input$_G$ validati, vincolo \textit{rispettato} nello sprint$_G$ 11.
+    \item \textbf{Valore accettabile:} $DS \geq 95\%$ dei dati sanificati, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $DS = 100\%$ dei dati sanificati, vincolo \textit{sempre rispettato}.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/mpd-iv.pdf}
+    \caption{Valutazione \textit{Input Validation}}
+    \label{fig:mpd-iv}
 \end{figure}
 
 \section{Iniziative di miglioramento} \label{sec:iniziative-miglioramento}

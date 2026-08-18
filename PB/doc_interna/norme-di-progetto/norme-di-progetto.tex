@@ -2761,30 +2761,6 @@ Tutte le definizioni, gli acronimi e le abbreviazioni utilizzati in questo docum
 
 \vspace{1cm}
 
-% --- MPC-CPI ---
-\paragraph{Cost Performance Index (CPI)}
-\mbox{} \\
-\noindent
-\begin{minipage}{\textwidth}
-    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
-        \hline
-        Sigla & MPC-CPI \\ \hline
-        Formula &  
-        \textit{$CPI_{k} = \frac{EV_{k}}{AC_{k}}$} \vspace{2mm} \\
-        & \small \textbf{Legenda:}
-        \begin{itemize}
-            \item $CPI_{k}$: Cost Performance Index allo sprint$_G$ $k$
-            \item $EV_{k}$: Earned Value allo sprint$_G$ $k$
-            \item $AC_{k}$: Actual Cost$_G$ allo sprint$_G$ $k$
-        \end{itemize} \\ \hline
-        Descrizione & Il Cost Performance Index rappresenta il rapporto tra il valore del lavoro completato e il costo effettivo sostenuto, aggiornato allo sprint$_G$ $k$. \\ \hline
-        Utilità & Un valore maggiore di 1 indica che il progetto sta rispettando il budget$_G$, un valore minore di 1 indica che il progetto sta superando il budget$_G$. \\ \hline
-    \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPC-CPI - Cost Performance Index}
-\end{minipage}
-
-\vspace{1cm}
-
 % --- MPC-EAC ---
 \paragraph{Estimate At Completion (EAC)}
 \mbox{} \\
@@ -2913,6 +2889,56 @@ Tutte le definizioni, gli acronimi e le abbreviazioni utilizzati in questo docum
 
 
 
+\subsubsection{Sviluppo}
+
+% --- MPC-RSI ---
+\paragraph{Requirements Stability Index (RSI)}
+\mbox{} \\
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPC-RSI \\ \hline
+        Formula &
+        \textit{$RSI = \frac{R_{totali} - R_{modificati}}{R_{totali}} \times 100$} \vspace{2mm} \\
+        & \small \textbf{Legenda:}
+        \begin{itemize}
+            \item $R_{totali}$: requisiti\textsubscript{G} individuati nell'Analisi dei Requisiti\textsubscript{G} alla sua approvazione
+            \item $R_{modificati}$: requisiti\textsubscript{G} aggiunti, rimossi o riformulati dopo l'approvazione
+        \end{itemize} \\ \hline
+        Descrizione & Percentuale di requisiti\textsubscript{G} rimasti invariati dopo l'approvazione dell'Analisi dei Requisiti\textsubscript{G}. Un valore alto indica requisiti\textsubscript{G} stabili e quindi una pianificazione\textsubscript{G} affidabile; un valore basso segnala che il perimetro del prodotto continua a cambiare in corso d'opera. \\ \hline
+        Unità di misura & Percentuale (\%). \\ \hline
+        Strumento di rilevazione & Confronto fra le versioni dell'Analisi dei Requisiti\textsubscript{G} registrate nel registro delle modifiche\textsubscript{G}. \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPC-RSI - Requirements Stability Index}
+\end{minipage}
+
+\vspace{1cm}
+
+% --- MPC-PRCT ---
+\paragraph{Pull Request Cycle Time (PRCT)}
+\mbox{} \\
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPC-PRCT \\ \hline
+        Formula &
+        \textit{$PRCT = \frac{\sum_{i=1}^{n} T_{i}}{n}$} \vspace{2mm} \\
+        & \small \textbf{Legenda:}
+        \begin{itemize}
+            \item $T_{i}$: tempo intercorso fra l'apertura e l'integrazione della $i$-esima pull request\textsubscript{G}
+            \item $n$: numero di pull request\textsubscript{G} integrate nello sprint\textsubscript{G}
+        \end{itemize} \\ \hline
+        Descrizione & Tempo medio che intercorre fra l'apertura di una pull request\textsubscript{G} e la sua integrazione nel ramo principale. Misura la reattività del processo di revisione: valori alti indicano revisioni che si accumulano e rallentano l'integrazione del lavoro. \\ \hline
+        Unità di misura & Ore. \\ \hline
+        Strumento di rilevazione & Date di apertura e di integrazione delle pull request\textsubscript{G} registrate su GitHub\textsubscript{G}. \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPC-PRCT - Pull Request Cycle Time}
+\end{minipage}
+
+\vspace{1cm}
+
 \subsection{Processi di supporto}
 
 \subsubsection{Documentazione}
@@ -2973,6 +2999,104 @@ Tutte le definizioni, gli acronimi e le abbreviazioni utilizzati in questo docum
 \end{minipage}
 
 
+
+\subsubsection{Verifica}
+
+% --- MPC-CC ---
+\paragraph{Code Coverage (CC)}
+\mbox{} \\
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPC-CC \\ \hline
+        Formula &
+        \textit{$CC = \frac{I_{coperte}}{I_{totali}} \times 100$} \vspace{2mm} \\
+        & \small \textbf{Legenda:}
+        \begin{itemize}
+            \item $I_{coperte}$: istruzioni del codice sorgente eseguite almeno una volta dalla suite di test\textsubscript{G} automatici
+            \item $I_{totali}$: istruzioni totali del codice sorgente considerato
+        \end{itemize} \\ \hline
+        Descrizione & Percentuale di codice sorgente attraversata dai test\textsubscript{G} automatici. Non garantisce che il comportamento sia corretto, ma un valore basso indica con certezza porzioni di codice mai eseguite in fase di verifica\textsubscript{G}. \\ \hline
+        Unità di misura & Percentuale (\%). \\ \hline
+        Strumento di rilevazione & \texttt{vitest} con provider \texttt{v8} per il codice TypeScript, \texttt{pytest-cov} per il codice Python. \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPC-CC - Code Coverage}
+\end{minipage}
+
+\vspace{1cm}
+
+% --- MPC-TSR ---
+\paragraph{Test Success Rate (TSR)}
+\mbox{} \\
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPC-TSR \\ \hline
+        Formula &
+        \textit{$TSR = \frac{T_{superati}}{T_{eseguiti}} \times 100$} \vspace{2mm} \\
+        & \small \textbf{Legenda:}
+        \begin{itemize}
+            \item $T_{superati}$: test\textsubscript{G} automatici conclusi con esito positivo
+            \item $T_{eseguiti}$: test\textsubscript{G} automatici eseguiti
+        \end{itemize} \\ \hline
+        Descrizione & Percentuale di test\textsubscript{G} automatici superati sul totale di quelli eseguiti. Misura lo stato di salute della suite: un valore inferiore al massimo segnala test\textsubscript{G} che falliscono e che vanno corretti o rimossi prima della consegna. \\ \hline
+        Unità di misura & Percentuale (\%). \\ \hline
+        Strumento di rilevazione & Esito delle suite di test\textsubscript{G} automatici del backend e del frontend\textsubscript{G}. \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPC-TSR - Test Success Rate}
+\end{minipage}
+
+\vspace{1cm}
+
+% --- MPC-DD ---
+\paragraph{Defect Density (DD)}
+\mbox{} \\
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPC-DD \\ \hline
+        Formula &
+        \textit{$DD = \frac{D_{rilevati}}{N_{componenti}}$} \vspace{2mm} \\
+        & \small \textbf{Legenda:}
+        \begin{itemize}
+            \item $D_{rilevati}$: difetti rilevati nel periodo considerato
+            \item $N_{componenti}$: numero di componenti del sistema\textsubscript{G}
+        \end{itemize} \\ \hline
+        Descrizione & Numero medio di difetti rilevati per componente. Per \textbf{componente} si intende un \textit{package}\textsubscript{G} del codice sorgente, con la stessa definizione adottata per MPD-CS. Concentrazioni anomale in un singolo componente indicano una porzione di codice da sottoporre a revisione\textsubscript{G}. \\ \hline
+        Unità di misura & Difetti per componente. \\ \hline
+        Strumento di rilevazione & Censimento delle issue\textsubscript{G} etichettate come difetto sull'\textit{Issue Tracking System}\textsubscript{G}. \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPC-DD - Defect Density}
+\end{minipage}
+
+\vspace{1cm}
+
+% --- MPC-TR ---
+\paragraph{Test Requirements Coverage (TR)}
+\mbox{} \\
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPC-TR \\ \hline
+        Formula &
+        \textit{$TR = \frac{R_{coperti}}{R_{totali}} \times 100$} \vspace{2mm} \\
+        & \small \textbf{Legenda:}
+        \begin{itemize}
+            \item $R_{coperti}$: requisiti\textsubscript{G} per i quali esiste almeno un test\textsubscript{G} di sistema\textsubscript{G} specificato
+            \item $R_{totali}$: requisiti\textsubscript{G} individuati nell'Analisi dei Requisiti\textsubscript{G}
+        \end{itemize} \\ \hline
+        Descrizione & Percentuale di requisiti\textsubscript{G} per i quali il Piano di Qualifica\textsubscript{G} specifica almeno un test\textsubscript{G} di sistema\textsubscript{G}. Si distingue da MPD-CRO, che misura quanti requisiti\textsubscript{G} risultano effettivamente soddisfatti: qui si misura se il requisito\textsubscript{G} è stato messo alla prova, non se la prova è stata superata. \\ \hline
+        Unità di misura & Percentuale (\%). \\ \hline
+        Strumento di rilevazione & Censimento della tabella dei test\textsubscript{G} di sistema\textsubscript{G} del Piano di Qualifica\textsubscript{G}. \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPC-TR - Test Requirements Coverage}
+\end{minipage}
+
+\vspace{1cm}
 
 \subsection{Processi organizzativi}
 
@@ -3050,9 +3174,8 @@ Tutte le definizioni, gli acronimi e le abbreviazioni utilizzati in questo docum
         \end{itemize} \\ \hline
         Descrizione & La metrica Merge Rework misura la percentuale di lavoro che è stato necessario ripetere rispetto al lavoro totale svolto. Indica l'efficienza del processo produttivo e la qualità delle attività a monte.
         \begin{itemize}
-            \item $MR = 0\%$: nessuna rilavorazione (situazione ottimale);
-            \item $MR$ basso: rilavorazione contenuta (situazione accettabile);
-            \item $MR$ alto: elevata rilavorazione (situazione sfavorevole, da investigare).
+            \item $MR$ nullo o basso: rilavorazione assente o contenuta;
+            \item $MR$ alto: elevata rilavorazione, situazione sfavorevole da investigare.
         \end{itemize} \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
     \end{tabularx}
@@ -3079,7 +3202,7 @@ Tutte le definizioni, gli acronimi e le abbreviazioni utilizzati in questo docum
         \end{itemize} \\ \hline
         Descrizione & La metrica Issue Reopening Rate misura la percentuale di problemi che, dopo essere stati contrassegnati come risolti, vengono riaperti. Un valore elevato può indicare carenze nel processo di verifica$_G$ o nella qualità delle correzioni applicate.
         \begin{itemize}
-            \item $IR \leq 15\%$: valore accettabile;
+            \item $IR$ basso: le lavorazioni vengono chiuse correttamente al primo tentativo;
             \item $IR > 15\%$: valore critico, necessario intervento correttivo.
         \end{itemize} \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
@@ -3107,7 +3230,7 @@ Tutte le definizioni, gli acronimi e le abbreviazioni utilizzati in questo docum
         \end{itemize} \\ \hline
         Descrizione & La metrica Percentuale Metriche Soddisfatte misura la quota di metriche di qualità che rientrano nei valori accettabili definiti nel Piano di Qualifica$_G$. Dal calcolo sono escluse le metriche di correttezza dei documenti, in quanto calcolate a documento approvato e non a sprint$_G$, il cui coinvolgimento produrrebbe uno sfasamento che non permetterebbe una stima affidabile.
         \begin{itemize}
-            \item $PMS \geq 80\%$: valore accettabile;
+            \item $PMS$ alto: la maggior parte delle metriche rientra nei valori attesi;
             \item $PMS < 80\%$: valore critico, necessario intervento correttivo.
         \end{itemize} \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
@@ -3129,8 +3252,9 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-CRO \\ \hline
         Formula &
         \textit{$CRO = \frac{RO_{soddisfatti}}{RO_{totali}} \times 100$} \\ \hline
-        Descrizione & Percentuale di requisiti\textsubscript{G} obbligatori correttamente implementati e verificati rispetto al totale dei requisiti\textsubscript{G} obbligatori individuati nell'Analisi dei Requisiti\textsubscript{G}. Un requisito\textsubscript{G} è considerato ``soddisfatto'' quando il relativo test\textsubscript{G} di sistema\textsubscript{G} risulta superato. \\ \hline
+        Descrizione & Percentuale di requisiti\textsubscript{G} obbligatori correttamente implementati e verificati rispetto al totale dei requisiti\textsubscript{G} obbligatori individuati nell'Analisi dei Requisiti\textsubscript{G}. Un requisito\textsubscript{G} funzionale è considerato ``soddisfatto'' quando il relativo test\textsubscript{G} di sistema\textsubscript{G} risulta superato; un requisito\textsubscript{G} di qualità o di vincolo, per il quale non è previsto un test\textsubscript{G} di sistema\textsubscript{G}, è considerato soddisfatto quando l'artefatto\textsubscript{G} o la scelta tecnologica che lo realizza è riscontrabile per ispezione. \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
+        Strumento di rilevazione & Censimento della tabella dei test\textsubscript{G} di sistema\textsubscript{G} del Piano di Qualifica\textsubscript{G}; per i requisiti\textsubscript{G} privi di test\textsubscript{G} di sistema\textsubscript{G}, ispezione degli artefatti\textsubscript{G} che li realizzano. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-CRO - Copertura Requisiti Obbligatori}
 \end{minipage}
@@ -3147,6 +3271,7 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         \textit{$CRD = \frac{RD_{soddisfatti}}{RD_{totali}} \times 100$} \\ \hline
         Descrizione & Percentuale di requisiti\textsubscript{G} desiderabili correttamente implementati e verificati rispetto al totale dei requisiti\textsubscript{G} desiderabili individuati. \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
+        Strumento di rilevazione & Censimento della tabella dei test\textsubscript{G} di sistema\textsubscript{G} del Piano di Qualifica\textsubscript{G}. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-CRD - Copertura Requisiti Desiderabili}
 \end{minipage}
@@ -3163,6 +3288,7 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         \textit{$CROp = \frac{ROp_{soddisfatti}}{ROp_{totali}} \times 100$} \\ \hline
         Descrizione & Percentuale di requisiti\textsubscript{G} opzionali correttamente implementati e verificati rispetto al totale dei requisiti\textsubscript{G} opzionali individuati. \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
+        Strumento di rilevazione & Censimento della tabella dei test\textsubscript{G} di sistema\textsubscript{G} del Piano di Qualifica\textsubscript{G}. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-CROp - Copertura Requisiti Opzionali}
 \end{minipage}
@@ -3179,6 +3305,7 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         \textit{$CLLM = \frac{F_{implementate}}{F_{obbligatorie}} \times 100$} \\ \hline
         Descrizione & Percentuale di funzioni basate sull'LLM\textsubscript{G} obbligatorie (es. generazione, riassunto, traduzione) correttamente implementate e verificate rispetto al totale di quelle richieste dal capitolato\textsubscript{G}. \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
+        Strumento di rilevazione & Ispezione delle rotte esposte dal backend e dei comandi operativi nell'interfaccia, riscontrata con i test\textsubscript{G} di sistema\textsubscript{G} corrispondenti. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-CLLM - Copertura Funzioni LLM Obbligatorie}
 \end{minipage}
@@ -3193,8 +3320,9 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-CMD \\ \hline
         Formula &
         \textit{$CMD = \frac{C_{corretti}}{C_{previsti}} \times 100$} \\ \hline
-        Descrizione & Percentuale di casi di rendering Markdown\textsubscript{G} resi correttamente rispetto ai casi previsti (intestazioni, elenchi, stili, blocchi di codice, tabelle, formule, ecc.). \\ \hline
+        Descrizione & Percentuale di casi di rendering Markdown\textsubscript{G} resi correttamente rispetto ai casi previsti. L'insieme dei casi previsti è costituito da venti costrutti: intestazioni di primo, secondo e terzo livello, grassetto, corsivo, barrato, sottolineato, codice in linea, blocco di codice, elenco puntato, elenco numerato, elenco annidato, citazione, tabella, formula in linea, formula in blocco, collegamento, immagine, regola orizzontale ed elenco di attività. \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
+        Strumento di rilevazione & Campagna di rendering nel browser con verifica automatica degli elementi prodotti nella pagina per ciascuno dei venti costrutti. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-CMD - Correttezza Rendering Markdown}
 \end{minipage}
@@ -3209,8 +3337,9 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-SN \\ \hline
         Formula &
         \textit{$SN = \frac{C_{superati}}{C_{obbligatori}} \times 100$} \\ \hline
-        Descrizione & Percentuale di casi obbligatori di salvataggio e successivo recupero delle note superati con successo rispetto al totale dei casi obbligatori previsti, senza perdita o alterazione del contenuto. \\ \hline
+        Descrizione & Percentuale di casi obbligatori di salvataggio e successivo recupero delle note superati con successo rispetto al totale dei casi obbligatori previsti, senza perdita o alterazione del contenuto. I casi si ottengono combinando sette contenuti di prova --- testo semplice, Markdown\textsubscript{G} completo, caratteri accentati ed emoji, metacaratteri del linguaggio, testo di diecimila caratteri, righe vuote multiple, soli spazi --- con i due percorsi di conservazione previsti: il file sul File System locale e la persistenza interna all'applicazione. \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
+        Strumento di rilevazione & Campagna nel browser con confronto carattere per carattere fra il contenuto inserito e quello restituito. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-SN - Salvataggio e Recupero Note}
 \end{minipage}
@@ -3227,8 +3356,9 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-DL \\ \hline
         Formula &
         \textit{$DL = N_{perdite}$} \\ \hline
-        Descrizione & Numero di occorrenze in cui, durante i test\textsubscript{G} di salvataggio e caricamento, il contenuto di una nota risulta perso o alterato. Misura l'affidabilità della catena di persistenza dei dati. \\ \hline
+        Descrizione & Numero di occorrenze in cui, durante i test\textsubscript{G} di salvataggio e caricamento, il contenuto di una nota risulta perso o alterato. Le occorrenze sono contate sullo stesso insieme di casi definito per MPD-SN. Misura l'affidabilità della catena di persistenza dei dati. \\ \hline
         Unità di misura & Numero intero (conteggio assoluto). \\ \hline
+        Strumento di rilevazione & Campagna nel browser con confronto carattere per carattere fra il contenuto inserito e quello restituito. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-DL - Data Loss}
 \end{minipage}
@@ -3243,26 +3373,11 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-EH \\ \hline
         Formula &
         \textit{$EH = \frac{E_{gestiti}}{E_{totali}} \times 100$} \\ \hline
-        Descrizione & Percentuale di condizioni di errore (errori dell'LLM\textsubscript{G}, di rete, di input\textsubscript{G} non valido) gestite correttamente dal sistema\textsubscript{G} rispetto al totale delle condizioni di errore sottoposte a test\textsubscript{G}. \\ \hline
+        Descrizione & Percentuale di condizioni di errore gestite correttamente dal sistema\textsubscript{G} rispetto al totale delle condizioni sottoposte a test\textsubscript{G}. Una condizione è considerata gestita quando il sistema\textsubscript{G} risponde con il codice di stato previsto e con un messaggio in linguaggio naturale. Le condizioni sottoposte a test\textsubscript{G} sono dieci: testo più corto del minimo, testo oltre il massimo, campo obbligatorio assente, valore non ammesso, collegamento malformato, \textit{prompt}\textsubscript{G} più corto del minimo, corpo della richiesta vuoto, tipo di dato errato, risorsa inesistente, metodo non consentito. \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
+        Strumento di rilevazione & Iniezione delle dieci condizioni sulle rotte del backend, con verifica del codice di stato e del messaggio restituito. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-EH - Error Handling}
-\end{minipage}
-
-\vspace{0.8cm}
-
-\subsubsection{Session Recovery (MPD-SR)}
-\noindent
-\begin{minipage}{\textwidth}
-    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
-        \hline
-        Sigla & MPD-SR \\ \hline
-        Formula &
-        \textit{$SR = \frac{R_{riusciti}}{R_{previsti}} \times 100$} \\ \hline
-        Descrizione & Percentuale di casi previsti di ripristino della sessione (recupero del testo non salvato dopo un'interruzione o una chiusura imprevista) andati a buon fine rispetto al totale dei casi previsti. \\ \hline
-        Unità di misura & Percentuale (\%). \\ \hline
-    \end{tabularx}
-    \captionof{table}{Dettagli Metrica MPD-SR - Session Recovery}
 \end{minipage}
 
 \vspace{0.8cm}
@@ -3274,9 +3389,10 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         \hline
         Sigla & MPD-AR \\ \hline
         Formula &
-        \textit{$AR = \frac{T_{disponibile}}{T_{osservato}} \times 100$} \\ \hline
-        Descrizione & Percentuale di tempo in cui l'applicazione risulta disponibile e operativa durante le sessioni di test\textsubscript{G} rispetto al tempo totale osservato. \\ \hline
+        \textit{$AR = \frac{R_{disponibili}}{R_{totali}} \times 100$} \\ \hline
+        Descrizione & Percentuale di richieste al servizio LLM\textsubscript{G} esterno alle quali il fornitore ha risposto senza segnalare la propria indisponibilità, rispetto al totale delle richieste effettuate durante le sessioni di test\textsubscript{G}. Il servizio è esterno al prodotto e fuori dal controllo del gruppo: la metrica ne documenta l'affidabilità osservata, mentre la capacità del sistema\textsubscript{G} di reagire all'indisponibilità è coperta da MPD-EH. \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
+        Strumento di rilevazione & Conteggio delle risposte del servizio LLM\textsubscript{G} esterno durante le sessioni di test\textsubscript{G}. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-AR - Availability Rate}
 \end{minipage}
@@ -3295,6 +3411,7 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         \textit{$LT = \frac{\sum_{i=1}^{n} T_{i}}{n}$} \\ \hline
         Descrizione & Tempo medio necessario a un utente per completare con successo una funzionalità per la prima volta, senza assistenza esterna; $T_{i}$ è il tempo impiegato dall'$i$-esimo utente e $n$ il numero di utenti coinvolti nella sessione di test\textsubscript{G} di usabilità. Misura l'apprendibilità dell'interfaccia. \\ \hline
         Unità di misura & Minuti. \\ \hline
+        Strumento di rilevazione & Sessione di test\textsubscript{G} con utenti. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-LT - Learning Time}
 \end{minipage}
@@ -3311,6 +3428,7 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         \textit{$NE = \frac{\sum_{i=1}^{n} E_{i}}{n}$} \\ \hline
         Descrizione & Numero medio di errori di navigazione (azioni errate o percorsi sbagliati) commessi dagli utenti per scenario di test\textsubscript{G}; $E_{i}$ è il numero di errori nell'$i$-esimo scenario e $n$ il numero di scenari valutati. \\ \hline
         Unità di misura & Numero di errori per scenario. \\ \hline
+        Strumento di rilevazione & Sessione di test\textsubscript{G} con utenti. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-NE - Navigation Errors}
 \end{minipage}
@@ -3325,8 +3443,9 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-UI \\ \hline
         Formula &
         \textit{$UI = \frac{El_{coerenti}}{El_{totali}} \times 100$} \\ \hline
-        Descrizione & Percentuale di elementi dell'interfaccia coerenti con le convenzioni grafiche e comportamentali definite rispetto al totale degli elementi valutati. \\ \hline
+        Descrizione & Percentuale di controlli superati rispetto al totale dei controlli effettuati sugli elementi interattivi dell'interfaccia. Su ogni elemento se ne verificano quattro: la presenza di un nome accessibile, la dichiarazione esplicita del tipo di controllo, la marcatura delle icone puramente decorative e, per i comandi disabilitati, la comunicazione del motivo. \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
+        Strumento di rilevazione & Ispezione automatica degli elementi interattivi della pagina. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-UI - UI Consistency}
 \end{minipage}
@@ -3343,6 +3462,7 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         \textit{$FU = \frac{F_{comprese}}{F_{totali}} \times 100$} \\ \hline
         Descrizione & Percentuale di funzioni che l'utente comprende e utilizza correttamente senza ricorrere a una guida rispetto al totale delle funzioni valutate. \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
+        Strumento di rilevazione & Sessione di test\textsubscript{G} con utenti. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-FU - Feature Understandability}
 \end{minipage}
@@ -3361,7 +3481,7 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         \textit{$RT = \frac{\sum_{i=1}^{n} (T_{risposta,i} - T_{richiesta,i})}{n}$} \\ \hline
         Descrizione & Tempo medio di risposta dell'interfaccia locale a un input\textsubscript{G} dell'utente, misurato come intervallo tra l'invio della richiesta e la ricezione della risposta completa. \\ \hline
         Unità di misura & Secondi (s). \\ \hline
-        Strumento di rilevazione & Test\textsubscript{G} automatici di performance. \\ \hline
+        Strumento di rilevazione & Misurazione nel browser tramite \textit{Performance API} e Chrome DevTools. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-RT - Response Time Interfaccia}
 \end{minipage}
@@ -3378,7 +3498,7 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         \textit{$MRT = \frac{\sum_{i=1}^{n} T_{i}}{n}$} \\ \hline
         Descrizione & Tempo medio necessario a rendere in anteprima il testo Markdown\textsubscript{G} dopo una modifica; $T_{i}$ è il tempo di rendering della $i$-esima misurazione. \\ \hline
         Unità di misura & Secondi (s). \\ \hline
-        Strumento di rilevazione & Test\textsubscript{G} automatici di performance. \\ \hline
+        Strumento di rilevazione & Misurazione nel browser dell'intervallo fra la modifica del testo e il completamento dell'aggiornamento dell'anteprima. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-MRT - Markdown Rendering Time}
 \end{minipage}
@@ -3395,7 +3515,7 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         \textit{$LLMRT = \frac{\sum_{i=1}^{n} T_{i}}{n}$} \\ \hline
         Descrizione & Tempo medio tra l'invio di una richiesta al servizio LLM\textsubscript{G} e la ricezione della risposta completa; $T_{i}$ è il tempo dell'$i$-esima richiesta. \\ \hline
         Unità di misura & Secondi (s). \\ \hline
-        Strumento di rilevazione & Test\textsubscript{G} automatici di performance. \\ \hline
+        Strumento di rilevazione & Misurazione diretta sulle rotte a flusso continuo del backend, dall'invio della richiesta alla chiusura del flusso di risposta. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-LLMRT - LLM Response Time}
 \end{minipage}
@@ -3412,7 +3532,7 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         \textit{$LS = T_{caricamento}$} \\ \hline
         Descrizione & Tempo necessario al caricamento iniziale completo dell'applicazione nel browser, dal primo accesso fino a quando l'interfaccia è pronta all'uso. \\ \hline
         Unità di misura & Secondi (s). \\ \hline
-        Strumento di rilevazione & Test\textsubscript{G} automatici di performance. \\ \hline
+        Strumento di rilevazione & Misurazione nel browser del primo disegno significativo della pagina tramite \textit{Performance API}. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-LS - Loading Speed}
 \end{minipage}
@@ -3429,9 +3549,9 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-CYC \\ \hline
         Formula &
         \textit{$M = E - N + 2P$} \\ \hline
-        Descrizione & Numero di percorsi linearmente indipendenti nel flusso di controllo, dove $E$ è il numero di archi, $N$ il numero di nodi e $P$ il numero di componenti connesse (solitamente 1 per singola funzione). Il valore riportato è la media della complessità ciclomatica su tutte le funzioni del sistema\textsubscript{G}. \\ \hline
+        Descrizione & Numero di percorsi linearmente indipendenti nel flusso di controllo, dove $E$ è il numero di archi, $N$ il numero di nodi e $P$ il numero di componenti connesse (solitamente 1 per singola funzione). Il valore riportato è la media della complessità ciclomatica calcolata sulle funzioni del sistema\textsubscript{G} che contengono almeno una diramazione, cioè quelle di complessità maggiore di uno: le funzioni prive di flusso di controllo hanno per definizione complessità unitaria e, essendo la maggioranza in un'applicazione a componenti, renderebbero la media insensibile alle modifiche del codice. \\ \hline
         Unità di misura & Numero intero (adimensionale). \\ \hline
-        Strumento di rilevazione & Analizzatore statico del codice (es. \texttt{gocyclo} per Go, ESLint per TypeScript). \\ \hline
+        Strumento di rilevazione & \texttt{radon} per il codice Python, ESLint con la regola \texttt{complexity} per il codice TypeScript. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-CYC - Complessità Ciclomatica}
 \end{minipage}
@@ -3446,9 +3566,9 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-CS \\ \hline
         Formula &
         \textit{$CS = \frac{N_{smell}}{N_{componenti}}$} \\ \hline
-        Descrizione & Numero medio di code smell (indicatori di progettazione debole, come metodi troppo lunghi, classi troppo grandi o duplicazioni) rilevati per componente del sistema\textsubscript{G}. \\ \hline
+        Descrizione & Numero medio di code smell (indicatori di progettazione debole, come metodi troppo lunghi, classi troppo grandi o duplicazioni) rilevati per componente del sistema\textsubscript{G}. Per \textbf{componente} si intende un \textit{package}\textsubscript{G} del codice sorgente, cioè una sottodirectory di primo livello di \texttt{api/app/} per il backend e di \texttt{web/src/} per il frontend\textsubscript{G}. \\ \hline
         Unità di misura & Numero di code smell per componente. \\ \hline
-        Strumento di rilevazione & Analizzatore statico del codice (es. SonarQube, ESLint, \texttt{golangci-lint}). \\ \hline
+        Strumento di rilevazione & \texttt{ruff} per il codice Python, ESLint per il codice TypeScript, eseguiti con la stessa configurazione su tutte le rilevazioni. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-CS - Code Smell}
 \end{minipage}
@@ -3465,7 +3585,7 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         \textit{$DUP = \frac{L_{duplicate}}{L_{totali}} \times 100$} \\ \hline
         Descrizione & Percentuale di righe di codice duplicate rispetto al totale delle righe di codice del sistema\textsubscript{G}. Una duplicazione elevata riduce la manutenibilità\textsubscript{G}. \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
-        Strumento di rilevazione & Analizzatore statico del codice (es. SonarQube). \\ \hline
+        Strumento di rilevazione & \texttt{jscpd}, eseguito con la stessa configurazione su tutte le rilevazioni. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-DUP - Duplicazione del Codice}
 \end{minipage}
@@ -3480,9 +3600,9 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-MOD \\ \hline
         Formula &
         \textit{$MOD = \frac{D_{effettive}}{n \times (n-1)}$} \\ \hline
-        Descrizione & Grado di accoppiamento tra i moduli del sistema\textsubscript{G}, dove $D_{effettive}$ è il numero di dipendenze direzionali effettive e $n \times (n-1)$ il numero massimo di dipendenze possibili tra $n$ moduli. Valori più bassi indicano moduli più indipendenti e quindi una maggiore modularità. \\ \hline
+        Descrizione & Grado di accoppiamento tra i moduli del sistema\textsubscript{G}, dove $D_{effettive}$ è il numero di dipendenze direzionali effettive e $n \times (n-1)$ il numero massimo di dipendenze possibili tra $n$ moduli. Valori più bassi indicano moduli più indipendenti e quindi una maggiore modularità\textsubscript{G}. Per \textbf{modulo} si intende un \textit{package}\textsubscript{G} del codice sorgente, con la stessa definizione adottata per MPD-CS. Il rapporto è calcolato separatamente per il backend e per il frontend\textsubscript{G}, che non hanno fra loro dipendenze dirette, e il valore di sistema\textsubscript{G} è la media aritmetica dei due. \\ \hline
         Unità di misura & Adimensionale (scala 0--1). \\ \hline
-        Strumento di rilevazione & Analisi delle dipendenze tramite strumenti di analisi statica. \\ \hline
+        Strumento di rilevazione & Analisi del grafo degli \textit{import} del codice sorgente. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-MOD - Modularità}
 \end{minipage}
@@ -3501,7 +3621,7 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         \textit{$SK = N_{chiavi\ esposte}$} \\ \hline
         Descrizione & Numero di chiavi di accesso, credenziali o segreti esposti in chiaro nel codice sorgente, nei log o nei file di configurazione versionati. \\ \hline
         Unità di misura & Numero intero (conteggio assoluto). \\ \hline
-        Strumento di rilevazione & Strumenti di \textit{secret scanning} e analisi statica. \\ \hline
+        Strumento di rilevazione & Ricerca di credenziali nei file versionati e verifica delle esclusioni dichiarate in \texttt{.gitignore}. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-SK - Secret Key Exposure}
 \end{minipage}
@@ -3516,10 +3636,28 @@ Le metriche di qualità del prodotto misurano le caratteristiche del software re
         Sigla & MPD-IV \\ \hline
         Formula &
         \textit{$IV = \frac{I_{validati}}{I_{totali}} \times 100$} \\ \hline
-        Descrizione & Percentuale di punti di ingresso dei dati (input\textsubscript{G} dell'utente, parametri delle chiamate API\textsubscript{G}) sottoposti a validazione rispetto al totale dei punti di ingresso individuati. \\ \hline
+        Descrizione & Percentuale di punti di ingresso dei dati sottoposti a validazione rispetto al totale dei punti di ingresso individuati. Si considera punto di ingresso ogni campo delle richieste esposte dall'API\textsubscript{G}, e lo si considera validato quando è vincolato da un limite esplicito sui valori ammessi: un campo dichiarato con il solo tipo non è validato. \\ \hline
         Unità di misura & Percentuale (\%). \\ \hline
+        Strumento di rilevazione & Ispezione degli schemi di validazione delle richieste esposte dall'API\textsubscript{G}. \\ \hline
     \end{tabularx}
     \captionof{table}{Dettagli Metrica MPD-IV - Input Validation}
+\end{minipage}
+
+\vspace{0.8cm}
+
+\subsubsection{Data Sanitization (MPD-DS)}
+\noindent
+\begin{minipage}{\textwidth}
+    \begin{tabularx}{\textwidth}{|>{\columncolor{bluBitless!10}\bfseries}p{3.5cm}|X|}
+        \hline
+        Sigla & MPD-DS \\ \hline
+        Formula &
+        \textit{$DS = \frac{P_{sanificati}}{P_{totali}} \times 100$} \\ \hline
+        Descrizione & Percentuale di punti di rendering di contenuto non fidato --- il testo scritto dall'utente e l'output\textsubscript{G} restituito dall'LLM\textsubscript{G} --- in cui la pipeline di trasformazione non abilita l'HTML grezzo, rispetto al totale dei punti di rendering individuati. \\ \hline
+        Unità di misura & Percentuale (\%). \\ \hline
+        Strumento di rilevazione & Ispezione dei sorgenti della pipeline di rendering. \\ \hline
+    \end{tabularx}
+    \captionof{table}{Dettagli Metrica MPD-DS - Data Sanitization}
 \end{minipage}
 
 \end{document}
