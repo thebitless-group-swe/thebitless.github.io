@@ -2438,7 +2438,9 @@ Questa sezione riporta, per ciascun requisito\textsubscript{G} individuato nell'
 
 Gli stati sono \textbf{due}, non tre: \textbf{soddisfatto} se il prodotto realizza il requisito\textsubscript{G} per intero, \textbf{non soddisfatto} se non lo realizza o lo realizza solo in parte. L'assenza di uno stato intermedio è deliberata: un requisito\textsubscript{G} coperto a metà non offre all'utente la funzione che promette, e registrarlo come ``parzialmente soddisfatto'' renderebbe il prospetto meno leggibile senza renderlo più veritiero.
 
-La verifica\textsubscript{G} è stata condotta \textbf{contro il repository\textsubscript{G} di prodotto} e non contro la documentazione di progettazione\textsubscript{G}: lo stato soddisfatto presuppone che la funzione sia stata individuata nel codice o nell'interfaccia, non che sia stata pianificata\textsubscript{G}. Dove il requisito\textsubscript{G} chiede che l'utente \textit{possa} compiere un'operazione, è considerato soddisfatto solo se il prodotto espone un comando o un controllo dedicato, oppure se la capacità è nativa dell'editor: la sola possibilità di ottenere il risultato digitando a mano i marcatori Markdown\textsubscript{G} non costituisce copertura, perché renderebbe il requisito\textsubscript{G} vuoto.
+La verifica\textsubscript{G} è stata condotta \textbf{contro il repository\textsubscript{G} di prodotto} e non contro la documentazione di progettazione\textsubscript{G}: lo stato soddisfatto presuppone che la funzione sia stata individuata nel codice o nell'interfaccia, non che sia stata pianificata\textsubscript{G}.
+
+Per i requisiti\textsubscript{G} che riguardano un costrutto Markdown\textsubscript{G} il criterio adottato è il \textbf{supporto completo del costrutto}, non la presenza di un pulsante dedicato: il requisito\textsubscript{G} è soddisfatto quando l'editor ne accetta la sintassi e l'anteprima ne produce la resa attesa. Tabelle, formule matematiche, blocchi di codice e citazioni ricadono in questo caso, grazie alle estensioni della pipeline di rendering descritte nella sezione \ref{sec:tecnologie-frontend}. Non vi ricadono invece le ancore di navigazione interna: l'anteprima non genera identificatori per i titoli, quindi il collegamento interno non raggiunge alcuna destinazione e il costrutto non funziona, a prescindere dal modo in cui venga inserito.
 
 Uno stato non soddisfatto su un requisito\textsubscript{G} \textbf{desiderabile} o \textbf{opzionale} è una decisione del gruppo sull'ampiezza del perimetro realizzato: l'\textit{Analisi dei Requisiti} attribuisce a quelle due classi un carattere non vincolante. Su un requisito\textsubscript{G} \textbf{obbligatorio} sarebbe invece un difetto di copertura.
 
@@ -2479,21 +2481,21 @@ Uno stato non soddisfatto su un requisito\textsubscript{G} \textbf{desiderabile}
     R-21-F-De & L'Utente deve poter inserire un elenco, puntato o numerato. & SODDISFATTO \\ \hline
     R-22-F-De & L'Utente deve poter scegliere il tipo di elenco da inserire (puntato o numerato). & SODDISFATTO \\ \hline
     R-23-F-De & L'Utente deve poter rimuovere un elenco. & SODDISFATTO \\ \hline
-    R-24-F-De & L'Utente deve poter inserire un blocco di citazione. & NON SODDISFATTO \\ \hline
-    R-25-F-De & L'Utente deve poter rimuovere un blocco di citazione. & NON SODDISFATTO \\ \hline
-    R-26-F-De & L'Utente deve poter inserire un blocco di codice sorgente. & NON SODDISFATTO \\ \hline
-    R-27-F-De & L'Utente deve poter rimuovere un blocco di codice sorgente. & NON SODDISFATTO \\ \hline
-    R-28-F-De & L'Utente deve poter inserire una formula scientifica o matematica. & NON SODDISFATTO \\ \hline
-    R-29-F-De & L'Utente deve poter rimuovere una formula scientifica o matematica. & NON SODDISFATTO \\ \hline
+    R-24-F-De & L'Utente deve poter inserire un blocco di citazione. & SODDISFATTO \\ \hline
+    R-25-F-De & L'Utente deve poter rimuovere un blocco di citazione. & SODDISFATTO \\ \hline
+    R-26-F-De & L'Utente deve poter inserire un blocco di codice sorgente. & SODDISFATTO \\ \hline
+    R-27-F-De & L'Utente deve poter rimuovere un blocco di codice sorgente. & SODDISFATTO \\ \hline
+    R-28-F-De & L'Utente deve poter inserire una formula scientifica o matematica. & SODDISFATTO \\ \hline
+    R-29-F-De & L'Utente deve poter rimuovere una formula scientifica o matematica. & SODDISFATTO \\ \hline
     R-30-F-De & L'Utente deve poter inserire un collegamento ipertestuale. & SODDISFATTO \\ \hline
     R-31-F-De & L'Utente deve poter rimuovere un collegamento ipertestuale. & SODDISFATTO \\ \hline
     R-32-F-De & L'Utente deve poter inserire un'ancora di navigazione interna al documento. & NON SODDISFATTO \\ \hline
     R-33-F-De & L'Utente deve poter rimuovere un'ancora di navigazione interna al documento. & NON SODDISFATTO \\ \hline
-    R-34-F-De & L'Utente deve poter inserire una tabella Markdown\textsubscript{G}, definendone le dimensioni iniziali. & NON SODDISFATTO \\ \hline
-    R-35-F-De & L'Utente deve poter inserire una riga in una tabella esistente. & NON SODDISFATTO \\ \hline
-    R-36-F-De & L'Utente deve poter rimuovere una riga da una tabella esistente. & NON SODDISFATTO \\ \hline
-    R-37-F-De & L'Utente deve poter inserire una colonna in una tabella esistente. & NON SODDISFATTO \\ \hline
-    R-38-F-De & L'Utente deve poter rimuovere una colonna da una tabella esistente. & NON SODDISFATTO \\ \hline
+    R-34-F-De & L'Utente deve poter inserire una tabella Markdown\textsubscript{G}, definendone le dimensioni iniziali. & SODDISFATTO \\ \hline
+    R-35-F-De & L'Utente deve poter inserire una riga in una tabella esistente. & SODDISFATTO \\ \hline
+    R-36-F-De & L'Utente deve poter rimuovere una riga da una tabella esistente. & SODDISFATTO \\ \hline
+    R-37-F-De & L'Utente deve poter inserire una colonna in una tabella esistente. & SODDISFATTO \\ \hline
+    R-38-F-De & L'Utente deve poter rimuovere una colonna da una tabella esistente. & SODDISFATTO \\ \hline
     R-39-F-De & L'Utente deve poter inserire un'immagine nel documento tramite URL o percorso locale. & SODDISFATTO \\ \hline
     R-40-F-De & Il Sistema deve gestire l'inserimento di un'immagine con URL o percorso non valido, informando l'Utente e non inserendo l'immagine. & NON SODDISFATTO \\ \hline
     R-41-F-De & L'Utente deve poter rimuovere un'immagine dal documento. & SODDISFATTO \\ \hline
@@ -2570,9 +2572,9 @@ Uno stato non soddisfatto su un requisito\textsubscript{G} \textbf{desiderabile}
     R-115-F-Ob & L'Utente deve poter modificare il testo di un titolo esistente, mantenendone la formattazione. & SODDISFATTO \\ \hline
     R-116-F-Ob & L'Utente deve poter modificare il testo di un sottotitolo esistente, mantenendone la formattazione. & SODDISFATTO \\ \hline
     R-117-F-De & L'Utente deve poter modificare il testo di un elenco esistente, mantenendone la formattazione. & SODDISFATTO \\ \hline
-    R-118-F-De & L'Utente deve poter modificare il testo di un blocco di citazione esistente, mantenendone la formattazione. & NON SODDISFATTO \\ \hline
-    R-119-F-De & L'Utente deve poter modificare il testo di un blocco di codice sorgente esistente, mantenendone la formattazione. & NON SODDISFATTO \\ \hline
-    R-120-F-De & L'Utente deve poter modificare il testo di una formula scientifica esistente, mantenendone la formattazione. & NON SODDISFATTO \\ \hline
+    R-118-F-De & L'Utente deve poter modificare il testo di un blocco di citazione esistente, mantenendone la formattazione. & SODDISFATTO \\ \hline
+    R-119-F-De & L'Utente deve poter modificare il testo di un blocco di codice sorgente esistente, mantenendone la formattazione. & SODDISFATTO \\ \hline
+    R-120-F-De & L'Utente deve poter modificare il testo di una formula scientifica esistente, mantenendone la formattazione. & SODDISFATTO \\ \hline
     R-121-F-De & L'Utente deve poter modificare il testo di un collegamento ipertestuale esistente, mantenendone la formattazione. & SODDISFATTO \\ \hline
     R-122-F-De & L'Utente deve poter modificare il testo di un'ancora di navigazione esistente, mantenendone la formattazione. & NON SODDISFATTO \\ \hline
     \caption{Tracciamento dei requisiti funzionali}\label{tab:tracciamento-funzionali}
@@ -2598,7 +2600,7 @@ Uno stato non soddisfatto su un requisito\textsubscript{G} \textbf{desiderabile}
     R-4-Q-Ob & Il codice deve essere revisionato a ogni iterazione significativa del progetto tramite revisione tra pari (code review) sulle pull request\textsubscript{G}, verificando il rispetto delle Norme di Progetto e il superamento dei test automatici prima dell'integrazione nel ramo principale. & SODDISFATTO \\ \hline
     R-5-Q-Ob & Il progetto deve essere accompagnato dalla documentazione minima richiesta dal corso di Ingegneria del Software, ovvero: Analisi dei Requisiti, Piano di Progetto, Piano di Qualifica, Norme di Progetto, Manuale Utente, Specifica Tecnica, Glossario e verbali interni ed esterni. & SODDISFATTO \\ \hline
     R-6-Q-Ob & Deve essere fornito un manuale per l'utilizzo dell'applicazione da parte dell'utente finale. & SODDISFATTO \\ \hline
-    R-7-Q-Ob & Deve essere fornito un manuale per chiunque voglia estendere l'applicazione. & NON SODDISFATTO \\ \hline
+    R-7-Q-Ob & Deve essere fornito un manuale per chiunque voglia estendere l'applicazione. & SODDISFATTO \\ \hline
     R-8-Q-De & Il progetto deve essere pubblicato su GitHub o su un altro repository pubblico, così da favorire la continuità del prodotto risultante. & SODDISFATTO \\ \hline
     R-9-Q-De & Il progetto deve essere pubblicato secondo requisiti compatibili con la natura open-source del repository scelto. & NON SODDISFATTO \\ \hline
     R-10-Q-Ob & Il prodotto deve rispettare le Norme di Progetto definite dal gruppo. & SODDISFATTO \\ \hline
@@ -2645,15 +2647,15 @@ Uno stato non soddisfatto su un requisito\textsubscript{G} \textbf{desiderabile}
         \textbf{Tipo} & \textbf{Soddisfatti} & \textbf{Totali} & \textbf{Percentuale} \\
         \hline
         FROb & 49 & 49 & 100,00\% \\ \hline
-        FRDe & 27 & 54 & 50,00\% \\ \hline
+        FRDe & 41 & 54 & 75,93\% \\ \hline
         FROp & 0 & 16 & 0,00\% \\ \hline
-        QROb & 8 & 9 & 88,89\% \\ \hline
+        QROb & 9 & 9 & 100,00\% \\ \hline
         QRDe & 1 & 3 & 33,33\% \\ \hline
         QROp & 1 & 1 & 100,00\% \\ \hline
         VROb & 4 & 4 & 100,00\% \\ \hline
         VROp & 1 & 4 & 25,00\% \\ \hline
         \rowcolor{gray!8}
-        \textbf{Totale} & \textbf{91} & \textbf{140} & \textbf{65,00\%} \\ \hline
+        \textbf{Totale} & \textbf{106} & \textbf{140} & \textbf{75,71\%} \\ \hline
     \end{tabular}
     \caption{Riepilogo della copertura dei requisiti}\label{tab:tracciamento-riepilogo}
 \end{table}
