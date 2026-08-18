@@ -1,0 +1,35 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam componentStyle rectangle
+skinparam linetype ortho
+
+' ============================================================
+' SCENARIO 1: MODIFICA UTENTE
+' ============================================================
+
+== Scenario 1: Modifica utente (Editor → Store) ==
+
+actor Utente as U1
+participant Editor as ED1
+participant updateListener as UL1
+participant useEditorStore as ES1
+
+U1 -> ED1 : Digita/modifica
+activate ED1
+ED1 -> UL1 : docChanged
+activate UL1
+UL1 -> UL1 : StoreSync? false
+UL1 -> ES1 : setCurrentText(newText)
+activate ES1
+ES1 -> ES1 : currentText = newText
+ES1 --> UL1 : ok
+deactivate ES1
+UL1 -> UL1 : selectedText = selection
+UL1 --> ED1 : ok
+deactivate UL1
+ED1 --> U1 : Testo aggiornato
+deactivate ED1
+
+@enduml

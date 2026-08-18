@@ -1,0 +1,47 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam componentStyle rectangle
+skinparam linetype ortho
+
+start
+
+:Avvia applicazione;
+:notes.persist ripristina stato;
+
+:Utente → "Nuova nota";
+:createEmpty();
+:Salva contenuto in useEditorStore;
+:Genera nuova nota (id, title);
+:persist → localStorage;
+:loadDocument();
+
+:Utente → "Salva file";
+:saveNoteToFile();
+
+if (showSaveFilePicker?) then (Sì)
+  :Salva con picker nativo;
+else (No)
+  :Download automatico (Blob + link);
+endif
+
+:Utente → "Apri file…";
+:openNoteFromFile();
+
+if (showOpenFilePicker?) then (Sì)
+  :Seleziona con picker nativo;
+else (No)
+  :Seleziona con input file;
+endif
+
+if (File selezionato?) then (No)
+  stop
+else (Sì)
+  :Crea Note da file;
+  :loadNote();
+  :persist → localStorage;
+  :loadDocument();
+  stop
+
+@enduml

@@ -1,0 +1,58 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam componentStyle rectangle
+skinparam linetype ortho
+
+actor Utente as U
+
+participant "Componente UI" as UI
+participant "notes" as NS
+participant "middleware persist" as PERSIST
+participant "localStorage" as LS
+
+' ============================================================
+' SCENARIO 1: CAMBIO NOTA
+' ============================================================
+
+U -> UI : Seleziona altra nota
+UI -> NS : select(noteId)
+NS -> NS : Aggiorna currentId
+NS -> NS : updateCurrent()
+NS -> PERSIST : Serializza stato
+PERSIST -> LS : setItem('notes_persistence')
+NS -> UI : ok
+UI --> U : Nota caricata
+
+' ============================================================
+' SCENARIO 2: CREAZIONE NOTA
+' ============================================================
+
+U -> UI : Clicca "Nuova nota"
+UI -> NS : createEmpty()
+NS -> NS : Crea nuova nota
+NS -> PERSIST : Serializza stato
+PERSIST -> LS : setItem('notes_persistence')
+NS -> UI : ok
+UI --> U : Nota vuota
+
+' ============================================================
+' SCENARIO 3: ACCETTAZIONE AI
+' ============================================================
+
+U -> UI : Accetta output AI
+UI -> NS : insertOutputIntoNote()
+NS -> NS : Aggiorna currentText
+NS -> PERSIST : Serializza stato
+PERSIST -> LS : setItem('notes_persistence')
+NS -> UI : ok
+UI --> U : Output inserito
+
+note right of NS
+  Il salvataggio in localStorage
+  avviene SOLO in questi tre momenti.
+  NON a ogni modifica del testo.
+end note
+
+@enduml

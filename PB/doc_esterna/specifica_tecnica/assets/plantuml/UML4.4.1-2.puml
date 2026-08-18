@@ -1,0 +1,50 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam componentStyle rectangle
+skinparam linetype ortho
+
+start
+
+:Utente → "Apri file…";
+
+:openNoteFromFile();
+
+if (showOpenFilePicker disponibile?) then (Sì)
+  :showOpenFilePicker()
+  con tipi .md e .txt;
+  :Ottiene fileHandle;
+  :file.text()\nlegge contenuto;
+else (No - Firefox/Safari)
+  :Crea input type="file";
+  :input.click();
+  
+  fork
+    :Evento oncancel;
+    :resolve(null);
+  fork again
+    :Focus window + 300ms;
+    if (input.files vuoto?) then (Sì)
+      :resolve(null);
+    endif
+  end fork
+endif
+
+if (Utente ha annullato?) then (Sì)
+  :Nessuna operazione;
+  stop
+else (No)
+  :Deriva titolo dal nome file;
+  :Crea Note con:
+  - id: crypto.randomUUID()
+  - title: da fileName
+  - content: testo letto
+  - createdAt: now
+  - updatedAt: now;
+  
+  :Restituisce Note;
+  stop
+endif
+
+@enduml

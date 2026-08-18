@@ -1,0 +1,37 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam componentStyle rectangle
+skinparam linetype ortho
+start
+
+:Utente → "Salva file";
+
+:saveNoteToFile(note);
+
+:Deriva nome file dal titolo;
+:Crea Blob con contenuto;
+
+if (showSaveFilePicker disponibile?) then (Sì)
+  :showSaveFilePicker()
+  with suggestedName e MIME;
+  :Utente sceglie percorso;
+  :createWritable();
+  :write(blob);
+  :close();
+else (No - Firefox/Safari)
+  :URL.createObjectURL(blob);
+  :Crea link <a download>;
+  :click() programmatico;
+  :URL.revokeObjectURL();
+endif
+
+if (Utente ha annullato?) then (Sì)
+  :Nessuna operazione;
+  stop
+else (No)
+  :File salvato;
+  stop
+
+@enduml

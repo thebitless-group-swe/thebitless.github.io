@@ -1,0 +1,106 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam componentStyle rectangle
+skinparam linetype ortho
+
+' ============================================================
+' USEEDITORSTORE
+' ============================================================
+
+class useEditorStore {
+  - currentText: string
+  - _loadVersion: number
+  - selectedText: string
+  - streamedOutput: string
+  - isGenerating: boolean
+  - errorMessage: string | null
+  - viewMode: ViewMode
+  - aiModal: AiModal
+  - editorView: EditorView | null
+  - _abortController: AbortController | null
+  - lastCall: LastCall | null
+  __
+  + setCurrentText(text: string): void
+  + loadDocument(text: string): void
+  + setSelectedText(text: string): void
+  + reset(): void
+  + startStreaming(): void
+  + appendChunk(chunk: string): void
+  + finishStreaming(): void
+  + setError(msg: string): void
+  + clearError(): void
+  + setViewMode(mode: ViewMode): void
+  + setAiModal(modal: AiModal): void
+  + insertOutputIntoNote(insertMode?: 'replace' | 'append'): void
+  + discardOutput(): void
+  + setEditorView(view: EditorView | null): void
+  + _setAbortController(c: AbortController | null): void
+  + abortStream(): void
+  + setLastCall(call: LastCall): void
+  + clearLastCall(): void
+}
+
+' ============================================================
+' TIPI DI SUPPORTO
+' ============================================================
+
+class ViewMode {
+  editor
+  render
+  split
+}
+
+class AiModal {
+  null | AiActionId
+}
+
+class LastCall {
+  input: string
+  params: AiParams
+  mode?: 'prompt' | 'link'
+  actionId: AiActionId
+  execute(signal: AbortSignal): AsyncIterable<string>
+}
+
+class EditorView {
+}
+
+' ============================================================
+' RELAZIONI
+' ============================================================
+
+useEditorStore ..> ViewMode : utilizza
+useEditorStore ..> AiModal : utilizza
+useEditorStore ..> LastCall : utilizza
+useEditorStore ..> EditorView : contiene (editorView)
+
+' ============================================================
+' NOTE
+' ============================================================
+
+note right of useEditorStore
+  Selettori atomici:
+  - useCurrentText()
+  - useSelectedText()
+  - useStreamedOutput()
+  - useIsGenerating()
+  - useErrorMessage()
+  - useViewMode()
+  - useAiModal()
+end note
+
+note left of useEditorStore
+  abortStream interrompe la generazione
+  e spegne isGenerating
+  (R-79-F-De, R-109-F-De)
+end note
+
+note bottom of LastCall
+  Utilizzato per la rigenerazione
+  (R-78-F-De) e per lo stato
+  «Rigenera» nel dialogo
+end note
+
+@enduml
