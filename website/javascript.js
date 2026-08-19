@@ -20,12 +20,13 @@ const DIARIO_RE = /^DB-?(\d+)?_?(\d{4}-\d{2}-\d{2})/;
 let PHASES = [];
 let ACTIVE_PHASE = "pb";
 // Fase in cui mostrare il riquadro delle lettere di presentazione, oppure null per non mostrarlo.
-// Con il passaggio a PB le lettere RTB non sono più esposte: quando sarà pronta la lettera di
-// presentazione della PB, basta popolare LETTERE e riportare qui "pb".
-const LETTERE_PHASE = null;
+// Con il passaggio a PB le lettere RTB non sono più esposte: qui compaiono solo quelle della PB.
+const LETTERE_PHASE = "pb";
 // Percorsi relativi sul sito: GitHub Pages serve i PDF con content-type corretto, così si aprono
 // nel browser invece di scaricarsi come fa raw.githubusercontent.
-const LETTERE = [];
+const LETTERE = [
+  { name: "Lettera di presentazione (docente Cardin)", path: "PB/lettera-di-presentazione/lettera-di-presentazione.pdf" },
+];
 
 function humanize(s) {
   const t = s.replace(/[-_]+/g, " ").trim();
