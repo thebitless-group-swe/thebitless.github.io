@@ -1505,7 +1505,7 @@ La presente sezione descrive l'architettura logica del servizio applicativo: i p
 \paragraph{Notazione degli elenchi di firme.}
 Il segno \texttt{+} contrassegna i membri pubblici, il segno \texttt{-} quelli che il modulo non espone all'esterno. Le funzioni di modulo, che in Python non appartengono ad alcuna classe, sono riportate senza segno. I tipi sono quelli annotati nel codice.
 
-\diagrammamancante{Architettura del servizio applicativo}{backend-uml}{Diagramma delle classi del backend, limitato alle parti che ne determinano la struttura. Al centro le due porte \texttt{LLMClient} e \texttt{ContentExtractor}, ciascuna con la propria operazione e il proprio tipo di errore, i casi d'uso di \texttt{core/services/} e il value object \texttt{Message}. A destra i due realizzatori \texttt{LiteLLMClient} e \texttt{TavilyExtractor}, con le dipendenze verso i rispettivi fornitori esterni. A sinistra il lato primario: le rotte di \texttt{api/routes/}, i DTO di \texttt{api/schemas.py} e l'adattatore di trasporto \texttt{sse\_response}. In basso il composition root \texttt{dependencies.py}, unico modulo che nomini i due realizzatori concreti. Le rotte e i casi d'uso sono rappresentati da un esemplare ciascuno, più \texttt{generate\_from\_link}, che è l'unico a dipendere da due porte. Tutte le frecce di dipendenza sono dirette verso il centro.}
+\diagramma{Architettura del servizio applicativo}{backend-uml}
 
 \subsubsection{Struttura a esagono e contratti di dipendenza}
 \label{sec:backend-esagono}
