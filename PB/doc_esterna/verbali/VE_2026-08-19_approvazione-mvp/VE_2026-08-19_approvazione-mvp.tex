@@ -1,0 +1,179 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+
+\usepackage{xcolor}
+\usepackage[a-1b]{pdfx}
+\usepackage[italian]{babel}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{minted}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{xurl}
+
+\newcommand{\titolo}{Verbale esterno}
+\newcommand{\dataverbale}{2026-08-19}
+\newcommand{\dataversione}{2026-08-19}
+\newcommand{\versione}{1.0.0}
+\newcommand{\stato}{Stesura}
+\newcommand{\destinatari}{The Bitless, prof. T. Vardanega, prof. R. Cardin, Zucchetti}
+\def\templatedir{../../../../templates}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{\titolo \ \dataverbale}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    pdfborderstyle={/S/U/W 1},
+    linkbordercolor=0 0 0,
+    urlbordercolor=0 0 0,
+    citebordercolor=0 0 0,
+    filebordercolor=0 0 0,
+    breaklinks=true,
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \pagenumbering{gobble}
+    \input{\templatedir/frontespizio.tex}
+\end{titlepage}
+
+\newpage
+
+\pagenumbering{roman}
+\pagestyle{fancy}
+
+\tableofcontents
+
+\newpage
+\pagenumbering{arabic}
+
+\section{Informazioni sulla riunione}
+
+In data \textbf{\dataverbale} si è svolto un confronto con \textbf{Gregorio Piccoli}, referente aziendale di \textbf{Zucchetti S.p.A.}, dedicato alla presentazione del \textit{Minimum Viable Product} (MVP) \textbf{Second Brain} e alla sua valutazione da parte della proponente.
+L'incontro si è tenuto in \textbf{modalità asincrona, tramite scambio di messaggi di posta elettronica}: il periodo di ferie estive della proponente non ha consentito di fissare una riunione sincrona in videoconferenza. Il gruppo ha quindi trasmesso via email il materiale di presentazione dell'MVP e la proponente ha fatto pervenire, con lo stesso mezzo, le proprie valutazioni.
+Trattandosi di un confronto asincrono, il presente verbale non riporta un orario di inizio e uno di conclusione: la data indicata è quella in cui lo scambio si è concluso con la comunicazione dell'esito da parte della proponente.
+
+\section{Presenze}
+
+Nelle tabelle che seguono lo stato \textit{Presente} indica la partecipazione allo scambio asincrono di messaggi.
+
+\subsection{Interni}
+\begin{center}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
+\hline
+Lorenzo & Battistella & Presente \\
+Edoardo & De Piccoli & Presente \\
+Davide & Facco & Presente \\
+Anna & Marini & Presente \\
+Andrea & Menegaldo & Presente \\
+Samuele & Vendramin & Presente \\
+Simone & Zecchinato & Presente \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Esterni}
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Nome} & \textbf{Azienda} \\
+\hline
+Gregorio Piccoli & Zucchetti S.p.A. \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ordine del giorno}
+
+\begin{itemize}
+    \item presentazione dell'MVP \textbf{Second Brain} mediante video dimostrativo;
+    \item condivisione del \textit{repository} dell'MVP e del Manuale Utente;
+    \item valutazione del prodotto da parte della proponente ai fini dell'accettazione.
+\end{itemize}
+
+\section{Discussione e sintesi}
+
+\subsection{Materiale trasmesso alla proponente}
+
+Il gruppo ha inviato alla proponente un \textbf{video di presentazione} dell'MVP \textbf{Second Brain}, corredato dal collegamento al \textit{repository} del prodotto (\url{https://github.com/thebitless-group-swe/MVP}) e al \textbf{Manuale Utente}, consultabile sul sito del gruppo (\url{https://thebitless.live/}). Il video ripercorre le funzionalità realizzate e le scelte architetturali adottate, secondo i punti riportati nei paragrafi seguenti.
+
+\subsection{Interfaccia utente}
+
+È stata illustrata l'interfaccia del prodotto, con particolare attenzione alla \textbf{modalità \textit{split}}, che affianca l'editor di scrittura al render del documento, consentendo all'utente di redigere il testo e di visualizzarne contestualmente la resa finale.
+
+\subsection{Funzionalità di editing}
+
+Sono state mostrate le funzionalità di scrittura e di manipolazione del testo:
+
+\begin{itemize}
+    \item formattazione del testo secondo la sintassi \textbf{Markdown};
+    \item annullamento e ripristino delle modifiche;
+    \item ricerca all'interno della nota e sostituzione delle occorrenze individuate.
+\end{itemize}
+
+\subsection{Funzionalità di intelligenza artificiale}
+
+È stata data dimostrazione delle funzionalità di intelligenza artificiale:
+
+\begin{itemize}
+    \item \textbf{generazione di testo a partire da un'istruzione} fornita dall'utente;
+    \item \textbf{estrazione del testo da un collegamento}, operazione affidata al servizio esterno \textbf{Tavily};
+    \item \textbf{analisi critica del testo} secondo la tecnica dei \textbf{Sei Cappelli per Pensare};
+    \item \textbf{riassunto} del contenuto della nota;
+    \item \textbf{traduzione} del testo;
+    \item \textbf{riscrittura} del testo;
+    \item \textbf{correzione grammaticale}.
+\end{itemize}
+
+\subsection{Architettura del sistema}
+
+È stata presentata l'organizzazione architetturale del prodotto:
+
+\begin{itemize}
+    \item \textbf{separazione tra frontend e backend}: il frontend è realizzato in \textbf{React} con \textbf{TypeScript}, il backend in \textbf{Python} con il framework \textbf{FastAPI} e segue un'\textbf{architettura esagonale}, che isola il dominio applicativo dalle tecnologie di contorno;
+    \item \textbf{sicurezza}: la chiave di autenticazione necessaria all'accesso ai modelli linguistici è custodita esclusivamente lato server e non raggiunge in alcun caso il browser dell'utente;
+    \item \textbf{containerizzazione}: il prodotto è distribuito mediante \textbf{Docker}, così da rendere l'avvio dell'applicazione indipendente dall'ambiente di esecuzione.
+\end{itemize}
+
+\subsection{Qualità di processo e di prodotto}
+
+Il gruppo ha illustrato le misure adottate a garanzia della qualità:
+
+\begin{itemize}
+    \item \textbf{pipeline di integrazione e distribuzione continua} automatizzata;
+    \item \textbf{test di unità e di integrazione} sulle componenti realizzate;
+    \item \textbf{validazione del contratto dell'API} condiviso tra frontend e backend;
+    \item \textbf{revisione obbligatoria del codice} prima dell'integrazione nel ramo principale.
+\end{itemize}
+
+\subsection{Requisiti opzionali non implementati}
+
+Il gruppo ha dichiarato esplicitamente alla proponente che i \textbf{requisiti opzionali} non sono stati realizzati, avendo scelto di dare priorità alla solidità dei requisiti obbligatori. Si tratta, nello specifico, di:
+
+\begin{itemize}
+    \item \textbf{archiviazione delle note lato server}, con la relativa gestione degli account utente;
+    \item \textbf{RAG} (\textit{Retrieval-Augmented Generation}), ossia l'impiego di note già archiviate come contesto per la generazione di nuovo testo;
+    \item \textbf{collegamento tra note}, ossia la creazione di collegamenti ipertestuali tra note diverse.
+\end{itemize}
+
+\section{Esito dell'incontro}
+
+Il referente aziendale \textbf{Gregorio Piccoli} ha preso visione del materiale trasmesso, ossia del video di presentazione, del \textit{repository} dell'MVP e del Manuale Utente, manifestando soddisfazione per i risultati conseguiti, e confermando formalmente la propria approvazione e l'accettazione dell'MVP \textit{Second Brain}.}
+
+\vspace{0.3cm}
+
+\noindent Il presente verbale costituisce pertanto l'evidenza dell'accettazione formale del prodotto da parte dell'azienda proponente.
+
+\vfill
+\end{document}
