@@ -1,0 +1,111 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{xurl}
+\usepackage{xcolor}
+\definecolor{bluBitless}{HTML}{3A75C4}
+\geometry{a4paper, top=2.5cm, bottom=2.5cm, left=3cm, right=3cm}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=black,
+    citecolor=black,
+    filecolor=black,
+    breaklinks=true,
+    pdfpagemode=UseNone
+}
+\urlstyle{same}
+\usepackage[normalem]{ulem}
+\let\orighref\href
+\renewcommand{\href}[2]{\orighref{#1}{\uline{#2}}}
+
+\def\templatedir{../../templates}
+
+% Segnaposto da sostituire prima della consegna: resi visibili in rosso
+% affinché non possano passare inosservati in verifica.
+\newcommand{\segnaposto}[1]{\textbf{\textcolor{red}{[#1]}}}
+
+\newcommand{\versioneST}{1.0.0}
+
+\begin{document}
+\pagestyle{empty}
+
+\noindent
+\begin{minipage}[t]{0.5\textwidth}
+    \vspace{0pt}
+    \raggedright
+    Alla cortese attenzione di \\
+    Prof. Riccardo Cardin, \\
+    Università degli Studi di Padova
+\end{minipage}\hfill
+\begin{minipage}[t]{0.45\textwidth}
+    \vspace{0pt}
+    \raggedleft
+    \includegraphics[width=2cm]{../../templates/logo_ritagliato.png} \\[0.4cm]
+    \textbf{The Bitless}, Gruppo 18 \\
+    thebitless.swe@gmail.com
+\end{minipage}
+
+\vspace{0.6cm}
+\begin{center}
+    {\Large \textbf{Lettera di Presentazione PB}} \\[0.2cm]
+    {\large Prima parte -- Prof. Cardin}
+\end{center}
+
+
+\noindent Egregio Prof. Cardin,
+
+\vspace{0.4cm}
+\begin{spacing}{1.15}
+
+\noindent con la presente, il gruppo \textbf{The Bitless} (Gruppo 18) comunica formalmente la propria intenzione di candidarsi alla revisione della \textit{Product Baseline} (PB) per il capitolato \textbf{C6}, proposto dall'azienda \textbf{Zucchetti S.p.A.}, dal nome \textbf{Second Brain --- Estendere il note-taking con i Large Language Models}.
+
+\vspace{0.2cm}
+
+\noindent Si comunica, inoltre, che il gruppo ha sviluppato un \textit{Minimum Viable Product} (MVP) che implementa un insieme completo di funzionalità essenziali, volto a dimostrare il valore della soluzione proposta e a supportarne la valutazione operativa, reperibile al seguente indirizzo: \href{https://github.com/thebitless-group-swe/MVP}{Repository MVP}.
+
+\vspace{0.2cm}
+
+\noindent Il prodotto (MVP) è stato visionato e formalmente accettato dall'azienda proponente, Zucchetti S.p.A., come attestato dal \href{https://thebitless.live/PB/doc_esterna/verbali/VE_2026-08-19_approvazione-mvp/VE_2026-08-19_approvazione-mvp.pdf}{verbale esterno del 19 agosto 2026}.
+
+\vspace{0.2cm}
+
+\noindent L'intera documentazione di progetto è consultabile visitando il \href{https://thebitless.live/}{sito ufficiale del gruppo}, oppure direttamente all'interno del \href{https://github.com/thebitless-group-swe/thebitless.github.io}{Repository Documentazione}.
+
+\vspace{0.2cm}
+
+\noindent Il documento di Specifica Tecnica è disponibile per la consultazione al seguente link: \href{https://thebitless.live/PB/doc_esterna/specifica_tecnica/specifica_tecnica.pdf}{Specifica Tecnica v\versioneST}.
+
+\vspace{0.8cm}
+
+\noindent Cordiali saluti, \\
+\textbf{The Bitless}
+
+\vspace{0.6cm}
+
+\begin{center}
+    \begin{tabular}{|l|l|c|}
+        \hline
+        \textbf{Nome} & \textbf{Cognome} & \textbf{Matricola} \\
+        \hline
+        Lorenzo & Battistella & 2103116 \\
+        Edoardo & De Piccoli &  2101055 \\
+        Davide & Facco &        2087852 \\
+        Anna & Marini &         2110986 \\
+        Andrea & Menegaldo &    2116426 \\
+        Samuele & Vendramin &   2111934 \\
+        Simone & Zecchinato &   2113189 \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\end{spacing}
+
+\end{document}
