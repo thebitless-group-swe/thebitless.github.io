@@ -50,8 +50,8 @@
 
 \newcommand{\titolo}{Piano di Progetto}
 \newcommand{\dataverbale}{}
-\newcommand{\dataversione}{2026-08-10}
-\newcommand{\versione}{1.4.0}
+\newcommand{\dataversione}{2026-08-17}
+\newcommand{\versione}{1.5.0}
 \newcommand{\stato}{Stesura}
 \newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
 \def\templatedir{../../../templates}
@@ -79,6 +79,8 @@
     \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
     \hline
     \endhead
+    1.5.0 & 2026-08-17 & A. Menegaldo & D. Facco & - & Pianificazione, preventivo e consuntivo Sprint \#11; aggiornamento dei rischi RO-1 e RP-2 \\
+    \hline
     1.4.0 & 2026-08-10 & A. Marini & L. Battistella & - & Pianificazione, preventivo e consuntivo Sprint \#10; sprint ridotti a una settimana; aggiornamento del rischio RT-3 \\
     \hline
     1.3.0 & 2026-08-04 & D. Facco & A. Menegaldo & - & Pianificazione, preventivo e consuntivo Sprint \#9; aggiornamento dei rischi RO-1, RT-2, RT-3 \\
@@ -326,10 +328,12 @@ I rischi sono identificati tramite una sigla univoca così composta: \\
         \end{tabularx}
     \end{center}
 
-    \item \textbf{Probabilità:} Media
+    \item \textbf{Probabilità:} Alta
 
     \item \textbf{Pericolosità:} Alta
 \end{itemize}
+
+\textbf{Aggiornamento (Sprint\textsubscript{G} \#9):} la probabilità è stata innalzata da \textit{Media} ad \textit{Alta}. Il rischio\textsubscript{G} si è manifestato in due periodi consecutivi, gli Sprint\textsubscript{G} \#8 e \#9, nella forma prevista dalla tabella dei periodi critici, ossia la ridotta reperibilità dei membri nella finestra estiva, aggravata da impegni personali imprevisti; con l'ingresso del progetto nel mese di agosto, indicato come periodo di massimo rallentamento atteso, la probabilità non poteva più essere considerata \textit{Media}.
 
 \subsubsection{RO-2: Incomprensioni comunicative}
 
@@ -488,12 +492,14 @@ I rischi sono identificati tramite una sigla univoca così composta: \\
 
     \item \textbf{Strategie di rilevamento:} Il Responsabile monitora la frequenza e l'esito dei contatti con la Proponente. Segnali di allerta sono rappresentati da mancate risposte alle email di chiarimento entro i tempi previsti dalle Norme di Progetto\textsubscript{G} o dall'impossibilità di fissare gli incontri di allineamento periodici necessari per la verifica degli incrementi.
 
-    \item \textbf{Contromisure:} Il gruppo si impegna a raggruppare i dubbi e le richieste di chiarimento in liste strutturate, inviandole con congruo anticipo rispetto alle scadenze interne. In caso di prolungata assenza di supporto, il team documenta formalmente nei verbali le decisioni assunte in autonomia e le relative motivazioni, in modo da poterle discutere rapidamente al primo incontro utile. Si cercherà inoltre di mantenere una pianificazione flessibile che permetta di spostare l'effort su task\textsubscript{G} meno dipendenti dal feedback esterno.
+    \item \textbf{Contromisure:} Il gruppo si impegna a raggruppare i dubbi e le richieste di chiarimento in liste strutturate, inviandole con congruo anticipo rispetto alle scadenze interne. In caso di prolungata assenza di supporto, il team documenta formalmente nei verbali le decisioni assunte in autonomia e le relative motivazioni, in modo da poterle discutere rapidamente al primo incontro utile. Si cercherà inoltre di mantenere una pianificazione flessibile che permetta di spostare l'effort su task\textsubscript{G} meno dipendenti dal feedback esterno. A seguito del manifestarsi del rischio\textsubscript{G} nello Sprint\textsubscript{G} \#11 il gruppo adotta inoltre il disaccoppiamento fra la validazione della Proponente\textsubscript{G} e la presentazione del prodotto alla committenza\textsubscript{G} didattica: il percorso di consegna prosegue sulla base della documentazione e delle verifiche\textsubscript{G} interne, mentre la richiesta di riscontro alla Proponente\textsubscript{G} viene inoltrata per iscritto in forma asincrona, corredata del materiale necessario a una valutazione autonoma, così che l'eventuale ritardo nella risposta non blocchi la chiusura del progetto.
 
-    \item \textbf{Probabilità:} Bassa
+    \item \textbf{Probabilità:} Alta
 
-    \item \textbf{Pericolosità:} Media
+    \item \textbf{Pericolosità:} Alta
 \end{itemize}
+
+\textbf{Aggiornamento (Sprint\textsubscript{G} \#11):} la probabilità è stata innalzata da \textit{Bassa} ad \textit{Alta} e la pericolosità da \textit{Media} ad \textit{Alta}. Nello Sprint\textsubscript{G} \#11 il rischio\textsubscript{G} si è manifestato nel momento in assoluto più sfavorevole: la Proponente\textsubscript{G} è risultata in ferie fino alla fine di agosto 2026 e non è stato possibile fissare l'incontro di presentazione del prodotto finale nella finestra prevista. L'evento non ha inciso sul contenuto del prodotto, i cui requisiti\textsubscript{G} erano stabilizzati dallo Sprint\textsubscript{G} \#8, ma tocca direttamente la milestone\textsubscript{G} conclusiva, poiché l'attesa della validazione avrebbe comportato la sospensione delle attività fino a settembre; la pericolosità è pertanto valutata \textit{Alta} in coerenza con la legenda dei valori riportata al termine della \hyperref[tab:gestione-rischi]{Sezione \S2}.
 
 \subsection{Tabella riassuntiva dei rischi}
 \begin{table}[H]
@@ -534,7 +540,7 @@ I rischi sono identificati tramite una sigla univoca così composta: \\
         \hline
         \textbf{RP-1} & Errata comprensione del capitolato & Bassa & Media \\
         \hline
-        \textbf{RP-2} & Mancanza di supporto della Proponente & Bassa & Media \\
+        \textbf{RP-2} & Mancanza di supporto della Proponente & Alta & Alta \\
         \hline
     \end{tabularx}
     \caption{Tabella riassuntiva dell'analisi dei rischi}
@@ -624,13 +630,17 @@ La tabella seguente riassume, per ciascun ruolo, il monte ore complessivo, il co
 
 \subsection{Distribuzione delle ore per ruolo}
 \label{tab:preventivo-finire}
-\textbf{Ultimo aggiornamento: 2026-08-10}
+\textbf{Ultimo aggiornamento: 2026-08-17}
 
-Di seguito è riportato il preventivo ``a finire'', ovvero la stima delle ore e dei costi ancora necessari al completamento del progetto, soggetto a miglioramento continuo in base alle considerazioni del consuntivo di periodo. Al termine dello Sprint\textsubscript{G} \#10 risultano consuntivate complessivamente 552 ore delle 623 preventivate, con 71 ore residue.
+Di seguito è riportato il preventivo ``a finire'', ovvero la stima delle ore e dei costi ancora necessari al completamento del progetto, soggetto a miglioramento continuo in base alle considerazioni del consuntivo di periodo. Al termine dello Sprint\textsubscript{G} \#11 risultano consuntivate complessivamente 608 ore delle 623 preventivate, con 15 ore residue.
 
 Il prospetto riporta la differenza fra le ore preventivate\textsubscript{G} per ciascuna coppia risorsa-ruolo e quelle effettivamente consuntivate, senza alcuna ricalibrazione. Il gruppo ha deliberatamente scelto di non ripianare i valori negativi mediante ridistribuzioni fra ruoli: un preventivo a finire costruito a posteriori perderebbe il proprio valore diagnostico e nasconderebbe l'informazione più rilevante, ossia quali ruoli e quali membri abbiano già eroso il proprio budget. I valori negativi vanno letti come un debito maturato sulla coppia risorsa-ruolo, da compensare all'occorrenza sottraendo ore ad altre voci nel periodo in cui il fabbisogno si presenterà.
 
-Al netto della posta negativa dell'Analista\textsubscript{G}, la distribuzione concentra il 67,6\% delle ore residue sui ruoli Programmatore\textsubscript{G} e Verificatore\textsubscript{G}, di cui il solo Verificatore\textsubscript{G} rappresenta il 45,1\%. La ripartizione è coerente con la fase in corso: completata la codifica\textsubscript{G} dell'MVP\textsubscript{G} nello Sprint\textsubscript{G} \#10, il periodo conclusivo è dedicato alla verifica\textsubscript{G} dei documenti, al collaudo\textsubscript{G} del prodotto e al completamento della documentazione. Il monte ore complessivo del progetto resta di 623 ore e il budget totale di 12.335,00 €.
+Le 15 ore residue, pari a 255,00 €, sono destinate allo Sprint\textsubscript{G} \#12, dedicato alla preparazione e allo svolgimento delle presentazioni finali: predisposizione delle diapositive e preparazione dell'esposizione per il prof. Riccardo Cardin, stesura delle lettere di presentazione per il prof. Riccardo Cardin e per il prof. Tullio Vardanega e svolgimento dell'incontro con la Proponente\textsubscript{G}. Il dimensionamento dello Sprint\textsubscript{G} \#11 è stato definito tenendo conto di tale fabbisogno: il gruppo ha deliberatamente lasciato disponibilità residua su tutti i ruoli\textsubscript{G} anziché impegnare l'intero budget nel periodo, come illustrato nel preventivo\textsubscript{G} dello Sprint\textsubscript{G} \#11.
+
+La ripartizione mostra 9 ore residue sul Verificatore\textsubscript{G}, 6 sul Programmatore\textsubscript{G}, 5 sul Responsabile\textsubscript{G} e 5 sul Progettista\textsubscript{G}, a fronte di due poste negative: l'Analista\textsubscript{G} a $-9$ ore, debito storico maturato nello Sprint\textsubscript{G} \#8 sulla revisione dei requisiti\textsubscript{G} non funzionali, e l'Amministratore\textsubscript{G} a $-1$ ora, riconducibile alla posizione di D. Facco ($-3$). Il monte ore complessivo del progetto resta di 623 ore e il budget totale di 12.335,00 €.
+
+\textbf{Nessun membro presenta un saldo complessivo negativo}: è l'esito del vincolo sul totale individuale introdotto nel preventivo\textsubscript{G} dello Sprint\textsubscript{G} \#11. La disponibilità residua resta però distribuita in modo disomogeneo: E. De Piccoli dispone ancora di 6 ore, D. Facco di 4 e A. Menegaldo di 3, mentre L. Battistella e S. Zecchinato si fermano a una sola ora e A. Marini e S. Vendramin hanno esaurito la propria dotazione. Le attività dello Sprint\textsubscript{G} \#12 dovranno pertanto essere assegnate prioritariamente ai primi tre.
 
 \begin{table}[H]
     \centering
@@ -640,28 +650,28 @@ Al netto della posta negativa dell'Analista\textsubscript{G}, la distribuzione c
         \rowcolor[HTML]{EFEFEF}
         \textbf{Membro} & \textbf{RE} & \textbf{AM} & \textbf{AN} & \textbf{PT} & \textbf{PR} & \textbf{VE} & \textbf{Totale} \\
         \hline
-        L. Battistella & 0 & 2 & 0 & 3 & 3 & 1 & 9 \\
+        L. Battistella & 0 & 0 & 0 & 0 & 0 & 1 & 1 \\
         \hline
-        E. De Piccoli & 4 & 0 & 1 & 1 & 1 & 5 & 12 \\
+        E. De Piccoli & 4 & 0 & 1 & 1 & 0 & 0 & 6 \\
         \hline
-        D. Facco & 4 & -3 & 0 & 0 & 1 & 14 & 16 \\
+        D. Facco & 4 & -3 & 0 & 0 & 1 & 2 & 4 \\
         \hline
-        A. Marini & 0 & 1 & -2 & -1 & 6 & 0 & 4 \\
+        A. Marini & 0 & 1 & -2 & -1 & 2 & 0 & 0 \\
         \hline
-        A. Menegaldo & 5 & 0 & 1 & 4 & 2 & 3 & 15 \\
+        A. Menegaldo & 0 & 0 & 1 & 0 & 2 & 0 & 3 \\
         \hline
-        S. Vendramin & -2 & 1 & -4 & 10 & 1 & 0 & 6 \\
+        S. Vendramin & -2 & 1 & -4 & 4 & 1 & 0 & 0 \\
         \hline
-        S. Zecchinato & -1 & 0 & -5 & 4 & 2 & 9 & 9 \\
-        \hline
-        \rowcolor[HTML]{EFEFEF}
-        \textbf{Totale per ruolo} & \textbf{10} & \textbf{1} & \textbf{-9} & \textbf{21} & \textbf{16} & \textbf{32} & \textbf{71} \\
+        S. Zecchinato & -1 & 0 & -5 & 1 & 0 & 6 & 1 \\
         \hline
         \rowcolor[HTML]{EFEFEF}
-        \textbf{Costo totale (in €)} & \textbf{300,00} & \textbf{20,00} & \textbf{-225,00} & \textbf{525,00} & \textbf{240,00} & \textbf{480,00} & \textbf{1.340,00} \\
+        \textbf{Totale per ruolo} & \textbf{5} & \textbf{-1} & \textbf{-9} & \textbf{5} & \textbf{6} & \textbf{9} & \textbf{15} \\
+        \hline
+        \rowcolor[HTML]{EFEFEF}
+        \textbf{Costo totale (in €)} & \textbf{150,00} & \textbf{-20,00} & \textbf{-225,00} & \textbf{125,00} & \textbf{90,00} & \textbf{135,00} & \textbf{255,00} \\
         \hline
     \end{tabularx}
-    \caption{Preventivo a finire al termine dello Sprint \#10}
+    \caption{Preventivo a finire al termine dello Sprint \#11}
 \end{table}
 
 \noindent
@@ -938,6 +948,32 @@ La composizione dei ruoli recepisce quanto stabilito nella riunione di apertura 
 La novità più rilevante riguarda il ruolo Verificatore\textsubscript{G}, che viene \textbf{ripartito su quattro membri} anziché concentrato su una o due figure come nei periodi precedenti. La scelta risponde direttamente al rischio\textsubscript{G} RT-3 (\textit{Presenza di errori nel codice}), la cui pericolosità era stata elevata ad \textit{Alta} al termine dello Sprint\textsubscript{G} \#9: con la codifica\textsubscript{G} in fase di completamento il volume di codice da sottoporre a revisione cresce sensibilmente e il gruppo ha preferito distribuire la capacità di verifica\textsubscript{G} su più persone, così da poterla incrementare in corso di sprint\textsubscript{G} qualora il rischio\textsubscript{G} si manifestasse.
 
 Per sostenere questa composizione \textbf{quattro membri ricoprono un doppio ruolo\textsubscript{G}}. S. Zecchinato affianca al ruolo di Responsabile\textsubscript{G} quello di Programmatore\textsubscript{G}, destinando alla codifica\textsubscript{G} le ore eccedenti quelle di coordinamento; E. De Piccoli affianca all'Amministratore\textsubscript{G} il ruolo di Verificatore\textsubscript{G}, poiché le attività di configurazione\textsubscript{G} e di gestione dei rilasci hanno ormai carattere consolidato e non assorbono l'intero monte ore del ruolo; L. Battistella e D. Facco affiancano alla progettazione\textsubscript{G} una quota di verifica\textsubscript{G}, potendo così controllare la corrispondenza fra il codice prodotto e gli artefatti\textsubscript{G} architetturali di cui sono autori. La misura recepisce l'indicazione della retrospettiva\textsubscript{G} dello Sprint\textsubscript{G} \#9, che aveva formalizzato il supporto fuori ruolo\textsubscript{G} come criterio di pianificazione\textsubscript{G} anziché come rimedio adottato in corso d'opera.
+
+\subsection{Sprint \#11: da 2026-08-11 a 2026-08-17}
+
+\subsubsection{Obiettivi}
+Lo Sprint\textsubscript{G} \#11 chiude la produzione di prodotto e documentazione e mantiene la cadenza settimanale dello Sprint\textsubscript{G} \#10. Non sono previste nuove funzionalità: il periodo è dedicato al \textbf{consolidamento del prodotto e al completamento della documentazione}, in vista dell'incontro con il prof. Riccardo Cardin e della consegna finale al prof. Tullio Vardanega. Ogni artefatto\textsubscript{G} viene allineato allo stato effettivo dell'MVP\textsubscript{G} e verificato prima della chiusura del periodo.
+
+Al periodo seguirà lo Sprint\textsubscript{G} \#12, dedicato alla preparazione e allo svolgimento delle presentazioni finali. Il preventivo\textsubscript{G} dello Sprint\textsubscript{G} \#11 tiene conto di tale fabbisogno e non impegna l'intero budget residuo: su ogni ruolo\textsubscript{G} viene lasciata disponibilità, per un totale di 15 ore, pari a 275,00 €.
+
+Nello specifico, il team si impegnerà a:
+\begin{itemize}
+    \item completare l'implementazione\textsubscript{G} del codice dell'MVP\textsubscript{G}, limitandosi alla correzione dei difetti emersi in fase di verifica\textsubscript{G} e portando a termine gli ultimi test\textsubscript{G} funzionali sul prodotto;
+
+    \item terminare la stesura del documento di \textit{Specifica Tecnica}, completando le sezioni ancora aperte e i diagrammi UML\textsubscript{G} necessari a rappresentare l'architettura\textsubscript{G} e il comportamento del sistema;
+
+    \item terminare il \textit{Manuale Utente}, integrando le sezioni mancanti e le schermate del prodotto in configurazione\textsubscript{G} definitiva;
+
+    \item aggiornare il \textit{Piano di Progetto} e il \textit{Piano di Qualifica} allo stato attuale del progetto, con il consuntivo\textsubscript{G} dello Sprint\textsubscript{G} \#10 e con la pianificazione\textsubscript{G} e il preventivo\textsubscript{G} dello Sprint\textsubscript{G} \#11;
+
+    \item \textbf{verificare accuratamente tutti i documenti} destinati alla Product Baseline\textsubscript{G}, controllandone correttezza dei contenuti, coerenza reciproca, tracciamento\textsubscript{G} e conformità alle \textit{Norme di Progetto};
+
+    \item aggiornare il sito web del gruppo con la rappresentazione della Product Baseline\textsubscript{G} e con la vista web del \textit{Manuale Utente};
+
+    \item contattare la Proponente\textsubscript{G} per richiedere un incontro di presentazione del prodotto finale;
+
+    \item redigere il verbale\textsubscript{G} interno della riunione del periodo, secondo quanto previsto dalle \textit{Norme di Progetto}.
+\end{itemize}
 
 \section{Preventivo}
 Il preventivo viene elaborato considerando il costo orario associato a ciascun ruolo, il budget complessivo previsto e le attività pianificate per il periodo di riferimento. Per ogni sprint\textsubscript{G} vengono quindi riportati:
@@ -2277,6 +2313,150 @@ Di seguito è riportato il preventivo economico del decimo sprint\textsubscript{
         \textbf{Totale} & \textbf{81} & \textbf{1.485,00} \\ \hline
     \end{tabular}
     \caption{\textit{Preventivo economico dello Sprint \#10}}
+\end{table}
+
+\subsection{Sprint \#11: da 2026-08-11 a 2026-08-17}
+Di seguito è riportata la distribuzione delle ore preventivate per ciascun membro del team, secondo la rotazione dei ruoli\textsubscript{G} definita nella riunione di apertura dello sprint\textsubscript{G} del 2026-08-11:
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|}
+        \hline
+        \rowcolor{bluBitless!15}
+        \textbf{Membro} & \textbf{Re} & \textbf{Am} & \textbf{An} & \textbf{Pt} & \textbf{Pr} & \textbf{Ve} & \textbf{Totale per persona} \\
+        \hline
+        L. Battistella & - & 2 & - & 2 & 3 & - & 7 \\ \hline
+        E. De Piccoli & - & - & - & - & 1 & 5 & 6 \\ \hline
+        D. Facco & - & - & - & - & - & 13 & 13 \\ \hline
+        A. Marini & - & - & - & - & 4 & - & 4 \\ \hline
+        A. Menegaldo & 5 & - & - & 4 & - & 3 & 12 \\ \hline
+        S. Vendramin & - & - & - & 5 & 1 & - & 6 \\ \hline
+        S. Zecchinato & - & - & - & 3 & 2 & 3 & 8 \\ \hline
+        \rowcolor{bluBitless!8}
+        \textbf{Totale per ruolo} & \textbf{5} & \textbf{2} & \textbf{-} & \textbf{14} & \textbf{11} & \textbf{24} & \textbf{56} \\
+        \hline
+    \end{tabular}
+    \caption{\textit{Preventivo orario Sprint \#11}}
+\end{table}
+
+\begin{figure}[H]
+\centering
+
+\begin{tikzpicture}[scale=0.85]
+
+% Colori pastello
+\definecolor{colResp}{HTML}{BFD7EA}
+\definecolor{colAmm}{HTML}{F7C8C8}
+\definecolor{colPt}{HTML}{FFE5B4}
+\definecolor{colPr}{HTML}{D8CCEA}
+\definecolor{colVer}{HTML}{CDE7C8}
+\definecolor{lineGray}{HTML}{8A8A8A}
+
+% Raggio dell'areogramma
+\def\r{3.2}
+
+% Titolo
+\node[font=\Large\bfseries] at (0,4.25) {Distribuzione ore per ruolo};
+
+% Settori (Totale = 56 ore)
+% Re:  5 ore ->  8,9%
+% Am:  2 ore ->  3,6%
+% Pt: 14 ore -> 25,0%
+% Pr: 11 ore -> 19,6%
+% Ve: 24 ore -> 42,9%
+
+\path[fill=colResp, draw=white, line width=1.5pt]
+(0,0) -- (90:\r) arc[start angle=90,end angle=57.9,radius=\r] -- cycle;
+
+\path[fill=colAmm, draw=white, line width=1.5pt]
+(0,0) -- (57.9:\r) arc[start angle=57.9,end angle=45,radius=\r] -- cycle;
+
+\path[fill=colPt, draw=white, line width=1.5pt]
+(0,0) -- (45:\r) arc[start angle=45,end angle=-45,radius=\r] -- cycle;
+
+\path[fill=colPr, draw=white, line width=1.5pt]
+(0,0) -- (-45:\r) arc[start angle=-45,end angle=-115.7,radius=\r] -- cycle;
+
+\path[fill=colVer, draw=white, line width=1.5pt]
+(0,0) -- (-115.7:\r) arc[start angle=-115.7,end angle=-270,radius=\r] -- cycle;
+
+% Percentuali interne
+\node[font=\tiny\bfseries] at (74:2.45) {8,9\%};
+\node[font=\tiny\bfseries] at (51.5:2.45) {3,6\%};
+\node[font=\small\bfseries] at (0:1.85) {25,0\%};
+\node[font=\small\bfseries] at (-80.4:1.85) {19,6\%};
+\node[font=\small\bfseries] at (-192.9:1.85) {42,9\%};
+
+% Etichette esterne
+% Responsabile (alto destra)
+\fill[lineGray] (0.47,1.63) circle (1.7pt);
+\draw[lineGray, line width=0.7pt] (0.47,1.63) -- (5.5,2.6);
+\node[anchor=south east, font=\normalsize\bfseries] at (5.5,2.67) {Responsabile};
+\node[anchor=north east, font=\small\bfseries, text=lineGray] at (5.5,2.45) {5 ore};
+
+% Amministratore (destra)
+\fill[lineGray] (1.06,1.33) circle (1.7pt);
+\draw[lineGray, line width=0.7pt] (1.06,1.33) -- (5.5,1.0);
+\node[anchor=south east, font=\normalsize\bfseries] at (5.5,1.07) {Amministratore};
+\node[anchor=north east, font=\small\bfseries, text=lineGray] at (5.5,0.85) {2 ore};
+
+% Progettista (destra basso)
+\fill[lineGray] (1.70,0.00) circle (1.7pt);
+\draw[lineGray, line width=0.7pt] (1.70,0.00) -- (5.5,-0.6);
+\node[anchor=south east, font=\normalsize\bfseries] at (5.5,-0.53) {Progettista};
+\node[anchor=north east, font=\small\bfseries, text=lineGray] at (5.5,-0.75) {14 ore};
+
+% Programmatore (basso destra)
+\fill[lineGray] (0.28,-1.68) circle (1.7pt);
+\draw[lineGray, line width=0.7pt] (0.28,-1.68) -- (5.5,-3.3);
+\node[anchor=south east, font=\normalsize\bfseries] at (5.5,-3.23) {Programmatore};
+\node[anchor=north east, font=\small\bfseries, text=lineGray] at (5.5,-3.45) {11 ore};
+
+% Verificatore (alto sinistra)
+\fill[lineGray] (-1.66,0.38) circle (1.7pt);
+\draw[lineGray, line width=0.7pt] (-1.66,0.38) -- (-5.5,1.4);
+\node[anchor=south west, font=\normalsize\bfseries] at (-5.5,1.47) {Verificatore};
+\node[anchor=north west, font=\small\bfseries, text=lineGray] at (-5.5,1.25) {24 ore};
+
+\end{tikzpicture}
+
+\caption{Areogramma del preventivo orario nello Sprint \#11}
+\label{fig:preventivo-sprint11}
+\end{figure}
+
+Il preventivo dello Sprint\textsubscript{G} \#11 ammonta a 56 ore produttive per 1.065,00 €, a fronte di 71 ore e 1.340,00 € ancora disponibili. Il gruppo \textbf{non impegna l'intero budget residuo} e lascia deliberatamente 15 ore, pari a 275,00 €, per lo Sprint\textsubscript{G} \#12: quel periodo è dedicato alla preparazione delle diapositive e dell'esposizione per il prof. Riccardo Cardin, alla stesura delle lettere di presentazione per il prof. Riccardo Cardin e per il prof. Tullio Vardanega e allo svolgimento dell'incontro con la Proponente\textsubscript{G}. Sono attività a basso assorbimento orario ma non comprimibili, e preventivarle in anticipo evita di doverle coprire con poste negative.
+
+Rispetto alle 81 ore dello Sprint\textsubscript{G} \#10 il carico scende di 25 ore, coerentemente con la natura del periodo: chiusa la codifica\textsubscript{G}, non vi sono attività di sviluppo da svolgere e il lavoro residuo è di completamento e controllo. La distribuzione per ruolo\textsubscript{G} è stata costruita a partire dai residui individuali della coppia risorsa-ruolo riportati nel preventivo a finire (\hyperref[tab:preventivo-finire]{Sezione \S5.1}), assegnando a ciascun membro ore soltanto sui ruoli\textsubscript{G} per i quali dispone ancora di dotazione positiva e lasciando disponibilità su ciascun ruolo\textsubscript{G}; le poste negative maturate nei periodi precedenti, in particolare quella dell'Analista\textsubscript{G} e quella dell'Amministratore\textsubscript{G} in capo a D. Facco, non vengono pertanto ulteriormente incrementate. A questo criterio il gruppo ne affianca in questo periodo un secondo: \textbf{a nessun membro vengono assegnate più ore di quante ne abbia a disposizione nel proprio totale complessivo}. Il vincolo per coppia risorsa-ruolo, da solo, consente infatti di superare la dotazione individuale accumulando ore su un ruolo\textsubscript{G} capiente mentre altri ruoli\textsubscript{G} sono già in negativo; essendo lo Sprint\textsubscript{G} \#11 il penultimo periodo, il gruppo ha scelto di evitare che qualcuno chiuda il progetto in debito.
+
+Il ruolo \textbf{Verificatore\textsubscript{G} assorbe 24 ore, pari al 42,9\% del preventivo\textsubscript{G}}: è la voce dominante del periodo e la quota percentuale più alta mai attribuita a un singolo ruolo\textsubscript{G} in tutto il progetto. Le ore sono ripartite fra D. Facco (13), E. De Piccoli (5), A. Menegaldo (3) e S. Zecchinato (3) e coprono i due fronti già illustrati nella pianificazione\textsubscript{G}: il collaudo\textsubscript{G} del codice dell'MVP\textsubscript{G}, con l'esecuzione dei test\textsubscript{G} funzionali e la validazione delle correzioni, e la verifica\textsubscript{G} dell'intero corpo documentale destinato alla Product Baseline\textsubscript{G}. Con 13 ore D. Facco è il membro più caricato del periodo, scelta resa possibile dalle 14 ore che il preventivo a finire gli riconosce su questo ruolo\textsubscript{G}. Il ruolo\textsubscript{G} dispone di 32 ore residue e ne impegna 24: le 8 non assegnate, concentrate su S. Zecchinato (6), restano disponibili per le verifiche\textsubscript{G} dello Sprint\textsubscript{G} \#12 sul materiale di presentazione.
+
+Il \textbf{Progettista\textsubscript{G} si attesta a 14 ore} (25,0\%) sulle 21 disponibili, destinate al completamento della \textit{Specifica Tecnica}, compresi i diagrammi UML\textsubscript{G} ancora da produrre, e del \textit{Manuale Utente}; le ore sono ripartite fra S. Vendramin (5), A. Menegaldo (4), S. Zecchinato (3) e L. Battistella (2). A. Menegaldo affianca al ruolo di Responsabile\textsubscript{G} quello di Progettista\textsubscript{G} non per scelta organizzativa ma per necessità aritmetica: è l'unico membro, oltre a S. Vendramin, a disporre ancora di una dotazione apprezzabile sul ruolo\textsubscript{G}, e la dotazione complessiva di S. Vendramin non consente di attribuirgli più di 6 ore in tutto il periodo. Le 7 ore lasciate libere sul ruolo\textsubscript{G} coprono gli eventuali interventi di rifinitura documentale che dovessero emergere in fase di presentazione.
+
+Il \textbf{Programmatore\textsubscript{G} scende a 11 ore} (19,6\%), poco più di un quarto delle 39 consuntivate\textsubscript{G} nel periodo precedente. Sette ore sono assegnate ai due Programmatori\textsubscript{G} designati, A. Marini (4) e L. Battistella (3), per le ultime attività di codifica\textsubscript{G}; le restanti 4 costituiscono la riserva pianificata per la correzione dei difetti emersi dal collaudo\textsubscript{G} e sono concentrate su tre soli membri, ossia S. Zecchinato (2), E. De Piccoli (1) e S. Vendramin (1), anziché essere frazionate su tutto il gruppo. La misura attua l'indicazione della retrospettiva\textsubscript{G} dello Sprint\textsubscript{G} \#10, che chiedeva di mettere a preventivo\textsubscript{G} le ore del membro di riserva, dimensionandola però sull'effettivo fabbisogno: essendo la codifica\textsubscript{G} conclusa, una riserva estesa a tutti i membri non avrebbe avuto giustificazione. Il ruolo\textsubscript{G} chiude quindi il proprio impegno con 5 ore ancora disponibili.
+
+Il \textbf{Responsabile\textsubscript{G}} riceve le 5 ore residue di A. Menegaldo, dedicate al coordinamento del periodo, al contatto con la Proponente\textsubscript{G} e all'aggiornamento del \textit{Piano di Progetto}; restano disponibili le 4 ore di E. De Piccoli e le 4 di D. Facco per il coordinamento dello Sprint\textsubscript{G} \#12. All'\textbf{Amministratore\textsubscript{G}} sono attribuite 2 ore, tutte in capo a L. Battistella, destinate all'aggiornamento del sito web con la rappresentazione della Product Baseline\textsubscript{G} e con la vista web del \textit{Manuale Utente}. Il ruolo\textsubscript{G} è quello con la minore disponibilità dell'intero progetto: a fronte di una dotazione residua netta di una sola ora, le uniche poste positive sono quelle di L. Battistella (2), A. Marini (1) e S. Vendramin (1), a compensazione parziale del $-3$ di D. Facco. Impegnandone 2 il gruppo lascia le 2 ore di A. Marini e S. Vendramin come unica riserva per la pubblicazione dei documenti della Product Baseline\textsubscript{G} nello Sprint\textsubscript{G} \#12.
+
+Di seguito è riportato il preventivo economico dell'undicesimo sprint\textsubscript{G}:
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{|l|c|c|}
+        \hline
+        \rowcolor{bluBitless!15}
+        \textbf{Ruolo} & \textbf{Ore per ruolo} & \textbf{Costo (in €)} \\
+        \hline
+        Responsabile di progetto & 5 & 150,00 \\ \hline
+        Amministratore & 2 & 40,00 \\ \hline
+        Analista & 0 & 0,00 \\ \hline
+        Progettista & 14 & 350,00 \\ \hline
+        Programmatore & 11 & 165,00 \\ \hline
+        Verificatore & 24 & 360,00 \\ \hline
+        \rowcolor{bluBitless!8}
+        \textbf{Totale} & \textbf{56} & \textbf{1.065,00} \\ \hline
+    \end{tabular}
+    \caption{\textit{Preventivo economico dello Sprint \#11}}
 \end{table}
 
 \section{Consuntivo}
@@ -4643,8 +4823,8 @@ Lo Sprint\textsubscript{G} \#10 non cambia la valutazione dei rischi\textsubscri
 \end{itemize}
 
 \subsubsection{Miglioramento della pianificazione futura}
-Con lo Sprint\textsubscript{G} \#10 si chiude la fase di sviluppo e il progetto entra nel periodo conclusivo, dedicato a documentazione e verifica\textsubscript{G} in vista dell'incontro con il prof. Riccardo Cardin, atteso intorno al 20-21 agosto, e della consegna finale al prof. Tullio Vardanega. La pianificazione\textsubscript{G} dell'ultimo sprint\textsubscript{G} cambia su tre punti.
-Il monte ore preventivato coincide con le risorse rimaste: 71 ore, pari a 1.340,00 €. I ruoli\textsubscript{G} si concentrano sul Verificatore\textsubscript{G}, coerentemente con un periodo dedicato alla verifica\textsubscript{G} dei documenti e al collaudo\textsubscript{G} del prodotto; al Programmatore\textsubscript{G} restano 16 ore, che bastano per gli interventi correttivi, mentre le 21 ore del Progettista\textsubscript{G} servono a completare la \textit{Specifica Tecnica} e il \textit{Manuale Utente}. La cadenza settimanale viene confermata, avendo dimostrato in questo periodo di tenere alto il focus e di ridurre i tempi morti.
+Con lo Sprint\textsubscript{G} \#10 si chiude la fase di sviluppo e il progetto entra nella fase conclusiva, dedicata a documentazione e verifica\textsubscript{G} in vista dell'incontro con il prof. Riccardo Cardin, atteso intorno al 20-21 agosto, e della consegna finale al prof. Tullio Vardanega. La pianificazione\textsubscript{G} del prossimo sprint\textsubscript{G} cambia su tre punti.
+Le risorse rimaste ammontano a 71 ore, pari a 1.340,00 €, e costituiscono il limite superiore del preventivo\textsubscript{G} di periodo. I ruoli\textsubscript{G} si concentrano sul Verificatore\textsubscript{G}, coerentemente con un periodo dedicato alla verifica\textsubscript{G} dei documenti e al collaudo\textsubscript{G} del prodotto; al Programmatore\textsubscript{G} restano 16 ore, che bastano per gli interventi correttivi, mentre le 21 ore del Progettista\textsubscript{G} servono a completare la \textit{Specifica Tecnica} e il \textit{Manuale Utente}. La cadenza settimanale viene confermata, avendo dimostrato in questo periodo di tenere alto il focus e di ridurre i tempi morti.
 
 \subsubsection{Preventivo a finire (\hyperref[tab:preventivo-finire]{Sezione \S5.1})}
 Al termine dello Sprint\textsubscript{G} \#10 risultano consuntivate 552 ore delle 623 preventivate\textsubscript{G}: restano 71 ore per un valore di 1.340,00 €. Il monte ore complessivo del progetto resta 623 ore e il budget totale 12.335,00 €.
@@ -4656,5 +4836,300 @@ Dal prospetto emergono quattro punti di attenzione:
     \item le ore residue sono distribuite in modo disomogeneo fra i membri: A. Marini ne ha 4 e L. Battistella 9, mentre A. Menegaldo ne ha 15 e D. Facco 16. Lo squilibrio riflette il maggior carico sostenuto nel periodo dai primi due, entrambi intervenuti fuori ruolo\textsubscript{G}, e va tenuto presente nel distribuire le attività del prossimo sprint\textsubscript{G}.
 \end{itemize}
 I 1.340,00 € sono la somma dei monte ore per ruolo\textsubscript{G} valorizzati al rispettivo costo orario, compresa la voce negativa dell'Analista\textsubscript{G}. Il preventivo a finire aggiornato è riportato nella \hyperref[tab:preventivo-finire]{Sezione \S5.1}.
+
+\subsection{Sprint \#11: da 2026-08-11 a 2026-08-17}
+Di seguito è riportato il riepilogo del confronto fra preventivo\textsubscript{G} e consuntivo\textsubscript{G} per ciascun ruolo. Il delta è calcolato come differenza fra il valore preventivato e quello consuntivato: un valore positivo indica che il ruolo ha chiuso al di sotto della dotazione, un valore negativo che l'ha superata.
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{|l|c|c|c|c|c|c|}
+        \hline
+        \rowcolor{bluBitless!15}
+        \textbf{Ruolo} &
+        \textbf{\shortstack{Ore\\prev.}} &
+        \textbf{\shortstack{Ore\\cons.}} &
+        \textbf{\shortstack{Delta\\ore}} &
+        \textbf{\shortstack{Costo prev.\\(in €)}} &
+        \textbf{\shortstack{Costo cons.\\(in €)}} &
+        \textbf{\shortstack{Delta costo\\(in €)}} \\
+        \hline
+        Responsabile di progetto & 5 & 5 & 0 & 150,00 & 150,00 & 0,00 \\ \hline
+        Amministratore & 2 & 2 & 0 & 40,00 & 40,00 & 0,00 \\ \hline
+        Analista & 0 & 0 & 0 & 0,00 & 0,00 & 0,00 \\ \hline
+        Progettista & 14 & 16 & -2 & 350,00 & 400,00 & -50,00 \\ \hline
+        Programmatore & 11 & 10 & +1 & 165,00 & 150,00 & +15,00 \\ \hline
+        Verificatore & 24 & 23 & +1 & 360,00 & 345,00 & +15,00 \\ \hline
+        \rowcolor{bluBitless!8}
+        \textbf{Totale} & \textbf{56} & \textbf{56} & \textbf{0} & \textbf{1.065,00} & \textbf{1.085,00} & \textbf{-20,00} \\ \hline
+    \end{tabular}
+    \caption{\textit{Riepilogo preventivo-consuntivo per ruolo dello Sprint \#11}}
+\end{table}
+
+Lo Sprint\textsubscript{G} \#11 chiude \textbf{in pareggio di ore}: 56 preventivate\textsubscript{G} e 56 consuntivate\textsubscript{G}. Il pareggio non deriva dall'assenza di scostamenti\textsubscript{G}, bensì dalla loro compensazione all'interno del periodo: il \textbf{Progettista\textsubscript{G} supera la dotazione di 2 ore}, mentre \textbf{Programmatore\textsubscript{G} e Verificatore\textsubscript{G} chiudono ciascuno un'ora al di sotto} e Responsabile\textsubscript{G} e Amministratore\textsubscript{G} si attestano esattamente sulla stima. È la prima volta nel progetto che gli scostamenti\textsubscript{G} dei singoli ruoli\textsubscript{G} si annullano a vicenda: l'unico altro periodo chiuso a delta nullo, lo Sprint\textsubscript{G} \#7, era un periodo di sole 8 ore in cui nessun ruolo\textsubscript{G} si era scostato dalla propria dotazione.
+
+Il pareggio non si estende però al costo, che si attesta a \textbf{1.085,00 € contro i 1.065,00 € preventivati\textsubscript{G}}, con un disavanzo di 20,00 €. Le ore in eccesso gravano infatti sul Progettista\textsubscript{G}, valorizzato a 25,00 €/ora, mentre quelle risparmiate appartengono a Programmatore\textsubscript{G} e Verificatore\textsubscript{G}, entrambi a 15,00 €/ora: la compensazione è esatta sul piano dell'impegno e solo parziale su quello economico. È la situazione speculare a quella dello Sprint\textsubscript{G} \#2, che aveva chiuso con 2 ore di scostamento\textsubscript{G} e costo in pareggio.
+
+Di seguito è riportata la distribuzione delle ore consuntivate per ciascun membro del team, accumulate in totali per persona e per ruolo:
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|}
+        \hline
+        \rowcolor{bluBitless!15}
+        \textbf{Membro} & \textbf{Re} & \textbf{Am} & \textbf{An} & \textbf{Pt} & \textbf{Pr} & \textbf{Ve} & \textbf{Totale per persona} \\
+        \hline
+        L. Battistella & - & 2 & - & 3 & 3 & - & 8 \\ \hline
+        E. De Piccoli & - & - & - & - & 1 & 5 & 6 \\ \hline
+        D. Facco & - & - & - & - & - & 12 & 12 \\ \hline
+        A. Marini & - & - & - & - & 4 & - & 4 \\ \hline
+        A. Menegaldo & 5 & - & - & 4 & - & 3 & 12 \\ \hline
+        S. Vendramin & - & - & - & 6 & - & - & 6 \\ \hline
+        S. Zecchinato & - & - & - & 3 & 2 & 3 & 8 \\ \hline
+        \rowcolor{bluBitless!8}
+        \textbf{Totale per ruolo} & \textbf{5} & \textbf{2} & \textbf{-} & \textbf{16} & \textbf{10} & \textbf{23} & \textbf{56} \\
+        \hline
+    \end{tabular}
+    \caption{\textit{Consuntivo orario Sprint \#11}}
+\end{table}
+
+\begin{figure}[H]
+\centering
+
+\begin{tikzpicture}[scale=0.85]
+
+% Colori pastello
+\definecolor{colResp}{HTML}{BFD7EA}
+\definecolor{colAmm}{HTML}{F7C8C8}
+\definecolor{colPt}{HTML}{FFE5B4}
+\definecolor{colPr}{HTML}{D8CCEA}
+\definecolor{colVer}{HTML}{CDE7C8}
+\definecolor{lineGray}{HTML}{8A8A8A}
+
+% Raggio dell'areogramma
+\def\r{3.2}
+
+% Titolo
+\node[font=\Large\bfseries] at (0,4.25) {Distribuzione ore per ruolo};
+
+% Settori (Totale = 56 ore)
+% Re:  5 ore ->  8,9%
+% Am:  2 ore ->  3,6%
+% Pt: 16 ore -> 28,6%
+% Pr: 10 ore -> 17,9%
+% Ve: 23 ore -> 41,1%
+
+\path[fill=colResp, draw=white, line width=1.5pt]
+(0,0) -- (90:\r) arc[start angle=90,end angle=57.9,radius=\r] -- cycle;
+
+\path[fill=colAmm, draw=white, line width=1.5pt]
+(0,0) -- (57.9:\r) arc[start angle=57.9,end angle=45,radius=\r] -- cycle;
+
+\path[fill=colPt, draw=white, line width=1.5pt]
+(0,0) -- (45:\r) arc[start angle=45,end angle=-57.9,radius=\r] -- cycle;
+
+\path[fill=colPr, draw=white, line width=1.5pt]
+(0,0) -- (-57.9:\r) arc[start angle=-57.9,end angle=-122.1,radius=\r] -- cycle;
+
+\path[fill=colVer, draw=white, line width=1.5pt]
+(0,0) -- (-122.1:\r) arc[start angle=-122.1,end angle=-270,radius=\r] -- cycle;
+
+% Percentuali interne
+\node[font=\tiny\bfseries] at (74:2.45) {8,9\%};
+\node[font=\tiny\bfseries] at (51.5:2.45) {3,6\%};
+\node[font=\small\bfseries] at (-6.4:1.85) {28,6\%};
+\node[font=\small\bfseries] at (-90:1.85) {17,9\%};
+\node[font=\small\bfseries] at (-196.1:1.85) {41,1\%};
+
+% Etichette esterne
+% Responsabile (alto destra)
+\fill[lineGray] (0.47,1.65) circle (1.7pt);
+\draw[lineGray, line width=0.7pt] (0.47,1.65) -- (5.5,2.6);
+\node[anchor=south east, font=\normalsize\bfseries] at (5.5,2.67) {Responsabile};
+\node[anchor=north east, font=\small\bfseries, text=lineGray] at (5.5,2.45) {5 ore};
+
+% Amministratore (destra)
+\fill[lineGray] (1.07,1.35) circle (1.7pt);
+\draw[lineGray, line width=0.7pt] (1.07,1.35) -- (5.5,1.0);
+\node[anchor=south east, font=\normalsize\bfseries] at (5.5,1.07) {Amministratore};
+\node[anchor=north east, font=\small\bfseries, text=lineGray] at (5.5,0.85) {2 ore};
+
+% Progettista (destra basso)
+\fill[lineGray] (1.71,-0.19) circle (1.7pt);
+\draw[lineGray, line width=0.7pt] (1.71,-0.19) -- (5.5,-0.6);
+\node[anchor=south east, font=\normalsize\bfseries] at (5.5,-0.53) {Progettista};
+\node[anchor=north east, font=\small\bfseries, text=lineGray] at (5.5,-0.75) {16 ore};
+
+% Programmatore (basso destra)
+\fill[lineGray] (0.00,-1.72) circle (1.7pt);
+\draw[lineGray, line width=0.7pt] (0.00,-1.72) -- (5.5,-3.3);
+\node[anchor=south east, font=\normalsize\bfseries] at (5.5,-3.23) {Programmatore};
+\node[anchor=north east, font=\small\bfseries, text=lineGray] at (5.5,-3.45) {10 ore};
+
+% Verificatore (alto sinistra)
+\fill[lineGray] (-1.65,0.48) circle (1.7pt);
+\draw[lineGray, line width=0.7pt] (-1.65,0.48) -- (-5.5,1.4);
+\node[anchor=south west, font=\normalsize\bfseries] at (-5.5,1.47) {Verificatore};
+\node[anchor=north west, font=\small\bfseries, text=lineGray] at (-5.5,1.25) {23 ore};
+
+\end{tikzpicture}
+
+\caption{Areogramma della distribuzione delle ore consuntivate per ruolo nello Sprint \#11}
+\label{fig:consuntivo-sprint11}
+\end{figure}
+
+Di seguito è riportato il consuntivo economico dell'undicesimo sprint\textsubscript{G}:
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{|l|c|c|c|c|}
+        \hline
+        \rowcolor{bluBitless!15}
+        \textbf{Ruolo} &
+        \textbf{\shortstack{Ore per\\ruolo}} &
+        \textbf{\shortstack{Delta ore\\preventivo-\\consuntivo}} &
+        \textbf{Costo (in €)} &
+        \textbf{\shortstack{Delta costo\\preventivo-\\consuntivo\\(in €)}} \\
+        \hline
+
+        Responsabile di progetto & 5 & 0 & 150,00 & 0,00 \\ \hline
+        Amministratore & 2 & 0 & 40,00 & 0,00 \\ \hline
+        Analista & 0 & 0 & 0,00 & 0,00 \\ \hline
+        Progettista & 16 & -2 & 400,00 & -50,00 \\ \hline
+        Programmatore & 10 & +1 & 150,00 & +15,00 \\ \hline
+        Verificatore & 23 & +1 & 345,00 & +15,00 \\ \hline
+
+        \rowcolor{bluBitless!8}
+        \textbf{Totale} & \textbf{56} & \textbf{0} & \textbf{1.085,00} & \textbf{-20,00} \\ \hline
+
+        Sprint pregressi & 552 & / & 10.995,00 & / \\ \hline
+        Restante & 15 & / & 255,00 & / \\ \hline
+    \end{tabular}
+    \caption{\textit{Consuntivo economico Sprint \#11}}
+\end{table}
+
+Di seguito sono riportate le ore rimanenti per la coppia risorsa-ruolo:
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|}
+        \hline
+        \rowcolor{bluBitless!15}
+        \textbf{Membro del team} & \textbf{Re} & \textbf{Am} & \textbf{An} & \textbf{Pt} & \textbf{Pr} & \textbf{Ve} & \textbf{Totale per persona} \\
+        \hline
+        L. Battistella & 0 & 0 & 0 & 0 & 0 & 1 & 1 \\ \hline
+        E. De Piccoli & 4 & 0 & 1 & 1 & 0 & 0 & 6 \\ \hline
+        D. Facco & 4 & -3 & 0 & 0 & 1 & 2 & 4 \\ \hline
+        A. Marini & 0 & 1 & -2 & -1 & 2 & 0 & 0 \\ \hline
+        A. Menegaldo & 0 & 0 & 1 & 0 & 2 & 0 & 3 \\ \hline
+        S. Vendramin & -2 & 1 & -4 & 4 & 1 & 0 & 0 \\ \hline
+        S. Zecchinato & -1 & 0 & -5 & 1 & 0 & 6 & 1 \\ \hline
+        \rowcolor{bluBitless!8}
+        \textbf{Totale per ruolo} & \textbf{5} & \textbf{-1} & \textbf{-9} & \textbf{5} & \textbf{6} & \textbf{9} & \textbf{15} \\
+        \hline
+    \end{tabular}
+    \caption{\textit{Ore rimanenti per coppia risorsa-ruolo dopo lo Sprint \#11}}
+\end{table}
+
+\subsubsection{Consuntivo di periodo}
+L'undicesimo sprint\textsubscript{G} chiude la produzione di prodotto e documentazione ed è il secondo di durata settimanale. \textbf{Tutte le attività preventivate sono state completate} e nessuna è stata rimandata. Le attività svolte sono state:
+\begin{itemize}
+    \item completamento dell'implementazione\textsubscript{G} del codice dell'MVP\textsubscript{G}, con la correzione dei difetti emersi dal collaudo\textsubscript{G} e l'esecuzione degli ultimi test\textsubscript{G} funzionali;
+
+    \item completamento della stesura del documento di \textit{Specifica Tecnica}, compresi i diagrammi UML\textsubscript{G} di rappresentazione dell'architettura\textsubscript{G} e del comportamento del sistema;
+
+    \item completamento del \textit{Manuale Utente}, con le sezioni residue e le schermate del prodotto in configurazione\textsubscript{G} definitiva;
+
+    \item aggiornamento del \textit{Piano di Progetto} e del \textit{Piano di Qualifica} allo stato attuale del progetto;
+
+    \item verifica\textsubscript{G} accurata di tutti i documenti destinati alla Product Baseline\textsubscript{G};
+
+    \item aggiornamento del sito web con la rappresentazione della Product Baseline\textsubscript{G} e con la vista web del \textit{Manuale Utente};
+
+    \item contatto della Proponente\textsubscript{G} per la richiesta dell'incontro di presentazione del prodotto finale;
+
+    \item stesura del verbale\textsubscript{G} interno della riunione del periodo.
+\end{itemize}
+
+A fronte di 56 ore preventivate\textsubscript{G} ne sono state consuntivate\textsubscript{G} 56, con uno \textbf{scostamento\textsubscript{G} nullo} ($0{,}0\%$) e un costo di 1.085,00 € contro i 1.065,00 € previsti, quindi 20,00 € in più. Con questo periodo le ore consuntivate del progetto salgono a \textbf{608 delle 623 preventivate\textsubscript{G}}, per un valore di 12.080,00 €, e ne restano 15 pari a 255,00 €.
+
+Lo scostamento\textsubscript{G} di ruolo\textsubscript{G} ha un'unica origine in eccesso e due in difetto. Il \textbf{Progettista\textsubscript{G} supera la dotazione di 2 ore} (16 contro 14), imputabili alla produzione dei diagrammi UML\textsubscript{G} da inserire nella \textit{Specifica Tecnica}: il gruppo non disponeva di un precedente storico su questo tipo di artefatto\textsubscript{G} e ha dovuto dedicare tempo non pianificato\textsubscript{G} a stabilire quali viste adottare e con quale livello di dettaglio rappresentare i componenti. Le ore eccedenti gravano su S. Vendramin (6 contro 5) e su L. Battistella (3 contro 2).
+
+Il \textbf{Programmatore\textsubscript{G} chiude un'ora al di sotto della dotazione} (10 contro 11) e il \textbf{Verificatore\textsubscript{G}} fa altrettanto (23 contro 24). I due risparmi hanno la medesima origine: i difetti emersi dal collaudo\textsubscript{G} dell'MVP\textsubscript{G} sono risultati meno numerosi del previsto, per cui non è stato necessario impiegare l'intera riserva messa a preventivo\textsubscript{G} sul Programmatore\textsubscript{G} --- l'ora di S. Vendramin non è stata utilizzata ed è proprio quella che egli ha poi impiegato sui diagrammi UML\textsubscript{G} --- e la successiva riverifica delle correzioni ha assorbito un'ora in meno sul Verificatore\textsubscript{G}, in capo a D. Facco (12 contro 13). Le 2 ore eccedenti del Progettista\textsubscript{G} trovano quindi \textbf{compensazione integrale all'interno del periodo} e il margine riservato allo Sprint\textsubscript{G} \#12 resta intatto a 15 ore.
+
+Il dato più significativo del periodo è però un altro: \textbf{per la prima volta dallo Sprint\textsubscript{G} \#8 non si registra alcun supporto fuori ruolo\textsubscript{G} non pianificato}. Ogni membro ha rendicontato ore esclusivamente sui ruoli\textsubscript{G} per i quali ne aveva a preventivo\textsubscript{G} e \textbf{quattro membri su sette} --- E. De Piccoli, A. Marini, A. Menegaldo e S. Zecchinato --- hanno chiuso esattamente sui valori preventivati\textsubscript{G} in ogni singolo ruolo\textsubscript{G}. Il ruolo Programmatore\textsubscript{G} non ha richiesto alcun intervento oltre i membri designati: A. Marini e L. Battistella hanno impiegato le 7 ore previste sulle ultime attività di codifica\textsubscript{G} e la riserva di 4 ore assegnata a S. Zecchinato, E. De Piccoli e S. Vendramin si è rivelata sufficiente, e anzi sovradimensionata di un'ora, per la correzione dei difetti.
+
+\subsubsection{Retrospettiva}
+\textbf{Tutti gli obiettivi dello sprint\textsubscript{G} sono stati raggiunti} e la valutazione del gruppo sul periodo è positiva. Il gruppo ha lavorato molto e in modo coordinato, portando a termine nella stessa settimana la chiusura del prodotto e il completamento di tutta la documentazione. Dal confronto interno è emerso quanto segue:
+\begin{itemize}
+    \item \textbf{La rappresentazione UML\textsubscript{G} nella \textit{Specifica Tecnica} è stata la difficoltà principale del periodo:} i Progettisti\textsubscript{G} hanno incontrato dubbi concreti su quali diagrammi UML\textsubscript{G} inserire nel documento, su come rappresentare i componenti del sistema e su quale livello di astrazione adottare perché il documento risultasse leggibile senza perdere corrispondenza con il codice. Il problema non è stato risolto individualmente: il gruppo si è riunito più volte in formazioni ristrette di tre o quattro persone per discutere le alternative e scegliere la rappresentazione migliore. La modalità si è rivelata efficace, perché ha permesso di decidere rapidamente senza convocare l'intero team, ma ha comportato le 2 ore eccedenti sul ruolo Progettista\textsubscript{G}. Si conferma quanto già osservato per gli Sprint\textsubscript{G} \#8 e \#9: le attività prive di precedenti storici nel progetto continuano a essere sottostimate (rischio\textsubscript{G} RO-8);
+
+    \item \textbf{Gli scostamenti\textsubscript{G} dei singoli ruoli\textsubscript{G} si sono annullati esattamente fra loro:} le 2 ore eccedenti del Progettista\textsubscript{G} sono state coperte per intero dai risparmi di Programmatore\textsubscript{G} e Verificatore\textsubscript{G} e il periodo ha chiuso sulle 56 ore preventivate\textsubscript{G}, senza intaccare il margine riservato allo Sprint\textsubscript{G} \#12. Compensazioni fra ruoli\textsubscript{G} si erano già osservate negli Sprint\textsubscript{G} \#1 e \#6, chiusi entrambi un'ora al di sotto della stima, ma è la prima volta che il saldo di periodo risulta esattamente nullo a fronte di scostamenti\textsubscript{G} non nulli sui singoli ruoli\textsubscript{G}. Il gruppo attribuisce il risultato al fatto che, in un periodo di sola chiusura, le attività erano note e sostanzialmente omogenee: la capacità di compensazione non va quindi data per acquisita nei periodi di produzione;
+
+    \item \textbf{Il pareggio delle ore non è pareggio di costo:} pur avendo consuntivato\textsubscript{G} esattamente le 56 ore preventivate\textsubscript{G}, il periodo chiude con 20,00 € di disavanzo, perché lo sfondamento è avvenuto su un ruolo\textsubscript{G} valorizzato a 25,00 €/ora e i risparmi su ruoli\textsubscript{G} da 15,00 €/ora. Il gruppo prende atto che la compensazione fra ruoli\textsubscript{G} va valutata separatamente sui due piani e che il monitoraggio del solo monte ore non è sufficiente a garantire il rispetto del budget;
+
+    \item \textbf{La verifica\textsubscript{G} dell'intero corpo documentale è rientrata nella stima:} il controllo ha riguardato tutti i documenti destinati alla Product Baseline\textsubscript{G} e non il solo incremento del periodo, e si è chiuso in 23 ore contro le 24 preventivate\textsubscript{G}. Il gruppo attribuisce il risultato alla scelta di distribuire le verifiche\textsubscript{G} lungo tutto il periodo anziché concentrarle nei giorni finali. Resta però l'osservazione che una verifica\textsubscript{G} di coerenza \emph{trasversale} agli artefatti\textsubscript{G}, distinta dalla verifica\textsubscript{G} del singolo documento, andrebbe pianificata\textsubscript{G} come attività autonoma: poiché i documenti sono stati portati avanti in parallelo da persone diverse, il controllo di coerenza reciproca resta l'attività con il maggiore rischio\textsubscript{G} residuo alla consegna;
+
+    \item \textbf{La riserva messa a preventivo\textsubscript{G} sul ruolo Programmatore\textsubscript{G} ha funzionato:} la misura correttiva decisa al termine dello Sprint\textsubscript{G} \#10, che prevedeva di assegnare ore già in fase di preventivo\textsubscript{G} a chi opera come riserva su un ruolo\textsubscript{G} operativo, ha interrotto una sequenza di tre periodi consecutivi caratterizzati da supporto fuori ruolo\textsubscript{G} non pianificato. Il ruolo\textsubscript{G} ha chiuso a 10 ore sulle 11 preventivate\textsubscript{G}, senza ricorrere ad alcun membro esterno alla riserva. Rispetto allo Sprint\textsubscript{G} \#10 la riserva è stata inoltre dimensionata sull'effettivo fabbisogno, concentrandola su tre membri anziché frazionarla su tutto il gruppo, e si è rivelata sufficiente con un'ora di margine;
+
+    \item \textbf{Avere lasciato un margine a preventivo\textsubscript{G} si conferma la scelta corretta:} il gruppo ha preventivato\textsubscript{G} 56 delle 71 ore residue, riservando le altre 15 allo Sprint\textsubscript{G} \#12. Poiché il periodo ha chiuso in pareggio, il margine arriva integro al periodo conclusivo. Il criterio, adottato qui per la prima volta, viene assunto come regola per la pianificazione\textsubscript{G} dei periodi di chiusura;
+
+    \item \textbf{Il vincolo sul saldo complessivo individuale ha evitato che qualcuno chiudesse in debito:} fino allo Sprint\textsubscript{G} \#10 l'assegnazione delle ore guardava alla sola coppia risorsa-ruolo, criterio che permette a un membro di superare la propria dotazione complessiva pur restando entro quella del singolo ruolo\textsubscript{G}. Applicando in questo periodo anche il vincolo sul totale individuale, \textbf{nessun membro chiude la fase di Product Baseline\textsubscript{G} in negativo}: A. Marini e S. Vendramin arrivano esattamente a zero, L. Battistella e S. Zecchinato conservano un'ora e gli altri tre restano positivi. Il prezzo pagato è una distribuzione del lavoro meno uniforme, con D. Facco a 12 ore e A. Menegaldo costretto ad affiancare la progettazione\textsubscript{G} al coordinamento; il gruppo giudica il compromesso accettabile e mantiene il criterio per lo Sprint\textsubscript{G} \#12;
+
+    \item \textbf{Si è manifestato il rischio\textsubscript{G} RP-2 (\textit{Mancanza di supporto o variazione della disponibilità della Proponente}):} contattata per fissare l'incontro di presentazione del prodotto finale, la Proponente\textsubscript{G} è risultata \textbf{in ferie fino alla fine di agosto 2026}. È l'unico rischio\textsubscript{G} valutato con probabilità \textit{Bassa} ad avere prodotto un impatto rilevante nel corso del progetto, e lo ha fatto nel momento più critico, ossia quando l'unica attività ancora dipendente da un soggetto esterno era proprio la validazione del prodotto finito. La gestione adottata è illustrata al punto successivo;
+
+    \item \textbf{Il percorso di consegna è stato disaccoppiato dalla validazione della Proponente\textsubscript{G}:} il gruppo ha deciso di non sospendere le attività in attesa del rientro della Proponente\textsubscript{G}, scelta che avrebbe comportato uno stallo di due settimane a documentazione già completa. La preparazione della presentazione ai professori, prevista per lo Sprint\textsubscript{G} \#12, procede quindi sulla base della documentazione prodotta e delle verifiche\textsubscript{G} interne, mentre alla Proponente\textsubscript{G} viene inviata per iscritto la richiesta di riscontro, corredata del materiale necessario a una valutazione autonoma, con la proposta di fissare l'incontro di presentazione al suo rientro. Le eventuali osservazioni che dovessero pervenire saranno recepite come modifiche successive alla Product Baseline\textsubscript{G} e tracciate nei registri delle modifiche\textsubscript{G} dei documenti interessati.
+\end{itemize}
+
+Fra gli aspetti positivi il gruppo segnala anzitutto il raggiungimento di tutti gli obiettivi del periodo e la chiusura di tutti i fronti di lavoro produttivi: prodotto, documentazione e sito web sono stati portati contestualmente allo stato definitivo. Si conferma efficace la cadenza settimanale introdotta nello Sprint\textsubscript{G} \#10, che anche in questo periodo ha ridotto i tempi morti e mantenuto ravvicinato il ciclo fra produzione e verifica\textsubscript{G}. Continua infine a funzionare la rendicontazione sul ruolo\textsubscript{G} effettivamente svolto, adottata a fine Sprint\textsubscript{G} \#8, che in questo periodo non ha prodotto alcuna divergenza fra ruoli\textsubscript{G} assegnati e ruoli\textsubscript{G} rendicontati.
+
+Per lo Sprint\textsubscript{G} \#12 il gruppo ha deciso quanto segue:
+\begin{itemize}
+    \item \textbf{La verifica\textsubscript{G} di coerenza fra documenti diventa un'attività autonoma}, con ore proprie e un momento dedicato, distinta dalla verifica\textsubscript{G} del singolo documento. Le eventuali modifiche introdotte a valle delle presentazioni saranno sottoposte a un controllo di coerenza trasversale prima di essere considerate chiuse;
+
+    \item \textbf{Il margine a preventivo\textsubscript{G} viene mantenuto anche nel periodo conclusivo:} delle 15 ore residue ne verranno impegnate al massimo 12, così da conservare capacità di assorbimento fino alla consegna. Lo Sprint\textsubscript{G} \#12 è l'ultimo periodo e non dispone di iterazioni successive su cui riportare uno scostamento\textsubscript{G};
+
+    \item \textbf{Le attività prive di precedenti storici vanno stimate per intervallo}, come già stabilito al termine dello Sprint\textsubscript{G} \#8: la produzione dei diagrammi UML\textsubscript{G} è la terza occorrenza di questa categoria di sottostima e la preparazione delle diapositive per il prof. Riccardo Cardin ricade nella stessa casistica;
+
+    \item \textbf{Le attività dello Sprint\textsubscript{G} \#12 vanno assegnate in base alla disponibilità residua individuale:} E. De Piccoli (6 ore), D. Facco (4) e A. Menegaldo (3) concentrano 13 delle 15 ore rimaste e dovranno farsi carico della quota principale del lavoro, mentre A. Marini e S. Vendramin hanno esaurito la propria dotazione complessiva;
+
+    \item \textbf{Le dipendenze da soggetti esterni vanno mappate in apertura di periodo}, con un percorso alternativo già definito per ciascuna, così da non trasformare un ritardo altrui in uno stallo del gruppo.
+\end{itemize}
+
+\paragraph{Aggiornamento dell'analisi dei rischi (\hyperref[tab:gestione-rischi]{Sezione \S2})}
+Lo Sprint\textsubscript{G} \#11 comporta un aggiornamento della valutazione del rischio\textsubscript{G} RP-2 e conferma quella degli altri rischi\textsubscript{G} censiti nella \hyperref[tab:gestione-rischi]{Sezione \S2}:
+\begin{itemize}
+    \item \textbf{RP-2 -- Mancanza di supporto o variazione della disponibilità della Proponente:} la probabilità passa da \textit{Bassa} ad \textit{Alta} e la pericolosità da \textit{Media} ad \textit{Alta}. Il rischio\textsubscript{G} si è manifestato: la Proponente\textsubscript{G} è risultata in ferie fino alla fine di agosto 2026 e l'incontro di presentazione del prodotto finale non ha potuto essere fissato entro il periodo. La pericolosità è elevata ad \textit{Alta} perché l'evento tocca direttamente la milestone\textsubscript{G} conclusiva del progetto: attenderne il rientro avrebbe comportato la sospensione delle attività dello Sprint\textsubscript{G} \#12 a documentazione già completa. Alle contromisure viene aggiunto il disaccoppiamento fra la validazione della Proponente\textsubscript{G} e la presentazione alla committenza\textsubscript{G} didattica, con richiesta di riscontro inoltrata per iscritto in forma asincrona e corredata del materiale necessario a una valutazione autonoma;
+
+    \item \textbf{RO-8 -- Errata stima delle attività:} la valutazione resta \textit{Alta}/\textit{Alta} e il rischio\textsubscript{G} si è ripresentato, ancora una volta su un'attività priva di precedenti storici, ossia la produzione dei diagrammi UML\textsubscript{G}. L'entità è però la più contenuta dell'intera fase di Product Baseline\textsubscript{G}: 2 ore su un solo ruolo\textsubscript{G}, contro le 4 ore su due ruoli\textsubscript{G} dello Sprint\textsubscript{G} \#8 e le 6 ore dello Sprint\textsubscript{G} \#10. Lo sfondamento, inoltre, non si è propagato al totale di periodo, essendo stato compensato per intero dai risparmi degli altri ruoli\textsubscript{G}. La contromisura della stima per intervallo, introdotta a fine Sprint\textsubscript{G} \#8, risulta correttamente indirizzata ma non è stata applicata a questa specifica attività;
+
+    \item \textbf{RT-3 -- Presenza di errori nel codice:} la valutazione resta \textit{Alta}/\textit{Alta}. Nel periodo il rischio\textsubscript{G} non solo è stato gestito senza scostamenti\textsubscript{G}, ma ha inciso meno del previsto: la correzione dei difetti emersi dal collaudo\textsubscript{G} ha richiesto 10 delle 11 ore preventivate\textsubscript{G} per il ruolo Programmatore\textsubscript{G}, grazie alla quota di riserva messa a preventivo\textsubscript{G} e alla separazione fra stima di sviluppo e stima di correzione introdotta a fine Sprint\textsubscript{G} \#10. Nessun difetto è rimasto aperto alla chiusura del periodo;
+
+    \item \textbf{RO-1 -- Periodi di rallentamento:} la valutazione resta \textit{Alta}/\textit{Alta}. Il rischio\textsubscript{G} non si è manifestato in forma diretta: la disponibilità dichiarata in apertura di sprint\textsubscript{G} è stata rispettata da tutti i membri, nonostante il periodo cada interamente nel mese indicato come critico. Si osserva tuttavia che il rallentamento estivo si è manifestato sul versante esterno anziché su quello interno, attraverso l'indisponibilità della Proponente\textsubscript{G} descritta in RP-2.
+\end{itemize}
+
+\subsubsection{Miglioramento della pianificazione futura}
+Con lo Sprint\textsubscript{G} \#11 si chiude la produzione di prodotto e documentazione. Resta da svolgere il solo Sprint\textsubscript{G} \#12, dedicato alla preparazione e allo svolgimento delle presentazioni finali: predisposizione delle diapositive e preparazione dell'esposizione per il prof. Riccardo Cardin, stesura delle lettere di presentazione per il prof. Riccardo Cardin e per il prof. Tullio Vardanega e svolgimento dell'incontro con la Proponente\textsubscript{G} al suo rientro dalle ferie. La cadenza settimanale viene confermata.
+
+Il monte ore disponibile per il periodo conclusivo è di \textbf{15 ore, pari a 255,00 €}: erano state riservate in sede di preventivo\textsubscript{G} dello Sprint\textsubscript{G} \#11 e il pareggio del periodo le ha lasciate integre. Il gruppo ha stabilito di impegnarne al massimo 12, conservando un margine di 3 ore fino alla consegna. La dotazione è ampiamente compatibile con le attività previste, che hanno carattere preparatorio e non produttivo; resta comunque valida la decisione di formulare per intervallo la stima delle diapositive, attività priva di precedenti storici nel progetto.
+
+Il vincolo più stringente non è però il monte ore complessivo, bensì la \textbf{sua distribuzione fra i membri}. Nessun membro chiude il periodo in debito, ma le 15 ore rimaste sono concentrate su tre persone: E. De Piccoli (6 ore), D. Facco (4) e A. Menegaldo (3) ne sommano 13; L. Battistella e S. Zecchinato dispongono di una sola ora ciascuno, mentre A. Marini e S. Vendramin hanno esaurito la propria dotazione complessiva. Le attività dello Sprint\textsubscript{G} \#12 saranno pertanto assegnate in prevalenza ai primi tre. Sul ruolo Responsabile\textsubscript{G} restano 5 ore, ripartite fra E. De Piccoli (4) e D. Facco (4) al netto delle poste negative di S. Vendramin ($-2$) e S. Zecchinato ($-1$), sufficienti a coprire il coordinamento del periodo, le lettere di presentazione e il contatto con la Proponente\textsubscript{G}; sul Verificatore\textsubscript{G} restano 9 ore, ripartite fra S. Zecchinato (6), D. Facco (2) e L. Battistella (1) e destinate al controllo del materiale di presentazione, con l'avvertenza che a S. Zecchinato resta una sola ora di dotazione complessiva.
+
+Sul piano dell'accuratezza della pianificazione\textsubscript{G} la fase di Product Baseline\textsubscript{G} mostra scostamenti\textsubscript{G} percentuali sempre contenuti, con il valore migliore proprio nel periodo conclusivo: $+6{,}3\%$ nello Sprint\textsubscript{G} \#8, $+1{,}3\%$ nello Sprint\textsubscript{G} \#9, $+3{,}7\%$ nello Sprint\textsubscript{G} \#10 e $0{,}0\%$ nello Sprint\textsubscript{G} \#11, con una media del $2{,}8\%$. Le quattro misure che hanno inciso maggiormente sono state la rendicontazione sul ruolo\textsubscript{G} effettivamente svolto (Sprint\textsubscript{G} \#8), la calibrazione del preventivo\textsubscript{G} sulle ore dichiarate in apertura di periodo (Sprint\textsubscript{G} \#9), la messa a preventivo\textsubscript{G} delle ore del membro di riserva (Sprint\textsubscript{G} \#10) e la scelta di non impegnare l'intero budget residuo (Sprint\textsubscript{G} \#11).
+
+\subsubsection{Preventivo a finire (\hyperref[tab:preventivo-finire]{Sezione \S5.1})}
+Al termine dello Sprint\textsubscript{G} \#11 risultano consuntivate 608 ore delle 623 preventivate\textsubscript{G}: restano 15 ore per un valore di 255,00 €. Il monte ore complessivo del progetto resta 623 ore e il budget totale 12.335,00 €.
+
+Come dallo Sprint\textsubscript{G} \#8, il preventivo a finire è la semplice differenza fra ore preventivate\textsubscript{G} e ore consuntivate, senza ricalibrazioni. La ripartizione per ruolo\textsubscript{G} è: Responsabile\textsubscript{G} 5 ore, Amministratore\textsubscript{G} $-1$, Analista\textsubscript{G} $-9$, Progettista\textsubscript{G} 5, Programmatore\textsubscript{G} 6 e Verificatore\textsubscript{G} 9. Rispetto al periodo precedente il prospetto conserva disponibilità su tutti i ruoli\textsubscript{G} operativi, esito diretto della scelta di non impegnare l'intero budget residuo nello Sprint\textsubscript{G} \#11.
+
+Dal prospetto emergono due punti di attenzione:
+\begin{itemize}
+    \item l'\textbf{Amministratore\textsubscript{G}} passa da $+1$ a $-1$ ora complessiva. Restano positive le sole posizioni di A. Marini (1) e S. Vendramin (1), a fronte del $-3$ di D. Facco: la pubblicazione dei documenti della Product Baseline\textsubscript{G} e gli ultimi aggiornamenti del sito nello Sprint\textsubscript{G} \#12 dovranno essere svolti da questi due membri, oppure coperti riducendo altre voci;
+
+    \item le ore residue sono \textbf{concentrate su tre membri}: E. De Piccoli (6), D. Facco (4) e A. Menegaldo (3) sommano 13 delle 15 ore disponibili, mentre L. Battistella e S. Zecchinato ne hanno una ciascuno e A. Marini e S. Vendramin hanno esaurito la propria dotazione. Nessun membro è in debito, ma lo squilibrio riflette il carico sostenuto nell'intera fase di Product Baseline\textsubscript{G} e va tenuto presente nell'assegnazione delle attività conclusive.
+\end{itemize}
+Il preventivo a finire aggiornato è riportato nella \hyperref[tab:preventivo-finire]{Sezione \S5.1}.
 
 \end{document}
