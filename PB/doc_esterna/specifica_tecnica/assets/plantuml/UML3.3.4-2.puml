@@ -39,17 +39,4 @@ sostituisce l'intero documento;
 nulla allo store; l'Editor invoca focus sull'istanza;
 stop
 
-legend bottom
-  L'Editor e' sottoscritto al solo currentText: _loadVersion non gli arriva per notifica, lo
-  interroga quando deve decidere se la transazione vada tenuta fuori dalla cronologia.
-  ==
-  addToHistory(false) impedisce che il caricamento di una nota entri nella cronologia di
-  annullamento dell'editor; senza, l'annullamento riporterebbe la nota precedente dentro quella
-  corrente. L'inserimento dell'esito di un'operazione assistita non passa da loadDocument, quindi
-  resta annullabile.
-  ==
-  La sostituzione avviene sempre per transazione e mai scrivendo lo stato dell'editor, perche'
-  soltanto una transazione puo' portare un'annotazione e far scattare l'ascoltatore.
-endlegend
-
 @enduml

@@ -55,14 +55,4 @@ updateListener --> useEditorStore : scrive currentText\ne selectedText
 updateListener --> StoreSync : riconosce e ignora
 Editor --> StoreSync : annota le proprie transazioni
 
-legend bottom
-  L'effetto di montaggio non dichiara dipendenze e legge il testo iniziale con getState(): legarlo
-  a currentText ricostruirebbe l'editor a ogni battuta.
-  ==
-  prevLoadVersionRef parte dal valore che lo store possiede al montaggio e non da zero, perche' il
-  ripristino della sessione precedente puo' avvenire prima che il componente sia montato.
-  ==
-  L'istanza e' depositata nello store al montaggio e ritirata allo smontaggio.
-endlegend
-
 @enduml

@@ -50,13 +50,4 @@ ReactMarkdown --> remarkUnderline : remarkPlugins
 ReactMarkdown --> rehypeKatex : rehypePlugins
 ReactMarkdown --> rehypeHighlight : rehypePlugins
 
-legend bottom
-  Unico punto dell'applicazione web in cui il Markdown viene reso, condiviso dal pannello di
-  anteprima e dall'anteprima dell'esito nella finestra di dialogo: e' la ragione per cui i due
-  contesti non possono divergere.
-  ==
-  In nessun punto della pipeline l'HTML grezzo e' abilitato. remarkUnderline e' l'unica estensione
-  scritta dal gruppo e dichiara l'elemento da produrre anziche' emettere marcatura.
-endlegend
-
 @enduml

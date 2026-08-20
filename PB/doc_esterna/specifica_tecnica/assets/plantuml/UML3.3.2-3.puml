@@ -32,9 +32,4 @@ enum ViewMode {
 ViewToggle --> useEditorStore
 useEditorStore --> ViewMode
 
-legend bottom
-  Reso da App fuori dalla barra superiore e visibile in tutte e tre le modalita', cosi' che dalla
-  sola anteprima esista comunque un comando per tornare indietro (R-50-F-Ob, R-51-F-Ob, R-52-F-Ob).
-endlegend
-
 @enduml

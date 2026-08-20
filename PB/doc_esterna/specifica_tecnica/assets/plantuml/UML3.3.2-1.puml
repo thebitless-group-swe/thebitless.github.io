@@ -68,19 +68,4 @@ fileSystem --> Note
 
 useEditorStore -[hidden]right- fileSystem
 
-legend bottom
-  La creazione avviene in due tempi (R-82-F-Ob, R-114-F-Ob): startCreate apre il campo del titolo,
-  commitCreate conferma, cancelCreate annulla. Il campo non conferma alla perdita del fuoco.
-  La ridenominazione segue la via opposta e conferma anche alla perdita del fuoco (R-94-F-De).
-  ==
-  deletingId conserva l'identificatore della voce in attesa di conferma, non un semplice indicatore
-  di presenza, altrimenti la conferma aperta su una voce comparirebbe su tutte.
-  ==
-  fileError raccoglie il fallimento di ogni operazione sulla raccolta e lo presenta in linguaggio
-  naturale (R-110-F-Ob), realizzando R-84-F-Ob, R-87-F-Ob, R-90-F-Ob, R-93-F-De e R-96-F-De.
-  ==
-  Il tipo Note e' dichiarato da fileSystem, non dallo store che ne custodisce la raccolta.
-  Sidebar legge currentText da useEditorStore solo per il salvataggio su file.
-endlegend
-
 @enduml

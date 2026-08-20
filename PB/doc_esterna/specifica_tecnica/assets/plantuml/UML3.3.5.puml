@@ -87,22 +87,4 @@ useAiStream -[hidden]right- api
 useEditorStore -[hidden]right- sse
 sse -[hidden]right- models
 
-legend bottom
-  Tutte le funzioni della facciata restituiscono una sequenza asincrona di frammenti testuali.
-  ==
-  useAiStream non importa api: riceve la funzione da eseguire come parametro, e il segnale di
-  annullamento e' a sua volta parametro di quella funzione, cosi' resta rieseguibile da «Rigenera».
-  Riconosce l'annullamento per nome dell'errore e in quel caso non scrive alcun messaggio (R-110-F-Ob).
-  Il suo status non e' letto da alcun componente: l'attesa e' governata da isGenerating.
-  ==
-  Il controllore di annullamento e' tenuto in due luoghi, il riferimento interno all'aggancio e la
-  porzione dello store. La finestra di dialogo usa il primo, la barra superiore il secondo. Entrambe
-  le vie attivano lo stesso controllore, e il ciclo che consuma i frammenti ne verifica lo stato a
-  ogni giro (R-79-F-De, UC71).
-  ==
-  api controlla lo stato della risposta prima di leggerne il corpo, cosi' un esito negativo resta un
-  errore ordinario. Il messaggio proviene dal campo detail del servizio applicativo, e il segnale
-  viene inoltrato alla richiesta di rete.
-endlegend
-
 @enduml

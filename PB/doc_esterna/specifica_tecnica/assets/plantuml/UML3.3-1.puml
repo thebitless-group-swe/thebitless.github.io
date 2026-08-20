@@ -168,13 +168,4 @@ TopBar ..> useNotesStore
 useNotesStore "1" o-- "0..*" Note
 useEditorStore ..> LastCall
 
-legend bottom
-  Rombo pieno: composizione, cioe' quale componente rende quale altro.
-  Tratteggio: uso di uno store, per sottoscrizione a una porzione o per invocazione di un'azione.
-  ==
-  App non passa alcuna proprieta' ai propri figli: ciascuno dichiara da se' la porzione che gli serve.
-  MarkdownView e i tre selettori interni sono i soli componenti che non conoscano alcuno store.
-  AiActionDialog non usa useNotesStore.
-endlegend
-
 @enduml

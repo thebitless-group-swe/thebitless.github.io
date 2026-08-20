@@ -113,19 +113,4 @@ abort -[hidden]down- editorCommands
 editorCommands -[hidden]right- remarkUnderline
 SseEvent -[hidden]down- useTypewriter
 
-legend bottom
-  Chi invoca questi moduli e' nel diagramma UML 3.3-1: AiActionDialog usa i due agganci, api e
-  aiActions; EditorToolbar ed Editor usano editorCommands; Sidebar usa fileSystem e utils;
-  MarkdownView usa remarkUnderline. Le firme complete sono nei diagrammi delle sottosezioni.
-  ==
-  useAiStream non importa api: riceve la funzione da eseguire come parametro, e il segnale di
-  annullamento e' a sua volta parametro di quella funzione, cosi' resta rieseguibile da «Rigenera».
-  ==
-  Il middleware persist di Zustand e' applicato al solo useNotesStore: useEditorStore non e'
-  persistito.
-  ==
-  Entrambi gli agganci sono funzioni di React e ne impiegano useState, useRef, useEffect e
-  useCallback: la dipendenza non e' disegnata perche' vale anche per ogni componente.
-endlegend
-
 @enduml

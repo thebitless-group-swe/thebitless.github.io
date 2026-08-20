@@ -35,15 +35,4 @@ endif
 con l'intero documento;
 stop
 
-legend bottom
-  L'ascoltatore e' un'estensione dell'EditorView, non un modulo a se'.
-  ==
-  La scrittura di currentText non e' condizionata a un confronto: lo store rispecchia sempre
-  l'ultimo documento noto, quindi una modifica che non provenga da esso lo rende per cio' stesso
-  diverso. Il confronto esiste invece sulla selezione, dove ogni battuta ripropone lo stesso valore.
-  ==
-  Il valore di selectedText realizza R-3-F-Ob (UC2) ed e' quello che la finestra di dialogo delle
-  operazioni assistite consulta per decidere che cosa sottoporre al modello.
-endlegend
-
 @enduml

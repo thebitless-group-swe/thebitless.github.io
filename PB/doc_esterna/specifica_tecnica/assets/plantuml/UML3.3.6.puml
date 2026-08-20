@@ -76,23 +76,4 @@ FSA -[hidden]right- FB
 id -[hidden]right- FSA
 useEditorStore -[hidden]right- localStorage
 
-legend bottom
-  La via del file system e' scelta verificando la presenza dei metodi sull'oggetto globale della
-  finestra, non l'identita' del browser: R-1-V-Ob include Firefox, che non espone la File System
-  Access API. openNoteFromFile restituisce il valore nullo per l'annullamento e non una stringa
-  vuota, perche' un file vuoto e' un ingresso valido; nessun riferimento al file letto viene
-  conservato. renameNote non compie alcuna operazione su disco e il nome sara' quello del
-  salvataggio successivo. newId ricade su una costruzione propria dell'UUID dove
-  crypto.randomUUID non esiste, cioe' fuori dai contesti sicuri.
-  ==
-  Il middleware persist scrive nell'archivio a ogni modifica di useNotesStore, quindi anche una
-  ridenominazione, un'eliminazione o un'importazione vi arrivano subito. Alla rilettura carica
-  nell'editor la nota corrente e, se non ce n'e' alcuna, invoca ensureWelcomeNote: e' il solo
-  punto in cui la persistenza raggiunge l'altro store.
-  ==
-  Il testo in lavorazione sta in useEditorStore e raggiunge la raccolta al cambio di nota e alla
-  creazione di una nuova nota, non a ogni modifica. Il salvataggio su file legge invece sempre
-  useEditorStore, quindi il file contiene il testo che l'utente ha davanti.
-endlegend
-
 @enduml

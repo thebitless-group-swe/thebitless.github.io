@@ -27,9 +27,4 @@ class MarkdownView {
 Preview --> useEditorStore
 Preview --> MarkdownView
 
-legend bottom
-  Preview non applica alcuna estensione della pipeline di rendering: le dichiara per intero
-  MarkdownView (R-2-F-Ob, R-113-F-Ob).
-endlegend
-
 @enduml

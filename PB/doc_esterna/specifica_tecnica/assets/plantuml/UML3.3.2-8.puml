@@ -74,18 +74,4 @@ PillSelector -[hidden]down- HatSelector
 HatSelector -[hidden]down- GenerateSourceTabs
 uiReducer -[hidden]down- aiActions
 
-legend bottom
-  Collaboratori descritti altrove: useEditorStore per aiModal, isGenerating, streamedOutput,
-  errorMessage e lastCall e per le azioni di inserimento, scarto e azzeramento; useAiStream per
-  start e abort; useTypewriter per l'anteprima progressiva; api per l'operazione scelta;
-  MarkdownView per la resa dell'esito. useNotesStore non e' fra questi.
-  ==
-  I tre selettori sono dichiarati nel modulo della finestra e non ne sono esportati. Ogni cambio di
-  parametro o di sorgente invoca resetPreview, che annulla anche l'elaborazione in corso.
-  ==
-  Sette voci, sei finestre: generate-link non ha una finestra propria ed e' la seconda sorgente di
-  generate, scelta da GenerateSourceTabs; di quella voce la finestra usa i soli limiti di lunghezza.
-  La tabella non contiene funzioni: quale operazione della facciata invocare e' deciso all'invio.
-endlegend
-
 @enduml

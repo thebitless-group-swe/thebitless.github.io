@@ -45,15 +45,4 @@ EditorToolbar --> editorCommands
 editorCommands --> EditorView
 useEditorStore --> EditorView
 
-legend bottom
-  La barra non si sottoscrive ad alcuna porzione: legge l'istanza dell'editor nell'istante del
-  comando. Se non c'e' ancora, il comando non fa nulla anziche' fallire.
-  ==
-  I comandi che avvolgono la selezione fra due marcatori sono interruttori, quindi a un solo comando
-  corrispondono il requisito di applicazione e quello di rimozione.
-  ==
-  cycleHeadingCommand e' esportato ma la barra non lo impiega: il menu dei titoli usa
-  setHeadingCommand con un livello esplicito, dove il livello 0 rimuove il titolo.
-endlegend
-
 @enduml

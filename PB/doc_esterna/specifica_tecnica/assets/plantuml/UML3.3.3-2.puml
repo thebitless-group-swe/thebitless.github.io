@@ -61,18 +61,4 @@ persist --> useEditorStore
 Note -[hidden]right- useEditorStore
 fileSystem -[hidden]right- id
 
-legend bottom
-  Selettori esportati: useNotesList e useCurrentNote.
-  ==
-  createEmpty e deleteNote fotografano list e currentId prima di modificarli e li ripristinano
-  se la scrittura fallisce (R-84-F-Ob, R-93-F-De).
-  ==
-  Il middleware persist non riceve alcun partialize: viene scritto quanto sopravvive alla
-  serializzazione, cioe' list e currentId, a ogni modifica dello store. Alla rilettura carica
-  nell'editor la nota corrente e, se non ce n'e' alcuna, invoca ensureWelcomeNote.
-  ==
-  Il testo in lavorazione non e' qui: vi giunge da useEditorStore al cambio di nota e alla
-  creazione di una nuova nota, non a ogni modifica del testo.
-endlegend
-
 @enduml

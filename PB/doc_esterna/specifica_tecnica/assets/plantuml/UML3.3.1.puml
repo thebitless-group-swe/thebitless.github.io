@@ -63,18 +63,4 @@ LIB --> TYPES
 TEST -[hidden]right- ASSETS
 TYPES -[hidden]down- TEST
 
-legend bottom
-  Le frecce indicano la direzione delle importazioni. test/ e assets/ non ne hanno alcuna verso
-  le altre cartelle.
-  ==
-  Fra lib/ e store/ la dipendenza corre nei due sensi: useNotesStore importa fileSystem e id,
-  mentre aiActions importa useEditorStore e useEditorStore importa da aiActions il tipo AiParams.
-  Queste ultime due formano un ciclo fra due file che non sopravvive alla compilazione, perche'
-  la seconda e' un'importazione di soli tipi. Nessuna cartella importa components/.
-  ==
-  In types/ soltanto models.ts importa il file generato: il resto dell'applicazione passa da models.ts.
-  I casi di prova non risiedono in test/, che contiene la sola configurazione comune: ciascun caso
-  di prova sta accanto al modulo che esercita.
-endlegend
-
 @enduml

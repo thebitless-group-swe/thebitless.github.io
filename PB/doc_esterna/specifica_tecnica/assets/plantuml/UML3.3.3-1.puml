@@ -81,21 +81,4 @@ useEditorStore ..> AiModal : utilizza
 useEditorStore ..> LastCall : utilizza
 useEditorStore ..> EditorView : conserva (editorView)
 
-legend bottom
-  Selettori atomici esportati: useCurrentText, useSelectedText, useStreamedOutput,
-  useIsGenerating, useErrorMessage, useViewMode, useAiModal.
-  ==
-  abortStream interrompe la generazione e spegne isGenerating nello stesso passo, senza attendere
-  il ciclo che consuma i frammenti (R-79-F-De, R-109-F-De).
-  ==
-  _loadVersion distingue il caricamento di un documento dalla scrittura ordinaria, cosi' che il
-  caricamento non entri nella cronologia di annullamento dell'editor. Non ha alcun ruolo nelle
-  operazioni asincrone.
-  ==
-  LastCall serve alla rigenerazione (R-78-F-De): execute riceve il signal come parametro e non lo
-  cattura, cosi' resta rieseguibile dopo un annullamento.
-  ==
-  Questo store non e' avvolto dal middleware persist: lo e' il solo useNotesStore.
-endlegend
-
 @enduml

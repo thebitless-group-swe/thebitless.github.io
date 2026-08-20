@@ -1081,14 +1081,14 @@ Il flusso enunciato nella sezione \ref{sec:panoramica-stile-web}, per cui un'int
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{assets/img/UML3.3-1.pdf}
+    \includegraphics[width=1.00\textwidth]{assets/img/UML3.3-1.pdf}
     \caption{Diagramma UML 3.3-1 - Componenti UI e Store}
     \label{fig:uml331}
     \end{figure}
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{assets/img/UML3.3-2.pdf}
+    \includegraphics[width=1.00\textwidth]{assets/img/UML3.3-2.pdf}
     \caption{Diagramma UML 3.3-2 - Hooks, Librerie e Dipendenze Esterne}
     \label{fig:uml332}
     \end{figure}
@@ -1135,7 +1135,7 @@ La conseguenza è già osservabile, e va riportata perché è il caso in cui la 
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.77\textwidth]{assets/img/UML3.3.1.pdf}
+    \includegraphics[width=0.89\textwidth]{assets/img/UML3.3.1.pdf}
     \caption{Diagramma UML 3.3.1 - Organizzazione dei sorgenti del frontend}
     \label{fig:uml3311}
     \end{figure}
@@ -1155,13 +1155,13 @@ I componenti si dividono in due gruppi secondo un criterio netto. Al primo appar
 La struttura dell'area di lavoro non è fissa. La radice legge dallo store la modalità di visualizzazione e ne ricava due condizioni, la presenza dell'editor e la presenza dell'anteprima. Nella modalità combinata l'area è una griglia a due colonne che ospita entrambi, nelle altre due è un solo pannello a tutta larghezza occupato dall'uno o dall'altra. I tre casi realizzano i requisiti\textsubscript{G} \textbf{R-50-F-Ob}, \textbf{R-51-F-Ob} e \textbf{R-52-F-Ob} (UC58, UC59 e UC60). La barra degli strumenti di formattazione è resa insieme all'editor e non insieme all'area di lavoro, così che nella modalità di sola anteprima non compaia un comando privo di bersaglio.
 
 \paragraph{\texttt{Sidebar}.}
-Presenta l'elenco delle note e i comandi che agiscono sulla raccolta. La creazione avviene in due tempi e non in uno. Il pulsante non crea la nota ma apre un campo in cui l'utente ne scrive il titolo, che l'invio conferma e il tasto di uscita annulla. La distinzione non è cosmetica, perché è ciò che realizza il requisito\textsubscript{G} \textbf{R-114-F-Ob} (UC74.3, assegnazione del titolo in fase di creazione) accanto a \textbf{R-82-F-Ob} (UC74.1). Il campo, inoltre, non conferma alla perdita del fuoco, perché farlo produrrebbe note che nessuno ha chiesto. La ridenominazione di una voce esistente segue la via opposta, si attiva con il doppio clic e conferma anche alla perdita del fuoco, realizzando \textbf{R-94-F-De} (UC82.1). L'eliminazione è offerta per riga e richiede una conferma resa nella riga stessa. L'identificatore della voce in attesa di conferma è conservato al posto di un semplice indicatore di presenza, perché altrimenti la conferma aperta su una voce comparirebbe su tutte. I due pulsanti «Apri file…» e «Salva file» delegano al modulo di accesso al file system descritto nella sezione \ref{sec:frontend-persistenza} e realizzano \textbf{R-85-F-Ob} e \textbf{R-88-F-Ob}. Un pulsante di collasso riduce infine la barra a una colonna stretta, contenente il solo comando inverso.
+Presenta l'elenco delle note e i comandi che agiscono sulla raccolta. La creazione avviene in due tempi e non in uno. Il pulsante non crea la nota ma apre un campo in cui l'utente ne scrive il titolo, che l'invio conferma e il tasto di uscita annulla. La distinzione non è cosmetica, perché è ciò che realizza il requisito\textsubscript{G} \textbf{R-114-F-Ob} (UC74.3, assegnazione del titolo in fase di creazione) accanto a \textbf{R-82-F-Ob} (UC74.1). Il campo, inoltre, non conferma alla perdita del fuoco, perché farlo produrrebbe note che nessuno ha chiesto. La ridenominazione di una voce esistente segue la via opposta, si attiva con il doppio clic e conferma anche alla perdita del fuoco, realizzando \textbf{R-94-F-De} (UC82.1). L'eliminazione è offerta per riga e richiede una conferma resa nella riga stessa. L'identificatore della voce in attesa di conferma è conservato al posto di un semplice indicatore di presenza, perché altrimenti la conferma aperta su una voce comparirebbe su tutte. I due pulsanti ``Apri file\ldots'' e ``Salva file'' delegano al modulo di accesso al file system descritto nella sezione \ref{sec:frontend-persistenza} e realizzano \textbf{R-85-F-Ob} e \textbf{R-88-F-Ob}. Un pulsante di collasso riduce infine la barra a una colonna stretta, contenente il solo comando inverso.
 
 Tutte le condizioni che governano questi comandi restano stato locale del componente e non compaiono in alcuno store, secondo la regola enunciata nella sezione \ref{sec:panoramica-stile-web}. Fra esse conta in particolare il messaggio di errore, che è ciò che rende visibile all'utente il fallimento di un'operazione sulla raccolta. Ciascuna di queste operazioni è invocata dentro un costrutto che ne intercetta il fallimento e lo traduce in una frase priva di dettagli tecnici, come impone \textbf{R-110-F-Ob}, realizzando così i requisiti\textsubscript{G} \textbf{R-84-F-Ob}, \textbf{R-87-F-Ob}, \textbf{R-90-F-Ob}, \textbf{R-93-F-De} e \textbf{R-96-F-De} (UC75, UC77, UC79, UC81 e UC83).
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{assets/img/UML3.3.2-1.pdf}
+    \includegraphics[width=1.00\textwidth]{assets/img/UML3.3.2-1.pdf}
     \caption{Diagramma UML 3.3.2-1 - Sidebar}
     \label{fig:uml3321}
     \end{figure}
@@ -1173,7 +1173,7 @@ Il messaggio di errore è reso qui in un avviso, ma soltanto quando nessuna fine
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{assets/img/UML3.3.2-2.pdf}
+    \includegraphics[width=1.00\textwidth]{assets/img/UML3.3.2-2.pdf}
     \caption{Diagramma UML 3.3.2-2 - TopBar}
     \label{fig:uml3322}
     \end{figure}
@@ -1183,7 +1183,7 @@ Tre pulsanti che impostano la modalità di visualizzazione, con quello attivo di
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{assets/img/UML3.3.2-3.pdf}
+    \includegraphics[width=0.48\textwidth]{assets/img/UML3.3.2-3.pdf}
     \caption{Diagramma UML 3.3.2-3 - ViewToggle}
     \label{fig:uml3323}
     \end{figure}
@@ -1193,11 +1193,11 @@ Raccoglie i comandi di formattazione del testo e non manipola il documento da s�
 
 I comandi si presentano in due forme. Sette sono pulsanti diretti, per grassetto, corsivo, sottolineato, barrato, collegamento, immagine e codice in linea, mentre due sono menu a tendina, uno per il livello di titolo e uno per il tipo di elenco. La ripartizione segue la natura del comando, perché un'operazione a due stati è un pulsante e una scelta fra più valori è un menu.
 
-I comandi che avvolgono la selezione fra due marcatori sono interruttori, cioè applicano la formattazione se non c'è e la rimuovono se c'è, riconoscendola sia quando i marcatori cadono dentro la selezione sia quando la circondano nel documento. È il tratto per cui a un solo comando corrispondono due requisiti\textsubscript{G}, quello di applicazione e quello di rimozione. Ne discendono \textbf{R-9-F-Ob} e \textbf{R-10-F-Ob} per il grassetto (UC8, UC9 e UC10), \textbf{R-11-F-Ob} e \textbf{R-12-F-Ob} per il corsivo (UC11, UC12 e UC13), \textbf{R-13-F-Ob} e \textbf{R-14-F-Ob} per il sottolineato (UC14, UC15 e UC16), \textbf{R-15-F-De} e \textbf{R-16-F-De} per il barrato (UC17, UC18 e UC19). Il menu dei titoli non è invece un interruttore ma una scelta esplicita del livello, che comprende la voce «Normale» con cui il livello viene tolto, e realizza quindi \textbf{R-17-F-Ob} e \textbf{R-18-F-Ob} per il titolo (UC20 e UC22) e \textbf{R-19-F-Ob} e \textbf{R-20-F-Ob} per il sottotitolo (UC23 e UC25). Il menu degli elenchi realizza \textbf{R-21-F-De}, \textbf{R-22-F-De} e \textbf{R-23-F-De} (UC26, UC26.1, UC26.2 e UC28), agisce riga per riga sull'intervallo selezionato e rinumera l'elenco ordinato a partire da uno. Restano il comando di collegamento, che realizza \textbf{R-30-F-De} (UC38) ed è il solo dotato anche di una scorciatoia da tastiera, e quello di immagine, che realizza \textbf{R-39-F-De} (UC49). Entrambi lasciano selezionato l'indirizzo predefinito appena inserito, perché la prima battuta dell'utente lo sostituisca.
+I comandi che avvolgono la selezione fra due marcatori sono interruttori, cioè applicano la formattazione se non c'è e la rimuovono se c'è, riconoscendola sia quando i marcatori cadono dentro la selezione sia quando la circondano nel documento. È il tratto per cui a un solo comando corrispondono due requisiti\textsubscript{G}, quello di applicazione e quello di rimozione. Ne discendono \textbf{R-9-F-Ob} e \textbf{R-10-F-Ob} per il grassetto (UC8, UC9 e UC10), \textbf{R-11-F-Ob} e \textbf{R-12-F-Ob} per il corsivo (UC11, UC12 e UC13), \textbf{R-13-F-Ob} e \textbf{R-14-F-Ob} per il sottolineato (UC14, UC15 e UC16), \textbf{R-15-F-De} e \textbf{R-16-F-De} per il barrato (UC17, UC18 e UC19). Il menu dei titoli non è invece un interruttore ma una scelta esplicita del livello, che comprende la voce ``Normale'' con cui il livello viene tolto, e realizza quindi \textbf{R-17-F-Ob} e \textbf{R-18-F-Ob} per il titolo (UC20 e UC22) e \textbf{R-19-F-Ob} e \textbf{R-20-F-Ob} per il sottotitolo (UC23 e UC25). Il menu degli elenchi realizza \textbf{R-21-F-De}, \textbf{R-22-F-De} e \textbf{R-23-F-De} (UC26, UC26.1, UC26.2 e UC28), agisce riga per riga sull'intervallo selezionato e rinumera l'elenco ordinato a partire da uno. Restano il comando di collegamento, che realizza \textbf{R-30-F-De} (UC38) ed è il solo dotato anche di una scorciatoia da tastiera, e quello di immagine, che realizza \textbf{R-39-F-De} (UC49). Entrambi lasciano selezionato l'indirizzo predefinito appena inserito, perché la prima battuta dell'utente lo sostituisca.
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{assets/img/UML3.3.2-4.pdf}
+    \includegraphics[width=1.00\textwidth]{assets/img/UML3.3.2-4.pdf}
     \caption{Diagramma UML 3.3.2-4 - EditorToolbar}
     \label{fig:uml3324}
     \end{figure}
@@ -1207,7 +1207,7 @@ Ospita l'istanza della libreria dell'editor e ne governa la sincronizzazione con
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.96\textwidth]{assets/img/UML3.3.2-5.pdf}
+    \includegraphics[width=1.00\textwidth]{assets/img/UML3.3.2-5.pdf}
     \caption{Diagramma UML 3.3.2-5 - Editor}
     \label{fig:uml3325}
     \end{figure}
@@ -1217,7 +1217,7 @@ Legge il testo corrente e lo consegna al componente che lo rende. Non conosce la
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{assets/img/UML3.3.2-6.pdf}
+    \includegraphics[width=0.59\textwidth]{assets/img/UML3.3.2-6.pdf}
     \caption{Diagramma UML 3.3.2-6 - Preview}
     \label{fig:uml3326}
     \end{figure}
@@ -1227,7 +1227,7 @@ Legge il testo corrente e lo consegna al componente che lo rende. Non conosce la
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{assets/img/UML3.3.2-7.pdf}
+    \includegraphics[width=1.00\textwidth]{assets/img/UML3.3.2-7.pdf}
     \caption{Diagramma UML 3.3.2-7 - MarkdownView}
     \label{fig:uml3327}
     \end{figure}
@@ -1248,10 +1248,10 @@ A ciascuna operazione corrisponde l'insieme di parametri che le è proprio, reso
 Modificare un parametro o cambiare scheda azzera l'anteprima e, se un'elaborazione è in corso, la annulla. La scelta è deliberata, perché l'esito visibile appartiene ai parametri con cui è stato chiesto, e lasciarlo sotto parametri diversi lo attribuirebbe a una richiesta che nessuno ha fatto. Il cambio è però ignorato quando il valore scelto è quello già attivo, perché il selettore notifica anche il secondo clic sulla voce corrente e senza quella guardia un esito valido verrebbe cancellato.
 
 \paragraph{Rigenerazione.}
-Lo store conserva l'ultima richiesta inviata, con l'operazione, l'ingresso, i parametri, la sorgente e la funzione che la esegue. Il pulsante di invio mostra «Rigenera» invece di «Genera» quando quei dati coincidono con quelli attualmente impostati, e in tal caso la funzione conservata viene rieseguita anziché costruita di nuovo (\textbf{R-78-F-De}, UC70). È rieseguibile perché riceve il segnale di annullamento come parametro e non lo cattura, per la ragione esposta nella sezione \ref{sec:idiomi-generatori}.
+Lo store conserva l'ultima richiesta inviata, con l'operazione, l'ingresso, i parametri, la sorgente e la funzione che la esegue. Il pulsante di invio mostra ``Rigenera'' invece di ``Genera'' quando quei dati coincidono con quelli attualmente impostati, e in tal caso la funzione conservata viene rieseguita anziché costruita di nuovo (\textbf{R-78-F-De}, UC70). È rieseguibile perché riceve il segnale di annullamento come parametro e non lo cattura, per la ragione esposta nella sezione \ref{sec:idiomi-generatori}.
 
 \paragraph{Anteprima, accettazione e rifiuto.}
-L'esito compare a mano a mano che arriva, reso dallo stesso componente del pannello di anteprima e scoperto un tratto alla volta dall'aggancio che ne governa lo scorrimento progressivo. Il comando «Accetta» inserisce l'esito nella nota secondo la semantica dichiarata nella tabella (\textbf{R-76-F-Ob}, UC68), mentre «Rifiuta» annulla l'elaborazione, scarta l'esito e chiude la finestra senza toccare la nota (\textbf{R-77-F-De}, UC69). Il primo dei due è disabilitato finché nulla è ancora comparso, mentre l'elaborazione è in corso e nel caso in cui la correzione grammaticale abbia risposto con il sentinella con cui il servizio applicativo dichiara di non aver trovato errori. In quest'ultimo caso al posto dell'esito compare la comunicazione prescritta da \textbf{R-62-F-De} (UC65.1), e non c'è nulla da accettare.
+L'esito compare a mano a mano che arriva, reso dallo stesso componente del pannello di anteprima e scoperto un tratto alla volta dall'aggancio che ne governa lo scorrimento progressivo. Il comando ``Accetta'' inserisce l'esito nella nota secondo la semantica dichiarata nella tabella (\textbf{R-76-F-Ob}, UC68), mentre ``Rifiuta'' annulla l'elaborazione, scarta l'esito e chiude la finestra senza toccare la nota (\textbf{R-77-F-De}, UC69). Il primo dei due è disabilitato finché nulla è ancora comparso, mentre l'elaborazione è in corso e nel caso in cui la correzione grammaticale abbia risposto con il sentinella con cui il servizio applicativo dichiara di non aver trovato errori. In quest'ultimo caso al posto dell'esito compare la comunicazione prescritta da \textbf{R-62-F-De} (UC65.1), e non c'è nulla da accettare.
 
 \paragraph{Chiusura dalla cornice.}
 La chiusura ottenuta con il tasto di uscita o con il clic fuori dalla finestra non equivale al rifiuto. Annulla l'elaborazione se ce n'è una in corso, senza di che il servizio applicativo continuerebbe a produrre per un destinatario che non c'è più (UC71), e azzera la registrazione dell'operazione aperta, ma non scarta l'ultima richiesta conservata. Riaprendo la stessa operazione, ingresso e parametri tornano quindi come erano. Un accorgimento dell'aggancio dell'anteprima completa il quadro, perché riconosce un esito più corto di quanto ha già mostrato e vi si riallinea, altrimenti alla riapertura resterebbe in vista il testo della volta precedente.
@@ -1261,7 +1261,7 @@ Le quattro tavole di valori esposte dai selettori devono coincidere con i vocabo
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.85\textwidth]{assets/img/UML3.3.2-8.pdf}
+    \includegraphics[width=1.00\textwidth]{assets/img/UML3.3.2-8.pdf}
     \caption{Diagramma UML 3.3.2-8 - AiActionDialog}
     \label{fig:uml3328}
     \end{figure}
@@ -1296,7 +1296,7 @@ L'inserimento dell'esito nella nota ha infine due semantiche, dichiarate operazi
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.86\textwidth]{assets/img/UML3.3.3-1.pdf}
+    \includegraphics[width=1.00\textwidth]{assets/img/UML3.3.3-1.pdf}
     \caption{Diagramma UML 3.3.3-1 - useEditorStore}
     \label{fig:uml3331}
     \end{figure}
@@ -1319,7 +1319,7 @@ Lo store della raccolta è avvolto dal middleware di persistenza della libreria 
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{assets/img/UML3.3.3-2.pdf}
+    \includegraphics[width=1.00\textwidth]{assets/img/UML3.3.3-2.pdf}
     \caption{Diagramma UML 3.3.3-2 - useNotesStore}
     \label{fig:uml3332}
     \end{figure}
@@ -1364,8 +1364,8 @@ Il secondo controllo riguarda il documento. Se l'aggiornamento non lo ha modific
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\textwidth]{assets/img/UML3.3.4-1.pdf}
-    \caption{Diagramma UML 3.3.4-1 - Sincronizzazione editor → store}
+    \includegraphics[width=0.81\textwidth]{assets/img/UML3.3.4-1.pdf}
+    \caption{Diagramma UML 3.3.4-1 - Sincronizzazione editor $\rightarrow$ store}
     \label{fig:uml3341}
     \end{figure}
 
@@ -1381,8 +1381,8 @@ La distinzione è affidata a un contatore custodito nello store, incrementato a 
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.64\textwidth]{assets/img/UML3.3.4-2.pdf}
-    \caption{Diagramma UML 3.3.4-2 - Sincronizzazione store → editor}
+    \includegraphics[width=0.75\textwidth]{assets/img/UML3.3.4-2.pdf}
+    \caption{Diagramma UML 3.3.4-2 - Sincronizzazione store $\rightarrow$ editor}
     \label{fig:uml3342}
     \end{figure}
 
@@ -1431,7 +1431,7 @@ L'aggancio espone, oltre alle due operazioni, un proprio stato di avanzamento co
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{assets/img/UML3.3.5.pdf}
+    \includegraphics[width=1.00\textwidth]{assets/img/UML3.3.5.pdf}
     \caption{Diagramma UML 3.3.5 - Accesso al servizio applicativo}
     \label{fig:uml335}
     \end{figure}
@@ -1472,7 +1472,7 @@ Il salvataggio su file non è soggetto alla medesima condizione. Il comando dell
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{assets/img/UML3.3.6.pdf}
+    \includegraphics[width=1.00\textwidth]{assets/img/UML3.3.6.pdf}
     \caption{Diagramma UML 3.3.6 - Persistenza lato client}
     \label{fig:uml336}
     \end{figure}
