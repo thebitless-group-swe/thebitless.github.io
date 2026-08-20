@@ -1072,9 +1072,12 @@ Le conseguenze pratiche sono due, ed entrambe si pagherebbero a ogni modifica.
 % formato degli eventi di streaming e la sequenza delle interazioni (capitolo
 % 4); le definizioni dei design pattern (§3.5), da richiamare per nome.
 
-L'applicazione web è organizzata secondo il principio dichiarato in §3.1.3: componenti React che compongono l'interfaccia per annidamento, stato condiviso esterno all'albero in due store distinti, flusso dei dati unidirezionale. La presente sezione descrive l'articolazione interna in sei aspetti: organizzazione dei sorgenti, scomposizione in componenti, gestione dello stato, integrazione dell'editor, accesso al servizio applicativo e persistenza lato client.
+La presente sezione descrive l'architettura logica dell'applicazione web. Vi sono trattate le cartelle in cui il codice è ripartito e il criterio che vi assegna un modulo, i componenti che compongono l'interfaccia con le rispettive responsabilità, gli store che custodiscono lo stato condiviso e i moduli attraverso cui l'applicazione raggiunge l'editor, il servizio applicativo e il supporto di memorizzazione del browser. Lo stile adottato è dichiarato nella sezione \ref{sec:panoramica-stile-web}, e qui se ne documenta la realizzazione. Il perimetro si arresta al confine HTTP. Quanto sta oltre è nella sezione \ref{sec:architettura-backend}, la messa in esecuzione nella sezione \ref{sec:architettura-deployment}, il contenuto degli scambi nella sezione \ref{sec:flusso-dati}, i design pattern nella sezione \ref{sec:design-pattern}.
 
-Due precisazioni preliminari. Primo: il «flusso unidirezionale» vale a livello generale — React legge dallo store, le azioni lo modificano, i componenti sottoscritti si ridisegnano. Secondo: l'integrazione con CodeMirror, descritta in §3.3.4, è un'eccezione controllata. L'API di CodeMirror è imperativa, richiede una sincronizzazione bidirezionale tra l'istanza dell'editor e lo store. La sezione spiega come questa eccezione è gestita in modo da non rompere il principio generale.
+L'applicazione non impiega alcun instradamento lato client. Esiste una sola vista e l'albero dei componenti ha una radice sola, quindi la composizione dell'interfaccia non dipende da un indirizzo ma dallo stato, e ogni componente descritto in questa sezione è raggiungibile in qualunque momento dell'esecuzione.
+
+\paragraph{Un'eccezione dichiarata al flusso unidirezionale.}
+Il flusso enunciato nella sezione \ref{sec:panoramica-stile-web}, per cui un'interazione invoca un'azione dello store, l'azione aggiorna lo stato e i componenti sottoscritti alla porzione modificata si ridisegnano, vale ovunque tranne che in un punto. La libreria dell'editor espone un'interfaccia imperativa e possiede un proprio documento, distinto dal testo custodito nello store. Fra i due esiste perciò una sincronizzazione nei due sensi, e l'istanza dell'editor è l'unica struttura dell'applicazione web che viva fuori dagli store e che i componenti modifichino invocandone direttamente le operazioni. L'eccezione è circoscritta a un componente ed è governata da un meccanismo esplicito, descritto nella sezione \ref{sec:frontend-editor}. Il resto dell'applicazione osserva il flusso a senso unico.
 
     \begin{figure}[H]
     \centering
@@ -1086,7 +1089,7 @@ Due precisazioni preliminari. Primo: il «flusso unidirezionale» vale a livello
     \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{assets/img/UML3.3-2.pdf}
-    \caption{Diagramma UML 3.3-2 -Hooks, Librerie e Dipendenze Esterne}
+    \caption{Diagramma UML 3.3-2 - Hooks, Librerie e Dipendenze Esterne}
     \label{fig:uml332}
     \end{figure}
 
@@ -1098,20 +1101,35 @@ Due precisazioni preliminari. Primo: il «flusso unidirezionale» vale a livello
 % percorsi.
 % NON CONTIENE: l'elenco esaustivo dei file.
 
-La cartella \texttt{web/src/} è organizzata per \textbf{ruolo}, non per feature. Ogni cartella contiene file che condividono la stessa responsabilità architetturale, indipendentemente dalla funzione di prodotto. Nel livello radice di \texttt{src/} risiedono i file di ingresso dell'applicazione: \texttt{main.tsx} (entry point del bundle, che monta l'applicazione nel DOM), \texttt{App.tsx} (componente radice, che definisce il layout principale e la griglia dinamica dell'area di lavoro), e \texttt{index.css} (foglio di stile globale, che include le direttive di Tailwind CSS e le variabili di tema). I moduli organizzati per ruolo sono invece distribuiti nelle seguenti cartelle:
+Il codice dell'applicazione web risiede in \texttt{web/src/} ed è ripartito per ruolo architetturale e non per funzione di prodotto. Due moduli stanno nella stessa cartella se rispondono alla stessa domanda, quella di che cosa venga presentato, di dove viva lo stato o di come si raggiunga il mondo esterno, e non se concorrono alla medesima funzione dell'interfaccia. Il criterio ha una conseguenza pratica, che è la ragione per cui è stato adottato. La collocazione di un file nuovo non è oggetto di discussione, perché discende dal ruolo che quel file svolge.
+
+Nel livello di radice stanno i tre file che non appartengono ad alcun ruolo perché li precedono tutti. Il modulo \texttt{main.tsx} monta l'applicazione nel DOM, \texttt{App.tsx} è la radice dell'albero dei componenti e definisce il layout, \texttt{index.css} è il foglio di stile globale, che importa Tailwind CSS e il carattere tipografico e dichiara come variabili CSS la tavolozza dei due temi. I moduli organizzati per ruolo sono distribuiti nelle sette cartelle seguenti.
 
 \begin{itemize}
-    \setlength{\itemsep}{0pt}
-    \item \texttt{components/}: componenti React. \texttt{ui/} contiene primitivi (\texttt{alert}, \texttt{button}, \texttt{textarea}) realizzati con \texttt{radix-ui} e \texttt{class-variance-authority}; i file direttamente in \texttt{components/} contengono i componenti compositi: \texttt{Sidebar}, \texttt{TopBar}, \texttt{Editor}, \texttt{EditorToolbar}, \texttt{Preview}, \texttt{ViewToggle}, \texttt{AiActionDialog}, \texttt{MarkdownView}. All'interno di \texttt{AiActionDialog.tsx} sono definiti i componenti interni \texttt{PillSelector} e \texttt{HatSelector}, non esportati separatamente.
-    \item \texttt{hooks/}: hook personalizzati: \texttt{useAiStream} (logica di streaming), \texttt{useTypewriter} (effetto di battitura progressiva). L'hook \texttt{useAiStream} soddisfa R-109-F-De (indicatore di avanzamento per operazioni lunghe) e R-79-F-De (annullamento di una richiesta in corso).
-    \item \texttt{store/}: i due store Zustand: \texttt{useEditorStore.ts} (stato della sessione di scrittura), \texttt{notes.ts} (raccolta delle note).
-    \item \texttt{lib/}: utility e servizi: \texttt{api.ts} (facade API), \texttt{sse.ts} (parser SSE), \texttt{fileSystem.ts} (importazione/esportazione), \texttt{abort.ts} (gestione abort), \texttt{id.ts} (generazione ID), \texttt{editorCommands.ts} (comandi CodeMirror), \texttt{aiActions.ts} (registry delle azioni AI), \texttt{remarkUnderline.ts} (plugin Remark), \texttt{utils.ts} (funzione \texttt{cn}).
-    \item \texttt{types/}: definizioni dei tipi. \texttt{api.ts} è auto-generato da \texttt{openapi-typescript} dallo schema OpenAPI; \texttt{models.ts} lo re-esporta isolando il resto dell'applicazione dalla struttura generata. 
-    \item \texttt{test/}: contiene il \texttt{setup.ts} dei test (Vitest, Testing Library, \texttt{jsdom}), soddisfacendo R-2-Q-Ob e R-3-Q-Ob (test automatici e copertura).
-    \item \texttt{assets/}: risorse statiche: \texttt{hero.png}, \texttt{react.svg}, \texttt{vite.svg}.
+    \setlength{\itemsep}{3pt}
+    \item \texttt{components/}: i componenti React. Quelli posti direttamente nella cartella sono i componenti compositi dell'applicazione, descritti nella sezione \ref{sec:frontend-componenti}. La sottocartella \texttt{ui/} raccoglie i tre primitivi di interfaccia (avviso, pulsante e area di testo) prelevati dal catalogo shadcn/ui secondo quanto riportato nella sezione \ref{sec:tecnologie-frontend}, il cui codice sorgente risiede quindi nel progetto e non dentro una dipendenza.
+
+    \item \texttt{store/}: i due store, \texttt{useEditorStore} e \texttt{useNotesStore}, con la ripartizione di responsabilità descritta nella sezione \ref{sec:frontend-stato}.
+
+    \item \texttt{hooks/}: gli agganci personalizzati, cioè le funzioni che incapsulano un comportamento legato al ciclo di vita di un componente. Sono due, quello che governa il ciclo di vita di un'elaborazione in streaming e quello che ne presenta l'esito a scorrimento progressivo.
+
+    \item \texttt{lib/}: i moduli che non sono né componenti né store e non dipendono da React. Vi risiedono la facciata verso il servizio applicativo e il decodificatore del suo flusso, l'accesso al file system, i comandi di formattazione dell'editor, la tabella delle operazioni assistite, l'estensione della pipeline di rendering per il testo sottolineato, il riconoscimento dell'errore di annullamento, la generazione degli identificatori delle note e la composizione delle classi di stile.
+
+    \item \texttt{types/}: le dichiarazioni di tipo derivate dal contratto dell'API\textsubscript{G} del servizio applicativo, con il modulo di raccolta che ne isola il resto dell'applicazione, secondo la convenzione descritta nella sezione \ref{sec:idiomi-tipizzazione}.
+
+    \item \texttt{test/}: la configurazione comune dei test\textsubscript{G} automatici. I casi di prova non risiedono qui, perché ciascuno sta accanto al modulo che esercita.
+
+    \item \texttt{assets/}: le risorse statiche importabili dai moduli. Allo stato attuale nessun modulo ne importa alcuna, e i file raggiunti direttamente dal documento HTML risiedono invece in \texttt{web/public/}, che lo strumento di costruzione copia nel pacchetto senza trattarne il contenuto come moduli.
 \end{itemize}
 
-Questa organizzazione rende prevedibile la collocazione di un nuovo file. Facilita inoltre la verifica automatica delle dipendenze: un linter può controllare che i componenti non importino direttamente i tipi generati dall'OpenAPI senza passare dal barrel, e che gli store non importino i componenti.
+\paragraph{Codice scritto e codice generato.}
+Un solo file di \texttt{web/src/} non è scritto dal gruppo, il modulo dei tipi ricavato dal contratto dell'API\textsubscript{G}. La sua natura è dichiarata in tre punti del progetto e non affidata a un commento. Lo strumento che lo produce è invocato da un comando dedicato del gestore di pacchetti, l'analizzatore statico lo esclude dal proprio perimetro e la misura della copertura non lo conta. Le tre esclusioni hanno la stessa ragione. Non è codice del prodotto, e trattarlo come tale significherebbe correggere e misurare qualcosa che nessuno scrive.
+
+\paragraph{L'alias dei percorsi.}
+Ogni importazione interna passa per l'alias \texttt{@/}, che designa \texttt{web/src/}. È dichiarato due volte, nella configurazione dello strumento di costruzione e in quella del compilatore, perché i due lo risolvono separatamente, il primo per produrre il pacchetto e il secondo per il controllo dei tipi. Il beneficio è che il percorso di un modulo non dipende dalla posizione di chi lo importa, e spostare un file non produce una cascata di percorsi relativi da correggere.
+
+\paragraph{Una convenzione, non un vincolo\textsubscript{G} verificato\textsubscript{G}.}
+Va detto apertamente in che cosa questa organizzazione differisce da quella del servizio applicativo, perché la somiglianza esteriore fra le due suggerirebbe una garanzia che qui non c'è. Nel servizio applicativo la direzione delle importazioni è dichiarata in contratti verificati\textsubscript{G} staticamente a ogni modifica, come descritto nella sezione \ref{sec:backend-esagono}. Nell'applicazione web non esiste alcun controllo equivalente. La configurazione dell'analizzatore statico si limita alle regole raccomandate per il linguaggio, per React e per i suoi agganci, e non dichiara alcuna regola sui confini fra cartelle, mentre l'integrazione\textsubscript{G} continua esegue su questo livello l'analisi statica\textsubscript{G}, il controllo dei tipi, i test\textsubscript{G} e la costruzione del pacchetto. Che gli store non importino i componenti, e che i componenti non raggiungano il file dei tipi generato senza passare dal modulo di raccolta, sono quindi regole tenute dalla revisione tra pari e non proprietà che una modifica contraria farebbe fallire prima di arrivarci. L'asimmetria è la stessa già dichiarata nella sezione \ref{sec:analisi-statica}, ed è deliberata.
 
     \begin{figure}[H]
     \centering
@@ -1125,19 +1143,20 @@ Questa organizzazione rende prevedibile la collocazione di un nuovo file. Facili
 % CONTIENE: i componenti React e le rispettive responsabilità, il confine fra
 % componenti di presentazione e componenti che accedono allo stato, la
 % composizione dell'area di lavoro nelle tre modalità di visualizzazione.
-% Prevedere qui il segnaposto per il diagramma dei componenti.
 % NON CONTIENE: la gestione dello stato, che è della sottosezione seguente.
+L'albero dei componenti ha radice in \texttt{App}, che dispone la barra laterale a sinistra e, nella colonna rimanente, la barra superiore, i comandi di visualizzazione e l'area di lavoro. La finestra di dialogo delle operazioni assistite è montata accanto a essi e resa visibile dallo stato. Nessun componente riceve dal genitore i dati che presenta, perché la radice non passa alcuna proprietà ai propri figli e ciascuno di essi dichiara da sé la porzione di stato che gli serve. La composizione per annidamento riguarda quindi la sola disposizione dell'interfaccia, mentre i dati arrivano dagli store.
 
-L'albero dei componenti ha radice in \texttt{App}, che definisce il layout a tre colonne e la griglia dinamica dell'area di lavoro.
+\paragraph{Il confine fra presentazione e accesso allo stato.}
+I componenti si dividono in due gruppi secondo un criterio netto. Al primo appartengono quelli che non conoscono alcuno store e ricevono dalle proprie proprietà tutto ciò che presentano, cioè il componente che rende il Markdown\textsubscript{G} e i tre selettori della finestra di dialogo. Il primo è un modulo a sé, è impiegato in due contesti diversi proprio perché non ne conosce nessuno ed è esercitato dai test\textsubscript{G} senza che alcuno stato venga predisposto. Gli altri tre sono dichiarati dentro il modulo della finestra di dialogo e non ne sono esportati, quindi la medesima proprietà vale per costruzione ma non è oggi messa alla prova separatamente. Al secondo gruppo appartengono i componenti che leggono lo stato, e quasi tutti lo fanno sottoscrivendo il selettore della porzione che li riguarda. Fa eccezione la barra degli strumenti di formattazione, che non si sottoscrive ad alcuna porzione e legge l'istanza dell'editor soltanto nell'istante in cui un comando viene attivato, perché di quell'istanza non le interessa il variare ma il valore corrente. Non esiste invece un terzo caso, cioè un componente che riceva dal genitore una porzione di stato che il genitore ha letto per lui. Dove servirebbe, il figlio la legge per conto proprio.
 
-\texttt{App} legge \texttt{viewMode} da \texttt{useEditorStore} tramite il selettore \texttt{useViewMode}. La struttura del \texttt{main} cambia in base al valore: in modalità \texttt{split} viene resa una griglia a due colonne (\texttt{md:grid-cols-2}); in modalità \texttt{editor} o \texttt{render} un singolo pannello a tutta larghezza. La presenza di \texttt{Editor} e \texttt{Preview} è determinata dalla stessa condizione. Questa logica soddisfa i requisiti R-50-F-Ob, R-51-F-Ob e R-52-F-Ob (visualizzazioni esclusiva editor, esclusiva render e combinata).
+\paragraph{Le tre modalità dell'area di lavoro.}
+La struttura dell'area di lavoro non è fissa. La radice legge dallo store la modalità di visualizzazione e ne ricava due condizioni, la presenza dell'editor e la presenza dell'anteprima. Nella modalità combinata l'area è una griglia a due colonne che ospita entrambi, nelle altre due è un solo pannello a tutta larghezza occupato dall'uno o dall'altra. I tre casi realizzano i requisiti\textsubscript{G} \textbf{R-50-F-Ob}, \textbf{R-51-F-Ob} e \textbf{R-52-F-Ob} (UC58, UC59 e UC60). La barra degli strumenti di formattazione è resa insieme all'editor e non insieme all'area di lavoro, così che nella modalità di sola anteprima non compaia un comando privo di bersaglio.
 
-I componenti compositi sono i seguenti:
+\paragraph{\texttt{Sidebar}.}
+Presenta l'elenco delle note e i comandi che agiscono sulla raccolta. La creazione avviene in due tempi e non in uno. Il pulsante non crea la nota ma apre un campo in cui l'utente ne scrive il titolo, che l'invio conferma e il tasto di uscita annulla. La distinzione non è cosmetica, perché è ciò che realizza il requisito\textsubscript{G} \textbf{R-114-F-Ob} (UC74.3, assegnazione del titolo in fase di creazione) accanto a \textbf{R-82-F-Ob} (UC74.1). Il campo, inoltre, non conferma alla perdita del fuoco, perché farlo produrrebbe note che nessuno ha chiesto. La ridenominazione di una voce esistente segue la via opposta, si attiva con il doppio clic e conferma anche alla perdita del fuoco, realizzando \textbf{R-94-F-De} (UC82.1). L'eliminazione è offerta per riga e richiede una conferma resa nella riga stessa. L'identificatore della voce in attesa di conferma è conservato al posto di un semplice indicatore di presenza, perché altrimenti la conferma aperta su una voce comparirebbe su tutte. I due pulsanti «Apri file…» e «Salva file» delegano al modulo di accesso al file system descritto nella sezione \ref{sec:frontend-persistenza} e realizzano \textbf{R-85-F-Ob} e \textbf{R-88-F-Ob}. Un pulsante di collasso riduce infine la barra a una colonna stretta, contenente il solo comando inverso.
 
-\begin{itemize}
-    \setlength{\itemsep}{0pt}
-    \item \textbf{Sidebar}: elenca le note da \texttt{notes} tramite \texttt{useNotesList}. Espone un pulsante per creare una nuova nota (\texttt{createEmpty}) che soddisfa R-82-F-Ob e R-114-F-Ob. Gestisce la selezione (\texttt{select}). Ogni voce mostra il titolo e supporta la ridenominazione tramite doppio click, che attiva un campo di input (R-94-F-De). Offre i pulsanti «Apri file…» e «Salva file», che invocano \texttt{openNoteFromFile} e \texttt{saveNoteToFile} (§3.3.6), soddisfacendo R-85-F-Ob e R-88-F-Ob. Un pulsante di collasso riduce la barra a una colonna stretta.
-    
+Tutte le condizioni che governano questi comandi restano stato locale del componente e non compaiono in alcuno store, secondo la regola enunciata nella sezione \ref{sec:panoramica-stile-web}. Fra esse conta in particolare il messaggio di errore, che è ciò che rende visibile all'utente il fallimento di un'operazione sulla raccolta. Ciascuna di queste operazioni è invocata dentro un costrutto che ne intercetta il fallimento e lo traduce in una frase priva di dettagli tecnici, come impone \textbf{R-110-F-Ob}, realizzando così i requisiti\textsubscript{G} \textbf{R-84-F-Ob}, \textbf{R-87-F-Ob}, \textbf{R-90-F-Ob}, \textbf{R-93-F-De} e \textbf{R-96-F-De} (UC75, UC77, UC79, UC81 e UC83).
+
     \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{assets/img/UML3.3.2-1.pdf}
@@ -1145,8 +1164,11 @@ I componenti compositi sono i seguenti:
     \label{fig:uml3321}
     \end{figure}
 
-    \item \textbf{TopBar}: presenta il titolo della nota corrente (da \texttt{useCurrentNote}) e i pulsanti delle azioni AI. Alla pressione di un pulsante, invoca \texttt{setAiModal} per aprire il dialogo corrispondente. Durante lo streaming (\texttt{isGenerating}), mostra un pulsante di interruzione (\texttt{abortStream}) e un indicatore di caricamento (R-109-F-De). In caso di errore, visualizza \texttt{errorMessage} in un alert (R-110-F-Ob).
-    
+\paragraph{\texttt{TopBar}.}
+Presenta il titolo della nota corrente e i sei pulsanti che aprono le operazioni assistite dal modello linguistico. Il titolo proviene dalla nota corrente, con un ripiego per il caso in cui non ve ne sia alcuna, e può essere sostituito da una proprietà esplicita che l'applicazione non valorizza. L'apertura di un'operazione non si limita a registrare quale sia stata scelta, ma azzera nello stesso passo l'esito e l'errore della precedente, così che la finestra di dialogo non si presenti con il risultato di un'altra richiesta. I pulsanti sono disabilitati mentre un'elaborazione è in corso. Nello stesso intervallo compaiono un indicatore di attesa e un comando di interruzione, che realizzano \textbf{R-109-F-De} e \textbf{R-79-F-De} (UC71). Il secondo invoca l'azione di annullamento dello store e non l'aggancio che governa il flusso, il quale vive in un altro componente, come descritto nella sezione \ref{sec:frontend-accesso-servizio}.
+
+Il messaggio di errore è reso qui in un avviso, ma soltanto quando nessuna finestra di dialogo è aperta. Mentre lo è, l'errore appartiene a quella, e mostrarlo in due punti insieme lo duplicherebbe.
+
     \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{assets/img/UML3.3.2-2.pdf}
@@ -1154,8 +1176,9 @@ I componenti compositi sono i seguenti:
     \label{fig:uml3322}
     \end{figure}
 
-    \item \textbf{ViewToggle}: tre pulsanti che impostano \texttt{viewMode} su \texttt{editor}, \texttt{split} o \texttt{render}. È sempre visibile, in qualsiasi modalità, per consentire il passaggio diretto a una vista diversa.
-    
+\paragraph{\texttt{ViewToggle}.}
+Tre pulsanti che impostano la modalità di visualizzazione, con quello attivo distinto dagli altri. Il componente è reso dalla radice fuori dalla barra superiore e resta visibile in tutte e tre le modalità. Se comparisse soltanto insieme all'editor, dalla modalità di sola anteprima non esisterebbe alcun comando per tornare indietro.
+
     \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{assets/img/UML3.3.2-3.pdf}
@@ -1163,8 +1186,13 @@ I componenti compositi sono i seguenti:
     \label{fig:uml3323}
     \end{figure}
 
-    \item \textbf{EditorToolbar}: contiene i controlli per la formattazione del testo Markdown. Le operazioni corrispondono ai casi d'uso UC8-UC10 (grassetto, R-9-F-Ob, R-10-F-Ob), UC11-UC13 (corsivo, R-11-F-Ob, R-12-F-Ob), UC14-UC16 (sottolineato, R-13-F-Ob, R-14-F-Ob), UC17-UC19 (barrato, R-15-F-De, R-16-F-De), UC20 (inserimento titolo, R-17-F-Ob), UC22 (rimozione titolo, R-18-F-Ob), UC23 (inserimento sottotitolo, R-19-F-Ob), UC25 (rimozione sottotitolo, R-20-F-Ob), UC26 (inserimento elenco, R-21-F-De, R-22-F-De), UC28 (rimozione elenco, R-23-F-De), UC38 (inserimento link, R-30-F-De), UC49 (inserimento immagine, R-39-F-De), e UC52/UC53 (attivazione/disattivazione auto-completamento, R-42-F-De, R-43-F-De). Ogni comando invoca la corrispondente funzione da \texttt{lib/editorCommands.ts} sull'istanza \texttt{editorView} conservata nello store.
-    
+\paragraph{\texttt{EditorToolbar}.}
+Raccoglie i comandi di formattazione del testo e non manipola il documento da sé. Recupera dallo store l'istanza dell'editor e invoca su di essa la funzione corrispondente fra quelle raccolte in \texttt{lib/editorCommands.ts}, che sono l'unico luogo dell'applicazione web in cui la sintassi Markdown\textsubscript{G} venga scritta. Se l'istanza non c'è ancora il comando non fa nulla, anziché fallire.
+
+I comandi si presentano in due forme. Sette sono pulsanti diretti, per grassetto, corsivo, sottolineato, barrato, collegamento, immagine e codice in linea, mentre due sono menu a tendina, uno per il livello di titolo e uno per il tipo di elenco. La ripartizione segue la natura del comando, perché un'operazione a due stati è un pulsante e una scelta fra più valori è un menu.
+
+I comandi che avvolgono la selezione fra due marcatori sono interruttori, cioè applicano la formattazione se non c'è e la rimuovono se c'è, riconoscendola sia quando i marcatori cadono dentro la selezione sia quando la circondano nel documento. È il tratto per cui a un solo comando corrispondono due requisiti\textsubscript{G}, quello di applicazione e quello di rimozione. Ne discendono \textbf{R-9-F-Ob} e \textbf{R-10-F-Ob} per il grassetto (UC8, UC9 e UC10), \textbf{R-11-F-Ob} e \textbf{R-12-F-Ob} per il corsivo (UC11, UC12 e UC13), \textbf{R-13-F-Ob} e \textbf{R-14-F-Ob} per il sottolineato (UC14, UC15 e UC16), \textbf{R-15-F-De} e \textbf{R-16-F-De} per il barrato (UC17, UC18 e UC19). Il menu dei titoli non è invece un interruttore ma una scelta esplicita del livello, che comprende la voce «Normale» con cui il livello viene tolto, e realizza quindi \textbf{R-17-F-Ob} e \textbf{R-18-F-Ob} per il titolo (UC20 e UC22) e \textbf{R-19-F-Ob} e \textbf{R-20-F-Ob} per il sottotitolo (UC23 e UC25). Il menu degli elenchi realizza \textbf{R-21-F-De}, \textbf{R-22-F-De} e \textbf{R-23-F-De} (UC26, UC26.1, UC26.2 e UC28), agisce riga per riga sull'intervallo selezionato e rinumera l'elenco ordinato a partire da uno. Restano il comando di collegamento, che realizza \textbf{R-30-F-De} (UC38) ed è il solo dotato anche di una scorciatoia da tastiera, e quello di immagine, che realizza \textbf{R-39-F-De} (UC49). Entrambi lasciano selezionato l'indirizzo predefinito appena inserito, perché la prima battuta dell'utente lo sostituisca.
+
     \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{assets/img/UML3.3.2-4.pdf}
@@ -1172,8 +1200,9 @@ I componenti compositi sono i seguenti:
     \label{fig:uml3324}
     \end{figure}
 
-    \item \textbf{Editor}: il componente che istanzia CodeMirror e gestisce la sincronizzazione bidirezionale con \texttt{useEditorStore} (§3.3.4). Soddisfa i requisiti R-1-F-Ob (inserimento testo) e R-2-F-Ob (visualizzazione grafica del Markdown).
-    
+\paragraph{\texttt{Editor}.}
+Ospita l'istanza della libreria dell'editor e ne governa la sincronizzazione con lo store, descritta nella sezione \ref{sec:frontend-editor}. Realizza \textbf{R-1-F-Ob} (UC1, inserimento e modifica del testo) insieme a \textbf{R-111-F-Ob} e \textbf{R-112-F-Ob}, che prescrivono rispettivamente un'area di editing capace di ospitare testo su più righe e il Markdown\textsubscript{G} come linguaggio di riferimento. La resa grafica del Markdown\textsubscript{G} non è compito suo e appartiene all'anteprima.
+
     \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{assets/img/UML3.3.2-5.pdf}
@@ -1181,8 +1210,9 @@ I componenti compositi sono i seguenti:
     \label{fig:uml3325}
     \end{figure}
 
-    \item \textbf{Preview}: rende il contenuto Markdown della nota corrente usando \texttt{MarkdownView}. Applica i plugin \texttt{remark-gfm}, \texttt{remark-math}, \texttt{rehype-katex} e \texttt{rehype-highlight}. Soddisfa R-2-F-Ob e R-113-F-Ob.
-    
+\paragraph{\texttt{Preview}.}
+Legge il testo corrente e lo consegna al componente che lo rende. Non conosce la pipeline con cui quel testo viene trasformato, che appartiene per intero al componente descritto subito sotto. È un pannello e non un motore. Realizza \textbf{R-2-F-Ob} e \textbf{R-113-F-Ob} (UC1).
+
     \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{assets/img/UML3.3.2-6.pdf}
@@ -1190,8 +1220,9 @@ I componenti compositi sono i seguenti:
     \label{fig:uml3326}
     \end{figure}
 
-    \item \textbf{MarkdownView}: componente condiviso da \texttt{Preview} e dall'anteprima dell'\texttt{AiActionDialog}. Applica la stessa pipeline Markdown a entrambi i contesti, garantendo coerenza visiva. Non abilita HTML raw. Utilizza \texttt{remarkUnderline} per supportare la sintassi \texttt{++sottolineato++}.
-    
+\paragraph{\texttt{MarkdownView}.}
+È il solo punto dell'applicazione web in cui il Markdown\textsubscript{G} venga reso, ed è impiegato da due chiamanti, il pannello di anteprima e l'anteprima dell'esito dentro la finestra di dialogo. Che sia uno solo è la ragione per cui i due contesti non possono divergere. La pipeline comprende le estensioni riportate nella sezione \ref{sec:tecnologie-frontend}, cioè le costruzioni del GitHub Flavored Markdown, il riconoscimento e la composizione delle espressioni matematiche e l'evidenziazione della sintassi nei blocchi di codice, oltre a un'estensione scritta dal gruppo. Quest'ultima riconosce la sintassi del testo sottolineato e dichiara l'elemento da produrre anziché emettere marcatura, perché il sottolineato non appartiene al Markdown\textsubscript{G} e senza di essa il comando corrispondente della barra degli strumenti non avrebbe alcuna resa nell'anteprima. In nessun punto della pipeline l'HTML grezzo è abilitato, come richiede il trattamento di un testo che proviene in larga parte dal modello linguistico.
+
     \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{assets/img/UML3.3.2-7.pdf}
@@ -1199,25 +1230,32 @@ I componenti compositi sono i seguenti:
     \label{fig:uml3327}
     \end{figure}
 
-    \item \textbf{AiActionDialog}: il dialogo modale che si apre quando \texttt{aiModal} non è \texttt{null}. La sua implementazione è articolata:
-    
-    \begin{itemize}
-        \setlength{\itemsep}{0pt}
-        \item \textbf{Registry delle azioni}: le azioni AI sono registrate in \texttt{lib/aiActions.ts} (pattern \textit{Registry}, §3.5). Il registry mappa ciascun \texttt{AiActionId} alla funzione API, al titolo del dialogo, ai campi del form, alla sorgente del testo (\texttt{text}, \texttt{prompt} o \texttt{url}), alla lunghezza minima e massima del testo in input, e alla modalità di inserimento dell'output (\texttt{replace} per trasformazioni, \texttt{append} per generazioni). Il dialogo soddisfa R-54-F-Ob (accesso al LLM).
-        
-        \item \textbf{Funzione \texttt{getActiveText}}: determina il testo da sottoporre all'AI. Se l'utente ha una selezione attiva in \texttt{selectedText}, viene usata quella. Altrimenti, l'intero \texttt{currentText}. La logica è centralizzata per garantire uniformità tra le azioni.
-        
-        \item \textbf{Parametri e validazione}: il dialogo presenta un campo di input (textarea per prompt, input per URL, o nessun campo per le azioni sul testo) e selettori per i parametri specifici di ciascuna azione. I selettori soddisfano R-56-F-De (tipologia di riassunto), R-58-F-Ob (lingua di destinazione), R-60-F-Ob (stile di riscrittura), R-64-F-Ob (prospettiva di analisi), R-73-F-De (lunghezza del testo generato) e R-74-F-De (URL come fonte). I selettori sono \texttt{PillSelector} e \texttt{HatSelector}, definiti all'interno del file \texttt{AiActionDialog.tsx}. La validazione controlla che il testo in input soddisfi \texttt{minLength} e \texttt{maxLength} (R-81-F-Ob), e che i parametri obbligatori siano selezionati. Gli errori di validazione sono visualizzati in un alert (R-110-F-Ob).
-        
-        \item \textbf{Stato locale}: il dialogo mantiene uno stato locale (\texttt{input}, \texttt{params}, \texttt{validationError}, \texttt{lastCall}) gestito tramite \texttt{useState}. \texttt{lastCall} conserva l'input e i parametri dell'ultima chiamata. Il pulsante di generazione mostra «Rigenera» invece di «Genera» quando i parametri non sono cambiati (R-78-F-De).
-        
-        \item \textbf{Anteprima e accettazione}: l'output in streaming è visualizzato in un'anteprima che usa \texttt{MarkdownView} e l'effetto di battitura \texttt{useTypewriter}. Il pulsante «Accetta» invoca \texttt{insertOutputIntoNote} (R-76-F-Ob). «Rifiuta» invoca \texttt{discardOutput} (R-77-F-De). Il pulsante «Accetta» è disabilitato finché l'output è vuoto, in generazione, o nel caso particolare di \texttt{grammar} che restituisce \texttt{NO\_ERRORS\_MARKER} (nessun errore rilevato, R-62-F-De).
-        
-        \item \textbf{Terminazione}: la chiusura del dialogo tramite overlay o tasto ESC invoca \texttt{handleReject}, che abortisce lo streaming e scarta l'output.
-        
-        \item \textbf{Esaustività del contratto}: il file \texttt{AiActionDialog.tsx} contiene vincoli di tipo che garantiscono che tutti i valori enumerati del contratto OpenAPI siano presenti nei selettori. La riga \texttt{type LanguagesCoverContract = Exclude<Language, (typeof LANGUAGES)[number]['value']>} produce un errore di compilazione se il backend aggiunge una lingua che il frontend non espone, o se il frontend espone una lingua che il backend non prevede. La divergenza tra contratto e interfaccia diventa una mancata compilazione, non un difetto in produzione.
-    \end{itemize}
-\end{itemize}
+\paragraph{\texttt{AiActionDialog}.}
+È il componente più articolato dell'applicazione web e l'unico da cui il servizio applicativo venga contattato. Si apre quando lo store registra un'operazione assistita e si chiude quando quella registrazione viene azzerata. Realizza \textbf{R-54-F-Ob} (da UC62 a UC67, accesso al modello linguistico) e con esso la scelta dei parametri, la validazione dell'ingresso, la presentazione progressiva dell'esito e la decisione dell'utente su che cosa farne.
+
+\paragraph{La tabella delle operazioni.}
+Il modulo \texttt{lib/aiActions.ts} associa a ciascuna delle sette operazioni assistite cinque dati e nient'altro, l'etichetta mostrata nel titolo della finestra, la sorgente del testo da elaborare, la semantica con cui l'esito viene inserito nella nota e i due limiti di lunghezza dell'ingresso. La tabella non contiene funzioni, perché quale operazione della facciata invocare è deciso dalla finestra di dialogo al momento dell'invio. Nello stesso modulo risiede la funzione che determina il testo da sottoporre al modello, cioè la selezione dell'utente se ce n'è una e l'intero documento altrimenti (\textbf{R-3-F-Ob}, UC2). Che sia una funzione sola, e non una decisione ripetuta in ciascun ramo, è ciò che rende la regola uniforme fra tutte le operazioni.
+
+\paragraph{Sette operazioni, sei finestre.}
+Le voci della tabella sono sette, ma i pulsanti della barra superiore ne aprono sei. La generazione a partire da un collegamento non ha una finestra propria ed è una delle due sorgenti della generazione, scelta con una coppia di schede all'interno della stessa finestra (\textbf{R-74-F-De}, UC67.2 e UC67.5). Della settima voce della tabella la finestra impiega quindi i soli limiti di lunghezza, che sostituiscono quelli della generazione da istruzione quando la scheda attiva è quella del collegamento. La ragione della scelta è d'interfaccia, perché le due sorgenti producono la stessa cosa, un testo nuovo accodato alla nota, e presentarle come due comandi distinti avrebbe suggerito due funzioni diverse.
+
+\paragraph{Parametri e validazione.}
+A ciascuna operazione corrisponde l'insieme di parametri che le è proprio, reso da due componenti interni. Un selettore a pastiglie serve le scelte a poche voci, cioè la lunghezza dell'esito (\textbf{R-56-F-De} e \textbf{R-73-F-De}), la lingua di destinazione della traduzione (\textbf{R-58-F-Ob}) e il registro della riscrittura (\textbf{R-60-F-Ob}). Un selettore a griglia serve le sei prospettive dell'analisi critica secondo il metodo dei Sei Cappelli per Pensare\textsubscript{G} (\textbf{R-64-F-Ob}), ciascuna con la propria etichetta e la propria descrizione. La correzione grammaticale non ha parametri. La validazione precede l'invio e non lo accompagna, e controlla che l'ingresso raggiunga la lunghezza minima e non superi la massima (\textbf{R-81-F-Ob}, UC73) e, per la sola analisi critica, che una prospettiva sia stata scelta, poiché è l'unico parametro privo di valore predefinito. Il messaggio che ne risulta è scritto per l'utente e non riporta alcun dettaglio tecnico, come impone \textbf{R-110-F-Ob}.
+
+\paragraph{Il cambio di un parametro interrompe l'elaborazione in corso.}
+Modificare un parametro o cambiare scheda azzera l'anteprima e, se un'elaborazione è in corso, la annulla. La scelta è deliberata, perché l'esito visibile appartiene ai parametri con cui è stato chiesto, e lasciarlo sotto parametri diversi lo attribuirebbe a una richiesta che nessuno ha fatto. Il cambio è però ignorato quando il valore scelto è quello già attivo, perché il selettore notifica anche il secondo clic sulla voce corrente e senza quella guardia un esito valido verrebbe cancellato.
+
+\paragraph{Rigenerazione.}
+Lo store conserva l'ultima richiesta inviata, con l'operazione, l'ingresso, i parametri, la sorgente e la funzione che la esegue. Il pulsante di invio mostra «Rigenera» invece di «Genera» quando quei dati coincidono con quelli attualmente impostati, e in tal caso la funzione conservata viene rieseguita anziché costruita di nuovo (\textbf{R-78-F-De}, UC70). È rieseguibile perché riceve il segnale di annullamento come parametro e non lo cattura, per la ragione esposta nella sezione \ref{sec:idiomi-generatori}.
+
+\paragraph{Anteprima, accettazione e rifiuto.}
+L'esito compare a mano a mano che arriva, reso dallo stesso componente del pannello di anteprima e scoperto un tratto alla volta dall'aggancio che ne governa lo scorrimento progressivo. Il comando «Accetta» inserisce l'esito nella nota secondo la semantica dichiarata nella tabella (\textbf{R-76-F-Ob}, UC68), mentre «Rifiuta» annulla l'elaborazione, scarta l'esito e chiude la finestra senza toccare la nota (\textbf{R-77-F-De}, UC69). Il primo dei due è disabilitato finché nulla è ancora comparso, mentre l'elaborazione è in corso e nel caso in cui la correzione grammaticale abbia risposto con il sentinella con cui il servizio applicativo dichiara di non aver trovato errori. In quest'ultimo caso al posto dell'esito compare la comunicazione prescritta da \textbf{R-62-F-De} (UC65.1), e non c'è nulla da accettare.
+
+\paragraph{Chiusura dalla cornice.}
+La chiusura ottenuta con il tasto di uscita o con il clic fuori dalla finestra non equivale al rifiuto. Annulla l'elaborazione se ce n'è una in corso, senza di che il servizio applicativo continuerebbe a produrre per un destinatario che non c'è più (UC71), e azzera la registrazione dell'operazione aperta, ma non scarta l'ultima richiesta conservata. Riaprendo la stessa operazione, ingresso e parametri tornano quindi come erano. Per la stessa ragione l'aggancio dell'anteprima riconosce un esito più corto di quanto ha già mostrato e vi si riallinea, invece di lasciare in vista il testo della volta precedente.
+
+\paragraph{L'esaustività dei vocabolari è verificata\textsubscript{G} in compilazione.}
+Le quattro tavole di valori esposte dai selettori devono coincidere con i vocabolari dichiarati dal contratto dell'API\textsubscript{G}, e la coincidenza è controllata nelle due direzioni da due meccanismi distinti. Che il frontend\textsubscript{G} non esponga un valore che il contratto non prevede si ottiene dichiarando ciascuna tavola conforme al tipo del contratto senza allargarne i letterali. È il controllo introdotto dopo che l'annotazione ordinaria, che quei letterali li allarga, aveva lasciato passare valori fuori contratto, con due operazioni che ricevevano una risposta di errore a ogni invio. Che il frontend\textsubscript{G} non ometta un valore che il contratto prevede si ottiene invece da un tipo ausiliario, che calcola la differenza fra i due insiemi e si dichiara vuoto, così che una differenza non vuota faccia fallire la compilazione. Nessuno dei due copre l'altro, e senza il secondo l'aggiunta di una lingua nel servizio applicativo resterebbe invisibile nell'interfaccia. Entrambi discendono dalla convenzione descritta nella sezione \ref{sec:idiomi-tipizzazione}.
 
     \begin{figure}[H]
     \centering
@@ -1233,39 +1271,26 @@ I componenti compositi sono i seguenti:
 % che stabilisce quando uno stato resta locale, quando è sollevato al genitore
 % e quando è promosso a store; il flusso unidirezionale.
 % NON CONTIENE: la definizione del pattern Observer (§3.5.3).
+Lo stato condiviso è custodito in due store, secondo la ripartizione dichiarata nella sezione \ref{sec:panoramica-stile-web}. Il confine fra i due è quello che separa la raccolta dalla sessione di scrittura. Lo store \texttt{useNotesStore} sa quali note esistono e quale è aperta, e non sa nulla di ciò che vi sta accadendo dentro, mentre \texttt{useEditorStore} sa che cosa sta accadendo nella nota aperta, e non sa che esista una raccolta. L'asimmetria è visibile nelle importazioni, perché il primo importa il secondo e ne invoca le azioni, mai il contrario.
 
-Lo stato condiviso è custodito in due store Zustand. Entrambi rispettano la regola dei \textbf{selettori atomici} (descritta in §3.5): ogni store espone selettori che estraggono una singola porzione di stato; i componenti si sottoscrivono solo a questi, mai allo stato aggregato. Un componente viene ridisegnato solo quando la porzione a cui è sottoscritto cambia. Questa proprietà rende sostenibile lo streaming: \texttt{Preview}, sottoscritto a \texttt{useCurrentText}, non viene ridisegnato a ogni chunk ricevuto; solo il componente che presenta \texttt{streamedOutput} viene aggiornato.
+\paragraph{Selettori atomici.}
+Entrambi gli store espongono la propria superficie di lettura come selettori, cioè come funzioni che ne estraggono una porzione sola. Lo store della sessione ne esporta sette, uno per ciascuna porzione osservabile dai componenti, quello della raccolta due, l'elenco delle note e la nota corrente. Un componente si sottoscrive a un selettore e viene ridisegnato quando la porzione corrispondente cambia, non quando cambia lo stato. È la proprietà che rende sostenibile lo streaming, per la ragione argomentata nella sezione \ref{sec:pattern-observer}. Mentre l'esito arriva a frammenti si ridisegna la sola finestra di dialogo che lo presenta, e il pannello di anteprima e l'editor, sottoscritti al testo della nota, non vengono toccati.
 
-La regola di collocazione dello stato è graduale: stato locale al componente per difetto, sollevato al genitore quando due componenti vicini devono concordare, promosso a store soltanto quando componenti lontani nell'albero devono condividerlo. Lo store non è il deposito di tutto lo stato: le condizioni puramente locali di un componente restano nel componente che le possiede.
+La regola vieta di esporre porzioni composite, non di derivarne una. Il selettore della nota corrente calcola il proprio valore cercando nell'elenco quella indicata, e restituisce l'oggetto già presente nell'elenco anziché costruirne uno nuovo, così che il risultato resti identico a sé finché quella nota non cambia. Dove serve una porzione per la quale non esiste un selettore esportato, come l'identificatore della nota corrente o una singola azione, il componente la dichiara sul posto con una funzione che estrae un campo solo. La regola riguarda la granularità della sottoscrizione, non la presenza di un nome.
+
+\paragraph{Dove vive uno stato.}
+La regola di collocazione è graduale ed è enunciata nella sezione \ref{sec:panoramica-stile-web}. Nell'applicazione web i tre casi che essa prevede sono tutti presenti. Le condizioni di lavoro della barra laterale restano nel componente che le possiede. I parametri della finestra di dialogo vivono nella finestra e sono passati ai selettori che li presentano, i quali non ne possiedono alcuno. Negli store sta soltanto ciò che componenti lontani nell'albero osservano davvero. La finestra di dialogo governa inoltre il proprio stato locale con un riduttore anziché con variabili indipendenti, perché le transizioni che le competono, cioè il ripristino dall'ultima richiesta, l'azzeramento ai valori predefiniti e il cambio di sorgente, toccano più campi insieme e devono avvenire in un passo solo.
 
 \paragraph{\texttt{useEditorStore}.}
+Custodisce quattro gruppi di porzioni. Il primo riguarda il documento in lavorazione, cioè il testo corrente, aggiornato a ogni modifica dell'editor, e la selezione dell'utente, aggiornata dallo stesso ascoltatore (\textbf{R-3-F-Ob}, UC2). Accanto a essi sta un contatore che non è dato di prodotto ma coordinamento. Viene incrementato ogni volta che nell'editor viene caricato un documento diverso, e distingue quel caso dalla scrittura ordinaria. La distinzione serve a un solo scopo, esposto nella sezione \ref{sec:frontend-editor}. Il caricamento di una nota non deve entrare nella cronologia di annullamento dell'editor, altrimenti l'annullamento riporterebbe l'utente al contenuto della nota precedente.
 
-Custodisce lo stato della sessione di scrittura e delle interazioni AI:
+Il secondo gruppo riguarda l'elaborazione assistita e comprende l'esito in arrivo, accumulato frammento per frammento, l'indicazione che un'elaborazione è in corso, il messaggio di errore e il riferimento al controllore di annullamento. L'accumulo dei frammenti è scritto nella forma che riceve lo stato precedente come argomento anziché leggerlo, perché su frammenti ravvicinati la lettura e la scrittura potrebbero riferirsi a valori diversi e qualche frammento andrebbe perduto.
 
-\begin{itemize}
-    \setlength{\itemsep}{0pt}
-     \item \texttt{currentText}: il testo corrente della nota, aggiornato da \texttt{setCurrentText} a ogni modifica dell'editor.
-    \item \texttt{\_loadVersion}: contatore incrementato a ogni caricamento di una nuova nota. Serve a invalidare le operazioni asincrone in corso.
-    \item \texttt{selectedText}: il testo selezionato dall'utente nell'editor (R-3-F-Ob), aggiornato da \texttt{setSelectedText} tramite un listener di CodeMirror.
-    \item \texttt{streamedOutput}: il testo in arrivo dal servizio applicativo, accumulato chunk per chunk da \texttt{appendChunk}.
-    \item \texttt{isGenerating}: flag che indica se uno streaming è in corso. \texttt{startStreaming} lo imposta a \texttt{true}; \texttt{finishStreaming} e \texttt{setError} lo imposta a \texttt{false}.
-    \item \texttt{errorMessage}: messaggio di errore da visualizzare all'utente (R-110-F-Ob); \texttt{setError} lo imposta e disabilita \texttt{isGenerating}.
-    \item \texttt{viewMode}: la modalità di visualizzazione dell'area di lavoro (\texttt{editor}, \texttt{render}, \texttt{split}), impostata da \texttt{setViewMode}.
-    \item \texttt{aiModal}: l'identificatore dell'azione AI attualmente aperta nel dialogo, impostato da \texttt{setAiModal}.
-    \item \texttt{editorView}: riferimento all'istanza di CodeMirror, utilizzato per operazioni di manipolazione diretta. \texttt{setEditorView} lo imposta al montaggio dell'editor.
-    \item \texttt{\_abortController}: riferimento all'\texttt{AbortController} dello streaming in corso.
-    \item \texttt{lastCall}: conserva l'ultima richiesta AI effettuata, con input, parametri, modalità, identificatore dell'azione e la funzione eseguibile. È utilizzato per la rigenerazione (R-78-F-De) e per la gestione dello stato «Rigenera» nel dialogo. \texttt{setLastCall} e \texttt{clearLastCall} ne gestiscono il ciclo di vita.
-\end{itemize}
+Il terzo gruppo riguarda l'interfaccia e comprende la modalità di visualizzazione e l'operazione assistita attualmente aperta. Il quarto contiene due riferimenti a oggetti che non sono dati. L'istanza dell'editor vi è depositata al montaggio e ritirata allo smontaggio, perché i comandi di formattazione possano raggiungerla senza che la barra degli strumenti sia annidata nell'editor. L'ultima richiesta inviata vi è conservata per la rigenerazione.
 
-L'azione \texttt{abortStream} interrompe la comunicazione tramite \texttt{abort()} sul controller (R-79-F-De) e, contemporaneamente, spegne l'indicatore di attesa (\texttt{isGenerating} a \texttt{false}). La proprietà è intenzionale: R-109-F-De richiede che l'indicatore di avanzamento copra l'intera durata percepita dell'operazione; al momento dell'annullamento, la durata percepita termina immediatamente, e l'indicatore si spegne senza attendere che il loop di streaming si accorga dell'interruzione.
+L'annullamento merita una precisazione, perché il suo effetto sull'indicatore di attesa è deliberato. L'azione attiva il controllore e spegne nello stesso passo l'indicazione di elaborazione in corso, senza attendere che il ciclo che consuma i frammenti si accorga dell'interruzione. Il requisito\textsubscript{G} \textbf{R-109-F-De} chiede che l'indicatore copra l'intera durata percepita dell'operazione, e al momento dell'annullamento quella durata è finita.
 
-L'azione \texttt{insertOutputIntoNote} determina la semantica di inserimento in base al parametro \texttt{insertMode}:
-
-\begin{itemize}
-    \setlength{\itemsep}{0pt}
-    \item \texttt{replace}: sostituisce il \texttt{selectedText} se presente e se ancora trovabile in \texttt{currentText}; altrimenti sostituisce l'intero \texttt{currentText}. È la semantica usata per le azioni di trasformazione (riassunto, riscrittura, traduzione, grammatica, analisi).
-    \item \texttt{append}: accoda l'output alla fine di \texttt{currentText}, aggiungendo un separatore \texttt{\textbackslash n\textbackslash n} se necessario. È la semantica usata per la generazione da prompt o da link.
-\end{itemize}
+L'inserimento dell'esito nella nota ha infine due semantiche, dichiarate operazione per operazione nella tabella descritta nella sezione \ref{sec:frontend-componenti}. La sostituzione prende il posto della selezione dell'utente, se ce n'era una e se è ancora reperibile nel testo, e altrimenti dell'intero documento. È la forma del riassunto, della traduzione, della riscrittura e della correzione grammaticale, che restituiscono una versione diversa di un testo già esistente. L'accodamento aggiunge invece l'esito in fondo, separandolo dal testo che lo precede, ed è la forma dell'analisi critica e delle due generazioni, che producono testo nuovo. In entrambi i casi l'esito viene ripulito degli spazi ai margini, un esito vuoto non produce alcuna modifica e la finestra di dialogo si chiude.
 
     \begin{figure}[H]
     \centering
@@ -1274,26 +1299,19 @@ L'azione \texttt{insertOutputIntoNote} determina la semantica di inserimento in 
     \label{fig:uml3331}
     \end{figure}
 
-\paragraph{\texttt{notes}.}
+\paragraph{\texttt{useNotesStore}.}
+Custodisce l'elenco delle note e l'identificatore di quella corrente. Una nota è un oggetto con identificatore, titolo, contenuto e i due istanti di creazione e di ultima modifica, e il suo tipo è dichiarato nel modulo di accesso al file system, che è il punto in cui una nota entra nel prodotto e ne esce.
 
-Custodisce la raccolta delle note e l'indicazione di quale sia quella corrente:
+Le azioni sono sei. La creazione genera una nota con il titolo indicato dall'utente, o con un titolo di ripiego se non ne ha indicato alcuno (\textbf{R-82-F-Ob} e \textbf{R-114-F-Ob}). La selezione cambia la nota corrente. L'aggiornamento modifica titolo o contenuto di quella corrente e ne rinnova l'istante di ultima modifica. L'eliminazione la toglie dall'elenco (\textbf{R-91-F-De}). Il caricamento inserisce una nota proveniente da un file, sostituendo quella con lo stesso identificatore se già presente (\textbf{R-85-F-Ob}). La sesta popola la raccolta con una nota di benvenuto e viene invocata al solo primo avvio.
 
-\begin{itemize}
-    \setlength{\itemsep}{0pt}
-    \item \texttt{list}: array di oggetti \texttt{Note} (con \texttt{id}, \texttt{title}, \texttt{content}, \texttt{createdAt}, \texttt{updatedAt}).
-    \item \texttt{currentId}: \texttt{id} della nota correntemente selezionata, o \texttt{null}.
-    \item \texttt{createEmpty}: crea una nuova nota con titolo «Senza titolo» e contenuto vuoto (R-82-F-Ob, R-114-F-Ob). Se una nota è già aperta, salva il suo contenuto corrente in \texttt{useEditorStore} prima di crearne una nuova. Incrementa \texttt{\_loadVersion} e imposta \texttt{currentText} a \texttt{''}. Soddisfa UC74.1.
-    \item \texttt{select}: cambia la nota corrente. Prima di cambiare, salva il contenuto corrente della nota attuale in \texttt{list}; poi carica il contenuto della nuova nota in \texttt{useEditorStore} tramite \texttt{loadDocument}.
-    \item \texttt{updateCurrent}: aggiorna \texttt{title} e/o \texttt{content} della nota corrente, aggiornando \texttt{updatedAt}.
-    \item \texttt{deleteNote}: rimuove la nota dall'elenco (R-91-F-De). Se la nota eliminata era quella corrente, seleziona la prima nota rimanente, se presente.
-    \item \texttt{loadNote}: carica una nota proveniente da un'importazione (R-85-F-Ob), aggiornandola se già presente (per \texttt{id}) o aggiungendola se nuova.
-\end{itemize}
+\paragraph{La sincronizzazione fra i due store.}
+Il testo che l'utente sta scrivendo non si trova nell'elenco, ma vive nello store della sessione finché la nota resta aperta. Ogni azione che cambia la nota corrente compie perciò due passi nell'ordine giusto. Prima riversa nell'elenco il testo corrente della nota che si sta lasciando, poi carica nell'editor il contenuto di quella che subentra. L'eliminazione compie lo stesso riallineamento quando la nota rimossa era quella corrente. Senza di esso il testo della nota eliminata resterebbe nell'editor e al primo cambio di nota verrebbe salvato sopra quella di destinazione, che perderebbe il proprio contenuto senza alcun segnale.
 
-La sincronizzazione tra i due store è gestita dalle azioni di \texttt{notes}: ogni volta che l'utente cambia nota o ne crea una nuova, il contenuto della nota corrente viene prima salvato in \texttt{useEditorStore} e poi la nuova nota viene caricata. Il flag \texttt{\_loadVersion} impedisce che aggiornamenti asincroni dell'editor sovrascrivano il contenuto di una nota diversa da quella che l'utente stava effettivamente modificando.
+\paragraph{Il ripristino dello stato precedente.}
+La creazione e l'eliminazione fotografano l'elenco e l'identificatore corrente prima di modificarli, e li ripristinano se la modifica fallisce. Il caso non è teorico, perché la scrittura nell'archivio locale del browser avviene dentro l'aggiornamento dello stato, e il suo fallimento per esaurimento dello spazio disponibile risale dopo che lo stato in memoria è già cambiato. Senza il ripristino l'utente vedrebbe insieme il messaggio di errore e la nota comparire nell'elenco. È questa la parte che, insieme ai messaggi resi dalla barra laterale, realizza \textbf{R-84-F-Ob} e \textbf{R-93-F-De} (UC75 e UC81).
 
 \paragraph{Persistenza dello store.}
-
-\texttt{notes} utilizza il middleware \texttt{persist} di Zustand (pattern descritto in §3.5) per salvare automaticamente \texttt{list} e \texttt{currentId} in \texttt{localStorage}. Il middleware serializza lo stato su ogni modifica e lo ripristina all'avvio dell'applicazione. Durante il ripristino (\texttt{onRehydrateStorage}), \texttt{loadDocument} viene chiamato per caricare il contenuto della nota corrente nell'editor. Questa persistenza soddisfa R-80-F-Ob, R-84-F-Ob, R-87-F-Ob, R-90-F-Ob, R-93-F-De, R-96-F-De e UC75.
+Lo store della raccolta è avvolto dal middleware di persistenza della libreria di gestione dello stato, sotto una chiave dedicata dell'archivio locale del browser. Quello della sessione non lo è, e non deve esserlo, perché il testo in lavorazione appartiene alla nota ed è nell'elenco che viene riversato. Lo stato serializzabile è scritto a ogni modifica e riletto all'avvio dell'applicazione. Al termine della rilettura si compie l'unico passo che il middleware non può compiere da sé. Il contenuto della nota corrente viene caricato nell'editor e, se nessuna nota risulta corrente, per primo avvio o perché l'utente ha svuotato l'archivio, la raccolta viene popolata con la nota di benvenuto. Il meccanismo realizza la continuità della sessione descritta nella sezione \ref{sec:continuita-sessione}, mentre l'importazione e l'esportazione deliberate seguono l'altra via, quella del file system, descritta nella sezione \ref{sec:frontend-persistenza}.
 
     \begin{figure}[H]
     \centering
@@ -1459,7 +1477,7 @@ La persistenza dei dati lato client è realizzata con due meccanismi distinti, c
 
 \paragraph{Persistenza automatica (Zustand \texttt{persist}).}
 
-Come descritto in §3.3.3, \texttt{notes} utilizza il middleware \texttt{persist} di Zustand per salvare automaticamente \texttt{list} e \texttt{currentId} nel \texttt{localStorage} del browser. Il salvataggio avviene a ogni modifica dello store. Il ripristino avviene al caricamento dell'applicazione. Questo meccanismo soddisfa R-4-V-Ob (salvataggio come file di testo) e R-85-F-Ob (caricamento da file locale), garantendo la continuità della sessione.
+Come descritto in §3.3.3, \texttt{useNotesStore} utilizza il middleware \texttt{persist} di Zustand per salvare automaticamente \texttt{list} e \texttt{currentId} nel \texttt{localStorage} del browser. Il salvataggio avviene a ogni modifica dello store. Il ripristino avviene al caricamento dell'applicazione. Questo meccanismo soddisfa R-4-V-Ob (salvataggio come file di testo) e R-85-F-Ob (caricamento da file locale), garantendo la continuità della sessione.
 
 \paragraph{Importazione ed esportazione (\texttt{lib/fileSystem.ts}).}
 
