@@ -1,35 +1,49 @@
 @startuml
 !theme plain
-hide circle
-skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
+skinparam shadowing false
+skinparam defaultFontSize 14
 
-' ============================================================
-' SCENARIO 1: MODIFICA UTENTE
-' ============================================================
+title Scenario 1: modifica dell'utente (Editor verso Store)
 
-== Scenario 1: Modifica utente (Editor → Store) ==
+start
+:l'utente digita o sposta il cursore;
+:l'EditorView produce un aggiornamento,
+con i marcatori selectionSet e docChanged;
 
-actor Utente as U1
-participant Editor as ED1
-participant updateListener as UL1
-participant useEditorStore as ES1
+if (updateListener: selectionSet oppure docChanged?) then (si)
+  :ricava il testo selezionato,
+  stringa vuota se la selezione e' vuota;
+  if (coincide con selectedText nello store?) then (no)
+    :invoca setSelectedText su useEditorStore;
+  else (si)
+    :nessuna scrittura;
+  endif
+else (no)
+endif
 
-U1 -> ED1 : Digita/modifica
-activate ED1
-ED1 -> UL1 : docChanged
-activate UL1
-UL1 -> UL1 : StoreSync? false
-UL1 -> ES1 : setCurrentText(newText)
-activate ES1
-ES1 -> ES1 : currentText = newText
-ES1 --> UL1 : ok
-deactivate ES1
-UL1 -> UL1 : selectedText = selection
-UL1 --> ED1 : ok
-deactivate UL1
-ED1 --> U1 : Testo aggiornato
-deactivate ED1
+if (updateListener: docChanged?) then (no)
+  stop
+endif
+
+if (la transazione porta l'annotazione StoreSync?) then (si)
+  :e' una sincronizzazione proveniente dallo store,
+  l'ascoltatore non la rimanda indietro;
+  stop
+endif
+
+:invoca setCurrentText su useEditorStore
+con l'intero documento;
+stop
+
+legend bottom
+  L'ascoltatore e' un'estensione dell'EditorView, non un modulo a se'.
+  ==
+  La scrittura di currentText non e' condizionata a un confronto: lo store rispecchia sempre
+  l'ultimo documento noto, quindi una modifica che non provenga da esso lo rende per cio' stesso
+  diverso. Il confronto esiste invece sulla selezione, dove ogni battuta ripropone lo stesso valore.
+  ==
+  Il valore di selectedText realizza R-3-F-Ob (UC2) ed e' quello che la finestra di dialogo delle
+  operazioni assistite consulta per decidere che cosa sottoporre al modello.
+endlegend
 
 @enduml

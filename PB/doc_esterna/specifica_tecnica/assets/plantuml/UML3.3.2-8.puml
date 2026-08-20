@@ -2,100 +2,90 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
+
+title AiActionDialog
+
+top to bottom direction
 
 class AiActionDialog {
-  - actionId: AiActionId
-  - isGenerating: boolean
-  - streamedOutput: string
-  - errorMessage: string | null
-  - displayed: string
+  - actionId: AiActionId | null
   - params: AiParams
   - input: string
+  - mode: 'prompt' | 'link'
   - validationError: string | null
-  - lastCall: LastCall | null
   __
-  + handleGenerate(): void
-  + handleAccept(): void
-  + handleReject(): void
-  + handleStop(): void
+  - handleGenerate(): void
+  - handleAccept(): void
+  - handleReject(): void
+  - handleStop(): void
+  - handleParamsChange(next: AiParams): void
+  - handleModeChange(next: 'prompt' | 'link'): void
 }
 
-class useEditorStore {
-  - aiModal: AiModal
-  - isGenerating: boolean
-  - streamedOutput: string
-  - errorMessage: string | null
-  - lastCall: LastCall | null
-  __
-  + setAiModal(modal: AiModal): void
-  + insertOutputIntoNote(insertMode?: 'replace' | 'append'): void
-  + discardOutput(): void
-  + abortStream(): void
+class uiReducer <<riduttore>> {
+  SET_PARAMS
+  SET_INPUT
+  SET_MODE
+  SET_VALIDATION_ERROR
+  RESTORE_FROM_LAST_CALL
+  RESET_DEFAULT
 }
 
-class useNotesStore {
-  - list: Note[]
-  - currentId: string | null
+package "componenti interni al modulo" as INT {
+  class PillSelector {
+    + label: string
+    + options: { value: T, label: string }[]
+    + value: T
+    + onChange: (v: T) => void
+  }
+  class HatSelector {
+    + value: Hat | null
+    + onChange: (v: Hat) => void
+  }
+  class GenerateSourceTabs {
+    + mode: 'prompt' | 'link'
+    + onChange: (m: 'prompt' | 'link') => void
+  }
 }
 
-class useAiStream {
-  + start<T>(fn: () => AsyncIterable<T>): Promise<void>
-  + abort(): void
-}
-
-class useTypewriter {
-  + useTypewriter(text: string, isGenerating: boolean): string
-}
-
-class api {
-}
-
-class aiActions {
-  + AI_ACTIONS: Record<AiActionId, AiActionConfig>
+class aiActions <<module>> {
+  + AI_ACTIONS: Record<AiActionId, AiActionDef>
   + getActiveText(): string
 }
 
-class AiActionId {
+class AiActionDef <<type>> {
+  label: string
+  source: 'text' | 'prompt' | 'url'
+  insertMode: 'replace' | 'append'
+  minLength: number
+  maxLength: number | null
 }
 
-class AiModal {
-}
+AiActionDialog *-- uiReducer : stato locale
+AiActionDialog *-- INT : contiene
+AiActionDialog --> aiActions : tabella e testo attivo
+aiActions --> AiActionDef : dichiara
 
-class LastCall {
-}
+PillSelector -[hidden]down- HatSelector
+HatSelector -[hidden]down- GenerateSourceTabs
+uiReducer -[hidden]down- aiActions
 
-class PillSelector {
-  - label: string
-  - options: Option[]
-  - value: T
-  - onChange: (v: T) => void
-  __
-  + render(): JSX
-}
+legend bottom
+  Collaboratori descritti altrove: useEditorStore per aiModal, isGenerating, streamedOutput,
+  errorMessage e lastCall e per le azioni di inserimento, scarto e azzeramento; useAiStream per
+  start e abort; useTypewriter per l'anteprima progressiva; api per l'operazione scelta;
+  MarkdownView per la resa dell'esito. useNotesStore non e' fra questi.
+  ==
+  I tre selettori sono dichiarati nel modulo della finestra e non ne sono esportati. Ogni cambio di
+  parametro o di sorgente invoca resetPreview, che annulla anche l'elaborazione in corso.
+  ==
+  Sette voci, sei finestre: generate-link non ha una finestra propria ed e' la seconda sorgente di
+  generate, scelta da GenerateSourceTabs; di quella voce la finestra usa i soli limiti di lunghezza.
+  La tabella non contiene funzioni: quale operazione della facciata invocare e' deciso all'invio.
+endlegend
 
-class HatSelector {
-  - value: Hat | null
-  - onChange: (v: Hat) => void
-  __
-  + render(): JSX
-}
-
-AiActionDialog ..> useEditorStore : utilizza
-AiActionDialog ..> useNotesStore : utilizza
-AiActionDialog ..> useAiStream : utilizza
-AiActionDialog ..> useTypewriter : utilizza
-AiActionDialog ..> api : utilizza
-AiActionDialog ..> aiActions : utilizza
-AiActionDialog ..> AiActionId : utilizza
-AiActionDialog ..> AiModal : utilizza
-AiActionDialog ..> LastCall : utilizza
-AiActionDialog *-- PillSelector : contiene
-AiActionDialog *-- HatSelector : contiene
-
-' collegamenti invisibili: forzano le tre classi di tipo su una riga sottostante
-aiActions -[hidden]d-> AiActionId
-useEditorStore -[hidden]d-> AiModal
-useNotesStore -[hidden]d-> LastCall
 @enduml

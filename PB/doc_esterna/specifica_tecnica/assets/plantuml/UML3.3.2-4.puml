@@ -2,31 +2,58 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
+
+title EditorToolbar
+
+top to bottom direction
 
 class EditorToolbar {
-  - editorView: EditorView | null
-  __
-  + handleAction(label: string): void
-  + handleHeading(level: HeadingLevel): void
-  + handleList(ordered: boolean): void
+  - handleAction(label: ToolLabel): void
+  - handleHeading(level: HeadingLevel): void
+  - handleList(ordered: boolean): void
 }
 
-class useEditorStore {
-  - editorView: EditorView | null
-  __
-  + setEditorView(view: EditorView | null): void
+class useEditorStore <<store>> {
+  + editorView: EditorView | null
 }
 
-class editorCommands {
+class editorCommands <<module>> {
+  + toggleBoldCommand(view: EditorView): boolean
+  + toggleItalicCommand(view: EditorView): boolean
+  + toggleUnderlineCommand(view: EditorView): boolean
+  + toggleStrikethroughCommand(view: EditorView): boolean
+  + toggleInlineCodeCommand(view: EditorView): boolean
+  + toggleLinkCommand(view: EditorView): boolean
+  + insertImageCommand(view: EditorView): boolean
+  + setHeadingCommand(view: EditorView, level: HeadingLevel): boolean
+  + toggleListCommand(view: EditorView): boolean
+  + toggleOrderedListCommand(view: EditorView): boolean
+  + cycleHeadingCommand(view: EditorView): boolean
 }
 
-class EditorView {
+class EditorView <<libreria>> {
+  + dispatch(tr: Transaction): void
+  + focus(): void
 }
 
-EditorToolbar ..> useEditorStore : utilizza
-EditorToolbar ..> editorCommands : utilizza
-useEditorStore ..> EditorView : contiene
+EditorToolbar --> useEditorStore
+EditorToolbar --> editorCommands
+editorCommands --> EditorView
+useEditorStore --> EditorView
+
+legend bottom
+  La barra non si sottoscrive ad alcuna porzione: legge l'istanza dell'editor nell'istante del
+  comando. Se non c'e' ancora, il comando non fa nulla anziche' fallire.
+  ==
+  I comandi che avvolgono la selezione fra due marcatori sono interruttori, quindi a un solo comando
+  corrispondono il requisito di applicazione e quello di rimozione.
+  ==
+  cycleHeadingCommand e' esportato ma la barra non lo impiega: il menu dei titoli usa
+  setHeadingCommand con un livello esplicito, dove il livello 0 rimuove il titolo.
+endlegend
 
 @enduml

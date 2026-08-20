@@ -2,46 +2,97 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
+skinparam shadowing false
+skinparam nodesep 40
+skinparam ranksep 55
+skinparam defaultFontSize 14
 
-start
+title I due meccanismi di persistenza lato client
 
-:Avvia applicazione;
-:notes.persist ripristina stato;
+class Sidebar {
+  - handleOpenFile(): Promise<void>
+  - handleSaveFile(): Promise<void>
+}
 
-:Utente → "Nuova nota";
-:createEmpty();
-:Salva contenuto in useEditorStore;
-:Genera nuova nota (id, title);
-:persist → localStorage;
-:loadDocument();
+class fileSystem <<module, via deliberata>> {
+  + Note
+  + GRAZIA_ANNULLAMENTO_MS: number
+  + openNoteFromFile(): Promise<Note | null>
+  + saveNoteToFile(note: Note): Promise<void>
+  + renameNote(note: Note, name: string): Promise<Note>
+  - scegliFileConInput()
+  - eAnnullamento(err)
+  - TITOLO_DI_RIPIEGO: string
+}
 
-:Utente → "Salva file";
-:saveNoteToFile();
+class persist <<middleware, via automatica>> {
+  chiave: 'notes_persistence'
+  nessun partialize
+  + onRehydrateStorage()
+}
 
-if (showSaveFilePicker?) then (Sì)
-  :Salva con picker nativo;
-else (No)
-  :Download automatico (Blob + link);
-endif
+class useNotesStore <<store>> {
+  + list: Note[]
+  + currentId: string | null
+  + ensureWelcomeNote(): void
+}
 
-:Utente → "Apri file…";
-:openNoteFromFile();
+class useEditorStore <<store>> {
+  + currentText: string
+  + loadDocument(text: string): void
+}
 
-if (showOpenFilePicker?) then (Sì)
-  :Seleziona con picker nativo;
-else (No)
-  :Seleziona con input file;
-endif
+class id <<module>> {
+  + newId(): string
+}
 
-if (File selezionato?) then (No)
-  stop
-else (Sì)
-  :Crea Note da file;
-  :loadNote();
-  :persist → localStorage;
-  :loadDocument();
-  stop
+class "File System Access API" as FSA <<browser>> {
+  showOpenFilePicker()
+  showSaveFilePicker()
+}
+
+class "ripiego universale" as FB <<browser>> {
+  input type=file + FileReader
+  Blob + collegamento di scaricamento
+}
+
+class localStorage <<browser>> {
+}
+
+Sidebar --> fileSystem : invoca
+Sidebar --> useNotesStore : loadNote
+Sidebar --> useEditorStore : legge currentText
+persist --* useNotesStore : avvolge
+persist --> localStorage : scrive e rilegge
+persist --> useEditorStore : loadDocument alla rilettura
+useNotesStore --> fileSystem : importa Note
+useNotesStore --> useEditorStore : riversa currentText
+fileSystem --> id : newId
+fileSystem --> FSA : se esposta
+fileSystem --> FB : altrimenti
+
+fileSystem -[hidden]right- persist
+FSA -[hidden]right- FB
+id -[hidden]right- FSA
+useEditorStore -[hidden]right- localStorage
+
+legend bottom
+  La via del file system e' scelta verificando la presenza dei metodi sull'oggetto globale della
+  finestra, non l'identita' del browser: R-1-V-Ob include Firefox, che non espone la File System
+  Access API. openNoteFromFile restituisce il valore nullo per l'annullamento e non una stringa
+  vuota, perche' un file vuoto e' un ingresso valido; nessun riferimento al file letto viene
+  conservato. renameNote non compie alcuna operazione su disco e il nome sara' quello del
+  salvataggio successivo. newId ricade su una costruzione propria dell'UUID dove
+  crypto.randomUUID non esiste, cioe' fuori dai contesti sicuri.
+  ==
+  Il middleware persist scrive nell'archivio a ogni modifica di useNotesStore, quindi anche una
+  ridenominazione, un'eliminazione o un'importazione vi arrivano subito. Alla rilettura carica
+  nell'editor la nota corrente e, se non ce n'e' alcuna, invoca ensureWelcomeNote: e' il solo
+  punto in cui la persistenza raggiunge l'altro store.
+  ==
+  Il testo in lavorazione sta in useEditorStore e raggiunge la raccolta al cambio di nota e alla
+  creazione di una nuova nota, non a ogni modifica. Il salvataggio su file legge invece sempre
+  useEditorStore, quindi il file contiene il testo che l'utente ha davanti.
+endlegend
 
 @enduml

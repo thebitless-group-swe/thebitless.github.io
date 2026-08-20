@@ -2,29 +2,34 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
+
+title Preview
+
+top to bottom direction
 
 class Preview {
   - currentText: string
-  __
-  + render(): JSX
 }
 
-class useEditorStore {
-  - currentText: string
-  __
-  + setCurrentText(text: string): void
+class useEditorStore <<store>> {
+  + currentText: string
 }
 
 class MarkdownView {
-  - children: string
-  - className?: string
-  __
-  + render(): JSX
+  + children: string
+  + className?: string
 }
 
-Preview ..> useEditorStore : utilizza
-Preview ..> MarkdownView : utilizza
+Preview --> useEditorStore
+Preview --> MarkdownView
+
+legend bottom
+  Preview non applica alcuna estensione della pipeline di rendering: le dichiara per intero
+  MarkdownView (R-2-F-Ob, R-113-F-Ob).
+endlegend
 
 @enduml

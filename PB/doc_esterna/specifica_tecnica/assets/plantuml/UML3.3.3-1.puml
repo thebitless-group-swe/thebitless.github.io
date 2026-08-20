@@ -2,25 +2,29 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
+
+title useEditorStore
 
 ' ============================================================
 ' USEEDITORSTORE
 ' ============================================================
 
-class useEditorStore {
-  - currentText: string
+class useEditorStore <<store>> {
+  + currentText: string
+  + selectedText: string
+  + streamedOutput: string
+  + isGenerating: boolean
+  + errorMessage: string | null
+  + viewMode: ViewMode
+  + aiModal: AiModal
+  + editorView: EditorView | null
+  + lastCall: LastCall | null
   - _loadVersion: number
-  - selectedText: string
-  - streamedOutput: string
-  - isGenerating: boolean
-  - errorMessage: string | null
-  - viewMode: ViewMode
-  - aiModal: AiModal
-  - editorView: EditorView | null
   - _abortController: AbortController | null
-  - lastCall: LastCall | null
   __
   + setCurrentText(text: string): void
   + loadDocument(text: string): void
@@ -35,28 +39,29 @@ class useEditorStore {
   + setAiModal(modal: AiModal): void
   + insertOutputIntoNote(insertMode?: 'replace' | 'append'): void
   + discardOutput(): void
+  + resetPreview(): void
   + setEditorView(view: EditorView | null): void
-  + _setAbortController(c: AbortController | null): void
   + abortStream(): void
   + setLastCall(call: LastCall): void
   + clearLastCall(): void
+  - _setAbortController(c: AbortController | null): void
 }
 
 ' ============================================================
 ' TIPI DI SUPPORTO
 ' ============================================================
 
-class ViewMode {
+enum ViewMode {
   editor
   render
   split
 }
 
-class AiModal {
+class AiModal <<type>> {
   null | AiActionId
 }
 
-class LastCall {
+class LastCall <<type>> {
   input: string
   params: AiParams
   mode?: 'prompt' | 'link'
@@ -64,7 +69,7 @@ class LastCall {
   execute(signal: AbortSignal): AsyncIterable<string>
 }
 
-class EditorView {
+class EditorView <<libreria>> {
 }
 
 ' ============================================================
@@ -74,33 +79,23 @@ class EditorView {
 useEditorStore ..> ViewMode : utilizza
 useEditorStore ..> AiModal : utilizza
 useEditorStore ..> LastCall : utilizza
-useEditorStore ..> EditorView : contiene (editorView)
+useEditorStore ..> EditorView : conserva (editorView)
 
-' ============================================================
-' NOTE
-' ============================================================
-
-note right of useEditorStore
-  Selettori atomici:
-  - useCurrentText()
-  - useSelectedText()
-  - useStreamedOutput()
-  - useIsGenerating()
-  - useErrorMessage()
-  - useViewMode()
-  - useAiModal()
-end note
-
-note left of useEditorStore
-  abortStream interrompe la generazione
-  e spegne isGenerating
-  (R-79-F-De, R-109-F-De)
-end note
-
-note bottom of LastCall
-  Utilizzato per la rigenerazione
-  (R-78-F-De) e per lo stato
-  «Rigenera» nel dialogo
-end note
+legend bottom
+  Selettori atomici esportati: useCurrentText, useSelectedText, useStreamedOutput,
+  useIsGenerating, useErrorMessage, useViewMode, useAiModal.
+  ==
+  abortStream interrompe la generazione e spegne isGenerating nello stesso passo, senza attendere
+  il ciclo che consuma i frammenti (R-79-F-De, R-109-F-De).
+  ==
+  _loadVersion distingue il caricamento di un documento dalla scrittura ordinaria, cosi' che il
+  caricamento non entri nella cronologia di annullamento dell'editor. Non ha alcun ruolo nelle
+  operazioni asincrone.
+  ==
+  LastCall serve alla rigenerazione (R-78-F-De): execute riceve il signal come parametro e non lo
+  cattura, cosi' resta rieseguibile dopo un annullamento.
+  ==
+  Questo store non e' avvolto dal middleware persist: lo e' il solo useNotesStore.
+endlegend
 
 @enduml

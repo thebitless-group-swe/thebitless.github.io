@@ -2,47 +2,85 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
+
+title Sidebar
+
+top to bottom direction
 
 class Sidebar {
-  - notes: Note[]
-  - currentId: string | null
   - collapsed: boolean
+  - creating: boolean
+  - newTitle: string
   - editingId: string | null
   - editingTitle: string
+  - deletingId: string | null
   - fileError: string | null
   __
-  + createEmpty(): void
-  + select(id: string): void
-  + loadNote(note: Note): void
-  + handleOpenFile(): void
-  + handleSaveFile(): void
-  + startRename(note: Note): void
-  + commitRename(note: Note): void
+  - startCreate(): void
+  - commitCreate(): void
+  - cancelCreate(): void
+  - handleSelect(id: string): void
+  - startRename(note: Note): void
+  - commitRename(note: Note): Promise<void>
+  - confirmDelete(id: string): void
+  - handleOpenFile(): Promise<void>
+  - handleSaveFile(): Promise<void>
 }
 
-class useNotesStore {
-  - list: Note[]
-  - currentId: string | null
+class useNotesStore <<store>> {
+  + list: Note[]
+  + currentId: string | null
   __
-  + createEmpty(): Note
+  + createEmpty(title?: string): Note
   + select(id: string): void
-  + loadNote(note: Note): void
+  + updateCurrent(patch): void
+  + deleteNote(id: string): void
+  + loadNote(note): void
 }
 
-class useEditorStore {
+class useEditorStore <<store>> {
+  + currentText: string
 }
 
-class fileSystem {
+class fileSystem <<module>> {
+  + openNoteFromFile(): Promise<Note | null>
+  + saveNoteToFile(note: Note): Promise<void>
+  + renameNote(note: Note, name: string): Promise<Note>
 }
 
-class Note {
+class Note <<entity>> {
+  + id: string
+  + title: string
+  + content: string
+  + createdAt: number
+  + updatedAt: number
 }
 
-Sidebar ..> useNotesStore : utilizza
-Sidebar ..> useEditorStore : utilizza
-Sidebar ..> fileSystem : utilizza
-useNotesStore ..> Note : gestisce
+Sidebar --> useNotesStore
+Sidebar --> useEditorStore
+Sidebar --> fileSystem
+useNotesStore "1" o-- "0..*" Note
+fileSystem --> Note
+
+useEditorStore -[hidden]right- fileSystem
+
+legend bottom
+  La creazione avviene in due tempi (R-82-F-Ob, R-114-F-Ob): startCreate apre il campo del titolo,
+  commitCreate conferma, cancelCreate annulla. Il campo non conferma alla perdita del fuoco.
+  La ridenominazione segue la via opposta e conferma anche alla perdita del fuoco (R-94-F-De).
+  ==
+  deletingId conserva l'identificatore della voce in attesa di conferma, non un semplice indicatore
+  di presenza, altrimenti la conferma aperta su una voce comparirebbe su tutte.
+  ==
+  fileError raccoglie il fallimento di ogni operazione sulla raccolta e lo presenta in linguaggio
+  naturale (R-110-F-Ob), realizzando R-84-F-Ob, R-87-F-Ob, R-90-F-Ob, R-93-F-De e R-96-F-De.
+  ==
+  Il tipo Note e' dichiarato da fileSystem, non dallo store che ne custodisce la raccolta.
+  Sidebar legge currentText da useEditorStore solo per il salvataggio su file.
+endlegend
 
 @enduml

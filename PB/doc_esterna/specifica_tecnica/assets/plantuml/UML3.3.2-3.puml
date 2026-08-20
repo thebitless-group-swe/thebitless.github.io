@@ -2,17 +2,23 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
+
+title ViewToggle
+
+top to bottom direction
 
 class ViewToggle {
   - viewMode: ViewMode
   __
-  + setViewMode(mode: ViewMode): void
+  - setViewMode(mode: ViewMode): void
 }
 
-class useEditorStore {
-  - viewMode: ViewMode
+class useEditorStore <<store>> {
+  + viewMode: ViewMode
   __
   + setViewMode(mode: ViewMode): void
 }
@@ -23,8 +29,12 @@ enum ViewMode {
   split
 }
 
-ViewToggle ..> useEditorStore : utilizza
-ViewToggle ..> ViewMode : utilizza
-useEditorStore ..> ViewMode : utilizza
+ViewToggle --> useEditorStore
+useEditorStore --> ViewMode
+
+legend bottom
+  Reso da App fuori dalla barra superiore e visibile in tutte e tre le modalita', cosi' che dalla
+  sola anteprima esista comunque un comando per tornare indietro (R-50-F-Ob, R-51-F-Ob, R-52-F-Ob).
+endlegend
 
 @enduml

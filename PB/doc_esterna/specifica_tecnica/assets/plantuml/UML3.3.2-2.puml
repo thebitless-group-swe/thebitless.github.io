@@ -2,8 +2,14 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
+
+title TopBar
+
+top to bottom direction
 
 class TopBar {
   - noteTitle?: string
@@ -12,41 +18,58 @@ class TopBar {
   - aiModal: AiModal
   - currentNote: Note | null
   __
-  + openModal(modal: AiActionId): void
-  + handleAbort(): void
+  - openModal(modal: AiActionId): void
+  - handleAbort(): void
 }
 
-class useNotesStore {
-  - list: Note[]
-  - currentId: string | null
+class useEditorStore <<store>> {
+  + isGenerating: boolean
+  + errorMessage: string | null
+  + aiModal: AiModal
   __
-  + createEmpty(): Note
-  + select(id: string): void
-}
-
-class useEditorStore {
-  - currentText: string
-  - isGenerating: boolean
-  - errorMessage: string | null
-  - aiModal: AiModal
-  __
-  + setAiModal(modal: AiModal): void
   + abortStream(): void
 }
 
-class AiActionId {
+class useNotesStore <<store>> {
+  + list: Note[]
+  + currentId: string | null
 }
 
-class AiModal {
+enum AiActionId {
+  summarize
+  translate
+  rewrite
+  grammar
+  critique
+  generate
+  generate-link
 }
 
-class Note {
+class AiModal <<type>> {
+  null | AiActionId
 }
 
-TopBar ..> useNotesStore : utilizza
-TopBar ..> useEditorStore : utilizza
-TopBar ..> AiActionId : utilizza
-TopBar ..> AiModal : utilizza
-useNotesStore ..> Note : gestisce
+TopBar --> useEditorStore
+TopBar --> useNotesStore
+TopBar --> AiActionId
+AiModal --> AiActionId
+
+useEditorStore -[hidden]right- useNotesStore
+AiModal -[hidden]right- AiActionId
+
+legend bottom
+  I sei pulsanti coprono sei dei sette AiActionId: generate-link non ha una finestra propria ed e'
+  una sorgente interna alla finestra di generate.
+  ==
+  openModal non invoca setAiModal: scrive insieme aiModal, streamedOutput ed errorMessage, cosi'
+  la finestra non si apre con l'esito della richiesta precedente. I pulsanti sono disabilitati
+  mentre un'elaborazione e' in corso.
+  ==
+  L'indicatore di attesa e il comando di interruzione compaiono durante l'elaborazione
+  (R-109-F-De, R-79-F-De); l'interruzione invoca abortStream dello store.
+  ==
+  L'avviso di errore compare qui solo quando aiModal e' nullo: mentre la finestra e' aperta
+  l'errore appartiene a quella (R-110-F-Ob).
+endlegend
 
 @enduml

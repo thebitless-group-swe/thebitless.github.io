@@ -2,32 +2,134 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
+skinparam shadowing false
 skinparam defaultFontSize 14
+skinparam nodesep 40
+skinparam ranksep 65
 
-' ============================================================
-' 1. TIPI E ENUMERAZIONI
-' ============================================================
+title Componenti dell'interfaccia e store
 
-enum ViewMode {
-  editor
-  render
-  split
+' Le frecce continue con il rombo sono composizione (chi rende chi).
+' Le frecce tratteggiate sono uso: il componente si sottoscrive a una
+' porzione dello store o ne invoca un'azione. Non portano etichetta
+' perche' la superficie usata da ciascun componente e' nei diagrammi
+' delle singole sottosezioni.
+
+class App {
+  - viewMode: ViewMode
 }
 
-enum AiActionId {
-  summarize
-  translate
-  rewrite
-  grammar
-  critique
-  generate
-  generate-link
+together {
+  class Sidebar {
+    - collapsed: boolean
+    - creating: boolean
+    - newTitle: string
+    - editingId: string | null
+    - editingTitle: string
+    - deletingId: string | null
+    - fileError: string | null
+  }
+
+  class TopBar {
+    + noteTitle?: string
+    - isGenerating: boolean
+    - errorMessage: string | null
+    - aiModal: AiModal
+    - currentNote: Note | null
+  }
+
+  class ViewToggle {
+    - viewMode: ViewMode
+  }
+
+  class EditorToolbar {
+  }
 }
 
-class AiModal <<type>> {
-  null | AiActionId
+together {
+  class Editor {
+    - currentText: string
+    - containerRef: RefObject<HTMLDivElement>
+    - viewRef: RefObject<EditorView | null>
+    - prevLoadVersionRef: RefObject<number>
+  }
+
+  class Preview {
+    - currentText: string
+  }
+
+  class AiActionDialog {
+    - actionId: AiActionId | null
+    - params: AiParams
+    - input: string
+    - mode: 'prompt' | 'link'
+    - validationError: string | null
+    - displayed: string
+  }
+}
+
+class MarkdownView {
+  + children: string
+  + className?: string
+}
+
+package "selettori interni ad AiActionDialog" as INT {
+  class PillSelector
+  class HatSelector
+  class GenerateSourceTabs
+}
+
+class useEditorStore <<store>> {
+  + currentText: string
+  + selectedText: string
+  + streamedOutput: string
+  + isGenerating: boolean
+  + errorMessage: string | null
+  + viewMode: ViewMode
+  + aiModal: AiModal
+  + editorView: EditorView | null
+  + lastCall: LastCall | null
+  - _loadVersion: number
+  - _abortController: AbortController | null
+  __
+  + setCurrentText(text)
+  + loadDocument(text)
+  + setSelectedText(text)
+  + reset()
+  + startStreaming()
+  + appendChunk(chunk)
+  + finishStreaming()
+  + setError(msg)
+  + clearError()
+  + setViewMode(mode)
+  + setAiModal(modal)
+  + insertOutputIntoNote(insertMode?)
+  + discardOutput()
+  + resetPreview()
+  + setEditorView(view)
+  + abortStream()
+  + setLastCall(call)
+  + clearLastCall()
+}
+
+class useNotesStore <<store>> {
+  + list: Note[]
+  + currentId: string | null
+  __
+  + createEmpty(title?)
+  + select(id)
+  + updateCurrent(patch)
+  + deleteNote(id)
+  + loadNote(note)
+  + ensureWelcomeNote()
+}
+
+class Note <<entity>> {
+  + id: string
+  + title: string
+  + content: string
+  + createdAt: number
+  + updatedAt: number
 }
 
 class LastCall <<type>> {
@@ -38,202 +140,41 @@ class LastCall <<type>> {
   execute(signal: AbortSignal): AsyncIterable<string>
 }
 
-' ============================================================
-' 2. ENTITÀ E STORE
-' ============================================================
+' --- composizione ---
+App *-- Sidebar
+App *-- TopBar
+App *-- ViewToggle
+App *-- EditorToolbar
+App *-- Editor
+App *-- Preview
+App *-- AiActionDialog
+Preview *-- MarkdownView
+AiActionDialog *-- MarkdownView
+AiActionDialog *-- INT
 
-class Note <<entity>> {
-  - id: string
-  - title: string
-  - content: string
-  - createdAt: number
-  - updatedAt: number
-}
+' --- uso degli store ---
+App ..> useEditorStore
+Sidebar ..> useEditorStore
+TopBar ..> useEditorStore
+ViewToggle ..> useEditorStore
+EditorToolbar ..> useEditorStore
+Editor ..> useEditorStore
+Preview ..> useEditorStore
+AiActionDialog ..> useEditorStore
+Sidebar ..> useNotesStore
+TopBar ..> useNotesStore
 
-class useNotesStore <<store>> {
-  - list: Note[]
-  - currentId: string | null
-  __
-  + createEmpty(): Note
-  + select(id: string): void
-  + updateCurrent(patch: Partial<Pick<Note, 'title' | 'content'>>): void
-  + deleteNote(id: string): void
-  + loadNote(note: Omit<Note, 'createdAt' | 'updatedAt'>): void
-}
+' --- tipi ---
+useNotesStore "1" o-- "0..*" Note
+useEditorStore ..> LastCall
 
-class useEditorStore <<store>> {
-  - currentText: string
-  - _loadVersion: number
-  - selectedText: string
-  - streamedOutput: string
-  - isGenerating: boolean
-  - errorMessage: string | null
-  - viewMode: ViewMode
-  - aiModal: AiModal
-  - editorView: EditorView | null
-  - _abortController: AbortController | null
-  - lastCall: LastCall | null
-  __
-  + setCurrentText(text: string): void
-  + loadDocument(text: string): void
-  + setSelectedText(text: string): void
-  + reset(): void
-  + startStreaming(): void
-  + appendChunk(chunk: string): void
-  + finishStreaming(): void
-  + setError(msg: string): void
-  + clearError(): void
-  + setViewMode(mode: ViewMode): void
-  + setAiModal(modal: AiModal): void
-  + insertOutputIntoNote(insertMode?: 'replace' | 'append'): void
-  + discardOutput(): void
-  + setEditorView(view: EditorView | null): void
-  + _setAbortController(c: AbortController | null): void
-  + abortStream(): void
-  + setLastCall(call: LastCall): void
-  + clearLastCall(): void
-}
-
-' ============================================================
-' 3. COMPONENTI REACT
-' ============================================================
-
-class App {
-  + render(): JSX
-}
-
-class Sidebar {
-  - notes: Note[]
-  - currentId: string | null
-  - collapsed: boolean
-  - editingId: string | null
-  - editingTitle: string
-  - fileError: string | null
-  __
-  + createEmpty(): void
-  + select(id: string): void
-  + loadNote(note: Note): void
-  + handleOpenFile(): void
-  + handleSaveFile(): void
-  + startRename(note: Note): void
-  + commitRename(note: Note): void
-}
-
-class TopBar {
-  - noteTitle?: string
-  - isGenerating: boolean
-  - errorMessage: string | null
-  - aiModal: AiModal
-  - currentNote: Note | null
-  __
-  + openModal(modal: AiActionId): void
-  + handleAbort(): void
-}
-
-class ViewToggle {
-  - viewMode: ViewMode
-  __
-  + setViewMode(mode: ViewMode): void
-}
-
-class EditorToolbar {
-  - editorView: EditorView | null
-  __
-  + handleAction(label: string): void
-  + handleHeading(level: HeadingLevel): void
-  + handleList(ordered: boolean): void
-}
-
-class Editor {
-  - currentText: string
-  - _loadVersion: number
-  - containerRef: RefObject<HTMLDivElement>
-  - viewRef: RefObject<EditorView | null>
-  - prevLoadVersionRef: RefObject<number>
-  __
-  + useEffect(): void
-}
-
-class Preview {
-  - currentText: string
-  __
-  + render(): JSX
-}
-
-class MarkdownView {
-  - children: string
-  - className?: string
-  __
-  + render(): JSX
-}
-
-class AiActionDialog {
-  - actionId: AiActionId
-  - isGenerating: boolean
-  - streamedOutput: string
-  - errorMessage: string | null
-  - displayed: string
-  - params: AiParams
-  - input: string
-  - validationError: string | null
-  - lastCall: LastCall | null
-  __
-  + handleGenerate(): void
-  + handleAccept(): void
-  + handleReject(): void
-  + handleStop(): void
-}
-
-class PillSelector {
-  - label: string
-  - options: Option[]
-  - value: T
-  - onChange: (v: T) => void
-  __
-  + render(): JSX
-}
-
-class HatSelector {
-  - value: Hat | null
-  - onChange: (v: Hat) => void
-  __
-  + render(): JSX
-}
-
-' ============================================================
-' 4. RELAZIONI
-' ============================================================
-
-' Componenti → Store
-App ..> useEditorStore : utilizza
-Sidebar ..> useNotesStore : utilizza
-Sidebar ..> useEditorStore : utilizza
-TopBar ..> useNotesStore : utilizza
-TopBar ..> useEditorStore : utilizza
-Editor ..> useEditorStore : utilizza
-Preview ..> useEditorStore : utilizza
-AiActionDialog ..> useEditorStore : utilizza
-AiActionDialog ..> useNotesStore : utilizza
-ViewToggle ..> useEditorStore : utilizza
-EditorToolbar ..> useEditorStore : utilizza
-
-' Componenti → Componenti interni
-AiActionDialog *-- PillSelector : contiene
-AiActionDialog *-- HatSelector : contiene
-
-' App → Componenti (composizione)
-App *-- Sidebar : contiene
-App *-- TopBar : contiene
-App *-- ViewToggle : contiene
-App *-- EditorToolbar : contiene
-App *-- Editor : contiene
-App *-- Preview : contiene
-App *-- AiActionDialog : contiene
-
-' Store → Types
-useNotesStore ..> Note : utilizza
-useEditorStore ..> ViewMode : utilizza
-useEditorStore ..> AiModal : utilizza
-useEditorStore ..> LastCall : utilizza
+legend bottom
+  Rombo pieno: composizione, cioe' quale componente rende quale altro.
+  Tratteggio: uso di uno store, per sottoscrizione a una porzione o per invocazione di un'azione.
+  ==
+  App non passa alcuna proprieta' ai propri figli: ciascuno dichiara da se' la porzione che gli serve.
+  MarkdownView e i tre selettori interni sono i soli componenti che non conoscano alcuno store.
+  AiActionDialog non usa useNotesStore.
+endlegend
 
 @enduml

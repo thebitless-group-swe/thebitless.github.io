@@ -2,75 +2,77 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
 
-' ============================================================
-' NOTES STORE
-' ============================================================
+title useNotesStore
 
-class notes {
-  - list: Note[]
-  - currentId: string | null
+top to bottom direction
+
+class persist <<middleware>> {
+  chiave: 'notes_persistence'
+  nessun partialize
+  + onRehydrateStorage()
+}
+
+class useNotesStore <<store>> {
+  + list: Note[]
+  + currentId: string | null
   __
-  + createEmpty(): Note
+  + createEmpty(title?: string): Note
   + select(id: string): void
   + updateCurrent(patch: Partial<Pick<Note, 'title' | 'content'>>): void
   + deleteNote(id: string): void
   + loadNote(note: Omit<Note, 'createdAt' | 'updatedAt'>): void
+  + ensureWelcomeNote(): void
 }
 
-' ============================================================
-' ENTITÀ NOTA
-' ============================================================
-
-class Note {
-  - id: string
-  - title: string
-  - content: string
-  - createdAt: number
-  - updatedAt: number
+class Note <<entity>> {
+  + id: string
+  + title: string
+  + content: string
+  + createdAt: number
+  + updatedAt: number
 }
 
-' ============================================================
-' LIBRERIE UTILIZZATE
-' ============================================================
-
-class useEditorStore {
+class useEditorStore <<store>> {
+  + currentText: string
+  __
+  + loadDocument(text: string): void
 }
 
-class fileSystem {
+class fileSystem <<module>> {
+  + Note
 }
 
-class id {
+class id <<module>> {
   + newId(): string
 }
 
-' ============================================================
-' RELAZIONI
-' ============================================================
+persist --* useNotesStore
+useNotesStore "1" o-- "0..*" Note
+useNotesStore --> useEditorStore
+useNotesStore --> fileSystem
+useNotesStore --> id
+persist --> useEditorStore
 
-notes "1" --o "0..*" Note : contiene
-notes ..> useEditorStore : sincronizza (loadDocument)
-notes ..> fileSystem : utilizza (Note)
-notes ..> id : utilizza (newId)
+Note -[hidden]right- useEditorStore
+fileSystem -[hidden]right- id
 
-' ============================================================
-' NOTE
-' ============================================================
-
-note right of notes
-  Persistenza automatica:
-  - list e currentId salvati in localStorage
-  - middleware persist di Zustand
-  - chiave: 'notes_persistence'
-end note
-
-note bottom of notes
-  Sincronizzazione tra i due store:
-  - select() → loadDocument() su useEditorStore
-  - createEmpty() → loadDocument() su useEditorStore
-  - _loadVersion impedisce sovrascritture
-end note
+legend bottom
+  Selettori esportati: useNotesList e useCurrentNote.
+  ==
+  createEmpty e deleteNote fotografano list e currentId prima di modificarli e li ripristinano
+  se la scrittura fallisce (R-84-F-Ob, R-93-F-De).
+  ==
+  Il middleware persist non riceve alcun partialize: viene scritto quanto sopravvive alla
+  serializzazione, cioe' list e currentId, a ogni modifica dello store. Alla rilettura carica
+  nell'editor la nota corrente e, se non ce n'e' alcuna, invoca ensureWelcomeNote.
+  ==
+  Il testo in lavorazione non e' qui: vi giunge da useEditorStore al cambio di nota e alla
+  creazione di una nuova nota, non a ogni modifica del testo.
+endlegend
 
 @enduml

@@ -1,42 +1,55 @@
 @startuml
 !theme plain
-hide circle
-skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
+skinparam shadowing false
+skinparam defaultFontSize 14
 
-== Scenario 2: Caricamento nota (Store → Editor)==
+title Scenario 2: caricamento di una nota (Store verso Editor)
 
-participant notes as NS
-participant useEditorStore as ES
-participant Editor as ED
+start
+:useNotesStore invoca loadDocument
+con il contenuto della nota;
 
-NS -> ES : loadDocument(newContent)
-activate ES
+if (useEditorStore: il testo coincide con currentText?) then (si)
+  :nessuna modifica, _loadVersion non avanza;
+  stop
+endif
 
-ES -> ES : currentText = newContent
-ES -> ES : _loadVersion++
-ES -> ED : Notifica cambiamento\n(currentText, _loadVersion)
-activate ED
+:currentText = contenuto, _loadVersion++,
+e notifica del solo currentText ai sottoscrittori
+del selettore useCurrentText;
 
-ED -> ED : Verifica differenza
+if (Editor: il documento coincide con currentText?) then (si)
+  :invoca focus sull'istanza, nessuna transazione;
+  stop
+endif
 
-ED -> ED : Costruisce Transaction
+:legge _loadVersion con getState()
+e lo confronta con prevLoadVersionRef;
+if (il contatore e' cambiato?) then (si)
+  :transazione annotata StoreSync
+  e addToHistory(false);
+else (no)
+  :transazione annotata
+  con il solo StoreSync;
+endif
 
-ED -> ED : view.dispatch(transaction)
+:invia la transazione, e l'EditorView
+sostituisce l'intero documento;
+:l'updateListener riconosce StoreSync e non rimanda
+nulla allo store; l'Editor invoca focus sull'istanza;
+stop
 
-ED -> ED : Editor aggiornato
-
-ED -> ES : updateListener intercetta
-activate ES
-
-ES -> ES : StoreSync true → ignora
-
-ES --> ED : ok
-deactivate ES
-ED --> ES : ok
-deactivate ED
-
-deactivate ES
+legend bottom
+  L'Editor e' sottoscritto al solo currentText: _loadVersion non gli arriva per notifica, lo
+  interroga quando deve decidere se la transazione vada tenuta fuori dalla cronologia.
+  ==
+  addToHistory(false) impedisce che il caricamento di una nota entri nella cronologia di
+  annullamento dell'editor; senza, l'annullamento riporterebbe la nota precedente dentro quella
+  corrente. L'inserimento dell'esito di un'operazione assistita non passa da loadDocument, quindi
+  resta annullabile.
+  ==
+  La sostituzione avviene sempre per transazione e mai scrivendo lo stato dell'editor, perche'
+  soltanto una transazione puo' portare un'annotazione e far scattare l'ascoltatore.
+endlegend
 
 @enduml

@@ -2,35 +2,67 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
+
+title Editor
+
+top to bottom direction
 
 class Editor {
   - currentText: string
-  - _loadVersion: number
   - containerRef: RefObject<HTMLDivElement>
   - viewRef: RefObject<EditorView | null>
   - prevLoadVersionRef: RefObject<number>
   __
-  + useEffect(): void
+  - effetto di montaggio: crea EditorView
+  - effetto su currentText: riallinea il documento
 }
 
-class useEditorStore {
-  - currentText: string
+class useEditorStore <<store>> {
+  + currentText: string
   - _loadVersion: number
-  - editorView: EditorView | null
+  + editorView: EditorView | null
   __
   + setCurrentText(text: string): void
-  + loadDocument(text: string): void
   + setSelectedText(text: string): void
   + setEditorView(view: EditorView | null): void
 }
 
-class EditorView {
+class EditorView <<libreria>> {
+  + state: EditorState
+  + dispatch(tr: Transaction): void
+  + focus(): void
+  + destroy(): void
 }
 
-Editor ..> useEditorStore : utilizza
-Editor -- EditorView : istanzia
-useEditorStore ..> EditorView : contiene
+class updateListener <<estensione>> {
+  + aggiorna selectedText su selectionSet o docChanged
+  + invoca setCurrentText su docChanged
+  + ignora le transazioni annotate StoreSync
+}
+
+class StoreSync <<annotation>> {
+  marca le transazioni originate dallo store
+}
+
+Editor --> useEditorStore : sottoscrive currentText,\nlegge _loadVersion con getState()
+Editor *-- EditorView : istanzia al montaggio
+EditorView *-- updateListener : contiene
+updateListener --> useEditorStore : scrive currentText\ne selectedText
+updateListener --> StoreSync : riconosce e ignora
+Editor --> StoreSync : annota le proprie transazioni
+
+legend bottom
+  L'effetto di montaggio non dichiara dipendenze e legge il testo iniziale con getState(): legarlo
+  a currentText ricostruirebbe l'editor a ogni battuta.
+  ==
+  prevLoadVersionRef parte dal valore che lo store possiede al montaggio e non da zero, perche' il
+  ripristino della sessione precedente puo' avvenire prima che il componente sia montato.
+  ==
+  L'istanza e' depositata nello store al montaggio e ritirata allo smontaggio.
+endlegend
 
 @enduml

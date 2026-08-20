@@ -1081,14 +1081,14 @@ Il flusso enunciato nella sezione \ref{sec:panoramica-stile-web}, per cui un'int
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{assets/img/UML3.3-1.pdf}
+    \includegraphics[width=1.0\textwidth]{assets/img/UML3.3-1.pdf}
     \caption{Diagramma UML 3.3-1 - Componenti UI e Store}
     \label{fig:uml331}
     \end{figure}
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{assets/img/UML3.3-2.pdf}
+    \includegraphics[width=1.0\textwidth]{assets/img/UML3.3-2.pdf}
     \caption{Diagramma UML 3.3-2 - Hooks, Librerie e Dipendenze Esterne}
     \label{fig:uml332}
     \end{figure}
@@ -1129,11 +1129,13 @@ Un solo file di \texttt{web/src/} non è scritto dal gruppo, il modulo dei tipi 
 Ogni importazione interna passa per l'alias \texttt{@/}, che designa \texttt{web/src/}. È dichiarato due volte, nella configurazione dello strumento di costruzione e in quella del compilatore, perché i due lo risolvono separatamente, il primo per produrre il pacchetto e il secondo per il controllo dei tipi. Il beneficio è che il percorso di un modulo non dipende dalla posizione di chi lo importa, e spostare un file non produce una cascata di percorsi relativi da correggere.
 
 \paragraph{Una convenzione, non un vincolo\textsubscript{G} verificato\textsubscript{G}.}
-Va detto apertamente in che cosa questa organizzazione differisce da quella del servizio applicativo, perché la somiglianza esteriore fra le due suggerirebbe una garanzia che qui non c'è. Nel servizio applicativo la direzione delle importazioni è dichiarata in contratti verificati\textsubscript{G} staticamente a ogni modifica, come descritto nella sezione \ref{sec:backend-esagono}. Nell'applicazione web non esiste alcun controllo equivalente. La configurazione dell'analizzatore statico si limita alle regole raccomandate per il linguaggio, per React e per i suoi agganci, e non dichiara alcuna regola sui confini fra cartelle, mentre l'integrazione\textsubscript{G} continua esegue su questo livello l'analisi statica\textsubscript{G}, il controllo dei tipi, i test\textsubscript{G} e la costruzione del pacchetto. Che gli store non importino i componenti, e che i componenti non raggiungano il file dei tipi generato senza passare dal modulo di raccolta, sono quindi regole tenute dalla revisione tra pari e non proprietà che una modifica contraria farebbe fallire prima di arrivarci. L'asimmetria è la stessa già dichiarata nella sezione \ref{sec:analisi-statica}, ed è deliberata.
+Va detto apertamente in che cosa questa organizzazione differisce da quella del servizio applicativo, perché la somiglianza esteriore fra le due suggerirebbe una garanzia che qui non c'è. Nel servizio applicativo la direzione delle importazioni è dichiarata in contratti verificati\textsubscript{G} staticamente a ogni modifica, come descritto nella sezione \ref{sec:backend-esagono}. Nell'applicazione web non esiste alcun controllo equivalente. La configurazione dell'analizzatore statico si limita alle regole raccomandate per il linguaggio, a quelle sull'impiego degli agganci di React e a quelle sull'aggiornamento a caldo dei componenti, e non dichiara alcuna regola sui confini fra cartelle, mentre l'integrazione\textsubscript{G} continua esegue su questo livello l'analisi statica\textsubscript{G}, il controllo dei tipi, i test\textsubscript{G} con la misura della copertura e la costruzione del pacchetto. Che gli store non importino i componenti, e che i componenti non raggiungano il file dei tipi generato senza passare dal modulo di raccolta, sono quindi regole tenute dalla revisione tra pari e non proprietà che una modifica contraria farebbe fallire prima di arrivarci. L'asimmetria è la stessa già dichiarata nella sezione \ref{sec:analisi-statica}, ed è deliberata.
+
+La conseguenza è già osservabile, e va riportata perché è il caso in cui la convenzione non regge. Fra \texttt{lib/} e \texttt{store/} la dipendenza corre nei due sensi. Lo store delle note importa da \texttt{lib/} il tipo della nota e la generazione degli identificatori. La tabella delle operazioni assistite, che sta in \texttt{lib/}, importa lo store della sessione per determinare il testo da sottoporre al modello, e quello store importa a sua volta dalla tabella il tipo dei parametri. Queste ultime due importazioni formano un ciclo fra due file, che però non sopravvive alla compilazione, perché la seconda è dichiarata come importazione di soli tipi e viene rimossa. Il ciclo esiste quindi nel grafo dei sorgenti e non nel pacchetto costruito, ed è precisamente il genere di cosa che uno strumento di verifica\textsubscript{G} dei confini segnalerebbe e che qui nessuno segnala. La regola sul verso opposto non ha invece eccezioni, perché nessuna cartella importa \texttt{components/}.
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{assets/img/UML3.3.1.pdf}
+    \includegraphics[width=0.77\textwidth]{assets/img/UML3.3.1.pdf}
     \caption{Diagramma UML 3.3.1 - Organizzazione dei sorgenti del frontend}
     \label{fig:uml3311}
     \end{figure}
@@ -1159,7 +1161,7 @@ Tutte le condizioni che governano questi comandi restano stato locale del compon
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{assets/img/UML3.3.2-1.pdf}
+    \includegraphics[width=1.0\textwidth]{assets/img/UML3.3.2-1.pdf}
     \caption{Diagramma UML 3.3.2-1 - Sidebar}
     \label{fig:uml3321}
     \end{figure}
@@ -1171,7 +1173,7 @@ Il messaggio di errore è reso qui in un avviso, ma soltanto quando nessuna fine
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{assets/img/UML3.3.2-2.pdf}
+    \includegraphics[width=1.0\textwidth]{assets/img/UML3.3.2-2.pdf}
     \caption{Diagramma UML 3.3.2-2 - TopBar}
     \label{fig:uml3322}
     \end{figure}
@@ -1181,7 +1183,7 @@ Tre pulsanti che impostano la modalità di visualizzazione, con quello attivo di
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{assets/img/UML3.3.2-3.pdf}
+    \includegraphics[width=1.0\textwidth]{assets/img/UML3.3.2-3.pdf}
     \caption{Diagramma UML 3.3.2-3 - ViewToggle}
     \label{fig:uml3323}
     \end{figure}
@@ -1195,7 +1197,7 @@ I comandi che avvolgono la selezione fra due marcatori sono interruttori, cioè 
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{assets/img/UML3.3.2-4.pdf}
+    \includegraphics[width=1.0\textwidth]{assets/img/UML3.3.2-4.pdf}
     \caption{Diagramma UML 3.3.2-4 - EditorToolbar}
     \label{fig:uml3324}
     \end{figure}
@@ -1205,7 +1207,7 @@ Ospita l'istanza della libreria dell'editor e ne governa la sincronizzazione con
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{assets/img/UML3.3.2-5.pdf}
+    \includegraphics[width=0.96\textwidth]{assets/img/UML3.3.2-5.pdf}
     \caption{Diagramma UML 3.3.2-5 - Editor}
     \label{fig:uml3325}
     \end{figure}
@@ -1215,7 +1217,7 @@ Legge il testo corrente e lo consegna al componente che lo rende. Non conosce la
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{assets/img/UML3.3.2-6.pdf}
+    \includegraphics[width=1.0\textwidth]{assets/img/UML3.3.2-6.pdf}
     \caption{Diagramma UML 3.3.2-6 - Preview}
     \label{fig:uml3326}
     \end{figure}
@@ -1225,7 +1227,7 @@ Legge il testo corrente e lo consegna al componente che lo rende. Non conosce la
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{assets/img/UML3.3.2-7.pdf}
+    \includegraphics[width=1.0\textwidth]{assets/img/UML3.3.2-7.pdf}
     \caption{Diagramma UML 3.3.2-7 - MarkdownView}
     \label{fig:uml3327}
     \end{figure}
@@ -1252,14 +1254,14 @@ Lo store conserva l'ultima richiesta inviata, con l'operazione, l'ingresso, i pa
 L'esito compare a mano a mano che arriva, reso dallo stesso componente del pannello di anteprima e scoperto un tratto alla volta dall'aggancio che ne governa lo scorrimento progressivo. Il comando «Accetta» inserisce l'esito nella nota secondo la semantica dichiarata nella tabella (\textbf{R-76-F-Ob}, UC68), mentre «Rifiuta» annulla l'elaborazione, scarta l'esito e chiude la finestra senza toccare la nota (\textbf{R-77-F-De}, UC69). Il primo dei due è disabilitato finché nulla è ancora comparso, mentre l'elaborazione è in corso e nel caso in cui la correzione grammaticale abbia risposto con il sentinella con cui il servizio applicativo dichiara di non aver trovato errori. In quest'ultimo caso al posto dell'esito compare la comunicazione prescritta da \textbf{R-62-F-De} (UC65.1), e non c'è nulla da accettare.
 
 \paragraph{Chiusura dalla cornice.}
-La chiusura ottenuta con il tasto di uscita o con il clic fuori dalla finestra non equivale al rifiuto. Annulla l'elaborazione se ce n'è una in corso, senza di che il servizio applicativo continuerebbe a produrre per un destinatario che non c'è più (UC71), e azzera la registrazione dell'operazione aperta, ma non scarta l'ultima richiesta conservata. Riaprendo la stessa operazione, ingresso e parametri tornano quindi come erano. Per la stessa ragione l'aggancio dell'anteprima riconosce un esito più corto di quanto ha già mostrato e vi si riallinea, invece di lasciare in vista il testo della volta precedente.
+La chiusura ottenuta con il tasto di uscita o con il clic fuori dalla finestra non equivale al rifiuto. Annulla l'elaborazione se ce n'è una in corso, senza di che il servizio applicativo continuerebbe a produrre per un destinatario che non c'è più (UC71), e azzera la registrazione dell'operazione aperta, ma non scarta l'ultima richiesta conservata. Riaprendo la stessa operazione, ingresso e parametri tornano quindi come erano. Un accorgimento dell'aggancio dell'anteprima completa il quadro, perché riconosce un esito più corto di quanto ha già mostrato e vi si riallinea, altrimenti alla riapertura resterebbe in vista il testo della volta precedente.
 
 \paragraph{L'esaustività dei vocabolari è verificata\textsubscript{G} in compilazione.}
 Le quattro tavole di valori esposte dai selettori devono coincidere con i vocabolari dichiarati dal contratto dell'API\textsubscript{G}, e la coincidenza è controllata nelle due direzioni da due meccanismi distinti. Che il frontend\textsubscript{G} non esponga un valore che il contratto non prevede si ottiene dichiarando ciascuna tavola conforme al tipo del contratto senza allargarne i letterali. È il controllo introdotto dopo che l'annotazione ordinaria, che quei letterali li allarga, aveva lasciato passare valori fuori contratto, con due operazioni che ricevevano una risposta di errore a ogni invio. Che il frontend\textsubscript{G} non ometta un valore che il contratto prevede si ottiene invece da un tipo ausiliario, che calcola la differenza fra i due insiemi e si dichiara vuoto, così che una differenza non vuota faccia fallire la compilazione. Nessuno dei due copre l'altro, e senza il secondo l'aggiunta di una lingua nel servizio applicativo resterebbe invisibile nell'interfaccia. Entrambi discendono dalla convenzione descritta nella sezione \ref{sec:idiomi-tipizzazione}.
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{assets/img/UML3.3.2-8.pdf}
+    \includegraphics[width=0.85\textwidth]{assets/img/UML3.3.2-8.pdf}
     \caption{Diagramma UML 3.3.2-8 - AiActionDialog}
     \label{fig:uml3328}
     \end{figure}
@@ -1294,7 +1296,7 @@ L'inserimento dell'esito nella nota ha infine due semantiche, dichiarate operazi
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{assets/img/UML3.3.3-1.pdf}
+    \includegraphics[width=0.86\textwidth]{assets/img/UML3.3.3-1.pdf}
     \caption{Diagramma UML 3.3.3-1 - useEditorStore}
     \label{fig:uml3331}
     \end{figure}
@@ -1302,10 +1304,12 @@ L'inserimento dell'esito nella nota ha infine due semantiche, dichiarate operazi
 \paragraph{\texttt{useNotesStore}.}
 Custodisce l'elenco delle note e l'identificatore di quella corrente. Una nota è un oggetto con identificatore, titolo, contenuto e i due istanti di creazione e di ultima modifica, e il suo tipo è dichiarato nel modulo di accesso al file system, che è il punto in cui una nota entra nel prodotto e ne esce.
 
-Le azioni sono sei. La creazione genera una nota con il titolo indicato dall'utente, o con un titolo di ripiego se non ne ha indicato alcuno (\textbf{R-82-F-Ob} e \textbf{R-114-F-Ob}). La selezione cambia la nota corrente. L'aggiornamento modifica titolo o contenuto di quella corrente e ne rinnova l'istante di ultima modifica. L'eliminazione la toglie dall'elenco (\textbf{R-91-F-De}). Il caricamento inserisce una nota proveniente da un file, sostituendo quella con lo stesso identificatore se già presente (\textbf{R-85-F-Ob}). La sesta popola la raccolta con una nota di benvenuto e viene invocata al solo primo avvio.
+Le azioni sono sei. La creazione genera una nota con il titolo indicato dall'utente, o con un titolo di ripiego se non ne ha indicato alcuno (\textbf{R-82-F-Ob} e \textbf{R-114-F-Ob}). La selezione cambia la nota corrente. L'aggiornamento modifica titolo o contenuto di quella corrente e ne rinnova l'istante di ultima modifica. L'eliminazione la toglie dall'elenco e, per il tramite della persistenza descritta più avanti, dall'archivio locale del browser, mentre il file eventualmente salvato su disco non viene toccato, e in questo senso il requisito\textsubscript{G} \textbf{R-91-F-De} (UC80.1) resta scoperto. Il caricamento inserisce una nota proveniente da un file, sostituendo quella con lo stesso identificatore se già presente (\textbf{R-85-F-Ob}). La sesta popola la raccolta con una nota di benvenuto e viene invocata al solo primo avvio.
 
 \paragraph{La sincronizzazione fra i due store.}
-Il testo che l'utente sta scrivendo non si trova nell'elenco, ma vive nello store della sessione finché la nota resta aperta. Ogni azione che cambia la nota corrente compie perciò due passi nell'ordine giusto. Prima riversa nell'elenco il testo corrente della nota che si sta lasciando, poi carica nell'editor il contenuto di quella che subentra. L'eliminazione compie lo stesso riallineamento quando la nota rimossa era quella corrente. Senza di esso il testo della nota eliminata resterebbe nell'editor e al primo cambio di nota verrebbe salvato sopra quella di destinazione, che perderebbe il proprio contenuto senza alcun segnale.
+Il testo che l'utente sta scrivendo non si trova nell'elenco, ma vive nello store della sessione finché la nota resta aperta. Le due azioni con cui l'utente passa da una nota all'altra, la selezione e la creazione, compiono perciò due passi nell'ordine giusto. Prima riversano nell'elenco il testo corrente della nota che si sta lasciando, poi caricano nell'editor il contenuto di quella che subentra. L'eliminazione compie il solo secondo passo quando la nota rimossa era quella corrente, e non riversa nulla perché la nota che si lascia sta per sparire. Il riallineamento è comunque necessario, altrimenti il testo della nota eliminata resterebbe nell'editor e al primo cambio di nota verrebbe salvato sopra quella di destinazione, che perderebbe il proprio contenuto senza alcun segnale.
+
+Il caricamento di una nota da file fa eccezione, poiché rende corrente la nota importata senza riversare prima il testo della nota che si stava scrivendo. La conseguenza ricade nel limite già dichiarato nella sezione \ref{sec:persistenza}, cioè che le modifiche successive all'ultimo cambio di nota non sono conservate.
 
 \paragraph{Il ripristino dello stato precedente.}
 La creazione e l'eliminazione fotografano l'elenco e l'identificatore corrente prima di modificarli, e li ripristinano se la modifica fallisce. Il caso non è teorico, perché la scrittura nell'archivio locale del browser avviene dentro l'aggiornamento dello stato, e il suo fallimento per esaurimento dello spazio disponibile risale dopo che lo stato in memoria è già cambiato. Senza il ripristino l'utente vedrebbe insieme il messaggio di errore e la nota comparire nell'elenco. È questa la parte che, insieme ai messaggi resi dalla barra laterale, realizza \textbf{R-84-F-Ob} e \textbf{R-93-F-De} (UC75 e UC81).
@@ -1315,8 +1319,8 @@ Lo store della raccolta è avvolto dal middleware di persistenza della libreria 
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{assets/img/UML3.3.3-2.pdf}
-    \caption{Diagramma UML 3.3.3-2 - notes}
+    \includegraphics[width=1.0\textwidth]{assets/img/UML3.3.3-2.pdf}
+    \caption{Diagramma UML 3.3.3-2 - useNotesStore}
     \label{fig:uml3332}
     \end{figure}
 
@@ -1331,78 +1335,62 @@ Lo store della raccolta è avvolto dal middleware di persistenza della libreria 
 % cronologia delle modifiche e della posizione del cursore.
 % NON CONTIENE: le funzioni offerte dalla libreria dell'editor, che sono del
 % capitolo 2.
-
-L'editor è realizzato con CodeMirror 6. È integrato con lo store tramite un meccanismo di sincronizzazione bidirezionale controllata. Come anticipato in apertura, questa è un'eccezione al principio del flusso unidirezionale, dovuta all'API imperativa di CodeMirror.
+L'editor è realizzato con CodeMirror 6, che possiede un proprio documento. Il testo della nota vive però nello store, e i due devono restare allineati. La sezione descrive come ciò avviene, e riprende l'eccezione al flusso unidirezionale dichiarata in apertura della sezione \ref{sec:architettura-frontend}. Il confine fra i due stati è netto. Allo store appartiene il testo della nota e la porzione selezionata, cioè quanto altri componenti osservano, mentre all'editor appartiene tutto il resto, cioè la posizione del cursore, lo scorrimento, la cronologia delle modifiche e l'albero sintattico del documento. Nulla di quest'ultimo gruppo entra nello store, e nulla di esso viene ricostruito a ogni ridisegno.
 
 \paragraph{Creazione dell'istanza.}
-
-L'istanza di \texttt{EditorView} viene creata una sola volta, al montaggio del componente \texttt{Editor}. Le estensioni sono configurate in un array stabile per evitare il ricaricamento dell'editor:
+L'istanza è costruita una volta sola, al montaggio del componente, da un effetto che non dichiara alcuna dipendenza. Il testo iniziale non è letto dalla sottoscrizione ma interrogando lo store nell'istante della costruzione, e la differenza non è di stile. Se l'effetto dipendesse dal testo, ogni battuta dell'utente distruggerebbe l'editor e ne costruirebbe uno nuovo. Al montaggio l'istanza viene depositata nello store, dove la barra degli strumenti la recupera, e allo smontaggio viene distrutta e il riferimento azzerato. Le estensioni configurate sono le seguenti.
 
 \begin{itemize}
-    \setlength{\itemsep}{0pt}
-    \item \texttt{lineNumbers()}: numeri di riga.
-    \item \texttt{history()}: cronologia di undo/redo (R-7-F-De, R-8-F-De).
-    \item \texttt{markdown()}: supporto alla sintassi Markdown (R-112-F-Ob).
-    \item \texttt{closeBrackets()}: chiusura automatica di parentesi e virgolette (R-42-F-De, R-43-F-De).
-    \item \texttt{EditorView.lineWrapping}: a capo automatico delle righe lunghe.
-    \item \texttt{search(\{ top: true \})}: barra di ricerca.
-    \item \texttt{keymap.of([...defaultKeymap, ...historyKeymap, ...closeBracketsKeymap, ...searchKeymap, \{ key: 'Mod-k', run: toggleLinkCommand \}])}: scorciatoie da tastiera.
+    \setlength{\itemsep}{3pt}
+    \item La numerazione delle righe e l'andata a capo automatica delle righe lunghe, che riguardano la sola presentazione.
+
+    \item Il supporto alla sintassi Markdown\textsubscript{G}, che realizza il requisito\textsubscript{G} \textbf{R-112-F-Ob} e fornisce l'evidenziazione nell'area di scrittura.
+
+    \item La cronologia delle modifiche, che con la mappatura di tasti corrispondente realizza \textbf{R-7-F-De} e \textbf{R-8-F-De} (UC6 e UC7, annullamento e ripristino).
+
+    \item La chiusura automatica di parentesi e virgolette, sempre attiva e priva di un comando che la disattivi.
+
+    \item La barra di ricerca, ancorata in alto, con la propria mappatura di tasti.
+
+    \item La mappatura di tasti, composta da quelle predefinite della libreria per la scrittura, la cronologia, la chiusura automatica e la ricerca, alla quale è aggiunta una sola voce propria, la scorciatoia del comando di collegamento.
+
+    \item L'ascoltatore degli aggiornamenti, che è l'estremo, dal lato dell'editor, della sincronizzazione descritta più sotto.
 \end{itemize}
 
-L'istanza viene salvata nello store tramite \texttt{setEditorView} e rimossa al momento dello smontaggio.
+\paragraph{Dall'editor allo store.}
+L'ascoltatore riceve ogni aggiornamento dell'editor e compie due controlli distinti, nell'ordine. Il primo riguarda la selezione. Se l'aggiornamento ha mosso il cursore o cambiato il documento, l'ascoltatore ricava il testo selezionato, che è la stringa vuota quando la selezione è vuota, e lo scrive nello store soltanto se differisce da quello già presente. La possibilità di selezionare una porzione di testo o l'intero documento appartiene all'editor e realizza \textbf{R-3-F-Ob} (UC2), mentre l'ascoltatore ne rende il risultato disponibile agli altri componenti, ed è quello che la finestra di dialogo delle operazioni assistite consulta per decidere che cosa sottoporre al modello.
 
-\paragraph{Sincronizzazione store → editor.}
-
-Quando il contenuto della nota cambia nello store (\texttt{currentText}), l'editor deve rifletterlo. Il meccanismo:
-
-\begin{enumerate}
-    \setlength{\itemsep}{0pt}
-    \item Il componente \texttt{Editor} si sottoscrive a \texttt{useCurrentText} e a \texttt{\_loadVersion}.
-    \item Quando il valore cambia, il componente verifica se il nuovo testo è diverso da quello attualmente visualizzato (\texttt{view.state.doc.toString()}).
-    \item In caso affermativo, costruisce una \texttt{Transaction} che sostituisce l'intero documento e la invia all'editor tramite \texttt{view.dispatch()}.
-    \item La transazione è annotata con \texttt{StoreSync.of(true)}. Questa annotazione segnala all'updateListener che la modifica proviene dallo store e non deve essere re-inviata allo store, evitando il ciclo.
-    \item Se il cambiamento è dovuto a \texttt{\_loadVersion} (caricamento di una nuova nota), la transazione riceve anche \texttt{Transaction.addToHistory.of(false)}. Questa annotazione impedisce che il caricamento di una nota venga registrato nella cronologia di undo, soddisfacendo R-7-F-De e R-8-F-De.
-\end{enumerate}
+Il secondo controllo riguarda il documento. Se l'aggiornamento non lo ha modificato, l'ascoltatore si ferma. Se lo ha modificato, verifica se la modifica provenga dalla sincronizzazione inversa, riconoscendola dall'annotazione descritta più sotto, e in tal caso non fa nulla. Altrimenti scrive nello store l'intero documento. La scrittura non è condizionata a un confronto, perché lo store rispecchia sempre l'ultimo documento noto e una modifica che non provenga da esso lo rende per ciò stesso diverso.
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{assets/img/UML3.3.4-1.pdf}
-    \caption{Diagramma UML 3.3.4-1 - Sincronizzazione store → editor}
+    \includegraphics[width=0.75\textwidth]{assets/img/UML3.3.4-1.pdf}
+    \caption{Diagramma UML 3.3.4-1 - Sincronizzazione editor → store}
     \label{fig:uml3341}
     \end{figure}
 
-\paragraph{Sincronizzazione editor → store.}
+\paragraph{Dallo store all'editor.}
+Il testo della nota può cambiare per una causa che non è la digitazione, cioè il passaggio a un'altra nota, la creazione di una nuova, l'accettazione dell'esito di un'operazione assistita. Un secondo effetto, sottoscritto al solo testo corrente, se ne accorge e riallinea l'editor. Confronta il documento dell'editor con il testo dello store e, se coincidono, si limita a riportare il fuoco nell'area di scrittura. Se differiscono, costruisce una transazione che sostituisce l'intero documento e la invia all'istanza. La sostituzione avviene sempre per transazione e mai scrivendo direttamente lo stato dell'editor, perché soltanto una transazione può portare un'annotazione e far scattare l'ascoltatore.
 
-Quando l'utente modifica il testo nell'editor, lo store deve aggiornare \texttt{currentText}. Il meccanismo:
+L'annotazione che essa porta è quella che marca la modifica come proveniente dallo store. È il meccanismo con cui l'ascoltatore riconosce le proprie sincronizzazioni e le lascia passare senza rimandarle indietro.
 
-\begin{enumerate}
-    \setlength{\itemsep}{0pt}
-    \item L'estensione \texttt{EditorView.updateListener} intercetta ogni transazione che modifica il documento.
-    \item Se la transazione ha l'annotazione \texttt{StoreSync}, viene ignorata.
-    \item Se la transazione ha modificato il documento (\texttt{update.docChanged}), l'estensione estrae il nuovo testo completo (\texttt{update.state.doc.toString()}) e invoca \texttt{setCurrentText} con esso.
-    \item Lo stesso listener monitora anche i cambiamenti di selezione (\texttt{update.selectionSet}) e aggiorna \texttt{selectedText} nello store (R-3-F-Ob).
-\end{enumerate}
+\paragraph{Il contatore dei caricamenti.}
+Alla transazione appena descritta serve una seconda annotazione, ma soltanto in un caso su due. Sostituire il documento perché è stata aperta un'altra nota e sostituirlo perché è stato accettato l'esito di un'operazione assistita sono, per l'editor, la stessa operazione, mentre per l'utente non lo sono affatto. Nel secondo caso l'annullamento deve riportare il testo com'era prima dell'inserimento, nel primo non deve riportare la nota precedente dentro quella corrente.
 
-\paragraph{Evitare il ciclo.}
-
-La sincronizzazione bidirezionale potrebbe generare un ciclo: modifica editor → \texttt{setCurrentText} → re-render del componente → \texttt{view.dispatch()} → modifica editor → ... Il ciclo è evitato da due meccanismi:
-
-\begin{enumerate}
-    \setlength{\itemsep}{0pt}
-    \item \textbf{Confronto}: il dispatch store→editor è eseguito solo se il testo corrente dell'editor è diverso da \texttt{currentText}. L'updateListener editor→store esegue \texttt{setCurrentText} solo se il testo appena modificato è diverso dal valore già in store.
-    \item \textbf{Annotazione \texttt{StoreSync}}: le transazioni store→editor sono marcate; l'updateListener le ignora, interrompendo il ciclo alla radice.
-\end{enumerate}
-
-\paragraph{Selezione.}
-
-La selezione dell'utente nell'editor è monitorata dall'estensione di update, che estrae l'intervallo selezionato e invoca \texttt{setSelectedText}. Il valore è usato da \texttt{getActiveText} per determinare il testo da sottoporre all'AI (R-3-F-Ob).
+La distinzione è affidata a un contatore custodito nello store, incrementato a ogni caricamento di un documento. Il componente ne conserva il valore visto l'ultima volta e, se è cambiato, aggiunge alla transazione l'annotazione che la tiene fuori dalla cronologia. Tre dettagli rendono il meccanismo affidabile. Il contatore è letto interrogando lo store e non con una sottoscrizione, così che l'effetto resti legato al solo testo. Il valore di partenza è quello che lo store possiede al montaggio e non zero, perché il ripristino della sessione precedente può avvenire prima che il componente sia montato, e partire da zero lascerebbe le due parti già disallineate. L'azione di caricamento, infine, non fa nulla quando il testo richiesto coincide con quello già presente, quindi il contatore non avanza a vuoto. I tre comportamenti sono fissati da test\textsubscript{G} dedicati, che verificano\textsubscript{G} che dopo un cambio di nota la cronologia sia vuota, che una modifica successiva al caricamento resti annullabile e che caricare due volte lo stesso testo non faccia divergere il contatore.
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{assets/img/UML3.3.4-2.pdf}
-    \caption{Diagramma UML 3.3.4-2 - Sincronizzazione editor → store}
+    \includegraphics[width=0.64\textwidth]{assets/img/UML3.3.4-2.pdf}
+    \caption{Diagramma UML 3.3.4-2 - Sincronizzazione store → editor}
     \label{fig:uml3342}
     \end{figure}
+
+\paragraph{Perché il ciclo non si chiude.}
+Una sincronizzazione nei due sensi può avvitarsi su se stessa, poiché la scrittura nello store provoca il ridisegno del componente, il ridisegno riallinea l'editor e il riallineamento fa scattare di nuovo l'ascoltatore. Le due difese che lo impediscono non sono simmetriche, e conviene dirlo perché la simmetria sarebbe l'aspettativa naturale. Nel senso che va dallo store all'editor agisce il confronto fra i due testi, che ferma l'effetto quando non c'è nulla da sostituire. Nel senso che va dall'editor allo store agisce l'annotazione, che l'ascoltatore riconosce e ignora. Nessuna delle due basta da sola. Senza il confronto ogni ridisegno invierebbe una transazione inutile, che riposizionerebbe il cursore; senza l'annotazione ogni transazione tornerebbe allo store e da lì all'editor.
+
+\paragraph{Che cosa resta dell'editor durante un'elaborazione.}
+La proprietà per cui l'editor conserva cursore, scorrimento e cronologia mentre l'esito di un'operazione assistita arriva a frammenti non è ottenuta qui, ma dalla granularità delle sottoscrizioni descritta nella sezione \ref{sec:frontend-stato}. Il componente è sottoscritto al solo testo della nota, che durante l'elaborazione non cambia, quindi il secondo effetto non viene neppure eseguito. L'unico riallineamento avviene all'accettazione, cioè una volta sola e a elaborazione conclusa.
 
 \subsubsection{Accesso al servizio applicativo}
 \label{sec:frontend-accesso-servizio}
@@ -1414,51 +1402,36 @@ La selezione dell'utente nell'editor è monitorata dall'estensione di update, ch
 % NON CONTIENE: il formato degli eventi e la loro decodifica (capitolo 4); la
 % definizione del pattern Facade (§3.5.2).
 
-L'accesso al servizio applicativo è incapsulato in tre livelli: una \textbf{facade API} in \texttt{lib/api.ts} (pattern \textit{Facade}, §3.5), un \textbf{parser SSE} in \texttt{lib/sse.ts}, e un \textbf{hook custom} \texttt{useAiStream} in \texttt{hooks/useAiStream.ts}.
+L'applicazione web contatta il servizio applicativo da un solo punto, e quel punto è ripartito in tre moduli con responsabilità distinte. Il primo conosce il protocollo, cioè indirizzi, metodo, corpo della richiesta e forma degli errori. Il secondo conosce il formato con cui i frammenti viaggiano sulla connessione. Il terzo conosce il ciclo di vita di un componente React. Nessuno dei tre conosce ciò che compete agli altri due, ed è questa separazione a rendere ciascuno esercitabile per conto proprio. Il formato degli eventi e la sequenza completa di un'interazione appartengono alla sezione \ref{sec:flusso-streaming} e qui non vengono ripetuti.
 
-\paragraph{Facade API.}
+\paragraph{La facciata.}
+Il modulo \texttt{lib/api.ts} espone una funzione per ciascuna delle sette operazioni assistite. Ogni funzione dichiara i soli parametri di dominio\textsubscript{G} dell'operazione, tipizzati con i vocabolari che provengono dal contratto attraverso il modulo di raccolta descritto nella sezione \ref{sec:idiomi-tipizzazione}, e restituisce sempre il medesimo tipo, una sequenza asincrona di frammenti testuali. Chi la invoca esprime che cosa chiede e non come lo si ottenga. È il pattern definito nella sezione \ref{sec:pattern-facade}.
 
-La facade espone una funzione per ciascuna operazione del servizio applicativo: \texttt{summarize}, \texttt{translate}, \texttt{rewrite}, \texttt{grammar}, \texttt{critique}, \texttt{generate}, \texttt{generateFromLink}. Ogni funzione costruisce il corpo della richiesta con i tipi definiti in \texttt{types/models.ts} e invoca la funzione interna \texttt{stream}, che:
+Le sette funzioni non contengono logica propria e delegano a una funzione che il modulo non esporta. Questa compone l'indirizzo a partire dall'indirizzo di base letto dall'ambiente, con il ripiego sulla stringa vuota descritto nella sezione \ref{sec:deployment-unita}, invia una richiesta con corpo JSON e, soltanto dopo aver controllato lo stato della risposta, ne legge il corpo. L'ordine dei due passi è la forma che l'idioma della sezione \ref{sec:idiomi-generatori} assume su questo livello, perché uno stato negativo diventa così un errore ordinario invece di un flusso che si interrompe al primo frammento.
 
-\begin{enumerate}
-    \setlength{\itemsep}{0pt}
-    \item Esegue una richiesta POST all'endpoint corrispondente (con base URL da variabile d'ambiente \texttt{VITE\_API\_BASE\_URL}).
-    \item Se lo stato HTTP non è 2xx, estrae \texttt{detail} dal corpo JSON e solleva un errore.
-    \item Se la risposta ha un corpo leggibile, crea un reader e itera sugli eventi restituiti da \texttt{parseSseStream}.
-    \item La funzione ritorna un \texttt{AsyncIterable<string>} che produce i frammenti in sequenza.
-\end{enumerate}
+Il messaggio dell'errore proviene dal servizio applicativo. La funzione interpreta il corpo della risposta e ne estrae il campo unico che ogni errore dell'API\textsubscript{G} porta con sé, secondo la forma dichiarata nella sezione \ref{sec:backend-adattatori-primari}, e ricade su una frase generica in due casi, quando il corpo non è interpretabile e quando quel campo manca. Un terzo esito è distinto dai primi due, quello di una risposta con stato positivo ma priva di corpo, che produce un errore proprio. Va segnalato un ramo difensivo che il contratto non prevede, poiché quando il campo non è una stringa il suo contenuto viene serializzato e finisce nel messaggio, unico punto in cui l'applicazione web potrebbe mostrare all'utente una struttura tecnica anziché una frase.
 
-L'uso dei tipi generati da OpenAPI (\texttt{types/api.ts}) garantisce la conformità al contratto tra frontend e backend, soddisfacendo R-2-V-Ob (interfacciamento con servizi LLM tramite API).
+Al termine del consumo il lettore del corpo viene rilasciato in un blocco eseguito comunque, e l'eventuale rifiuto di quel rilascio è ignorato di proposito, per la ragione riportata nella sezione \ref{sec:idiomi-generatori}. Il segnale di annullamento, infine, è un parametro della funzione e viene inoltrato alla richiesta di rete. È il passaggio senza il quale l'annullamento resterebbe apparente, e la catena di cui fa parte è descritta nella sezione \ref{sec:flusso-annullamento}.
 
-\paragraph{Parser SSE: \texttt{parseSseStream}.}
+\paragraph{Il decodificatore del flusso.}
+Il modulo \texttt{lib/sse.ts} trasforma il corpo della risposta in una sequenza di eventi, ciascuno dei quali è un frammento di testo oppure un fallimento dichiarato. Non dipende né da React né dagli store e non conosce le rotte, quindi è esercitabile da solo passandogli un lettore predisposto, ed è così che i suoi casi di prova sono scritti. Non è tuttavia una funzione pura, perché consuma un lettore che conserva la propria posizione e ne accumula il contenuto fino a comporre un evento intero.
 
-Il parser \texttt{parseSseStream} (in \texttt{lib/sse.ts}) trasforma il \texttt{ReadableStreamDefaultReader} in un \texttt{AsyncIterable<SseEvent>}, dove \texttt{SseEvent} è definito come \texttt{\{ type: 'chunk'; data: string \} | \{ type: 'error'; message: string \}}. La sua implementazione si basa sulla struttura della specifica SSE e distingue tre terminatori:
+Due proprietà della sua realizzazione hanno conseguenze visibili all'utente e sono argomentate nella sezione \ref{sec:flusso-streaming}, cioè il lavoro sull'evento anziché sulla singola riga e il riconoscimento per nome del campo anziché per confronto testuale sulla riga. Al modulo appartiene inoltre il messaggio con cui una connessione chiusa senza alcun terminatore viene dichiarata incompleta. Nasce qui e non arriva dal servizio applicativo, perché il decodificatore è la sola parte in grado di accorgersi che il flusso è terminato senza dichiararsi concluso. È scritto in linguaggio naturale e privo di dettagli tecnici come impone \textbf{R-110-F-Ob}, e la sua esistenza è ciò che impedisce a un flusso troncato di presentarsi come riuscito.
 
-\begin{enumerate}
-    \setlength{\itemsep}{0pt}
-    \item \texttt{data: [DONE]}: il generatore termina senza eventi di errore (successo).
-    \item \texttt{event: error}: il backend segnala un errore. Il parser produce un evento \texttt{\{ type: 'error', message: ... \}}.
-    \item Chiusura del reader senza nessuno dei due: il parser produce un evento di errore con il messaggio \texttt{STREAM\_INTERRUPTED\_MESSAGE} («La generazione si è interrotta prima di completarsi. Riprova.»). Questo messaggio è generato lato client (R-110-F-Ob).
-\end{enumerate}
+\paragraph{L'aggancio che governa l'elaborazione.}
+L'aggancio \texttt{useAiStream} riceve la funzione da eseguire e non sa quale sia. Non importa la facciata, e la conseguenza è che potrebbe governare qualunque sequenza asincrona di stringhe. Ciò che fa è annullare un'eventuale elaborazione precedente, costruire un controllore di annullamento, depositarlo nello store, dichiarare l'inizio dell'elaborazione e quindi consumare la sequenza, aggiungendo ogni frammento alla porzione di stato che li raccoglie. A ogni frammento verifica se il controllore sia stato attivato, e in tal caso esce dal ciclo.
 
-Il parser gestisce il buffering delle righe e le terminazioni CRLF. È una \textbf{pure function}: non ha dipendenze da React o dallo store; può essere testata in isolamento.
+Il trattamento dell'uscita distingue tre esiti. Il completamento e l'annullamento spengono l'indicazione di elaborazione in corso e non scrivono alcun messaggio. Un guasto reale la spegne e scrive il messaggio ricevuto. La distinzione fra annullamento e guasto avviene per nome dell'errore e non per classe, secondo la convenzione della sezione \ref{sec:idiomi-generatori}, e senza di essa un annullamento voluto comparirebbe all'utente come un errore in lingua inglese. In ogni caso il riferimento al controllore viene azzerato in un blocco eseguito comunque.
 
-\paragraph{Hook \texttt{useAiStream}.}
+\paragraph{Due vie per lo stesso annullamento.}
+Il controllore è tenuto in due luoghi, un riferimento interno all'aggancio e una porzione dello store, e altrettante sono le vie che portano ad attivarlo. La finestra di dialogo, che possiede l'aggancio, usa la prima. La barra superiore, che l'aggancio non lo possiede, usa la seconda, cioè l'azione dello store. La duplicazione non produce due comportamenti diversi, perché entrambe le vie attivano il medesimo controllore, e il ciclo che consuma i frammenti ne verifica lo stato a ogni giro. L'elaborazione si arresta quindi anche quando l'attivazione arriva dallo store senza passare per l'aggancio.
 
-\texttt{useAiStream} incapsula il ciclo di vita di uno streaming: avvio, accumulo dei frammenti, gestione degli errori e interruzione. È descritto in dettaglio in §3.5 come esempio del pattern \textit{Custom Hook}.
-
-\begin{itemize}
-    \setlength{\itemsep}{0pt}
-    \item \texttt{start<T>}: riceve una funzione che ritorna un \texttt{AsyncIterable<T>}. Crea un nuovo \texttt{AbortController}, lo salva nello store (\texttt{\_setAbortController}) e avvia l'iterazione. Per ogni frammento, controlla se il controller è stato interrotto. Al termine, imposta \texttt{isGenerating} a \texttt{false} e rimuove il riferimento al controller.
-    \item \texttt{abort}: interrompe la comunicazione tramite \texttt{controller.abort()} (R-79-F-De).
-    \item \texttt{status}: uno stato \texttt{'idle' | 'streaming' | 'done' | 'error'} che il componente può utilizzare per mostrare indicatori visivi (R-109-F-De).
-\end{itemize}
-
-L'hook è progettato per essere usato in un solo componente alla volta (l'\texttt{AiActionDialog}). L'aborto è accessibile anche da altri componenti (la \texttt{TopBar}) tramite il riferimento salvato nello store, che espone \texttt{abortStream} come azione pubblica.
+\paragraph{Uno stato dichiarato e non consumato.}
+L'aggancio espone, oltre alle due operazioni, un proprio stato di avanzamento con quattro valori. Va detto che nessun componente lo legge, poiché l'indicatore di attesa e la disabilitazione dei comandi sono governati dalla porzione dello store che dichiara l'elaborazione in corso, osservabile anche dai componenti che l'aggancio non usano. Lo stato è esercitato dai casi di prova dell'aggancio e resta la superficie con cui un secondo consumatore potrebbe seguirne l'avanzamento senza passare dallo store.
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{assets/img/UML3.3.5.pdf}
+    \includegraphics[width=1.0\textwidth]{assets/img/UML3.3.5.pdf}
     \caption{Diagramma UML 3.3.5 - Accesso al servizio applicativo}
     \label{fig:uml335}
     \end{figure}
@@ -1473,41 +1446,33 @@ L'hook è progettato per essere usato in un solo componente alla volta (l'\textt
 % in quale momento vi viene scritta.
 % NON CONTIENE: la motivazione dell'esclusione della base di dati (§2.4).
 
-La persistenza dei dati lato client è realizzata con due meccanismi distinti, complementari e non sovrapposti.
+I meccanismi di persistenza lato client sono due, dichiarati nella sezione \ref{sec:persistenza} e distinti per scopo. Qui se ne descrive la realizzazione dal lato dei moduli, cioè quale modulo li realizza, quale sia la forma delle funzioni che espone e quale porzione di stato raggiunga l'archivio del browser. La sequenza di ciascuna operazione, i limiti del supporto e il trattamento dei metadati appartengono alla sezione \ref{sec:flusso-persistenza}.
 
-\paragraph{Persistenza automatica (Zustand \texttt{persist}).}
+\paragraph{Il modulo di accesso al file system.}
+Il modulo \texttt{lib/fileSystem.ts} espone tre funzioni, il salvataggio di una nota su file, il caricamento di una nota da file e la ridenominazione. È inoltre il modulo che \textbf{dichiara il tipo \texttt{Note}}, cioè l'oggetto con identificatore, titolo, contenuto e i due istanti di creazione e di ultima modifica. La collocazione non è casuale e va osservata, perché il tipo centrale del prodotto non risiede nello store che ne custodisce la raccolta ma nel modulo attraverso il quale una nota entra nel prodotto e ne esce. Lo store delle note lo importa da qui.
 
-Come descritto in §3.3.3, \texttt{useNotesStore} utilizza il middleware \texttt{persist} di Zustand per salvare automaticamente \texttt{list} e \texttt{currentId} nel \texttt{localStorage} del browser. Il salvataggio avviene a ogni modifica dello store. Il ripristino avviene al caricamento dell'applicazione. Questo meccanismo soddisfa R-4-V-Ob (salvataggio come file di testo) e R-85-F-Ob (caricamento da file locale), garantendo la continuità della sessione.
+Le due funzioni di ingresso e uscita adottano una strategia a due vie, selezionata a tempo di esecuzione verificando la presenza dei metodi richiesti sull'oggetto globale della finestra e non interrogando l'identità del browser. Il doppio ramo non è una precauzione generica, poiché il requisito\textsubscript{G} di vincolo\textsubscript{G} \textbf{R-1-V-Ob} include Firefox fra gli ambienti prescritti e Firefox non espone l'interfaccia di accesso al file system; il comportamento di ciascun ramo è descritto nella sezione \ref{sec:persistenza}. Dal lato del modulo conta che i due rami producano lo stesso tipo di risultato, così che nessun chiamante debba sapere quale dei due sia stato percorso.
 
-\paragraph{Importazione ed esportazione (\texttt{lib/fileSystem.ts}).}
+La forma del risultato del caricamento merita una nota. La funzione restituisce una nota oppure il valore nullo, e il valore nullo è il canale con cui l'annullamento dell'utente viene comunicato. Non è quindi un'eccezione, perché rinunciare ad aprire un file non è un guasto, e non è la stringa vuota, che non distinguerebbe l'annullamento da un file legittimamente vuoto. Un documento Markdown\textsubscript{G} privo di contenuto è un ingresso valido, e i casi di prova del modulo lo verificano\textsubscript{G} esplicitamente.
 
-Il modulo \texttt{lib/fileSystem.ts} fornisce funzioni per l'importazione e l'esportazione delle note come file Markdown. I due rami di funzionalità:
+La ridenominazione, infine, non compie alcuna operazione sul disco. Restituisce una nuova nota con il titolo sostituito, con il ripiego su un titolo convenzionale quando il nome fornito è vuoto o di soli spazi, e con l'istante di ultima modifica rinnovato. È dichiarata asincrona pur non attendendo nulla, e il nome che il file assumerà su disco sarà quello del salvataggio successivo. Il modulo non conserva alcun riferimento al file da cui una nota è stata letta, che viene interrogato una volta sola e poi abbandonato.
 
-\begin{itemize}
-    \setlength{\itemsep}{0pt}
-    \item \textbf{Esportazione} (\texttt{saveNoteToFile}):
-    \begin{itemize}
-        \setlength{\itemsep}{0pt}
-        \item Ramo preferenziale: utilizza l'API \texttt{showSaveFilePicker} (Chrome/Edge).
-        \item Ramo di fallback (Firefox): crea un link fittizio (\texttt{<a download>}) e avvia il download automatico del file \texttt{.md}. Questo ramo soddisfa R-1-V-Ob (supporto a Firefox).
-    \end{itemize}
-    
-    \item \textbf{Importazione} (\texttt{openNoteFromFile}):
-    \begin{itemize}
-        \setlength{\itemsep}{0pt}
-        \item Ramo preferenziale: utilizza l'API \texttt{showOpenFilePicker} (Chrome/Edge).
-        \item Ramo di fallback (Firefox): crea un \texttt{<input type="file">}, lo apre programmaticamente e legge il contenuto tramite \texttt{FileReader}. Gestisce due vie di uscita per l'annullamento: l'evento \texttt{oncancel} e il ritorno del focus alla finestra con un timer di tolleranza (\texttt{GRAZIA\_ANNULLAMENTO\_MS = 300ms}). Questo doppio meccanismo garantisce che la Promise non resti pendente per sempre in Firefox.
-        \item Restituisce una \texttt{Note} con \texttt{id} generato da \texttt{crypto.randomUUID()}, \texttt{title} derivato dal nome del file, \texttt{content} come testo letto, e \texttt{createdAt}/\texttt{updatedAt} al momento dell'importazione. Soddisfa R-85-F-Ob.
-    \end{itemize}
-    
-    \item \textbf{Ridenominazione} (\texttt{renameNote}): aggiorna il titolo di una nota e l'\texttt{updatedAt}. La funzione è asincrona e restituisce la nota modificata. Soddisfa R-94-F-De.
-\end{itemize}
+\paragraph{La generazione degli identificatori.}
+L'identificatore di una nota è prodotto da un modulo distinto, \texttt{lib/id.ts}, e la separazione ha una ragione che il codice dichiara. La funzione nativa del browser che genera un identificatore universale esiste soltanto nei contesti considerati sicuri, e su una connessione non cifrata che non sia quella locale risulta assente. Il modulo la impiega dove c'è e altrimenti costruisce l'identificatore per conto proprio a partire dai byte casuali forniti dal browser, fissandone versione e variante. Il ramo di ripiego è coperto da un caso di prova che riproduce l'assenza della funzione nativa. Senza di esso la creazione e l'importazione di una nota fallirebbero in quegli ambienti.
 
-I due meccanismi non sono sovrapposti. Il middleware \texttt{persist} gestisce il salvataggio automatico e il ripristino della sessione. \texttt{fileSystem} gestisce l'operazione esplicita di importazione ed esportazione richiesta dall'utente. Questa separazione soddisfa R-1-V-Ob (supporto a Firefox) e R-4-V-Ob (salvataggio come file di testo).
+\paragraph{Il middleware di persistenza.}
+Il secondo meccanismo non è un modulo del prodotto ma un involucro applicato a uno dei due store. Lo store delle note lo dichiara, quello della sessione di scrittura no, per la ragione riportata nella sezione \ref{sec:frontend-stato}. L'involucro riceve la sola chiave sotto cui scrivere nell'archivio locale del browser e non un elenco dei campi da conservare, quindi ciò che viene scritto è quanto sopravvive alla serializzazione dello stato, cioè l'elenco delle note e l'indicazione di quale sia la corrente, mentre le azioni non vi entrano perché non sono rappresentabili in quel formato.
+
+Il punto che conta architetturalmente è però un altro, cioè l'aggancio che l'involucro invoca al termine della rilettura. È il solo luogo in cui la persistenza raggiunge l'altro store, e vi compie due cose. Carica nell'editor il contenuto della nota corrente e, quando nessuna nota risulta corrente, invoca l'azione che popola la raccolta con la nota di benvenuto. La seconda è la ragione per cui quell'azione esiste, e la si invoca attraverso lo stato ricevuto dall'aggancio anziché attraverso lo store, poiché in quell'istante lo store si sta ancora costruendo e il riferimento che lo nomina non è ancora disponibile.
+
+\paragraph{Quando il testo raggiunge l'archivio.}
+Due affermazioni distinte vanno tenute separate, perché confonderle attribuisce al meccanismo una copertura che non ha. L'involucro scrive nell'archivio a ogni modifica dello store delle note, quindi anche una ridenominazione, un'eliminazione o un'importazione vi arrivano immediatamente. Il testo che l'utente sta scrivendo, invece, non è in quello store, e vi giunge nei due soli momenti riportati nella sezione \ref{sec:persistenza}, cioè al cambio di nota e alla creazione di una nuova nota. Le modifiche successive all'ultimo di questi momenti non sono conservate.
+
+Il salvataggio su file non è soggetto alla medesima condizione. Il comando della barra laterale non prende il contenuto dalla raccolta ma interroga lo store della sessione, quindi il file prodotto contiene sempre il testo che l'utente ha davanti, anche quando quello registrato nella raccolta è più vecchio.
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{assets/img/UML3.3.6.pdf}
+    \includegraphics[width=1.0\textwidth]{assets/img/UML3.3.6.pdf}
     \caption{Diagramma UML 3.3.6 - Persistenza lato client}
     \label{fig:uml336}
     \end{figure}

@@ -2,201 +2,130 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
-skinparam defaultFontSize 20
+skinparam shadowing false
+skinparam nodesep 35
+skinparam ranksep 50
+skinparam defaultFontSize 14
 
-' ============================================================
-' 1. HOOKS
-' ============================================================
+title Agganci, moduli di lib/ e dipendenze esterne
+
+' Raggruppati per catena di dipendenza, non per cartella: la cartella di
+' appartenenza e' nello stereotipo di ciascun modulo. L'organizzazione per
+' cartelle e' nel diagramma UML 3.3.1.
 
 together {
-  class useAiStream {
-    - status: 'idle' | 'streaming' | 'done' | 'error'
-    - abortControllerRef: RefObject<AbortController | null>
-    - isAbortedRef: RefObject<boolean>
-    __
-    + start<T>(fn: () => AsyncIterable<T>): Promise<void>
+  class useAiStream <<hooks/>> {
+    + start<T>(fn: (signal: AbortSignal) =>\nAsyncIterable<T>): Promise<void>
     + abort(): void
+    + status: 'idle' | 'streaming' |\n'done' | 'error'
   }
-
-  class useTypewriter {
-    + useTypewriter(text: string,\n isGenerating: boolean): string
+  class abort <<lib/>> {
+    + isAbortError(err)
   }
 }
-
-' ============================================================
-' 2. LIBRERIE E UTILITY
-' ============================================================
-
-
-  class api {
-    + summarize(text: string,\n length: Length): AsyncIterable<string>
-    + translate(text: string,\n target: Language): AsyncIterable<string>
-    + rewrite(text: string,\n style: Style): AsyncIterable<string>
-    + grammar(text: string): AsyncIterable<string>
-    + critique(text: string,\n hat: Hat): AsyncIterable<string>
-    + generate(prompt: string,\n length: Length): AsyncIterable<string>
-    + generateFromLink(url: string,\n length: Length): AsyncIterable<string>
-    - stream(endpoint: string,\n body: unknown): AsyncIterable<string>
-  }
-
-  class sse {
-    + parseSseStream(reader:\n ReadableStreamDefaultReader<Uint8Array>):\n AsyncIterable<SseEvent>
-    + STREAM_INTERRUPTED_MESSAGE: string
-  }
-
-  class fileSystem {
-    + openNoteFromFile(): Promise<Note | null>
-    + saveNoteToFile(note: Note): Promise<void>
-    + renameNote(note: Note,\n name: string): Promise<Note>
-    + GRAZIA_ANNULLAMENTO_MS: number
-    + TITOLO_DI_RIPIEGO: string
-    - scegliFileConInput(): Promise<{text: string,\n fileName: string} | null>
-    - eAnnullamento(err: unknown): boolean
-  }
-
-  class editorCommands {
-    + toggleBoldCommand(view: EditorView): void
-    + toggleItalicCommand(view: EditorView): void
-    + toggleUnderlineCommand(view: EditorView): void
-    + toggleStrikethroughCommand(view: EditorView): void
-    + toggleLinkCommand(view: EditorView): void
-    + insertImageCommand(view: EditorView): void
-    + toggleInlineCodeCommand(view: EditorView): void
-    + setHeadingCommand(view: EditorView,\n level: HeadingLevel): void
-    + toggleListCommand(view: EditorView): void
-    + toggleOrderedListCommand(view: EditorView): void
-  }
-
-  class aiActions {
-    + AI_ACTIONS: Record<AiActionId,\n AiActionConfig>
-    + getActiveText(): string
-  }
-
-  class abort {
-    + isAbortError(err: unknown): boolean
-  }
-
-  class id {
-    + newId(): string
-  }
-
-  class utils {
-    + cn(...inputs: ClassValue[]): string
-  }
-
-  class remarkUnderline {
-    + remarkUnderline(): Plugin
-  }
-
-
-' ============================================================
-' 3. TIPI DI SUPPORTO
-' ============================================================
-
-  class AiParams <<interface>> {
-    + length?: Length
-    + target_language?: Language
-    + style?: Style
-    + hat?: Hat
-  }
-
-  class AiActionConfig <<type>> {
-    id: AiActionId
-    label: string
-    source: 'text' | 'prompt' | 'url'
-    minLength: number
-    maxLength: number | null
-    insertMode: 'replace' | 'append'
-    params: AiParams
-  }
-
-  class SseEvent <<type>> {
-    + {type: 'chunk', data: string}
-    + {type: 'error', message: string}
-  }
-
-
-' Forza i tipi in verticale (dall'alto verso il basso)
-AiParams -[hidden]- AiActionConfig
-AiActionConfig -[hidden]- SseEvent
-
-' ============================================================
-' 4. LIBRERIE ESTERNE
-' ============================================================
 
 together {
-  class EditorView {
-    - state: EditorState
-    + dispatch(tr: Transaction): void
-    + focus(): void
-    + destroy(): void
+  class api <<lib/, facciata>> {
+    sette funzioni, una per
+    operazione assistita
+    - stream(endpoint, body, signal)
   }
-
-  class Zustand {
-    + create<T>(fn): StoreApi<T>
-    + persist<T>(fn, config): StoreApi<T>
+  class sse <<lib/>> {
+    + parseSseStream(reader)
+    + STREAM_INTERRUPTED_MESSAGE
   }
-
-  class React {
-    + useState<T>(initial): [T, Dispatch<T>]
-    + useEffect(effect, deps): void
-    + useRef<T>(initial): RefObject<T>
-    + createContext<T>(default): Context<T>
-  }
-
-  class react-markdown {
-    + ReactMarkdown(props): JSX
+  class SseEvent <<union>> {
+    { type: 'chunk', data }
+    { type: 'error', message }
   }
 }
 
-' ============================================================
-' 5. RELAZIONI
-' ============================================================
+together {
+  class aiActions <<lib/>> {
+    + AI_ACTIONS
+    + getActiveText()
+  }
+  class AiActionDef <<type>> {
+    label, source, insertMode,
+    minLength, maxLength
+  }
+  class AiParams <<type>> {
+    length?, target_language?,
+    style?, hat?
+  }
+}
 
-' Componenti → Hooks
-AiActionDialog ..> useAiStream : utilizza
-AiActionDialog ..> useTypewriter : utilizza
+together {
+  class useNotesStore <<store/>>
+  class fileSystem <<lib/>> {
+    + Note
+    + openNoteFromFile
+    + saveNoteToFile
+    + renameNote
+  }
+  class id <<lib/>> {
+    + newId()
+  }
+}
 
-' Hooks → Store
-useAiStream ..> useEditorStore : utilizza
+together {
+  class editorCommands <<lib/>> {
+    undici comandi di
+    formattazione
+  }
+  class EditorView <<CodeMirror>>
+}
 
-' Hooks → Lib
-useAiStream ..> api : utilizza
-useAiStream ..> abort : utilizza
+together {
+  class remarkUnderline <<lib/>> {
+    + remarkUnderline()
+  }
+  class "react-markdown" as RM <<libreria>>
+}
 
-' Componenti → Librerie esterne
-Editor -- EditorView : istanzia
-MarkdownView -- react-markdown : utilizza
-MarkdownView ..> remarkUnderline : utilizza
+class useEditorStore <<store/>>
+class Zustand <<libreria>>
 
-' Componenti → Lib
-AiActionDialog ..> aiActions : utilizza
-AiActionDialog ..> api : utilizza
-EditorToolbar ..> editorCommands : utilizza
-Sidebar ..> fileSystem : utilizza
+class useTypewriter <<hooks/>> {
+  + useTypewriter(streamedText: string,\nisGenerating: boolean): string
+}
+class utils <<lib/>> {
+  + cn(...inputs)
+}
 
-' Lib → Lib
-api ..> sse : utilizza
-fileSystem ..> id : utilizza
-aiActions ..> AiActionConfig : utilizza
+useAiStream --> abort
+useAiStream --> useEditorStore
+api --> sse
+sse --> SseEvent
+aiActions --> AiActionDef
+aiActions --> AiParams
+aiActions --> useEditorStore
+useNotesStore --> fileSystem
+fileSystem --> id
+editorCommands --> EditorView
+remarkUnderline --> RM
+useEditorStore --> Zustand
+useNotesStore --> Zustand
 
-' Store → Lib
-useNotesStore ..> fileSystem : utilizza (tramite Note)
-useNotesStore ..> id : utilizza
+' impaginazione: le catene senza legami con le altre scendono su una seconda fila
+useTypewriter -[hidden]right- utils
+abort -[hidden]down- editorCommands
+editorCommands -[hidden]right- remarkUnderline
+SseEvent -[hidden]down- useTypewriter
 
-' Store → External
-useEditorStore ..> Zustand : utilizza (persist)
-useNotesStore ..> Zustand : utilizza (persist)
-
-' Componenti → External
-App ..> React : utilizza
-Sidebar ..> React : utilizza
-TopBar ..> React : utilizza
-Editor ..> React : utilizza
-Preview ..> React : utilizza
-MarkdownView ..> React : utilizza
-AiActionDialog ..> React : utilizza
+legend bottom
+  Chi invoca questi moduli e' nel diagramma UML 3.3-1: AiActionDialog usa i due agganci, api e
+  aiActions; EditorToolbar ed Editor usano editorCommands; Sidebar usa fileSystem e utils;
+  MarkdownView usa remarkUnderline. Le firme complete sono nei diagrammi delle sottosezioni.
+  ==
+  useAiStream non importa api: riceve la funzione da eseguire come parametro, e il segnale di
+  annullamento e' a sua volta parametro di quella funzione, cosi' resta rieseguibile da «Rigenera».
+  ==
+  Il middleware persist di Zustand e' applicato al solo useNotesStore: useEditorStore non e'
+  persistito.
+  ==
+  Entrambi gli agganci sono funzioni di React e ne impiegano useState, useRef, useEffect e
+  useCallback: la dipendenza non e' disegnata perche' vale anche per ogni componente.
+endlegend
 
 @enduml

@@ -2,39 +2,61 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
+
+title MarkdownView
+
+top to bottom direction
 
 class MarkdownView {
-  - children: string
-  - className?: string
-  __
-  + render(): JSX
+  + children: string
+  + className?: string
 }
 
-class react-markdown {
+class Preview {
 }
 
-class remarkGfm {
+class AiActionDialog {
 }
 
-class remarkMath {
+class ReactMarkdown <<libreria>> {
 }
 
-class remarkUnderline {
+class remarkGfm <<estensione>> {
 }
 
-class rehypeKatex {
+class remarkMath <<estensione>> {
 }
 
-class rehypeHighlight {
+class remarkUnderline <<estensione del gruppo>> {
+  + remarkUnderline(): Plugin
 }
 
-MarkdownView -- react-markdown : utilizza
-MarkdownView ..> remarkGfm : utilizza
-MarkdownView ..> remarkMath : utilizza
-MarkdownView ..> remarkUnderline : utilizza
-MarkdownView ..> rehypeKatex : utilizza
-MarkdownView ..> rehypeHighlight : utilizza
+class rehypeKatex <<estensione>> {
+}
+
+class rehypeHighlight <<estensione>> {
+}
+
+Preview --> MarkdownView
+AiActionDialog --> MarkdownView
+MarkdownView *-- ReactMarkdown : compone
+ReactMarkdown --> remarkGfm : remarkPlugins
+ReactMarkdown --> remarkMath : remarkPlugins
+ReactMarkdown --> remarkUnderline : remarkPlugins
+ReactMarkdown --> rehypeKatex : rehypePlugins
+ReactMarkdown --> rehypeHighlight : rehypePlugins
+
+legend bottom
+  Unico punto dell'applicazione web in cui il Markdown viene reso, condiviso dal pannello di
+  anteprima e dall'anteprima dell'esito nella finestra di dialogo: e' la ragione per cui i due
+  contesti non possono divergere.
+  ==
+  In nessun punto della pipeline l'HTML grezzo e' abilitato. remarkUnderline e' l'unica estensione
+  scritta dal gruppo e dichiara l'elemento da produrre anziche' emettere marcatura.
+endlegend
 
 @enduml

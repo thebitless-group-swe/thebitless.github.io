@@ -1,83 +1,80 @@
 @startuml
 !theme plain
-skinparam packageStyle rectangle
-skinparam componentStyle rectangle
-skinparam monochrome true
+hide circle
+hide empty members
+skinparam classAttributeIconSize 0
 skinparam shadowing false
-skinparam linetype ortho
-skinparam stereotypeCBackgroundColor transparent
-skinparam defaultFontName Arial
+skinparam nodesep 30
+skinparam ranksep 45
+skinparam defaultFontSize 14
 
-title Dipendenze esterne del frontend
+title Organizzazione per ruolo di web/src
 
-top to bottom direction
-
-package "Frontend" {
-  
-  package "UI (React)" as UI {
-    [Componenti]
-    [Hooks]
-  }
-
-  package "State (Zustand)" as STORE {
-    [Store]
-    [Persist]
-  }
-
-  package "Utility" as UTIL {
-    [API Client]
-    [File System]
-    [Editor]
-    [Parser SSE]
-  }
-
-  package "Types" as TYPES {
-    [Tipi generati]
-    [Modelli]
-  }
+class "radice di web/src" as ROOT {
+  main.tsx, monta l'applicazione nel DOM
+  App.tsx, radice dell'albero e layout
+  index.css, stile globale e temi
 }
 
-together {
-  package "Framework" {
-    [React 19]
-    [TypeScript 6]
-  }
-
-  package "UI / Stile" {
-    [Radix UI]
-    [Tailwind CSS 4]
-  }
-
-  package "Editor" {
-    [CodeMirror 6]
-  }
-
-  package "Markdown" {
-    [react-markdown]
-  }
-
-  package "Testing" {
-    [Vitest]
-  }
-
-  package "Build" {
-    [Vite]
-    [openapi-typescript]
-  }
+class "components/" as COMP {
+  Sidebar, TopBar, ViewToggle, EditorToolbar,
+  Editor, Preview, MarkdownView, AiActionDialog
+  ..
+  ui/ : alert, button, textarea
 }
 
-UI ..> [React 19] : utilizza
-UI ..> [Radix UI] : utilizza
-UI ..> [Tailwind CSS 4] : utilizza
+class "hooks/" as HOOKS {
+  useAiStream, useTypewriter
+}
 
-STORE ..> [Zustand 5] : utilizza
+class "store/" as STORE {
+  useEditorStore, useNotesStore
+}
 
-UTIL ..> [CodeMirror 6] : utilizza
-UTIL ..> [react-markdown] : utilizza
+class "lib/" as LIB {
+  api, sse, fileSystem, id, editorCommands,
+  aiActions, remarkUnderline, abort, utils
+}
 
-TYPES ..> [openapi-typescript] : genera
+class "types/" as TYPES {
+  api.ts, generato da openapi-typescript
+  models.ts, barrel di re-export
+}
 
-[Vitest] ..> [React 19] : testa
-[Vite] ..> [TypeScript 6] : compila
+class "test/" as TEST {
+  setup.ts, configurazione comune
+}
+
+class "assets/" as ASSETS {
+  risorse statiche
+}
+
+ROOT --> COMP
+COMP --> HOOKS
+COMP --> STORE
+COMP --> LIB
+COMP --> TYPES
+HOOKS --> STORE
+HOOKS --> LIB
+STORE --> LIB
+LIB --> STORE
+LIB --> TYPES
+
+TEST -[hidden]right- ASSETS
+TYPES -[hidden]down- TEST
+
+legend bottom
+  Le frecce indicano la direzione delle importazioni. test/ e assets/ non ne hanno alcuna verso
+  le altre cartelle.
+  ==
+  Fra lib/ e store/ la dipendenza corre nei due sensi: useNotesStore importa fileSystem e id,
+  mentre aiActions importa useEditorStore e useEditorStore importa da aiActions il tipo AiParams.
+  Queste ultime due formano un ciclo fra due file che non sopravvive alla compilazione, perche'
+  la seconda e' un'importazione di soli tipi. Nessuna cartella importa components/.
+  ==
+  In types/ soltanto models.ts importa il file generato: il resto dell'applicazione passa da models.ts.
+  I casi di prova non risiedono in test/, che contiene la sola configurazione comune: ciascun caso
+  di prova sta accanto al modulo che esercita.
+endlegend
 
 @enduml
