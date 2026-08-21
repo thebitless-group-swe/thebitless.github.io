@@ -1067,10 +1067,6 @@ Le conseguenze pratiche sono due, ed entrambe si pagherebbero a ogni modifica.
 
 \subsection{Architettura del frontend}
 \label{sec:architettura-frontend}
-% CONTIENE: l'architettura logica dell'applicazione web.
-% NON CONTIENE: gli endpoint esposti dal servizio applicativo (§3.4); il
-% formato degli eventi di streaming e la sequenza delle interazioni (capitolo
-% 4); le definizioni dei design pattern (§3.5), da richiamare per nome.
 
 La presente sezione descrive l'architettura logica dell'applicazione web. Vi sono trattate le cartelle in cui il codice è ripartito e il criterio che vi assegna un modulo, i componenti che compongono l'interfaccia con le rispettive responsabilità, gli store che custodiscono lo stato condiviso e i moduli attraverso cui l'applicazione raggiunge l'editor, il servizio applicativo e il supporto di memorizzazione del browser. Lo stile adottato è dichiarato nella sezione \ref{sec:panoramica-stile-web}, e qui se ne documenta la realizzazione. Il perimetro si arresta al confine HTTP. Quanto sta oltre è nella sezione \ref{sec:architettura-backend}, la messa in esecuzione nella sezione \ref{sec:architettura-deployment}, il contenuto degli scambi nella sezione \ref{sec:flusso-dati}, i design pattern nella sezione \ref{sec:design-pattern}.
 
@@ -1095,11 +1091,6 @@ Il flusso enunciato nella sezione \ref{sec:panoramica-stile-web}, per cui un'int
 
 \subsubsection{Organizzazione dei sorgenti}
 \label{sec:frontend-organizzazione}
-% CONTIENE: la suddivisione di web/src in components, store, lib, hooks,
-% types, test, con il criterio che assegna un modulo all'una o all'altra; la
-% distinzione fra codice scritto a mano e codice generato; l'alias dei
-% percorsi.
-% NON CONTIENE: l'elenco esaustivo dei file.
 
 Il codice dell'applicazione web risiede in \texttt{web/src/} ed è ripartito per ruolo architetturale e non per funzione di prodotto. Due moduli stanno nella stessa cartella se rispondono alla stessa domanda, quella di che cosa venga presentato, di dove viva lo stato o di come si raggiunga il mondo esterno, e non se concorrono alla medesima funzione dell'interfaccia. Il criterio ha una conseguenza pratica, che è la ragione per cui è stato adottato. La collocazione di un file nuovo non è oggetto di discussione, perché discende dal ruolo che quel file svolge.
 
@@ -1142,10 +1133,7 @@ La conseguenza è già osservabile, e va riportata perché è il caso in cui la 
 
 \subsubsection{Scomposizione in componenti}
 \label{sec:frontend-componenti}
-% CONTIENE: i componenti React e le rispettive responsabilità, il confine fra
-% componenti di presentazione e componenti che accedono allo stato, la
-% composizione dell'area di lavoro nelle tre modalità di visualizzazione.
-% NON CONTIENE: la gestione dello stato, che è della sottosezione seguente.
+
 L'albero dei componenti ha radice in \texttt{App}, che dispone la barra laterale a sinistra e, nella colonna rimanente, la barra superiore, i comandi di visualizzazione e l'area di lavoro. La finestra di dialogo delle operazioni assistite è montata accanto a essi e resa visibile dallo stato. Nessun componente riceve dal genitore i dati che presenta, perché la radice non passa alcuna proprietà ai propri figli e ciascuno di essi dichiara da sé la porzione di stato che gli serve. La composizione per annidamento riguarda quindi la sola disposizione dell'interfaccia, mentre i dati arrivano dagli store.
 
 \paragraph{Il confine fra presentazione e accesso allo stato.}
@@ -1268,11 +1256,7 @@ Le quattro tavole di valori esposte dai selettori devono coincidere con i vocabo
 
 \subsubsection{Gestione dello stato}
 \label{sec:frontend-stato}
-% CONTIENE: i due store e la loro divisione di responsabilità; i selettori
-% atomici e la ragione per cui non si espongono oggetti compositi; la regola
-% che stabilisce quando uno stato resta locale, quando è sollevato al genitore
-% e quando è promosso a store; il flusso unidirezionale.
-% NON CONTIENE: la definizione del pattern Observer (§3.5.3).
+
 Lo stato condiviso è custodito in due store, secondo la ripartizione dichiarata nella sezione \ref{sec:panoramica-stile-web}. Il confine fra i due è quello che separa la raccolta dalla sessione di scrittura. Lo store \texttt{useNotesStore} sa quali note esistono e quale è aperta, e non sa nulla di ciò che vi sta accadendo dentro, mentre \texttt{useEditorStore} sa che cosa sta accadendo nella nota aperta, e non sa che esista una raccolta. L'asimmetria è visibile nelle importazioni, perché il primo importa il secondo e ne invoca le azioni, mai il contrario.
 
 \paragraph{Selettori atomici.}
@@ -1326,15 +1310,7 @@ Lo store della raccolta è avvolto dal middleware di persistenza della libreria 
 
 \subsubsection{Integrazione dell'editor}
 \label{sec:frontend-editor}
-% CONTIENE: il confine fra lo stato dell'editor e lo stato applicativo, e la
-% sincronizzazione bidirezionale fra i due — dal documento dell'editor allo
-% store a ogni modifica dell'utente, e dallo store al documento quando il
-% testo cambia per una causa esterna (cambio di nota, inserimento dell'esito
-% di un'operazione assistita); la ragione per cui il caricamento di un
-% documento è distinto dalla scrittura ordinaria; la conservazione della
-% cronologia delle modifiche e della posizione del cursore.
-% NON CONTIENE: le funzioni offerte dalla libreria dell'editor, che sono del
-% capitolo 2.
+
 L'editor è realizzato con CodeMirror 6, che possiede un proprio documento. Il testo della nota vive però nello store, e i due devono restare allineati. La sezione descrive come ciò avviene, e riprende l'eccezione al flusso unidirezionale dichiarata in apertura della sezione \ref{sec:architettura-frontend}. Il confine fra i due stati è netto. Allo store appartiene il testo della nota e la porzione selezionata, cioè quanto altri componenti osservano, mentre all'editor appartiene tutto il resto, cioè la posizione del cursore, lo scorrimento, la cronologia delle modifiche e l'albero sintattico del documento. Nulla di quest'ultimo gruppo entra nello store, e nulla di esso viene ricostruito a ogni ridisegno.
 
 \paragraph{Creazione dell'istanza.}
@@ -1394,13 +1370,6 @@ La proprietà per cui l'editor conserva cursore, scorrimento e cronologia mentre
 
 \subsubsection{Accesso al servizio applicativo}
 \label{sec:frontend-accesso-servizio}
-% CONTIENE: il modulo unico attraverso cui l'applicazione web contatta il
-% servizio applicativo, con una funzione per operazione e un tipo di ritorno
-% comune; la collocazione dei tipi generati dallo schema OpenAPI e il loro
-% impiego ai confini; il punto in cui l'annullamento di un'operazione in corso
-% viene originato.
-% NON CONTIENE: il formato degli eventi e la loro decodifica (capitolo 4); la
-% definizione del pattern Facade (§3.5.2).
 
 L'applicazione web contatta il servizio applicativo da un solo punto, e quel punto è ripartito in tre moduli con responsabilità distinte. Il primo conosce il protocollo, cioè indirizzi, metodo, corpo della richiesta e forma degli errori. Il secondo conosce il formato con cui i frammenti viaggiano sulla connessione. Il terzo conosce il ciclo di vita di un componente React. Nessuno dei tre conosce ciò che compete agli altri due, ed è questa separazione a rendere ciascuno esercitabile per conto proprio. Il formato degli eventi e la sequenza completa di un'interazione appartengono alla sezione \ref{sec:flusso-streaming} e qui non vengono ripetuti.
 
@@ -1438,13 +1407,6 @@ L'aggancio espone, oltre alle due operazioni, un proprio stato di avanzamento co
 
 \subsubsection{Persistenza lato client}
 \label{sec:frontend-persistenza}
-% CONTIENE: le due vie di persistenza descritte in §2.4 — accesso al file
-% system per l'esportazione e l'importazione deliberate, archivio locale del
-% browser per la continuità della sessione — viste dal lato dei moduli: quale
-% modulo le realizza, come è selezionata la via di accesso al file system in
-% base alle capacità del browser, quale porzione di stato è resa persistente e
-% in quale momento vi viene scritta.
-% NON CONTIENE: la motivazione dell'esclusione della base di dati (§2.4).
 
 I meccanismi di persistenza lato client sono due, dichiarati nella sezione \ref{sec:persistenza} e distinti per scopo. Qui se ne descrive la realizzazione dal lato dei moduli, cioè quale modulo li realizza, quale sia la forma delle funzioni che espone e quale porzione di stato raggiunga l'archivio del browser. La sequenza di ciascuna operazione, i limiti del supporto e il trattamento dei metadati appartengono alla sezione \ref{sec:flusso-persistenza}.
 
@@ -1479,10 +1441,7 @@ Il salvataggio su file non è soggetto alla medesima condizione. Il comando dell
 
 \subsection{Architettura del backend}
 \label{sec:architettura-backend}
-% CONTIENE: l'architettura logica del servizio applicativo.
-% NON CONTIENE: nulla che stia oltre il confine HTTP, cioè l'applicazione web
-% (§3.3); il deployment e la configurazione (§3.2); le definizioni dei design
-% pattern (§3.5), da richiamare per nome.
+
 La presente sezione descrive l'architettura logica del servizio applicativo: i package in cui il codice è ripartito, il criterio che vi assegna un modulo, le responsabilità di ciascuna parte e le firme con cui esse collaborano. Lo stile adottato, l'architettura esagonale, è dichiarato nella sezione \ref{sec:panoramica-stile-servizio}: qui se ne documenta la realizzazione. Il perimetro si arresta al confine HTTP: quanto sta oltre è nella sezione \ref{sec:architettura-frontend}, la messa in esecuzione nella sezione \ref{sec:architettura-deployment}, i design pattern nella sezione \ref{sec:design-pattern}.
 
 \paragraph{Notazione degli elenchi di firme.}
@@ -1492,14 +1451,7 @@ Il segno \texttt{+} contrassegna i membri pubblici, il segno \texttt{-} quelli c
 
 \subsubsection{Struttura a esagono e contratti di dipendenza}
 \label{sec:backend-esagono}
-% CONTIENE: i tre package di app/ (api, core, infrastructure) e la regola che
-% assegna un modulo all'uno o all'altro; i moduli sciolti che restano fuori dai
-% tre package (dependencies.py, export_openapi.py, main.py, settings.py), che il
-% contratto layers non governa; la direzione delle dipendenze; i contratti
-% dichiarati in api/.importlinter, uno per uno, e il fatto che siano verificati
-% staticamente da import-linter come processo dell'integrazione continua.
-% NON CONTIENE: la ripetizione della panoramica di §3.1.2, che va richiamata
-% per riferimento e non riscritta.
+
 Il codice del servizio applicativo risiede in \texttt{api/app/} ed è ripartito in tre package e alcuni moduli di radice. Il criterio che assegna un modulo all'uno o all'altro non è la somiglianza tematica ma la direzione della dipendenza: un modulo appartiene al nucleo se non ha bisogno di conoscere nulla del mondo esterno, appartiene a un lato dell'esagono se conosce un protocollo, un framework\textsubscript{G} o un fornitore.
 
 \begin{itemize}
