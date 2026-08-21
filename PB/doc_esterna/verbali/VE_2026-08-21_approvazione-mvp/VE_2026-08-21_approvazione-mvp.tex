@@ -58,9 +58,9 @@
 
 \section{Informazioni sulla riunione}
 
-In data \textbf{\dataverbale} si è svolto un confronto con \textbf{Gregorio Piccoli}, referente aziendale di \textbf{Zucchetti S.p.A.}, dedicato alla presentazione del \textit{Minimum Viable Product} (MVP) \textbf{Second Brain} e alla sua valutazione da parte della proponente.
-L'incontro si è tenuto in \textbf{modalità asincrona, tramite scambio di messaggi di posta elettronica}: il periodo di ferie estive della proponente non ha consentito di fissare una riunione sincrona in videoconferenza. Il gruppo ha quindi trasmesso via email il materiale di presentazione dell'MVP e la proponente ha fatto pervenire, con lo stesso mezzo, le proprie valutazioni.
-Trattandosi di un confronto asincrono, il presente verbale non riporta un orario di inizio e uno di conclusione: la data indicata è quella in cui lo scambio si è concluso con la comunicazione dell'esito da parte della proponente.
+In data \textbf{\dataverbale} si è svolto un confronto con \textbf{Gregorio Piccoli}, referente aziendale di \textbf{Zucchetti S.p.A.}, dedicato alla presentazione del \textit{Minimum Viable Product} (MVP$_G$) \textbf{Second Brain} e alla sua valutazione da parte della proponente$_G$.
+L'incontro si è tenuto in \textbf{modalità asincrona, tramite scambio di messaggi di posta elettronica}: il periodo di ferie estive della proponente$_G$ non ha consentito di fissare una riunione sincrona in videoconferenza. Il gruppo ha quindi trasmesso via email il materiale di presentazione dell'MVP$_G$ e la proponente$_G$ ha fatto pervenire, con lo stesso mezzo, le proprie valutazioni.
+Trattandosi di un confronto asincrono, il presente verbale non riporta un orario di inizio e uno di conclusione: la data indicata è quella in cui lo scambio si è concluso con la comunicazione dell'esito da parte della proponente$_G$.
 
 \section{Presenze}
 
@@ -97,16 +97,16 @@ Gregorio Piccoli & Zucchetti S.p.A. \\
 \section{Ordine del giorno}
 
 \begin{itemize}
-    \item presentazione dell'MVP \textbf{Second Brain} mediante video dimostrativo;
-    \item condivisione del \textit{repository} dell'MVP e del Manuale Utente;
-    \item valutazione del prodotto da parte della proponente ai fini dell'accettazione.
+    \item presentazione dell'MVP$_G$ \textbf{Second Brain} mediante video dimostrativo;
+    \item condivisione del \textit{repository} dell'MVP$_G$ e del Manuale Utente;
+    \item valutazione del prodotto da parte della proponente$_G$ ai fini dell'accettazione.
 \end{itemize}
 
 \section{Discussione e sintesi}
 
 \subsection{Materiale trasmesso alla proponente}
 
-Il gruppo ha inviato alla proponente un \textbf{video di presentazione} dell'MVP \textbf{Second Brain}, corredato dal collegamento al \textit{repository} del prodotto (\url{https://github.com/thebitless-group-swe/MVP}) e al \textbf{Manuale Utente}, consultabile sul sito del gruppo (\url{https://thebitless.live/}). Il video ripercorre le funzionalità realizzate e le scelte architetturali adottate, secondo i punti riportati nei paragrafi seguenti.
+Il gruppo ha inviato alla proponente$_G$ un \textbf{video di presentazione} dell'MVP$_G$ \textbf{Second Brain}, corredato dal collegamento al \textit{repository} del prodotto (\url{https://github.com/thebitless-group-swe/MVP}) e al \textbf{Manuale Utente}, consultabile sul sito del gruppo (\url{https://thebitless.live/}). Il video ripercorre le funzionalità realizzate e le scelte architetturali adottate, secondo i punti riportati nei paragrafi seguenti.
 
 \subsection{Interfaccia utente}
 
@@ -141,7 +141,7 @@ Sono state mostrate le funzionalità di scrittura e di manipolazione del testo:
 È stata presentata l'organizzazione architetturale del prodotto:
 
 \begin{itemize}
-    \item \textbf{separazione tra frontend e backend}: il frontend è realizzato in \textbf{React} con \textbf{TypeScript}, il backend in \textbf{Python} con il framework \textbf{FastAPI} e segue un'\textbf{architettura esagonale}, che isola il dominio applicativo dalle tecnologie di contorno;
+    \item \textbf{separazione tra frontend e backend}: il frontend$_G$ è realizzato in \textbf{React} con \textbf{TypeScript}, il backend in \textbf{Python} con il framework$_G$ \textbf{FastAPI} e segue un'\textbf{architettura esagonale}, che isola il dominio$_G$ applicativo dalle tecnologie di contorno;
     \item \textbf{sicurezza}: la chiave di autenticazione necessaria all'accesso ai modelli linguistici è custodita esclusivamente lato server e non raggiunge in alcun caso il browser dell'utente;
     \item \textbf{containerizzazione}: il prodotto è distribuito mediante \textbf{Docker}, così da rendere l'avvio dell'applicazione indipendente dall'ambiente di esecuzione.
 \end{itemize}
@@ -153,13 +153,13 @@ Il gruppo ha illustrato le misure adottate a garanzia della qualità:
 \begin{itemize}
     \item \textbf{pipeline di integrazione e distribuzione continua} automatizzata;
     \item \textbf{test di unità e di integrazione} sulle componenti realizzate;
-    \item \textbf{validazione del contratto dell'API} condiviso tra frontend e backend;
-    \item \textbf{revisione obbligatoria del codice} prima dell'integrazione nel ramo principale.
+    \item \textbf{validazione del contratto dell'API} condiviso tra frontend$_G$ e backend;
+    \item \textbf{revisione obbligatoria del codice} prima dell'integrazione$_G$ nel ramo principale.
 \end{itemize}
 
 \subsection{Requisiti opzionali non implementati}
 
-Il gruppo ha dichiarato esplicitamente alla proponente che i \textbf{requisiti opzionali} non sono stati realizzati, avendo scelto di dare priorità alla solidità dei requisiti obbligatori. Si tratta, nello specifico, di:
+Il gruppo ha dichiarato esplicitamente alla proponente$_G$ che i \textbf{requisiti opzionali} non sono stati realizzati, avendo scelto di dare priorità alla solidità dei requisiti$_G$ obbligatori. Si tratta, nello specifico, di:
 
 \begin{itemize}
     \item \textbf{archiviazione delle note lato server}, con la relativa gestione degli account utente;
@@ -169,10 +169,10 @@ Il gruppo ha dichiarato esplicitamente alla proponente che i \textbf{requisiti o
 
 \section{Esito dell'incontro}
 
-Il referente aziendale \textbf{Gregorio Piccoli} ha preso visione del materiale trasmesso, ossia del video di presentazione, del \textit{repository} dell'MVP e del Manuale Utente, manifestando soddisfazione per i risultati conseguiti, e confermando formalmente la propria approvazione e l'accettazione dell'MVP \textit{Second Brain}.
+Il referente aziendale \textbf{Gregorio Piccoli} ha preso visione del materiale trasmesso, ossia del video di presentazione, del \textit{repository} dell'MVP$_G$ e del Manuale Utente, manifestando soddisfazione per i risultati conseguiti, e confermando formalmente la propria approvazione$_G$ e l'accettazione dell'MVP$_G$ \textit{Second Brain}.
 
 \vspace{0.3cm}
 
-\noindent Il presente verbale costituisce pertanto l'evidenza dell'accettazione formale del prodotto da parte dell'azienda proponente.
+\noindent Il presente verbale costituisce pertanto l'evidenza dell'accettazione formale del prodotto da parte dell'azienda proponente$_G$.
 
 \end{document}
