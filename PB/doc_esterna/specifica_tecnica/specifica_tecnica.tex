@@ -2153,11 +2153,6 @@ Questo è l'unico dei sette casi d'uso dichiarato \texttt{async def} (sezione \r
 
 \subsection{Salvataggio e caricamento di una nota}
 \label{sec:flusso-persistenza}
-% CONTIENE: i due meccanismi di persistenza lato client dichiarati in §2.4, il
-% momento in cui ciascuno riceve il testo della nota, e il punto in cui la
-% raccolta dei metadati si ferma.
-% NON CONTIENE: la motivazione dell'esclusione della base di dati (§2.4), la
-% composizione dei moduli e degli store (§3.3.3 e §3.3.6).
 
 Le note non lasciano la macchina dell'utente, e la sezione \ref{sec:persistenza} dichiara la ragione della scelta. Questa sezione segue il percorso che i dati compiono dentro quel perimetro, nei due meccanismi che lo attuano. Il primo è l'accesso al file system, deliberato e attivato da un comando dell'interfaccia; il secondo è l'archivio locale del browser, automatico e destinato alla sola continuità della sessione. Conviene tenerli distinti fin dall'inizio, perché ciascuno riceve il testo della nota in un momento proprio, e la differenza fra quei due momenti è la sostanza di ciò che segue. L'ultima parte riguarda i metadati della nota e il punto in cui la loro raccolta si arresta.
 
