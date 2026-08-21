@@ -5,7 +5,7 @@
     <mxCell id="subsysBox" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;fillColor=#F7F7F7;strokeColor=#999999;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=12;fontColor=#666666;" value="&lt;b&gt;Sottosistema incapsulato&lt;/b&gt; — nessun componente React importa questi moduli" vertex="1">
       <mxGeometry height="250" width="1300" x="150" y="570" as="geometry" />
     </mxCell>
-    <mxCell id="cDialog" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=54;horizontalStack=0;resizeParent=1;resizeParentMax=0;html=1;verticalAlign=middle;align=center;whiteSpace=wrap;collapsible=0;strokeColor=#1B5E9E;fillColor=#DAE8FC;fontSize=12;" value="«Client»&lt;br&gt;&lt;b&gt;AiActionDialog&lt;/b&gt;&lt;br&gt;&lt;i&gt;web/src/components/AiActionDialog.tsx&lt;/i&gt;" vertex="1">
+    <mxCell id="cDialog" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=54;horizontalStack=0;resizeParent=1;resizeParentMax=0;html=1;verticalAlign=middle;align=center;whiteSpace=wrap;collapsible=0;strokeColor=#515151;fillColor=#E6E6E6;fontSize=12;" value="«Client»&lt;br&gt;&lt;b&gt;AiActionDialog&lt;/b&gt;&lt;br&gt;&lt;i&gt;web/src/components/AiActionDialog.tsx&lt;/i&gt;" vertex="1">
       <mxGeometry height="106" width="340" x="340" y="60" as="geometry" />
     </mxCell>
     <mxCell id="cd_1" parent="cDialog" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;" value="- streamFn : () ⟶ AsyncIterable&amp;lt;string&amp;gt;" vertex="1">
@@ -14,7 +14,7 @@
     <mxCell id="cd_2" parent="cDialog" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;" value="- handleGenerate() : void" vertex="1">
       <mxGeometry height="26" width="340" y="80" as="geometry" />
     </mxCell>
-    <mxCell id="cStream" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=54;horizontalStack=0;resizeParent=1;resizeParentMax=0;html=1;verticalAlign=middle;align=center;whiteSpace=wrap;collapsible=0;strokeColor=#1B5E9E;fillColor=#DAE8FC;fontSize=12;" value="«Client»&lt;br&gt;&lt;b&gt;useAiStream&lt;/b&gt;&lt;br&gt;&lt;i&gt;web/src/hooks/useAiStream.ts&lt;/i&gt;" vertex="1">
+    <mxCell id="cStream" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=54;horizontalStack=0;resizeParent=1;resizeParentMax=0;html=1;verticalAlign=middle;align=center;whiteSpace=wrap;collapsible=0;strokeColor=#515151;fillColor=#E6E6E6;fontSize=12;" value="«Client»&lt;br&gt;&lt;b&gt;useAiStream&lt;/b&gt;&lt;br&gt;&lt;i&gt;web/src/hooks/useAiStream.ts&lt;/i&gt;" vertex="1">
       <mxGeometry height="106" width="330" x="760" y="60" as="geometry" />
     </mxCell>
     <mxCell id="cs_1" parent="cStream" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;" value="+ start(fn) : Promise&amp;lt;void&amp;gt;" vertex="1">
@@ -23,7 +23,7 @@
     <mxCell id="cs_2" parent="cStream" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;" value="+ abort() : void" vertex="1">
       <mxGeometry height="26" width="330" y="80" as="geometry" />
     </mxCell>
-    <mxCell id="facade" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=54;horizontalStack=0;resizeParent=1;resizeParentMax=0;html=1;verticalAlign=middle;align=center;whiteSpace=wrap;collapsible=0;strokeColor=#82B366;fillColor=#D5E8D4;fontSize=13;fontStyle=0;" value="«Facade»&lt;br&gt;&lt;b&gt;api&lt;/b&gt;&lt;br&gt;&lt;i&gt;web/src/lib/api.ts&lt;/i&gt;" vertex="1">
+    <mxCell id="facade" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=54;horizontalStack=0;resizeParent=1;resizeParentMax=0;html=1;verticalAlign=middle;align=center;whiteSpace=wrap;collapsible=0;strokeColor=#666666;fillColor=#E0E0E0;fontSize=13;fontStyle=0;" value="«Facade»&lt;br&gt;&lt;b&gt;api&lt;/b&gt;&lt;br&gt;&lt;i&gt;web/src/lib/api.ts&lt;/i&gt;" vertex="1">
       <mxGeometry height="236" width="700" x="380" y="250" as="geometry" />
     </mxCell>
     <mxCell id="f_1" parent="facade" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;" value="+ summarize(text : string, length : Length = &#39;medio&#39;) : AsyncIterable&amp;lt;string&amp;gt;" vertex="1">
@@ -62,7 +62,7 @@
     <mxCell id="m_4" parent="models" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=10;" value="Hat = bianco | rosso | giallo | nero | ..." vertex="1">
       <mxGeometry height="26" width="300" y="132" as="geometry" />
     </mxCell>
-    <mxCell id="streamFn" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=54;horizontalStack=0;resizeParent=1;resizeParentMax=0;html=1;verticalAlign=middle;align=center;whiteSpace=wrap;collapsible=0;strokeColor=#B85450;fillColor=#F8CECC;fontSize=12;" value="«function» — non esportata&lt;br&gt;&lt;b&gt;stream(endpoint, body)&lt;/b&gt;&lt;br&gt;&lt;i&gt;lib/api.ts&lt;/i&gt;" vertex="1">
+    <mxCell id="streamFn" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=54;horizontalStack=0;resizeParent=1;resizeParentMax=0;html=1;verticalAlign=middle;align=center;whiteSpace=wrap;collapsible=0;strokeColor=#666666;fillColor=#DADADA;fontSize=12;" value="«function» — non esportata&lt;br&gt;&lt;b&gt;stream(endpoint, body)&lt;/b&gt;&lt;br&gt;&lt;i&gt;lib/api.ts&lt;/i&gt;" vertex="1">
       <mxGeometry height="158" width="290" x="180" y="620" as="geometry" />
     </mxCell>
     <mxCell id="sf_1" parent="streamFn" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=10;" value="compone l&#39;URL con API_BASE_URL" vertex="1">
@@ -77,13 +77,13 @@
     <mxCell id="sf_4" parent="streamFn" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=10;" value="converte SseEvent &#39;error&#39; in throw" vertex="1">
       <mxGeometry height="26" width="290" y="132" as="geometry" />
     </mxCell>
-    <mxCell id="fetchApi" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;align=center;verticalAlign=middle;fontSize=11;" value="«Web API»&lt;br&gt;&lt;b&gt;fetch&lt;/b&gt;&lt;br&gt;&lt;i&gt;Response&lt;/i&gt;" vertex="1">
+    <mxCell id="fetchApi" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DADADA;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="«Web API»&lt;br&gt;&lt;b&gt;fetch&lt;/b&gt;&lt;br&gt;&lt;i&gt;Response&lt;/i&gt;" vertex="1">
       <mxGeometry height="80" width="170" x="500" y="660" as="geometry" />
     </mxCell>
-    <mxCell id="reader" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;align=center;verticalAlign=middle;fontSize=11;" value="«Streams API»&lt;br&gt;&lt;b&gt;ReadableStreamDefault&lt;br&gt;Reader&amp;lt;Uint8Array&amp;gt;&lt;/b&gt;" vertex="1">
+    <mxCell id="reader" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DADADA;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="«Streams API»&lt;br&gt;&lt;b&gt;ReadableStreamDefault&lt;br&gt;Reader&amp;lt;Uint8Array&amp;gt;&lt;/b&gt;" vertex="1">
       <mxGeometry height="80" width="200" x="700" y="660" as="geometry" />
     </mxCell>
-    <mxCell id="sseParser" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=54;horizontalStack=0;resizeParent=1;resizeParentMax=0;html=1;verticalAlign=middle;align=center;whiteSpace=wrap;collapsible=0;strokeColor=#B85450;fillColor=#F8CECC;fontSize=12;" value="«module»&lt;br&gt;&lt;b&gt;parseSseStream&lt;/b&gt;&lt;br&gt;&lt;i&gt;web/src/lib/sse.ts&lt;/i&gt;" vertex="1">
+    <mxCell id="sseParser" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=54;horizontalStack=0;resizeParent=1;resizeParentMax=0;html=1;verticalAlign=middle;align=center;whiteSpace=wrap;collapsible=0;strokeColor=#666666;fillColor=#DADADA;fontSize=12;" value="«module»&lt;br&gt;&lt;b&gt;parseSseStream&lt;/b&gt;&lt;br&gt;&lt;i&gt;web/src/lib/sse.ts&lt;/i&gt;" vertex="1">
       <mxGeometry height="158" width="300" x="930" y="620" as="geometry" />
     </mxCell>
     <mxCell id="sp_1" parent="sseParser" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=10;" value="bufferizza le righe spezzate" vertex="1">
@@ -98,13 +98,13 @@
     <mxCell id="sp_4" parent="sseParser" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=10;" value="distingue [DONE] / error / troncamento" vertex="1">
       <mxGeometry height="26" width="300" y="132" as="geometry" />
     </mxCell>
-    <mxCell id="decoder" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;align=center;verticalAlign=middle;fontSize=11;" value="«Encoding API»&lt;br&gt;&lt;b&gt;TextDecoder&lt;/b&gt;" vertex="1">
+    <mxCell id="decoder" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DADADA;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="«Encoding API»&lt;br&gt;&lt;b&gt;TextDecoder&lt;/b&gt;" vertex="1">
       <mxGeometry height="66" width="170" x="1260" y="620" as="geometry" />
     </mxCell>
-    <mxCell id="sseEvent" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;align=center;verticalAlign=middle;fontSize=11;" value="«union type»&lt;br&gt;&lt;b&gt;SseEvent&lt;/b&gt;&lt;br&gt;chunk | error" vertex="1">
+    <mxCell id="sseEvent" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DADADA;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="«union type»&lt;br&gt;&lt;b&gt;SseEvent&lt;/b&gt;&lt;br&gt;chunk | error" vertex="1">
       <mxGeometry height="72" width="170" x="1260" y="706" as="geometry" />
     </mxCell>
-    <mxCell id="backend" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;align=center;verticalAlign=middle;fontSize=11;" value="«boundary»&lt;br&gt;&lt;b&gt;Backend FastAPI&lt;/b&gt;&lt;br&gt;&lt;br&gt;POST /api/summarize&amp;nbsp;&amp;nbsp;&amp;nbsp;POST /api/translate&amp;nbsp;&amp;nbsp;&amp;nbsp;POST /api/rewrite&lt;br&gt;POST /api/grammar&amp;nbsp;&amp;nbsp;&amp;nbsp;POST /api/critique&amp;nbsp;&amp;nbsp;&amp;nbsp;POST /api/generate&lt;br&gt;POST /api/generate-from-link&lt;br&gt;&lt;br&gt;&lt;i&gt;risposta: text/event-stream&lt;/i&gt;" vertex="1">
+    <mxCell id="backend" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DBDBDB;strokeColor=#666666;align=center;verticalAlign=middle;fontSize=11;" value="«boundary»&lt;br&gt;&lt;b&gt;Backend FastAPI&lt;/b&gt;&lt;br&gt;&lt;br&gt;POST /api/summarize&amp;nbsp;&amp;nbsp;&amp;nbsp;POST /api/translate&amp;nbsp;&amp;nbsp;&amp;nbsp;POST /api/rewrite&lt;br&gt;POST /api/grammar&amp;nbsp;&amp;nbsp;&amp;nbsp;POST /api/critique&amp;nbsp;&amp;nbsp;&amp;nbsp;POST /api/generate&lt;br&gt;POST /api/generate-from-link&lt;br&gt;&lt;br&gt;&lt;i&gt;risposta: text/event-stream&lt;/i&gt;" vertex="1">
       <mxGeometry height="160" width="720" x="330" y="890" as="geometry" />
     </mxCell>
     <mxCell id="legend" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;align=left;verticalAlign=top;spacingLeft=8;spacingTop=4;fontSize=11;" value="&lt;b&gt;Legenda&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font color=&quot;#82B366&quot;&gt;■&lt;/font&gt;&amp;nbsp; Facade — unico punto d&#39;ingresso esposto&lt;br&gt;&lt;font color=&quot;#1B5E9E&quot;&gt;■&lt;/font&gt;&amp;nbsp; Client — cio&#39; che la usa&lt;br&gt;&lt;font color=&quot;#B85450&quot;&gt;■&lt;/font&gt;&amp;nbsp; Sottosistema — cio&#39; che nasconde&lt;br&gt;&lt;font color=&quot;#9673A6&quot;&gt;■&lt;/font&gt;&amp;nbsp; Confine di sistema&lt;br&gt;&lt;br&gt;— — →&amp;nbsp;&amp;nbsp;dipendenza / delega&lt;br&gt;———▶&amp;nbsp;&amp;nbsp;chiamata di rete" vertex="1">
@@ -146,7 +146,7 @@
     <mxCell id="e10" edge="1" parent="1" source="sseParser" style="endArrow=open;endSize=12;dashed=1;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=10;verticalAlign=bottom;" target="sseEvent" value="«yield»">
       <mxGeometry relative="1" as="geometry" />
     </mxCell>
-    <mxCell id="e11" edge="1" parent="1" source="fetchApi" style="endArrow=block;endFill=1;endSize=8;dashed=0;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;strokeWidth=2;strokeColor=#9673A6;fontColor=#9673A6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.35;entryY=0;entryDx=0;entryDy=0;fontSize=10;verticalAlign=bottom;" target="backend" value="HTTP POST&lt;br&gt;text/event-stream">
+    <mxCell id="e11" edge="1" parent="1" source="fetchApi" style="endArrow=block;endFill=1;endSize=8;dashed=0;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;strokeWidth=2;strokeColor=#666666;fontColor=#666666;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.35;entryY=0;entryDx=0;entryDy=0;fontSize=10;verticalAlign=bottom;" target="backend" value="HTTP POST&lt;br&gt;text/event-stream">
       <mxGeometry relative="1" as="geometry">
         <Array as="points">
           <mxPoint x="590" y="740" />
