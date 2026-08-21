@@ -2,47 +2,38 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
 
-class useNotesStore {
-  - list: Note[]
-  - currentId: string | null
-  __
-  + createEmpty(): Note
-  + select(id: string): void
-  + updateCurrent(patch): void
-  + loadNote(note: Note): void
-}
+title Rilettura dell'archivio locale all'avvio
 
-class Note {
-  - id: string
-  - title: string
-  - content: string
-  - createdAt: number
-  - updatedAt: number
-}
+participant Applicazione as APP
+participant useEditorStore as ES
+participant useNotesStore as NS
+participant persist as P
+participant localStorage as LS
 
-class useEditorStore {
-  - currentText: string
-  - _loadVersion: number
-  __
-  + loadDocument(text: string): void
-  + setCurrentText(text: string): void
-}
+APP -> NS : primo accesso allo store
+NS -> P : creazione dello store avvolto
+P -> LS : rilegge la chiave notes_persistence
+LS --> P : list e currentId, se presenti
+P -> NS : stato reidratato
+P -> NS : onRehydrateStorage(state)
 
-class Zustand {
-  + persist(fn, config): StoreApi
-}
+alt esiste in list una nota con id pari a currentId
 
-class localStorage {
-  + setItem(key: string, value: string): void
-  + getItem(key: string): string | null
-}
+  NS -> ES : loadDocument(contenuto della nota corrente)
 
-useNotesStore "1" --o "0..*" Note : contiene
-useNotesStore ..> Zustand : utilizza (middleware persist)
-Zustand ..> localStorage : legge/scrive (notes_persistence)
-useNotesStore ..> useEditorStore : loadDocument()
+else archivio assente, o senza nota corrispondente
+
+  NS -> NS : ensureWelcomeNote()
+  NS -> NS : loadNote(nota di benvenuto)
+  NS -> P : mutazione dello store
+  P -> LS : riversa list e currentId
+  NS -> ES : loadDocument(CONTENUTO_BENVENUTO)
+
+end
 
 @enduml

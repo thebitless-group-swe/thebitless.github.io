@@ -2,36 +2,70 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
-start
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
 
-:Utente → "Salva file";
+title Il modulo lib/fileSystem.ts e le sue dipendenze
 
-:saveNoteToFile(note);
+together {
+  class Sidebar <<components/>> {
+    - handleOpenFile(): Promise<void>
+    - handleSaveFile(): Promise<void>
+    - commitRename(note: Note): Promise<void>
+  }
 
-:Deriva nome file dal titolo;
-:Crea Blob con contenuto;
+  class fileSystem <<lib/>> {
+    + GRAZIA_ANNULLAMENTO_MS: number
+    + openNoteFromFile(): Promise<Note | null>
+    + saveNoteToFile(note: Note): Promise<void>
+    + renameNote(note: Note, name: string): Promise<Note>
+    - TITOLO_DI_RIPIEGO: string
+    - scegliFileConInput(): Promise<{ text, fileName } | null>
+    - eAnnullamento(err: unknown): boolean
+  }
 
-if (showSaveFilePicker disponibile?) then (Sì)
-  :showSaveFilePicker()
-  with suggestedName e MIME;
-  :Utente sceglie percorso;
-  :createWritable();
-  :write(blob);
-  :close();
-else (No - Firefox/Safari)
-  :URL.createObjectURL(blob);
-  :Crea link <a download>;
-  :click() programmatico;
-  :URL.revokeObjectURL();
-endif
+  class id <<lib/>> {
+    + newId(): string
+  }
+}
 
-if (Utente ha annullato?) then (Sì)
-  :Nessuna operazione;
-  stop
-else (No)
-  :File salvato;
-  stop
+together {
+  class useNotesStore <<store/>> {
+    - list: Note[]
+    - currentId: string | null
+    + loadNote(note: Note): void
+    + updateCurrent(patch): void
+    + select(id: string): void
+    + createEmpty(title?: string): Note
+  }
+
+  class useEditorStore <<store/>> {
+    + currentText: string
+    + loadDocument(text: string): void
+  }
+
+  class Note <<lib/fileSystem.ts>> {
+    + id: string
+    + title: string
+    + content: string
+    + createdAt: number
+    + updatedAt: number
+  }
+}
+
+Sidebar ..> fileSystem
+Sidebar ..> useNotesStore
+Sidebar ..> useEditorStore
+
+fileSystem ..> id
+fileSystem ..> Note : compone
+
+useNotesStore ..> id
+useNotesStore ..> useEditorStore
+useNotesStore "1" o-- "0..*" Note
+
+Sidebar -[hidden]down- useNotesStore
 
 @enduml

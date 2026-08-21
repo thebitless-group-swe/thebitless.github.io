@@ -2,60 +2,39 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
-' ============================================================
-' ENTITÀ NOTE
-' ============================================================
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
 
-class Note {
-  - id: string
-  - title: string
-  - content: string
-  - createdAt: number
-  - updatedAt: number
+title Provenienza dei metadati per una nota creata nel prodotto e per una importata da file
+
+class File <<oggetto del browser>> {
+  + name
+  + lastModified
 }
 
-' ============================================================
-' MODULO fileSystem
-' ============================================================
+together {
+  object "Note creata da createEmpty" as CREATA {
+    id = newId()
+    title = titolo scelto, oppure "Senza titolo"
+    content = ""
+    createdAt = istante della creazione
+    updatedAt = rinfrescato a ogni scrittura sulla nota
+  }
 
-class fileSystem {
-  + openNoteFromFile(): Promise<Note | null>
-  + saveNoteToFile(note: Note): Promise<void>
-  + renameNote(note: Note, name: string): Promise<Note>
-  + GRAZIA_ANNULLAMENTO_MS: number (300)
-  + TITOLO_DI_RIPIEGO: string
-  - scegliFileConInput(): Promise<{text: string, fileName: string} | null>
-  - eAnnullamento(err: unknown): boolean
+  object "Note composta da openNoteFromFile" as IMPORTATA {
+    id = newId()
+    title = nome del file, senza .md o .txt
+    content = testo letto dal file
+    createdAt = istante dell'importazione
+    updatedAt = istante dell'importazione
+  }
 }
 
-' ============================================================
-' LIBRERIE UTILIZZATE
-' ============================================================
+File --> IMPORTATA : name, verso title
+File ..> IMPORTATA : lastModified, non letto
 
-class id {
-  + newId(): string
-}
-
-class useNotesStore {
-  + loadNote(note: Note): void
-}
-
-class useEditorStore {
-  + loadDocument(text: string): void
-}
-
-' ============================================================
-' RELAZIONI
-' ============================================================
-
-fileSystem ..> Note : crea/gestisce
-fileSystem ..> id : utilizza (newId)
-
-Sidebar ..> fileSystem : utilizza (openNoteFromFile, saveNoteToFile)
-
-fileSystem ..> useNotesStore : utilizza (loadNote)
-fileSystem ..> useEditorStore : utilizza (loadDocument)
+CREATA -[hidden]down- IMPORTATA
 
 @enduml

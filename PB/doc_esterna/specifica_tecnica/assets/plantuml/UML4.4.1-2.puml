@@ -2,49 +2,54 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
+
+title Salvataggio di una nota su file
 
 start
 
-:Utente → "Apri file…";
+:L'utente attiva "Salva file" nella Sidebar;
 
-:openNoteFromFile();
+:Sidebar preleva currentText da useEditorStore
+e lo sovrappone al contenuto della nota corrente;
 
-if (showOpenFilePicker disponibile?) then (Sì)
-  :showOpenFilePicker()
-  con tipi .md e .txt;
-  :Ottiene fileHandle;
-  :file.text()\nlegge contenuto;
-else (No - Firefox/Safari)
-  :Crea input type="file";
-  :input.click();
-  
-  fork
-    :Evento oncancel;
-    :resolve(null);
-  fork again
-    :Focus window + 300ms;
-    if (input.files vuoto?) then (Sì)
-      :resolve(null);
-    endif
-  end fork
+:saveNoteToFile deriva il nome dal titolo, con estensione .md,
+e costruisce un Blob di tipo text/markdown;
+
+if (showSaveFilePicker presente in window?) then (si)
+
+  :showSaveFilePicker propone il nome
+  e l'utente sceglie la destinazione;
+
+  switch (esito della chiamata nativa?)
+  case (riuscita)
+    :createWritable, write, close;
+    :Il file di testo e' scritto
+    nella destinazione scelta;
+  case (AbortError)
+    :eAnnullamento riconosce l'annullamento
+    e saveNoteToFile termina senza scrivere;
+  case (altro errore)
+    :L'errore risale alla Sidebar, che mostra
+    un messaggio e lascia intatto
+    il testo dell'editor;
+  endswitch
+
+else (no)
+
+  :URL.createObjectURL costruisce
+  un indirizzo temporaneo dal Blob;
+  :Un'ancora con attributo download
+  viene attivata per via programmatica;
+  :URL.revokeObjectURL rilascia l'indirizzo;
+  :Il file segue le impostazioni
+  di scaricamento del browser;
+
 endif
 
-if (Utente ha annullato?) then (Sì)
-  :Nessuna operazione;
-  stop
-else (No)
-  :Deriva titolo dal nome file;
-  :Crea Note con:
-  - id: crypto.randomUUID()
-  - title: da fileName
-  - content: testo letto
-  - createdAt: now
-  - updatedAt: now;
-  
-  :Restituisce Note;
-  stop
-endif
+stop
 
 @enduml

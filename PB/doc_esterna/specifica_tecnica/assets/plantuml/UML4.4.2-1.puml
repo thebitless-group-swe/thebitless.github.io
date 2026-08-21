@@ -2,57 +2,54 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
 
-actor Utente as U
+title La catena di persistenza dello store delle note
 
-participant "Componente UI" as UI
-participant "notes" as NS
-participant "middleware persist" as PERSIST
-participant "localStorage" as LS
+together {
+  class useEditorStore <<store/>> {
+    + currentText: string
+    + loadDocument(text: string): void
+    + setCurrentText(text: string): void
+    + insertOutputIntoNote(insertMode?): void
+  }
 
-' ============================================================
-' SCENARIO 1: CAMBIO NOTA
-' ============================================================
+  class useNotesStore <<store/>> {
+    - list: Note[]
+    - currentId: string | null
+    + createEmpty(title?: string): Note
+    + select(id: string): void
+    + updateCurrent(patch): void
+    + deleteNote(id: string): void
+    + loadNote(note: Note): void
+    + ensureWelcomeNote(): void
+  }
 
-U -> UI : Seleziona altra nota
-UI -> NS : select(noteId)
-NS -> NS : Aggiorna currentId
-NS -> NS : updateCurrent()
-NS -> PERSIST : Serializza stato
-PERSIST -> LS : setItem('notes_persistence')
-NS -> UI : ok
-UI --> U : Nota caricata
+  class Note <<lib/fileSystem.ts>> {
+    + id: string
+    + title: string
+    + content: string
+    + createdAt: number
+    + updatedAt: number
+  }
+}
 
-' ============================================================
-' SCENARIO 2: CREAZIONE NOTA
-' ============================================================
+together {
+  class persist <<zustand/middleware>> {
+    + name = "notes_persistence"
+    + onRehydrateStorage()
+  }
 
-U -> UI : Clicca "Nuova nota"
-UI -> NS : createEmpty()
-NS -> NS : Crea nuova nota
-NS -> PERSIST : Serializza stato
-PERSIST -> LS : setItem('notes_persistence')
-NS -> UI : ok
-UI --> U : Nota vuota
+  class localStorage <<browser>> {
+  }
+}
 
-' ============================================================
-' SCENARIO 3: ACCETTAZIONE AI
-' ============================================================
-
-U -> UI : Accetta output AI
-UI -> NS : insertOutputIntoNote()
-NS -> NS : Aggiorna currentText
-NS -> PERSIST : Serializza stato
-PERSIST -> LS : setItem('notes_persistence')
-NS -> UI : ok
-UI --> U : Output inserito
-
-note right of NS
-  Il salvataggio in localStorage
-  avviene SOLO in questi tre momenti.
-  NON a ogni modifica del testo.
-end note
+useNotesStore "1" o-- "0..*" Note
+useNotesStore ..> useEditorStore
+useNotesStore ..> persist : avvolto da
+persist ..> localStorage : serializza e rilegge
 
 @enduml
