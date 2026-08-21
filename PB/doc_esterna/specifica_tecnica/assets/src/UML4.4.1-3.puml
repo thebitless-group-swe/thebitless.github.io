@@ -2,60 +2,76 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
-' ============================================================
-' ENTITÀ NOTE
-' ============================================================
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
 
-class Note {
-  - id: string
-  - title: string
-  - content: string
-  - createdAt: number
-  - updatedAt: number
-}
+title Caricamento di una nota da file
 
-' ============================================================
-' MODULO fileSystem
-' ============================================================
+start
 
-class fileSystem {
-  + openNoteFromFile(): Promise<Note | null>
-  + saveNoteToFile(note: Note): Promise<void>
-  + renameNote(note: Note, name: string): Promise<Note>
-  + GRAZIA_ANNULLAMENTO_MS: number (300)
-  + TITOLO_DI_RIPIEGO: string
-  - scegliFileConInput(): Promise<{text: string, fileName: string} | null>
-  - eAnnullamento(err: unknown): boolean
-}
+:L'utente attiva "Apri file..."
+nella Sidebar;
 
-' ============================================================
-' LIBRERIE UTILIZZATE
-' ============================================================
+:handleOpenFile chiama openNoteFromFile;
 
-class id {
-  + newId(): string
-}
+if (showOpenFilePicker presente in window?) then (si)
 
-class useNotesStore {
-  + loadNote(note: Note): void
-}
+  :showOpenFilePicker
+  con i tipi .md e .txt;
 
-class useEditorStore {
-  + loadDocument(text: string): void
-}
+  switch (esito della chiamata nativa?)
+  case (riuscita)
+    :getFile e file.text danno
+    il testo e il nome;
+  case ( AbortError)
+    :eAnnullamento riconosce
+    l'annullamento, il risultato
+    e' null;
+    stop
+  case (altro errore)
+    :L'errore risale alla Sidebar,
+    che mostra un messaggio
+    e preserva la sessione;
+    stop
+  endswitch
 
-' ============================================================
-' RELAZIONI
-' ============================================================
+else (no)
 
-fileSystem ..> Note : crea/gestisce
-fileSystem ..> id : utilizza (newId)
+  :scegliFileConInput crea un input
+  di tipo file con le estensioni
+  ammesse e lo attiva;
 
-Sidebar ..> fileSystem : utilizza (openNoteFromFile, saveNoteToFile)
+  switch (segnale che arriva prima?)
+  case (change con un file)
+    :FileReader.readAsText da'
+    il testo e il nome;
+  case ( oncancel)
+    :Il risultato e' null;
+    stop
+  case (fuoco tornato)
+    :Trascorsi
+    GRAZIA_ANNULLAMENTO_MS
+    input.files e' ancora
+    vuoto, il risultato e' null;
+    stop
+  endswitch
 
-fileSystem ..> useNotesStore : utilizza (loadNote)
-fileSystem ..> useEditorStore : utilizza (loadDocument)
+endif
+
+:title dal nome del file, senza .md o .txt,
+oppure TITOLO_DI_RIPIEGO se il nome manca;
+
+:id da newId, createdAt e updatedAt
+all'istante di importazione;
+
+:openNoteFromFile restituisce la Note;
+
+:La Sidebar la passa a loadNote di useNotesStore,
+che la rende corrente e ne carica il testo nell'editor
+senza consolidare prima il testo in lavorazione;
+
+stop
 
 @enduml

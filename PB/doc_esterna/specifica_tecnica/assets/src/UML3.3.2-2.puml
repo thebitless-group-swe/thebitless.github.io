@@ -2,51 +2,55 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
+
+title TopBar
+
+top to bottom direction
 
 class TopBar {
-  - noteTitle?: string
-  - isGenerating: boolean
-  - errorMessage: string | null
-  - aiModal: AiModal
-  - currentNote: Note | null
+  + noteTitle?: string
   __
-  + openModal(modal: AiActionId): void
-  + handleAbort(): void
+  - openModal(modal: AiActionId): void
+  - handleAbort(): void
 }
 
-class useNotesStore {
-  - list: Note[]
-  - currentId: string | null
+class useEditorStore <<store>> {
+  + isGenerating: boolean
+  + errorMessage: string | null
+  + aiModal: AiModal
   __
-  + createEmpty(): Note
-  + select(id: string): void
-}
-
-class useEditorStore {
-  - currentText: string
-  - isGenerating: boolean
-  - errorMessage: string | null
-  - aiModal: AiModal
-  __
-  + setAiModal(modal: AiModal): void
   + abortStream(): void
+  __
+  + useIsGenerating(): boolean
+  + useErrorMessage(): string | null
+  + useAiModal(): AiModal
 }
 
-class AiActionId {
+class useNotesStore <<store>> {
+  + useCurrentNote(): Note | null
 }
 
-class AiModal {
+class AiActionId <<type>> {
+  'summarize' | 'translate' |
+  'rewrite' | 'grammar' |
+  'critique' | 'generate' |
+  'generate-link'
 }
 
-class Note {
+class AiModal <<type>> {
+  null | AiActionId
 }
 
-TopBar ..> useNotesStore : utilizza
-TopBar ..> useEditorStore : utilizza
-TopBar ..> AiActionId : utilizza
-TopBar ..> AiModal : utilizza
-useNotesStore ..> Note : gestisce
+TopBar --> useEditorStore
+TopBar --> useNotesStore
+TopBar --> AiActionId
+AiModal --> AiActionId
+
+useEditorStore -[hidden]right- useNotesStore
+AiModal -[hidden]right- AiActionId
 
 @enduml

@@ -2,29 +2,50 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
 
-class ViewToggle {
-  - viewMode: ViewMode
+title EditorToolbar
+
+top to bottom direction
+
+class EditorToolbar {
+  - formatTools: FormatTool[]
+  - headingOptions
   __
-  + setViewMode(mode: ViewMode): void
+  - handleAction(label: ToolLabel): void
+  - handleHeading(level: HeadingLevel): void
+  - handleList(ordered: boolean): void
 }
 
-class useEditorStore {
-  - viewMode: ViewMode
-  __
-  + setViewMode(mode: ViewMode): void
+class useEditorStore <<store>> {
+  + editorView: EditorView | null
 }
 
-enum ViewMode {
-  editor
-  render
-  split
+class editorCommands <<lib/>> {
+  + toggleBoldCommand(view: EditorView): boolean
+  + toggleItalicCommand(view: EditorView): boolean
+  + toggleUnderlineCommand(view: EditorView): boolean
+  + toggleStrikethroughCommand(view: EditorView): boolean
+  + toggleInlineCodeCommand(view: EditorView): boolean
+  + toggleLinkCommand(view: EditorView): boolean
+  + insertImageCommand(view: EditorView): boolean
+  + setHeadingCommand(view: EditorView, level: HeadingLevel): boolean
+  + toggleListCommand(view: EditorView): boolean
+  + toggleOrderedListCommand(view: EditorView): boolean
 }
 
-ViewToggle ..> useEditorStore : utilizza
-ViewToggle ..> ViewMode : utilizza
-useEditorStore ..> ViewMode : utilizza
+class EditorView <<@codemirror/view>> {
+  + state
+  + dispatch({ changes, selection })
+  + focus(): void
+}
+
+EditorToolbar --> useEditorStore
+EditorToolbar --> editorCommands
+editorCommands --> EditorView
+useEditorStore --> EditorView
 
 @enduml

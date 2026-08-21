@@ -1,42 +1,39 @@
 @startuml
 !theme plain
-hide circle
-skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
+skinparam shadowing false
+skinparam defaultFontSize 14
 
-== Scenario 2: Caricamento nota (Store → Editor)==
+title Diagramma di sequenza della sincronizzazione dallo store all'editor
 
-participant notes as NS
-participant useEditorStore as ES
-participant Editor as ED
+participant useNotesStore <<store>>
+participant useEditorStore <<store>>
+participant Editor
+participant EditorView <<@codemirror/view>>
+participant updateListener <<estensione>>
 
-NS -> ES : loadDocument(newContent)
-activate ES
+useNotesStore -> useEditorStore : loadDocument(contenuto)
 
-ES -> ES : currentText = newContent
-ES -> ES : _loadVersion++
-ES -> ED : Notifica cambiamento\n(currentText, _loadVersion)
-activate ED
+alt il contenuto coincide con currentText
+  useEditorStore --> useNotesStore : nessuna modifica,\n_loadVersion non avanza
+else il contenuto differisce
+  useEditorStore -> useEditorStore : currentText = contenuto,\n_loadVersion++
+  useEditorStore -> Editor : notifica del selettore useCurrentText
+  Editor -> EditorView : view.state.doc.toString()
 
-ED -> ED : Verifica differenza
-
-ED -> ED : Costruisce Transaction
-
-ED -> ED : view.dispatch(transaction)
-
-ED -> ED : Editor aggiornato
-
-ED -> ES : updateListener intercetta
-activate ES
-
-ES -> ES : StoreSync true → ignora
-
-ES --> ED : ok
-deactivate ES
-ED --> ES : ok
-deactivate ED
-
-deactivate ES
+  alt il documento coincide con currentText
+    Editor -> EditorView : focus()
+  else il documento differisce
+    Editor -> useEditorStore : getState()._loadVersion
+    Editor -> Editor : confronta con prevLoadVersionRef\ne lo aggiorna
+    alt il contatore e' cambiato
+      Editor -> EditorView : dispatch(changes, StoreSync\n+ addToHistory(false))
+    else il contatore e' invariato
+      Editor -> EditorView : dispatch(changes, StoreSync)
+    end
+    EditorView -> updateListener : update (docChanged)
+    updateListener -> updateListener : riconosce StoreSync\ne non rimanda nulla
+    Editor -> EditorView : focus()
+  end
+end
 
 @enduml

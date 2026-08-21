@@ -2,148 +2,92 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
+skinparam shadowing false
+skinparam defaultFontSize 14
+skinparam nodesep 45
+skinparam ranksep 65
 
-' ============================================================
-' 1. HOOK E STORE
-' ============================================================
+title Accesso al servizio applicativo
 
-class useAiStream {
-  - status: 'idle' | 'streaming' | 'done' | 'error'
-  - abortControllerRef: RefObject<AbortController | null>
-  - isAbortedRef: RefObject<boolean>
-  __
-  + start<T>(fn: () => AsyncIterable<T>): Promise<void>
-  + abort(): void
-}
+top to bottom direction
 
-class useEditorStore {
-  - isGenerating: boolean
-  - streamedOutput: string
-  - errorMessage: string | null
-  - _abortController: AbortController | null
-  - lastCall: LastCall | null
-  __
-  + startStreaming(): void
-  + appendChunk(chunk: string): void
-  + finishStreaming(): void
-  + setError(msg: string): void
-  + clearError(): void
-  + _setAbortController(c: AbortController | null): void
-  + abortStream(): void
-  + setLastCall(call: LastCall): void
-  + clearLastCall(): void
-}
-
-class LastCall {
-  input: string
-  params: AiParams
-  mode?: 'prompt' | 'link'
-  actionId: AiActionId
-  execute(signal: AbortSignal): AsyncIterable<string>
-}
-
-' ============================================================
-' 2. API E PARSER SSE
-' ============================================================
-
-class api {
-  + summarize(text: string, length: Length): AsyncIterable<string>
-  + translate(text: string, target: Language): AsyncIterable<string>
-  + rewrite(text: string, style: Style): AsyncIterable<string>
-  + grammar(text: string): AsyncIterable<string>
-  + critique(text: string, hat: Hat): AsyncIterable<string>
-  + generate(prompt: string, length: Length): AsyncIterable<string>
-  + generateFromLink(url: string, length: Length): AsyncIterable<string>
-  - stream(endpoint: string, body: unknown): AsyncIterable<string>
-}
-
-class sse {
-  + parseSseStream(reader: ReadableStreamDefaultReader<Uint8Array>): AsyncIterable<SseEvent>
-  + STREAM_INTERRUPTED_MESSAGE: string
-}
-
-class SseEvent {
-  type: 'chunk' | 'error'
-  data: string
-  message?: string
-}
-
-class abort {
-  + isAbortError(err: unknown): boolean
-}
-
-' ============================================================
-' 3. TIPI GENERATI
-' ============================================================
-
-class types {
-  + api.ts (generato da openapi-typescript)
-  + models.ts
-}
-
-' ============================================================
-' 4. COMPONENTI CHE UTILIZZANO
-' ============================================================
+' Ogni funzione della facciata riceve, oltre ai parametri di dominio,
+' un ultimo parametro signal?: AbortSignal, qui omesso per non ripeterlo
+' sette volte. La sequenza completa di un'interazione e' nella sezione 4.1.
 
 class AiActionDialog {
-  - actionId: AiActionId
-  - isGenerating: boolean
-  - streamedOutput: string
-  - errorMessage: string | null
-  - displayed: string
-  - params: AiParams
-  - input: string
-  - validationError: string | null
-  - lastCall: LastCall | null
-  __
-  + handleGenerate(): void
-  + handleAccept(): void
-  + handleReject(): void
-  + handleStop(): void
+  - handleGenerate(): void
+  - handleStop(): void
 }
 
 class TopBar {
-  - isGenerating: boolean
-  - errorMessage: string | null
-  - aiModal: AiModal
-  __
-  + handleAbort(): void
+  - handleAbort(): void
 }
 
-' ============================================================
-' 5. RELAZIONI
-' ============================================================
+class useAiStream <<hooks/>> {
+  + start<T>(fn: (signal: AbortSignal) =>\nAsyncIterable<T>): Promise<void>
+  + abort(): void
+  + status: 'idle' | 'streaming' | 'done' | 'error'
+  - abortControllerRef: AbortController | null
+  - isAbortedRef: boolean
+}
 
-' AiActionDialog → useAiStream (usa l'hook)
-AiActionDialog ..> useAiStream : utilizza (start, abort, status)
-AiActionDialog ..> useEditorStore : utilizza
-AiActionDialog ..> api : utilizza
-AiActionDialog ..> types : utilizza (parametri tipizzati)
+class useEditorStore <<store>> {
+  + streamedOutput: string
+  + isGenerating: boolean
+  + errorMessage: string | null
+  - _abortController: AbortController | null
+  __
+  + startStreaming()
+  + appendChunk(chunk)
+  + finishStreaming()
+  + setError(msg)
+  + abortStream()
+  - _setAbortController(c)
+}
 
-' TopBar → useEditorStore (abort)
-TopBar ..> useEditorStore : utilizza (abortStream)
+class api <<lib/, facciata>> {
+  + summarize(text: string, length: Length)
+  + translate(text: string, target_language: Language)
+  + rewrite(text: string, style: Style)
+  + grammar(text: string)
+  + critique(text: string, hat: Hat)
+  + generate(prompt: string, length: Length)
+  + generateFromLink(url: string, length: Length)
+  - stream(endpoint: string, body: unknown, signal?)
+}
 
-' useAiStream → useEditorStore (gestisce stato)
-useAiStream ..> useEditorStore : utilizza (appendChunk, startStreaming, setError)
+class sse <<lib/>> {
+  + parseSseStream(reader): AsyncIterable<SseEvent>
+  + STREAM_INTERRUPTED_MESSAGE: string
+  - parseField(line)
+}
 
-' useAiStream → api (esegue le chiamate)
-useAiStream ..> api : utilizza (streamFn)
+class SseEvent <<union>> {
+  { type: 'chunk', data: string }
+  { type: 'error', message: string }
+}
 
-' useAiStream → abort (utilizza isAbortError)
-useAiStream ..> abort : utilizza
+class models <<barrel>> {
+  + Length, Language, Style, Hat
+}
 
-' api → sse (parser)
-api ..> sse : utilizza (parseSseStream)
+class abort <<lib/>> {
+  + isAbortError(err)
+}
 
-' api → types (tipi OpenAPI)
-api ..> types : utilizza (tipi delle richieste)
+AiActionDialog --> useAiStream
+AiActionDialog --> api
+TopBar --> useEditorStore
+useAiStream --> useEditorStore
+useAiStream --> abort
+api --> sse
+api --> models
+sse --> SseEvent
 
-' sse → SseEvent (definisce il tipo)
-sse ..> SseEvent : produce
-
-' useEditorStore → LastCall (definisce il tipo)
-useEditorStore ..> LastCall : utilizza
+' vincoli di impaginazione
+useAiStream -[hidden]right- api
+useEditorStore -[hidden]right- sse
+sse -[hidden]right- models
 
 @enduml
