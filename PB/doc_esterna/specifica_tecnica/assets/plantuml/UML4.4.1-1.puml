@@ -18,10 +18,10 @@ together {
 
   class fileSystem <<lib/>> {
     + GRAZIA_ANNULLAMENTO_MS: number
+    - TITOLO_DI_RIPIEGO: string
     + openNoteFromFile(): Promise<Note | null>
     + saveNoteToFile(note: Note): Promise<void>
     + renameNote(note: Note, name: string): Promise<Note>
-    - TITOLO_DI_RIPIEGO: string
     - scegliFileConInput(): Promise<{ text, fileName } | null>
     - eAnnullamento(err: unknown): boolean
   }
@@ -33,17 +33,12 @@ together {
 
 together {
   class useNotesStore <<store/>> {
-    - list: Note[]
-    - currentId: string | null
     + loadNote(note: Note): void
     + updateCurrent(patch): void
-    + select(id: string): void
-    + createEmpty(title?: string): Note
   }
 
   class useEditorStore <<store/>> {
     + currentText: string
-    + loadDocument(text: string): void
   }
 
   class Note <<lib/fileSystem.ts>> {
@@ -60,12 +55,8 @@ Sidebar ..> useNotesStore
 Sidebar ..> useEditorStore
 
 fileSystem ..> id
-fileSystem ..> Note : compone
+fileSystem ..> Note : dichiara e compone
 
-useNotesStore ..> id
-useNotesStore ..> useEditorStore
 useNotesStore "1" o-- "0..*" Note
-
-Sidebar -[hidden]down- useNotesStore
 
 @enduml

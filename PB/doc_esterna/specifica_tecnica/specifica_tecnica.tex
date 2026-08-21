@@ -2202,14 +2202,14 @@ Ottenuti il testo e il nome del file, \texttt{openNoteFromFile} compone una \tex
 \paragraph{Il modulo compone la nota, la barra laterale la immette nello stato.}
 La funzione restituisce la nota e null'altro. È il gestore del comando ``Apri file\ldots'' a passarla a \texttt{loadNote} di \texttt{useNotesStore}, che la aggiunge all'elenco, o ne aggiorna la voce se un identificatore uguale è già presente, la rende corrente e ne riversa il contenuto nell'editor. Va osservato che \texttt{loadNote}, a differenza di \texttt{select} e di \texttt{createEmpty}, non riversa prima il testo in lavorazione nella nota che si sta abbandonando, quindi le modifiche non ancora consolidate sulla nota corrente si perdono all'importazione.
 
-Nello stesso modulo risiede \texttt{renameNote}, che dal file system non passa affatto. Restituisce una copia della nota con il titolo ripulito dagli spazi ai bordi, con il ripiego ``Senza titolo'' quando il nome è vuoto, e con \texttt{updatedAt} rinfrescato. Il file eventualmente già scritto sul disco non viene toccato, e il nuovo titolo ha effetto sul nome proposto al salvataggio successivo.
-
     \begin{figure}[H]
     \centering
     \includegraphics[width=1.00\textwidth]{assets/img/UML4.4.1-3.pdf}
     \caption{Diagramma UML 4.4.1-3 - Caricamento di una nota da file}
     \label{fig:uml4413}
     \end{figure}
+
+Nello stesso modulo risiede \texttt{renameNote}, che dal file system non passa affatto. Restituisce una copia della nota con il titolo ripulito dagli spazi ai bordi, con il ripiego ``Senza titolo'' quando il nome è vuoto, e con \texttt{updatedAt} rinfrescato. Il file eventualmente già scritto sul disco non viene toccato, e il nuovo titolo ha effetto sul nome proposto al salvataggio successivo.
 
 \subsubsection{Continuità della sessione}
 \label{sec:continuita-sessione}
@@ -2233,7 +2233,7 @@ Raggiunge invece l'archivio immediatamente ogni mutazione che passi per lo store
     \begin{figure}[H]
     \centering
     \includegraphics[width=1.00\textwidth]{assets/img/UML4.4.2-2.pdf}
-    \caption{Diagramma UML 4.4.2-2 - I momenti in cui il testo dell'editor raggiunge l'archivio locale}
+    \caption{Diagramma UML 4.4.2-2 - Sequenza dei momenti in cui il testo dell'editor raggiunge l'archivio locale}
     \label{fig:uml4422}
     \end{figure}
 
@@ -2243,7 +2243,7 @@ Alla creazione dello store il middleware rilegge l'archivio e ne reidrata lo sta
     \begin{figure}[H]
     \centering
     \includegraphics[width=1.00\textwidth]{assets/img/UML4.4.2-3.pdf}
-    \caption{Diagramma UML 4.4.2-3 - Rilettura dell'archivio locale all'avvio}
+    \caption{Diagramma UML 4.4.2-3 - Sequenza della rilettura dell'archivio locale all'avvio}
     \label{fig:uml4423}
     \end{figure}
 

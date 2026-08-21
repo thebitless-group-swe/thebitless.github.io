@@ -13,11 +13,11 @@ start
 
 :L'utente attiva "Salva file" nella Sidebar;
 
-:Sidebar preleva currentText da useEditorStore
+:handleSaveFile preleva currentText da useEditorStore
 e lo sovrappone al contenuto della nota corrente;
 
-:saveNoteToFile deriva il nome dal titolo, con estensione .md,
-e costruisce un Blob di tipo text/markdown;
+:saveNoteToFile deriva il nome dal titolo, con estensione .md
+e con ripiego nota.md, e costruisce un Blob di tipo text/markdown;
 
 if (showSaveFilePicker presente in window?) then (si)
 
@@ -27,15 +27,15 @@ if (showSaveFilePicker presente in window?) then (si)
   switch (esito della chiamata nativa?)
   case (riuscita)
     :createWritable, write, close;
-    :Il file di testo e' scritto
+    :Il file e' scritto
     nella destinazione scelta;
-  case (AbortError)
+  case ( AbortError)
     :eAnnullamento riconosce l'annullamento
     e saveNoteToFile termina senza scrivere;
   case (altro errore)
     :L'errore risale alla Sidebar, che mostra
-    un messaggio e lascia intatto
-    il testo dell'editor;
+    un messaggio e lascia intatti l'elenco
+    delle note e il testo dell'editor;
   endswitch
 
 else (no)

@@ -7,9 +7,8 @@ skinparam nodesep 45
 skinparam ranksep 60
 skinparam defaultFontSize 14
 
-title I momenti in cui il testo dell'editor raggiunge l'archivio locale
+title Sequenza dei momenti in cui il testo dell'editor raggiunge l'archivio locale
 
-actor Utente as U
 participant Editor as ED
 participant useEditorStore as ES
 participant AiActionDialog as AD
@@ -18,39 +17,35 @@ participant useNotesStore as NS
 participant persist as P
 participant localStorage as LS
 
-== Modifica del testo, che si ferma a useEditorStore ==
+== La battitura si ferma a useEditorStore ==
 
-U -> ED : digita nella nota corrente
-ED -> ES : setCurrentText(testo)
-ES --> ED : currentText aggiornato
+ED -> ES : setCurrentText(testo digitato)
 
-== Accettazione di un esito assistito, che si ferma a useEditorStore ==
+== L'esito assistito accettato si ferma a useEditorStore ==
 
-U -> AD : accetta l'esito
 AD -> ES : insertOutputIntoNote(insertMode)
-ES -> ES : currentText, streamedOutput, aiModal
-ES --> ED : currentText aggiornato
+ES -> ES : aggiorna currentText e azzera l'esito
+ES --> ED : il nuovo testo entra come transazione
 
 == Cambio di nota, prima transizione che scrive ==
 
-U -> SB : sceglie un'altra nota
 SB -> NS : select(id)
 NS -> ES : legge currentText
 ES --> NS : testo in lavorazione
-NS -> NS : il testo entra nella nota abbandonata
-NS -> P : mutazione dello store
+NS -> P : il testo entra nella nota lasciata
+P -> LS : riversa list e currentId
+NS -> P : currentId passa alla nota scelta
 P -> LS : riversa list e currentId
 NS -> ES : loadDocument(contenuto della nota scelta)
 
 == Creazione di una nota, seconda transizione che scrive ==
 
-U -> SB : conferma "Nuova nota"
 SB -> NS : createEmpty(titolo)
 NS -> ES : legge currentText
 ES --> NS : testo in lavorazione
-NS -> NS : il testo entra nella nota precedente
-NS -> NS : la nuova nota entra in list
-NS -> P : mutazione dello store
+NS -> P : il testo entra nella nota precedente
+P -> LS : riversa list e currentId
+NS -> P : la nuova nota entra in list, con currentId
 P -> LS : riversa list e currentId
 NS -> ES : loadDocument("")
 

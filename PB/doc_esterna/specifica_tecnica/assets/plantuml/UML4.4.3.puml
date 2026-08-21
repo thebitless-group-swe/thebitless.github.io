@@ -9,32 +9,27 @@ skinparam defaultFontSize 14
 
 title Provenienza dei metadati per una nota creata nel prodotto e per una importata da file
 
-class File <<oggetto del browser>> {
-  + name
-  + lastModified
+object "Note creata da createEmpty" as CREATA {
+  id = newId()
+  title = titolo scelto, oppure "Senza titolo"
+  content = ""
+  createdAt = istante della creazione
+  updatedAt = rinfrescato a ogni scrittura sulla nota
 }
 
-together {
-  object "Note creata da createEmpty" as CREATA {
-    id = newId()
-    title = titolo scelto, oppure "Senza titolo"
-    content = ""
-    createdAt = istante della creazione
-    updatedAt = rinfrescato a ogni scrittura sulla nota
-  }
-
-  object "Note composta da openNoteFromFile" as IMPORTATA {
-    id = newId()
-    title = nome del file, senza .md o .txt
-    content = testo letto dal file
-    createdAt = istante dell'importazione
-    updatedAt = istante dell'importazione
-  }
+object "File scelto dall'utente" as FILE {
+  name = "appunti.md"
+  lastModified = istante del sistema operativo, non letto
 }
 
-File --> IMPORTATA : name, verso title
-File ..> IMPORTATA : lastModified, non letto
+object "Note composta da openNoteFromFile" as IMPORTATA {
+  id = newId()
+  title = "appunti", il nome senza estensione
+  content = testo letto dal file
+  createdAt = istante dell'importazione, senza fonte nel file
+  updatedAt = istante dell'importazione, non lastModified
+}
 
-CREATA -[hidden]down- IMPORTATA
+FILE --> IMPORTATA : name, verso title
 
 @enduml

@@ -1,6 +1,7 @@
 @startuml
 !theme plain
 hide circle
+hide empty members
 skinparam classAttributeIconSize 0
 skinparam shadowing false
 skinparam nodesep 45
@@ -9,47 +10,33 @@ skinparam defaultFontSize 14
 
 title La catena di persistenza dello store delle note
 
-together {
-  class useEditorStore <<store/>> {
-    + currentText: string
-    + loadDocument(text: string): void
-    + setCurrentText(text: string): void
-    + insertOutputIntoNote(insertMode?): void
-  }
-
-  class useNotesStore <<store/>> {
-    - list: Note[]
-    - currentId: string | null
-    + createEmpty(title?: string): Note
-    + select(id: string): void
-    + updateCurrent(patch): void
-    + deleteNote(id: string): void
-    + loadNote(note: Note): void
-    + ensureWelcomeNote(): void
-  }
-
-  class Note <<lib/fileSystem.ts>> {
-    + id: string
-    + title: string
-    + content: string
-    + createdAt: number
-    + updatedAt: number
-  }
+class useNotesStore <<store/>> {
+  + list: Note[]
+  + currentId: string | null
+  + createEmpty(title?: string): Note
+  + select(id: string): void
+  + updateCurrent(patch): void
+  + deleteNote(id: string): void
+  + loadNote(note: Note): void
+  + ensureWelcomeNote(): void
 }
 
-together {
-  class persist <<zustand/middleware>> {
-    + name = "notes_persistence"
-    + onRehydrateStorage()
-  }
-
-  class localStorage <<browser>> {
-  }
+class useEditorStore <<store/>> {
+  + currentText: string
+  + setCurrentText(text: string): void
+  + loadDocument(text: string): void
+  + insertOutputIntoNote(insertMode?): void
 }
 
-useNotesStore "1" o-- "0..*" Note
+class persist <<zustand/middleware>> {
+  name = "notes_persistence"
+  onRehydrateStorage()
+}
+
+class localStorage <<browser>>
+
 useNotesStore ..> useEditorStore
 useNotesStore ..> persist : avvolto da
-persist ..> localStorage : serializza e rilegge
+persist .right.> localStorage : serializza e rilegge
 
 @enduml
