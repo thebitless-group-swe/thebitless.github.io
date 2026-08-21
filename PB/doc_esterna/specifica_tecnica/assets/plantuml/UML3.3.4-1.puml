@@ -1,35 +1,35 @@
 @startuml
 !theme plain
-hide circle
-skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
+skinparam shadowing false
+skinparam defaultFontSize 14
 
-' ============================================================
-' SCENARIO 1: MODIFICA UTENTE
-' ============================================================
+title Diagramma di sequenza della sincronizzazione dall'editor allo store
 
-== Scenario 1: Modifica utente (Editor → Store) ==
+actor Utente
+participant EditorView <<@codemirror/view>>
+participant updateListener <<estensione>>
+participant useEditorStore <<store>>
 
-actor Utente as U1
-participant Editor as ED1
-participant updateListener as UL1
-participant useEditorStore as ES1
+Utente -> EditorView : digita o sposta il cursore
+EditorView -> updateListener : update
 
-U1 -> ED1 : Digita/modifica
-activate ED1
-ED1 -> UL1 : docChanged
-activate UL1
-UL1 -> UL1 : StoreSync? false
-UL1 -> ES1 : setCurrentText(newText)
-activate ES1
-ES1 -> ES1 : currentText = newText
-ES1 --> UL1 : ok
-deactivate ES1
-UL1 -> UL1 : selectedText = selection
-UL1 --> ED1 : ok
-deactivate UL1
-ED1 --> U1 : Testo aggiornato
-deactivate ED1
+alt update.selectionSet oppure update.docChanged
+  updateListener -> updateListener : ricava il testo selezionato,\nstringa vuota se la selezione e' vuota
+  alt differisce da selectedText
+    updateListener -> useEditorStore : setSelectedText(testo)
+  else coincide
+    updateListener -> updateListener : nessuna scrittura
+  end
+end
+
+alt update.docChanged
+  alt una transazione porta l'annotazione StoreSync
+    updateListener -> updateListener : e' la sincronizzazione inversa,\nnon la rimanda indietro
+  else nessuna annotazione
+    updateListener -> useEditorStore : setCurrentText(update.state.doc.toString())
+  end
+else documento invariato
+  updateListener -> updateListener : si ferma
+end
 
 @enduml

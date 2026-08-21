@@ -2,25 +2,25 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
 
-' ============================================================
-' USEEDITORSTORE
-' ============================================================
+title useEditorStore
 
-class useEditorStore {
-  - currentText: string
+class useEditorStore <<store>> {
+  + currentText: string
+  + selectedText: string
+  + streamedOutput: string
+  + isGenerating: boolean
+  + errorMessage: string | null
+  + viewMode: ViewMode
+  + aiModal: AiModal
+  + editorView: EditorView | null
+  + lastCall: LastCall | null
   - _loadVersion: number
-  - selectedText: string
-  - streamedOutput: string
-  - isGenerating: boolean
-  - errorMessage: string | null
-  - viewMode: ViewMode
-  - aiModal: AiModal
-  - editorView: EditorView | null
   - _abortController: AbortController | null
-  - lastCall: LastCall | null
   __
   + setCurrentText(text: string): void
   + loadDocument(text: string): void
@@ -33,30 +33,35 @@ class useEditorStore {
   + clearError(): void
   + setViewMode(mode: ViewMode): void
   + setAiModal(modal: AiModal): void
-  + insertOutputIntoNote(insertMode?: 'replace' | 'append'): void
+  + insertOutputIntoNote(insertMode?): void
   + discardOutput(): void
+  + resetPreview(): void
   + setEditorView(view: EditorView | null): void
-  + _setAbortController(c: AbortController | null): void
   + abortStream(): void
   + setLastCall(call: LastCall): void
   + clearLastCall(): void
+  - _setAbortController(c): void
+  __
+  + useCurrentText(): string
+  + useSelectedText(): string
+  + useStreamedOutput(): string
+  + useIsGenerating(): boolean
+  + useErrorMessage(): string | null
+  + useViewMode(): ViewMode
+  + useAiModal(): AiModal
 }
 
-' ============================================================
-' TIPI DI SUPPORTO
-' ============================================================
+together {
+  class ViewMode <<type>> {
+    'editor' | 'render' | 'split'
+  }
 
-class ViewMode {
-  editor
-  render
-  split
+  class AiModal <<type>> {
+    null | AiActionId
+  }
 }
 
-class AiModal {
-  null | AiActionId
-}
-
-class LastCall {
+class LastCall <<type>> {
   input: string
   params: AiParams
   mode?: 'prompt' | 'link'
@@ -64,43 +69,14 @@ class LastCall {
   execute(signal: AbortSignal): AsyncIterable<string>
 }
 
-class EditorView {
-}
+class AiParams <<lib/aiActions, solo tipo>>
 
-' ============================================================
-' RELAZIONI
-' ============================================================
+class EditorView <<@codemirror/view>>
 
-useEditorStore ..> ViewMode : utilizza
-useEditorStore ..> AiModal : utilizza
-useEditorStore ..> LastCall : utilizza
-useEditorStore ..> EditorView : contiene (editorView)
-
-' ============================================================
-' NOTE
-' ============================================================
-
-note right of useEditorStore
-  Selettori atomici:
-  - useCurrentText()
-  - useSelectedText()
-  - useStreamedOutput()
-  - useIsGenerating()
-  - useErrorMessage()
-  - useViewMode()
-  - useAiModal()
-end note
-
-note left of useEditorStore
-  abortStream interrompe la generazione
-  e spegne isGenerating
-  (R-79-F-De, R-109-F-De)
-end note
-
-note bottom of LastCall
-  Utilizzato per la rigenerazione
-  (R-78-F-De) e per lo stato
-  «Rigenera» nel dialogo
-end note
+useEditorStore ..> ViewMode
+useEditorStore ..> AiModal
+useEditorStore ..> LastCall
+useEditorStore ..> EditorView
+LastCall ..> AiParams
 
 @enduml

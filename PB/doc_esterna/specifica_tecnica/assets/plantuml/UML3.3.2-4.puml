@@ -2,31 +2,49 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
 
-class EditorToolbar {
-  - editorView: EditorView | null
-  __
-  + handleAction(label: string): void
-  + handleHeading(level: HeadingLevel): void
-  + handleList(ordered: boolean): void
+title MarkdownView
+
+top to bottom direction
+
+' Le estensioni sono importate da MarkdownView e passate a ReactMarkdown
+' nelle due proprieta' remarkPlugins e rehypePlugins. Le etichette degli
+' archi riportano la proprieta' attraverso cui ciascuna viene consegnata.
+
+class Preview
+class AiActionDialog
+
+class MarkdownView {
+  + children: string
+  + className?: string
 }
 
-class useEditorStore {
-  - editorView: EditorView | null
-  __
-  + setEditorView(view: EditorView | null): void
+class ReactMarkdown <<react-markdown>>
+
+together {
+  class remarkGfm <<remark-gfm>>
+  class remarkMath <<remark-math>>
+  class remarkUnderline <<lib/, del gruppo>> {
+    + remarkUnderline()
+  }
 }
 
-class editorCommands {
+together {
+  class rehypeKatex <<rehype-katex>>
+  class rehypeHighlight <<rehype-highlight>>
 }
 
-class EditorView {
-}
-
-EditorToolbar ..> useEditorStore : utilizza
-EditorToolbar ..> editorCommands : utilizza
-useEditorStore ..> EditorView : contiene
+Preview --> MarkdownView
+AiActionDialog --> MarkdownView
+MarkdownView *-- ReactMarkdown
+MarkdownView --> remarkGfm : remarkPlugins
+MarkdownView --> remarkMath : remarkPlugins
+MarkdownView --> remarkUnderline : remarkPlugins
+MarkdownView --> rehypeKatex : rehypePlugins
+MarkdownView --> rehypeHighlight : rehypePlugins
 
 @enduml
