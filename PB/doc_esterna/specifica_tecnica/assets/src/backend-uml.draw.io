@@ -122,7 +122,7 @@
     <mxCell id="e004" edge="1" parent="1" source="iTav" style="endArrow=open;endSize=12;dashed=1;strokeWidth=1.5;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;fontSize=10;labelBackgroundColor=#ffffff;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" target="iTv" value="HTTPS">
       <mxGeometry relative="1" as="geometry" />
     </mxCell>
-    <mxCell id="e005" edge="1" parent="1" source="iMain" style="endArrow=open;endSize=12;dashed=1;strokeWidth=1.5;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;fontSize=10;labelBackgroundColor=#ffffff;exitX=0;exitY=0.5;exitDx=0;exitDy=0;fontColor=#B85450;" target="pApi" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;monta i router&lt;/font&gt;">
+    <mxCell id="e005" edge="1" parent="1" source="iMain" style="endArrow=open;endSize=12;dashed=1;strokeWidth=1.5;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;fontSize=10;labelBackgroundColor=#ffffff;exitX=0;exitY=0.5;exitDx=0;exitDy=0;fontColor=#666666;" target="pApi" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;monta i router&lt;/font&gt;">
       <mxGeometry relative="1" x="0.1698" as="geometry">
         <mxPoint as="offset" />
         <Array as="points">
@@ -130,10 +130,10 @@
         </Array>
       </mxGeometry>
     </mxCell>
-    <mxCell id="e006" edge="1" parent="1" source="pRad" style="endArrow=open;endSize=12;dashed=1;strokeWidth=1.5;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;fontSize=10;labelBackgroundColor=#ffffff;exitX=0.634;exitY=0.176;exitDx=0;exitDy=0;entryX=0.32;entryY=1;entryDx=0;entryDy=0;fontColor=#B85450;exitPerimeter=0;" target="pCore" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;usa le porte come tipo&lt;/font&gt;">
+    <mxCell id="e006" edge="1" parent="1" source="pRad" style="endArrow=open;endSize=12;dashed=1;strokeWidth=1.5;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;fontSize=10;labelBackgroundColor=#ffffff;exitX=0.634;exitY=0.176;exitDx=0;exitDy=0;entryX=0.32;entryY=1;entryDx=0;entryDy=0;fontColor=#666666;exitPerimeter=0;" target="pCore" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;usa le porte come tipo&lt;/font&gt;">
       <mxGeometry relative="1" as="geometry" />
     </mxCell>
-    <mxCell id="e007" edge="1" parent="1" style="endArrow=open;endSize=12;dashed=1;strokeWidth=1.5;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;fontSize=10;labelBackgroundColor=#ffffff;exitX=0.407;exitY=-0.008;exitDx=0;exitDy=0;fontColor=#B85450;strokeColor=light-dark(#000000,#FFFFFF);exitPerimeter=0;" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;istanzia gli adattatori&lt;/font&gt;">
+    <mxCell id="e007" edge="1" parent="1" style="endArrow=open;endSize=12;dashed=1;strokeWidth=1.5;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;fontSize=10;labelBackgroundColor=#ffffff;exitX=0.407;exitY=-0.008;exitDx=0;exitDy=0;fontColor=#666666;strokeColor=light-dark(#000000,#FFFFFF);exitPerimeter=0;" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;istanzia gli adattatori&lt;/font&gt;">
       <mxGeometry relative="1" x="0.4179" y="-35" as="geometry">
         <mxPoint as="offset" />
         <Array as="points">
