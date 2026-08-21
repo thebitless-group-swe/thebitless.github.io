@@ -2067,200 +2067,118 @@ Questo è l'unico dei sette casi d'uso dichiarato \texttt{async def} (sezione \r
 
 \subsection{Salvataggio e caricamento di una nota}
 \label{sec:flusso-persistenza}
-% Contenuto previsto: i DUE meccanismi di persistenza lato client distinti in
-% §2.4, non il solo file system.
-%   1. Esportazione e importazione su file, con le due vie di accesso al file
-%      system e il punto in cui la via viene selezionata in base alle capacità
-%      del browser; il riconoscimento dell'annullamento come esito legittimo.
-%   2. Continuità della sessione: scrittura nell'archivio locale del browser,
-%      con il momento in cui il contenuto dell'editor vi arriva — al cambio di
-%      nota e alla creazione, non a ogni modifica — e la rilettura all'avvio.
-% Recupero dei metadati dall'oggetto File: si veda il marcatore in §2.4, che
-% dichiara la parte non ancora realizzata.
-% Requisiti: R-4-V-Ob, R-97-F-De.
 
-La presente sezione descrive le modalità con cui l'applicazione web persiste le note lato client, in attuazione della strategia esposta in §2.4. Come dichiarato in quella sede, i meccanismi sono due, distinti per scopo e complementari: l'accesso al file system per l'esportazione e l'importazione deliberate, e l'archivio locale del browser per la continuità della sessione. La sezione descrive entrambi, il momento e il modo in cui ciascuno viene attivato, e il recupero dei metadati dall'oggetto File.
+Le note non lasciano la macchina dell'utente, e la sezione \ref{sec:persistenza} dichiara la ragione della scelta. Questa sezione segue il percorso che i dati compiono dentro quel perimetro, nei due meccanismi che lo attuano. Il primo è l'accesso al file system, deliberato e attivato da un comando dell'interfaccia; il secondo è l'archivio locale del browser, automatico e destinato alla sola continuità della sessione. Conviene tenerli distinti fin dall'inizio, perché ciascuno riceve il testo della nota in un momento proprio, e la differenza fra quei due momenti è la sostanza di ciò che segue. L'ultima parte riguarda i metadati della nota e il punto in cui la loro raccolta si arresta.
 
 \subsubsection{Persistenza su file system}
 \label{sec:file-system-persistenza}
 
-Le operazioni di salvataggio e caricamento su file sono realizzate nel modulo \texttt{lib/fileSystem.ts}, che espone le funzioni \texttt{saveNoteToFile} e \texttt{openNoteFromFile}. Entrambe adottano una strategia a due vie, selezionata a tempo di esecuzione in base alle capacità del browser ospite.
-
-\paragraph{Selezione della via.}
-
-Il criterio di selezione è la disponibilità effettiva dell'interfaccia nel browser in uso, non l'identificazione dell'agente utente. L'applicazione verifica direttamente la presenza dei metodi richiesti sull'oggetto globale della finestra:
-
-\begin{itemize}
-    \setlength{\itemsep}{0pt}
-    \item Se \texttt{showOpenFilePicker} e \texttt{showSaveFilePicker} sono presenti, viene utilizzata la \textbf{File System Access API} (disponibile su Chrome/Edge).
-    \item In caso contrario, l'applicazione ricade sui \textbf{meccanismi universali} (input file e download link, utilizzati su Firefox e Safari).
-\end{itemize}
-
-La doppia via non è una precauzione generica: il requisito di vincolo R-1-V-Ob include Firefox fra gli ambienti di esecuzione di riferimento, quindi una realizzazione fondata sulla sola File System Access API lascerebbe scoperto uno dei tre browser prescritti.
+Il salvataggio e il caricamento su file sono raccolti nel modulo \texttt{lib/fileSystem.ts}, che espone \texttt{saveNoteToFile}, \texttt{openNoteFromFile} e \texttt{renameNote}. Le prime due attuano i requisiti\textsubscript{G} \textbf{R-88-F-Ob} (UC78.1), che chiede di salvare una nota sul file system locale in formato testuale, e \textbf{R-85-F-Ob} (UC76.1), che chiede di caricarne una da file locale in formato \texttt{.md} o \texttt{.txt}; il formato prodotto attua il vincolo\textsubscript{G} \textbf{R-4-V-Ob}, argomentato nella sezione \ref{sec:persistenza}. Il modulo non conosce gli store dell'applicazione, dichiara una sola dipendenza verso \texttt{lib/id.ts}, e sono i gestori dei comandi della barra laterale a raccordarlo con lo stato.
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{assets/img/UML4.4.1-1.pdf}
-    \caption{Diagramma UML 4.4.1-1 - fileSystem}
+    \includegraphics[width=1.00\textwidth]{assets/img/UML4.4.1-1.pdf}
+    \caption{Diagramma UML 4.4.1-1 - Il modulo lib/fileSystem.ts e le sue dipendenze}
     \label{fig:uml4411}
     \end{figure}
 
-\paragraph{Salvataggio su file (\texttt{saveNoteToFile}).}
+\paragraph{La via di accesso si sceglie interrogando il browser, non identificandolo.}
+Ciascuna delle due funzioni verifica per conto proprio la presenza sull'oggetto globale della finestra del metodo che le serve, \texttt{showSaveFilePicker} per il salvataggio e \texttt{showOpenFilePicker} per il caricamento. Dove il metodo esiste si passa dalla File System Access API e l'utente sceglie il percorso; dove manca si ricade su meccanismi supportati ovunque. A decidere è dunque la capacità effettiva dell'ambiente di esecuzione e non l'identità dichiarata dell'agente utente, ed è la ragione per cui questa diramazione non costituisce un pattern Strategy, come argomentato nella sezione \ref{sec:pattern-scartati}. La doppia via non è una precauzione generica. Il vincolo\textsubscript{G} \textbf{R-1-V-Ob} fissa come ambienti di riferimento le versioni recenti di Google Chrome, Mozilla Firefox e Microsoft Edge, e Firefox quell'interfaccia non la offre, quindi su uno dei tre browser prescritti il ramo di ripiego non è un caso limite ma il percorso primario. È anche il motivo per cui entrambi i rami sono coperti da test\textsubscript{G} propri.
 
-La funzione riceve una \texttt{Note} e ne scrive il contenuto su file:
+\paragraph{Il file scritto contiene il testo che è a video, non quello conservato nella nota.}
+Il gestore del comando ``Salva file'' non consegna a \texttt{saveNoteToFile} la nota così come è custodita nell'elenco. Preleva \texttt{currentText} da \texttt{useEditorStore} e lo sovrappone al contenuto della nota corrente prima di chiamarla, cosicché il file scritto riporta sempre il testo che l'utente sta vedendo. La differenza rispetto all'archivio locale descritto nella sezione \ref{sec:continuita-sessione}, che riceve il testo dell'editor soltanto in due momenti, è sostanziale, e rende l'esportazione su file l'unica delle due vie che non arriva mai in ritardo sulle modifiche.
 
-\begin{enumerate}
-    \setlength{\itemsep}{0pt}
-    \item Il nome del file è derivato dal titolo della nota, con estensione \texttt{.md} (soddisfa R-4-V-Ob).
-    \item Il contenuto è il solo testo della nota, senza intestazioni o marcatori aggiuntivi: il file è un documento Markdown puro.
-    \item Se la File System Access API è disponibile, la funzione invoca \texttt{showSaveFilePicker} con il nome suggerito e il tipo MIME \texttt{text/markdown}; l'utente sceglie il percorso di destinazione; il file viene scritto tramite \texttt{FileSystemWritableFileStream}.
-    \item Se l'API non è disponibile, la funzione costruisce un \texttt{Blob} con il contenuto della nota, ne ricava un indirizzo temporaneo tramite \texttt{URL.createObjectURL}, lo assegna a un collegamento di scaricamento (\texttt{<a download>}) e lo attiva per via programmatica; l'indirizzo temporaneo viene rilasciato al termine dell'operazione con \texttt{URL.revokeObjectURL}.
-    \item L'annullamento da parte dell'utente (chiusura del selettore senza selezione) è riconosciuto tramite il controllo \texttt{eAnnullamento} su \texttt{AbortError} e trattato come esito legittimo, non come errore.
-\end{enumerate}
+La funzione deriva il nome del file dal titolo della nota, con estensione \texttt{.md}, e ricade su \texttt{nota.md} quando il titolo è vuoto. Costruisce quindi un \texttt{Blob} di tipo \texttt{text/markdown} con il solo testo della nota, senza intestazioni né marcatori aggiunti. Sul ramo nativo ottiene da \texttt{showSaveFilePicker} un riferimento alla destinazione scelta dall'utente, ne apre un flusso scrivibile con \texttt{createWritable}, vi scrive il blocco e lo chiude. Sul ramo di ripiego ricava dal \texttt{Blob} un indirizzo temporaneo con \texttt{URL.createObjectURL}, lo assegna a un'ancora dotata di attributo \texttt{download} e la attiva per via programmatica, lasciando al browser la destinazione secondo le impostazioni di scaricamento dell'utente. Su quest'ultimo ramo resta un punto aperto, annotato nel codice. L'ancora non è inserita nel documento e l'indirizzo temporaneo è revocato subito dopo l'attivazione, mentre lo scaricamento procede in modo asincrono, e l'ambiente impiegato per i test\textsubscript{G} non riproduce il comportamento del browser su cui quel ramo esiste.
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{assets/img/UML4.4.1-2.pdf}
-    \caption{Diagramma UML 4.4.1-2 - saveNoteToFile}
+    \includegraphics[width=1.00\textwidth]{assets/img/UML4.4.1-2.pdf}
+    \caption{Diagramma UML 4.4.1-2 - Salvataggio di una nota su file}
     \label{fig:uml4412}
     \end{figure}
 
-\paragraph{Caricamento da file (\texttt{openNoteFromFile}).}
+\paragraph{L'annullamento è un esito, non un guasto.}
+Chiudere il selettore senza scegliere è un'azione legittima e non deve produrre alcun messaggio. Sul ramo nativo il browser lo segnala sollevando un errore il cui nome è \texttt{AbortError}, e la funzione \texttt{eAnnullamento} lo riconosce confrontando la proprietà \texttt{name} anziché la classe dell'errore, poiché l'identità delle classi non sopravvive al passaggio fra gli ambiti di esecuzione del browser. Riconosciuto l'annullamento, il salvataggio termina senza scrivere e il caricamento restituisce \texttt{null}. Ogni altro errore viene invece rilanciato, e spetta al chiamante distinguerlo. La barra laterale mostra allora un messaggio in linguaggio naturale, privo di dettagli tecnici, e lascia intatti l'elenco delle note e il testo dell'editor, che è quanto chiedono \textbf{R-90-F-Ob} (UC79) in salvataggio e \textbf{R-87-F-Ob} (UC77) in caricamento.
 
-La funzione restituisce una \texttt{Note} a partire da un file selezionato:
+\paragraph{Il ramo di ripiego in caricamento ha due vie d'uscita per l'annullamento.}
+Dove la File System Access API manca, \texttt{scegliFileConInput} crea un elemento \texttt{input} di tipo \texttt{file} con le estensioni ammesse, lo attiva e ne legge il contenuto con \texttt{FileReader}. La difficoltà è che l'annullamento di quel selettore non produce ovunque un evento. La prima via d'uscita è l'evento \texttt{oncancel}, che non tutti i browser emettono; dove manca, la promessa resterebbe pendente per sempre e l'interfaccia si fermerebbe senza alcun segnale. La seconda è il ritorno del fuoco alla finestra, dopo il quale un temporizzatore di tolleranza pari a \texttt{GRAZIA\_ANNULLAMENTO\_MS} millisecondi verifica se \texttt{input.files} sia rimasto vuoto. Il margine è necessario perché nella sequenza reale il fuoco torna alla finestra \textit{prima} che l'evento di cambiamento arrivi, e una guardia che concludesse per l'annullamento al solo ritorno del fuoco scarterebbe una nota appena scelta.
 
-\begin{enumerate}
-    \setlength{\itemsep}{0pt}
-    \item Se la File System Access API è disponibile, la funzione invoca \texttt{showOpenFilePicker} con i tipi accettati \texttt{.md} e \texttt{.txt}; ottiene un riferimento al file scelto e ne legge il contenuto testuale tramite \texttt{File.text()}.
-    \item Se l'API non è disponibile, la funzione crea un elemento \texttt{input} di tipo \texttt{file} con gli stessi tipi accettati; ne legge il contenuto tramite \texttt{FileReader.readAsText}. Questo ramo gestisce due vie di uscita per l'annullamento: l'evento \texttt{oncancel} (disponibile in alcuni browser) e il ritorno del focus alla finestra con un timer di tolleranza (\texttt{GRAZIA\_ANNULLAMENTO\_MS = 300ms}) che controlla se \texttt{input.files} è vuoto. Il doppio meccanismo garantisce che la Promise non resti pendente per sempre su Firefox.
-    \item La funzione restituisce una \texttt{Note} con:
-    \begin{itemize}
-        \setlength{\itemsep}{0pt}
-        \item \texttt{id}: generato da \texttt{crypto.randomUUID()};
-        \item \texttt{title}: derivato dal nome del file, privato dell'estensione (\texttt{.md} o \texttt{.txt}); se il nome del file non è utilizzabile, viene usato il titolo di ripiego «Nota importata»;
-        \item \texttt{content}: il testo letto dal file;
-        \item \texttt{createdAt}: l'istante di importazione;
-        \item \texttt{updatedAt}: l'istante di importazione.
-    \end{itemize}
-    \item L'annullamento è riconosciuto e trattato come esito legittimo in entrambi i rami.
-\end{enumerate}
+Il ripiego restituisce \texttt{null} per l'annullamento e non la stringa vuota, che non distinguerebbe l'annullamento da un file legittimamente vuoto, contenuto valido per un documento Markdown\textsubscript{G}. La parità fra i due rami è verificata da test\textsubscript{G} dedicati, che a parità di file scelto ne confrontano titolo e contenuto.
 
-La derivazione del titolo dal nome del file avviene in entrambi i rami, garantendo la parità fra i due percorsi. È necessaria perché il ramo di ripiego è il percorso primario su Firefox, incluso fra i browser prescritti da R-1-V-Ob.
+\paragraph{La nota importata nasce con un identificatore generato in proprio.}
+Ottenuti il testo e il nome del file, \texttt{openNoteFromFile} compone una \texttt{Note}. Il titolo è il nome del file privato dell'estensione \texttt{.md} o \texttt{.txt}, con il ripiego ``Nota importata'' riservato al solo caso in cui il file scelto non esponga un nome utilizzabile, e la derivazione avviene su entrambi i rami. L'istante di importazione popola tanto \texttt{createdAt} quanto \texttt{updatedAt}. L'identificatore proviene da \texttt{newId}, esposto da \texttt{lib/id.ts}, e non da una chiamata diretta a \texttt{crypto.randomUUID}. La distinzione non è formale. Quel metodo esiste soltanto in contesto sicuro e su HTTP fuori da \texttt{localhost} è indefinito, quindi invocarlo direttamente non renderebbe fragile il caricamento da file ma lo interromperebbe del tutto. \texttt{newId} lo impiega dove c'è e altrimenti costruisce l'identificatore da sé, prelevando sedici byte casuali dal browser e fissandone i bit di versione e di variante secondo la RFC 4122. Il file dichiara la regola nel proprio commento di apertura, e un test\textsubscript{G} dedicato esercita il ramo privo di \texttt{crypto.randomUUID}.
+
+\paragraph{Il modulo compone la nota, la barra laterale la immette nello stato.}
+La funzione restituisce la nota e null'altro. È il gestore del comando ``Apri file\ldots'' a passarla a \texttt{loadNote} di \texttt{useNotesStore}, che la aggiunge all'elenco, o ne aggiorna la voce se un identificatore uguale è già presente, la rende corrente e ne riversa il contenuto nell'editor. Va osservato che \texttt{loadNote}, a differenza di \texttt{select} e di \texttt{createEmpty}, non riversa prima il testo in lavorazione nella nota che si sta abbandonando, quindi le modifiche non ancora consolidate sulla nota corrente si perdono all'importazione.
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{assets/img/UML4.4.1-3.pdf}
-    \caption{Diagramma UML 4.4.1-3 - openNoteFromFile}
+    \includegraphics[width=1.00\textwidth]{assets/img/UML4.4.1-3.pdf}
+    \caption{Diagramma UML 4.4.1-3 - Caricamento di una nota da file}
     \label{fig:uml4413}
     \end{figure}
+
+Nello stesso modulo risiede \texttt{renameNote}, che dal file system non passa affatto. Restituisce una copia della nota con il titolo ripulito dagli spazi ai bordi, con il ripiego ``Senza titolo'' quando il nome è vuoto, e con \texttt{updatedAt} rinfrescato. Il file eventualmente già scritto sul disco non viene toccato, e il nuovo titolo ha effetto sul nome proposto al salvataggio successivo.
 
 \subsubsection{Continuità della sessione}
 \label{sec:continuita-sessione}
 
-La continuità della sessione è realizzata tramite il middleware \texttt{persist} di Zustand, applicato a \texttt{notes} come descritto in §3.3.3. Il meccanismo non richiede alcuna azione dell'utente.
-
-\paragraph{Scrittura nell'archivio locale.}
-
-Il middleware \texttt{persist} serializza lo stato di \texttt{notes} e lo riversa nel \texttt{localStorage} del browser sotto la chiave \texttt{'notes\_persistence'}. Lo stato conservato comprende:
-
-\begin{itemize}
-    \setlength{\itemsep}{0pt}
-    \item \texttt{list}: l'elenco delle note, con \texttt{id}, \texttt{title}, \texttt{content}, \texttt{createdAt}, \texttt{updatedAt};
-    \item \texttt{currentId}: l'identificativo della nota correntemente selezionata.
-\end{itemize}
+Il secondo meccanismo non richiede alcuna azione dell'utente. Lo store delle note, descritto nella sezione \ref{sec:frontend-stato}, è avvolto nel middleware \texttt{persist} di Zustand, configurato con il nome \texttt{notes\_persistence}, che è la chiave sotto la quale lo stato è riversato nel \texttt{localStorage} del browser e riletto all'avvio. La configurazione non dichiara alcuna proiezione dello stato, quindi ciò che raggiunge l'archivio è lo stato dello store, le cui sole porzioni di dati sono l'elenco \texttt{list} e l'identificatore \texttt{currentId} della nota corrente.
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{assets/img/UML4.4.2-1.pdf}
-    \caption{Diagramma UML 4.4.2-1 - salvataggio automatico in localStorage}
+    \includegraphics[width=1.00\textwidth]{assets/img/UML4.4.2-1.pdf}
+    \caption{Diagramma UML 4.4.2-1 - La catena di persistenza dello store delle note}
     \label{fig:uml4421}
     \end{figure}
 
-\paragraph{Quando viene scritto il contenuto dell'editor.}
+\paragraph{Il testo dell'editor raggiunge la nota in due momenti, non a ogni battitura.}
+È il punto in cui è più facile attribuire al meccanismo una copertura che non ha. Lo stato dello store è riversato nell'archivio a ogni sua mutazione, ma il testo in lavorazione nello store delle note non risiede. Risiede in \texttt{currentText} di \texttt{useEditorStore}, che l'editor aggiorna a ogni modifica, e da lì passa nella nota corrente in due sole occasioni. La prima è il cambio di nota, dove \texttt{select} preleva il testo corrente e lo scrive nella nota che si sta abbandonando, prima di caricare quella scelta. La seconda è la creazione di una nuova nota, dove \texttt{createEmpty} compie il medesimo passaggio prima di aggiungere all'elenco la nota vuota. Fuori da quelle due transizioni le battiture non raggiungono l'archivio, ed è un limite della realizzazione attuale e non una proprietà del supporto, dichiarato negli stessi termini nella sezione \ref{sec:persistenza}.
 
-Va precisato quando il testo in lavorazione raggiunge l'archivio. Il contenuto dell'editor è riversato nella nota corrente nei seguenti momenti:
+L'accettazione di un esito assistito non costituisce un terzo momento, benché sia facile crederlo. Il comando che la esegue invoca \texttt{insertOutputIntoNote}, che aggiorna \texttt{currentText} e le porzioni di stato della finestra di dialogo dell'operazione, e non tocca \texttt{useNotesStore}; nessuna scrittura nell'archivio ne consegue. Il testo inserito vi arriverà con la prima delle due transizioni descritte sopra, come qualunque altra modifica dell'editor.
 
-\begin{enumerate}
-    \setlength{\itemsep}{0pt}
-    \item \textbf{Al cambio di nota} (\texttt{notes.select}): il contenuto corrente viene salvato nella nota che si sta abbandonando.
-    \item \textbf{Alla creazione di una nuova nota} (\texttt{notes.createEmpty}): il contenuto corrente viene salvato nella nota precedente prima di crearne una nuova.
-    \item \textbf{All'accettazione di un output AI} (UC68, \texttt{insertOutputIntoNote}): il contenuto modificato viene immediatamente scritto nella nota corrente.
-\end{enumerate}
-
-Il contenuto \textbf{non} è riversato a ogni modifica del testo né alla chiusura della scheda. Le modifiche successive all'ultimo cambio di nota non sono conservate: è un limite noto della realizzazione attuale, non una proprietà del supporto. La scelta è deliberata: il costo di scrivere in \texttt{localStorage} a ogni battitura sarebbe inaccettabile per le prestazioni; il salvataggio nei momenti di transizione garantisce la sopravvivenza delle note complete, a costo di perdere le modifiche non ancora "finalizzate" da un cambio di contesto.
+Raggiunge invece l'archivio immediatamente ogni mutazione che passi per lo store delle note. La creazione di una nota, la sua eliminazione, l'importazione da file e l'aggiornamento del titolo alla rinomina sono tutte scritture dirette, quindi l'elenco e i metadati non soffrono del ritardo che tocca il contenuto.
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{assets/img/UML4.4.2-2.pdf}
-    \caption{Diagramma UML 4.4.2-2 - lettura all'avvio}
+    \includegraphics[width=1.00\textwidth]{assets/img/UML4.4.2-2.pdf}
+    \caption{Diagramma UML 4.4.2-2 - Sequenza dei momenti in cui il testo dell'editor raggiunge l'archivio locale}
     \label{fig:uml4422}
     \end{figure}
 
-\paragraph{Lettura all'avvio.}
-
-All'avvio dell'applicazione, il middleware \texttt{persist} rilegge lo stato dal \texttt{localStorage} prima del primo render. Durante il ripristino (\texttt{onRehydrateStorage}), viene chiamato \texttt{loadDocument} per caricare il contenuto della nota corrente nell'editor. L'applicazione riparte dallo stato in cui l'utente l'aveva lasciata: l'elenco delle note, la nota corrente e il suo contenuto sono quelli della sessione precedente.
-
-\paragraph{Limiti del supporto.}
-
-Il \texttt{localStorage} ha limiti propri, che vanno dichiarati:
-
-\begin{itemize}
-    \setlength{\itemsep}{0pt}
-    \item \textbf{Spazio}: è soggetto a una quota (tipicamente 5-10 MB per origine). Il superamento fa fallire la scrittura; l'applicazione lo tratta come condizione prevista e ripristina lo stato precedente.
-    \item \textbf{Isolamento}: i dati sono confinati all'origine e al profilo del browser in uso. Non sono raggiungibili da un altro browser, da un altro dispositivo o da una finestra di navigazione anonima.
-    \item \textbf{Cancellazione}: la cancellazione dei dati di navigazione rimuove i dati.
-\end{itemize}
-
-Questo meccanismo non è un sostituto della persistenza server-side: resta interamente lato client, come dichiarato in §2.4.
+\paragraph{All'avvio la rilettura precede il primo disegno dell'interfaccia.}
+Alla creazione dello store il middleware rilegge l'archivio e ne reidrata lo stato, poi esegue la richiamata dichiarata da \texttt{onRehydrateStorage}, che è il punto in cui l'editor viene riallineato. Se nell'elenco reidratato esiste una nota il cui identificatore coincide con \texttt{currentId}, il suo contenuto è caricato nell'editor con \texttt{loadDocument} e la sessione riprende dove era stata lasciata. Altrimenti, ed è il caso del primo avvio o di un archivio svuotato, la richiamata invoca \texttt{ensureWelcomeNote}, che crea la nota di benvenuto soltanto se l'elenco è vuoto e la rende corrente attraverso lo stesso \texttt{loadNote} impiegato dall'importazione. La richiamata opera sullo stato che riceve come argomento e non sulla costante che nomina lo store, perché in quell'istante lo store si sta ancora costruendo e leggere quella costante fallirebbe in silenzio.
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{assets/img/UML4.4.2-3.pdf}
-    \caption{Diagramma UML 4.4.2-3 - continuità della sessione}
+    \includegraphics[width=1.00\textwidth]{assets/img/UML4.4.2-3.pdf}
+    \caption{Diagramma UML 4.4.2-3 - Sequenza della rilettura dell'archivio locale all'avvio}
     \label{fig:uml4423}
     \end{figure}
+
+\paragraph{Il fallimento della scrittura è previsto dove lascerebbe traccia.}
+Lo spazio del \texttt{localStorage} è soggetto a una quota per origine, e superarla fa fallire la scrittura. Poiché il middleware scrive dentro la mutazione, l'errore risale dalla mutazione stessa quando lo stato in memoria è già cambiato, e senza un ripristino l'utente vedrebbe insieme il messaggio di errore e la nota comparire nell'elenco. \texttt{createEmpty} e \texttt{deleteNote} lo prevedono, fotografano \texttt{list} e \texttt{currentId} prima di toccarli e li rimettono a posto se la mutazione solleva; \texttt{createEmpty} genera per di più l'identificatore prima di qualunque mutazione, così che un tentativo fallito non lasci traccia di sé. Sono l'attuazione di \textbf{R-84-F-Ob} (UC75) in creazione e di \textbf{R-93-F-De} (UC81) in eliminazione, e i rispettivi test\textsubscript{G} esercitano la condizione facendo sollevare la scrittura nell'archivio. Le altre azioni dello store non hanno una guardia analoga.
+
+\paragraph{I limiti sono quelli del supporto.}
+I dati sono confinati all'origine e al profilo del browser in uso, quindi non sono raggiungibili da un altro browser, da un altro dispositivo o da una finestra di navigazione anonima, e non esiste alcuna sincronizzazione fra dispositivi. La cancellazione dei dati di navigazione li rimuove. Il meccanismo non sostituisce una persistenza lato server, che il prodotto non realizza per le ragioni esposte nella sezione \ref{sec:persistenza}, e l'unica copia indipendente dal browser resta quella prodotta dall'esportazione su file descritta sopra.
 
 \subsubsection{Recupero dei metadati dall'oggetto File}
 \label{sec:recupero-metadati}
 
-Il requisito R-97-F-De (UC84) richiede la visualizzazione delle informazioni e dei metadati di una nota selezionata. I casi da distinguere sono due, e non hanno a disposizione gli stessi dati.
+Il requisito\textsubscript{G} \textbf{R-97-F-De} (UC84) chiede che l'utente possa visualizzare le informazioni e i metadati di una nota selezionata, e il caso d'uso\textsubscript{G} precisa che cosa il pannello debba riportare, cioè il titolo, la data di creazione, l'istante di ultima modifica e il formato. I casi da distinguere sono due, la nota nata nel prodotto e la nota importata da un file, e non dispongono degli stessi dati.
 
-\paragraph{Nota creata nel prodotto.}
+\paragraph{La nota creata nel prodotto possiede i propri metadati.}
+\texttt{createEmpty} le assegna un identificatore ottenuto da \texttt{newId}, il titolo indicato dall'utente o il ripiego ``Senza titolo'', e i due istanti di creazione e di ultima modifica, che in quel momento coincidono. Da lì in avanti \texttt{updatedAt} è rinfrescato da ogni azione che scriva sulla nota. Tutti questi dati sono affidati all'archivio locale della sezione \ref{sec:continuita-sessione} e riletti all'avvio, quindi per queste note l'applicazione possiede per intero i primi tre campi che il caso d'uso\textsubscript{G} elenca.
 
-Per le note create all'interno dell'applicazione, i metadati sono posseduti e conservati:
+\paragraph{La nota importata arriva con due istanti coincidenti e un dato non letto.}
+Un file Markdown\textsubscript{G} contiene il solo testo, e la sezione \ref{sec:persistenza} spiega perché il prodotto non vi scriva metadati. Il titolo è quindi veicolato dal nome del file, mentre \texttt{createdAt} e \texttt{updatedAt} ricevono entrambi l'istante dell'importazione. Il browser espone però sull'oggetto \texttt{File}, in entrambi i rami di caricamento, l'attributo \texttt{lastModified} con l'istante di ultima modifica registrato dal sistema\textsubscript{G} operativo, e quel dato non viene letto. Sarebbe l'estensione naturale per popolare l'ultima modifica di una nota importata. L'istante di creazione non ha invece alcuna fonte equivalente, e per queste note andrebbe presentato come non disponibile anziché con il valore convenzionale che oggi riceve. Il formato è ricavabile dall'estensione del nome del file, che viene scartata proprio nel derivarne il titolo.
 
-\begin{itemize}
-    \setlength{\itemsep}{0pt}
-    \item \texttt{id}: generato da \texttt{newId()} (da \texttt{lib/id.ts}) al momento della creazione;
-    \item \texttt{title}: assegnato dall'utente o impostato a «Senza titolo»;
-    \item \texttt{createdAt}: istante di creazione;
-    \item \texttt{updatedAt}: istante dell'ultima modifica;
-    \item \texttt{content}: il testo della nota.
-\end{itemize}
-
-Questi metadati sono affidati alla persistenza locale descritta in §4.4.2: il middleware \texttt{persist} li scrive immediatamente in \texttt{localStorage} e li rilegge all'avvio. Per queste note l'applicazione possiede quindi tutti i dati richiesti dal caso d'uso\textsubscript{G}, senza doverne ricavare alcuno dal file system.
-
-\paragraph{Nota importata da disco.}
-
-Per le note importate da file locale (UC76.1), il file contiene il solo testo. I metadati sono attualmente popolati come segue:
-
-\begin{itemize}
-    \setlength{\itemsep}{0pt}
-    \item \texttt{id}: generato da \texttt{newId()};
-    \item \texttt{title}: derivato dal nome del file, privato dell'estensione; se il nome non è utilizzabile, viene usato il titolo di ripiego «Nota importata»;
-    \item \texttt{createdAt} e \texttt{updatedAt}: entrambi impostati all'istante di importazione.
-\end{itemize}
-
-L'attributo \texttt{lastModified}, che il browser espone sull'oggetto \texttt{File} in entrambi i rami di caricamento, non viene letto: sarebbe l'estensione naturale per popolare l'istante di ultima modifica. L'istante di creazione non è invece ricostruibile in modo affidabile dalle informazioni disponibili, e per le note importate da disco andrebbe presentato come «non disponibile» anziché con un valore convenzionale.
-
-\paragraph{Stato di copertura.}
-
-Il requisito\textsubscript{G} \textbf{non è soddisfatto} in nessuno dei due casi: UC84 chiede la \textit{visualizzazione} dei metadati in un pannello riassuntivo con i campi Titolo, Data di creazione, Ultima modifica e Formato, e l'interfaccia non espone alcuna vista che li mostri. I dati posseduti restano interni all'applicazione. I fronti scoperti sono quindi due, e chiuderne uno solo non basta: in importazione l'istante di ultima modifica non viene letto, e in nessun caso esiste il pannello che presenti i metadati. Trattandosi di un requisito\textsubscript{G} desiderabile, la scopertura è una decisione consapevole del gruppo; è tracciata come NS nel capitolo \ref{sec:tracciamento}.
+Nessuno dei due casi soddisfa il requisito\textsubscript{G}, e la ragione non sta nei dati posseduti ma nel fatto che l'interfaccia non offre alcuna vista che li presenti. I fronti scoperti sono quindi due, e chiuderne uno solo non basterebbe. Trattandosi di un requisito\textsubscript{G} desiderabile, la scopertura è una scelta del gruppo sull'ampiezza del perimetro realizzato, registrata come non soddisfatta nel capitolo \ref{sec:tracciamento}.
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{assets/img/UML4.4.3.pdf}
-    \caption{Diagramma UML 4.4.3 - nota creata nel prodotto vs nota importata da disco}
+    \includegraphics[width=1.00\textwidth]{assets/img/UML4.4.3.pdf}
+    \caption{Diagramma UML 4.4.3 - Provenienza dei metadati per una nota creata nel prodotto e per una importata da file}
     \label{fig:uml443}
     \end{figure}
 

@@ -2,60 +2,34 @@
 !theme plain
 hide circle
 skinparam classAttributeIconSize 0
-skinparam componentStyle rectangle
-skinparam linetype ortho
-' ============================================================
-' ENTITÀ NOTE
-' ============================================================
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
 
-class Note {
-  - id: string
-  - title: string
-  - content: string
-  - createdAt: number
-  - updatedAt: number
+title Provenienza dei metadati per una nota creata nel prodotto e per una importata da file
+
+object "Note creata da createEmpty" as CREATA {
+  id = newId()
+  title = titolo scelto, oppure "Senza titolo"
+  content = ""
+  createdAt = istante della creazione
+  updatedAt = rinfrescato a ogni scrittura sulla nota
 }
 
-' ============================================================
-' MODULO fileSystem
-' ============================================================
-
-class fileSystem {
-  + openNoteFromFile(): Promise<Note | null>
-  + saveNoteToFile(note: Note): Promise<void>
-  + renameNote(note: Note, name: string): Promise<Note>
-  + GRAZIA_ANNULLAMENTO_MS: number (300)
-  + TITOLO_DI_RIPIEGO: string
-  - scegliFileConInput(): Promise<{text: string, fileName: string} | null>
-  - eAnnullamento(err: unknown): boolean
+object "File scelto dall'utente" as FILE {
+  name = "appunti.md"
+  lastModified = istante del sistema operativo, non letto
 }
 
-' ============================================================
-' LIBRERIE UTILIZZATE
-' ============================================================
-
-class id {
-  + newId(): string
+object "Note composta da openNoteFromFile" as IMPORTATA {
+  id = newId()
+  title = "appunti", il nome senza estensione
+  content = testo letto dal file
+  createdAt = istante dell'importazione, senza fonte nel file
+  updatedAt = istante dell'importazione, non lastModified
 }
 
-class useNotesStore {
-  + loadNote(note: Note): void
-}
-
-class useEditorStore {
-  + loadDocument(text: string): void
-}
-
-' ============================================================
-' RELAZIONI
-' ============================================================
-
-fileSystem ..> Note : crea/gestisce
-fileSystem ..> id : utilizza (newId)
-
-Sidebar ..> fileSystem : utilizza (openNoteFromFile, saveNoteToFile)
-
-fileSystem ..> useNotesStore : utilizza (loadNote)
-fileSystem ..> useEditorStore : utilizza (loadDocument)
+FILE --> IMPORTATA : name, verso title
 
 @enduml
