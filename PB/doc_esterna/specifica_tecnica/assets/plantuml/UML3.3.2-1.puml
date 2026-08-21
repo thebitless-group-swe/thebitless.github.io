@@ -23,9 +23,10 @@ class Sidebar {
   - startCreate(): void
   - commitCreate(): void
   - cancelCreate(): void
+  - handleCreate(title: string): boolean
   - handleSelect(id: string): void
-  - startRename(note: Note): void
-  - commitRename(note: Note): Promise<void>
+  - startRename(note): void
+  - commitRename(note): Promise<void>
   - confirmDelete(id: string): void
   - handleOpenFile(): Promise<void>
   - handleSaveFile(): Promise<void>
@@ -40,13 +41,16 @@ class useNotesStore <<store>> {
   + updateCurrent(patch): void
   + deleteNote(id: string): void
   + loadNote(note): void
+  __
+  + useNotesList(): Note[]
+  + useCurrentNote(): Note | null
 }
 
 class useEditorStore <<store>> {
   + currentText: string
 }
 
-class fileSystem <<module>> {
+class fileSystem <<lib/>> {
   + openNoteFromFile(): Promise<Note | null>
   + saveNoteToFile(note: Note): Promise<void>
   + renameNote(note: Note, name: string): Promise<Note>

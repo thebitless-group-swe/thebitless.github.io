@@ -3,40 +3,37 @@
 skinparam shadowing false
 skinparam defaultFontSize 14
 
-title Scenario 2: caricamento di una nota (Store verso Editor)
+title Diagramma di sequenza della sincronizzazione dallo store all'editor
 
-start
-:useNotesStore invoca loadDocument
-con il contenuto della nota;
+participant useNotesStore <<store>>
+participant useEditorStore <<store>>
+participant Editor
+participant EditorView <<@codemirror/view>>
+participant updateListener <<estensione>>
 
-if (useEditorStore: il testo coincide con currentText?) then (si)
-  :nessuna modifica, _loadVersion non avanza;
-  stop
-endif
+useNotesStore -> useEditorStore : loadDocument(contenuto)
 
-:currentText = contenuto, _loadVersion++,
-e notifica del solo currentText ai sottoscrittori
-del selettore useCurrentText;
+alt il contenuto coincide con currentText
+  useEditorStore --> useNotesStore : nessuna modifica,\n_loadVersion non avanza
+else il contenuto differisce
+  useEditorStore -> useEditorStore : currentText = contenuto,\n_loadVersion++
+  useEditorStore -> Editor : notifica del selettore useCurrentText
+  Editor -> EditorView : view.state.doc.toString()
 
-if (Editor: il documento coincide con currentText?) then (si)
-  :invoca focus sull'istanza, nessuna transazione;
-  stop
-endif
-
-:legge _loadVersion con getState()
-e lo confronta con prevLoadVersionRef;
-if (il contatore e' cambiato?) then (si)
-  :transazione annotata StoreSync
-  e addToHistory(false);
-else (no)
-  :transazione annotata
-  con il solo StoreSync;
-endif
-
-:invia la transazione, e l'EditorView
-sostituisce l'intero documento;
-:l'updateListener riconosce StoreSync e non rimanda
-nulla allo store; l'Editor invoca focus sull'istanza;
-stop
+  alt il documento coincide con currentText
+    Editor -> EditorView : focus()
+  else il documento differisce
+    Editor -> useEditorStore : getState()._loadVersion
+    Editor -> Editor : confronta con prevLoadVersionRef\ne lo aggiorna
+    alt il contatore e' cambiato
+      Editor -> EditorView : dispatch(changes, StoreSync\n+ addToHistory(false))
+    else il contatore e' invariato
+      Editor -> EditorView : dispatch(changes, StoreSync)
+    end
+    EditorView -> updateListener : update (docChanged)
+    updateListener -> updateListener : riconosce StoreSync\ne non rimanda nulla
+    Editor -> EditorView : focus()
+  end
+end
 
 @enduml

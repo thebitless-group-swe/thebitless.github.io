@@ -12,11 +12,7 @@ title TopBar
 top to bottom direction
 
 class TopBar {
-  - noteTitle?: string
-  - isGenerating: boolean
-  - errorMessage: string | null
-  - aiModal: AiModal
-  - currentNote: Note | null
+  + noteTitle?: string
   __
   - openModal(modal: AiActionId): void
   - handleAbort(): void
@@ -28,21 +24,21 @@ class useEditorStore <<store>> {
   + aiModal: AiModal
   __
   + abortStream(): void
+  __
+  + useIsGenerating(): boolean
+  + useErrorMessage(): string | null
+  + useAiModal(): AiModal
 }
 
 class useNotesStore <<store>> {
-  + list: Note[]
-  + currentId: string | null
+  + useCurrentNote(): Note | null
 }
 
-enum AiActionId {
-  summarize
-  translate
-  rewrite
-  grammar
-  critique
-  generate
-  generate-link
+class AiActionId <<type>> {
+  'summarize' | 'translate' |
+  'rewrite' | 'grammar' |
+  'critique' | 'generate' |
+  'generate-link'
 }
 
 class AiModal <<type>> {

@@ -11,7 +11,7 @@ title useNotesStore
 
 top to bottom direction
 
-class persist <<middleware>> {
+class persist <<zustand/middleware>> {
   chiave: 'notes_persistence'
   nessun partialize
   + onRehydrateStorage()
@@ -23,10 +23,13 @@ class useNotesStore <<store>> {
   __
   + createEmpty(title?: string): Note
   + select(id: string): void
-  + updateCurrent(patch: Partial<Pick<Note, 'title' | 'content'>>): void
+  + updateCurrent(patch): void
   + deleteNote(id: string): void
-  + loadNote(note: Omit<Note, 'createdAt' | 'updatedAt'>): void
+  + loadNote(note): void
   + ensureWelcomeNote(): void
+  __
+  + useNotesList(): Note[]
+  + useCurrentNote(): Note | null
 }
 
 class Note <<entity>> {
@@ -43,20 +46,20 @@ class useEditorStore <<store>> {
   + loadDocument(text: string): void
 }
 
-class fileSystem <<module>> {
+class fileSystem <<lib/>> {
   + Note
 }
 
-class id <<module>> {
+class id <<lib/>> {
   + newId(): string
 }
 
-persist --* useNotesStore
+useNotesStore --> persist
 useNotesStore "1" o-- "0..*" Note
 useNotesStore --> useEditorStore
 useNotesStore --> fileSystem
 useNotesStore --> id
-persist --> useEditorStore
+persist --> useEditorStore : onRehydrateStorage
 
 Note -[hidden]right- useEditorStore
 fileSystem -[hidden]right- id

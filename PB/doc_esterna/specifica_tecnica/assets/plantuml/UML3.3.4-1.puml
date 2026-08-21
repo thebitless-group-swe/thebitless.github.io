@@ -3,36 +3,33 @@
 skinparam shadowing false
 skinparam defaultFontSize 14
 
-title Scenario 1: modifica dell'utente (Editor verso Store)
+title Diagramma di sequenza della sincronizzazione dall'editor allo store
 
-start
-:l'utente digita o sposta il cursore;
-:l'EditorView produce un aggiornamento,
-con i marcatori selectionSet e docChanged;
+actor Utente
+participant EditorView <<@codemirror/view>>
+participant updateListener <<estensione>>
+participant useEditorStore <<store>>
 
-if (updateListener: selectionSet oppure docChanged?) then (si)
-  :ricava il testo selezionato,
-  stringa vuota se la selezione e' vuota;
-  if (coincide con selectedText nello store?) then (no)
-    :invoca setSelectedText su useEditorStore;
-  else (si)
-    :nessuna scrittura;
-  endif
-else (no)
-endif
+Utente -> EditorView : digita o sposta il cursore
+EditorView -> updateListener : update
 
-if (updateListener: docChanged?) then (no)
-  stop
-endif
+alt update.selectionSet oppure update.docChanged
+  updateListener -> updateListener : ricava il testo selezionato,\nstringa vuota se la selezione e' vuota
+  alt differisce da selectedText
+    updateListener -> useEditorStore : setSelectedText(testo)
+  else coincide
+    updateListener -> updateListener : nessuna scrittura
+  end
+end
 
-if (la transazione porta l'annotazione StoreSync?) then (si)
-  :e' una sincronizzazione proveniente dallo store,
-  l'ascoltatore non la rimanda indietro;
-  stop
-endif
-
-:invoca setCurrentText su useEditorStore
-con l'intero documento;
-stop
+alt update.docChanged
+  alt una transazione porta l'annotazione StoreSync
+    updateListener -> updateListener : e' la sincronizzazione inversa,\nnon la rimanda indietro
+  else nessuna annotazione
+    updateListener -> useEditorStore : setCurrentText(update.state.doc.toString())
+  end
+else documento invariato
+  updateListener -> updateListener : si ferma
+end
 
 @enduml

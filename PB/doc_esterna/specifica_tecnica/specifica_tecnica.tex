@@ -1078,14 +1078,14 @@ Il flusso enunciato nella sezione \ref{sec:panoramica-stile-web}, per cui un'int
     \begin{figure}[H]
     \centering
     \includegraphics[width=1.00\textwidth]{assets/img/UML3.3-1.pdf}
-    \caption{Diagramma UML 3.3-1 - Componenti UI e Store}
+    \caption{Diagramma UML 3.3-1 - Componenti dell'interfaccia e store}
     \label{fig:uml331}
     \end{figure}
 
     \begin{figure}[H]
     \centering
     \includegraphics[width=1.00\textwidth]{assets/img/UML3.3-2.pdf}
-    \caption{Diagramma UML 3.3-2 - Hooks, Librerie e Dipendenze Esterne}
+    \caption{Diagramma UML 3.3-2 - Agganci, moduli di lib/ e dipendenze esterne}
     \label{fig:uml332}
     \end{figure}
 
@@ -1126,8 +1126,8 @@ La conseguenza è già osservabile, e va riportata perché è il caso in cui la 
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.89\textwidth]{assets/img/UML3.3.1.pdf}
-    \caption{Diagramma UML 3.3.1 - Organizzazione dei sorgenti del frontend}
+    \includegraphics[width=0.81\textwidth]{assets/img/UML3.3.1.pdf}
+    \caption{Diagramma UML 3.3.1 - Organizzazione per ruolo dei sorgenti in web/src}
     \label{fig:uml3311}
     \end{figure}
 
@@ -1169,13 +1169,6 @@ Il messaggio di errore è reso qui in un avviso, ma soltanto quando nessuna fine
 \paragraph{\texttt{ViewToggle}.}
 Tre pulsanti che impostano la modalità di visualizzazione, con quello attivo distinto dagli altri. Il componente è reso dalla radice fuori dalla barra superiore e resta visibile in tutte e tre le modalità. Se comparisse soltanto insieme all'editor, dalla modalità di sola anteprima non esisterebbe alcun comando per tornare indietro.
 
-    \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.48\textwidth]{assets/img/UML3.3.2-3.pdf}
-    \caption{Diagramma UML 3.3.2-3 - ViewToggle}
-    \label{fig:uml3323}
-    \end{figure}
-
 \paragraph{\texttt{EditorToolbar}.}
 Raccoglie i comandi di formattazione del testo e non manipola il documento da sé. Recupera dallo store l'istanza dell'editor e invoca su di essa la funzione corrispondente fra quelle raccolte in \texttt{lib/editorCommands.ts}, che sono l'unico luogo dell'applicazione web in cui la sintassi Markdown\textsubscript{G} venga scritta. Se l'istanza non c'è ancora il comando non fa nulla, anziché fallire.
 
@@ -1185,39 +1178,25 @@ I comandi che avvolgono la selezione fra due marcatori sono interruttori, cioè 
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1.00\textwidth]{assets/img/UML3.3.2-4.pdf}
-    \caption{Diagramma UML 3.3.2-4 - EditorToolbar}
-    \label{fig:uml3324}
+    \includegraphics[width=1.00\textwidth]{assets/img/UML3.3.2-3.pdf}
+    \caption{Diagramma UML 3.3.2-3 - EditorToolbar}
+    \label{fig:uml3323}
     \end{figure}
 
 \paragraph{\texttt{Editor}.}
 Ospita l'istanza della libreria dell'editor e ne governa la sincronizzazione con lo store, descritta nella sezione \ref{sec:frontend-editor}. Realizza \textbf{R-1-F-Ob} (UC1, inserimento e modifica del testo) insieme a \textbf{R-111-F-Ob} e \textbf{R-112-F-Ob}, che prescrivono rispettivamente un'area di editing capace di ospitare testo su più righe e il Markdown\textsubscript{G} come linguaggio di riferimento. La resa grafica del Markdown\textsubscript{G} non è compito suo e appartiene all'anteprima.
 
-    \begin{figure}[H]
-    \centering
-    \includegraphics[width=1.00\textwidth]{assets/img/UML3.3.2-5.pdf}
-    \caption{Diagramma UML 3.3.2-5 - Editor}
-    \label{fig:uml3325}
-    \end{figure}
-
 \paragraph{\texttt{Preview}.}
 Legge il testo corrente e lo consegna al componente che lo rende. Non conosce la pipeline con cui quel testo viene trasformato, che appartiene per intero al componente descritto subito sotto. È un pannello e non un motore. Realizza \textbf{R-2-F-Ob} e \textbf{R-113-F-Ob} (UC1).
-
-    \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.59\textwidth]{assets/img/UML3.3.2-6.pdf}
-    \caption{Diagramma UML 3.3.2-6 - Preview}
-    \label{fig:uml3326}
-    \end{figure}
 
 \paragraph{\texttt{MarkdownView}.}
 È il solo punto dell'applicazione web in cui il Markdown\textsubscript{G} venga reso, ed è impiegato da due chiamanti, il pannello di anteprima e l'anteprima dell'esito dentro la finestra di dialogo. Che sia uno solo è la ragione per cui i due contesti non possono divergere. La pipeline comprende le estensioni riportate nella sezione \ref{sec:tecnologie-frontend}, cioè le costruzioni del GitHub Flavored Markdown, il riconoscimento e la composizione delle espressioni matematiche e l'evidenziazione della sintassi nei blocchi di codice, oltre a un'estensione scritta dal gruppo. Quest'ultima riconosce la sintassi del testo sottolineato e dichiara l'elemento da produrre anziché emettere marcatura, perché il sottolineato non appartiene al Markdown\textsubscript{G} e senza di essa il comando corrispondente della barra degli strumenti non avrebbe alcuna resa nell'anteprima. In nessun punto della pipeline l'HTML grezzo è abilitato, come richiede il trattamento di un testo che proviene in larga parte dal modello linguistico.
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1.00\textwidth]{assets/img/UML3.3.2-7.pdf}
-    \caption{Diagramma UML 3.3.2-7 - MarkdownView}
-    \label{fig:uml3327}
+    \includegraphics[width=1.00\textwidth]{assets/img/UML3.3.2-4.pdf}
+    \caption{Diagramma UML 3.3.2-4 - MarkdownView}
+    \label{fig:uml3324}
     \end{figure}
 
 \paragraph{\texttt{AiActionDialog}.}
@@ -1249,9 +1228,9 @@ Le quattro tavole di valori esposte dai selettori devono coincidere con i vocabo
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1.00\textwidth]{assets/img/UML3.3.2-8.pdf}
-    \caption{Diagramma UML 3.3.2-8 - AiActionDialog}
-    \label{fig:uml3328}
+    \includegraphics[width=1.00\textwidth]{assets/img/UML3.3.2-5.pdf}
+    \caption{Diagramma UML 3.3.2-5 - AiActionDialog}
+    \label{fig:uml3325}
     \end{figure}
 
 \subsubsection{Gestione dello stato}
@@ -1280,7 +1259,7 @@ L'inserimento dell'esito nella nota ha infine due semantiche, dichiarate operazi
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=1.00\textwidth]{assets/img/UML3.3.3-1.pdf}
+    \includegraphics[width=0.96\textwidth]{assets/img/UML3.3.3-1.pdf}
     \caption{Diagramma UML 3.3.3-1 - useEditorStore}
     \label{fig:uml3331}
     \end{figure}
@@ -1340,8 +1319,8 @@ Il secondo controllo riguarda il documento. Se l'aggiornamento non lo ha modific
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.81\textwidth]{assets/img/UML3.3.4-1.pdf}
-    \caption{Diagramma UML 3.3.4-1 - Sincronizzazione editor $\rightarrow$ store}
+    \includegraphics[width=1.00\textwidth]{assets/img/UML3.3.4-1.pdf}
+    \caption{Diagramma UML 3.3.4-1 - Diagramma di sequenza della sincronizzazione dall'editor allo store}
     \label{fig:uml3341}
     \end{figure}
 
@@ -1357,8 +1336,8 @@ La distinzione è affidata a un contatore custodito nello store, incrementato a 
 
     \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\textwidth]{assets/img/UML3.3.4-2.pdf}
-    \caption{Diagramma UML 3.3.4-2 - Sincronizzazione store $\rightarrow$ editor}
+    \includegraphics[width=1.00\textwidth]{assets/img/UML3.3.4-2.pdf}
+    \caption{Diagramma UML 3.3.4-2 - Diagramma di sequenza della sincronizzazione dallo store all'editor}
     \label{fig:uml3342}
     \end{figure}
 
@@ -1435,7 +1414,7 @@ Il salvataggio su file non è soggetto alla medesima condizione. Il comando dell
     \begin{figure}[H]
     \centering
     \includegraphics[width=1.00\textwidth]{assets/img/UML3.3.6.pdf}
-    \caption{Diagramma UML 3.3.6 - Persistenza lato client}
+    \caption{Diagramma UML 3.3.6 - I due meccanismi di persistenza lato client}
     \label{fig:uml336}
     \end{figure}
 

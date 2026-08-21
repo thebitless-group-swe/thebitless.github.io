@@ -7,42 +7,44 @@ skinparam nodesep 45
 skinparam ranksep 60
 skinparam defaultFontSize 14
 
-title EditorToolbar
+title MarkdownView
 
 top to bottom direction
 
-class EditorToolbar {
-  - handleAction(label: ToolLabel): void
-  - handleHeading(level: HeadingLevel): void
-  - handleList(ordered: boolean): void
+' Le estensioni sono importate da MarkdownView e passate a ReactMarkdown
+' nelle due proprieta' remarkPlugins e rehypePlugins. Le etichette degli
+' archi riportano la proprieta' attraverso cui ciascuna viene consegnata.
+
+class Preview
+class AiActionDialog
+
+class MarkdownView {
+  + children: string
+  + className?: string
 }
 
-class useEditorStore <<store>> {
-  + editorView: EditorView | null
+class ReactMarkdown <<react-markdown>>
+
+together {
+  class remarkGfm <<remark-gfm>>
+  class remarkMath <<remark-math>>
+  class remarkUnderline <<lib/, del gruppo>> {
+    + remarkUnderline()
+  }
 }
 
-class editorCommands <<module>> {
-  + toggleBoldCommand(view: EditorView): boolean
-  + toggleItalicCommand(view: EditorView): boolean
-  + toggleUnderlineCommand(view: EditorView): boolean
-  + toggleStrikethroughCommand(view: EditorView): boolean
-  + toggleInlineCodeCommand(view: EditorView): boolean
-  + toggleLinkCommand(view: EditorView): boolean
-  + insertImageCommand(view: EditorView): boolean
-  + setHeadingCommand(view: EditorView, level: HeadingLevel): boolean
-  + toggleListCommand(view: EditorView): boolean
-  + toggleOrderedListCommand(view: EditorView): boolean
-  + cycleHeadingCommand(view: EditorView): boolean
+together {
+  class rehypeKatex <<rehype-katex>>
+  class rehypeHighlight <<rehype-highlight>>
 }
 
-class EditorView <<libreria>> {
-  + dispatch(tr: Transaction): void
-  + focus(): void
-}
-
-EditorToolbar --> useEditorStore
-EditorToolbar --> editorCommands
-editorCommands --> EditorView
-useEditorStore --> EditorView
+Preview --> MarkdownView
+AiActionDialog --> MarkdownView
+MarkdownView *-- ReactMarkdown
+MarkdownView --> remarkGfm : remarkPlugins
+MarkdownView --> remarkMath : remarkPlugins
+MarkdownView --> remarkUnderline : remarkPlugins
+MarkdownView --> rehypeKatex : rehypePlugins
+MarkdownView --> rehypeHighlight : rehypePlugins
 
 @enduml

@@ -3,56 +3,106 @@
 hide circle
 skinparam classAttributeIconSize 0
 skinparam shadowing false
-skinparam nodesep 45
+skinparam nodesep 35
 skinparam ranksep 60
 skinparam defaultFontSize 14
 
-title Editor
+title AiActionDialog
 
 top to bottom direction
 
-class Editor {
-  - currentText: string
-  - containerRef: RefObject<HTMLDivElement>
-  - viewRef: RefObject<EditorView | null>
-  - prevLoadVersionRef: RefObject<number>
+' I tre selettori sono dichiarati dentro il modulo della finestra e non ne
+' sono esportati: la loro superficie e' percio' privata, come le tavole dei
+' vocabolari e i tipi che ne controllano la copertura.
+
+class AiActionDialog {
+  - params: AiParams
+  - input: string
+  - mode: 'prompt' | 'link'
+  - validationError: string | null
+  - sameAsLast: boolean
+  - isNoErrors: boolean
   __
-  - effetto di montaggio: crea EditorView
-  - effetto su currentText: riallinea il documento
+  - handleGenerate(): void
+  - handleAccept(): void
+  - handleReject(): void
+  - handleStop(): void
+  - handleParamsChange(next: AiParams): void
+  - handleModeChange(next: 'prompt' | 'link'): void
 }
 
-class useEditorStore <<store>> {
-  + currentText: string
-  - _loadVersion: number
-  + editorView: EditorView | null
+class uiReducer <<riduttore>> {
+  SET_PARAMS
+  SET_INPUT
+  SET_MODE
+  SET_VALIDATION_ERROR
+  RESTORE_FROM_LAST_CALL
+  RESET_DEFAULT
   __
-  + setCurrentText(text: string): void
-  + setSelectedText(text: string): void
-  + setEditorView(view: EditorView | null): void
+  - getDefaultParams(actionId): AiParams
 }
 
-class EditorView <<libreria>> {
-  + state: EditorState
-  + dispatch(tr: Transaction): void
-  + focus(): void
-  + destroy(): void
+together {
+  class PillSelector <<interno al modulo>> {
+    - label: string
+    - options: { value: T, label: string }[]
+    - value: T
+    - onChange: (v: T) => void
+  }
+  class HatSelector <<interno al modulo>> {
+    - value: Hat | null
+    - onChange: (v: Hat) => void
+  }
+  class GenerateSourceTabs <<interno al modulo>> {
+    - mode: 'prompt' | 'link'
+    - onChange: (m) => void
+  }
 }
 
-class updateListener <<estensione>> {
-  + aggiorna selectedText su selectionSet o docChanged
-  + invoca setCurrentText su docChanged
-  + ignora le transazioni annotate StoreSync
+class aiActions <<lib/>> {
+  + AI_ACTIONS: Record<AiActionId, AiActionDef>
+  + getActiveText(): string
 }
 
-class StoreSync <<annotation>> {
-  marca le transazioni originate dallo store
+class AiActionDef <<type>> {
+  label: string
+  source: 'text' | 'prompt' | 'url'
+  insertMode: 'replace' | 'append'
+  minLength: number
+  maxLength: number | null
 }
 
-Editor --> useEditorStore : sottoscrive currentText,\nlegge _loadVersion con getState()
-Editor *-- EditorView : istanzia al montaggio
-EditorView *-- updateListener : contiene
-updateListener --> useEditorStore : scrive currentText\ne selectedText
-updateListener --> StoreSync : riconosce e ignora
-Editor --> StoreSync : annota le proprie transazioni
+class "vocabolari dei selettori" as VOC {
+  - LENGTHS
+  - LANGUAGES
+  - STYLES
+  - HAT_DEFS
+  __
+  + LengthsCoverContract
+  + LanguagesCoverContract
+  + StylesCoverContract
+  + HatsCoverContract
+}
+
+class models <<barrel>> {
+  + Length, Language, Style, Hat
+  + NO_ERRORS_MARKER
+}
+
+AiActionDialog *-- uiReducer
+AiActionDialog *-- PillSelector
+AiActionDialog *-- HatSelector
+AiActionDialog *-- GenerateSourceTabs
+AiActionDialog --> aiActions
+AiActionDialog --> models
+aiActions --> AiActionDef
+VOC --> models : satisfies
+VOC ..> models : Exclude
+AiActionDialog --> VOC
+HatSelector --> VOC
+
+uiReducer -[hidden]down- aiActions
+aiActions -[hidden]right- VOC
+GenerateSourceTabs -[hidden]down- models
 
 @enduml

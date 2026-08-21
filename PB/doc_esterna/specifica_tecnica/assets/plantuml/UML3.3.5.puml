@@ -11,6 +11,10 @@ title Accesso al servizio applicativo
 
 top to bottom direction
 
+' Ogni funzione della facciata riceve, oltre ai parametri di dominio,
+' un ultimo parametro signal?: AbortSignal, qui omesso per non ripeterlo
+' sette volte. La sequenza completa di un'interazione e' nella sezione 4.1.
+
 class AiActionDialog {
   - handleGenerate(): void
   - handleStop(): void
@@ -20,40 +24,40 @@ class TopBar {
   - handleAbort(): void
 }
 
-class useAiStream <<aggancio>> {
-  + start<T>(fn: (signal: AbortSignal) => AsyncIterable<T>): Promise<void>
+class useAiStream <<hooks/>> {
+  + start<T>(fn: (signal: AbortSignal) =>\nAsyncIterable<T>): Promise<void>
   + abort(): void
   + status: 'idle' | 'streaming' | 'done' | 'error'
-  - abortControllerRef: RefObject<AbortController | null>
-  - isAbortedRef: RefObject<boolean>
+  - abortControllerRef: AbortController | null
+  - isAbortedRef: boolean
 }
 
 class useEditorStore <<store>> {
   + streamedOutput: string
   + isGenerating: boolean
   + errorMessage: string | null
+  - _abortController: AbortController | null
   __
   + startStreaming()
   + appendChunk(chunk)
   + finishStreaming()
   + setError(msg)
   + abortStream()
-  - _abortController: AbortController | null
   - _setAbortController(c)
 }
 
-class api <<facciata>> {
-  + summarize(text: string, length: Length, signal?: AbortSignal)
-  + translate(text: string, target_language: Language, signal?: AbortSignal)
-  + rewrite(text: string, style: Style, signal?: AbortSignal)
-  + grammar(text: string, signal?: AbortSignal)
-  + critique(text: string, hat: Hat, signal?: AbortSignal)
-  + generate(prompt: string, length: Length, signal?: AbortSignal)
-  + generateFromLink(url: string, length: Length, signal?: AbortSignal)
-  - stream(endpoint: string, body: unknown, signal?: AbortSignal)
+class api <<lib/, facciata>> {
+  + summarize(text: string, length: Length)
+  + translate(text: string, target_language: Language)
+  + rewrite(text: string, style: Style)
+  + grammar(text: string)
+  + critique(text: string, hat: Hat)
+  + generate(prompt: string, length: Length)
+  + generateFromLink(url: string, length: Length)
+  - stream(endpoint: string, body: unknown, signal?)
 }
 
-class sse <<module>> {
+class sse <<lib/>> {
   + parseSseStream(reader): AsyncIterable<SseEvent>
   + STREAM_INTERRUPTED_MESSAGE: string
   - parseField(line)
@@ -66,10 +70,9 @@ class SseEvent <<union>> {
 
 class models <<barrel>> {
   + Length, Language, Style, Hat
-  + NO_ERRORS_MARKER
 }
 
-class abort <<module>> {
+class abort <<lib/>> {
   + isAbortError(err)
 }
 

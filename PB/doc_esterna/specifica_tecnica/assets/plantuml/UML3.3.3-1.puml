@@ -9,10 +9,6 @@ skinparam defaultFontSize 14
 
 title useEditorStore
 
-' ============================================================
-' USEEDITORSTORE
-' ============================================================
-
 class useEditorStore <<store>> {
   + currentText: string
   + selectedText: string
@@ -37,28 +33,32 @@ class useEditorStore <<store>> {
   + clearError(): void
   + setViewMode(mode: ViewMode): void
   + setAiModal(modal: AiModal): void
-  + insertOutputIntoNote(insertMode?: 'replace' | 'append'): void
+  + insertOutputIntoNote(insertMode?): void
   + discardOutput(): void
   + resetPreview(): void
   + setEditorView(view: EditorView | null): void
   + abortStream(): void
   + setLastCall(call: LastCall): void
   + clearLastCall(): void
-  - _setAbortController(c: AbortController | null): void
+  - _setAbortController(c): void
+  __
+  + useCurrentText(): string
+  + useSelectedText(): string
+  + useStreamedOutput(): string
+  + useIsGenerating(): boolean
+  + useErrorMessage(): string | null
+  + useViewMode(): ViewMode
+  + useAiModal(): AiModal
 }
 
-' ============================================================
-' TIPI DI SUPPORTO
-' ============================================================
+together {
+  class ViewMode <<type>> {
+    'editor' | 'render' | 'split'
+  }
 
-enum ViewMode {
-  editor
-  render
-  split
-}
-
-class AiModal <<type>> {
-  null | AiActionId
+  class AiModal <<type>> {
+    null | AiActionId
+  }
 }
 
 class LastCall <<type>> {
@@ -69,16 +69,14 @@ class LastCall <<type>> {
   execute(signal: AbortSignal): AsyncIterable<string>
 }
 
-class EditorView <<libreria>> {
-}
+class AiParams <<lib/aiActions, solo tipo>>
 
-' ============================================================
-' RELAZIONI
-' ============================================================
+class EditorView <<@codemirror/view>>
 
-useEditorStore ..> ViewMode : utilizza
-useEditorStore ..> AiModal : utilizza
-useEditorStore ..> LastCall : utilizza
-useEditorStore ..> EditorView : conserva (editorView)
+useEditorStore ..> ViewMode
+useEditorStore ..> AiModal
+useEditorStore ..> LastCall
+useEditorStore ..> EditorView
+LastCall ..> AiParams
 
 @enduml

@@ -14,18 +14,14 @@ class Sidebar {
   - handleSaveFile(): Promise<void>
 }
 
-class fileSystem <<module, via deliberata>> {
+class fileSystem <<lib/, via deliberata>> {
   + Note
-  + GRAZIA_ANNULLAMENTO_MS: number
   + openNoteFromFile(): Promise<Note | null>
   + saveNoteToFile(note: Note): Promise<void>
   + renameNote(note: Note, name: string): Promise<Note>
-  - scegliFileConInput()
-  - eAnnullamento(err)
-  - TITOLO_DI_RIPIEGO: string
 }
 
-class persist <<middleware, via automatica>> {
+class persist <<zustand/middleware, via automatica>> {
   chiave: 'notes_persistence'
   nessun partialize
   + onRehydrateStorage()
@@ -42,7 +38,7 @@ class useEditorStore <<store>> {
   + loadDocument(text: string): void
 }
 
-class id <<module>> {
+class id <<lib/>> {
   + newId(): string
 }
 
@@ -56,13 +52,12 @@ class "ripiego universale" as FB <<browser>> {
   Blob + collegamento di scaricamento
 }
 
-class localStorage <<browser>> {
-}
+class localStorage <<browser>>
 
-Sidebar --> fileSystem : invoca
+Sidebar --> fileSystem
 Sidebar --> useNotesStore : loadNote
 Sidebar --> useEditorStore : legge currentText
-persist --* useNotesStore : avvolge
+useNotesStore --> persist
 persist --> localStorage : scrive e rilegge
 persist --> useEditorStore : loadDocument alla rilettura
 useNotesStore --> fileSystem : importa Note
