@@ -14,7 +14,7 @@
     <mxCell id="storeApi_r3" parent="storeApi" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;" value="+ setState(partial) : void" vertex="1">
       <mxGeometry height="26" width="340" y="106" as="geometry" />
     </mxCell>
-    <mxCell id="editorStore" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=54;horizontalStack=0;resizeParent=1;resizeParentMax=0;html=1;verticalAlign=middle;align=center;whiteSpace=wrap;collapsible=0;strokeColor=#8C4A00;fillColor=#FFE6CC;fontSize=12;" value="&lt;font face=&quot;Helvetica&quot;&gt;«ConcreteSubject»&lt;br&gt;&lt;b&gt;useEditorStore&lt;/b&gt;&lt;br&gt;&lt;i&gt;web/src/store/useEditorStore.ts&lt;/i&gt;&lt;/font&gt;" vertex="1">
+    <mxCell id="editorStore" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=54;horizontalStack=0;resizeParent=1;resizeParentMax=0;html=1;verticalAlign=middle;align=center;whiteSpace=wrap;collapsible=0;strokeColor=#555555;fillColor=#EBEBEB;fontSize=12;" value="&lt;font face=&quot;Helvetica&quot;&gt;«ConcreteSubject»&lt;br&gt;&lt;b&gt;useEditorStore&lt;/b&gt;&lt;br&gt;&lt;i&gt;web/src/store/useEditorStore.ts&lt;/i&gt;&lt;/font&gt;" vertex="1">
       <mxGeometry height="348" width="420" x="380" y="210" as="geometry" />
     </mxCell>
     <mxCell id="es_a1" parent="editorStore" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;" value="- currentText : string" vertex="1">
@@ -53,7 +53,7 @@
     <mxCell id="es_m4" parent="editorStore" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;" value="+ setViewMode(m) / setAiModal(m) / insertOutputIntoNote()" vertex="1">
       <mxGeometry height="26" width="420" y="322" as="geometry" />
     </mxCell>
-    <mxCell id="notesStore" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=54;horizontalStack=0;resizeParent=1;resizeParentMax=0;html=1;verticalAlign=middle;align=center;whiteSpace=wrap;collapsible=0;strokeColor=#8C4A00;fillColor=#FFE6CC;fontSize=12;" value="«ConcreteSubject»&lt;br&gt;&lt;b&gt;useNotesStore&lt;/b&gt;&lt;br&gt;&lt;i&gt;web/src/store/notes.ts&lt;/i&gt; — middleware &lt;code&gt;persist&lt;/code&gt;" vertex="1">
+    <mxCell id="notesStore" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=54;horizontalStack=0;resizeParent=1;resizeParentMax=0;html=1;verticalAlign=middle;align=center;whiteSpace=wrap;collapsible=0;strokeColor=#555555;fillColor=#EBEBEB;fontSize=12;" value="«ConcreteSubject»&lt;br&gt;&lt;b&gt;useNotesStore&lt;/b&gt;&lt;br&gt;&lt;i&gt;web/src/store/notes.ts&lt;/i&gt; — middleware &lt;code&gt;persist&lt;/code&gt;" vertex="1">
       <mxGeometry height="244" width="355" x="1180" y="210" as="geometry" />
     </mxCell>
     <mxCell id="ns_a1" parent="notesStore" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;" value="- list : Note[]" vertex="1">
@@ -80,7 +80,7 @@
     <mxCell id="ns_m5" parent="notesStore" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;" value="+ loadNote(note) : void" vertex="1">
       <mxGeometry height="26" width="355" y="218" as="geometry" />
     </mxCell>
-    <mxCell id="aiStream" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=54;horizontalStack=0;resizeParent=1;resizeParentMax=0;html=1;verticalAlign=middle;align=center;whiteSpace=wrap;collapsible=0;strokeColor=#6C3483;fillColor=#EDE0F5;fontSize=12;" value="«notificatore»&lt;br&gt;&lt;b&gt;useAiStream&lt;/b&gt;&lt;br&gt;&lt;i&gt;web/src/hooks/useAiStream.ts&lt;/i&gt;" vertex="1">
+    <mxCell id="aiStream" parent="1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=54;horizontalStack=0;resizeParent=1;resizeParentMax=0;html=1;verticalAlign=middle;align=center;whiteSpace=wrap;collapsible=0;strokeColor=#4E4E4E;fillColor=#E6E6E6;fontSize=12;" value="«notificatore»&lt;br&gt;&lt;b&gt;useAiStream&lt;/b&gt;&lt;br&gt;&lt;i&gt;web/src/hooks/useAiStream.ts&lt;/i&gt;" vertex="1">
       <mxGeometry height="106" width="280" x="890" y="240" as="geometry" />
     </mxCell>
     <mxCell id="ai_m1" parent="aiStream" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;" value="+ start(fn) : Promise" vertex="1">
@@ -89,46 +89,46 @@
     <mxCell id="ai_m2" parent="aiStream" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=6;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontSize=11;" value="+ abort() : void" vertex="1">
       <mxGeometry height="26" width="280" y="80" as="geometry" />
     </mxCell>
-    <mxCell id="selCurrentText" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#2E7D32;align=center;verticalAlign=middle;fontSize=11;" value="«selector»&lt;br&gt;&lt;b&gt;useCurrentText()&lt;/b&gt;&lt;br&gt;s ⟶ s.currentText" vertex="1">
+    <mxCell id="selCurrentText" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0E0E0;strokeColor=#5D5D5D;align=center;verticalAlign=middle;fontSize=11;" value="«selector»&lt;br&gt;&lt;b&gt;useCurrentText()&lt;/b&gt;&lt;br&gt;s ⟶ s.currentText" vertex="1">
       <mxGeometry height="60" width="140" x="30" y="620" as="geometry" />
     </mxCell>
-    <mxCell id="selViewMode" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#2E7D32;align=center;verticalAlign=middle;fontSize=11;" value="«selector»&lt;br&gt;&lt;b&gt;useViewMode()&lt;/b&gt;&lt;br&gt;s ⟶ s.viewMode" vertex="1">
+    <mxCell id="selViewMode" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0E0E0;strokeColor=#5D5D5D;align=center;verticalAlign=middle;fontSize=11;" value="«selector»&lt;br&gt;&lt;b&gt;useViewMode()&lt;/b&gt;&lt;br&gt;s ⟶ s.viewMode" vertex="1">
       <mxGeometry height="60" width="140" x="200" y="620" as="geometry" />
     </mxCell>
-    <mxCell id="selAiModal" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#2E7D32;align=center;verticalAlign=middle;fontSize=11;" value="«selector»&lt;br&gt;&lt;b&gt;useAiModal()&lt;/b&gt;&lt;br&gt;s ⟶ s.aiModal" vertex="1">
+    <mxCell id="selAiModal" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0E0E0;strokeColor=#5D5D5D;align=center;verticalAlign=middle;fontSize=11;" value="«selector»&lt;br&gt;&lt;b&gt;useAiModal()&lt;/b&gt;&lt;br&gt;s ⟶ s.aiModal" vertex="1">
       <mxGeometry height="60" width="140" x="390" y="620" as="geometry" />
     </mxCell>
-    <mxCell id="selStreamed" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#2E7D32;align=center;verticalAlign=middle;fontSize=11;" value="«selector»&lt;br&gt;&lt;b&gt;useStreamedOutput()&lt;/b&gt;&lt;br&gt;s ⟶ s.streamedOutput" vertex="1">
+    <mxCell id="selStreamed" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0E0E0;strokeColor=#5D5D5D;align=center;verticalAlign=middle;fontSize=11;" value="«selector»&lt;br&gt;&lt;b&gt;useStreamedOutput()&lt;/b&gt;&lt;br&gt;s ⟶ s.streamedOutput" vertex="1">
       <mxGeometry height="60" width="140" x="545" y="620" as="geometry" />
     </mxCell>
-    <mxCell id="selGenerating" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#2E7D32;align=center;verticalAlign=middle;fontSize=11;" value="«selector»&lt;br&gt;&lt;b&gt;useIsGenerating()&lt;/b&gt;&lt;br&gt;s ⟶ s.isGenerating" vertex="1">
+    <mxCell id="selGenerating" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0E0E0;strokeColor=#5D5D5D;align=center;verticalAlign=middle;fontSize=11;" value="«selector»&lt;br&gt;&lt;b&gt;useIsGenerating()&lt;/b&gt;&lt;br&gt;s ⟶ s.isGenerating" vertex="1">
       <mxGeometry height="60" width="140" x="700" y="620" as="geometry" />
     </mxCell>
-    <mxCell id="selError" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#2E7D32;align=center;verticalAlign=middle;fontSize=11;" value="«selector»&lt;br&gt;&lt;b&gt;useErrorMessage()&lt;/b&gt;&lt;br&gt;s ⟶ s.errorMessage" vertex="1">
+    <mxCell id="selError" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0E0E0;strokeColor=#5D5D5D;align=center;verticalAlign=middle;fontSize=11;" value="«selector»&lt;br&gt;&lt;b&gt;useErrorMessage()&lt;/b&gt;&lt;br&gt;s ⟶ s.errorMessage" vertex="1">
       <mxGeometry height="60" width="140" x="855" y="620" as="geometry" />
     </mxCell>
-    <mxCell id="selNotesList" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#2E7D32;align=center;verticalAlign=middle;fontSize=11;" value="«selector»&lt;br&gt;&lt;b&gt;useNotesList()&lt;/b&gt;&lt;br&gt;s ⟶ s.list" vertex="1">
+    <mxCell id="selNotesList" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0E0E0;strokeColor=#5D5D5D;align=center;verticalAlign=middle;fontSize=11;" value="«selector»&lt;br&gt;&lt;b&gt;useNotesList()&lt;/b&gt;&lt;br&gt;s ⟶ s.list" vertex="1">
       <mxGeometry height="60" width="140" x="1190" y="620" as="geometry" />
     </mxCell>
-    <mxCell id="selCurrentNote" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#2E7D32;align=center;verticalAlign=middle;fontSize=10;" value="«selector»&lt;br&gt;&lt;b&gt;useCurrentNote()&lt;/b&gt;&lt;br&gt;s ⟶ s.list.find(n ⟶ n.id === s.currentId)" vertex="1">
+    <mxCell id="selCurrentNote" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0E0E0;strokeColor=#5D5D5D;align=center;verticalAlign=middle;fontSize=10;" value="«selector»&lt;br&gt;&lt;b&gt;useCurrentNote()&lt;/b&gt;&lt;br&gt;s ⟶ s.list.find(n ⟶ n.id === s.currentId)" vertex="1">
       <mxGeometry height="60" width="190" x="1345" y="620" as="geometry" />
     </mxCell>
-    <mxCell id="cEditor" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#1B5E9E;align=center;verticalAlign=middle;fontSize=11;" value="«Observer»&lt;br&gt;&lt;b&gt;Editor&lt;/b&gt;&lt;br&gt;&lt;i&gt;components/Editor.tsx&lt;/i&gt;" vertex="1">
+    <mxCell id="cEditor" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E6E6E6;strokeColor=#515151;align=center;verticalAlign=middle;fontSize=11;" value="«Observer»&lt;br&gt;&lt;b&gt;Editor&lt;/b&gt;&lt;br&gt;&lt;i&gt;components/Editor.tsx&lt;/i&gt;" vertex="1">
       <mxGeometry height="80" width="150" x="20" y="840" as="geometry" />
     </mxCell>
-    <mxCell id="cPreview" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#1B5E9E;align=center;verticalAlign=middle;fontSize=11;" value="«Observer»&lt;br&gt;&lt;b&gt;Preview&lt;/b&gt;&lt;br&gt;&lt;i&gt;components/Preview.tsx&lt;/i&gt;" vertex="1">
+    <mxCell id="cPreview" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E6E6E6;strokeColor=#515151;align=center;verticalAlign=middle;fontSize=11;" value="«Observer»&lt;br&gt;&lt;b&gt;Preview&lt;/b&gt;&lt;br&gt;&lt;i&gt;components/Preview.tsx&lt;/i&gt;" vertex="1">
       <mxGeometry height="80" width="150" x="190" y="840" as="geometry" />
     </mxCell>
-    <mxCell id="cApp" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#1B5E9E;align=center;verticalAlign=middle;fontSize=11;" value="«Observer»&lt;br&gt;&lt;b&gt;App&lt;/b&gt;&lt;br&gt;&lt;i&gt;App.tsx&lt;/i&gt;" vertex="1">
+    <mxCell id="cApp" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E6E6E6;strokeColor=#515151;align=center;verticalAlign=middle;fontSize=11;" value="«Observer»&lt;br&gt;&lt;b&gt;App&lt;/b&gt;&lt;br&gt;&lt;i&gt;App.tsx&lt;/i&gt;" vertex="1">
       <mxGeometry height="80" width="140" x="380" y="840" as="geometry" />
     </mxCell>
-    <mxCell id="cViewToggle" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#1B5E9E;align=center;verticalAlign=middle;fontSize=11;" value="«Observer»&lt;br&gt;&lt;b&gt;ViewToggle&lt;/b&gt;&lt;br&gt;&lt;i&gt;components/ViewToggle.tsx&lt;/i&gt;" vertex="1">
+    <mxCell id="cViewToggle" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E6E6E6;strokeColor=#515151;align=center;verticalAlign=middle;fontSize=11;" value="«Observer»&lt;br&gt;&lt;b&gt;ViewToggle&lt;/b&gt;&lt;br&gt;&lt;i&gt;components/ViewToggle.tsx&lt;/i&gt;" vertex="1">
       <mxGeometry height="80" width="140" x="560" y="840" as="geometry" />
     </mxCell>
-    <mxCell id="cDialog" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#1B5E9E;align=center;verticalAlign=middle;fontSize=11;" value="«Observer»&lt;br&gt;&lt;b&gt;AiActionDialog&lt;/b&gt;&lt;br&gt;&lt;i&gt;components/AiActionDialog.tsx&lt;/i&gt;" vertex="1">
+    <mxCell id="cDialog" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E6E6E6;strokeColor=#515151;align=center;verticalAlign=middle;fontSize=11;" value="«Observer»&lt;br&gt;&lt;b&gt;AiActionDialog&lt;/b&gt;&lt;br&gt;&lt;i&gt;components/AiActionDialog.tsx&lt;/i&gt;" vertex="1">
       <mxGeometry height="80" width="320" x="730" y="840" as="geometry" />
     </mxCell>
-    <mxCell id="cSidebar" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#1B5E9E;align=center;verticalAlign=middle;fontSize=11;" value="«Observer»&lt;br&gt;&lt;b&gt;Sidebar&lt;/b&gt;&lt;br&gt;&lt;i&gt;components/Sidebar.tsx&lt;/i&gt;" vertex="1">
+    <mxCell id="cSidebar" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E6E6E6;strokeColor=#515151;align=center;verticalAlign=middle;fontSize=11;" value="«Observer»&lt;br&gt;&lt;b&gt;Sidebar&lt;/b&gt;&lt;br&gt;&lt;i&gt;components/Sidebar.tsx&lt;/i&gt;" vertex="1">
       <mxGeometry height="80" width="355" x="1180" y="840" as="geometry" />
     </mxCell>
     <mxCell id="e1" edge="1" parent="1" source="editorStore" style="endArrow=block;endFill=0;dashed=1;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;startSize=7;endSize=11;" target="storeApi">
@@ -241,7 +241,7 @@
     <mxCell id="e20" edge="1" parent="1" source="cSidebar" style="endArrow=open;endSize=12;dashed=1;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0.7;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=10;" target="selCurrentNote" value="«subscribe»">
       <mxGeometry relative="1" as="geometry" />
     </mxCell>
-    <mxCell id="e21" edge="1" parent="1" source="cEditor" style="endArrow=open;endSize=12;dashed=1;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#B85450;fontColor=#B85450;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.83;entryDx=0;entryDy=0;fontSize=10;verticalAlign=bottom;" target="editorStore" value="setCurrentText() / setSelectedText()&lt;br&gt;&lt;i&gt;via getState() — non reattivo&lt;/i&gt;">
+    <mxCell id="e21" edge="1" parent="1" source="cEditor" style="endArrow=open;endSize=12;dashed=1;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#666666;fontColor=#666666;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.83;entryDx=0;entryDy=0;fontSize=10;verticalAlign=bottom;" target="editorStore" value="setCurrentText() / setSelectedText()&lt;br&gt;&lt;i&gt;via getState() — non reattivo&lt;/i&gt;">
       <mxGeometry relative="1" x="0.0148" y="-20" as="geometry">
         <mxPoint as="offset" />
         <Array as="points">
@@ -250,7 +250,7 @@
         </Array>
       </mxGeometry>
     </mxCell>
-    <mxCell id="e22" edge="1" parent="1" source="cSidebar" style="endArrow=open;endSize=12;dashed=1;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#B85450;fontColor=#B85450;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.7;entryDx=0;entryDy=0;fontSize=10;" target="notesStore" value="createEmpty() / select() / deleteNote()&lt;br&gt;&lt;i&gt;via getState() — non reattivo&lt;/i&gt;">
+    <mxCell id="e22" edge="1" parent="1" source="cSidebar" style="endArrow=open;endSize=12;dashed=1;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#666666;fontColor=#666666;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.7;entryDx=0;entryDy=0;fontSize=10;" target="notesStore" value="createEmpty() / select() / deleteNote()&lt;br&gt;&lt;i&gt;via getState() — non reattivo&lt;/i&gt;">
       <mxGeometry relative="1" x="0.0998" as="geometry">
         <mxPoint as="offset" />
         <Array as="points">
@@ -259,7 +259,7 @@
         </Array>
       </mxGeometry>
     </mxCell>
-    <mxCell id="e23" edge="1" parent="1" source="aiStream" style="endArrow=open;endSize=12;dashed=1;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#B85450;fontColor=#B85450;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.24;entryDx=0;entryDy=0;fontSize=10;verticalAlign=bottom;" target="editorStore" value="startStreaming() / appendChunk() / finishStreaming() / setError()">
+    <mxCell id="e23" edge="1" parent="1" source="aiStream" style="endArrow=open;endSize=12;dashed=1;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#666666;fontColor=#666666;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.24;entryDx=0;entryDy=0;fontSize=10;verticalAlign=bottom;" target="editorStore" value="startStreaming() / appendChunk() / finishStreaming() / setError()">
       <mxGeometry relative="1" x="1" y="70" as="geometry">
         <mxPoint x="-60" y="-34" as="offset" />
       </mxGeometry>
@@ -273,7 +273,7 @@
         <mxPoint x="1020" y="370" as="targetPoint" />
       </mxGeometry>
     </mxCell>
-    <mxCell id="e25" edge="1" parent="1" source="notesStore" style="endArrow=open;endSize=12;dashed=1;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#B85450;fontColor=#B85450;exitX=0;exitY=0.9;exitDx=0;exitDy=0;entryX=1;entryY=0.63;entryDx=0;entryDy=0;fontSize=10;verticalAlign=bottom;" target="editorStore" value="loadDocument(note.content)">
+    <mxCell id="e25" edge="1" parent="1" source="notesStore" style="endArrow=open;endSize=12;dashed=1;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#666666;fontColor=#666666;exitX=0;exitY=0.9;exitDx=0;exitDy=0;entryX=1;entryY=0.63;entryDx=0;entryDy=0;fontSize=10;verticalAlign=bottom;" target="editorStore" value="loadDocument(note.content)">
       <mxGeometry relative="1" as="geometry" />
     </mxCell>
   </root>

@@ -2,7 +2,7 @@
   <root>
     <mxCell id="0" />
     <mxCell id="1" parent="0" />
-    <mxCell id="pPorts" parent="1" style="shape=folder;html=1;whiteSpace=wrap;tabWidth=110;tabHeight=24;tabPosition=left;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=1;container=0;collapsible=0;fillColor=none;strokeColor=#1F5C99;dashed=0;connectable=0;allowArrows=0;dropTarget=0;expand=0;recursiveResize=0;editable=0;" value="core.ports" vertex="1">
+    <mxCell id="pPorts" parent="1" style="shape=folder;html=1;whiteSpace=wrap;tabWidth=110;tabHeight=24;tabPosition=left;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=1;container=0;collapsible=0;fillColor=none;strokeColor=#515151;dashed=0;connectable=0;allowArrows=0;dropTarget=0;expand=0;recursiveResize=0;editable=0;" value="core.ports" vertex="1">
       <mxGeometry height="520" width="628" x="-20" y="36" as="geometry" />
     </mxCell>
     <mxCell id="iLlm" parent="pPorts" style="swimlane;html=1;startSize=46;horizontal=1;fontSize=12;fontStyle=1;align=center;verticalAlign=middle;rounded=0;dashed=0;swimlaneFillColor=#ffffff;" value="&amp;lt;&amp;lt;porta&amp;gt;&amp;gt;&lt;br&gt;LLMClient" vertex="1">
