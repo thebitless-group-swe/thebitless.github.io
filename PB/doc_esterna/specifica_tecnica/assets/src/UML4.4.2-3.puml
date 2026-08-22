@@ -1,0 +1,38 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
+
+title Sequenza della rilettura dell'archivio locale all'avvio
+
+participant useNotesStore as NS
+participant useEditorStore as ES
+participant persist as P
+participant localStorage as LS
+
+[-> NS : creazione dello store
+NS -> P : lo store nasce avvolto dal middleware
+P -> LS : rilegge la chiave notes_persistence
+LS --> P : list e currentId, se presenti
+P -> NS : stato reidratato
+P -> NS : onRehydrateStorage(state)
+
+alt esiste in list una nota con id pari a currentId
+
+  NS -> ES : loadDocument(contenuto della nota corrente)
+
+else archivio assente, o senza nota corrispondente
+
+  NS -> NS : ensureWelcomeNote()
+  NS -> NS : loadNote(nota di benvenuto)
+  NS -> P : mutazione dello store
+  P -> LS : riversa list e currentId
+  NS -> ES : loadDocument(CONTENUTO_BENVENUTO)
+
+end
+
+@enduml

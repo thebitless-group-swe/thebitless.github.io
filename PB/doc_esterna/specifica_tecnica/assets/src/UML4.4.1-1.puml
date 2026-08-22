@@ -1,0 +1,62 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
+
+title Il modulo lib/fileSystem.ts e le sue dipendenze
+
+together {
+  class Sidebar <<components/>> {
+    - handleOpenFile(): Promise<void>
+    - handleSaveFile(): Promise<void>
+    - commitRename(note: Note): Promise<void>
+  }
+
+  class fileSystem <<lib/>> {
+    + GRAZIA_ANNULLAMENTO_MS: number
+    - TITOLO_DI_RIPIEGO: string
+    + openNoteFromFile(): Promise<Note | null>
+    + saveNoteToFile(note: Note): Promise<void>
+    + renameNote(note: Note, name: string): Promise<Note>
+    - scegliFileConInput(): Promise<{ text, fileName } | null>
+    - eAnnullamento(err: unknown): boolean
+  }
+
+  class id <<lib/>> {
+    + newId(): string
+  }
+}
+
+together {
+  class useNotesStore <<store/>> {
+    + loadNote(note: Note): void
+    + updateCurrent(patch): void
+  }
+
+  class useEditorStore <<store/>> {
+    + currentText: string
+  }
+
+  class Note <<lib/fileSystem.ts>> {
+    + id: string
+    + title: string
+    + content: string
+    + createdAt: number
+    + updatedAt: number
+  }
+}
+
+Sidebar ..> fileSystem
+Sidebar ..> useNotesStore
+Sidebar ..> useEditorStore
+
+fileSystem ..> id
+fileSystem ..> Note : dichiara e compone
+
+useNotesStore "1" o-- "0..*" Note
+
+@enduml

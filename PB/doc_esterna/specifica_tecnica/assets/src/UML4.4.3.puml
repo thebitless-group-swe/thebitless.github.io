@@ -1,0 +1,35 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
+
+title Provenienza dei metadati per una nota creata nel prodotto e per una importata da file
+
+object "Note creata da createEmpty" as CREATA {
+  id = newId()
+  title = titolo scelto, oppure "Senza titolo"
+  content = ""
+  createdAt = istante della creazione
+  updatedAt = rinfrescato a ogni scrittura sulla nota
+}
+
+object "File scelto dall'utente" as FILE {
+  name = "appunti.md"
+  lastModified = istante del sistema operativo, non letto
+}
+
+object "Note composta da openNoteFromFile" as IMPORTATA {
+  id = newId()
+  title = "appunti", il nome senza estensione
+  content = testo letto dal file
+  createdAt = istante dell'importazione, senza fonte nel file
+  updatedAt = istante dell'importazione, non lastModified
+}
+
+FILE --> IMPORTATA : name, verso title
+
+@enduml

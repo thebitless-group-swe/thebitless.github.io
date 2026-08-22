@@ -1,0 +1,52 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
+
+title Sequenza dei momenti in cui il testo dell'editor raggiunge l'archivio locale
+
+participant Editor as ED
+participant useEditorStore as ES
+participant AiActionDialog as AD
+participant Sidebar as SB
+participant useNotesStore as NS
+participant persist as P
+participant localStorage as LS
+
+== La battitura si ferma a useEditorStore ==
+
+ED -> ES : setCurrentText(testo digitato)
+
+== L'esito assistito accettato si ferma a useEditorStore ==
+
+AD -> ES : insertOutputIntoNote(insertMode)
+ES -> ES : aggiorna currentText e azzera l'esito
+ES --> ED : il nuovo testo entra come transazione
+
+== Cambio di nota, prima transizione che scrive ==
+
+SB -> NS : select(id)
+NS -> ES : legge currentText
+ES --> NS : testo in lavorazione
+NS -> P : il testo entra nella nota lasciata
+P -> LS : riversa list e currentId
+NS -> P : currentId passa alla nota scelta
+P -> LS : riversa list e currentId
+NS -> ES : loadDocument(contenuto della nota scelta)
+
+== Creazione di una nota, seconda transizione che scrive ==
+
+SB -> NS : createEmpty(titolo)
+NS -> ES : legge currentText
+ES --> NS : testo in lavorazione
+NS -> P : il testo entra nella nota precedente
+P -> LS : riversa list e currentId
+NS -> P : la nuova nota entra in list, con currentId
+P -> LS : riversa list e currentId
+NS -> ES : loadDocument("")
+
+@enduml

@@ -1,0 +1,115 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam defaultFontSize 14
+skinparam nodesep 45
+skinparam ranksep 60
+
+title Componenti dell'interfaccia e store
+
+' Le frecce continue con il rombo sono composizione (chi rende chi).
+' Le frecce tratteggiate sono uso: il componente si sottoscrive a una
+' porzione dello store o ne invoca un'azione.
+' Negli attributi compare il solo stato posseduto dal componente
+' (useState, useReducer, useRef) e le sue proprieta'. Le porzioni lette
+' dagli store non sono attributi del componente e sono rese dalle frecce.
+
+class App
+
+together {
+  class Sidebar {
+    - collapsed: boolean
+    - creating: boolean
+    - newTitle: string
+    - editingId: string | null
+    - editingTitle: string
+    - deletingId: string | null
+    - fileError: string | null
+  }
+
+  class TopBar {
+    + noteTitle?: string
+  }
+
+  class ViewToggle
+
+  class EditorToolbar
+}
+
+together {
+  class Editor {
+    - containerRef
+    - viewRef
+    - prevLoadVersionRef
+  }
+
+  class Preview
+
+  class AiActionDialog {
+    - params: AiParams
+    - input: string
+    - mode: 'prompt' | 'link'
+    - validationError: string | null
+  }
+}
+
+class MarkdownView {
+  + children: string
+  + className?: string
+}
+
+class useEditorStore <<store>> {
+  + currentText: string
+  + selectedText: string
+  + streamedOutput: string
+  + isGenerating: boolean
+  + errorMessage: string | null
+  + viewMode: ViewMode
+  + aiModal: AiModal
+  + editorView: EditorView | null
+  + lastCall: LastCall | null
+  - _loadVersion: number
+  - _abortController: AbortController | null
+}
+
+class useNotesStore <<store>> {
+  + list: Note[]
+  + currentId: string | null
+}
+
+class Note <<entity>> {
+  + id: string
+  + title: string
+  + content: string
+  + createdAt: number
+  + updatedAt: number
+}
+
+' composizione
+App *-- Sidebar
+App *-- TopBar
+App *-- ViewToggle
+App *-- EditorToolbar
+App *-- Editor
+App *-- Preview
+App *-- AiActionDialog
+Preview *-- MarkdownView
+AiActionDialog *-- MarkdownView
+
+' uso degli store
+App ..> useEditorStore
+Sidebar ..> useEditorStore
+TopBar ..> useEditorStore
+ViewToggle ..> useEditorStore
+EditorToolbar ..> useEditorStore
+Editor ..> useEditorStore
+Preview ..> useEditorStore
+AiActionDialog ..> useEditorStore
+Sidebar ..> useNotesStore
+TopBar ..> useNotesStore
+
+useNotesStore "1" o-- "0..*" Note
+
+@enduml

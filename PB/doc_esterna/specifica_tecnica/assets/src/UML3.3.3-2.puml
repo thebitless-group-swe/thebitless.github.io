@@ -1,0 +1,67 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
+
+title useNotesStore
+
+top to bottom direction
+
+class persist <<zustand/middleware>> {
+  chiave: 'notes_persistence'
+  nessun partialize
+  + onRehydrateStorage()
+}
+
+class useNotesStore <<store>> {
+  + list: Note[]
+  + currentId: string | null
+  __
+  + createEmpty(title?: string): Note
+  + select(id: string): void
+  + updateCurrent(patch): void
+  + deleteNote(id: string): void
+  + loadNote(note): void
+  + ensureWelcomeNote(): void
+  __
+  + useNotesList(): Note[]
+  + useCurrentNote(): Note | null
+}
+
+class Note <<entity>> {
+  + id: string
+  + title: string
+  + content: string
+  + createdAt: number
+  + updatedAt: number
+}
+
+class useEditorStore <<store>> {
+  + currentText: string
+  __
+  + loadDocument(text: string): void
+}
+
+class fileSystem <<lib/>> {
+  + Note
+}
+
+class id <<lib/>> {
+  + newId(): string
+}
+
+useNotesStore --> persist
+useNotesStore "1" o-- "0..*" Note
+useNotesStore --> useEditorStore
+useNotesStore --> fileSystem
+useNotesStore --> id
+persist --> useEditorStore : onRehydrateStorage
+
+Note -[hidden]right- useEditorStore
+fileSystem -[hidden]right- id
+
+@enduml

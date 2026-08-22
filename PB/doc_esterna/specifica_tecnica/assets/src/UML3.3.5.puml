@@ -1,0 +1,93 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam defaultFontSize 14
+skinparam nodesep 45
+skinparam ranksep 65
+
+title Accesso al servizio applicativo
+
+top to bottom direction
+
+' Ogni funzione della facciata riceve, oltre ai parametri di dominio,
+' un ultimo parametro signal?: AbortSignal, qui omesso per non ripeterlo
+' sette volte. La sequenza completa di un'interazione e' nella sezione 4.1.
+
+class AiActionDialog {
+  - handleGenerate(): void
+  - handleStop(): void
+}
+
+class TopBar {
+  - handleAbort(): void
+}
+
+class useAiStream <<hooks/>> {
+  + start<T>(fn: (signal: AbortSignal) =>\nAsyncIterable<T>): Promise<void>
+  + abort(): void
+  + status: 'idle' | 'streaming' | 'done' | 'error'
+  - abortControllerRef: AbortController | null
+  - isAbortedRef: boolean
+}
+
+class useEditorStore <<store>> {
+  + streamedOutput: string
+  + isGenerating: boolean
+  + errorMessage: string | null
+  - _abortController: AbortController | null
+  __
+  + startStreaming()
+  + appendChunk(chunk)
+  + finishStreaming()
+  + setError(msg)
+  + abortStream()
+  - _setAbortController(c)
+}
+
+class api <<lib/, facciata>> {
+  + summarize(text: string, length: Length)
+  + translate(text: string, target_language: Language)
+  + rewrite(text: string, style: Style)
+  + grammar(text: string)
+  + critique(text: string, hat: Hat)
+  + generate(prompt: string, length: Length)
+  + generateFromLink(url: string, length: Length)
+  - stream(endpoint: string, body: unknown, signal?)
+}
+
+class sse <<lib/>> {
+  + parseSseStream(reader): AsyncIterable<SseEvent>
+  + STREAM_INTERRUPTED_MESSAGE: string
+  - parseField(line)
+}
+
+class SseEvent <<union>> {
+  { type: 'chunk', data: string }
+  { type: 'error', message: string }
+}
+
+class models <<barrel>> {
+  + Length, Language, Style, Hat
+}
+
+class abort <<lib/>> {
+  + isAbortError(err)
+}
+
+AiActionDialog --> useAiStream
+AiActionDialog --> api
+TopBar --> useEditorStore
+useAiStream --> useEditorStore
+useAiStream --> abort
+api --> sse
+api --> models
+sse --> SseEvent
+
+' vincoli di impaginazione
+useAiStream -[hidden]right- api
+useEditorStore -[hidden]right- sse
+sse -[hidden]right- models
+
+@enduml

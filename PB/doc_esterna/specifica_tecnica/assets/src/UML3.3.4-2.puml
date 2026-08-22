@@ -1,0 +1,39 @@
+@startuml
+!theme plain
+skinparam shadowing false
+skinparam defaultFontSize 14
+
+title Diagramma di sequenza della sincronizzazione dallo store all'editor
+
+participant useNotesStore <<store>>
+participant useEditorStore <<store>>
+participant Editor
+participant EditorView <<@codemirror/view>>
+participant updateListener <<estensione>>
+
+useNotesStore -> useEditorStore : loadDocument(contenuto)
+
+alt il contenuto coincide con currentText
+  useEditorStore --> useNotesStore : nessuna modifica,\n_loadVersion non avanza
+else il contenuto differisce
+  useEditorStore -> useEditorStore : currentText = contenuto,\n_loadVersion++
+  useEditorStore -> Editor : notifica del selettore useCurrentText
+  Editor -> EditorView : view.state.doc.toString()
+
+  alt il documento coincide con currentText
+    Editor -> EditorView : focus()
+  else il documento differisce
+    Editor -> useEditorStore : getState()._loadVersion
+    Editor -> Editor : confronta con prevLoadVersionRef\ne lo aggiorna
+    alt il contatore e' cambiato
+      Editor -> EditorView : dispatch(changes, StoreSync\n+ addToHistory(false))
+    else il contatore e' invariato
+      Editor -> EditorView : dispatch(changes, StoreSync)
+    end
+    EditorView -> updateListener : update (docChanged)
+    updateListener -> updateListener : riconosce StoreSync\ne non rimanda nulla
+    Editor -> EditorView : focus()
+  end
+end
+
+@enduml
