@@ -27,7 +27,7 @@ La cartella principale è organizzata per facilitare la consultazione dei docume
     - **piano-di-progetto/**: Documento che contiene la pianificazione delle attività, l'analisi dei rischi e il preventivo dei costi.
     - **piano-di-qualifica/**: Documento che contiene le metriche, le strategie di test e le garanzie di qualità del processo e del prodotto.
     - **verbali/**: Documenti che contengono i resoconti degli incontri esterni e dei SAL con l'azienda proponente.
-- **diapositive/**: Cartella che contiene le diapositive a supporto dei diari di bordo.
+- **diapositive/**: Cartella che contiene le diapositive a supporto dei diari di bordo e delle revisioni. I diari di bordo seguono la convenzione `DB-N_AAAA-MM-GG.pdf`, le altre presentazioni `Nome-Presentazione_AAAA-MM-GG.pdf`: la data nel nome del file determina l'ordine di visualizzazione sul sito (dalla più recente alla più vecchia).
 - **templates/**: Cartella che contiene le risorse grafiche e i file di stile LaTeX condivisi per la redazione dei documenti.
 
 ## Membri del Gruppo

@@ -15,7 +15,10 @@ const MVP_URL = "https://github.com/thebitless-group-swe/MVP";
 const MVP_ZIP_URL = "https://github.com/thebitless-group-swe/MVP/archive/refs/heads/main.zip";
 const REPO_URL = `https://github.com/${REPO}`;
 const VERBALE_RE = /^(VE|VI|V)_(\d{4}-\d{2}-\d{2})_(.+)$/;
-const DIARIO_RE = /^DB-?(\d+)?_?(\d{4}-\d{2}-\d{2})/;
+// Diapositive: i diari di bordo seguono `DB-N_YYYY-MM-DD`, le altre presentazioni
+// `Nome-Presentazione_YYYY-MM-DD`. La data nel nome file guida l'ordinamento.
+const DIARIO_RE = /^DB-?(\d+)_(\d{4}-\d{2}-\d{2})$/;
+const SLIDE_RE = /^(.+)_(\d{4}-\d{2}-\d{2})$/;
 
 let PHASES = [];
 let ACTIVE_PHASE = "pb";
@@ -104,25 +107,29 @@ function buildDocs(pdfs, texPaths, prefix, exclude = [], pinFirst = []) {
   return items.map(({ _folder, ...r }) => r);
 }
 
-// Diari di bordo: file DB-N_YYYY-MM-DD.pdf direttamente dentro una cartella.
-function buildDiari(pdfs, prefix) {
+// Nome mostrato e data di una diapositiva, ricavati dal nome del file.
+function slideEntry(file) {
+  const base = file.replace(/\.(pdf|pptx?)$/i, "");
+  const diario = base.match(DIARIO_RE);
+  if (diario) return { name: `Diario di Bordo ${diario[1]}`, date: diario[2] };
+  const slide = base.match(SLIDE_RE);
+  if (slide) return { name: slide[1].replace(/[-_]+/g, " "), date: slide[2] };
+  return { name: base.replace(/[-_]+/g, " "), date: "" };
+}
+
+// Diapositive: diari di bordo e altre presentazioni, come file diretti dentro una cartella.
+function buildDiari(slides, prefix) {
   const items = [];
-  for (const p of pdfs) {
+  for (const p of slides) {
     if (!p.startsWith(prefix + "/")) continue;
     const file = p.slice(prefix.length + 1);
     if (file.includes("/")) continue; // solo file diretti, niente sottocartelle
-    const m = file.match(DIARIO_RE);
-    const date = m ? m[2] : "";
-    const num = m && m[1] ? parseInt(m[1], 10) : 0;
-    const label =
-      m && m[1]
-        ? `Diario di Bordo ${m[1]} — ${date}`
-        : file.replace(/\.(pdf|pptx?)$/i, "").replace(/_/g, " ");
-    items.push({ name: label, href: p, _sort: date || file, _num: num });
+    const { name, date } = slideEntry(file);
+    items.push({ name, href: p, meta: date, _sort: date });
   }
-  // Ordine LIFO: i diari più recenti per primi; a parità di data, numero più alto prima.
-  items.sort((a, b) => b._sort.localeCompare(a._sort) || b._num - a._num);
-  return items.map(({ _sort, _num, ...r }) => r);
+  // Ordine LIFO: le diapositive più recenti per prime, quelle senza data in fondo.
+  items.sort((a, b) => b._sort.localeCompare(a._sort) || a.name.localeCompare(b.name, "it"));
+  return items.map(({ _sort, ...r }) => r);
 }
 
 // L'MVP è mostrato in un riquadro a parte in alto (vedi renderMvpBanner), non tra i documenti.
@@ -221,7 +228,7 @@ function makeDocList(docs) {
   if (docs.length === 0) return null;
   const ul = document.createElement("ul");
   ul.className = "doc-list";
-  docs.forEach(({ name, href, version, external }) => {
+  docs.forEach(({ name, href, version, meta, external }) => {
     const li = document.createElement("li");
     const a = document.createElement("a");
     a.href = href;
@@ -241,6 +248,13 @@ function makeDocList(docs) {
       badge.className = "doc-version";
       badge.textContent = `v${version}`;
       a.appendChild(badge);
+    }
+
+    if (meta) {
+      const info = document.createElement("span");
+      info.className = "doc-meta";
+      info.textContent = meta;
+      a.appendChild(info);
     }
 
     li.appendChild(a);
