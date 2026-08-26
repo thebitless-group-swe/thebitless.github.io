@@ -29,6 +29,7 @@ const LETTERE_PHASE = "pb";
 // nel browser invece di scaricarsi come fa raw.githubusercontent.
 const LETTERE = [
   { name: "Lettera di presentazione (docente Cardin)", path: "PB/lettera-di-presentazione/lettera-di-presentazione.pdf" },
+  { name: "Lettera di presentazione (docente Vardanega)", path: "PB/lettera-di-presentazione/lettera-di-presentazione-vardanega.pdf" },
 ];
 
 function humanize(s) {
