@@ -1,0 +1,142 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{xurl}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\setlist{topsep=3pt, itemsep=1pt, parsep=0pt}
+\definecolor{bluBitless}{HTML}{3A75C4}
+\geometry{a4paper, top=2.5cm, bottom=2.5cm, left=3cm, right=3cm}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=black,
+    citecolor=black,
+    filecolor=black,
+    breaklinks=true,
+    pdfpagemode=UseNone
+}
+\urlstyle{same}
+\usepackage[normalem]{ulem}
+\let\orighref\href
+\renewcommand{\href}[2]{\orighref{#1}{\uline{#2}}}
+
+\def\templatedir{../../templates}
+
+% Segnaposto da sostituire prima della consegna: resi visibili in rosso
+% affinché non possano passare inosservati in verifica.
+\newcommand{\segnaposto}[1]{\textbf{\textcolor{red}{[#1]}}}
+
+% Versioni dei documenti citati nella lettera.
+% Aggiornare i valori a segnaposto quando i documenti raggiungono la versione di approvazione per la PB.
+\newcommand{\versioneAdR}{2.0.0}
+\newcommand{\versioneGlossario}{2.0.0}
+\newcommand{\versioneNdP}{2.0.0}
+\newcommand{\versionePdP}{2.0.0}
+\newcommand{\versionePdQ}{2.0.0}
+\newcommand{\versioneST}{1.0.0}
+\newcommand{\versioneMU}{1.0.0}
+
+\begin{document}
+\pagestyle{empty}
+
+\noindent
+\begin{minipage}[t]{0.5\textwidth}
+    \vspace{0pt}
+    \raggedright
+    Alla cortese attenzione di \\
+    Prof. Tullio Vardanega, \\
+    Università degli Studi di Padova
+\end{minipage}\hfill
+\begin{minipage}[t]{0.45\textwidth}
+    \vspace{0pt}
+    \raggedleft
+    \includegraphics[width=2cm]{../../templates/logo_ritagliato.png} \\[0.4cm]
+    \textbf{The Bitless}, Gruppo 18 \\
+    thebitless.swe@gmail.com
+\end{minipage}
+
+\vspace{0.6cm}
+\begin{center}
+    {\Large \textbf{Lettera di Presentazione PB}} \\[0.2cm]
+    {\large (seconda parte -- Prof. Vardanega)}
+\end{center}
+
+
+\noindent Egregio Prof. Vardanega,
+
+\vspace{0.4cm}
+\begin{spacing}{1.15}
+
+\noindent con la presente il gruppo \textbf{The Bitless} desidera comunicarLe formalmente la propria intenzione di sottoporsi alla revisione della \textit{Product Baseline}, riguardo il lavoro svolto nell'ambito del progetto proposto dall'azienda \textbf{Zucchetti S.p.A.} nel capitolato \textbf{C6}, con titolo: "\textbf{Second Brain --- Estendere il note-taking con i Large Language Models}". Tale candidatura viene presentata a seguito del colloquio di valutazione con il docente Cardin, avvenuto in data 26/08/2026, che ha confermato l'idoneità del gruppo a procedere con la seconda parte della revisione.
+
+\vspace{0.2cm}
+
+\noindent Nel periodo passato, The Bitless ha sviluppato un \textit{Minimum Viable Product}, che abbiamo reso disponibile al seguente link: \href{https://github.com/thebitless-group-swe/MVP}{Repository MVP}. Il prodotto è stato visionato e formalmente accettato dall'azienda proponente, come attestato dal \href{https://thebitless.live/PB/doc_esterna/verbali/VE_2026-08-21_approvazione-mvp/VE_2026-08-21_approvazione-mvp.pdf}{verbale esterno del 2026-08-21}.
+
+\vspace{0.2cm}
+
+\noindent La documentazione completa relativa alla revisione PB è disponibile sul \href{https://thebitless.live}{sito ufficiale del gruppo}, oppure direttamente all'interno del \href{https://github.com/thebitless-group-swe/thebitless.github.io}{Repository Documentazione}. All'interno si possono trovare i seguenti documenti:
+
+\begin{itemize}
+    \item Lettera di presentazione PB (docente Vardanega) \textit{(documento attuale)};
+    \item \href{https://thebitless.live/PB/lettera-di-presentazione/lettera-di-presentazione.pdf}{Lettera di presentazione PB (docente Cardin)};
+    \item \href{https://thebitless.live/PB/doc_esterna/analisi-dei-requisiti/analisi-dei-requisiti.pdf}{Analisi dei Requisiti} v\versioneAdR;
+    \item \href{https://thebitless.live/PB/doc_esterna/piano-di-progetto/piano-di-progetto.pdf}{Piano di Progetto} v\versionePdP;
+    \item \href{https://thebitless.live/PB/doc_esterna/piano-di-qualifica/piano-di-qualifica.pdf}{Piano di Qualifica} v\versionePdQ;
+    \item \href{https://thebitless.live/PB/doc_esterna/specifica_tecnica/specifica_tecnica.pdf}{Specifica Tecnica} v\versioneST;
+    \item \href{https://thebitless.live/PB/doc_esterna/manuale-utente/manuale-utente.pdf}{Manuale Utente} v\versioneMU (disponibile anche come \href{https://thebitless.live/website/manuale-utente.html}{risorsa web});
+    \item \href{https://thebitless.live/PB/doc_interna/norme-di-progetto/norme-di-progetto.pdf}{Norme di Progetto} v\versioneNdP;
+    \item \href{https://thebitless.live/PB/doc_interna/glossario/glossario.pdf}{Glossario} v\versioneGlossario (disponibile anche come \href{https://thebitless.live/website/glossario.html}{risorsa web});
+    \item Verbali esterni:
+    \begin{itemize}
+        \item \href{https://thebitless.live/PB/doc_esterna/verbali/VE_2026-08-21_approvazione-mvp/VE_2026-08-21_approvazione-mvp.pdf}{Verbale esterno del 2026-08-21}.
+    \end{itemize}
+    \item Verbali interni:
+    \begin{itemize}
+        \item \href{https://thebitless.live/PB/doc_interna/verbali/VI_2026-08-25_chiusura-dodicesimo-sprint/VI_2026-08-25_chiusura-dodicesimo-sprint.pdf}{Verbale interno del 2026-08-25};
+        \item \href{https://thebitless.live/PB/doc_interna/verbali/VI_2026-08-18_dodicesimo-sprint/VI_2026-08-18_dodicesimo-sprint.pdf}{Verbale interno del 2026-08-18};
+        \item \href{https://thebitless.live/PB/doc_interna/verbali/VI_2026-08-11_undicesimo-sprint/VI_2026-08-11_undicesimo-sprint.pdf}{Verbale interno del 2026-08-11};
+        \item \href{https://thebitless.live/PB/doc_interna/verbali/VI_2026-08-04_decimo-sprint/VI_2026-08-04_decimo-sprint.pdf}{Verbale interno del 2026-08-04};
+        \item \href{https://thebitless.live/PB/doc_interna/verbali/VI_2026-07-21_nono-sprint/VI_2026-07-21_nono-sprint.pdf}{Verbale interno del 2026-07-21};
+        \item \href{https://thebitless.live/PB/doc_interna/verbali/VI_2026-07-07_ottavo-sprint/VI_2026-07-07_ottavo-sprint.pdf}{Verbale interno del 2026-07-07}.
+    \end{itemize}
+\end{itemize}
+
+\vspace{0.2cm}
+
+\noindent Il monte ore preventivato è stato impiegato integralmente e ciascun componente ha portato a termine le ore che gli erano state assegnate. Le tabelle orarie, i consuntivi e il dettaglio degli scostamenti sono riportati nel \href{https://thebitless.live/PB/doc_esterna/piano-di-progetto/piano-di-progetto.pdf}{Piano di Progetto} v\versionePdP, unica fonte di riferimento per tali informazioni.
+
+\vspace{0.8cm}
+
+\noindent Cordiali saluti, \\
+The Bitless
+
+\vspace{0.6cm}
+
+\begin{center}
+    \begin{tabular}{|l|l|c|}
+        \hline
+        \textbf{Nome} & \textbf{Cognome} & \textbf{Matricola} \\
+        \hline
+        Lorenzo & Battistella & 2103116 \\
+        Edoardo & De Piccoli &  2101055 \\
+        Davide & Facco &        2087852 \\
+        Anna & Marini &         2110986 \\
+        Andrea & Menegaldo &    2116426 \\
+        Samuele & Vendramin &   2111934 \\
+        Simone & Zecchinato &   2113189 \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\end{spacing}
+
+\end{document}
