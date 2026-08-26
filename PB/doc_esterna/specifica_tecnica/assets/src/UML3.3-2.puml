@@ -1,0 +1,102 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam nodesep 35
+skinparam ranksep 50
+skinparam defaultFontSize 14
+
+' Raggruppati per catena di dipendenza, non per cartella: la cartella di
+' appartenenza e' nello stereotipo di ciascun modulo. L'organizzazione per
+' cartelle e' nel diagramma UML 3.3.1.
+' Ogni freccia e' un'importazione dichiarata nel modulo di partenza.
+
+title Agganci, moduli di lib/ e dipendenze esterne
+
+together {
+  class useAiStream <<hooks/>> {
+    + start<T>(fn: (signal: AbortSignal) =>\nAsyncIterable<T>): Promise<void>
+    + abort(): void
+    + status: 'idle' | 'streaming' |\n'done' | 'error'
+  }
+  class abort <<lib/>> {
+    + isAbortError(err)
+  }
+}
+
+together {
+  class api <<lib/, facciata>> {
+    sette funzioni, una per
+    operazione assistita
+    - stream(endpoint, body, signal)
+  }
+  class sse <<lib/>> {
+    + parseSseStream(reader)
+    + STREAM_INTERRUPTED_MESSAGE
+  }
+}
+
+class aiActions <<lib/>> {
+  + AI_ACTIONS
+  + getActiveText()
+}
+
+together {
+  class useNotesStore <<store/>>
+  class fileSystem <<lib/>> {
+    + Note
+    + openNoteFromFile
+    + saveNoteToFile
+    + renameNote
+  }
+  class id <<lib/>> {
+    + newId()
+  }
+}
+
+together {
+  class editorCommands <<lib/>> {
+    undici comandi di
+    formattazione, dieci
+    invocati dalla barra
+  }
+  class EditorView <<@codemirror/view>>
+}
+
+together {
+  class remarkUnderline <<lib/>> {
+    + remarkUnderline()
+  }
+  class "unist-util-visit" as UUV <<libreria>>
+}
+
+class useEditorStore <<store/>>
+class zustand <<libreria>>
+
+class useTypewriter <<hooks/>> {
+  + useTypewriter(streamedText: string,\nisGenerating: boolean): string
+}
+class utils <<lib/>> {
+  + cn(...inputs)
+}
+
+useAiStream --> abort
+useAiStream --> useEditorStore
+api --> sse
+aiActions --> useEditorStore
+useEditorStore ..> aiActions : AiParams, solo tipo
+useNotesStore --> fileSystem
+fileSystem --> id
+editorCommands --> EditorView
+remarkUnderline --> UUV
+useEditorStore --> zustand
+useNotesStore --> zustand
+
+' impaginazione: le catene senza legami con le altre scendono su una seconda fila
+useTypewriter -[hidden]right- utils
+abort -[hidden]down- editorCommands
+editorCommands -[hidden]right- remarkUnderline
+sse -[hidden]down- useTypewriter
+
+@enduml

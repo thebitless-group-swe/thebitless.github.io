@@ -1,0 +1,82 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
+
+title useEditorStore
+
+class useEditorStore <<store>> {
+  + currentText: string
+  + selectedText: string
+  + streamedOutput: string
+  + isGenerating: boolean
+  + errorMessage: string | null
+  + viewMode: ViewMode
+  + aiModal: AiModal
+  + editorView: EditorView | null
+  + lastCall: LastCall | null
+  - _loadVersion: number
+  - _abortController: AbortController | null
+  __
+  + setCurrentText(text: string): void
+  + loadDocument(text: string): void
+  + setSelectedText(text: string): void
+  + reset(): void
+  + startStreaming(): void
+  + appendChunk(chunk: string): void
+  + finishStreaming(): void
+  + setError(msg: string): void
+  + clearError(): void
+  + setViewMode(mode: ViewMode): void
+  + setAiModal(modal: AiModal): void
+  + insertOutputIntoNote(insertMode?): void
+  + discardOutput(): void
+  + resetPreview(): void
+  + setEditorView(view: EditorView | null): void
+  + abortStream(): void
+  + setLastCall(call: LastCall): void
+  + clearLastCall(): void
+  - _setAbortController(c): void
+  __
+  + useCurrentText(): string
+  + useSelectedText(): string
+  + useStreamedOutput(): string
+  + useIsGenerating(): boolean
+  + useErrorMessage(): string | null
+  + useViewMode(): ViewMode
+  + useAiModal(): AiModal
+}
+
+together {
+  class ViewMode <<type>> {
+    'editor' | 'render' | 'split'
+  }
+
+  class AiModal <<type>> {
+    null | AiActionId
+  }
+}
+
+class LastCall <<type>> {
+  input: string
+  params: AiParams
+  mode?: 'prompt' | 'link'
+  actionId: AiActionId
+  execute(signal: AbortSignal): AsyncIterable<string>
+}
+
+class AiParams <<lib/aiActions, solo tipo>>
+
+class EditorView <<@codemirror/view>>
+
+useEditorStore ..> ViewMode
+useEditorStore ..> AiModal
+useEditorStore ..> LastCall
+useEditorStore ..> EditorView
+LastCall ..> AiParams
+
+@enduml

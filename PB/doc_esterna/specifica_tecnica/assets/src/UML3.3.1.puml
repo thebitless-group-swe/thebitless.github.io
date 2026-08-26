@@ -1,0 +1,68 @@
+@startuml
+!theme plain
+hide circle
+hide empty members
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam nodesep 30
+skinparam ranksep 45
+skinparam defaultFontSize 14
+
+title Organizzazione per ruolo dei sorgenti in web/src
+
+class "radice di web/src" as ROOT {
+  main.tsx, monta l'applicazione nel DOM
+  App.tsx, radice dell'albero e layout
+  index.css, stile globale e temi
+}
+
+class "components/" as COMP {
+  Sidebar, TopBar, ViewToggle, EditorToolbar,
+  Editor, Preview, MarkdownView, AiActionDialog
+  ..
+  ui/ : alert, button, textarea
+}
+
+class "hooks/" as HOOKS {
+  useAiStream, useTypewriter
+}
+
+class "store/" as STORE {
+  useEditorStore.ts
+  notes.ts, che esporta useNotesStore
+}
+
+class "lib/" as LIB {
+  api, sse, fileSystem, id, editorCommands,
+  aiActions, remarkUnderline, abort, utils
+}
+
+class "types/" as TYPES {
+  api.ts, generato da openapi-typescript
+  models.ts, barrel di re-export
+}
+
+class "test/" as TEST {
+  setup.ts, configurazione comune
+}
+
+class "assets/" as ASSETS {
+  risorse statiche
+}
+
+ROOT --> COMP
+ROOT --> STORE
+COMP --> HOOKS
+COMP --> STORE
+COMP --> LIB
+COMP --> TYPES
+HOOKS --> STORE
+HOOKS --> LIB
+STORE --> LIB
+LIB --> STORE
+LIB --> TYPES
+
+TEST -[hidden]right- ASSETS
+TYPES -[hidden]down- TEST
+
+@enduml
