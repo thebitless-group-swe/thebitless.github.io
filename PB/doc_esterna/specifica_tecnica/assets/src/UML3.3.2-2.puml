@@ -1,0 +1,56 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
+
+title TopBar
+
+top to bottom direction
+
+class TopBar {
+  + noteTitle?: string
+  __
+  - openModal(modal: AiActionId): void
+  - handleAbort(): void
+}
+
+class useEditorStore <<store>> {
+  + isGenerating: boolean
+  + errorMessage: string | null
+  + aiModal: AiModal
+  __
+  + abortStream(): void
+  __
+  + useIsGenerating(): boolean
+  + useErrorMessage(): string | null
+  + useAiModal(): AiModal
+}
+
+class useNotesStore <<store>> {
+  + useCurrentNote(): Note | null
+}
+
+class AiActionId <<type>> {
+  'summarize' | 'translate' |
+  'rewrite' | 'grammar' |
+  'critique' | 'generate' |
+  'generate-link'
+}
+
+class AiModal <<type>> {
+  null | AiActionId
+}
+
+TopBar --> useEditorStore
+TopBar --> useNotesStore
+TopBar --> AiActionId
+AiModal --> AiActionId
+
+useEditorStore -[hidden]right- useNotesStore
+AiModal -[hidden]right- AiActionId
+
+@enduml

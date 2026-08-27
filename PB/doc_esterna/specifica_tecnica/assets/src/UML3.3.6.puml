@@ -1,0 +1,74 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam nodesep 40
+skinparam ranksep 55
+skinparam defaultFontSize 14
+
+title I due meccanismi di persistenza lato client
+
+class Sidebar {
+  - handleOpenFile(): Promise<void>
+  - handleSaveFile(): Promise<void>
+}
+
+class fileSystem <<lib/, via deliberata>> {
+  + Note
+  + openNoteFromFile(): Promise<Note | null>
+  + saveNoteToFile(note: Note): Promise<void>
+  + renameNote(note: Note, name: string): Promise<Note>
+}
+
+class persist <<zustand/middleware, via automatica>> {
+  chiave: 'notes_persistence'
+  nessun partialize
+  + onRehydrateStorage()
+}
+
+class useNotesStore <<store>> {
+  + list: Note[]
+  + currentId: string | null
+  + ensureWelcomeNote(): void
+}
+
+class useEditorStore <<store>> {
+  + currentText: string
+  + loadDocument(text: string): void
+}
+
+class id <<lib/>> {
+  + newId(): string
+}
+
+class "File System Access API" as FSA <<browser>> {
+  showOpenFilePicker()
+  showSaveFilePicker()
+}
+
+class "ripiego universale" as FB <<browser>> {
+  input type=file + FileReader
+  Blob + collegamento di scaricamento
+}
+
+class localStorage <<browser>>
+
+Sidebar --> fileSystem
+Sidebar --> useNotesStore : loadNote
+Sidebar --> useEditorStore : legge currentText
+useNotesStore --> persist
+persist --> localStorage : scrive e rilegge
+persist --> useEditorStore : loadDocument alla rilettura
+useNotesStore --> fileSystem : importa Note
+useNotesStore --> useEditorStore : riversa currentText
+fileSystem --> id : newId
+fileSystem --> FSA : se esposta
+fileSystem --> FB : altrimenti
+
+fileSystem -[hidden]right- persist
+FSA -[hidden]right- FB
+id -[hidden]right- FSA
+useEditorStore -[hidden]right- localStorage
+
+@enduml

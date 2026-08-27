@@ -1,0 +1,55 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
+
+title Salvataggio di una nota su file
+
+start
+
+:L'utente attiva "Salva file" nella Sidebar;
+
+:handleSaveFile preleva currentText da useEditorStore
+e lo sovrappone al contenuto della nota corrente;
+
+:saveNoteToFile deriva il nome dal titolo, con estensione .md
+e con ripiego nota.md, e costruisce un Blob di tipo text/markdown;
+
+if (showSaveFilePicker presente in window?) then (si)
+
+  :showSaveFilePicker propone il nome
+  e l'utente sceglie la destinazione;
+
+  switch (esito della chiamata nativa?)
+  case (riuscita)
+    :createWritable, write, close;
+    :Il file e' scritto
+    nella destinazione scelta;
+  case ( AbortError)
+    :eAnnullamento riconosce l'annullamento
+    e saveNoteToFile termina senza scrivere;
+  case (altro errore)
+    :L'errore risale alla Sidebar, che mostra
+    un messaggio e lascia intatti l'elenco
+    delle note e il testo dell'editor;
+  endswitch
+
+else (no)
+
+  :URL.createObjectURL costruisce
+  un indirizzo temporaneo dal Blob;
+  :Un'ancora con attributo download
+  viene attivata per via programmatica;
+  :URL.revokeObjectURL rilascia l'indirizzo;
+  :Il file segue le impostazioni
+  di scaricamento del browser;
+
+endif
+
+stop
+
+@enduml

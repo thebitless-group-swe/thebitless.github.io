@@ -1,0 +1,42 @@
+@startuml
+!theme plain
+hide circle
+hide empty members
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
+
+title La catena di persistenza dello store delle note
+
+class useNotesStore <<store/>> {
+  + list: Note[]
+  + currentId: string | null
+  + createEmpty(title?: string): Note
+  + select(id: string): void
+  + updateCurrent(patch): void
+  + deleteNote(id: string): void
+  + loadNote(note: Note): void
+  + ensureWelcomeNote(): void
+}
+
+class useEditorStore <<store/>> {
+  + currentText: string
+  + setCurrentText(text: string): void
+  + loadDocument(text: string): void
+  + insertOutputIntoNote(insertMode?): void
+}
+
+class persist <<zustand/middleware>> {
+  name = "notes_persistence"
+  onRehydrateStorage()
+}
+
+class localStorage <<browser>>
+
+useNotesStore ..> useEditorStore
+useNotesStore ..> persist : avvolto da
+persist .right.> localStorage : serializza e rilegge
+
+@enduml

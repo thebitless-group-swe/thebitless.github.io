@@ -1,0 +1,35 @@
+@startuml
+!theme plain
+skinparam shadowing false
+skinparam defaultFontSize 14
+
+title Diagramma di sequenza della sincronizzazione dall'editor allo store
+
+actor Utente
+participant EditorView <<@codemirror/view>>
+participant updateListener <<estensione>>
+participant useEditorStore <<store>>
+
+Utente -> EditorView : digita o sposta il cursore
+EditorView -> updateListener : update
+
+alt update.selectionSet oppure update.docChanged
+  updateListener -> updateListener : ricava il testo selezionato,\nstringa vuota se la selezione e' vuota
+  alt differisce da selectedText
+    updateListener -> useEditorStore : setSelectedText(testo)
+  else coincide
+    updateListener -> updateListener : nessuna scrittura
+  end
+end
+
+alt update.docChanged
+  alt una transazione porta l'annotazione StoreSync
+    updateListener -> updateListener : e' la sincronizzazione inversa,\nnon la rimanda indietro
+  else nessuna annotazione
+    updateListener -> useEditorStore : setCurrentText(update.state.doc.toString())
+  end
+else documento invariato
+  updateListener -> updateListener : si ferma
+end
+
+@enduml

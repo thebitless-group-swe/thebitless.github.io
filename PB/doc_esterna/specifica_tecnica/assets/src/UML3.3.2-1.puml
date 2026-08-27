@@ -1,0 +1,75 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
+
+title Sidebar
+
+top to bottom direction
+
+class Sidebar {
+  - collapsed: boolean
+  - creating: boolean
+  - newTitle: string
+  - editingId: string | null
+  - editingTitle: string
+  - deletingId: string | null
+  - fileError: string | null
+  __
+  - startCreate(): void
+  - commitCreate(): void
+  - cancelCreate(): void
+  - handleCreate(title: string): boolean
+  - handleSelect(id: string): void
+  - startRename(note): void
+  - commitRename(note): Promise<void>
+  - confirmDelete(id: string): void
+  - handleOpenFile(): Promise<void>
+  - handleSaveFile(): Promise<void>
+}
+
+class useNotesStore <<store>> {
+  + list: Note[]
+  + currentId: string | null
+  __
+  + createEmpty(title?: string): Note
+  + select(id: string): void
+  + updateCurrent(patch): void
+  + deleteNote(id: string): void
+  + loadNote(note): void
+  __
+  + useNotesList(): Note[]
+  + useCurrentNote(): Note | null
+}
+
+class useEditorStore <<store>> {
+  + currentText: string
+}
+
+class fileSystem <<lib/>> {
+  + openNoteFromFile(): Promise<Note | null>
+  + saveNoteToFile(note: Note): Promise<void>
+  + renameNote(note: Note, name: string): Promise<Note>
+}
+
+class Note <<entity>> {
+  + id: string
+  + title: string
+  + content: string
+  + createdAt: number
+  + updatedAt: number
+}
+
+Sidebar --> useNotesStore
+Sidebar --> useEditorStore
+Sidebar --> fileSystem
+useNotesStore "1" o-- "0..*" Note
+fileSystem --> Note
+
+useEditorStore -[hidden]right- fileSystem
+
+@enduml

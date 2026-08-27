@@ -1,0 +1,50 @@
+@startuml
+!theme plain
+hide circle
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam nodesep 45
+skinparam ranksep 60
+skinparam defaultFontSize 14
+
+title MarkdownView
+
+top to bottom direction
+
+' Le estensioni sono importate da MarkdownView e passate a ReactMarkdown
+' nelle due proprieta' remarkPlugins e rehypePlugins. Le etichette degli
+' archi riportano la proprieta' attraverso cui ciascuna viene consegnata.
+
+class Preview
+class AiActionDialog
+
+class MarkdownView {
+  + children: string
+  + className?: string
+}
+
+class ReactMarkdown <<react-markdown>>
+
+together {
+  class remarkGfm <<remark-gfm>>
+  class remarkMath <<remark-math>>
+  class remarkUnderline <<lib/, del gruppo>> {
+    + remarkUnderline()
+  }
+}
+
+together {
+  class rehypeKatex <<rehype-katex>>
+  class rehypeHighlight <<rehype-highlight>>
+}
+
+Preview --> MarkdownView
+AiActionDialog --> MarkdownView
+MarkdownView *-- ReactMarkdown
+MarkdownView --> remarkGfm : remarkPlugins
+MarkdownView --> remarkMath : remarkPlugins
+MarkdownView --> remarkUnderline : remarkPlugins
+MarkdownView --> rehypeKatex : rehypePlugins
+MarkdownView --> rehypeHighlight : rehypePlugins
+
+@enduml
