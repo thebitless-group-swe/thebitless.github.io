@@ -1,0 +1,148 @@
+\documentclass[a4paper, 10pt, colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=blue, hidelinks]{article}
+\usepackage{xcolor}
+\usepackage[a-1b]{pdfx}
+\usepackage[italian]{babel}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{minted}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{The Bitless}
+\fancyhead[R]{\titolo \ \dataverbale}
+\fancyfoot[C]{\thepage}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    pdfborderstyle={/S/U/W 1},
+    linkbordercolor=0 0 0,
+    urlbordercolor=0 0 0,
+    citebordercolor=0 0 0,
+    filebordercolor=0 0 0,
+    breaklinks=true,
+}
+\newcommand{\issue}[1]{\href{https://github.com/thebitless-group-swe/thebitless.github.io/issues/#1}{\##1}}
+\newcommand{\issueMVP}[1]{\href{https://github.com/thebitless-group-swe/MVP/issues/#1}{\##1}}
+
+% Spazio da compilare a mano prima dell'approvazione del verbale
+\newcommand{\dacompilare}[1][2cm]{\underline{\hspace{#1}}}
+
+\begin{document}
+
+\newcommand{\titolo}{Verbale interno}
+\newcommand{\dataverbale}{2026-08-25}
+\newcommand{\dataversione}{2026-08-25}
+\newcommand{\versione}{0.1.0}
+\newcommand{\stato}{Stesura}
+\newcommand{\destinatari}{The Bitless, prof. Tullio Vardanega, prof. Riccardo Cardin}
+\def\templatedir{../../../../templates}
+
+\begin{titlepage}
+\pagenumbering{gobble}
+\input{\templatedir/frontespizio.tex}
+\end{titlepage}
+
+\newpage
+\tableofcontents
+
+\newpage
+\pagenumbering{arabic}
+\section{Informazioni sulla riunione}
+Il presente documento riporta la verbalizzazione della riunione interna al gruppo \textbf{The Bitless} svoltasi in chiusura del dodicesimo sprint$_G$. L'incontro si è tenuto tramite la piattaforma Discord$_G$ ed è stato dedicato alla chiusura dello sprint$_G$, alla verifica dello stato di avanzamento dei documenti e alla preparazione dell'incontro di Product Baseline$_G$ (PB) con il prof. Riccardo Cardin, fissato per la mattina del 2026-08-26.
+
+\noindent La riunione è avvenuta dalle ore 16 alle ore 18.
+
+\section{Presenze}
+\begin{center}
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Nome} & \textbf{Cognome} & \textbf{Stato} \\
+\hline
+Lorenzo & Battistella & Presente \\
+Edoardo & De Piccoli & Presente \\
+Davide & Facco & Presente \\
+Anna & Marini & Presente \\
+Andrea & Menegaldo & Presente \\
+Samuele & Vendramin & Presente \\
+Simone & Zecchinato & Presente \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ordine del giorno}
+\begin{enumerate}
+    \item Gestione dei ruoli$_G$;
+    \item Simulazione e prove generali dell'esposizione per la Product Baseline$_G$;
+    \item Retrospettiva sull'organizzazione del lavoro;
+    \item Stato della documentazione e controllo finale del sito web;
+    \item Prossimi passi e decisioni;
+    \item Assegnazione delle attività singole.
+\end{enumerate}
+
+\section{Discussione e decisioni}
+
+\subsection{Gestione dei ruoli}
+Il gruppo ha constatato che, con la chiusura del dodicesimo sprint$_G$, \textbf{non è più in essere alcun ruolo$_G$ di progetto}. Le attività di produzione sono concluse, il monte ore individuale previsto per l'intero progetto è stato integralmente consumato da tutti i membri e non vi sono ulteriori sprint$_G$ da pianificare. 
+
+\noindent Le attività ancora aperte, riportate nella Sezione \ref{sec:prossimi-passi} e nella Sezione \ref{sec:assegnazione-attivita}, hanno carattere di rappresentanza o rifinitura documentale e non richiedono l'attribuzione formale di un ruolo$_G$.
+
+\subsection{Simulazione e prove generali dell'esposizione per la Product Baseline}
+Il gruppo ha svolto le prove generali dell'esposizione in vista dell'incontro con il prof. Riccardo Cardin del 2026-08-26, dedicato alla prima parte della presentazione della Product Baseline$_G$. La simulazione ha riguardato:
+
+\begin{itemize}
+    \item la verifica della coerenza fra le diapositive sull'architettura$_G$ del sistema e i contenuti del documento di Specifica Tecnica$_G$;
+    \item la prova di esposizione vera e propria, con il chiarimento degli ultimi dubbi sugli argomenti da presentare.
+\end{itemize}
+
+\subsection{Retrospettiva sull'organizzazione del lavoro}
+Il gruppo ha condotto una riflessione conclusiva sull'organizzazione adottata nella fase finale del progetto e ha constatato che l'adozione di sprint$_G$ di durata settimanale, introdotta a partire dallo sprint$_G$ 10 in sostituzione della cadenza bisettimanale, si è rivelata una scelta particolarmente utile ed efficace. In particolare sono stati riconosciuti i seguenti benefici:
+
+\begin{itemize}
+    \item il mantenimento di un elevato livello di attenzione sugli obiettivi, grazie alla ridotta distanza temporale fra la definizione di un'attività e la sua verifica$_G$;
+    \item la riduzione dei tempi morti che, nei periodi di quattordici giorni, tendevano ad accumularsi nella prima settimana per poi concentrare il carico sulla seconda;
+    \item un coordinamento più frequente fra i membri, con riunioni di allineamento ravvicinate e decisioni assunte in tempi brevi;
+    \item una maggiore accuratezza della pianificazione$_G$.
+\end{itemize}
+
+\subsection{Stato della documentazione e controllo finale del sito web}
+Durante la riunione è stato effettuato un controllo conclusivo del sito web del gruppo per verificare lo stato di pubblicazione dei file. Si è constatato che tutti i documenti risultano correttamente completati e caricati in versione 2.0 (ovvero in stato di ultima approvazione), ad eccezione del \textit{Piano di Qualifica}$_G$ e del \textit{Piano di Progetto}$_G$.
+
+\noindent Questi ultimi due documenti verranno ultimati e rilasciati in versione definitiva nel giro di un paio di giorni, nel momento in cui saranno completate tutte le attività residue, così da poter consuntivare in maniera precisa anche le ultimissime task.
+
+\subsection{Prossimi passi e decisioni}
+\label{sec:prossimi-passi}
+Il gruppo ha individuato le attività residue da svolgere per la chiusura definitiva del progetto, focalizzate sulla redazione della lettera di presentazione e sulla predisposizione del materiale per la seconda parte della revisione di Product Baseline$_G$ destinata al prof. Tullio Vardanega.
+
+\noindent A livello di tempistiche operative, queste ultime attività dovranno essere svolte in un tempo relativamente breve: inizieranno subito dopo la presentazione con il prof. Riccardo Cardin, prevista per la mattina del 2026-08-26. In questo modo si potrà procedere tempestivamente alla chiusura del \textit{Piano di Progetto}$_G$ e del \textit{Piano di Qualifica}$_G$. 
+
+\subsection{Assegnazione delle attività singole}
+\label{sec:assegnazione-attivita}
+In vista dei passi conclusivi e a seguito delle decisioni prese durante la riunione, sono state formalizzate le seguenti assegnazioni:
+
+\begin{center}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{|p{4.2cm}|p{6.2cm}|p{2.2cm}|}
+        \hline
+        \textbf{Persona Incaricata} & \textbf{Task Assegnata} & \centering\textbf{Link Issue} \tabularnewline
+        \hline
+        A. Marini & Stesura verbale interno 2026-08-25 & \centering\issue{430} \tabularnewline
+        \hline
+        A. Marini, S. Zecchinato & Slide per incontro finale revisione PB & \centering\issue{431} \tabularnewline
+        \hline
+        L. Battistella & Lettera di Presentazione PB (seconda parte) & \centering\issue{432} \tabularnewline
+        \hline
+    \end{tabular}
+\end{center}
+
+\vspace{0.2cm}
+\noindent Si comunica e specifica in conclusione che tali attività appena assegnate, data la loro natura circoscritta e di breve durata, verranno interamente rendicontate all'interno del consuntivo dello sprint 12 nel \textit{Piano di Progetto}$_G$. Per questo motivo si è scelto di non includere in questo verbale il resoconto orario dello sprint appena terminato, poiché vi dovranno essere aggiunte queste nuove attività che chiuderanno definitivamente la rendicontazione.
+
+\appendix
+
+\end{document}
