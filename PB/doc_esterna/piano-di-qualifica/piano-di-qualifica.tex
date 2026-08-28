@@ -73,6 +73,8 @@
     \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Verificatore} & \textbf{Approvatore} & \textbf{Descrizione} \\
     \hline
     \endhead
+    1.8.0 & 2026-08-28 & S. Vendramin & A. Marini & - & Aggiunge le valutazioni MPC-CC, MPC-TSR, MPC-DD e MPC-TR e aggiorna MPC-PMS \\
+    \hline
     1.7.0 & 2026-08-28 & S. Zecchinato & D. Facco & - & Aggiornamento metriche allo sprint 12 \\
     \hline
     1.6.0 & 2026-08-20 & A. Marini & A. Menegaldo & - & Sistema errori ortografici e di battitura \\
@@ -324,7 +326,7 @@ Le metriche relative alla verifica$_G$ misurano l'efficacia delle attività di c
     MPC-CC & Code Coverage & $\geq 70\%$ & $\geq 90\%$ \\ \hline
     MPC-TSR & Test$_G$ Success Rate & $\geq 95\%$ & $100\%$ \\ \hline
     MPC-DD & Defect Density & $\leq 2$ difetti per componente & $0$ difetti aperti \\ \hline
-    MPC-TR & Test$_G$ Requirements Coverage & $100\%$ requisiti$_G$ obbligatori coperti & $100\%$ requisiti$_G$ coperti \\ \hline
+    MPC-TR & Test$_G$ Requirements Coverage & $100\%$ requisiti$_G$ funzionali obbligatori coperti & $100\%$ requisiti$_G$ funzionali coperti \\ \hline
     MPC-PMS & Percentuale Metriche Soddisfatte & $\geq 80\%$ & $100\%$ \\ \hline
 
     \caption{Metriche per la qualità del processo di verifica.}
@@ -1441,6 +1443,154 @@ Per quanto riguarda gli errori non gravi questi sono rappresentati principalment
     \label{fig:co}
 \end{figure}
 
+\subsection{Valutazione MPC-CC}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|l|l|p{2.4cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Istruzioni coperte} & \textbf{Istruzioni totali} & \textbf{CC (\%)} & \textbf{Giudizio} \\
+		\hline
+		8 & 355 & 899 & 39,5\% & Critico \\
+		\hline
+        9 & 603 & 990 & 60,9\% & Critico \\
+        \hline
+        10 & 1.246 & 1.406 & 88,6\% & Accettabile \\
+        \hline
+        11 & 1.310 & 1.453 & 90,2\% & Ottimo \\
+        \hline
+	\end{tabular}
+	\caption{Copertura del codice per sprint}
+	\label{tab:cc}
+\end{table}
+\subsubsection{PB (Sprint 8--11)}
+La metrica è un unico rapporto fra istruzioni coperte e istruzioni totali, e per questo i due lati del sistema$_G$ concorrono al numeratore e al denominatore anziché a due percentuali da mediare: il backend$_G$ è misurato con \texttt{pytest-cov}, il frontend$_G$ con \texttt{vitest} e il fornitore \texttt{v8}. Su tutte e quattro le rilevazioni è stata applicata la configurazione di copertura dell'MVP$_G$, perché il \textit{Proof of Concept}$_G$ non ne aveva alcuna e quella introdotta nel nono sprint$_G$ non dichiarava l'elenco esplicito dei sorgenti: senza quell'elenco il fornitore \texttt{v8} strumenta i soli file caricati dai test$_G$, un sorgente che nessun test$_G$ importa non compare come zero ma semplicemente non compare, e il denominatore si restringe da sé.
+
+Il valore dell'ottavo sprint$_G$ è quello del prototipo. Il \textit{Proof of Concept}$_G$ aveva test$_G$ automatici su entrambi i lati, ma coprivano i percorsi che era stato costruito per dimostrare, ovvero l'analisi dello \textit{streaming}$_G$, il client verso il servizio LLM$_G$ e la rotta di riassunto, e lasciavano fuori tutto ciò che riguardava l'interfaccia. Lo scarto è concentrato nel frontend$_G$, con 117 istruzioni coperte su 616, perché i file di test$_G$ erano tre e nessuno di essi toccava un componente.
+
+La crescita fra il nono e il decimo sprint$_G$ è l'effetto di due decisioni che agiscono insieme. La prima è l'introduzione della \textit{Continuous Integration}$_G$ su GitHub Actions$_G$, con la soglia del $70\%$ scritta nella configurazione della pipeline e l'attività chiusa il 3 agosto 2026: da quel momento una pull request$_G$ che abbassa la copertura sotto la soglia non è più integrabile. La seconda è la ripartizione del ruolo Verificatore$_G$ su quattro membri nel decimo sprint$_G$, che ha portato la copertura ben oltre il minimo preteso dalla pipeline. L'undicesimo sprint$_G$ supera la soglia ottimale con un margine sottile, e lo scarto residuo sta tutto nel frontend$_G$, dove i componenti che si limitano a comporre la disposizione della pagina non hanno un test$_G$ proprio. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $CC \geq 70\%$, vincolo \textit{rispettato} dallo sprint$_G$ 10.
+    \item \textbf{Valore ottimale:} $CC \geq 90\%$, vincolo \textit{rispettato} nello sprint$_G$ 11.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/cc.pdf}
+    \caption{Valutazione \textit{Code Coverage}}
+    \label{fig:cc}
+\end{figure}
+
+\subsection{Valutazione MPC-TSR}
+\begin{table}[H]
+    \centering
+	\begin{tabular}{|c|l|l|l|p{2.4cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Test$_G$ eseguiti} & \textbf{Test$_G$ superati} & \textbf{TSR (\%)} & \textbf{Giudizio} \\
+		\hline
+		8 & 101 & 100 & 99,0\% & Accettabile \\
+		\hline
+        9 & 227 & 227 & 100,0\% & Ottimo \\
+        \hline
+        10 & 644 & 644 & 100,0\% & Ottimo \\
+        \hline
+        11 & 702 & 702 & 100,0\% & Ottimo \\
+        \hline
+	\end{tabular}
+	\caption{Test$_G$ automatici superati per sprint}
+	\label{tab:tsr}
+\end{table}
+\subsubsection{PB (Sprint 8--11)}
+La suite cresce di sette volte fra i due estremi, da 101 a 702 casi, e dal nono sprint$_G$ non registra alcun fallimento. Il valore massimo non è però l'effetto automatico di un prodotto stabile, ma della regola introdotta insieme alla \textit{Continuous Integration}$_G$: dal nono sprint$_G$ una pull request$_G$ con la suite in rosso non è integrabile, e un fallimento vive quindi al più quanto il branch$_G$ che lo ha prodotto. Va letto in questa chiave anche il confronto con MPC-DD, perché i nove difetti censiti nel decimo sprint$_G$ non lasciano qui alcuna traccia: sono emersi dalla revisione fra pari e sono stati corretti sul proprio branch$_G$ prima dell'integrazione$_G$.
+
+L'unico valore inferiore al massimo appartiene al prototipo e discende da un solo caso di prova. Il test$_G$ che verificava la generazione del testo invocava la rotta senza sostituire il client verso il servizio LLM$_G$, e la chiamata raggiungeva il gateway$_G$ reale: su qualunque macchina priva di chiave la risposta era un errore di indisponibilità del fornitore. Il nono sprint$_G$ lo ha corretto con una sostituzione esplicita della dipendenza, annotando nel codice la ragione della modifica.
+
+Il valore dell'ottavo sprint$_G$ va preso per quello che è, ovvero il caso migliore. La suite del prototipo portava anche un secondo difetto, nell'importazione del modulo di \textit{smoke test}, che nominava il pacchetto dei test$_G$ con un prefisso valido soltanto fuori dalla cartella del backend$_G$: eseguendo \texttt{pytest} come prescriveva il file di istruzioni del prototipo la raccolta si interrompeva e nessun test$_G$ del backend$_G$ veniva eseguito, il che ridurrebbe il valore a 40 test$_G$ superati su 101. La rilevazione riportata in tabella è stata quindi condotta risolvendo quell'importazione, come ha poi fatto la correzione del 29 luglio 2026, così da misurare lo stato di salute dei test$_G$ e non quello del comando che li avviava. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $TSR \geq 95\%$, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $TSR = 100\%$, vincolo \textit{rispettato} dallo sprint$_G$ 9.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/tsr.pdf}
+    \caption{Valutazione \textit{Test Success Rate}}
+    \label{fig:tsr}
+\end{figure}
+
+\subsection{Valutazione MPC-DD}
+\begin{table}[H]
+    \centering
+    \small
+    \setlength{\tabcolsep}{4pt}
+	\begin{tabular}{|c|>{\centering\arraybackslash}p{1.9cm}|>{\centering\arraybackslash}p{2.1cm}|>{\centering\arraybackslash}p{1.3cm}|>{\centering\arraybackslash}p{2.2cm}|>{\centering\arraybackslash}p{2cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Difetti rilevati} & \textbf{Componenti} & \textbf{DD} & \textbf{Difetti aperti a fine sprint} & \textbf{Giudizio} \\
+		\hline
+		8 & 0 & 9 & 0,00 & 0 & Ottimo \\
+		\hline
+        9 & 0 & 9 & 0,00 & 0 & Ottimo \\
+        \hline
+        10 & 9 & 10 & 0,90 & 3 & Accettabile \\
+        \hline
+        11 & 0 & 10 & 0,00 & 0 & Ottimo \\
+        \hline
+	\end{tabular}
+	\caption{Densità dei difetti per componente per sprint}
+	\label{tab:dd}
+\end{table}
+\subsubsection{PB (Sprint 8--11)}
+Lo zero dei primi due sprint$_G$ non descrive un prodotto privo di difetti, ma un periodo in cui nessuno li stava cercando nel codice. L'ottavo sprint$_G$ non prevedeva alcun Programmatore$_G$ fra i ruoli, poiché la progettazione di dettaglio era ancora in avvio, e il codice in vigore restava quello del \textit{Proof of Concept}$_G$; il nono ha aperto il repository$_G$ dell'MVP$_G$ con issue$_G$ che erano tutte compiti di implementazione$_G$. La metrica segue il censimento delle issue$_G$ etichettate come difetto, e dove la verifica$_G$ sul codice non è in corso il censimento resta vuoto.
+
+Tutti e nove i difetti della \textit{Product Baseline}$_G$ cadono nel decimo sprint$_G$, e la coincidenza ha un nome preciso. È lo sprint$_G$ in cui il ruolo Verificatore$_G$ è stato ripartito su quattro membri anziché concentrato su una o due figure, decisione assunta nella riunione di apertura del 4 agosto 2026 in risposta diretta al rischio$_G$ RT-3, \textit{Presenza di errori nel codice}, la cui pericolosità era stata elevata ad \textit{Alta} al termine del nono sprint$_G$. Moltiplicare la capacità di revisione ha moltiplicato i rilievi: sei dei nove sono stati aperti nello stesso giorno, il 6 agosto, e riguardano in prevalenza il backend$_G$, appena toccato dalla riorganizzazione secondo l'architettura$_G$ esagonale.
+
+La densità resta ampiamente entro la soglia di accettabilità perché i nove rilievi si distribuiscono sui componenti anziché concentrarsi in uno solo, ed è esattamente la concentrazione anomala che la metrica serve a intercettare. Sei di essi sono stati chiusi entro il giorno successivo; i tre residui, tutti sul lato frontend$_G$, sono stati chiusi il 16 agosto, dentro l'undicesimo sprint$_G$, che la pianificazione aveva dedicato proprio alla correzione dei difetti emersi in fase di verifica$_G$. Il decimo sprint$_G$ è l'unico periodo in cui la condizione di ottimalità non risulta soddisfatta, perché essa guarda ai difetti ancora aperti alla chiusura del periodo e non a quelli rilevati. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $DD \leq 2$ difetti per componente, vincolo \textit{sempre rispettato}.
+    \item \textbf{Valore ottimale:} $0$ difetti aperti, vincolo \textit{violato} nello sprint$_G$ 10.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/dd.pdf}
+    \caption{Valutazione \textit{Defect Density}}
+    \label{fig:dd}
+\end{figure}
+
+\subsection{Valutazione MPC-TR}
+\begin{table}[H]
+    \centering
+    \small
+    \setlength{\tabcolsep}{4pt}
+	\begin{tabular}{|c|>{\centering\arraybackslash}p{2.6cm}|>{\centering\arraybackslash}p{1.9cm}|>{\centering\arraybackslash}p{2.6cm}|>{\centering\arraybackslash}p{1.9cm}|}
+		\hline
+		\textbf{Sprint} & \textbf{Requisiti$_G$ obbligatori coperti (\%)} & \textbf{Giudizio} & \textbf{Requisiti$_G$ coperti (\%)} & \textbf{Giudizio} \\
+		\hline
+		8 & 63,3\% & Critico & 57,1\% & Critico \\
+		\hline
+        9 & 63,3\% & Critico & 57,1\% & Critico \\
+        \hline
+        10 & 63,3\% & Critico & 57,1\% & Critico \\
+        \hline
+        11 & 100,0\% & Ottimo & 100,0\% & Ottimo \\
+        \hline
+	\end{tabular}
+	\caption{Copertura dei requisiti$_G$ da parte dei test$_G$ di sistema$_G$ per sprint}
+	\label{tab:tr}
+\end{table}
+\subsubsection{PB (Sprint 8--11)}
+La metrica misura una proprietà del presente documento e non del prodotto, poiché conta i requisiti$_G$ per i quali la tabella dei test$_G$ di sistema$_G$ specifica almeno un test$_G$, qualunque ne sia lo stato. Si distingue perciò da MPD-CRO, che conta i requisiti$_G$ realizzati: qui si misura se il requisito$_G$ è stato messo alla prova, non se la prova è stata superata, ed è la ragione per cui i requisiti$_G$ opzionali concorrono anche quando il test$_G$ corrispondente resta \textit{Non Implementato}. Il denominatore sono i 119 requisiti$_G$ funzionali dell'\textit{Analisi dei Requisiti}$_G$, perché un test$_G$ di sistema$_G$ esercita il comportamento del sistema$_G$, mentre i requisiti$_G$ di qualità e di vincolo riguardano il processo, la documentazione e le tecnologie adottate e sono verificati$_G$ per altra via, ovvero dalla pipeline di \textit{Continuous Integration}$_G$, dalla revisione fra pari sulle pull request$_G$ e dalla verifica$_G$ dei documenti.
+
+Il valore resta fermo per tre sprint$_G$ perché la tabella dei test$_G$ di sistema$_G$ è rimasta quella redatta per la RTB$_G$, ovvero gli stessi settanta test$_G$, che tracciavano sessantotto requisiti$_G$ funzionali su centodiciannove. La tabella era stata redatta il 30 maggio 2026 sulla numerazione dei requisiti$_G$ di allora e non è stata riallineata mentre l'\textit{Analisi dei Requisiti}$_G$ attraversava le proprie revisioni, fino a quella dell'ottavo sprint$_G$ che ha recepito i rilievi del prof. Riccardo Cardin: al termine del decimo sprint$_G$ diversi riferimenti citavano ancora la numerazione precedente, come R-3-F-Ob per il taglio di una porzione di testo, che nel frattempo era diventato R-4-F-De.
+
+Il riallineamento è arrivato il 15 agosto 2026, dentro l'undicesimo sprint$_G$, il periodo che la pianificazione aveva dedicato alla verifica$_G$ accurata di tutti i documenti destinati alla \textit{Product Baseline}$_G$. Sono stati aggiunti ventisei test$_G$, da TS-071 a TS-096, ne sono stati rimossi due e tutti i riferimenti esistenti sono stati riscritti sulla numerazione corrente. Da quella revisione ogni requisito$_G$ funzionale ha almeno un test$_G$ di sistema$_G$ che lo nomina, e la metrica passa in un solo periodo dal valore più basso dell'intera \textit{Product Baseline}$_G$ a quello ottimale. È anche la ragione per cui, fra le iniziative di miglioramento della Sezione \ref{sec:iniziative-miglioramento}, il controllo incrociato fra tabelle e definizioni è stato reso obbligatorio per il ruolo Verificatore$_G$. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $TR = 100\%$ dei requisiti$_G$ obbligatori coperti, vincolo \textit{rispettato} nello sprint$_G$ 11.
+    \item \textbf{Valore ottimale:} $TR = 100\%$ dei requisiti$_G$ coperti, vincolo \textit{rispettato} nello sprint$_G$ 11.
+\end{itemize}
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{charts/tr.pdf}
+    \caption{Valutazione \textit{Test Requirements Coverage}}
+    \label{fig:tr}
+\end{figure}
+
 \subsection{Valutazione della copertura dei requisiti}
 \begin{table}[H]
     \centering
@@ -2064,11 +2214,11 @@ La validazione degli ingressi è l'unica delle tre metriche che si muove. Nell'o
         \hline
         7 & 100\% & Ottimo \\
         \hline
-        8 & 74\% & Critico \\
+        8 & 72\% & Critico \\
         \hline
-        9 & 80\% & Accettabile \\
+        9 & 77\% & Critico \\
         \hline
-        10 & 83\% & Accettabile \\
+        10 & 82\% & Accettabile \\
         \hline
         11 & 100\% & Ottimo \\
         \hline
@@ -2090,10 +2240,14 @@ Dal calcolo sono state escluse le metriche di correttezza dei documenti, in quan
 Quando analizziamo l'andamento del \textit{MPC-PMS} durante la fase di PB visibile in Figura \ref{fig:pms}, notiamo un andamento diverso da quello riscontrabile durante la fase di RTB.
 Innanzitutto notiamo un calo considerevole delle performance nello sprint 8. Questo è dovuto principalmente a due fattori:
 \begin{itemize}
-    \item Dalla fase di PB il numero di metriche considerate aumenta (da 11 a 35) e questo riscala le percentuali mostrate in \textit{MPC-PMS}. Questo, quindi, vale dallo sprint 8 in poi.
+    \item Dalla fase di PB il numero di metriche considerate aumenta (da 11 a 39) e questo riscala le percentuali mostrate in \textit{MPC-PMS}. Questo, quindi, vale dallo sprint 8 in poi.
     \item In questa fase il codice proviene dalla fase di RTB che, seppur scritto cercando il riutilizzo massimo in PB, non è perfetto (anzi).
 \end{itemize}
-Ciò detto, possiamo notare che durante gli sprint successivi, le percentuali di metriche soddisfatte aumentano fino ad arrivare al 100\% degli ultimi due sprint.
+Ciò detto, possiamo notare che durante gli sprint successivi le percentuali di metriche soddisfatte aumentano senza interruzioni fino ad arrivare al 100\% degli ultimi due sprint. La risalita è graduale perché le quattro metriche del processo di verifica$_G$ entrano nel calcolo insieme alla codifica$_G$ dell'MVP$_G$ e si assestano solo con il suo completamento: MPC-CC rientra nella soglia dal decimo sprint e MPC-TR raggiunge la copertura completa nell'undicesimo, quando il riallineamento della tabella dei test$_G$ di sistema$_G$ porta dentro i vincoli l'ultima metrica ancora scoperta. Valutazione:
+\begin{itemize}
+    \item \textbf{Valore accettabile:} $PMS \geq 80\%$, vincolo \textit{non rispettato} negli sprint 8 e 9.
+    \item \textbf{Valore ottimale:} $PMS = 100\%$, vincolo \textit{rispettato} negli sprint 11 e 12.
+\end{itemize}
 
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{charts/pms.pdf}
